@@ -12,8 +12,9 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import SESv2Client as NativeClient, AssociateEmailIdentityCertificateOutput, BatchGetMetricDataOutput, CancelExportJobOutput, CreateConfigurationSetEventDestinationOutput, CreateConfigurationSetOutput, CreateContactListOutput, CreateContactOutput, CreateCustomVerificationEmailTemplateOutput, CreateDedicatedIpPoolOutput, CreateDeliverabilityTestReportOutput, CreateEmailIdentityOutput, CreateEmailIdentityPolicyOutput, CreateEmailTemplateOutput, CreateExportJobOutput, CreateImportJobOutput, CreateMultiRegionEndpointOutput, CreateTenantOutput, CreateTenantResourceAssociationOutput, DeleteConfigurationSetEventDestinationOutput, DeleteConfigurationSetOutput, DeleteContactListOutput, DeleteContactOutput, DeleteCustomVerificationEmailTemplateOutput, DeleteDedicatedIpPoolOutput, DeleteEmailIdentityOutput, DeleteEmailIdentityPolicyOutput, DeleteEmailTemplateOutput, DeleteMultiRegionEndpointOutput, DeleteSuppressedDestinationOutput, DeleteTenantOutput, DeleteTenantResourceAssociationOutput, DisassociateEmailIdentityCertificateOutput, GetAccountOutput, GetBlacklistReportsOutput, GetConfigurationSetEventDestinationsOutput, GetConfigurationSetOutput, GetContactListOutput, GetContactOutput, GetCustomVerificationEmailTemplateOutput, GetDedicatedIpOutput, GetDedicatedIpPoolOutput, GetDedicatedIpsOutput, GetDeliverabilityDashboardOptionsOutput, GetDeliverabilityTestReportOutput, GetDomainDeliverabilityCampaignOutput, GetDomainStatisticsReportOutput, GetEmailAddressInsightsOutput, GetEmailIdentityOutput, GetEmailIdentityPoliciesOutput, GetEmailTemplateOutput, GetExportJobOutput, GetImportJobOutput, GetMessageInsightsOutput, GetMultiRegionEndpointOutput, GetReputationEntityOutput, GetSuppressedDestinationOutput, GetTenantOutput, ListConfigurationSetsOutput, ListContactListsOutput, ListContactsOutput, ListCustomVerificationEmailTemplatesOutput, ListDedicatedIpPoolsOutput, ListDeliverabilityTestReportsOutput, ListDomainDeliverabilityCampaignsOutput, ListEmailIdentitiesOutput, ListEmailIdentityCertificatesOutput, ListEmailTemplatesOutput, ListExportJobsOutput, ListImportJobsOutput, ListMultiRegionEndpointsOutput, ListRecommendationsOutput, ListReputationEntitiesOutput, ListResourceTenantsOutput, ListSuppressedDestinationsOutput, ListTagsForResourceOutput, ListTenantResourcesOutput, ListTenantsOutput, PutAccountDedicatedIpWarmupAttributesOutput, PutAccountDetailsOutput, PutAccountPricingAttributesOutput, PutAccountSendingAttributesOutput, PutAccountSuppressionAttributesOutput, PutAccountVdmAttributesOutput, PutConfigurationSetArchivingOptionsOutput, PutConfigurationSetDeliveryOptionsOutput, PutConfigurationSetReputationOptionsOutput, PutConfigurationSetSendingOptionsOutput, PutConfigurationSetSuppressionOptionsOutput, PutConfigurationSetTrackingOptionsOutput, PutConfigurationSetVdmOptionsOutput, PutDedicatedIpInPoolOutput, PutDedicatedIpPoolScalingAttributesOutput, PutDedicatedIpWarmupAttributesOutput, PutDeliverabilityDashboardOptionOutput, PutEmailIdentityConfigurationSetAttributesOutput, PutEmailIdentityDkimAttributesOutput, PutEmailIdentityDkimSigningAttributesOutput, PutEmailIdentityFeedbackAttributesOutput, PutEmailIdentityMailFromAttributesOutput, PutSuppressedDestinationOutput, PutTenantSuppressionAttributesOutput, SendBulkEmailOutput, SendCustomVerificationEmailOutput, SendEmailOutput, TagResourceOutput, TestRenderEmailTemplateOutput, UntagResourceOutput, UpdateConfigurationSetEventDestinationOutput, UpdateConfigurationSetOutput, UpdateContactListOutput, UpdateContactOutput, UpdateCustomVerificationEmailTemplateOutput, UpdateEmailIdentityPolicyOutput, UpdateEmailTemplateOutput, UpdateReputationEntityCustomerManagedStatusOutput, UpdateReputationEntityPolicyOutput
+from ._native import SESv2Client as NativeClient, AssociateEmailIdentityCertificateOutput, BatchGetMetricDataOutput, CancelExportJobOutput, CreateConfigurationSetEventDestinationOutput, CreateConfigurationSetOutput, CreateContactListOutput, CreateContactOutput, CreateCustomVerificationEmailTemplateOutput, CreateDedicatedIpPoolOutput, CreateDeliverabilityTestReportOutput, CreateEmailIdentityOutput, CreateEmailIdentityPolicyOutput, CreateEmailTemplateOutput, CreateExportJobOutput, CreateImportJobOutput, CreateMultiRegionEndpointOutput, CreateTenantOutput, CreateTenantResourceAssociationOutput, DeleteConfigurationSetEventDestinationOutput, DeleteConfigurationSetOutput, DeleteContactListOutput, DeleteContactOutput, DeleteCustomVerificationEmailTemplateOutput, DeleteDedicatedIpPoolOutput, DeleteEmailIdentityOutput, DeleteEmailIdentityPolicyOutput, DeleteEmailTemplateOutput, DeleteMultiRegionEndpointOutput, DeleteSuppressedDestinationOutput, DeleteTenantOutput, DeleteTenantResourceAssociationOutput, DisassociateEmailIdentityCertificateOutput, GetAccountOutput, GetBlacklistReportsOutput, GetConfigurationSetEventDestinationsOutput, GetConfigurationSetOutput, GetContactListOutput, GetContactOutput, GetCustomVerificationEmailTemplateOutput, GetDedicatedIpOutput, GetDedicatedIpPoolOutput, GetDedicatedIpsOutput, GetDeliverabilityDashboardOptionsOutput, GetDeliverabilityTestReportOutput, GetDomainDeliverabilityCampaignOutput, GetDomainStatisticsReportOutput, GetEmailAddressInsightsOutput, GetEmailIdentityOutput, GetEmailIdentityPoliciesOutput, GetEmailTemplateOutput, GetExportJobOutput, GetImportJobOutput, GetMessageInsightsOutput, GetMultiRegionEndpointOutput, GetReputationEntityOutput, GetSuppressedDestinationOutput, GetTenantOutput, ListConfigurationSetsOutput, ListContactListsOutput, ListContactsOutput, ListCustomVerificationEmailTemplatesOutput, ListDedicatedIpPoolsOutput, ListDeliverabilityTestReportsOutput, ListDomainDeliverabilityCampaignsOutput, ListEmailIdentitiesOutput, ListEmailIdentityCertificatesOutput, ListEmailTemplatesOutput, ListExportJobsOutput, ListImportJobsOutput, ListMultiRegionEndpointsOutput, ListRecommendationsOutput, ListReputationEntitiesOutput, ListResourceTenantsOutput, ListSuppressedDestinationsOutput, ListTagsForResourceOutput, ListTenantResourcesOutput, ListTenantsOutput, PutAccountDedicatedIpWarmupAttributesOutput, PutAccountDeliveryAttributesOutput, PutAccountDetailsOutput, PutAccountPricingAttributesOutput, PutAccountSendingAttributesOutput, PutAccountSuppressionAttributesOutput, PutAccountVdmAttributesOutput, PutConfigurationSetArchivingOptionsOutput, PutConfigurationSetDeliveryOptionsOutput, PutConfigurationSetReputationOptionsOutput, PutConfigurationSetSendingOptionsOutput, PutConfigurationSetSuppressionOptionsOutput, PutConfigurationSetTrackingOptionsOutput, PutConfigurationSetVdmOptionsOutput, PutDedicatedIpInPoolOutput, PutDedicatedIpPoolScalingAttributesOutput, PutDedicatedIpWarmupAttributesOutput, PutDeliverabilityDashboardOptionOutput, PutEmailIdentityConfigurationSetAttributesOutput, PutEmailIdentityDkimAttributesOutput, PutEmailIdentityDkimSigningAttributesOutput, PutEmailIdentityFeedbackAttributesOutput, PutEmailIdentityMailFromAttributesOutput, PutSuppressedDestinationOutput, PutTenantSuppressionAttributesOutput, SendBulkEmailOutput, SendCustomVerificationEmailOutput, SendEmailOutput, TagResourceOutput, TestRenderEmailTemplateOutput, UntagResourceOutput, UpdateConfigurationSetEventDestinationOutput, UpdateConfigurationSetOutput, UpdateContactListOutput, UpdateContactOutput, UpdateCustomVerificationEmailTemplateOutput, UpdateEmailIdentityPolicyOutput, UpdateEmailTemplateOutput, UpdateReputationEntityCustomerManagedStatusOutput, UpdateReputationEntityPolicyOutput
 from .types import (
+    AccountSharedPoolDeliveryMode,
     ArchivingOptions,
     BatchGetMetricDataQuery,
     BehaviorOnMxFailure,
@@ -55,6 +56,7 @@ from .types import (
     ScalingMode,
     SendingOptions,
     SendingStatus,
+    SharedPoolDeliveryMode,
     SuppressionListReason,
     SuppressionListScope,
     SuppressionOptions,
@@ -2357,6 +2359,31 @@ class SESV2Client:
         return _response
 
 
+    async def put_account_delivery_attributes(
+        self,
+        *,
+        shared_pool_delivery_mode: AccountSharedPoolDeliveryMode,
+    ) -> PutAccountDeliveryAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_account_delivery_attributes/)."""
+        params: dict[str, object] = {
+            "shared_pool_delivery_mode": shared_pool_delivery_mode,
+        }
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.put_account_delivery_attributes, params, _interceptors,
+                "sesv2", "PutAccountDeliveryAttributes", self._region,
+                PutAccountDeliveryAttributesOutput,
+                ("shared_pool_delivery_mode", ),
+                ("shared_pool_delivery_mode", ),
+                service_name='SESv2',
+            )
+            return _response
+        _response = await self._native.put_account_delivery_attributes(params)
+        return _response
+
+
     async def put_account_details(
         self,
         *,
@@ -2536,6 +2563,7 @@ class SESV2Client:
         tls_policy: TlsPolicy | None = None,
         sending_pool_name: str | None = None,
         max_delivery_seconds: int | None = None,
+        shared_pool_delivery_mode: SharedPoolDeliveryMode | None = None,
     ) -> PutConfigurationSetDeliveryOptionsOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_configuration_set_delivery_options/)."""
         params: dict[str, object] = {
@@ -2547,6 +2575,8 @@ class SESV2Client:
             params["sending_pool_name"] = sending_pool_name
         if max_delivery_seconds is not None:
             params["max_delivery_seconds"] = max_delivery_seconds
+        if shared_pool_delivery_mode is not None:
+            params["shared_pool_delivery_mode"] = shared_pool_delivery_mode
         _interceptors = operation_interceptors("sesv2", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -2554,7 +2584,7 @@ class SESV2Client:
                 self._native.put_configuration_set_delivery_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetDeliveryOptions", self._region,
                 PutConfigurationSetDeliveryOptionsOutput,
-                ("configuration_set_name", "tls_policy", "sending_pool_name", "max_delivery_seconds", ),
+                ("configuration_set_name", "tls_policy", "sending_pool_name", "max_delivery_seconds", "shared_pool_delivery_mode", ),
                 ("configuration_set_name", ),
                 service_name='SESv2',
             )

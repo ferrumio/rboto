@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
+    ListAgentInsightStoresOutput,
     ListAgentRuntimeEndpointsOutput,
     ListAgentRuntimeVersionsByCapacityProviderOutput,
     ListAgentRuntimeVersionsOutput,
@@ -51,6 +52,9 @@ from ._native import (
 
 from .types import (
     DescriptorType,
+    ListDatasetExamplesFilter,
+    ListDatasetVersionsFilter,
+    ListDatasetsFilter,
     RegistryAuthorizerType,
     RegistryRecordStatus,
     RegistryStatus,
@@ -65,6 +69,29 @@ if TYPE_CHECKING:
 class BedrockAgentCoreControlClientPaginators:
     def __init__(self, client: _Client) -> None:
         self._client = client
+
+
+    def list_agent_insight_stores(
+        self,
+        *,
+        next_token: str | None = None,
+        max_results: int | None = None,
+    ) -> AsyncIterator[ListAgentInsightStoresOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_agent_insight_stores/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+        }
+        if next_token is not None:
+            params["next_token"] = next_token
+        if max_results is not None:
+            params["max_results"] = max_results
+        return _paginate(
+            self._client.list_agent_insight_stores, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
 
 
     def list_agent_runtime_endpoints(
@@ -368,6 +395,7 @@ class BedrockAgentCoreControlClientPaginators:
         *,
         dataset_id: str,
         dataset_version: str | None = None,
+        filter: ListDatasetExamplesFilter | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListDatasetExamplesOutput]:
@@ -377,6 +405,8 @@ class BedrockAgentCoreControlClientPaginators:
         }
         if dataset_version is not None:
             params["dataset_version"] = dataset_version
+        if filter is not None:
+            params["filter"] = filter
         if max_results is not None:
             params["max_results"] = max_results
         if next_token is not None:
@@ -395,6 +425,7 @@ class BedrockAgentCoreControlClientPaginators:
         self,
         *,
         dataset_id: str,
+        filter: ListDatasetVersionsFilter | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListDatasetVersionsOutput]:
@@ -402,6 +433,8 @@ class BedrockAgentCoreControlClientPaginators:
         params: dict[str, object] = {
             "dataset_id": dataset_id,
         }
+        if filter is not None:
+            params["filter"] = filter
         if next_token is not None:
             params["next_token"] = next_token
         if max_results is not None:
@@ -419,12 +452,15 @@ class BedrockAgentCoreControlClientPaginators:
     def list_datasets(
         self,
         *,
+        filter: ListDatasetsFilter | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListDatasetsOutput]:
         """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_datasets/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
+        if filter is not None:
+            params["filter"] = filter
         if next_token is not None:
             params["next_token"] = next_token
         if max_results is not None:

@@ -12,11 +12,12 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import SecretsManagerClient as NativeClient, BatchGetSecretValueOutput, CancelRotateSecretOutput, CreateSecretOutput, DeleteResourcePolicyOutput, DeleteSecretOutput, DescribeSecretOutput, GetRandomPasswordOutput, GetResourcePolicyOutput, GetSecretValueOutput, ListSecretVersionIdsOutput, ListSecretsOutput, PutResourcePolicyOutput, PutSecretValueOutput, RemoveRegionsFromReplicationOutput, ReplicateSecretToRegionsOutput, RestoreSecretOutput, RotateSecretOutput, StopReplicationToReplicaOutput, UpdateSecretOutput, UpdateSecretVersionStageOutput, ValidateResourcePolicyOutput
+from ._native import SecretsManagerClient as NativeClient, AssociateCrossAccountReplicaOutput, BatchGetSecretValueOutput, CancelRotateSecretOutput, CreateSecretOutput, DeleteResourcePolicyOutput, DeleteSecretOutput, DescribeSecretOutput, DisassociateCrossAccountReplicaOutput, GetRandomPasswordOutput, GetResourcePolicyOutput, GetSecretValueOutput, ListResourcePoliciesOutput, ListSecretVersionIdsOutput, ListSecretsOutput, PutResourcePolicyOutput, PutSecretValueOutput, RemoveRegionsFromReplicationOutput, ReplicateSecretToRegionsOutput, RestoreSecretOutput, RotateSecretOutput, StopReplicationToReplicaOutput, UpdateSecretOutput, UpdateSecretVersionStageOutput, ValidateResourcePolicyOutput
 from .types import (
     ExternalSecretRotationMetadataItem,
     Filter,
     ReplicaRegionType,
+    ReplicaRestrictionType,
     RotationRulesType,
     SortByType,
     SortOrderType,
@@ -81,6 +82,39 @@ class SecretsManagerClient:
         if self._paginators is None:
             self._paginators = _Paginators(self)
         return self._paginators
+
+
+    async def associate_cross_account_replica(
+        self,
+        *,
+        secret_id: str,
+        cross_account_replica_arn: str,
+        replica_restriction: ReplicaRestrictionType | None = None,
+        replication_role_arn: str | None = None,
+    ) -> AssociateCrossAccountReplicaOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/associate_cross_account_replica/)."""
+        params: dict[str, object] = {
+            "secret_id": secret_id,
+            "cross_account_replica_arn": cross_account_replica_arn,
+        }
+        if replica_restriction is not None:
+            params["replica_restriction"] = replica_restriction
+        if replication_role_arn is not None:
+            params["replication_role_arn"] = replication_role_arn
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.associate_cross_account_replica, params, _interceptors,
+                "secrets-manager", "AssociateCrossAccountReplica", self._region,
+                AssociateCrossAccountReplicaOutput,
+                ("secret_id", "cross_account_replica_arn", "replica_restriction", "replication_role_arn", ),
+                ("secret_id", "cross_account_replica_arn", ),
+                service_name='Secrets Manager',
+            )
+            return _response
+        _response = await self._native.associate_cross_account_replica(params)
+        return _response
 
 
     async def batch_get_secret_value(
@@ -156,6 +190,7 @@ class SecretsManagerClient:
         add_replica_regions: Sequence[ReplicaRegionType] | None = None,
         force_overwrite_replica_secret: bool | None = None,
         type: str | None = None,
+        cross_account_primary_arn: str | None = None,
     ) -> CreateSecretOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/create_secret/)."""
         params: dict[str, object] = {
@@ -179,6 +214,8 @@ class SecretsManagerClient:
             params["force_overwrite_replica_secret"] = force_overwrite_replica_secret
         if type is not None:
             params["type"] = type
+        if cross_account_primary_arn is not None:
+            params["cross_account_primary_arn"] = cross_account_primary_arn
         _interceptors = operation_interceptors("secrets-manager", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -186,7 +223,7 @@ class SecretsManagerClient:
                 self._native.create_secret, params, _interceptors,
                 "secrets-manager", "CreateSecret", self._region,
                 CreateSecretOutput,
-                ("name", "client_request_token", "description", "kms_key_id", "secret_binary", "secret_string", "tags", "add_replica_regions", "force_overwrite_replica_secret", "type", ),
+                ("name", "client_request_token", "description", "kms_key_id", "secret_binary", "secret_string", "tags", "add_replica_regions", "force_overwrite_replica_secret", "type", "cross_account_primary_arn", ),
                 ("name", ),
                 service_name='Secrets Manager',
             )
@@ -199,11 +236,14 @@ class SecretsManagerClient:
         self,
         *,
         secret_id: str,
+        policy_name: str | None = None,
     ) -> DeleteResourcePolicyOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/delete_resource_policy/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
+        if policy_name is not None:
+            params["policy_name"] = policy_name
         _interceptors = operation_interceptors("secrets-manager", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -211,7 +251,7 @@ class SecretsManagerClient:
                 self._native.delete_resource_policy, params, _interceptors,
                 "secrets-manager", "DeleteResourcePolicy", self._region,
                 DeleteResourcePolicyOutput,
-                ("secret_id", ),
+                ("secret_id", "policy_name", ),
                 ("secret_id", ),
                 service_name='Secrets Manager',
             )
@@ -276,6 +316,33 @@ class SecretsManagerClient:
         return _response
 
 
+    async def disassociate_cross_account_replica(
+        self,
+        *,
+        secret_id: str,
+        cross_account_replica_arn: str,
+    ) -> DisassociateCrossAccountReplicaOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/disassociate_cross_account_replica/)."""
+        params: dict[str, object] = {
+            "secret_id": secret_id,
+            "cross_account_replica_arn": cross_account_replica_arn,
+        }
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.disassociate_cross_account_replica, params, _interceptors,
+                "secrets-manager", "DisassociateCrossAccountReplica", self._region,
+                DisassociateCrossAccountReplicaOutput,
+                ("secret_id", "cross_account_replica_arn", ),
+                ("secret_id", "cross_account_replica_arn", ),
+                service_name='Secrets Manager',
+            )
+            return _response
+        _response = await self._native.disassociate_cross_account_replica(params)
+        return _response
+
+
     async def get_random_password(
         self,
         *,
@@ -327,11 +394,14 @@ class SecretsManagerClient:
         self,
         *,
         secret_id: str,
+        policy_name: str | None = None,
     ) -> GetResourcePolicyOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/get_resource_policy/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
+        if policy_name is not None:
+            params["policy_name"] = policy_name
         _interceptors = operation_interceptors("secrets-manager", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -339,7 +409,7 @@ class SecretsManagerClient:
                 self._native.get_resource_policy, params, _interceptors,
                 "secrets-manager", "GetResourcePolicy", self._region,
                 GetResourcePolicyOutput,
-                ("secret_id", ),
+                ("secret_id", "policy_name", ),
                 ("secret_id", ),
                 service_name='Secrets Manager',
             )
@@ -376,6 +446,37 @@ class SecretsManagerClient:
             )
             return _response
         _response = await self._native.get_secret_value(params)
+        return _response
+
+
+    async def list_resource_policies(
+        self,
+        *,
+        secret_id: str,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> ListResourcePoliciesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/list_resource_policies/)."""
+        params: dict[str, object] = {
+            "secret_id": secret_id,
+        }
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_resource_policies, params, _interceptors,
+                "secrets-manager", "ListResourcePolicies", self._region,
+                ListResourcePoliciesOutput,
+                ("secret_id", "max_results", "next_token", ),
+                ("secret_id", ),
+                service_name='Secrets Manager',
+            )
+            return _response
+        _response = await self._native.list_resource_policies(params)
         return _response
 
 
@@ -459,6 +560,7 @@ class SecretsManagerClient:
         *,
         secret_id: str,
         resource_policy: str,
+        policy_name: str | None = None,
         block_public_policy: bool | None = None,
     ) -> PutResourcePolicyOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/put_resource_policy/)."""
@@ -466,6 +568,8 @@ class SecretsManagerClient:
             "secret_id": secret_id,
             "resource_policy": resource_policy,
         }
+        if policy_name is not None:
+            params["policy_name"] = policy_name
         if block_public_policy is not None:
             params["block_public_policy"] = block_public_policy
         _interceptors = operation_interceptors("secrets-manager", self._interceptors)
@@ -475,7 +579,7 @@ class SecretsManagerClient:
                 self._native.put_resource_policy, params, _interceptors,
                 "secrets-manager", "PutResourcePolicy", self._region,
                 PutResourcePolicyOutput,
-                ("secret_id", "resource_policy", "block_public_policy", ),
+                ("secret_id", "resource_policy", "policy_name", "block_public_policy", ),
                 ("secret_id", "resource_policy", ),
                 service_name='Secrets Manager',
             )

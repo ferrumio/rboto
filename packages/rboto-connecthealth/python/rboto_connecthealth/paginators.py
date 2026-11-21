@@ -8,11 +8,13 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
+    ListDatasetsOutput,
     ListDomainsOutput,
     ListSubscriptionsOutput,
 )
 
 from .types import (
+    DatasetType,
     DomainStatus,
 )
 
@@ -23,6 +25,34 @@ if TYPE_CHECKING:
 class ConnectHealthClientPaginators:
     def __init__(self, client: _Client) -> None:
         self._client = client
+
+
+    def list_datasets(
+        self,
+        *,
+        domain_id: str,
+        type: DatasetType | None = None,
+        next_token: str | None = None,
+        max_results: int | None = None,
+    ) -> AsyncIterator[ListDatasetsOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/list_datasets/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+            "domain_id": domain_id,
+        }
+        if type is not None:
+            params["type"] = type
+        if next_token is not None:
+            params["next_token"] = next_token
+        if max_results is not None:
+            params["max_results"] = max_results
+        return _paginate(
+            self._client.list_datasets, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
 
 
     def list_domains(

@@ -38,6 +38,7 @@ class SmithyShape:
     error: bool
     sparse: bool = False
     query_error_code: str | None = None
+    int_enum_values: tuple[int, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -165,6 +166,22 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
             )
 
         enum_values: list[str] = []
+        int_enum_values: list[int] = []
+        if kind == "intEnum":
+            for member_name, raw_member_value in _dict(
+                raw_shape.get("members", {}), f"{shape_id}.members"
+            ).items():
+                raw_member = _dict(raw_member_value, f"{shape_id}.{member_name}")
+                value = _traits(raw_member.get("traits")).get("smithy.api#enumValue")
+                if type(value) is not int or not -(2**31) <= value < 2**31:
+                    raise ValueError(
+                        f"{shape_id}.{member_name}: expected a signed 32-bit enum value"
+                    )
+                if value in int_enum_values:
+                    raise ValueError(f"{shape_id}: duplicate integer enum value {value}")
+                int_enum_values.append(value)
+            if not int_enum_values:
+                raise ValueError(f"{shape_id}: integer enum must have members")
         if kind == "enum":
             for member_name, raw_member_value in _dict(
                 raw_shape.get("members", {}), f"{shape_id}.members"
@@ -208,6 +225,7 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
             error="smithy.api#error" in traits,
             sparse="smithy.api#sparse" in traits,
             query_error_code=query_error_code,
+            int_enum_values=tuple(int_enum_values),
         )
 
     service_entries = [shape for shape in shapes.values() if shape.kind == "service"]

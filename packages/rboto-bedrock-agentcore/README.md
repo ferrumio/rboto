@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon Bedrock AgentCore**,
 powered by Rust. This package contains `BedrockAgentCoreClient` and
-**67 operations**.
+**75 operations**.
 
 ## Installation
 
@@ -103,6 +103,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_ab_test`](#delete_ab_test) | <code>ab_test_id: str</code> | <code>DeleteABTestOutput</code> |
 | [`delete_batch_evaluation`](#delete_batch_evaluation) | <code>batch_evaluation_id: str</code> | <code>DeleteBatchEvaluationOutput</code> |
 | [`delete_capacity_provider_session`](#delete_capacity_provider_session) | <code>capacity_provider_id: str</code>, <code>session_id: str</code> | <code>DeleteCapacityProviderSessionOutput</code> |
+| [`delete_dataset_generation`](#delete_dataset_generation) | <code>dataset_id: str</code>, <code>generation_id: str</code> | <code>DeleteDatasetGenerationOutput</code> |
 | [`delete_event`](#delete_event) | <code>memory_id: str</code>, <code>session_id: str</code>, <code>event_id: str</code>, <code>actor_id: str</code> | <code>DeleteEventOutput</code> |
 | [`delete_memory_record`](#delete_memory_record) | <code>memory_id: str</code>, <code>memory_record_id: str</code> | <code>DeleteMemoryRecordOutput</code> |
 | [`delete_payment_instrument`](#delete_payment_instrument) | <code>payment_manager_arn: str</code>, <code>payment_connector_id: str</code>, <code>payment_instrument_id: str</code> | <code>DeletePaymentInstrumentOutput</code> |
@@ -111,9 +112,11 @@ native response definitions are in the package's `_native.pyi`.
 | [`evaluate`](#evaluate) | <code>evaluator_id: str</code>, <code>evaluation_input: EvaluationInput</code> | <code>EvaluateOutput</code> |
 | [`get_ab_test`](#get_ab_test) | <code>ab_test_id: str</code> | <code>GetABTestOutput</code> |
 | [`get_agent_card`](#get_agent_card) | <code>agent_runtime_arn: str</code> | <code>GetAgentCardOutput</code> |
+| [`get_agent_insight`](#get_agent_insight) | <code>application_name: str</code>, <code>agent_insight_id: str</code> | <code>GetAgentInsightOutput</code> |
 | [`get_batch_evaluation`](#get_batch_evaluation) | <code>batch_evaluation_id: str</code> | <code>GetBatchEvaluationOutput</code> |
 | [`get_browser_session`](#get_browser_session) | <code>browser_identifier: str</code>, <code>session_id: str</code> | <code>GetBrowserSessionOutput</code> |
 | [`get_code_interpreter_session`](#get_code_interpreter_session) | <code>code_interpreter_identifier: str</code>, <code>session_id: str</code> | <code>GetCodeInterpreterSessionOutput</code> |
+| [`get_dataset_generation`](#get_dataset_generation) | <code>dataset_id: str</code>, <code>generation_id: str</code> | <code>GetDatasetGenerationOutput</code> |
 | [`get_event`](#get_event) | <code>memory_id: str</code>, <code>session_id: str</code>, <code>actor_id: str</code>, <code>event_id: str</code> | <code>GetEventOutput</code> |
 | [`get_memory_record`](#get_memory_record) | <code>memory_id: str</code>, <code>memory_record_id: str</code> | <code>GetMemoryRecordOutput</code> |
 | [`get_payment_instrument`](#get_payment_instrument) | <code>payment_manager_arn: str</code>, <code>payment_instrument_id: str</code> | <code>GetPaymentInstrumentOutput</code> |
@@ -132,11 +135,14 @@ native response definitions are in the package's `_native.pyi`.
 | [`invoke_browser`](#invoke_browser) | <code>browser_identifier: str</code>, <code>session_id: str</code>, <code>action: BrowserAction</code> | <code>InvokeBrowserOutput</code> |
 | [`invoke_code_interpreter`](#invoke_code_interpreter) | <code>code_interpreter_identifier: str</code>, <code>name: ToolName</code> | <code>InvokeCodeInterpreterOutput</code> |
 | [`invoke_harness`](#invoke_harness) | <code>harness_arn: str</code>, <code>runtime_session_id: str</code>, <code>messages: Sequence[HarnessMessage]</code> | <code>InvokeHarnessOutput</code> |
+| [`invoke_web_search`](#invoke_web_search) | <code>web_search_id: str</code>, <code>search_query: str</code> | <code>InvokeWebSearchOutput</code> |
 | [`list_ab_tests`](#list_ab_tests) | None | <code>ListABTestsOutput</code> |
 | [`list_actors`](#list_actors) | <code>memory_id: str</code> | <code>ListActorsOutput</code> |
+| [`list_agent_insights`](#list_agent_insights) | None | <code>ListAgentInsightsOutput</code> |
 | [`list_batch_evaluations`](#list_batch_evaluations) | None | <code>ListBatchEvaluationsOutput</code> |
 | [`list_browser_sessions`](#list_browser_sessions) | <code>browser_identifier: str</code> | <code>ListBrowserSessionsOutput</code> |
 | [`list_code_interpreter_sessions`](#list_code_interpreter_sessions) | <code>code_interpreter_identifier: str</code> | <code>ListCodeInterpreterSessionsOutput</code> |
+| [`list_dataset_generations`](#list_dataset_generations) | <code>dataset_id: str</code> | <code>ListDatasetGenerationsOutput</code> |
 | [`list_events`](#list_events) | <code>memory_id: str</code>, <code>session_id: str</code>, <code>actor_id: str</code> | <code>ListEventsOutput</code> |
 | [`list_memory_extraction_jobs`](#list_memory_extraction_jobs) | <code>memory_id: str</code> | <code>ListMemoryExtractionJobsOutput</code> |
 | [`list_memory_records`](#list_memory_records) | <code>memory_id: str</code> | <code>ListMemoryRecordsOutput</code> |
@@ -151,6 +157,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`start_batch_evaluation`](#start_batch_evaluation) | <code>batch_evaluation_name: str</code>, <code>data_source_config: DataSourceConfig</code> | <code>StartBatchEvaluationOutput</code> |
 | [`start_browser_session`](#start_browser_session) | <code>browser_identifier: str</code> | <code>StartBrowserSessionOutput</code> |
 | [`start_code_interpreter_session`](#start_code_interpreter_session) | <code>code_interpreter_identifier: str</code> | <code>StartCodeInterpreterSessionOutput</code> |
+| [`start_dataset_generation`](#start_dataset_generation) | <code>dataset_id: str</code>, <code>name: str</code>, <code>source: GenerationSource</code> | <code>StartDatasetGenerationOutput</code> |
 | [`start_memory_extraction_job`](#start_memory_extraction_job) | <code>memory_id: str</code>, <code>extraction_job: ExtractionJob</code> | <code>StartMemoryExtractionJobOutput</code> |
 | [`start_recommendation`](#start_recommendation) | <code>name: str</code>, <code>type: RecommendationType</code>, <code>recommendation_config: RecommendationConfig</code> | <code>StartRecommendationOutput</code> |
 | [`stop_batch_evaluation`](#stop_batch_evaluation) | <code>batch_evaluation_id: str</code> | <code>StopBatchEvaluationOutput</code> |
@@ -158,6 +165,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`stop_code_interpreter_session`](#stop_code_interpreter_session) | <code>code_interpreter_identifier: str</code>, <code>session_id: str</code> | <code>StopCodeInterpreterSessionOutput</code> |
 | [`stop_runtime_session`](#stop_runtime_session) | <code>runtime_session_id: str</code>, <code>agent_runtime_arn: str</code> | <code>StopRuntimeSessionOutput</code> |
 | [`update_ab_test`](#update_ab_test) | <code>ab_test_id: str</code> | <code>UpdateABTestOutput</code> |
+| [`update_agent_insight`](#update_agent_insight) | <code>application_name: str</code>, <code>agent_insight_id: str</code>, <code>archive_status: AgentInsightArchiveStatus</code> | <code>UpdateAgentInsightOutput</code> |
 | [`update_browser_stream`](#update_browser_stream) | <code>browser_identifier: str</code>, <code>session_id: str</code>, <code>stream_update: StreamUpdate</code> | <code>UpdateBrowserStreamOutput</code> |
 
 ## Complete signatures
@@ -309,6 +317,17 @@ async def delete_capacity_provider_session(
 ```
 
 
+### delete_dataset_generation
+
+```python
+async def delete_dataset_generation(
+    *,
+    dataset_id: str,
+    generation_id: str,
+) -> DeleteDatasetGenerationOutput: ...
+```
+
+
 ### delete_event
 
 ```python
@@ -404,6 +423,17 @@ async def get_agent_card(
 ```
 
 
+### get_agent_insight
+
+```python
+async def get_agent_insight(
+    *,
+    application_name: str,
+    agent_insight_id: str,
+) -> GetAgentInsightOutput: ...
+```
+
+
 ### get_batch_evaluation
 
 ```python
@@ -433,6 +463,17 @@ async def get_code_interpreter_session(
     code_interpreter_identifier: str,
     session_id: str,
 ) -> GetCodeInterpreterSessionOutput: ...
+```
+
+
+### get_dataset_generation
+
+```python
+async def get_dataset_generation(
+    *,
+    dataset_id: str,
+    generation_id: str,
+) -> GetDatasetGenerationOutput: ...
 ```
 
 
@@ -705,6 +746,19 @@ async def invoke_harness(
 ```
 
 
+### invoke_web_search
+
+```python
+async def invoke_web_search(
+    *,
+    web_search_id: str,
+    search_query: str,
+    max_results: int | None = None,
+    filters: WebSearchFilters | None = None,
+) -> InvokeWebSearchOutput: ...
+```
+
+
 ### list_ab_tests
 
 ```python
@@ -731,6 +785,23 @@ async def list_actors(
 ```
 
 Also available as `client.paginators.list_actors(...)`, returning an
+async iterator of the response type above.
+
+
+### list_agent_insights
+
+```python
+async def list_agent_insights(
+    *,
+    application_name: str | None = None,
+    batch_evaluation_id: str | None = None,
+    archive_status: AgentInsightArchiveStatus | None = None,
+    max_results: int | None = None,
+    next_token: str | None = None,
+) -> ListAgentInsightsOutput: ...
+```
+
+Also available as `client.paginators.list_agent_insights(...)`, returning an
 async iterator of the response type above.
 
 
@@ -772,6 +843,21 @@ async def list_code_interpreter_sessions(
     status: CodeInterpreterSessionStatus | None = None,
 ) -> ListCodeInterpreterSessionsOutput: ...
 ```
+
+
+### list_dataset_generations
+
+```python
+async def list_dataset_generations(
+    *,
+    dataset_id: str,
+    max_results: int | None = None,
+    next_token: str | None = None,
+) -> ListDatasetGenerationsOutput: ...
+```
+
+Also available as `client.paginators.list_dataset_generations(...)`, returning an
+async iterator of the response type above.
 
 
 ### list_events
@@ -973,6 +1059,7 @@ async def start_batch_evaluation(
     kms_key_arn: str | None = None,
     description: str | None = None,
     output_config: OutputConfig | None = None,
+    dataset_execution_config: DatasetExecutionConfig | None = None,
 ) -> StartBatchEvaluationOutput: ...
 ```
 
@@ -1013,6 +1100,21 @@ async def start_code_interpreter_session(
     filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
     client_token: str | None = None,
 ) -> StartCodeInterpreterSessionOutput: ...
+```
+
+
+### start_dataset_generation
+
+```python
+async def start_dataset_generation(
+    *,
+    dataset_id: str,
+    name: str,
+    source: GenerationSource,
+    description: str | None = None,
+    scenario_type: ScenarioType | None = None,
+    client_token: str | None = None,
+) -> StartDatasetGenerationOutput: ...
 ```
 
 
@@ -1110,6 +1212,18 @@ async def update_ab_test(
     role_arn: str | None = None,
     execution_status: ABTestExecutionStatus | None = None,
 ) -> UpdateABTestOutput: ...
+```
+
+
+### update_agent_insight
+
+```python
+async def update_agent_insight(
+    *,
+    application_name: str,
+    agent_insight_id: str,
+    archive_status: AgentInsightArchiveStatus,
+) -> UpdateAgentInsightOutput: ...
 ```
 
 

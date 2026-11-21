@@ -14,6 +14,7 @@ from .rust_source import (
     enum_variants,
     error_codes,
     parse_type,
+    setter_fields,
     split_items,
     tokens,
     without_attributes,
@@ -108,6 +109,7 @@ def _fields(parts: tuple[str, ...]) -> tuple[RustField, ...]:
     if not structs:
         raise RustParseError("expected a public named-field struct")
     declaration = structs[0]
+    setters = setter_fields(parts)
     fields: list[RustField] = []
     for item in split_items(declaration.body):
         item = without_attributes(item)
@@ -124,7 +126,7 @@ def _fields(parts: tuple[str, ...]) -> tuple[RustField, ...]:
         if len(item) < 4 or item[2] != ":":
             raise RustParseError(f"{declaration.name}: unsupported public field {' '.join(item)}")
         rust_name = item[1]
-        name = rust_name.removeprefix("r#")
+        name = setters.get(rust_name.removeprefix("r#"), rust_name.removeprefix("r#"))
         reference = parse_type(item[3:])
         optional = reference.name == "::std::option::Option"
         if optional:
@@ -179,6 +181,8 @@ def _type(path: Path) -> RustType | None:
             raise RustParseError(f"{name}: missing public builder build method")
         fallible, required = parsed_builder
         fields = _fields(parts)
+        names = {field.rust_name.removeprefix("r#"): field.name for field in fields}
+        required = tuple(names.get(name, name) for name in required)
         unknown = set(required) - {field.name for field in fields}
         if unknown:
             raise RustParseError(

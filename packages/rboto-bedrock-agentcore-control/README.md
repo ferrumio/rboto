@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon Bedrock AgentCore Control**,
 powered by Rust. This package contains `BedrockAgentCoreControlClient` and
-**172 operations**.
+**175 operations**.
 
 ## Installation
 
@@ -119,7 +119,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_code_interpreter`](#create_code_interpreter) | <code>name: str</code>, <code>network_configuration: CodeInterpreterNetworkConfiguration</code> | <code>CreateCodeInterpreterOutput</code> |
 | [`create_configuration_bundle`](#create_configuration_bundle) | <code>bundle_name: str</code>, <code>components: dict[str, ComponentConfiguration]</code> | <code>CreateConfigurationBundleOutput</code> |
 | [`create_consent_portal`](#create_consent_portal) | <code>execution_role_arn: str</code>, <code>idp_config: ConsentPortalIdpConfig</code>, <code>name: str</code>, <code>sources: Sequence[ConsentPortalSource]</code> | <code>CreateConsentPortalOutput</code> |
-| [`create_dataset`](#create_dataset) | <code>dataset_name: str</code>, <code>source: DataSourceType</code>, <code>schema_type: DatasetSchemaType</code> | <code>CreateDatasetOutput</code> |
+| [`create_dataset`](#create_dataset) | <code>dataset_name: str</code> | <code>CreateDatasetOutput</code> |
 | [`create_dataset_version`](#create_dataset_version) | <code>dataset_id: str</code> | <code>CreateDatasetVersionOutput</code> |
 | [`create_evaluator`](#create_evaluator) | <code>evaluator_name: str</code>, <code>evaluator_config: EvaluatorConfig</code>, <code>level: EvaluatorLevel</code> | <code>CreateEvaluatorOutput</code> |
 | [`create_gateway`](#create_gateway) | <code>name: str</code>, <code>role_arn: str</code>, <code>authorizer_type: AuthorizerType</code> | <code>CreateGatewayOutput</code> |
@@ -131,7 +131,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_memory`](#create_memory) | <code>name: str</code>, <code>event_expiry_duration: int</code> | <code>CreateMemoryOutput</code> |
 | [`create_oauth2_credential_provider`](#create_oauth2_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: CredentialProviderVendorType</code>, <code>oauth2_provider_config_input: Oauth2ProviderConfigInput</code> | <code>CreateOauth2CredentialProviderOutput</code> |
 | [`create_online_evaluation_config`](#create_online_evaluation_config) | <code>online_evaluation_config_name: str</code>, <code>rule: Rule</code>, <code>data_source_config: DataSourceConfig</code>, <code>evaluation_execution_role_arn: str</code>, <code>enable_on_create: bool</code> | <code>CreateOnlineEvaluationConfigOutput</code> |
-| [`create_payment_connector`](#create_payment_connector) | <code>payment_manager_id: str</code>, <code>name: str</code>, <code>type: PaymentConnectorType</code>, <code>credential_provider_configurations: Sequence[CredentialsProviderConfiguration]</code> | <code>CreatePaymentConnectorOutput</code> |
+| [`create_payment_connector`](#create_payment_connector) | <code>payment_manager_id: str</code>, <code>name: str</code>, <code>type: PaymentConnectorType</code> | <code>CreatePaymentConnectorOutput</code> |
 | [`create_payment_credential_provider`](#create_payment_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: PaymentCredentialProviderVendorType</code>, <code>provider_configuration_input: PaymentProviderConfigurationInput</code> | <code>CreatePaymentCredentialProviderOutput</code> |
 | [`create_payment_manager`](#create_payment_manager) | <code>name: str</code>, <code>authorizer_type: PaymentsAuthorizerType</code>, <code>role_arn: str</code> | <code>CreatePaymentManagerOutput</code> |
 | [`create_policy`](#create_policy) | <code>name: str</code>, <code>definition: PolicyDefinition</code>, <code>policy_engine_id: str</code> | <code>CreatePolicyOutput</code> |
@@ -169,6 +169,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_registry_record`](#delete_registry_record) | <code>registry_id: str</code>, <code>record_id: str</code> | <code>DeleteRegistryRecordOutput</code> |
 | [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyOutput</code> |
 | [`delete_workload_identity`](#delete_workload_identity) | <code>name: str</code> | <code>DeleteWorkloadIdentityOutput</code> |
+| [`get_agent_insight_store`](#get_agent_insight_store) | <code>agent_insight_store_id: str</code> | <code>GetAgentInsightStoreOutput</code> |
 | [`get_agent_runtime`](#get_agent_runtime) | <code>agent_runtime_id: str</code> | <code>GetAgentRuntimeOutput</code> |
 | [`get_agent_runtime_endpoint`](#get_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>endpoint_name: str</code> | <code>GetAgentRuntimeEndpointOutput</code> |
 | [`get_api_key_credential_provider`](#get_api_key_credential_provider) | <code>name: str</code> | <code>GetApiKeyCredentialProviderOutput</code> |
@@ -204,6 +205,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyOutput</code> |
 | [`get_token_vault`](#get_token_vault) | None | <code>GetTokenVaultOutput</code> |
 | [`get_workload_identity`](#get_workload_identity) | <code>name: str</code> | <code>GetWorkloadIdentityOutput</code> |
+| [`list_agent_insight_stores`](#list_agent_insight_stores) | None | <code>ListAgentInsightStoresOutput</code> |
 | [`list_agent_runtime_endpoints`](#list_agent_runtime_endpoints) | <code>agent_runtime_id: str</code> | <code>ListAgentRuntimeEndpointsOutput</code> |
 | [`list_agent_runtime_versions`](#list_agent_runtime_versions) | <code>agent_runtime_id: str</code> | <code>ListAgentRuntimeVersionsOutput</code> |
 | [`list_agent_runtime_versions_by_capacity_provider`](#list_agent_runtime_versions_by_capacity_provider) | <code>capacity_provider_id: str</code> | <code>ListAgentRuntimeVersionsByCapacityProviderOutput</code> |
@@ -253,6 +255,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`synchronize_gateway_targets`](#synchronize_gateway_targets) | <code>gateway_identifier: str</code>, <code>target_id_list: Sequence[str]</code> | <code>SynchronizeGatewayTargetsOutput</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceOutput</code> |
 | [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
+| [`update_agent_insight_store`](#update_agent_insight_store) | <code>agent_insight_store_id: str</code> | <code>UpdateAgentInsightStoreOutput</code> |
 | [`update_agent_runtime`](#update_agent_runtime) | <code>agent_runtime_id: str</code>, <code>agent_runtime_artifact: AgentRuntimeArtifact</code>, <code>role_arn: str</code> | <code>UpdateAgentRuntimeOutput</code> |
 | [`update_agent_runtime_endpoint`](#update_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>endpoint_name: str</code> | <code>UpdateAgentRuntimeEndpointOutput</code> |
 | [`update_api_key_credential_provider`](#update_api_key_credential_provider) | <code>name: str</code> | <code>UpdateApiKeyCredentialProviderOutput</code> |
@@ -322,12 +325,14 @@ async def create_agent_runtime(
     request_header_configuration: RequestHeaderConfiguration | None = None,
     protocol_configuration: ProtocolConfiguration | None = None,
     lifecycle_configuration: LifecycleConfiguration | None = None,
+    hooks_configuration: RuntimeHooksConfiguration | None = None,
     environment_variables: dict[str, str] | None = None,
     filesystem_configurations: Sequence[FilesystemConfiguration] | None = None,
     capacity_provider_configuration: CapacityProviderConfiguration | None = None,
     tags: dict[str, str] | None = None,
     platform_version: str | None = None,
     allowed_ports: Sequence[AllowedPort] | None = None,
+    resource_configurations: Sequence[ResourceConfiguration] | None = None,
 ) -> CreateAgentRuntimeOutput: ...
 ```
 
@@ -465,10 +470,10 @@ async def create_consent_portal(
 async def create_dataset(
     *,
     dataset_name: str,
-    source: DataSourceType,
-    schema_type: DatasetSchemaType,
     client_token: str | None = None,
     description: str | None = None,
+    source: DataSourceType | None = None,
+    schema_type: DatasetSchemaType | None = None,
     kms_key_arn: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateDatasetOutput: ...
@@ -520,6 +525,7 @@ async def create_gateway(
     policy_engine_configuration: GatewayPolicyEngineConfiguration | None = None,
     exception_level: ExceptionLevel | None = None,
     tags: dict[str, str] | None = None,
+    domain_override: DomainOverride | None = None,
 ) -> CreateGatewayOutput: ...
 ```
 
@@ -677,8 +683,8 @@ async def create_payment_connector(
     payment_manager_id: str,
     name: str,
     type: PaymentConnectorType,
-    credential_provider_configurations: Sequence[CredentialsProviderConfiguration],
     description: str | None = None,
+    credential_provider_configurations: Sequence[CredentialsProviderConfiguration] | None = None,
     provision_mode: PaymentConnectorProvisionMode | None = None,
     client_token: str | None = None,
 ) -> CreatePaymentConnectorOutput: ...
@@ -1114,6 +1120,16 @@ async def delete_workload_identity(
 ```
 
 
+### get_agent_insight_store
+
+```python
+async def get_agent_insight_store(
+    *,
+    agent_insight_store_id: str,
+) -> GetAgentInsightStoreOutput: ...
+```
+
+
 ### get_agent_runtime
 
 ```python
@@ -1482,6 +1498,20 @@ async def get_workload_identity(
 ```
 
 
+### list_agent_insight_stores
+
+```python
+async def list_agent_insight_stores(
+    *,
+    next_token: str | None = None,
+    max_results: int | None = None,
+) -> ListAgentInsightStoresOutput: ...
+```
+
+Also available as `client.paginators.list_agent_insight_stores(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_agent_runtime_endpoints
 
 ```python
@@ -1665,6 +1695,7 @@ async def list_dataset_examples(
     *,
     dataset_id: str,
     dataset_version: str | None = None,
+    filter: ListDatasetExamplesFilter | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> ListDatasetExamplesOutput: ...
@@ -1680,6 +1711,7 @@ async iterator of the response type above.
 async def list_dataset_versions(
     *,
     dataset_id: str,
+    filter: ListDatasetVersionsFilter | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListDatasetVersionsOutput: ...
@@ -1694,6 +1726,7 @@ async iterator of the response type above.
 ```python
 async def list_datasets(
     *,
+    filter: ListDatasetsFilter | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListDatasetsOutput: ...
@@ -2172,6 +2205,19 @@ async def untag_resource(
 ```
 
 
+### update_agent_insight_store
+
+```python
+async def update_agent_insight_store(
+    *,
+    agent_insight_store_id: str,
+    client_token: str | None = None,
+    enablement_status: AgentInsightStoreEnablementStatus | None = None,
+    encryption_configuration: AgentInsightStoreEncryptionConfiguration | None = None,
+) -> UpdateAgentInsightStoreOutput: ...
+```
+
+
 ### update_agent_runtime
 
 ```python
@@ -2186,12 +2232,14 @@ async def update_agent_runtime(
     request_header_configuration: RequestHeaderConfiguration | None = None,
     protocol_configuration: ProtocolConfiguration | None = None,
     lifecycle_configuration: LifecycleConfiguration | None = None,
+    hooks_configuration: RuntimeHooksConfiguration | None = None,
     metadata_configuration: RuntimeMetadataConfiguration | None = None,
     environment_variables: dict[str, str] | None = None,
     filesystem_configurations: Sequence[FilesystemConfiguration] | None = None,
     capacity_provider_configuration: CapacityProviderConfiguration | None = None,
     platform_version: str | None = None,
     allowed_ports: Sequence[AllowedPort] | None = None,
+    resource_configurations: Sequence[ResourceConfiguration] | None = None,
     client_token: str | None = None,
 ) -> UpdateAgentRuntimeOutput: ...
 ```
@@ -2326,6 +2374,7 @@ async def update_gateway(
     policy_engine_configuration: GatewayPolicyEngineConfiguration | None = None,
     exception_level: ExceptionLevel | None = None,
     waf_configuration: WafConfiguration | None = None,
+    domain_override: DomainOverride | None = None,
 ) -> UpdateGatewayOutput: ...
 ```
 

@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon Connect Health**,
 powered by Rust. This package contains `ConnectHealthClient` and
-**16 operations**.
+**23 operations**.
 
 ## Installation
 
@@ -93,19 +93,26 @@ native response definitions are in the package's `_native.pyi`.
 | Method | Required arguments | Return type |
 |---|---|---|
 | [`activate_subscription`](#activate_subscription) | <code>domain_id: str</code>, <code>subscription_id: str</code> | <code>ActivateSubscriptionOutput</code> |
+| [`create_dataset`](#create_dataset) | <code>domain_id: str</code>, <code>name: str</code>, <code>config: DatasetConfig</code> | <code>CreateDatasetOutput</code> |
 | [`create_domain`](#create_domain) | <code>name: str</code> | <code>CreateDomainOutput</code> |
 | [`create_subscription`](#create_subscription) | <code>domain_id: str</code> | <code>CreateSubscriptionOutput</code> |
 | [`deactivate_subscription`](#deactivate_subscription) | <code>domain_id: str</code>, <code>subscription_id: str</code> | <code>DeactivateSubscriptionOutput</code> |
+| [`delete_dataset`](#delete_dataset) | <code>domain_id: str</code>, <code>dataset_id: str</code> | <code>DeleteDatasetOutput</code> |
 | [`delete_domain`](#delete_domain) | <code>domain_id: str</code> | <code>DeleteDomainOutput</code> |
+| [`get_dataset`](#get_dataset) | <code>domain_id: str</code>, <code>dataset_id: str</code> | <code>GetDatasetOutput</code> |
 | [`get_domain`](#get_domain) | <code>domain_id: str</code> | <code>GetDomainOutput</code> |
+| [`get_medical_coding_job`](#get_medical_coding_job) | <code>domain_id: str</code>, <code>job_id: str</code> | <code>GetMedicalCodingJobOutput</code> |
 | [`get_medical_scribe_listening_session`](#get_medical_scribe_listening_session) | <code>session_id: str</code>, <code>domain_id: str</code>, <code>subscription_id: str</code> | <code>GetMedicalScribeListeningSessionOutput</code> |
 | [`get_patient_insights_job`](#get_patient_insights_job) | <code>domain_id: str</code>, <code>job_id: str</code> | <code>GetPatientInsightsJobOutput</code> |
 | [`get_subscription`](#get_subscription) | <code>domain_id: str</code>, <code>subscription_id: str</code> | <code>GetSubscriptionOutput</code> |
+| [`list_datasets`](#list_datasets) | <code>domain_id: str</code> | <code>ListDatasetsOutput</code> |
 | [`list_domains`](#list_domains) | None | <code>ListDomainsOutput</code> |
 | [`list_subscriptions`](#list_subscriptions) | <code>domain_id: str</code> | <code>ListSubscriptionsOutput</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`start_medical_coding_job`](#start_medical_coding_job) | <code>domain_id: str</code>, <code>text: str</code>, <code>output_data_config: MedicalCodingOutputDataConfig</code> | <code>StartMedicalCodingJobOutput</code> |
 | [`start_medical_scribe_listening_session`](#start_medical_scribe_listening_session) | <code>session_id: str</code>, <code>domain_id: str</code>, <code>subscription_id: str</code>, <code>language_code: MedicalScribeLanguageCode</code>, <code>media_sample_rate_hertz: int</code>, <code>media_encoding: MedicalScribeMediaEncoding</code> | <code>StartMedicalScribeListeningSessionOutput</code> |
 | [`start_patient_insights_job`](#start_patient_insights_job) | <code>domain_id: str</code>, <code>patient_context: PatientInsightsPatientContext</code>, <code>insights_context: InsightsContext</code>, <code>encounter_context: PatientInsightsEncounterContext</code>, <code>user_context: UserContext</code>, <code>input_data_config: InputDataConfig</code>, <code>output_data_config: OutputDataConfig</code> | <code>StartPatientInsightsJobOutput</code> |
+| [`submit_feedback`](#submit_feedback) | <code>domain_id: str</code>, <code>artifact_source_id: str</code>, <code>artifact_type: FeedbackArtifactType</code>, <code>signed_artifact_s3_uri: str</code> | <code>SubmitFeedbackOutput</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
 | [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 
@@ -119,6 +126,19 @@ async def activate_subscription(
     domain_id: str,
     subscription_id: str,
 ) -> ActivateSubscriptionOutput: ...
+```
+
+
+### create_dataset
+
+```python
+async def create_dataset(
+    *,
+    domain_id: str,
+    name: str,
+    config: DatasetConfig,
+    client_token: str | None = None,
+) -> CreateDatasetOutput: ...
 ```
 
 
@@ -156,6 +176,17 @@ async def deactivate_subscription(
 ```
 
 
+### delete_dataset
+
+```python
+async def delete_dataset(
+    *,
+    domain_id: str,
+    dataset_id: str,
+) -> DeleteDatasetOutput: ...
+```
+
+
 ### delete_domain
 
 ```python
@@ -166,6 +197,17 @@ async def delete_domain(
 ```
 
 
+### get_dataset
+
+```python
+async def get_dataset(
+    *,
+    domain_id: str,
+    dataset_id: str,
+) -> GetDatasetOutput: ...
+```
+
+
 ### get_domain
 
 ```python
@@ -173,6 +215,17 @@ async def get_domain(
     *,
     domain_id: str,
 ) -> GetDomainOutput: ...
+```
+
+
+### get_medical_coding_job
+
+```python
+async def get_medical_coding_job(
+    *,
+    domain_id: str,
+    job_id: str,
+) -> GetMedicalCodingJobOutput: ...
 ```
 
 
@@ -208,6 +261,22 @@ async def get_subscription(
     subscription_id: str,
 ) -> GetSubscriptionOutput: ...
 ```
+
+
+### list_datasets
+
+```python
+async def list_datasets(
+    *,
+    domain_id: str,
+    type: DatasetType | None = None,
+    next_token: str | None = None,
+    max_results: int | None = None,
+) -> ListDatasetsOutput: ...
+```
+
+Also available as `client.paginators.list_datasets(...)`, returning an
+async iterator of the response type above.
 
 
 ### list_domains
@@ -250,6 +319,22 @@ async def list_tags_for_resource(
 ```
 
 
+### start_medical_coding_job
+
+```python
+async def start_medical_coding_job(
+    *,
+    domain_id: str,
+    text: str,
+    output_data_config: MedicalCodingOutputDataConfig,
+    patient_context: MedicalCodesPatientContext | None = None,
+    encounter_context: MedicalCodesEncounterContext | None = None,
+    dataset_id: str | None = None,
+    client_token: str | None = None,
+) -> StartMedicalCodingJobOutput: ...
+```
+
+
 ### start_medical_scribe_listening_session
 
 ```python
@@ -280,6 +365,23 @@ async def start_patient_insights_job(
     output_data_config: OutputDataConfig,
     client_token: str | None = None,
 ) -> StartPatientInsightsJobOutput: ...
+```
+
+
+### submit_feedback
+
+```python
+async def submit_feedback(
+    *,
+    domain_id: str,
+    artifact_source_id: str,
+    artifact_type: FeedbackArtifactType,
+    signed_artifact_s3_uri: str,
+    subscription_id: str | None = None,
+    generated_artifact_s3_uri: str | None = None,
+    comments: str | None = None,
+    client_token: str | None = None,
+) -> SubmitFeedbackOutput: ...
 ```
 
 

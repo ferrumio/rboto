@@ -22,12 +22,24 @@ class IDPRejectedClaimError(STSError):
     """Modeled sts error: IDPRejectedClaimException."""
 
 
+class InsufficientSessionLifetimeError(STSError):
+    """Modeled sts error: InsufficientSessionLifetimeException."""
+
+
 class InvalidAuthorizationMessageError(STSError):
     """Modeled sts error: InvalidAuthorizationMessageException."""
 
 
+class InvalidContextAssertionError(STSError):
+    """Modeled sts error: InvalidContextAssertionException."""
+
+
 class InvalidIdentityTokenError(STSError):
     """Modeled sts error: InvalidIdentityTokenException."""
+
+
+class InvalidSubjectCredentialsError(STSError):
+    """Modeled sts error: InvalidSubjectCredentialsException."""
 
 
 class JWTPayloadSizeExceededError(STSError):

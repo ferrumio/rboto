@@ -651,6 +651,7 @@ async def list_keys(
     *,
     limit: int | None = None,
     marker: str | None = None,
+    resource_owners: Sequence[ResourceOwnerType] | None = None,
 ) -> ListKeysOutput: ...
 ```
 

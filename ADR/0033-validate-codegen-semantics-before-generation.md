@@ -28,6 +28,13 @@ must not override their active wire codes.
 Builder-required fields are extracted only from the build method body, and
 compared with modeled requiredness, defaults and clientOptional.
 
+Read builder setter assignments to distinguish member names from Rust storage
+names. For example, a modeled `build` member uses `set_build` but is stored as
+`build_value` to avoid the builder's `build()` method. Python keys, properties,
+stubs and diagnostics retain the member name; native storage access uses the
+parsed Rust name. Reject ambiguous setters and unsupported assignments rather
+than guessing from a `_value` suffix.
+
 Preserve the SDK's intentional client representations:
 
 - Required operation members can remain optional in lenient request/response

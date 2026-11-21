@@ -9,11 +9,11 @@ adapter_crate = "rboto-polly-native"
 rust_crate = "aws-sdk-polly"
 rust_module = "aws_sdk_polly"
 rust_features = ["http-1x"]
-rust_crate_version = "1.128.0"
-model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-06/aws-models/polly.json"
-model_sha256 = "8288463b08f48e7e4b4cb0ff8ff964f658abb767eea7894172a805e92457adbe"
-aws_model_hash = "6fbbb4cb35e42b5297b797b9bfcaebaac885a9543ac30bb042513061d871a551"
-smithy_codegen_revision = "e181b22c1588cb6abd3c5840b3236dacaabb1d38"
+rust_crate_version = "1.132.0"
+model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-21/aws-models/polly.json"
+model_sha256 = "1e5156081401220545c8a8e62a1560d2b08adfc4bec17c66d68a8e96539e9657"
+aws_model_hash = "56cd5f086c65eb964c3a94f033e7bef11ba48b0279916410d7cd25c3c8600e2e"
+smithy_codegen_revision = "d0203cb69fe3e68bd234e14de5bc373ded9e857d"
 native_outputs = true
 
 [pagination.DescribeVoices]

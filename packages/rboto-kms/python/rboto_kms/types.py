@@ -234,6 +234,10 @@ OriginType: TypeAlias = Literal['AWS_KMS', 'EXTERNAL', 'AWS_CLOUDHSM', 'EXTERNAL
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/OriginType/)."""
 OriginTypeOutput: TypeAlias = OriginType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/OriginTypeOutput/)."""
+ResourceOwnerType: TypeAlias = Literal['SELF', 'OTHER_ACCOUNTS_VIA_RAM']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ResourceOwnerType/)."""
+ResourceOwnerTypeOutput: TypeAlias = ResourceOwnerType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ResourceOwnerTypeOutput/)."""
 RotationType: TypeAlias = Literal['AUTOMATIC', 'ON_DEMAND']
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/RotationType/)."""
 RotationTypeOutput: TypeAlias = RotationType | UnknownEnumValue
@@ -771,6 +775,7 @@ ListKeysRequest = TypedDict(
     {
     "limit": NotRequired["int"],
     "marker": NotRequired["str"],
+    "resource_owners": NotRequired["Sequence[ResourceOwnerType]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListKeysRequest/)."""

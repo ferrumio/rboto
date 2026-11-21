@@ -32,10 +32,14 @@ ApplyMappingOutput: TypeAlias = _native.ApplyMapping
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/ApplyMappingOutput/)."""
 AssetFormEntryOutput: TypeAlias = _native.AssetFormEntry
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetFormEntryOutput/)."""
-AssetTypeFormReferenceOutput: TypeAlias = _native.AssetTypeFormReference
-"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetTypeFormReferenceOutput/)."""
+AssetTypeFormValueOutput: TypeAlias = _native.AssetTypeFormOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetTypeFormValueOutput/)."""
 AssetTypeItemOutput: TypeAlias = _native.AssetTypeItem
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetTypeItemOutput/)."""
+AssetsExportOutput: TypeAlias = _native.AssetsExport
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetsExportOutput/)."""
+AssetsExportResultOutput: TypeAlias = _native.AssetsExportResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetsExportResultOutput/)."""
 AssociateGlossaryTermsOutput: TypeAlias = _native.AssociateGlossaryTermsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssociateGlossaryTermsOutput/)."""
 AthenaConnectorSourceOutput: TypeAlias = _native.AthenaConnectorSource
@@ -240,6 +244,8 @@ CreateCrawlerOutput: TypeAlias = _native.CreateCrawlerOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/CreateCrawlerOutput/)."""
 CreateCustomEntityTypeOutput: TypeAlias = _native.CreateCustomEntityTypeOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/CreateCustomEntityTypeOutput/)."""
+CreateDataQualityEvaluationConfigOutput: TypeAlias = _native.CreateDataQualityEvaluationConfigOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/CreateDataQualityEvaluationConfigOutput/)."""
 CreateDataQualityRulesetOutput: TypeAlias = _native.CreateDataQualityRulesetOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/CreateDataQualityRulesetOutput/)."""
 CreateDatabaseOutput: TypeAlias = _native.CreateDatabaseOutput
@@ -308,6 +314,18 @@ DataQualityAnalyzerResultOutput: TypeAlias = _native.DataQualityAnalyzerResult
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityAnalyzerResultOutput/)."""
 DataQualityEncryptionOutput: TypeAlias = _native.DataQualityEncryption
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEncryptionOutput/)."""
+DataQualityEvaluationConfigAdditionalRunOptionsOutput: TypeAlias = _native.DataQualityEvaluationConfigAdditionalRunOptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigAdditionalRunOptionsOutput/)."""
+DataQualityEvaluationConfigDataSourceOutput: TypeAlias = _native.DataQualityEvaluationConfigDataSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigDataSourceOutput/)."""
+DataQualityEvaluationConfigGlueTablesOutput: TypeAlias = _native.DataQualityEvaluationConfigGlueTables
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigGlueTablesOutput/)."""
+DataQualityEvaluationConfigListDataSourceOutput: TypeAlias = _native.DataQualityEvaluationConfigListDataSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigListDataSourceOutput/)."""
+DataQualityEvaluationConfigListDetailsOutput: TypeAlias = _native.DataQualityEvaluationConfigListDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigListDetailsOutput/)."""
+DataQualityEvaluationConfigListGlueTablesOutput: TypeAlias = _native.DataQualityEvaluationConfigListGlueTables
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigListGlueTablesOutput/)."""
 DataQualityEvaluationRunAdditionalRunOptionsOutput: TypeAlias = _native.DataQualityEvaluationRunAdditionalRunOptions
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationRunAdditionalRunOptionsOutput/)."""
 DataQualityGlueTableOutput: TypeAlias = _native.DataQualityGlueTable
@@ -360,8 +378,6 @@ DecimalNumberOutput: TypeAlias = _native.DecimalNumber
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DecimalNumberOutput/)."""
 DeleteAssetOutput: TypeAlias = _native.DeleteAssetOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DeleteAssetOutput/)."""
-DeleteAssetTypeOutput: TypeAlias = _native.DeleteAssetTypeOutput
-"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DeleteAssetTypeOutput/)."""
 DeleteAttachmentOutput: TypeAlias = _native.DeleteAttachmentOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DeleteAttachmentOutput/)."""
 DeleteBlueprintOutput: TypeAlias = _native.DeleteBlueprintOutput
@@ -384,6 +400,8 @@ DeleteCrawlerOutput: TypeAlias = _native.DeleteCrawlerOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DeleteCrawlerOutput/)."""
 DeleteCustomEntityTypeOutput: TypeAlias = _native.DeleteCustomEntityTypeOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DeleteCustomEntityTypeOutput/)."""
+DeleteDataQualityEvaluationConfigOutput: TypeAlias = _native.DeleteDataQualityEvaluationConfigOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DeleteDataQualityEvaluationConfigOutput/)."""
 DeleteDataQualityRulesetOutput: TypeAlias = _native.DeleteDataQualityRulesetOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DeleteDataQualityRulesetOutput/)."""
 DeleteDatabaseOutput: TypeAlias = _native.DeleteDatabaseOutput
@@ -596,6 +614,8 @@ GetDataCatalogEncryptionSettingsOutput: TypeAlias = _native.GetDataCatalogEncryp
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/GetDataCatalogEncryptionSettingsOutput/)."""
 GetDataCatalogExportConfigurationOutput: TypeAlias = _native.GetDataCatalogExportConfigurationOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/GetDataCatalogExportConfigurationOutput/)."""
+GetDataQualityEvaluationConfigOutput: TypeAlias = _native.GetDataQualityEvaluationConfigOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/GetDataQualityEvaluationConfigOutput/)."""
 GetDataQualityModelOutput: TypeAlias = _native.GetDataQualityModelOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/GetDataQualityModelOutput/)."""
 GetDataQualityModelResultOutput: TypeAlias = _native.GetDataQualityModelResultOutput
@@ -864,6 +884,8 @@ ListCrawlsOutput: TypeAlias = _native.ListCrawlsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/ListCrawlsOutput/)."""
 ListCustomEntityTypesOutput: TypeAlias = _native.ListCustomEntityTypesOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/ListCustomEntityTypesOutput/)."""
+ListDataQualityEvaluationConfigsOutput: TypeAlias = _native.ListDataQualityEvaluationConfigsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/ListDataQualityEvaluationConfigsOutput/)."""
 ListDataQualityResultsOutput: TypeAlias = _native.ListDataQualityResultsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/ListDataQualityResultsOutput/)."""
 ListDataQualityResultsV2Output: TypeAlias = _native.ListDataQualityResultsV2Output
@@ -1012,8 +1034,6 @@ PublishDataQualityResultV2Output: TypeAlias = _native.PublishDataQualityResultV2
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/PublishDataQualityResultV2Output/)."""
 PutAssetOutput: TypeAlias = _native.PutAssetOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/PutAssetOutput/)."""
-PutAssetTypeOutput: TypeAlias = _native.PutAssetTypeOutput
-"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/PutAssetTypeOutput/)."""
 PutAttachmentOutput: TypeAlias = _native.PutAttachmentOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/PutAttachmentOutput/)."""
 PutDataCatalogEncryptionSettingsOutput: TypeAlias = _native.PutDataCatalogEncryptionSettingsOutput
@@ -1132,6 +1152,12 @@ S3ParquetSourceOutput: TypeAlias = _native.S3ParquetSource
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/S3ParquetSourceOutput/)."""
 S3SourceAdditionalOptionsOutput: TypeAlias = _native.S3SourceAdditionalOptions
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/S3SourceAdditionalOptionsOutput/)."""
+S3TablesConfigurationOutput: TypeAlias = _native.S3TablesConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/S3TablesConfigurationOutput/)."""
+S3TablesConfigurationResultOutput: TypeAlias = _native.S3TablesConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/S3TablesConfigurationResultOutput/)."""
+S3TablesExportStateOutput: TypeAlias = _native.S3TablesExportState
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/S3TablesExportStateOutput/)."""
 S3TargetOutput: TypeAlias = _native.S3Target
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/S3TargetOutput/)."""
 ScheduleOutput: TypeAlias = _native.Schedule
@@ -1344,6 +1370,8 @@ UpdateCrawlerOutput: TypeAlias = _native.UpdateCrawlerOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/UpdateCrawlerOutput/)."""
 UpdateCrawlerScheduleOutput: TypeAlias = _native.UpdateCrawlerScheduleOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/UpdateCrawlerScheduleOutput/)."""
+UpdateDataQualityEvaluationConfigOutput: TypeAlias = _native.UpdateDataQualityEvaluationConfigOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/UpdateDataQualityEvaluationConfigOutput/)."""
 UpdateDataQualityRulesetOutput: TypeAlias = _native.UpdateDataQualityRulesetOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/UpdateDataQualityRulesetOutput/)."""
 UpdateDatabaseOutput: TypeAlias = _native.UpdateDatabaseOutput
@@ -1564,6 +1592,22 @@ DataQualityEngine: TypeAlias = Literal['SPARK', 'PYTHON']
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEngine/)."""
 DataQualityEngineOutput: TypeAlias = DataQualityEngine | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEngineOutput/)."""
+DataQualityEvaluationConfigLevel: TypeAlias = Literal['CATALOG', 'DATABASE', 'TABLE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigLevel/)."""
+DataQualityEvaluationConfigLevelOutput: TypeAlias = DataQualityEvaluationConfigLevel | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigLevelOutput/)."""
+DataQualityEvaluationConfigManagedRuleset: TypeAlias = Literal['SIMPLE', 'ADVANCED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigManagedRuleset/)."""
+DataQualityEvaluationConfigManagedRulesetOutput: TypeAlias = DataQualityEvaluationConfigManagedRuleset | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigManagedRulesetOutput/)."""
+DataQualityEvaluationConfigTrigger: TypeAlias = Literal['ONCE', 'SCHEDULE', 'METADATA_CHANGE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigTrigger/)."""
+DataQualityEvaluationConfigTriggerOutput: TypeAlias = DataQualityEvaluationConfigTrigger | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigTriggerOutput/)."""
+DataQualityEvaluationRunMode: TypeAlias = Literal['ON_DEMAND', 'EVALUATION_CONFIG']
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationRunMode/)."""
+DataQualityEvaluationRunModeOutput: TypeAlias = DataQualityEvaluationRunMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationRunModeOutput/)."""
 DataQualityModelStatus: TypeAlias = Literal['RUNNING', 'SUCCEEDED', 'FAILED']
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityModelStatus/)."""
 DataQualityModelStatusOutput: TypeAlias = DataQualityModelStatus | UnknownEnumValue
@@ -1888,10 +1932,10 @@ SchemaVersionStatus: TypeAlias = Literal['AVAILABLE', 'PENDING', 'FAILURE', 'DEL
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SchemaVersionStatus/)."""
 SchemaVersionStatusOutput: TypeAlias = SchemaVersionStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SchemaVersionStatusOutput/)."""
-SearchFilterOperator: TypeAlias = Literal['equals', 'greaterThan', 'greaterThanOrEquals', 'lessThan', 'lessThanOrEquals', 'notExists']
-"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchFilterOperator/)."""
-SearchFilterOperatorOutput: TypeAlias = SearchFilterOperator | UnknownEnumValue
-"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchFilterOperatorOutput/)."""
+SearchFilterComparator: TypeAlias = Literal['EQUALS', 'GREATER_THAN', 'GREATER_THAN_OR_EQUALS', 'LESS_THAN', 'LESS_THAN_OR_EQUALS', 'NOT_EXISTS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchFilterComparator/)."""
+SearchFilterComparatorOutput: TypeAlias = SearchFilterComparator | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchFilterComparatorOutput/)."""
 SearchSortOrder: TypeAlias = Literal['ASCENDING', 'DESCENDING']
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchSortOrder/)."""
 SearchSortOrderOutput: TypeAlias = SearchSortOrder | UnknownEnumValue
@@ -2169,13 +2213,22 @@ AssetFormEntry = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetFormEntry/)."""
 
-AssetTypeFormReference = TypedDict(
-    "AssetTypeFormReference",
+AssetFormInput = TypedDict(
+    "AssetFormInput",
     {
-    "form_type_identifier": Required["str"],
+    "form_type_identifier": NotRequired["str"],
+    "content": NotRequired["str"],
     },
 )
-"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetTypeFormReference/)."""
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetFormInput/)."""
+
+AssetTypeFormOutput = TypedDict(
+    "AssetTypeFormOutput",
+    {
+    "form_type_id": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetTypeFormOutput/)."""
 
 AssetTypeItem = TypedDict(
     "AssetTypeItem",
@@ -2185,6 +2238,23 @@ AssetTypeItem = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetTypeItem/)."""
+
+AssetsExport = TypedDict(
+    "AssetsExport",
+    {
+    "s3_tables_export": NotRequired["ExportSetting"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetsExport/)."""
+
+AssetsExportResult = TypedDict(
+    "AssetsExportResult",
+    {
+    "s3_tables_export": NotRequired["ExportSetting"],
+    "s3_tables_export_state": NotRequired["S3TablesExportState"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/AssetsExportResult/)."""
 
 AssociateGlossaryTermsRequest = TypedDict(
     "AssociateGlossaryTermsRequest",
@@ -3635,6 +3705,29 @@ CreateCustomEntityTypeRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/CreateCustomEntityTypeRequest/)."""
 
+CreateDataQualityEvaluationConfigRequest = TypedDict(
+    "CreateDataQualityEvaluationConfigRequest",
+    {
+    "name": Required["str"],
+    "level": Required["DataQualityEvaluationConfigLevel"],
+    "data_source": Required["DataQualityEvaluationConfigDataSource"],
+    "ruleset_name": NotRequired["str"],
+    "managed_ruleset_name": NotRequired["DataQualityEvaluationConfigManagedRuleset"],
+    "triggers": NotRequired["Sequence[DataQualityEvaluationConfigTrigger]"],
+    "schedule_expression": NotRequired["str"],
+    "start_at": NotRequired["str"],
+    "end_at": NotRequired["str"],
+    "role": Required["str"],
+    "number_of_workers": NotRequired["int"],
+    "timeout": NotRequired["int"],
+    "additional_run_options": NotRequired["DataQualityEvaluationConfigAdditionalRunOptions"],
+    "additional_data_sources": NotRequired["dict[str, DataSource]"],
+    "tags": NotRequired["dict[str, str]"],
+    "client_token": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/CreateDataQualityEvaluationConfigRequest/)."""
+
 CreateDataQualityRulesetRequest = TypedDict(
     "CreateDataQualityRulesetRequest",
     {
@@ -4196,6 +4289,78 @@ DataQualityEncryption = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEncryption/)."""
 
+DataQualityEvaluationConfigAdditionalRunOptions = TypedDict(
+    "DataQualityEvaluationConfigAdditionalRunOptions",
+    {
+    "cloud_watch_metrics_enabled": NotRequired["bool"],
+    "results_s3_prefix": NotRequired["str"],
+    "composite_rule_evaluation_method": NotRequired["DQCompositeRuleEvaluationMethod"],
+    "row_level_results": NotRequired["RowLevelResultsOptions"],
+    "profiling_results": NotRequired["ProfilingResultsOptions"],
+    "observation_scope": NotRequired["ObservationConfiguration"],
+    "observation_mode": NotRequired["ObservationMode"],
+    "data_quality_rule_results": NotRequired["DataQualityRuleResultsOptions"],
+    "observation_results": NotRequired["ObservationResultsOptions"],
+    "custom_log_group_prefix": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigAdditionalRunOptions/)."""
+
+DataQualityEvaluationConfigDataSource = TypedDict(
+    "DataQualityEvaluationConfigDataSource",
+    {
+    "glue_tables": NotRequired["DataQualityEvaluationConfigGlueTables"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigDataSource/)."""
+
+DataQualityEvaluationConfigGlueTables = TypedDict(
+    "DataQualityEvaluationConfigGlueTables",
+    {
+    "catalog_id": Required["str"],
+    "database_name": NotRequired["str"],
+    "table_name_pattern": NotRequired["str"],
+    "pre_processing_query": NotRequired["str"],
+    "connection_name": NotRequired["str"],
+    "additional_options": NotRequired["dict[str, str]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigGlueTables/)."""
+
+DataQualityEvaluationConfigListDataSource = TypedDict(
+    "DataQualityEvaluationConfigListDataSource",
+    {
+    "glue_tables": NotRequired["DataQualityEvaluationConfigListGlueTables"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigListDataSource/)."""
+
+DataQualityEvaluationConfigListDetails = TypedDict(
+    "DataQualityEvaluationConfigListDetails",
+    {
+    "name": NotRequired["str"],
+    "evaluation_run_mode": NotRequired["DataQualityEvaluationRunMode"],
+    "created_on": NotRequired["str"],
+    "last_modified_on": NotRequired["str"],
+    "level": NotRequired["DataQualityEvaluationConfigLevel"],
+    "data_source": NotRequired["DataQualityEvaluationConfigListDataSource"],
+    "ruleset_name": NotRequired["str"],
+    "managed_ruleset_name": NotRequired["DataQualityEvaluationConfigManagedRuleset"],
+    "pause_runs": NotRequired["bool"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigListDetails/)."""
+
+DataQualityEvaluationConfigListGlueTables = TypedDict(
+    "DataQualityEvaluationConfigListGlueTables",
+    {
+    "catalog_id": Required["str"],
+    "database_name": NotRequired["str"],
+    "table_name_pattern": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityEvaluationConfigListGlueTables/)."""
+
 DataQualityEvaluationRunAdditionalRunOptions = TypedDict(
     "DataQualityEvaluationRunAdditionalRunOptions",
     {
@@ -4250,6 +4415,8 @@ DataQualityResult = TypedDict(
     "DataQualityResult",
     {
     "result_id": NotRequired["str"],
+    "evaluation_run_mode": NotRequired["DataQualityEvaluationRunMode"],
+    "data_quality_evaluation_config": NotRequired["str"],
     "profile_id": NotRequired["str"],
     "score": NotRequired["float"],
     "data_source": NotRequired["DataSource"],
@@ -4272,6 +4439,8 @@ DataQualityResultDescription = TypedDict(
     "DataQualityResultDescription",
     {
     "result_id": NotRequired["str"],
+    "evaluation_run_mode": NotRequired["DataQualityEvaluationRunMode"],
+    "data_quality_evaluation_config": NotRequired["str"],
     "data_source": NotRequired["DataSource"],
     "job_name": NotRequired["str"],
     "job_run_id": NotRequired["str"],
@@ -4288,6 +4457,8 @@ DataQualityResultFilterCriteria = TypedDict(
     "job_run_id": NotRequired["str"],
     "started_after": NotRequired["str"],
     "started_before": NotRequired["str"],
+    "evaluation_run_mode": NotRequired["DataQualityEvaluationRunMode"],
+    "data_quality_evaluation_config": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityResultFilterCriteria/)."""
@@ -4296,6 +4467,8 @@ DataQualityResultV2Item = TypedDict(
     "DataQualityResultV2Item",
     {
     "result_id": Required["str"],
+    "evaluation_run_mode": NotRequired["DataQualityEvaluationRunMode"],
+    "data_quality_evaluation_config": NotRequired["str"],
     "data_source": NotRequired["DataSource"],
     "dimensions": NotRequired["dict[str, str]"],
     "tags": NotRequired["dict[str, str]"],
@@ -4318,6 +4491,8 @@ DataQualityResultsV2Description = TypedDict(
     "DataQualityResultsV2Description",
     {
     "result_id": NotRequired["str"],
+    "evaluation_run_mode": NotRequired["DataQualityEvaluationRunMode"],
+    "data_quality_evaluation_config": NotRequired["str"],
     "data_source": NotRequired["DataSource"],
     "result_published_on": NotRequired["str"],
     "dimensions": NotRequired["dict[str, str]"],
@@ -4335,6 +4510,8 @@ DataQualityResultsV2FilterCriteria = TypedDict(
     "published_before": NotRequired["str"],
     "dimensions": NotRequired["dict[str, str]"],
     "evaluation_context": NotRequired["str"],
+    "evaluation_run_mode": NotRequired["DataQualityEvaluationRunMode"],
+    "data_quality_evaluation_config": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DataQualityResultsV2FilterCriteria/)."""
@@ -4596,14 +4773,6 @@ DeleteAssetRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DeleteAssetRequest/)."""
 
-DeleteAssetTypeRequest = TypedDict(
-    "DeleteAssetTypeRequest",
-    {
-    "identifier": Required["str"],
-    },
-)
-"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DeleteAssetTypeRequest/)."""
-
 DeleteAttachmentRequest = TypedDict(
     "DeleteAttachmentRequest",
     {
@@ -4704,6 +4873,14 @@ DeleteCustomEntityTypeRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DeleteCustomEntityTypeRequest/)."""
+
+DeleteDataQualityEvaluationConfigRequest = TypedDict(
+    "DeleteDataQualityEvaluationConfigRequest",
+    {
+    "name": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/DeleteDataQualityEvaluationConfigRequest/)."""
 
 DeleteDataQualityRulesetRequest = TypedDict(
     "DeleteDataQualityRulesetRequest",
@@ -5810,6 +5987,14 @@ GetDataCatalogExportConfigurationInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/GetDataCatalogExportConfigurationInput/)."""
+
+GetDataQualityEvaluationConfigRequest = TypedDict(
+    "GetDataQualityEvaluationConfigRequest",
+    {
+    "name": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/GetDataQualityEvaluationConfigRequest/)."""
 
 GetDataQualityModelRequest = TypedDict(
     "GetDataQualityModelRequest",
@@ -7433,6 +7618,16 @@ ListCustomEntityTypesRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/ListCustomEntityTypesRequest/)."""
 
+ListDataQualityEvaluationConfigsRequest = TypedDict(
+    "ListDataQualityEvaluationConfigsRequest",
+    {
+    "level": NotRequired["DataQualityEvaluationConfigLevel"],
+    "max_results": NotRequired["int"],
+    "next_token": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/ListDataQualityEvaluationConfigsRequest/)."""
+
 ListDataQualityResultsRequest = TypedDict(
     "ListDataQualityResultsRequest",
     {
@@ -8326,25 +8521,15 @@ PublishDataQualityResultV2Request = TypedDict(
 PutAssetRequest = TypedDict(
     "PutAssetRequest",
     {
-    "asset_type_id": Required["str"],
+    "asset_type_identifier": NotRequired["str"],
     "identifier": Required["str"],
     "name": Required["str"],
     "description": NotRequired["str"],
-    "forms": Required["dict[str, AssetFormEntry]"],
+    "forms": Required["dict[str, AssetFormInput]"],
     "client_token": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/PutAssetRequest/)."""
-
-PutAssetTypeRequest = TypedDict(
-    "PutAssetTypeRequest",
-    {
-    "name": Required["str"],
-    "forms": Required["dict[str, AssetTypeFormReference]"],
-    "client_token": NotRequired["str"],
-    },
-)
-"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/PutAssetTypeRequest/)."""
 
 PutAttachmentRequest = TypedDict(
     "PutAttachmentRequest",
@@ -8354,7 +8539,7 @@ PutAttachmentRequest = TypedDict(
     "item_identifier": NotRequired["str"],
     "attachment_name": Required["str"],
     "content": Required["str"],
-    "form_type_id": Required["str"],
+    "form_type_identifier": NotRequired["str"],
     "client_token": NotRequired["str"],
     },
 )
@@ -8372,9 +8557,9 @@ PutDataCatalogEncryptionSettingsRequest = TypedDict(
 PutDataCatalogExportConfigurationInput = TypedDict(
     "PutDataCatalogExportConfigurationInput",
     {
-    "export_setting": Required["ExportSetting"],
-    "encryption_configuration": NotRequired["ExportEncryptionConfiguration"],
     "client_token": NotRequired["str"],
+    "s3_tables_configuration": NotRequired["S3TablesConfiguration"],
+    "assets": NotRequired["AssetsExport"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/PutDataCatalogExportConfigurationInput/)."""
@@ -9082,6 +9267,31 @@ S3SourceAdditionalOptions = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/S3SourceAdditionalOptions/)."""
 
+S3TablesConfiguration = TypedDict(
+    "S3TablesConfiguration",
+    {
+    "encryption_configuration": NotRequired["ExportEncryptionConfiguration"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/S3TablesConfiguration/)."""
+
+S3TablesConfigurationResult = TypedDict(
+    "S3TablesConfigurationResult",
+    {
+    "table_bucket_arn": NotRequired["str"],
+    "encryption_configuration": NotRequired["ExportEncryptionConfiguration"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/S3TablesConfigurationResult/)."""
+
+S3TablesExportState = TypedDict(
+    "S3TablesExportState",
+    {
+    "status": NotRequired["ExportStatus"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/S3TablesExportState/)."""
+
 S3Target = TypedDict(
     "S3Target",
     {
@@ -9202,7 +9412,7 @@ SearchAttributeFilter = TypedDict(
     "SearchAttributeFilter",
     {
     "attribute": Required["str"],
-    "operator": Required["SearchFilterOperator"],
+    "comparator": NotRequired["SearchFilterComparator"],
     "value": NotRequired["SearchFilterValue"],
     },
 )
@@ -9245,8 +9455,9 @@ SearchResultItem = TypedDict(
     "SearchResultItem",
     {
     "id": NotRequired["str"],
-    "asset_name": NotRequired["str"],
-    "asset_description": NotRequired["str"],
+    "name": NotRequired["str"],
+    "description": NotRequired["str"],
+    "created_at": NotRequired["str"],
     "updated_at": NotRequired["str"],
     "asset_type_id": NotRequired["str"],
     },
@@ -10528,6 +10739,27 @@ UpdateCsvClassifierRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/UpdateCsvClassifierRequest/)."""
+
+UpdateDataQualityEvaluationConfigRequest = TypedDict(
+    "UpdateDataQualityEvaluationConfigRequest",
+    {
+    "name": Required["str"],
+    "data_source": NotRequired["DataQualityEvaluationConfigDataSource"],
+    "ruleset_name": NotRequired["str"],
+    "managed_ruleset_name": NotRequired["DataQualityEvaluationConfigManagedRuleset"],
+    "triggers": NotRequired["Sequence[DataQualityEvaluationConfigTrigger]"],
+    "schedule_expression": NotRequired["str"],
+    "start_at": NotRequired["str"],
+    "end_at": NotRequired["str"],
+    "pause_runs": NotRequired["bool"],
+    "role": NotRequired["str"],
+    "number_of_workers": NotRequired["int"],
+    "timeout": NotRequired["int"],
+    "additional_run_options": NotRequired["DataQualityEvaluationConfigAdditionalRunOptions"],
+    "additional_data_sources": NotRequired["dict[str, DataSource]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/glue/types/UpdateDataQualityEvaluationConfigRequest/)."""
 
 UpdateDataQualityRulesetRequest = TypedDict(
     "UpdateDataQualityRulesetRequest",

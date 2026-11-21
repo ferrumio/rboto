@@ -9,8 +9,12 @@ from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _pa
 
 from ._native import (
     ListResourcePermissionStatementsOutput,
+    ListSessionsOutput,
 )
 
+from .types import (
+    SessionStatus,
+)
 
 if TYPE_CHECKING:
     from .client import SignInClient as _Client
@@ -36,6 +40,44 @@ class SignInClientPaginators:
             params["next_token"] = next_token
         return _paginate(
             self._client.list_resource_permission_statements, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
+    def list_sessions(
+        self,
+        *,
+        principal_arn: str | None = None,
+        max_results: int | None = None,
+        next_token: str | None = None,
+        status: SessionStatus | None = None,
+        client_id: str | None = None,
+        issued_after: int | None = None,
+        issued_before: int | None = None,
+    ) -> AsyncIterator[ListSessionsOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/list_sessions/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+        }
+        if principal_arn is not None:
+            params["principal_arn"] = principal_arn
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        if status is not None:
+            params["status"] = status
+        if client_id is not None:
+            params["client_id"] = client_id
+        if issued_after is not None:
+            params["issued_after"] = issued_after
+        if issued_before is not None:
+            params["issued_before"] = issued_before
+        return _paginate(
+            self._client.list_sessions, params,
             _PaginationSpec(
                 input_tokens=('next_token',),
                 output_tokens=((('next_token',),),),

@@ -10,6 +10,18 @@ from rboto.streaming import FileBody as _FileBody
 
 from . import _native
 
+AcknowledgeDeadLetterQueueRecordsErrorEntryOutput: TypeAlias = _native.AcknowledgeDeadLetterQueueRecordsErrorEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeDeadLetterQueueRecordsErrorEntryOutput/)."""
+AcknowledgeDeadLetterQueueRecordsOutput: TypeAlias = _native.AcknowledgeDeadLetterQueueRecordsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeDeadLetterQueueRecordsOutput/)."""
+AcknowledgeDeadLetterQueueRecordsResultEntryOutput: TypeAlias = _native.AcknowledgeDeadLetterQueueRecordsResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeDeadLetterQueueRecordsResultEntryOutput/)."""
+AcknowledgeQueueRecordsErrorEntryOutput: TypeAlias = _native.AcknowledgeQueueRecordsErrorEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeQueueRecordsErrorEntryOutput/)."""
+AcknowledgeQueueRecordsOutput: TypeAlias = _native.AcknowledgeQueueRecordsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeQueueRecordsOutput/)."""
+AcknowledgeQueueRecordsResultEntryOutput: TypeAlias = _native.AcknowledgeQueueRecordsResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeQueueRecordsResultEntryOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/ByteStream/)."""
 ChannelDescriptionOutput: TypeAlias = _native.ChannelDescription
@@ -34,6 +46,10 @@ ConsumerDescriptionOutput: TypeAlias = _native.ConsumerDescription
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/ConsumerDescriptionOutput/)."""
 CreateChannelOutput: TypeAlias = _native.CreateChannelOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/CreateChannelOutput/)."""
+CreateQueueOutput: TypeAlias = _native.CreateQueueOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/CreateQueueOutput/)."""
+DeadLetterConfigurationOutput: TypeAlias = _native.DeadLetterConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/DeadLetterConfigurationOutput/)."""
 DeadLetterQueueS3ConfigurationOutput: TypeAlias = _native.DeadLetterQueueS3Configuration
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/DeadLetterQueueS3ConfigurationOutput/)."""
 DescribeAccountSettingsOutput: TypeAlias = _native.DescribeAccountSettingsOutput
@@ -42,6 +58,8 @@ DescribeChannelOutput: TypeAlias = _native.DescribeChannelOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/DescribeChannelOutput/)."""
 DescribeLimitsOutput: TypeAlias = _native.DescribeLimitsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/DescribeLimitsOutput/)."""
+DescribeQueueOutput: TypeAlias = _native.DescribeQueueOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/DescribeQueueOutput/)."""
 DescribeStreamConsumerOutput: TypeAlias = _native.DescribeStreamConsumerOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/DescribeStreamConsumerOutput/)."""
 DescribeStreamOutput: TypeAlias = _native.DescribeStreamOutput
@@ -64,6 +82,8 @@ HashKeyRangeOutput: TypeAlias = _native.HashKeyRange
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/HashKeyRangeOutput/)."""
 ListChannelsOutput: TypeAlias = _native.ListChannelsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/ListChannelsOutput/)."""
+ListQueuesOutput: TypeAlias = _native.ListQueuesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/ListQueuesOutput/)."""
 ListShardsOutput: TypeAlias = _native.ListShardsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/ListShardsOutput/)."""
 ListStreamConsumersOutput: TypeAlias = _native.ListStreamConsumersOutput
@@ -86,12 +106,36 @@ PutRecordsOutput: TypeAlias = _native.PutRecordsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/PutRecordsOutput/)."""
 PutRecordsResultEntryOutput: TypeAlias = _native.PutRecordsResultEntry
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/PutRecordsResultEntryOutput/)."""
+QueueAttributesOutput: TypeAlias = _native.QueueAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueAttributesOutput/)."""
+QueueDescriptionOutput: TypeAlias = _native.QueueDescription
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueDescriptionOutput/)."""
+QueueRecordOutput: TypeAlias = _native.QueueRecord
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueRecordOutput/)."""
+QueueStartingPositionOutput: TypeAlias = _native.QueueStartingPosition
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueStartingPositionOutput/)."""
+QueueStreamConfigurationOutput: TypeAlias = _native.QueueStreamConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueStreamConfigurationOutput/)."""
+QueueStreamIdentifierOutput: TypeAlias = _native.QueueStreamIdentifier
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueStreamIdentifierOutput/)."""
+QueueSummaryOutput: TypeAlias = _native.QueueSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueSummaryOutput/)."""
+ReceiveDeadLetterQueueRecordsOutput: TypeAlias = _native.ReceiveDeadLetterQueueRecordsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/ReceiveDeadLetterQueueRecordsOutput/)."""
+ReceiveQueueRecordsOutput: TypeAlias = _native.ReceiveQueueRecordsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/ReceiveQueueRecordsOutput/)."""
 RecordOutput: TypeAlias = _native.Record
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/RecordOutput/)."""
 RecordConfigurationOutput: TypeAlias = _native.RecordConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/RecordConfigurationOutput/)."""
 RegisterStreamConsumerOutput: TypeAlias = _native.RegisterStreamConsumerOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/RegisterStreamConsumerOutput/)."""
+RestoreDeadLetterQueueRecordsErrorEntryOutput: TypeAlias = _native.RestoreDeadLetterQueueRecordsErrorEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/RestoreDeadLetterQueueRecordsErrorEntryOutput/)."""
+RestoreDeadLetterQueueRecordsOutput: TypeAlias = _native.RestoreDeadLetterQueueRecordsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/RestoreDeadLetterQueueRecordsOutput/)."""
+RestoreDeadLetterQueueRecordsResultEntryOutput: TypeAlias = _native.RestoreDeadLetterQueueRecordsResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/RestoreDeadLetterQueueRecordsResultEntryOutput/)."""
 S3DestinationDescriptionOutput: TypeAlias = _native.S3DestinationDescription
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/S3DestinationDescriptionOutput/)."""
 S3StorageConfigurationOutput: TypeAlias = _native.S3StorageConfiguration
@@ -120,6 +164,20 @@ UpdateAccountSettingsOutput: TypeAlias = _native.UpdateAccountSettingsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateAccountSettingsOutput/)."""
 UpdateChannelOutput: TypeAlias = _native.UpdateChannelOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateChannelOutput/)."""
+UpdateDeadLetterQueueRecordsVisibilityErrorEntryOutput: TypeAlias = _native.UpdateDeadLetterQueueRecordsVisibilityErrorEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateDeadLetterQueueRecordsVisibilityErrorEntryOutput/)."""
+UpdateDeadLetterQueueRecordsVisibilityOutput: TypeAlias = _native.UpdateDeadLetterQueueRecordsVisibilityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateDeadLetterQueueRecordsVisibilityOutput/)."""
+UpdateDeadLetterQueueRecordsVisibilityResultEntryOutput: TypeAlias = _native.UpdateDeadLetterQueueRecordsVisibilityResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateDeadLetterQueueRecordsVisibilityResultEntryOutput/)."""
+UpdateQueueOutput: TypeAlias = _native.UpdateQueueOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateQueueOutput/)."""
+UpdateQueueRecordsVisibilityErrorEntryOutput: TypeAlias = _native.UpdateQueueRecordsVisibilityErrorEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateQueueRecordsVisibilityErrorEntryOutput/)."""
+UpdateQueueRecordsVisibilityOutput: TypeAlias = _native.UpdateQueueRecordsVisibilityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateQueueRecordsVisibilityOutput/)."""
+UpdateQueueRecordsVisibilityResultEntryOutput: TypeAlias = _native.UpdateQueueRecordsVisibilityResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateQueueRecordsVisibilityResultEntryOutput/)."""
 UpdateShardCountOutput: TypeAlias = _native.UpdateShardCountOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateShardCountOutput/)."""
 UpdateStreamWarmThroughputOutput: TypeAlias = _native.UpdateStreamWarmThroughputOutput
@@ -166,6 +224,14 @@ PartitionTransform: TypeAlias = Literal['TIME_HOUR']
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/PartitionTransform/)."""
 PartitionTransformOutput: TypeAlias = PartitionTransform | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/PartitionTransformOutput/)."""
+QueueStartingPositionType: TypeAlias = Literal['TRIM_HORIZON', 'LATEST', 'AT_TIMESTAMP']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueStartingPositionType/)."""
+QueueStartingPositionTypeOutput: TypeAlias = QueueStartingPositionType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueStartingPositionTypeOutput/)."""
+QueueStatus: TypeAlias = Literal['CREATING', 'ACTIVE', 'UPDATING', 'DELETING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueStatus/)."""
+QueueStatusOutput: TypeAlias = QueueStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueStatusOutput/)."""
 RecordDistributionStrategy: TypeAlias = Literal['AUTO', 'USER_PARTITION_KEY']
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/RecordDistributionStrategy/)."""
 RecordDistributionStrategyOutput: TypeAlias = RecordDistributionStrategy | UnknownEnumValue
@@ -206,6 +272,80 @@ StreamStatus: TypeAlias = Literal['CREATING', 'DELETING', 'ACTIVE', 'UPDATING']
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/StreamStatus/)."""
 StreamStatusOutput: TypeAlias = StreamStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/StreamStatusOutput/)."""
+TargetType: TypeAlias = Literal['BUILT_IN', 'NONE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/TargetType/)."""
+TargetTypeOutput: TypeAlias = TargetType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/TargetTypeOutput/)."""
+
+AcknowledgeDeadLetterQueueRecordsErrorEntry = TypedDict(
+    "AcknowledgeDeadLetterQueueRecordsErrorEntry",
+    {
+    "receipt_handle": Required["str"],
+    "error_code": Required["str"],
+    "error_message": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeDeadLetterQueueRecordsErrorEntry/)."""
+
+AcknowledgeDeadLetterQueueRecordsInput = TypedDict(
+    "AcknowledgeDeadLetterQueueRecordsInput",
+    {
+    "queue_arn": Required["str"],
+    "entries": Required["Sequence[AcknowledgeDeadLetterQueueRecordsRequestEntry]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeDeadLetterQueueRecordsInput/)."""
+
+AcknowledgeDeadLetterQueueRecordsRequestEntry = TypedDict(
+    "AcknowledgeDeadLetterQueueRecordsRequestEntry",
+    {
+    "receipt_handle": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeDeadLetterQueueRecordsRequestEntry/)."""
+
+AcknowledgeDeadLetterQueueRecordsResultEntry = TypedDict(
+    "AcknowledgeDeadLetterQueueRecordsResultEntry",
+    {
+    "receipt_handle": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeDeadLetterQueueRecordsResultEntry/)."""
+
+AcknowledgeQueueRecordsErrorEntry = TypedDict(
+    "AcknowledgeQueueRecordsErrorEntry",
+    {
+    "receipt_handle": Required["str"],
+    "error_code": Required["str"],
+    "error_message": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeQueueRecordsErrorEntry/)."""
+
+AcknowledgeQueueRecordsInput = TypedDict(
+    "AcknowledgeQueueRecordsInput",
+    {
+    "queue_arn": Required["str"],
+    "entries": Required["Sequence[AcknowledgeQueueRecordsRequestEntry]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeQueueRecordsInput/)."""
+
+AcknowledgeQueueRecordsRequestEntry = TypedDict(
+    "AcknowledgeQueueRecordsRequestEntry",
+    {
+    "receipt_handle": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeQueueRecordsRequestEntry/)."""
+
+AcknowledgeQueueRecordsResultEntry = TypedDict(
+    "AcknowledgeQueueRecordsResultEntry",
+    {
+    "receipt_handle": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/AcknowledgeQueueRecordsResultEntry/)."""
 
 AddTagsToStreamInput = TypedDict(
     "AddTagsToStreamInput",
@@ -373,6 +513,17 @@ CreateChannelInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/CreateChannelInput/)."""
 
+CreateQueueInput = TypedDict(
+    "CreateQueueInput",
+    {
+    "queue_name": Required["str"],
+    "stream_configuration_list": Required["Sequence[QueueStreamConfiguration]"],
+    "queue_attributes": NotRequired["QueueAttributes"],
+    "tags": NotRequired["dict[str, str]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/CreateQueueInput/)."""
+
 CreateStreamInput = TypedDict(
     "CreateStreamInput",
     {
@@ -386,6 +537,15 @@ CreateStreamInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/CreateStreamInput/)."""
+
+DeadLetterConfiguration = TypedDict(
+    "DeadLetterConfiguration",
+    {
+    "target_type": Required["TargetType"],
+    "max_receive_count": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/DeadLetterConfiguration/)."""
 
 DeadLetterQueueS3Configuration = TypedDict(
     "DeadLetterQueueS3Configuration",
@@ -415,6 +575,14 @@ DeleteChannelInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/DeleteChannelInput/)."""
+
+DeleteQueueInput = TypedDict(
+    "DeleteQueueInput",
+    {
+    "queue_arn": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/DeleteQueueInput/)."""
 
 DeleteResourcePolicyInput = TypedDict(
     "DeleteResourcePolicyInput",
@@ -468,6 +636,14 @@ DescribeLimitsInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/DescribeLimitsInput/)."""
+
+DescribeQueueInput = TypedDict(
+    "DescribeQueueInput",
+    {
+    "queue_arn": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/DescribeQueueInput/)."""
 
 DescribeStreamConsumerInput = TypedDict(
     "DescribeStreamConsumerInput",
@@ -597,6 +773,16 @@ ListChannelsInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/ListChannelsInput/)."""
+
+ListQueuesInput = TypedDict(
+    "ListQueuesInput",
+    {
+    "max_results": NotRequired["int"],
+    "next_token": NotRequired["str"],
+    "stream_filter": NotRequired["Sequence[QueueStreamFilter]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/ListQueuesInput/)."""
 
 ListShardsInput = TypedDict(
     "ListShardsInput",
@@ -762,6 +948,112 @@ PutResourcePolicyInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/PutResourcePolicyInput/)."""
 
+QueueAttributes = TypedDict(
+    "QueueAttributes",
+    {
+    "visibility_timeout_seconds": NotRequired["int"],
+    "dead_letter_configuration": NotRequired["DeadLetterConfiguration"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueAttributes/)."""
+
+QueueDescription = TypedDict(
+    "QueueDescription",
+    {
+    "queue_name": Required["str"],
+    "queue_arn": Required["str"],
+    "queue_status": Required["QueueStatus"],
+    "queue_creation_timestamp": Required["str"],
+    "stream_configuration_list": Required["Sequence[QueueStreamConfiguration]"],
+    "queue_attributes": NotRequired["QueueAttributes"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueDescription/)."""
+
+QueueRecord = TypedDict(
+    "QueueRecord",
+    {
+    "receipt_handle": Required["str"],
+    "record_id": Required["str"],
+    "partition_key": NotRequired["str"],
+    "data": Required["bytes"],
+    "approximate_arrival_timestamp": Required["str"],
+    "first_receive_timestamp": Required["str"],
+    "receive_count": Required["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueRecord/)."""
+
+QueueStartingPosition = TypedDict(
+    "QueueStartingPosition",
+    {
+    "type": Required["QueueStartingPositionType"],
+    "timestamp": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueStartingPosition/)."""
+
+QueueStreamConfiguration = TypedDict(
+    "QueueStreamConfiguration",
+    {
+    "stream_arn": Required["str"],
+    "starting_position": NotRequired["QueueStartingPosition"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueStreamConfiguration/)."""
+
+QueueStreamFilter = TypedDict(
+    "QueueStreamFilter",
+    {
+    "stream_arn": Required["str"],
+    "stream_creation_timestamp": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueStreamFilter/)."""
+
+QueueStreamIdentifier = TypedDict(
+    "QueueStreamIdentifier",
+    {
+    "stream_arn": Required["str"],
+    "stream_creation_timestamp": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueStreamIdentifier/)."""
+
+QueueSummary = TypedDict(
+    "QueueSummary",
+    {
+    "queue_name": Required["str"],
+    "queue_arn": Required["str"],
+    "queue_status": Required["QueueStatus"],
+    "queue_creation_timestamp": Required["str"],
+    "streams": Required["Sequence[QueueStreamIdentifier]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/QueueSummary/)."""
+
+ReceiveDeadLetterQueueRecordsInput = TypedDict(
+    "ReceiveDeadLetterQueueRecordsInput",
+    {
+    "queue_arn": Required["str"],
+    "limit": NotRequired["int"],
+    "wait_time_seconds": NotRequired["int"],
+    "visibility_timeout_seconds": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/ReceiveDeadLetterQueueRecordsInput/)."""
+
+ReceiveQueueRecordsInput = TypedDict(
+    "ReceiveQueueRecordsInput",
+    {
+    "queue_arn": Required["str"],
+    "limit": NotRequired["int"],
+    "wait_time_seconds": NotRequired["int"],
+    "visibility_timeout_seconds": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/ReceiveQueueRecordsInput/)."""
+
 Record = TypedDict(
     "Record",
     {
@@ -804,6 +1096,41 @@ RemoveTagsFromStreamInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/RemoveTagsFromStreamInput/)."""
+
+RestoreDeadLetterQueueRecordsErrorEntry = TypedDict(
+    "RestoreDeadLetterQueueRecordsErrorEntry",
+    {
+    "receipt_handle": Required["str"],
+    "error_code": Required["str"],
+    "error_message": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/RestoreDeadLetterQueueRecordsErrorEntry/)."""
+
+RestoreDeadLetterQueueRecordsInput = TypedDict(
+    "RestoreDeadLetterQueueRecordsInput",
+    {
+    "queue_arn": Required["str"],
+    "entries": Required["Sequence[RestoreDeadLetterQueueRecordsRequestEntry]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/RestoreDeadLetterQueueRecordsInput/)."""
+
+RestoreDeadLetterQueueRecordsRequestEntry = TypedDict(
+    "RestoreDeadLetterQueueRecordsRequestEntry",
+    {
+    "receipt_handle": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/RestoreDeadLetterQueueRecordsRequestEntry/)."""
+
+RestoreDeadLetterQueueRecordsResultEntry = TypedDict(
+    "RestoreDeadLetterQueueRecordsResultEntry",
+    {
+    "receipt_handle": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/RestoreDeadLetterQueueRecordsResultEntry/)."""
 
 S3DestinationConfiguration = TypedDict(
     "S3DestinationConfiguration",
@@ -999,6 +1326,7 @@ StreamDescriptionSummary = TypedDict(
     "max_record_size_in_kib": NotRequired["int"],
     "channel_count": NotRequired["int"],
     "record_distribution_strategy": NotRequired["RecordDistributionStrategy"],
+    "queue_count": NotRequired["int"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/StreamDescriptionSummary/)."""
@@ -1118,6 +1446,42 @@ UpdateChannelInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateChannelInput/)."""
 
+UpdateDeadLetterQueueRecordsVisibilityErrorEntry = TypedDict(
+    "UpdateDeadLetterQueueRecordsVisibilityErrorEntry",
+    {
+    "receipt_handle": Required["str"],
+    "error_code": Required["str"],
+    "error_message": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateDeadLetterQueueRecordsVisibilityErrorEntry/)."""
+
+UpdateDeadLetterQueueRecordsVisibilityInput = TypedDict(
+    "UpdateDeadLetterQueueRecordsVisibilityInput",
+    {
+    "queue_arn": Required["str"],
+    "entries": Required["Sequence[UpdateDeadLetterQueueRecordsVisibilityRequestEntry]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateDeadLetterQueueRecordsVisibilityInput/)."""
+
+UpdateDeadLetterQueueRecordsVisibilityRequestEntry = TypedDict(
+    "UpdateDeadLetterQueueRecordsVisibilityRequestEntry",
+    {
+    "receipt_handle": Required["str"],
+    "visibility_timeout_seconds": Required["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateDeadLetterQueueRecordsVisibilityRequestEntry/)."""
+
+UpdateDeadLetterQueueRecordsVisibilityResultEntry = TypedDict(
+    "UpdateDeadLetterQueueRecordsVisibilityResultEntry",
+    {
+    "receipt_handle": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateDeadLetterQueueRecordsVisibilityResultEntry/)."""
+
 UpdateMaxRecordSizeInput = TypedDict(
     "UpdateMaxRecordSizeInput",
     {
@@ -1127,6 +1491,51 @@ UpdateMaxRecordSizeInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateMaxRecordSizeInput/)."""
+
+UpdateQueueInput = TypedDict(
+    "UpdateQueueInput",
+    {
+    "queue_arn": Required["str"],
+    "queue_attributes": Required["QueueAttributes"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateQueueInput/)."""
+
+UpdateQueueRecordsVisibilityErrorEntry = TypedDict(
+    "UpdateQueueRecordsVisibilityErrorEntry",
+    {
+    "receipt_handle": Required["str"],
+    "error_code": Required["str"],
+    "error_message": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateQueueRecordsVisibilityErrorEntry/)."""
+
+UpdateQueueRecordsVisibilityInput = TypedDict(
+    "UpdateQueueRecordsVisibilityInput",
+    {
+    "queue_arn": Required["str"],
+    "entries": Required["Sequence[UpdateQueueRecordsVisibilityRequestEntry]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateQueueRecordsVisibilityInput/)."""
+
+UpdateQueueRecordsVisibilityRequestEntry = TypedDict(
+    "UpdateQueueRecordsVisibilityRequestEntry",
+    {
+    "receipt_handle": Required["str"],
+    "visibility_timeout_seconds": Required["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateQueueRecordsVisibilityRequestEntry/)."""
+
+UpdateQueueRecordsVisibilityResultEntry = TypedDict(
+    "UpdateQueueRecordsVisibilityResultEntry",
+    {
+    "receipt_handle": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kinesis/types/UpdateQueueRecordsVisibilityResultEntry/)."""
 
 UpdateShardCountInput = TypedDict(
     "UpdateShardCountInput",

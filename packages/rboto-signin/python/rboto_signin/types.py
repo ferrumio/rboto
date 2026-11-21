@@ -12,8 +12,14 @@ from . import _native
 
 AccessTokenOutput: TypeAlias = _native.AccessToken
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/AccessTokenOutput/)."""
+BatchRevokeSessionErrorOutput: TypeAlias = _native.BatchRevokeSessionError
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/BatchRevokeSessionErrorOutput/)."""
+BatchRevokeSessionsOutput: TypeAlias = _native.BatchRevokeSessionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/BatchRevokeSessionsOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ByteStream/)."""
+CreateBearerTokenOutput: TypeAlias = _native.CreateBearerTokenOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateBearerTokenOutput/)."""
 CreateOAuth2TokenOutput: TypeAlias = _native.CreateOAuth2TokenOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenOutput/)."""
 CreateOAuth2TokenResponseBodyOutput: TypeAlias = _native.CreateOAuth2TokenResponseBody
@@ -30,10 +36,14 @@ GetConsoleAuthorizationConfigurationOutput: TypeAlias = _native.GetConsoleAuthor
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetConsoleAuthorizationConfigurationOutput/)."""
 GetResourcePolicyOutput: TypeAlias = _native.GetResourcePolicyOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetResourcePolicyOutput/)."""
+GetSessionOutput: TypeAlias = _native.GetSessionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetSessionOutput/)."""
 IntrospectOAuth2TokenWithIAMOutput: TypeAlias = _native.IntrospectOAuth2TokenWithIAMOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/IntrospectOAuth2TokenWithIAMOutput/)."""
 ListResourcePermissionStatementsOutput: TypeAlias = _native.ListResourcePermissionStatementsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ListResourcePermissionStatementsOutput/)."""
+ListSessionsOutput: TypeAlias = _native.ListSessionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ListSessionsOutput/)."""
 PermissionStatementSummaryOutput: TypeAlias = _native.PermissionStatementSummary
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PermissionStatementSummaryOutput/)."""
 PolicyStatementOutput: TypeAlias = _native.PolicyStatement
@@ -44,16 +54,28 @@ PutResourcePermissionStatementOutput: TypeAlias = _native.PutResourcePermissionS
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PutResourcePermissionStatementOutput/)."""
 RevokeOAuth2TokenWithIAMOutput: TypeAlias = _native.RevokeOAuth2TokenWithIAMOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/RevokeOAuth2TokenWithIAMOutput/)."""
+RevokedSessionOutput: TypeAlias = _native.RevokedSession
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/RevokedSessionOutput/)."""
+SessionOutput: TypeAlias = _native.Session
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/SessionOutput/)."""
 SigninResourceBasedPolicyOutput: TypeAlias = _native.SigninResourceBasedPolicy
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/SigninResourceBasedPolicyOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/JSONValue/)."""
 
-OAuth2ErrorCode: TypeAlias = Literal['TOKEN_EXPIRED', 'USER_CREDENTIALS_CHANGED', 'INSUFFICIENT_PERMISSIONS', 'AUTHCODE_EXPIRED', 'server_error', 'INVALID_REQUEST', 'RESOURCE_NOT_FOUND', 'CONFLICT', 'SERVICE_QUOTA_EXCEEDED', 'unsupported_grant_type', 'invalid_request', 'invalid_grant', 'invalid_scope', 'invalid_target', 'rate_exceeded', 'service_unavailable']
+ClientType: TypeAlias = Literal['CLI', 'MCP']
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ClientType/)."""
+ClientTypeOutput: TypeAlias = ClientType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ClientTypeOutput/)."""
+OAuth2ErrorCode: TypeAlias = Literal['TOKEN_EXPIRED', 'USER_CREDENTIALS_CHANGED', 'INSUFFICIENT_PERMISSIONS', 'AUTHCODE_EXPIRED', 'server_error', 'INVALID_REQUEST', 'RESOURCE_NOT_FOUND', 'CONFLICT', 'SERVICE_QUOTA_EXCEEDED', 'unsupported_grant_type', 'invalid_request', 'invalid_grant', 'invalid_scope', 'invalid_target', 'invalid_client', 'rate_exceeded', 'service_unavailable']
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/OAuth2ErrorCode/)."""
 OAuth2ErrorCodeOutput: TypeAlias = OAuth2ErrorCode | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/OAuth2ErrorCodeOutput/)."""
+SessionStatus: TypeAlias = Literal['ACTIVE', 'REVOKED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/SessionStatus/)."""
+SessionStatusOutput: TypeAlias = SessionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/SessionStatusOutput/)."""
 
 class AccessDeniedErrorDetails(TypedDict, total=False):
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/AccessDeniedErrorDetails/)."""
@@ -71,11 +93,41 @@ AccessToken = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/AccessToken/)."""
 
+BatchRevokeSessionError = TypedDict(
+    "BatchRevokeSessionError",
+    {
+    "session_arn": Required["str"],
+    "code": Required["str"],
+    "message": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/BatchRevokeSessionError/)."""
+
+BatchRevokeSessionsInput = TypedDict(
+    "BatchRevokeSessionsInput",
+    {
+    "principal_arn": NotRequired["str"],
+    "session_arns": Required["Sequence[str]"],
+    "reason": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/BatchRevokeSessionsInput/)."""
+
 class ConflictErrorDetails(TypedDict, total=False):
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ConflictErrorDetails/)."""
     """Decoded fields of ConflictError; values may contain application data."""
     error: OAuth2ErrorCodeOutput
 
+
+CreateBearerTokenRequest = TypedDict(
+    "CreateBearerTokenRequest",
+    {
+    "grant_type": Required["str"],
+    "resource": Required["str"],
+    "duration_seconds": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateBearerTokenRequest/)."""
 
 CreateOAuth2TokenRequest = TypedDict(
     "CreateOAuth2TokenRequest",
@@ -125,6 +177,8 @@ CreateOAuth2TokenWithTokenExchangeRequest = TypedDict(
     "grant_type": Required["str"],
     "subject_token": NotRequired["str"],
     "subject_token_type": NotRequired["str"],
+    "assertion": NotRequired["str"],
+    "client_id": NotRequired["str"],
     "resource": NotRequired["str"],
     "scope": NotRequired["str"],
     },
@@ -163,6 +217,15 @@ GetResourcePolicyInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetResourcePolicyInput/)."""
 
+GetSessionInput = TypedDict(
+    "GetSessionInput",
+    {
+    "session_arn": Required["str"],
+    "principal_arn": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetSessionInput/)."""
+
 class InternalServerErrorDetails(TypedDict, total=False):
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/InternalServerErrorDetails/)."""
     """Decoded fields of InternalServerError; values may contain application data."""
@@ -198,6 +261,20 @@ ListResourcePermissionStatementsInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ListResourcePermissionStatementsInput/)."""
+
+ListSessionsInput = TypedDict(
+    "ListSessionsInput",
+    {
+    "principal_arn": NotRequired["str"],
+    "max_results": NotRequired["int"],
+    "next_token": NotRequired["str"],
+    "status": NotRequired["SessionStatus"],
+    "client_id": NotRequired["str"],
+    "issued_after": NotRequired["int"],
+    "issued_before": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ListSessionsInput/)."""
 
 PermissionStatementSummary = TypedDict(
     "PermissionStatementSummary",
@@ -257,6 +334,14 @@ RevokeOAuth2TokenWithIAMRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/RevokeOAuth2TokenWithIAMRequest/)."""
 
+RevokedSession = TypedDict(
+    "RevokedSession",
+    {
+    "session_arn": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/RevokedSession/)."""
+
 class ServiceQuotaExceededErrorDetails(TypedDict, total=False):
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ServiceQuotaExceededErrorDetails/)."""
     """Decoded fields of ServiceQuotaExceededError; values may contain application data."""
@@ -268,6 +353,22 @@ class ServiceUnavailableErrorDetails(TypedDict, total=False):
     """Decoded fields of ServiceUnavailableError; values may contain application data."""
     error: OAuth2ErrorCodeOutput
 
+
+Session = TypedDict(
+    "Session",
+    {
+    "session_arn": Required["str"],
+    "principal_arn": Required["str"],
+    "role": NotRequired["str"],
+    "status": NotRequired["SessionStatus"],
+    "issued_at": Required["int"],
+    "expires_at": Required["int"],
+    "client_id": NotRequired["str"],
+    "client_type": NotRequired["ClientType"],
+    "resource": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/Session/)."""
 
 SigninResourceBasedPolicy = TypedDict(
     "SigninResourceBasedPolicy",

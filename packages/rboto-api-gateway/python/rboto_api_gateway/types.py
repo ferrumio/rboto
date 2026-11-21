@@ -180,6 +180,12 @@ Integration: TypeAlias = _native.Integration
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Integration/)."""
 IntegrationResponse: TypeAlias = _native.IntegrationResponse
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/IntegrationResponse/)."""
+JwtAdditionalClaimOutput: TypeAlias = _native.JwtAdditionalClaim
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JwtAdditionalClaimOutput/)."""
+JwtConfigurationOutput: TypeAlias = _native.JwtConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JwtConfigurationOutput/)."""
+JwtIssuerOutput: TypeAlias = _native.JwtIssuer
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JwtIssuerOutput/)."""
 Method: TypeAlias = _native.Method
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Method/)."""
 MethodResponse: TypeAlias = _native.MethodResponse
@@ -296,7 +302,7 @@ ApiStatus: TypeAlias = Literal['UPDATING', 'AVAILABLE', 'PENDING', 'FAILED']
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiStatus/)."""
 ApiStatusOutput: TypeAlias = ApiStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiStatusOutput/)."""
-AuthorizerType: TypeAlias = Literal['TOKEN', 'REQUEST', 'COGNITO_USER_POOLS']
+AuthorizerType: TypeAlias = Literal['TOKEN', 'REQUEST', 'COGNITO_USER_POOLS', 'JWT']
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/AuthorizerType/)."""
 AuthorizerTypeOutput: TypeAlias = AuthorizerType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/AuthorizerTypeOutput/)."""
@@ -344,6 +350,14 @@ IpAddressType: TypeAlias = Literal['ipv4', 'dualstack']
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/IpAddressType/)."""
 IpAddressTypeOutput: TypeAlias = IpAddressType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/IpAddressTypeOutput/)."""
+JwtClaimFormat: TypeAlias = Literal['SINGLE_STRING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JwtClaimFormat/)."""
+JwtClaimFormatOutput: TypeAlias = JwtClaimFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JwtClaimFormatOutput/)."""
+JwtSigningAlgorithm: TypeAlias = Literal['RS256', 'RS384', 'RS512', 'ES256', 'ES384', 'ES512']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JwtSigningAlgorithm/)."""
+JwtSigningAlgorithmOutput: TypeAlias = JwtSigningAlgorithm | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JwtSigningAlgorithmOutput/)."""
 LocationStatusType: TypeAlias = Literal['DOCUMENTED', 'UNDOCUMENTED']
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/LocationStatusType/)."""
 LocationStatusTypeOutput: TypeAlias = LocationStatusType | UnknownEnumValue
@@ -443,6 +457,7 @@ CreateAuthorizerRequest = TypedDict(
     "identity_source": NotRequired["str"],
     "identity_validation_expression": NotRequired["str"],
     "authorizer_result_ttl_in_seconds": NotRequired["int"],
+    "jwt_configuration": NotRequired["JwtConfigurationInput"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateAuthorizerRequest/)."""
@@ -1382,6 +1397,56 @@ ImportRestApiRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportRestApiRequest/)."""
+
+JwtAdditionalClaim = TypedDict(
+    "JwtAdditionalClaim",
+    {
+    "claim_name": Required["str"],
+    "format": Required["JwtClaimFormat"],
+    "required": NotRequired["bool"],
+    "expected_values": NotRequired["Sequence[str]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JwtAdditionalClaim/)."""
+
+JwtConfiguration = TypedDict(
+    "JwtConfiguration",
+    {
+    "issuers": NotRequired["Sequence[JwtIssuer]"],
+    "default_algorithms": NotRequired["Sequence[JwtSigningAlgorithm]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JwtConfiguration/)."""
+
+JwtConfigurationInput = TypedDict(
+    "JwtConfigurationInput",
+    {
+    "issuers": Required["Sequence[JwtIssuerInput]"],
+    "default_algorithms": Required["Sequence[JwtSigningAlgorithm]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JwtConfigurationInput/)."""
+
+JwtIssuer = TypedDict(
+    "JwtIssuer",
+    {
+    "issuer": NotRequired["str"],
+    "audiences": NotRequired["Sequence[str]"],
+    "additional_claims": NotRequired["Sequence[JwtAdditionalClaim]"],
+    "jwks_uri": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JwtIssuer/)."""
+
+JwtIssuerInput = TypedDict(
+    "JwtIssuerInput",
+    {
+    "issuer": Required["str"],
+    "audiences": Required["Sequence[str]"],
+    "additional_claims": NotRequired["Sequence[JwtAdditionalClaim]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JwtIssuerInput/)."""
 
 class LimitExceededErrorDetails(TypedDict, total=False):
     """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/LimitExceededErrorDetails/)."""

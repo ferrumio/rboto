@@ -20,6 +20,8 @@ AdvancedPromptOptimizationOutputConfigOutput: TypeAlias = _native.AdvancedPrompt
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AdvancedPromptOptimizationOutputConfigOutput/)."""
 AgreementAvailabilityOutput: TypeAlias = _native.AgreementAvailability
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AgreementAvailabilityOutput/)."""
+ArchiveProjectOutput: TypeAlias = _native.ArchiveProjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ArchiveProjectOutput/)."""
 AutomatedReasoningPolicyBuildWorkflowSummaryOutput: TypeAlias = _native.AutomatedReasoningPolicyBuildWorkflowSummary
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildWorkflowSummaryOutput/)."""
 AutomatedReasoningPolicyDefinitionValueOutput: TypeAlias = _native.AutomatedReasoningPolicyDefinition
@@ -90,6 +92,8 @@ CreateModelImportJobOutput: TypeAlias = _native.CreateModelImportJobOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelImportJobOutput/)."""
 CreateModelInvocationJobOutput: TypeAlias = _native.CreateModelInvocationJobOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelInvocationJobOutput/)."""
+CreateProjectOutput: TypeAlias = _native.CreateProjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateProjectOutput/)."""
 CreatePromptRouterOutput: TypeAlias = _native.CreatePromptRouterOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreatePromptRouterOutput/)."""
 CreateProvisionedModelThroughputOutput: TypeAlias = _native.CreateProvisionedModelThroughputOutput
@@ -104,6 +108,10 @@ CustomModelUnitsOutput: TypeAlias = _native.CustomModelUnits
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelUnitsOutput/)."""
 DataProcessingDetailsOutput: TypeAlias = _native.DataProcessingDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataProcessingDetailsOutput/)."""
+DataRetentionStorageConfigurationOutput: TypeAlias = _native.DataRetentionStorageConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionStorageConfigurationOutput/)."""
+DeleteAccountDataRetentionStorageOutput: TypeAlias = _native.DeleteAccountDataRetentionStorageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAccountDataRetentionStorageOutput/)."""
 DeleteAutomatedReasoningPolicyBuildWorkflowOutput: TypeAlias = _native.DeleteAutomatedReasoningPolicyBuildWorkflowOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyBuildWorkflowOutput/)."""
 DeleteAutomatedReasoningPolicyOutput: TypeAlias = _native.DeleteAutomatedReasoningPolicyOutput
@@ -128,6 +136,10 @@ DeleteMarketplaceModelEndpointOutput: TypeAlias = _native.DeleteMarketplaceModel
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteMarketplaceModelEndpointOutput/)."""
 DeleteModelInvocationLoggingConfigurationOutput: TypeAlias = _native.DeleteModelInvocationLoggingConfigurationOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteModelInvocationLoggingConfigurationOutput/)."""
+DeleteOrganizationDataRetentionStorageOutput: TypeAlias = _native.DeleteOrganizationDataRetentionStorageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteOrganizationDataRetentionStorageOutput/)."""
+DeleteProjectDataRetentionStorageOutput: TypeAlias = _native.DeleteProjectDataRetentionStorageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteProjectDataRetentionStorageOutput/)."""
 DeletePromptRouterOutput: TypeAlias = _native.DeletePromptRouterOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeletePromptRouterOutput/)."""
 DeleteProvisionedModelThroughputOutput: TypeAlias = _native.DeleteProvisionedModelThroughputOutput
@@ -158,6 +170,8 @@ FoundationModelSummaryOutput: TypeAlias = _native.FoundationModelSummary
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FoundationModelSummaryOutput/)."""
 GetAccountDataRetentionOutput: TypeAlias = _native.GetAccountDataRetentionOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAccountDataRetentionOutput/)."""
+GetAccountDataRetentionStorageOutput: TypeAlias = _native.GetAccountDataRetentionStorageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAccountDataRetentionStorageOutput/)."""
 GetAdvancedPromptOptimizationJobOutput: TypeAlias = _native.GetAdvancedPromptOptimizationJobOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAdvancedPromptOptimizationJobOutput/)."""
 GetAutomatedReasoningPolicyAnnotationsOutput: TypeAlias = _native.GetAutomatedReasoningPolicyAnnotationsOutput
@@ -202,12 +216,26 @@ GetModelInvocationJobOutput: TypeAlias = _native.GetModelInvocationJobOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelInvocationJobOutput/)."""
 GetModelInvocationLoggingConfigurationOutput: TypeAlias = _native.GetModelInvocationLoggingConfigurationOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelInvocationLoggingConfigurationOutput/)."""
+GetOrganizationDataRetentionStorageOutput: TypeAlias = _native.GetOrganizationDataRetentionStorageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetOrganizationDataRetentionStorageOutput/)."""
+GetProjectDataRetentionStorageOutput: TypeAlias = _native.GetProjectDataRetentionStorageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetProjectDataRetentionStorageOutput/)."""
+GetProjectOutput: TypeAlias = _native.GetProjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetProjectOutput/)."""
 GetPromptRouterOutput: TypeAlias = _native.GetPromptRouterOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetPromptRouterOutput/)."""
 GetProvisionedModelThroughputOutput: TypeAlias = _native.GetProvisionedModelThroughputOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetProvisionedModelThroughputOutput/)."""
 GetResourcePolicyOutput: TypeAlias = _native.GetResourcePolicyOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetResourcePolicyOutput/)."""
+GetTrustedAccessProgramAccountEnrollmentOutput: TypeAlias = _native.GetTrustedAccessProgramAccountEnrollmentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetTrustedAccessProgramAccountEnrollmentOutput/)."""
+GetTrustedAccessProgramOrganizationEnrollmentOutput: TypeAlias = _native.GetTrustedAccessProgramOrganizationEnrollmentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetTrustedAccessProgramOrganizationEnrollmentOutput/)."""
+GetTrustedAccessProgramOutput: TypeAlias = _native.GetTrustedAccessProgramOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetTrustedAccessProgramOutput/)."""
+GetTrustedAccessProgramProjectEnrollmentOutput: TypeAlias = _native.GetTrustedAccessProgramProjectEnrollmentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetTrustedAccessProgramProjectEnrollmentOutput/)."""
 GetUseCaseForModelAccessOutput: TypeAlias = _native.GetUseCaseForModelAccessOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetUseCaseForModelAccessOutput/)."""
 GuardrailAutomatedReasoningPolicyOutput: TypeAlias = _native.GuardrailAutomatedReasoningPolicy
@@ -296,12 +324,16 @@ ListModelImportJobsOutput: TypeAlias = _native.ListModelImportJobsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelImportJobsOutput/)."""
 ListModelInvocationJobsOutput: TypeAlias = _native.ListModelInvocationJobsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelInvocationJobsOutput/)."""
+ListProjectsOutput: TypeAlias = _native.ListProjectsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListProjectsOutput/)."""
 ListPromptRoutersOutput: TypeAlias = _native.ListPromptRoutersOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListPromptRoutersOutput/)."""
 ListProvisionedModelThroughputsOutput: TypeAlias = _native.ListProvisionedModelThroughputsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListProvisionedModelThroughputsOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListTagsForResourceOutput/)."""
+ListTrustedAccessProgramsOutput: TypeAlias = _native.ListTrustedAccessProgramsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListTrustedAccessProgramsOutput/)."""
 LoggingConfigOutput: TypeAlias = _native.LoggingConfig
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/LoggingConfigOutput/)."""
 MarketplaceModelEndpointOutput: TypeAlias = _native.MarketplaceModelEndpoint
@@ -326,6 +358,10 @@ OutputDataConfigOutput: TypeAlias = _native.OutputDataConfig
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/OutputDataConfigOutput/)."""
 PricingTermOutput: TypeAlias = _native.PricingTerm
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PricingTermOutput/)."""
+ProjectDataRetentionOutput: TypeAlias = _native.ProjectDataRetention
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ProjectDataRetentionOutput/)."""
+ProjectSummaryOutput: TypeAlias = _native.ProjectSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ProjectSummaryOutput/)."""
 PromptRouterSummaryOutput: TypeAlias = _native.PromptRouterSummary
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptRouterSummaryOutput/)."""
 PromptRouterTargetModelOutput: TypeAlias = _native.PromptRouterTargetModel
@@ -334,12 +370,24 @@ ProvisionedModelSummaryOutput: TypeAlias = _native.ProvisionedModelSummary
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ProvisionedModelSummaryOutput/)."""
 PutAccountDataRetentionOutput: TypeAlias = _native.PutAccountDataRetentionOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutAccountDataRetentionOutput/)."""
+PutAccountDataRetentionStorageOutput: TypeAlias = _native.PutAccountDataRetentionStorageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutAccountDataRetentionStorageOutput/)."""
 PutEnforcedGuardrailConfigurationOutput: TypeAlias = _native.PutEnforcedGuardrailConfigurationOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutEnforcedGuardrailConfigurationOutput/)."""
 PutModelInvocationLoggingConfigurationOutput: TypeAlias = _native.PutModelInvocationLoggingConfigurationOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutModelInvocationLoggingConfigurationOutput/)."""
+PutOrganizationDataRetentionStorageOutput: TypeAlias = _native.PutOrganizationDataRetentionStorageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutOrganizationDataRetentionStorageOutput/)."""
+PutProjectDataRetentionStorageOutput: TypeAlias = _native.PutProjectDataRetentionStorageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutProjectDataRetentionStorageOutput/)."""
 PutResourcePolicyOutput: TypeAlias = _native.PutResourcePolicyOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutResourcePolicyOutput/)."""
+PutTrustedAccessProgramAccountEnrollmentOutput: TypeAlias = _native.PutTrustedAccessProgramAccountEnrollmentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutTrustedAccessProgramAccountEnrollmentOutput/)."""
+PutTrustedAccessProgramOrganizationEnrollmentOutput: TypeAlias = _native.PutTrustedAccessProgramOrganizationEnrollmentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutTrustedAccessProgramOrganizationEnrollmentOutput/)."""
+PutTrustedAccessProgramProjectEnrollmentOutput: TypeAlias = _native.PutTrustedAccessProgramProjectEnrollmentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutTrustedAccessProgramProjectEnrollmentOutput/)."""
 PutUseCaseForModelAccessOutput: TypeAlias = _native.PutUseCaseForModelAccessOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutUseCaseForModelAccessOutput/)."""
 RegisterMarketplaceModelEndpointOutput: TypeAlias = _native.RegisterMarketplaceModelEndpointOutput
@@ -354,6 +402,12 @@ StartAutomatedReasoningPolicyBuildWorkflowOutput: TypeAlias = _native.StartAutom
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartAutomatedReasoningPolicyBuildWorkflowOutput/)."""
 StartAutomatedReasoningPolicyTestWorkflowOutput: TypeAlias = _native.StartAutomatedReasoningPolicyTestWorkflowOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartAutomatedReasoningPolicyTestWorkflowOutput/)."""
+StartTrustedAccessProgramAccountApplicationOutput: TypeAlias = _native.StartTrustedAccessProgramAccountApplicationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartTrustedAccessProgramAccountApplicationOutput/)."""
+StartTrustedAccessProgramOrganizationApplicationOutput: TypeAlias = _native.StartTrustedAccessProgramOrganizationApplicationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartTrustedAccessProgramOrganizationApplicationOutput/)."""
+StartTrustedAccessProgramProjectApplicationOutput: TypeAlias = _native.StartTrustedAccessProgramProjectApplicationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartTrustedAccessProgramProjectApplicationOutput/)."""
 StatusDetailsOutput: TypeAlias = _native.StatusDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StatusDetailsOutput/)."""
 StopAdvancedPromptOptimizationJobOutput: TypeAlias = _native.StopAdvancedPromptOptimizationJobOutput
@@ -378,6 +432,10 @@ TrainingDetailsOutput: TypeAlias = _native.TrainingDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrainingDetailsOutput/)."""
 TrainingMetricsOutput: TypeAlias = _native.TrainingMetrics
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrainingMetricsOutput/)."""
+TrustedAccessProgramSummaryOutput: TypeAlias = _native.TrustedAccessProgramSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessProgramSummaryOutput/)."""
+TrustedAccessResolutionContextOutput: TypeAlias = _native.TrustedAccessResolutionContext
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessResolutionContextOutput/)."""
 UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UntagResourceOutput/)."""
 UpdateAutomatedReasoningPolicyAnnotationsOutput: TypeAlias = _native.UpdateAutomatedReasoningPolicyAnnotationsOutput
@@ -392,6 +450,8 @@ UpdateGuardrailOutput: TypeAlias = _native.UpdateGuardrailOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateGuardrailOutput/)."""
 UpdateMarketplaceModelEndpointOutput: TypeAlias = _native.UpdateMarketplaceModelEndpointOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateMarketplaceModelEndpointOutput/)."""
+UpdateProjectOutput: TypeAlias = _native.UpdateProjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateProjectOutput/)."""
 UpdateProvisionedModelThroughputOutput: TypeAlias = _native.UpdateProvisionedModelThroughputOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateProvisionedModelThroughputOutput/)."""
 ValidationDataConfigOutput: TypeAlias = _native.ValidationDataConfig
@@ -494,6 +554,22 @@ DataRetentionMode: TypeAlias = Literal['default', 'none', 'aws_review', 'provide
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionMode/)."""
 DataRetentionModeOutput: TypeAlias = DataRetentionMode | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionModeOutput/)."""
+DataRetentionStorageDestination: TypeAlias = Literal['customer_managed', 'amazon_managed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionStorageDestination/)."""
+DataRetentionStorageDestinationOutput: TypeAlias = DataRetentionStorageDestination | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionStorageDestinationOutput/)."""
+DataRetentionStorageModelProvider: TypeAlias = Literal['anthropic', 'openai']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionStorageModelProvider/)."""
+DataRetentionStorageModelProviderOutput: TypeAlias = DataRetentionStorageModelProvider | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionStorageModelProviderOutput/)."""
+DataRetentionStorageResourceStatus: TypeAlias = Literal['pending', 'active', 'access_denied']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionStorageResourceStatus/)."""
+DataRetentionStorageResourceStatusOutput: TypeAlias = DataRetentionStorageResourceStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionStorageResourceStatusOutput/)."""
+DataRetentionStorageScope: TypeAlias = Literal['account', 'organization', 'project']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionStorageScope/)."""
+DataRetentionStorageScopeOutput: TypeAlias = DataRetentionStorageScope | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionStorageScopeOutput/)."""
 EntitlementAvailability: TypeAlias = Literal['AVAILABLE', 'NOT_AVAILABLE']
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EntitlementAvailability/)."""
 EntitlementAvailabilityOutput: TypeAlias = EntitlementAvailability | UnknownEnumValue
@@ -646,6 +722,10 @@ PerformanceConfigLatency: TypeAlias = Literal['standard', 'optimized']
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PerformanceConfigLatency/)."""
 PerformanceConfigLatencyOutput: TypeAlias = PerformanceConfigLatency | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PerformanceConfigLatencyOutput/)."""
+ProjectStatus: TypeAlias = Literal['active', 'archived']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ProjectStatus/)."""
+ProjectStatusOutput: TypeAlias = ProjectStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ProjectStatusOutput/)."""
 PromptRouterStatus: TypeAlias = Literal['AVAILABLE']
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptRouterStatus/)."""
 PromptRouterStatusOutput: TypeAlias = PromptRouterStatus | UnknownEnumValue
@@ -710,6 +790,18 @@ Status: TypeAlias = Literal['REGISTERED', 'INCOMPATIBLE_ENDPOINT']
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/Status/)."""
 StatusOutput: TypeAlias = Status | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StatusOutput/)."""
+TrustedAccessProgramOptIn: TypeAlias = Literal['inherit', 'enabled', 'disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessProgramOptIn/)."""
+TrustedAccessProgramOptInOutput: TypeAlias = TrustedAccessProgramOptIn | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessProgramOptInOutput/)."""
+TrustedAccessProgramScope: TypeAlias = Literal['organization', 'account', 'project', 'program_default']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessProgramScope/)."""
+TrustedAccessProgramScopeOutput: TypeAlias = TrustedAccessProgramScope | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessProgramScopeOutput/)."""
+TrustedAccessProgramStatus: TypeAlias = Literal['requestable', 'eligible', 'enabled', 'disabled', 'revoked']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessProgramStatus/)."""
+TrustedAccessProgramStatusOutput: TypeAlias = TrustedAccessProgramStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessProgramStatusOutput/)."""
 VectorSearchRerankingConfigurationType: TypeAlias = Literal['BEDROCK_RERANKING_MODEL']
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VectorSearchRerankingConfigurationType/)."""
 VectorSearchRerankingConfigurationTypeOutput: TypeAlias = VectorSearchRerankingConfigurationType | UnknownEnumValue
@@ -781,6 +873,14 @@ AgreementAvailability = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AgreementAvailability/)."""
+
+ArchiveProjectRequest = TypedDict(
+    "ArchiveProjectRequest",
+    {
+    "project_identifier": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ArchiveProjectRequest/)."""
 
 AutomatedEvaluationConfig = TypedDict(
     "AutomatedEvaluationConfig",
@@ -2272,6 +2372,16 @@ CreateModelInvocationJobRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelInvocationJobRequest/)."""
 
+CreateProjectRequest = TypedDict(
+    "CreateProjectRequest",
+    {
+    "name": Required["str"],
+    "tags": NotRequired["Sequence[Tag]"],
+    "data_retention": NotRequired["ProjectDataRetention"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateProjectRequest/)."""
+
 CreatePromptRouterRequest = TypedDict(
     "CreatePromptRouterRequest",
     {
@@ -2429,6 +2539,24 @@ DataProcessingDetails = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataProcessingDetails/)."""
 
+DataRetentionStorageConfiguration = TypedDict(
+    "DataRetentionStorageConfiguration",
+    {
+    "kms_key_arn": Required["str"],
+    "s3_bucket_arn": Required["str"],
+    "s3_bucket_owner": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionStorageConfiguration/)."""
+
+DeleteAccountDataRetentionStorageRequest = TypedDict(
+    "DeleteAccountDataRetentionStorageRequest",
+    {
+    "model_provider": Required["DataRetentionStorageModelProvider"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAccountDataRetentionStorageRequest/)."""
+
 DeleteAutomatedReasoningPolicyBuildWorkflowRequest = TypedDict(
     "DeleteAutomatedReasoningPolicyBuildWorkflowRequest",
     {
@@ -2529,6 +2657,23 @@ DeleteModelInvocationLoggingConfigurationRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteModelInvocationLoggingConfigurationRequest/)."""
+
+DeleteOrganizationDataRetentionStorageRequest = TypedDict(
+    "DeleteOrganizationDataRetentionStorageRequest",
+    {
+    "model_provider": Required["DataRetentionStorageModelProvider"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteOrganizationDataRetentionStorageRequest/)."""
+
+DeleteProjectDataRetentionStorageRequest = TypedDict(
+    "DeleteProjectDataRetentionStorageRequest",
+    {
+    "project_identifier": Required["str"],
+    "model_provider": Required["DataRetentionStorageModelProvider"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteProjectDataRetentionStorageRequest/)."""
 
 DeletePromptRouterRequest = TypedDict(
     "DeletePromptRouterRequest",
@@ -3028,6 +3173,14 @@ GetAccountDataRetentionRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAccountDataRetentionRequest/)."""
 
+GetAccountDataRetentionStorageRequest = TypedDict(
+    "GetAccountDataRetentionStorageRequest",
+    {
+    "model_provider": Required["DataRetentionStorageModelProvider"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAccountDataRetentionStorageRequest/)."""
+
 GetAdvancedPromptOptimizationJobRequest = TypedDict(
     "GetAdvancedPromptOptimizationJobRequest",
     {
@@ -3137,6 +3290,7 @@ GetFoundationModelRequest = TypedDict(
     "GetFoundationModelRequest",
     {
     "model_identifier": Required["str"],
+    "project_identifier": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetFoundationModelRequest/)."""
@@ -3162,6 +3316,7 @@ GetInferenceProfileRequest = TypedDict(
     "GetInferenceProfileRequest",
     {
     "inference_profile_identifier": Required["str"],
+    "project_identifier": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetInferenceProfileRequest/)."""
@@ -3213,6 +3368,31 @@ GetModelInvocationLoggingConfigurationRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelInvocationLoggingConfigurationRequest/)."""
 
+GetOrganizationDataRetentionStorageRequest = TypedDict(
+    "GetOrganizationDataRetentionStorageRequest",
+    {
+    "model_provider": Required["DataRetentionStorageModelProvider"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetOrganizationDataRetentionStorageRequest/)."""
+
+GetProjectDataRetentionStorageRequest = TypedDict(
+    "GetProjectDataRetentionStorageRequest",
+    {
+    "project_identifier": Required["str"],
+    "model_provider": Required["DataRetentionStorageModelProvider"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetProjectDataRetentionStorageRequest/)."""
+
+GetProjectRequest = TypedDict(
+    "GetProjectRequest",
+    {
+    "project_identifier": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetProjectRequest/)."""
+
 GetPromptRouterRequest = TypedDict(
     "GetPromptRouterRequest",
     {
@@ -3236,6 +3416,40 @@ GetResourcePolicyRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetResourcePolicyRequest/)."""
+
+GetTrustedAccessProgramAccountEnrollmentRequest = TypedDict(
+    "GetTrustedAccessProgramAccountEnrollmentRequest",
+    {
+    "program_identifier": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetTrustedAccessProgramAccountEnrollmentRequest/)."""
+
+GetTrustedAccessProgramOrganizationEnrollmentRequest = TypedDict(
+    "GetTrustedAccessProgramOrganizationEnrollmentRequest",
+    {
+    "program_identifier": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetTrustedAccessProgramOrganizationEnrollmentRequest/)."""
+
+GetTrustedAccessProgramProjectEnrollmentRequest = TypedDict(
+    "GetTrustedAccessProgramProjectEnrollmentRequest",
+    {
+    "program_identifier": Required["str"],
+    "project_identifier": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetTrustedAccessProgramProjectEnrollmentRequest/)."""
+
+GetTrustedAccessProgramRequest = TypedDict(
+    "GetTrustedAccessProgramRequest",
+    {
+    "program_identifier": Required["str"],
+    "project_identifier": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetTrustedAccessProgramRequest/)."""
 
 GetUseCaseForModelAccessRequest = TypedDict(
     "GetUseCaseForModelAccessRequest",
@@ -4047,6 +4261,7 @@ ListFoundationModelsRequest = TypedDict(
     "by_customization_type": NotRequired["ModelCustomization"],
     "by_output_modality": NotRequired["ModelModality"],
     "by_inference_type": NotRequired["InferenceType"],
+    "project_identifier": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListFoundationModelsRequest/)."""
@@ -4081,6 +4296,7 @@ ListInferenceProfilesRequest = TypedDict(
     "max_results": NotRequired["int"],
     "next_token": NotRequired["str"],
     "type_equals": NotRequired["InferenceProfileType"],
+    "project_identifier": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListInferenceProfilesRequest/)."""
@@ -4157,6 +4373,16 @@ ListModelInvocationJobsRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelInvocationJobsRequest/)."""
 
+ListProjectsRequest = TypedDict(
+    "ListProjectsRequest",
+    {
+    "next_token": NotRequired["str"],
+    "max_results": NotRequired["int"],
+    "status_filter": NotRequired["ProjectStatus"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListProjectsRequest/)."""
+
 ListPromptRoutersRequest = TypedDict(
     "ListPromptRoutersRequest",
     {
@@ -4190,6 +4416,16 @@ ListTagsForResourceRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListTagsForResourceRequest/)."""
+
+ListTrustedAccessProgramsRequest = TypedDict(
+    "ListTrustedAccessProgramsRequest",
+    {
+    "project_identifier": NotRequired["str"],
+    "max_results": NotRequired["int"],
+    "next_token": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListTrustedAccessProgramsRequest/)."""
 
 LoggingConfig = TypedDict(
     "LoggingConfig",
@@ -4511,6 +4747,28 @@ PricingTerm = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PricingTerm/)."""
 
+ProjectDataRetention = TypedDict(
+    "ProjectDataRetention",
+    {
+    "mode": Required["DataRetentionMode"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ProjectDataRetention/)."""
+
+ProjectSummary = TypedDict(
+    "ProjectSummary",
+    {
+    "id": Required["str"],
+    "arn": Required["str"],
+    "name": Required["str"],
+    "status": Required["ProjectStatus"],
+    "created_at": Required["str"],
+    "archived_at": NotRequired["str"],
+    "data_retention": Required["ProjectDataRetention"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ProjectSummary/)."""
+
 PromptRouterSummary = TypedDict(
     "PromptRouterSummary",
     {
@@ -4579,6 +4837,16 @@ PutAccountDataRetentionRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutAccountDataRetentionRequest/)."""
 
+PutAccountDataRetentionStorageRequest = TypedDict(
+    "PutAccountDataRetentionStorageRequest",
+    {
+    "model_provider": Required["DataRetentionStorageModelProvider"],
+    "storage_destination": Required["DataRetentionStorageDestination"],
+    "storage_configuration": NotRequired["DataRetentionStorageConfiguration"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutAccountDataRetentionStorageRequest/)."""
+
 PutEnforcedGuardrailConfigurationRequest = TypedDict(
     "PutEnforcedGuardrailConfigurationRequest",
     {
@@ -4596,6 +4864,27 @@ PutModelInvocationLoggingConfigurationRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutModelInvocationLoggingConfigurationRequest/)."""
 
+PutOrganizationDataRetentionStorageRequest = TypedDict(
+    "PutOrganizationDataRetentionStorageRequest",
+    {
+    "model_provider": Required["DataRetentionStorageModelProvider"],
+    "storage_destination": Required["DataRetentionStorageDestination"],
+    "storage_configuration": NotRequired["DataRetentionStorageConfiguration"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutOrganizationDataRetentionStorageRequest/)."""
+
+PutProjectDataRetentionStorageRequest = TypedDict(
+    "PutProjectDataRetentionStorageRequest",
+    {
+    "project_identifier": Required["str"],
+    "model_provider": Required["DataRetentionStorageModelProvider"],
+    "storage_destination": Required["DataRetentionStorageDestination"],
+    "storage_configuration": NotRequired["DataRetentionStorageConfiguration"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutProjectDataRetentionStorageRequest/)."""
+
 PutResourcePolicyRequest = TypedDict(
     "PutResourcePolicyRequest",
     {
@@ -4604,6 +4893,34 @@ PutResourcePolicyRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutResourcePolicyRequest/)."""
+
+PutTrustedAccessProgramAccountEnrollmentRequest = TypedDict(
+    "PutTrustedAccessProgramAccountEnrollmentRequest",
+    {
+    "program_identifier": Required["str"],
+    "opt_in": Required["TrustedAccessProgramOptIn"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutTrustedAccessProgramAccountEnrollmentRequest/)."""
+
+PutTrustedAccessProgramOrganizationEnrollmentRequest = TypedDict(
+    "PutTrustedAccessProgramOrganizationEnrollmentRequest",
+    {
+    "program_identifier": Required["str"],
+    "opt_in": Required["TrustedAccessProgramOptIn"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutTrustedAccessProgramOrganizationEnrollmentRequest/)."""
+
+PutTrustedAccessProgramProjectEnrollmentRequest = TypedDict(
+    "PutTrustedAccessProgramProjectEnrollmentRequest",
+    {
+    "program_identifier": Required["str"],
+    "project_identifier": Required["str"],
+    "opt_in": Required["TrustedAccessProgramOptIn"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutTrustedAccessProgramProjectEnrollmentRequest/)."""
 
 PutUseCaseForModelAccessRequest = TypedDict(
     "PutUseCaseForModelAccessRequest",
@@ -4996,6 +5313,31 @@ StartAutomatedReasoningPolicyTestWorkflowRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartAutomatedReasoningPolicyTestWorkflowRequest/)."""
 
+StartTrustedAccessProgramAccountApplicationRequest = TypedDict(
+    "StartTrustedAccessProgramAccountApplicationRequest",
+    {
+    "program_identifier": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartTrustedAccessProgramAccountApplicationRequest/)."""
+
+StartTrustedAccessProgramOrganizationApplicationRequest = TypedDict(
+    "StartTrustedAccessProgramOrganizationApplicationRequest",
+    {
+    "program_identifier": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartTrustedAccessProgramOrganizationApplicationRequest/)."""
+
+StartTrustedAccessProgramProjectApplicationRequest = TypedDict(
+    "StartTrustedAccessProgramProjectApplicationRequest",
+    {
+    "program_identifier": Required["str"],
+    "project_identifier": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartTrustedAccessProgramProjectApplicationRequest/)."""
+
 StatusDetails = TypedDict(
     "StatusDetails",
     {
@@ -5148,6 +5490,52 @@ TrainingMetrics = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrainingMetrics/)."""
 
+TrustedAccessProgramApplicationResultproviderHandoff = TypedDict("TrustedAccessProgramApplicationResultproviderHandoff", {"provider_handoff": Required["TrustedAccessProgramProviderHandoff"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessProgramApplicationResultproviderHandoff/)."""
+TrustedAccessProgramApplicationResultUnknown = TypedDict("TrustedAccessProgramApplicationResultUnknown", {"unknown": Required[Literal[True]]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessProgramApplicationResultUnknown/)."""
+TrustedAccessProgramApplicationResult: TypeAlias = TrustedAccessProgramApplicationResultproviderHandoff | TrustedAccessProgramApplicationResultUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessProgramApplicationResult/)."""
+
+TrustedAccessProgramProviderHandoff = TypedDict(
+    "TrustedAccessProgramProviderHandoff",
+    {
+    "enrollment_url": Required["str | None"],
+    "application_token": Required["str"],
+    "application_token_expires_at": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessProgramProviderHandoff/)."""
+
+TrustedAccessProgramSummary = TypedDict(
+    "TrustedAccessProgramSummary",
+    {
+    "program_id": Required["str"],
+    "name": Required["str"],
+    "description": Required["str"],
+    "provider_name": Required["str"],
+    "details_url": Required["str"],
+    "enrollment_url": NotRequired["str"],
+    "status": Required["TrustedAccessProgramStatus"],
+    "status_reason": NotRequired["str"],
+    "source": Required["TrustedAccessProgramScope"],
+    "eligibility_scope": NotRequired["TrustedAccessProgramScope"],
+    "resolved_for": Required["TrustedAccessResolutionContext"],
+    "opt_in": Required["TrustedAccessProgramOptIn"],
+    "updated_at": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessProgramSummary/)."""
+
+TrustedAccessResolutionContext = TypedDict(
+    "TrustedAccessResolutionContext",
+    {
+    "account_id": Required["str"],
+    "project_arn": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrustedAccessResolutionContext/)."""
+
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
     {
@@ -5232,6 +5620,16 @@ UpdateMarketplaceModelEndpointRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateMarketplaceModelEndpointRequest/)."""
+
+UpdateProjectRequest = TypedDict(
+    "UpdateProjectRequest",
+    {
+    "project_identifier": Required["str"],
+    "name": NotRequired["str"],
+    "data_retention": NotRequired["ProjectDataRetention"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateProjectRequest/)."""
 
 UpdateProvisionedModelThroughputRequest = TypedDict(
     "UpdateProvisionedModelThroughputRequest",

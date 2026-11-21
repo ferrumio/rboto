@@ -25,8 +25,8 @@ def test_glue_paginators_cover_every_modeled_continuation_token() -> None:
         outputs = {member.name for member in shapes[operation.output_target].members}
         if {"NextToken", "Marker"} & inputs & outputs:
             token_operations.add(operation.rust_name)
+    assert token_operations
     assert {spec.operation for spec in generator.pagination} == token_operations
-    assert len(token_operations) == 64
 
 
 @pytest.fixture

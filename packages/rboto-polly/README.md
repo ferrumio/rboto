@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon Polly**,
 powered by Rust. This package contains `PollyClient` and
-**13 operations**.
+**16 operations**.
 
 ## Installation
 
@@ -81,6 +81,17 @@ See [configuration](https://ferrumio.github.io/rboto/guides/configuration/),
 [errors](https://ferrumio.github.io/rboto/guides/errors/), and
 [streaming](https://ferrumio.github.io/rboto/guides/streaming/).
 
+## Waiters
+
+Use `await client.waiters.name(...)` to wait for a resource state. Each waiter accepts
+the polling operation's typed arguments plus `waiter_config: WaiterConfig | None`.
+Import `WaiterConfig` from `rboto` to set the poll delay, maximum attempts, or overall
+timeout. See the [waiter guide](https://ferrumio.github.io/rboto/guides/waiters/).
+
+| Waiter | Polling operation |
+|---|---|
+| [`voice_active`](https://ferrumio.github.io/rboto/reference/polly/operations/get_voice/#waiters) | `get_voice` |
+
 ## Operations
 
 The [operation reference](https://ferrumio.github.io/rboto/reference/polly/)
@@ -95,10 +106,13 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
+| [`create_voice`](#create_voice) | <code>name: str</code>, <code>language_code: CustomVoiceLanguageCode</code>, <code>terms_accepted: bool</code>, <code>voice_creation_data: VoiceCreationData</code> | <code>CreateVoiceOutput</code> |
 | [`delete_lexicon`](#delete_lexicon) | <code>name: str</code> | <code>DeleteLexiconOutput</code> |
+| [`delete_voice`](#delete_voice) | <code>voice_id: str</code> | <code>DeleteVoiceOutput</code> |
 | [`describe_voices`](#describe_voices) | None | <code>DescribeVoicesOutput</code> |
 | [`get_lexicon`](#get_lexicon) | <code>name: str</code> | <code>GetLexiconOutput</code> |
 | [`get_speech_synthesis_task`](#get_speech_synthesis_task) | <code>task_id: str</code> | <code>GetSpeechSynthesisTaskOutput</code> |
+| [`get_voice`](#get_voice) | <code>voice_id: str</code> | <code>GetVoiceOutput</code> |
 | [`list_lexicons`](#list_lexicons) | None | <code>ListLexiconsOutput</code> |
 | [`list_speech_synthesis_tasks`](#list_speech_synthesis_tasks) | None | <code>ListSpeechSynthesisTasksOutput</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
@@ -111,6 +125,22 @@ native response definitions are in the package's `_native.pyi`.
 
 ## Complete signatures
 
+### create_voice
+
+```python
+async def create_voice(
+    *,
+    name: str,
+    language_code: CustomVoiceLanguageCode,
+    terms_accepted: bool,
+    voice_creation_data: VoiceCreationData,
+    customer_managed_encryption: CustomerManagedEncryption | None = None,
+    tags: dict[str, str] | None = None,
+    client_token: str | None = None,
+) -> CreateVoiceOutput: ...
+```
+
+
 ### delete_lexicon
 
 ```python
@@ -118,6 +148,16 @@ async def delete_lexicon(
     *,
     name: str,
 ) -> DeleteLexiconOutput: ...
+```
+
+
+### delete_voice
+
+```python
+async def delete_voice(
+    *,
+    voice_id: str,
+) -> DeleteVoiceOutput: ...
 ```
 
 
@@ -154,6 +194,16 @@ async def get_speech_synthesis_task(
     *,
     task_id: str,
 ) -> GetSpeechSynthesisTaskOutput: ...
+```
+
+
+### get_voice
+
+```python
+async def get_voice(
+    *,
+    voice_id: str,
+) -> GetVoiceOutput: ...
 ```
 
 

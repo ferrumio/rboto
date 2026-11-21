@@ -10,6 +10,8 @@ from rboto.streaming import FileBody as _FileBody
 
 from . import _native
 
+AcceleratorConfigOutput: TypeAlias = _native.AcceleratorConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AcceleratorConfigOutput/)."""
 AccountLimitOutput: TypeAlias = _native.AccountLimit
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AccountLimitOutput/)."""
 AccountUsageOutput: TypeAlias = _native.AccountUsage
@@ -102,6 +104,8 @@ DeleteCapacityProviderOutput: TypeAlias = _native.DeleteCapacityProviderOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteCapacityProviderOutput/)."""
 DeleteCodeSigningConfigOutput: TypeAlias = _native.DeleteCodeSigningConfigOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteCodeSigningConfigOutput/)."""
+DeleteDurableExecutionOutput: TypeAlias = _native.DeleteDurableExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteDurableExecutionOutput/)."""
 DeleteEventSourceMappingOutput: TypeAlias = _native.DeleteEventSourceMappingOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteEventSourceMappingOutput/)."""
 DeleteFunctionOutput: TypeAlias = _native.DeleteFunctionOutput
@@ -126,8 +130,12 @@ EventErrorOutput: TypeAlias = _native.EventError
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventErrorOutput/)."""
 EventInputOutput: TypeAlias = _native.EventInput
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventInputOutput/)."""
+EventPauseReasonOutput: TypeAlias = _native.EventPauseReason
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventPauseReasonOutput/)."""
 EventResultOutput: TypeAlias = _native.EventResult
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventResultOutput/)."""
+EventResumeReasonOutput: TypeAlias = _native.EventResumeReason
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventResumeReasonOutput/)."""
 EventSourceMappingConfiguration: TypeAlias = _native.EventSourceMappingConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventSourceMappingConfiguration/)."""
 EventSourceMappingLoggingConfigOutput: TypeAlias = _native.EventSourceMappingLoggingConfig
@@ -140,6 +148,10 @@ ExecutionDetailsOutput: TypeAlias = _native.ExecutionDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionDetailsOutput/)."""
 ExecutionFailedDetailsOutput: TypeAlias = _native.ExecutionFailedDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionFailedDetailsOutput/)."""
+ExecutionPausedDetailsOutput: TypeAlias = _native.ExecutionPausedDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionPausedDetailsOutput/)."""
+ExecutionResumedDetailsOutput: TypeAlias = _native.ExecutionResumedDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionResumedDetailsOutput/)."""
 ExecutionStartedDetailsOutput: TypeAlias = _native.ExecutionStartedDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionStartedDetailsOutput/)."""
 ExecutionStoppedDetailsOutput: TypeAlias = _native.ExecutionStoppedDetails
@@ -164,6 +176,8 @@ FunctionConfiguration: TypeAlias = _native.FunctionConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionConfiguration/)."""
 FunctionEventInvokeConfig: TypeAlias = _native.FunctionEventInvokeConfig
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionEventInvokeConfig/)."""
+FunctionRuntimeConfigOutput: TypeAlias = _native.FunctionRuntimeConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionRuntimeConfigOutput/)."""
 FunctionScalingConfigOutput: TypeAlias = _native.FunctionScalingConfig
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionScalingConfigOutput/)."""
 FunctionUrlConfigOutput: TypeAlias = _native.FunctionUrlConfig
@@ -286,6 +300,10 @@ OnSuccessOutput: TypeAlias = _native.OnSuccess
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/OnSuccessOutput/)."""
 OperationOutput: TypeAlias = _native.Operation
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/OperationOutput/)."""
+PauseDetailsOutput: TypeAlias = _native.PauseDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PauseDetailsOutput/)."""
+PauseDurableExecutionOutput: TypeAlias = _native.PauseDurableExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PauseDurableExecutionOutput/)."""
 PropagateTagsOutput: TypeAlias = _native.PropagateTags
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PropagateTagsOutput/)."""
 ProvisionedConcurrencyConfigListItemOutput: TypeAlias = _native.ProvisionedConcurrencyConfigListItem
@@ -314,6 +332,8 @@ PutRuntimeManagementConfigOutput: TypeAlias = _native.PutRuntimeManagementConfig
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutRuntimeManagementConfigOutput/)."""
 ResolvedS3ObjectOutput: TypeAlias = _native.ResolvedS3Object
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ResolvedS3ObjectOutput/)."""
+ResumeDurableExecutionOutput: TypeAlias = _native.ResumeDurableExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ResumeDurableExecutionOutput/)."""
 RetryDetailsOutput: TypeAlias = _native.RetryDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/RetryDetailsOutput/)."""
 RuntimeVersionConfigOutput: TypeAlias = _native.RuntimeVersionConfig
@@ -388,6 +408,8 @@ WaitSucceededDetailsOutput: TypeAlias = _native.WaitSucceededDetails
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/JSONValue/)."""
 
+AcceleratorMemoryGB: TypeAlias = Literal[3, 6, 12, 16, 24, 48]
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AcceleratorMemoryGB/)."""
 ApplicationLogLevel: TypeAlias = Literal['TRACE', 'DEBUG', 'INFO', 'WARN', 'ERROR', 'FATAL']
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ApplicationLogLevel/)."""
 ApplicationLogLevelOutput: TypeAlias = ApplicationLogLevel | UnknownEnumValue
@@ -396,7 +418,7 @@ Architecture: TypeAlias = Literal['x86_64', 'arm64']
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/Architecture/)."""
 ArchitectureOutput: TypeAlias = Architecture | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ArchitectureOutput/)."""
-CapacityProviderPredefinedMetricType: TypeAlias = Literal['LambdaCapacityProviderAverageCPUUtilization']
+CapacityProviderPredefinedMetricType: TypeAlias = Literal['LambdaCapacityProviderAverageCPUUtilization', 'LambdaCapacityProviderAverageGPUUtilization']
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CapacityProviderPredefinedMetricType/)."""
 CapacityProviderPredefinedMetricTypeOutput: TypeAlias = CapacityProviderPredefinedMetricType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CapacityProviderPredefinedMetricTypeOutput/)."""
@@ -432,11 +454,11 @@ EventSourcePosition: TypeAlias = Literal['TRIM_HORIZON', 'LATEST', 'AT_TIMESTAMP
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventSourcePosition/)."""
 EventSourcePositionOutput: TypeAlias = EventSourcePosition | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventSourcePositionOutput/)."""
-EventType: TypeAlias = Literal['ExecutionStarted', 'ExecutionSucceeded', 'ExecutionFailed', 'ExecutionTimedOut', 'ExecutionStopped', 'ContextStarted', 'ContextSucceeded', 'ContextFailed', 'WaitStarted', 'WaitSucceeded', 'WaitCancelled', 'StepStarted', 'StepSucceeded', 'StepFailed', 'ChainedInvokeStarted', 'ChainedInvokeSucceeded', 'ChainedInvokeFailed', 'ChainedInvokeTimedOut', 'ChainedInvokeStopped', 'CallbackStarted', 'CallbackSucceeded', 'CallbackFailed', 'CallbackTimedOut', 'InvocationCompleted']
+EventType: TypeAlias = Literal['ExecutionStarted', 'ExecutionSucceeded', 'ExecutionFailed', 'ExecutionTimedOut', 'ExecutionStopped', 'ContextStarted', 'ContextSucceeded', 'ContextFailed', 'WaitStarted', 'WaitSucceeded', 'WaitCancelled', 'StepStarted', 'StepSucceeded', 'StepFailed', 'ChainedInvokeStarted', 'ChainedInvokeSucceeded', 'ChainedInvokeFailed', 'ChainedInvokeTimedOut', 'ChainedInvokeStopped', 'CallbackStarted', 'CallbackSucceeded', 'CallbackFailed', 'CallbackTimedOut', 'InvocationCompleted', 'ExecutionPaused', 'ExecutionResumed']
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventType/)."""
 EventTypeOutput: TypeAlias = EventType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventTypeOutput/)."""
-ExecutionStatus: TypeAlias = Literal['RUNNING', 'SUCCEEDED', 'FAILED', 'TIMED_OUT', 'STOPPED']
+ExecutionStatus: TypeAlias = Literal['RUNNING', 'SUCCEEDED', 'FAILED', 'TIMED_OUT', 'STOPPED', 'DELETING', 'PAUSING', 'PAUSED']
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionStatus/)."""
 ExecutionStatusOutput: TypeAlias = ExecutionStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionStatusOutput/)."""
@@ -484,7 +506,7 @@ LastUpdateStatus: TypeAlias = Literal['Successful', 'Failed', 'InProgress']
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/LastUpdateStatus/)."""
 LastUpdateStatusOutput: TypeAlias = LastUpdateStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/LastUpdateStatusOutput/)."""
-LastUpdateStatusReasonCode: TypeAlias = Literal['EniLimitExceeded', 'InsufficientRolePermissions', 'InvalidConfiguration', 'InternalError', 'SubnetOutOfIPAddresses', 'InvalidSubnet', 'InvalidSecurityGroup', 'ImageDeleted', 'ImageAccessDenied', 'InvalidImage', 'KMSKeyAccessDenied', 'KMSKeyNotFound', 'InvalidStateKMSKey', 'DisabledKMSKey', 'EFSIOError', 'EFSMountConnectivityError', 'EFSMountFailure', 'EFSMountTimeout', 'InvalidRuntime', 'InvalidZipFileException', 'FunctionError', 'ServiceQuotaExceededException', 'VcpuLimitExceeded', 'CapacityProviderScalingLimitExceeded', 'InsufficientCapacity', 'EC2RequestLimitExceeded', 'FunctionError.InitTimeout', 'FunctionError.RuntimeInitError', 'FunctionError.ExtensionInitError', 'FunctionError.InvalidEntryPoint', 'FunctionError.InvalidWorkingDirectory', 'FunctionError.PermissionDenied', 'FunctionError.TooManyExtensions', 'FunctionError.InitResourceExhausted', 'DisallowedByVpcEncryptionControl', 'DependencyError']
+LastUpdateStatusReasonCode: TypeAlias = Literal['EniLimitExceeded', 'InsufficientRolePermissions', 'InvalidConfiguration', 'InternalError', 'SubnetOutOfIPAddresses', 'InvalidSubnet', 'InvalidSecurityGroup', 'ImageDeleted', 'ImageAccessDenied', 'InvalidImage', 'KMSKeyAccessDenied', 'KMSKeyNotFound', 'InvalidStateKMSKey', 'DisabledKMSKey', 'EFSIOError', 'EFSMountConnectivityError', 'EFSMountFailure', 'EFSMountTimeout', 'InvalidRuntime', 'InvalidZipFileException', 'FunctionError', 'ServiceQuotaExceededException', 'VcpuLimitExceeded', 'CapacityProviderScalingLimitExceeded', 'InsufficientCapacity', 'EC2RequestLimitExceeded', 'FunctionError.InitTimeout', 'FunctionError.RuntimeInitError', 'FunctionError.ExtensionInitError', 'FunctionError.InvalidEntryPoint', 'FunctionError.InvalidWorkingDirectory', 'FunctionError.PermissionDenied', 'FunctionError.TooManyExtensions', 'FunctionError.InitResourceExhausted', 'DisallowedByVpcEncryptionControl', 'IncompatibleAcceleratorInstanceTypes', 'DependencyError']
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/LastUpdateStatusReasonCode/)."""
 LastUpdateStatusReasonCodeOutput: TypeAlias = LastUpdateStatusReasonCode | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/LastUpdateStatusReasonCodeOutput/)."""
@@ -528,7 +550,7 @@ ResponseStreamingInvocationType: TypeAlias = Literal['RequestResponse', 'DryRun'
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ResponseStreamingInvocationType/)."""
 ResponseStreamingInvocationTypeOutput: TypeAlias = ResponseStreamingInvocationType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ResponseStreamingInvocationTypeOutput/)."""
-Runtime: TypeAlias = Literal['nodejs', 'nodejs4.3', 'nodejs6.10', 'nodejs8.10', 'nodejs10.x', 'nodejs12.x', 'nodejs14.x', 'nodejs16.x', 'nodejs18.x', 'nodejs20.x', 'nodejs22.x', 'nodejs24.x', 'java8', 'java8.al2', 'java11', 'java17', 'java21', 'java25', 'python2.7', 'python3.6', 'python3.7', 'python3.8', 'python3.9', 'python3.10', 'python3.11', 'python3.12', 'python3.13', 'python3.14', 'dotnetcore1.0', 'dotnetcore2.0', 'dotnetcore2.1', 'dotnetcore3.1', 'dotnet6', 'dotnet8', 'dotnet10', 'nodejs4.3-edge', 'go1.x', 'ruby2.5', 'ruby2.7', 'ruby3.2', 'ruby3.3', 'ruby3.4', 'ruby4.0', 'provided', 'provided.al2', 'provided.al2023', 'nodejs26.x', 'python3.15', 'java8.al2023', 'java11.al2023', 'java17.al2023']
+Runtime: TypeAlias = Literal['nodejs', 'nodejs4.3', 'nodejs6.10', 'nodejs8.10', 'nodejs10.x', 'nodejs12.x', 'nodejs14.x', 'nodejs16.x', 'nodejs18.x', 'nodejs20.x', 'nodejs22.x', 'nodejs24.x', 'java8', 'java8.al2', 'java11', 'java17', 'java21', 'java25', 'python2.7', 'python3.6', 'python3.7', 'python3.8', 'python3.9', 'python3.10', 'python3.11', 'python3.12', 'python3.13', 'python3.14', 'dotnetcore1.0', 'dotnetcore2.0', 'dotnetcore2.1', 'dotnetcore3.1', 'dotnet6', 'dotnet8', 'dotnet10', 'nodejs4.3-edge', 'go1.x', 'ruby2.5', 'ruby2.7', 'ruby3.2', 'ruby3.3', 'ruby3.4', 'ruby4.0', 'provided', 'provided.al2', 'provided.al2023', 'nodejs26.x', 'python3.15', 'java8.al2023', 'java11.al2023', 'java17.al2023', 'custom']
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/Runtime/)."""
 RuntimeOutput: TypeAlias = Runtime | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/RuntimeOutput/)."""
@@ -556,7 +578,7 @@ State: TypeAlias = Literal['Pending', 'Active', 'Inactive', 'Failed', 'Deactivat
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/State/)."""
 StateOutput: TypeAlias = State | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/StateOutput/)."""
-StateReasonCode: TypeAlias = Literal['Idle', 'Creating', 'Restoring', 'EniLimitExceeded', 'InsufficientRolePermissions', 'InvalidConfiguration', 'InternalError', 'SubnetOutOfIPAddresses', 'InvalidSubnet', 'InvalidSecurityGroup', 'ImageDeleted', 'ImageAccessDenied', 'InvalidImage', 'KMSKeyAccessDenied', 'KMSKeyNotFound', 'InvalidStateKMSKey', 'DisabledKMSKey', 'EFSIOError', 'EFSMountConnectivityError', 'EFSMountFailure', 'EFSMountTimeout', 'InvalidRuntime', 'InvalidZipFileException', 'FunctionError', 'ServiceQuotaExceededException', 'VcpuLimitExceeded', 'CapacityProviderScalingLimitExceeded', 'InsufficientCapacity', 'EC2RequestLimitExceeded', 'FunctionError.InitTimeout', 'FunctionError.RuntimeInitError', 'FunctionError.ExtensionInitError', 'FunctionError.InvalidEntryPoint', 'FunctionError.InvalidWorkingDirectory', 'FunctionError.PermissionDenied', 'FunctionError.TooManyExtensions', 'FunctionError.InitResourceExhausted', 'DisallowedByVpcEncryptionControl', 'DrainingDurableExecutions', 'DependencyError']
+StateReasonCode: TypeAlias = Literal['Idle', 'Creating', 'Restoring', 'EniLimitExceeded', 'InsufficientRolePermissions', 'InvalidConfiguration', 'InternalError', 'SubnetOutOfIPAddresses', 'InvalidSubnet', 'InvalidSecurityGroup', 'ImageDeleted', 'ImageAccessDenied', 'InvalidImage', 'KMSKeyAccessDenied', 'KMSKeyNotFound', 'InvalidStateKMSKey', 'DisabledKMSKey', 'EFSIOError', 'EFSMountConnectivityError', 'EFSMountFailure', 'EFSMountTimeout', 'InvalidRuntime', 'InvalidZipFileException', 'FunctionError', 'ServiceQuotaExceededException', 'VcpuLimitExceeded', 'CapacityProviderScalingLimitExceeded', 'InsufficientCapacity', 'EC2RequestLimitExceeded', 'FunctionError.InitTimeout', 'FunctionError.RuntimeInitError', 'FunctionError.ExtensionInitError', 'FunctionError.InvalidEntryPoint', 'FunctionError.InvalidWorkingDirectory', 'FunctionError.PermissionDenied', 'FunctionError.TooManyExtensions', 'FunctionError.InitResourceExhausted', 'DisallowedByVpcEncryptionControl', 'DrainingDurableExecutions', 'IncompatibleAcceleratorInstanceTypes', 'DependencyError']
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/StateReasonCode/)."""
 StateReasonCodeOutput: TypeAlias = StateReasonCode | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/StateReasonCodeOutput/)."""
@@ -580,6 +602,14 @@ UpdateRuntimeOn: TypeAlias = Literal['Auto', 'Manual', 'FunctionUpdate']
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateRuntimeOn/)."""
 UpdateRuntimeOnOutput: TypeAlias = UpdateRuntimeOn | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateRuntimeOnOutput/)."""
+
+AcceleratorConfig = TypedDict(
+    "AcceleratorConfig",
+    {
+    "accelerator_memory_size": Required["AcceleratorMemoryGB"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AcceleratorConfig/)."""
 
 AccountLimit = TypedDict(
     "AccountLimit",
@@ -1099,6 +1129,8 @@ CreateFunctionRequest = TypedDict(
     "tenancy_config": NotRequired["TenancyConfig"],
     "capacity_provider_config": NotRequired["CapacityProviderConfig"],
     "durable_config": NotRequired["DurableConfig"],
+    "runtime_config": NotRequired["FunctionRuntimeConfig"],
+    "accelerator_config": NotRequired["AcceleratorConfig"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateFunctionRequest/)."""
@@ -1147,6 +1179,14 @@ DeleteCodeSigningConfigRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteCodeSigningConfigRequest/)."""
+
+DeleteDurableExecutionRequest = TypedDict(
+    "DeleteDurableExecutionRequest",
+    {
+    "durable_execution_arn": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteDurableExecutionRequest/)."""
 
 DeleteEventSourceMappingRequest = TypedDict(
     "DeleteEventSourceMappingRequest",
@@ -1395,6 +1435,8 @@ Event = TypedDict(
     "callback_failed_details": NotRequired["CallbackFailedDetails"],
     "callback_timed_out_details": NotRequired["CallbackTimedOutDetails"],
     "invocation_completed_details": NotRequired["InvocationCompletedDetails"],
+    "execution_paused_details": NotRequired["ExecutionPausedDetails"],
+    "execution_resumed_details": NotRequired["ExecutionResumedDetails"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/Event/)."""
@@ -1417,6 +1459,15 @@ EventInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventInput/)."""
 
+EventPauseReason = TypedDict(
+    "EventPauseReason",
+    {
+    "payload": NotRequired["str"],
+    "truncated": NotRequired["bool"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventPauseReason/)."""
+
 EventResult = TypedDict(
     "EventResult",
     {
@@ -1425,6 +1476,15 @@ EventResult = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventResult/)."""
+
+EventResumeReason = TypedDict(
+    "EventResumeReason",
+    {
+    "payload": NotRequired["str"],
+    "truncated": NotRequired["bool"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventResumeReason/)."""
 
 EventSourceMappingLoggingConfig = TypedDict(
     "EventSourceMappingLoggingConfig",
@@ -1471,6 +1531,25 @@ ExecutionFailedDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionFailedDetails/)."""
+
+ExecutionPausedDetails = TypedDict(
+    "ExecutionPausedDetails",
+    {
+    "pause_request_timestamp": Required["str"],
+    "reason": NotRequired["EventPauseReason"],
+    "execution_timeout_paused": Required["bool"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionPausedDetails/)."""
+
+ExecutionResumedDetails = TypedDict(
+    "ExecutionResumedDetails",
+    {
+    "resume_request_timestamp": Required["str"],
+    "reason": NotRequired["EventResumeReason"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionResumedDetails/)."""
 
 ExecutionStartedDetails = TypedDict(
     "ExecutionStartedDetails",
@@ -1576,6 +1655,15 @@ FunctionCodeLocationError = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionCodeLocationError/)."""
+
+FunctionRuntimeConfig = TypedDict(
+    "FunctionRuntimeConfig",
+    {
+    "runtime_arn": Required["str"],
+    "runtime_alias": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionRuntimeConfig/)."""
 
 FunctionScalingConfig = TypedDict(
     "FunctionScalingConfig",
@@ -2345,6 +2433,27 @@ OperationUpdate = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/OperationUpdate/)."""
 
+PauseDetails = TypedDict(
+    "PauseDetails",
+    {
+    "pause_request_timestamp": Required["str"],
+    "reason": NotRequired["str"],
+    "execution_timeout_paused": Required["bool"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PauseDetails/)."""
+
+PauseDurableExecutionRequest = TypedDict(
+    "PauseDurableExecutionRequest",
+    {
+    "durable_execution_arn": Required["str"],
+    "client_token": NotRequired["str"],
+    "reason": NotRequired["str"],
+    "execution_timeout_paused": NotRequired["bool"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PauseDurableExecutionRequest/)."""
+
 class PolicyLengthExceededErrorDetails(TypedDict, total=False):
     """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PolicyLengthExceededErrorDetails/)."""
     """Decoded fields of PolicyLengthExceededError; values may contain application data."""
@@ -2575,6 +2684,16 @@ class ResourceNotReadyErrorDetails(TypedDict, total=False):
     type: str
 
 
+ResumeDurableExecutionRequest = TypedDict(
+    "ResumeDurableExecutionRequest",
+    {
+    "durable_execution_arn": Required["str"],
+    "client_token": NotRequired["str"],
+    "reason": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ResumeDurableExecutionRequest/)."""
+
 RetryDetails = TypedDict(
     "RetryDetails",
     {
@@ -2584,6 +2703,12 @@ RetryDetails = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/RetryDetails/)."""
 
+class RuntimeAliasDeletedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/RuntimeAliasDeletedErrorDetails/)."""
+    """Decoded fields of RuntimeAliasDeletedError; values may contain application data."""
+    type: str
+
+
 RuntimeVersionConfig = TypedDict(
     "RuntimeVersionConfig",
     {
@@ -2592,6 +2717,12 @@ RuntimeVersionConfig = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/RuntimeVersionConfig/)."""
+
+class RuntimeVersionDeletedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/RuntimeVersionDeletedErrorDetails/)."""
+    """Decoded fields of RuntimeVersionDeletedError; values may contain application data."""
+    type: str
+
 
 RuntimeVersionError = TypedDict(
     "RuntimeVersionError",
@@ -2997,6 +3128,8 @@ UpdateFunctionConfigurationRequest = TypedDict(
     "logging_config": NotRequired["LoggingConfig"],
     "capacity_provider_config": NotRequired["CapacityProviderConfig"],
     "durable_config": NotRequired["DurableConfig"],
+    "runtime_config": NotRequired["FunctionRuntimeConfig"],
+    "accelerator_config": NotRequired["AcceleratorConfig"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateFunctionConfigurationRequest/)."""

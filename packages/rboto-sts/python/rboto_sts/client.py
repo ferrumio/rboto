@@ -12,11 +12,12 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import STSClient as NativeClient, AssumeRoleOutput, AssumeRoleWithSAMLOutput, AssumeRoleWithWebIdentityOutput, AssumeRootOutput, DecodeAuthorizationMessageOutput, GetAccessKeyInfoOutput, GetCallerIdentityOutput, GetDelegatedAccessTokenOutput, GetFederationTokenOutput, GetSessionTokenOutput, GetWebIdentityTokenOutput
+from ._native import STSClient as NativeClient, AssumeRoleOutput, AssumeRoleWithSAMLOutput, AssumeRoleWithWebIdentityOutput, AssumeRootOutput, DecodeAuthorizationMessageOutput, GetAccessKeyInfoOutput, GetCallerIdentityOutput, GetDelegatedAccessTokenOutput, GetFederationTokenOutput, GetScopedCredentialsOutput, GetSessionTokenOutput, GetWebIdentityTokenOutput
 from .types import (
     PolicyDescriptorType,
     ProvidedContext,
     Tag,
+    webIdentityTokenSubjectModeType,
 )
 
 
@@ -383,6 +384,41 @@ class STSClient:
         return _response
 
 
+    async def get_scoped_credentials(
+        self,
+        *,
+        policy: str | None = None,
+        duration_seconds: int | None = None,
+        minimum_session_token_size: int | None = None,
+        scoped_session_description: str | None = None,
+    ) -> GetScopedCredentialsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/get_scoped_credentials/)."""
+        params: dict[str, object] = {
+        }
+        if policy is not None:
+            params["policy"] = policy
+        if duration_seconds is not None:
+            params["duration_seconds"] = duration_seconds
+        if minimum_session_token_size is not None:
+            params["minimum_session_token_size"] = minimum_session_token_size
+        if scoped_session_description is not None:
+            params["scoped_session_description"] = scoped_session_description
+        _interceptors = operation_interceptors("sts", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_scoped_credentials, params, _interceptors,
+                "sts", "GetScopedCredentials", self._region,
+                GetScopedCredentialsOutput,
+                ("policy", "duration_seconds", "minimum_session_token_size", "scoped_session_description", ),
+                (),
+                service_name='STS',
+            )
+            return _response
+        _response = await self._native.get_scoped_credentials(params)
+        return _response
+
+
     async def get_session_token(
         self,
         *,
@@ -424,6 +460,8 @@ class STSClient:
         audience: Sequence[str],
         signing_algorithm: str,
         duration_seconds: int | None = None,
+        scope: str | None = None,
+        subject_mode: webIdentityTokenSubjectModeType | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> GetWebIdentityTokenOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/get_web_identity_token/)."""
@@ -433,6 +471,10 @@ class STSClient:
         }
         if duration_seconds is not None:
             params["duration_seconds"] = duration_seconds
+        if scope is not None:
+            params["scope"] = scope
+        if subject_mode is not None:
+            params["subject_mode"] = subject_mode
         if tags is not None:
             params["tags"] = tags
         _interceptors = operation_interceptors("sts", self._interceptors)
@@ -442,7 +484,7 @@ class STSClient:
                 self._native.get_web_identity_token, params, _interceptors,
                 "sts", "GetWebIdentityToken", self._region,
                 GetWebIdentityTokenOutput,
-                ("audience", "signing_algorithm", "duration_seconds", "tags", ),
+                ("audience", "signing_algorithm", "duration_seconds", "scope", "subject_mode", "tags", ),
                 ("audience", "signing_algorithm", ),
                 service_name='STS',
             )

@@ -12,7 +12,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import CloudWatchClient as NativeClient, AssociateDatasetKmsKeyOutput, CreateResourceMetricsConfigurationOutput, DeleteAnomalyDetectorOutput, DeleteDashboardsOutput, DeleteInsightRulesOutput, DeleteMetricStreamOutput, DeleteResourceMetricsConfigurationOutput, DescribeAlarmContributorsOutput, DescribeAlarmHistoryOutput, DescribeAlarmsForMetricOutput, DescribeAlarmsOutput, DescribeAnomalyDetectorsOutput, DescribeInsightRulesOutput, DisableInsightRulesOutput, DisassociateDatasetKmsKeyOutput, EnableInsightRulesOutput, GetAlarmMuteRuleOutput, GetDashboardOutput, GetDatasetOutput, GetInsightRuleReportOutput, GetMetricDataOutput, GetMetricStatisticsOutput, GetMetricStreamOutput, GetMetricWidgetImageOutput, GetOTelEnrichmentOutput, GetResourceMetricsConfigurationOutput, ListAlarmMuteRulesOutput, ListDashboardsOutput, ListManagedInsightRulesOutput, ListMetricStreamsOutput, ListMetricsOutput, ListTagsForResourceOutput, PutAnomalyDetectorOutput, PutDashboardOutput, PutInsightRuleOutput, PutManagedInsightRulesOutput, PutMetricStreamOutput, StartMetricStreamsOutput, StartOTelEnrichmentOutput, StopMetricStreamsOutput, StopOTelEnrichmentOutput, TagResourceOutput, UntagResourceOutput, UpdateOTelEnrichmentOutput, UpdateResourceMetricsConfigurationOutput
+from ._native import CloudWatchClient as NativeClient, AssociateDatasetKmsKeyOutput, CreateResourceMetricsConfigurationOutput, DeleteAnomalyDetectorOutput, DeleteDashboardsOutput, DeleteInsightRulesOutput, DeleteMetricDataQueryDefinitionOutput, DeleteMetricStreamOutput, DeleteResourceMetricsConfigurationOutput, DescribeAlarmContributorsOutput, DescribeAlarmHistoryOutput, DescribeAlarmsForMetricOutput, DescribeAlarmsOutput, DescribeAnomalyDetectorsOutput, DescribeInsightRulesOutput, DisableInsightRulesOutput, DisassociateDatasetKmsKeyOutput, EnableInsightRulesOutput, GetAlarmMuteRuleOutput, GetDashboardOutput, GetDatasetOutput, GetInsightRuleReportOutput, GetMetricDataOutput, GetMetricDataQueryDefinitionOutput, GetMetricStatisticsOutput, GetMetricStreamOutput, GetMetricWidgetImageOutput, GetOTelEnrichmentOutput, GetResourceMetricsConfigurationOutput, ListAlarmMuteRulesOutput, ListDashboardsOutput, ListManagedInsightRulesOutput, ListMetricDataQueryDefinitionsOutput, ListMetricStreamsOutput, ListMetricsOutput, ListTagsForResourceOutput, PutAnomalyDetectorOutput, PutDashboardOutput, PutInsightRuleOutput, PutManagedInsightRulesOutput, PutMetricDataQueryDefinitionOutput, PutMetricStreamOutput, StartMetricStreamsOutput, StartOTelEnrichmentOutput, StopMetricStreamsOutput, StopOTelEnrichmentOutput, TagResourceOutput, UntagResourceOutput, UpdateOTelEnrichmentOutput, UpdateResourceMetricsConfigurationOutput
 from .types import (
     ActionConfiguration,
     AlarmMuteRuleStatus,
@@ -37,6 +37,7 @@ from .types import (
     MetricStreamStatisticsConfiguration,
     MuteTargets,
     OTelEnrichmentMetricSelector,
+    QueryType,
     RecentlyActive,
     ResourceMetricSelection,
     Rule,
@@ -317,6 +318,31 @@ class CloudWatchClient:
             )
             return _response
         _response = await self._native.delete_insight_rules(params)
+        return _response
+
+
+    async def delete_metric_data_query_definition(
+        self,
+        *,
+        id: str,
+    ) -> DeleteMetricDataQueryDefinitionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/operations/delete_metric_data_query_definition/)."""
+        params: dict[str, object] = {
+            "id": id,
+        }
+        _interceptors = operation_interceptors("cloudwatch", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.delete_metric_data_query_definition, params, _interceptors,
+                "cloudwatch", "DeleteMetricDataQueryDefinition", self._region,
+                DeleteMetricDataQueryDefinitionOutput,
+                ("id", ),
+                ("id", ),
+                service_name='CloudWatch',
+            )
+            return _response
+        _response = await self._native.delete_metric_data_query_definition(params)
         return _response
 
 
@@ -894,6 +920,31 @@ class CloudWatchClient:
         return _response
 
 
+    async def get_metric_data_query_definition(
+        self,
+        *,
+        id: str,
+    ) -> GetMetricDataQueryDefinitionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/operations/get_metric_data_query_definition/)."""
+        params: dict[str, object] = {
+            "id": id,
+        }
+        _interceptors = operation_interceptors("cloudwatch", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_metric_data_query_definition, params, _interceptors,
+                "cloudwatch", "GetMetricDataQueryDefinition", self._region,
+                GetMetricDataQueryDefinitionOutput,
+                ("id", ),
+                ("id", ),
+                service_name='CloudWatch',
+            )
+            return _response
+        _response = await self._native.get_metric_data_query_definition(params)
+        return _response
+
+
     async def get_metric_statistics(
         self,
         *,
@@ -1131,6 +1182,35 @@ class CloudWatchClient:
             )
             return _response
         _response = await self._native.list_managed_insight_rules(params)
+        return _response
+
+
+    async def list_metric_data_query_definitions(
+        self,
+        *,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> ListMetricDataQueryDefinitionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/operations/list_metric_data_query_definitions/)."""
+        params: dict[str, object] = {
+        }
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        _interceptors = operation_interceptors("cloudwatch", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_metric_data_query_definitions, params, _interceptors,
+                "cloudwatch", "ListMetricDataQueryDefinitions", self._region,
+                ListMetricDataQueryDefinitionsOutput,
+                ("max_results", "next_token", ),
+                (),
+                service_name='CloudWatch',
+            )
+            return _response
+        _response = await self._native.list_metric_data_query_definitions(params)
         return _response
 
 
@@ -1672,6 +1752,41 @@ class CloudWatchClient:
             return None
         await self._native.put_metric_data(params)
         return None
+
+
+    async def put_metric_data_query_definition(
+        self,
+        *,
+        path: str,
+        expression: str,
+        type: QueryType,
+        id: str | None = None,
+        tags: Sequence[Tag] | None = None,
+    ) -> PutMetricDataQueryDefinitionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/operations/put_metric_data_query_definition/)."""
+        params: dict[str, object] = {
+            "path": path,
+            "expression": expression,
+            "type": type,
+        }
+        if id is not None:
+            params["id"] = id
+        if tags is not None:
+            params["tags"] = tags
+        _interceptors = operation_interceptors("cloudwatch", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.put_metric_data_query_definition, params, _interceptors,
+                "cloudwatch", "PutMetricDataQueryDefinition", self._region,
+                PutMetricDataQueryDefinitionOutput,
+                ("path", "expression", "type", "id", "tags", ),
+                ("path", "expression", "type", ),
+                service_name='CloudWatch',
+            )
+            return _response
+        _response = await self._native.put_metric_data_query_definition(params)
+        return _response
 
 
     async def put_metric_stream(

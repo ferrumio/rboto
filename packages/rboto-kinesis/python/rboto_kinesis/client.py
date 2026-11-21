@@ -12,8 +12,10 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import KinesisClient as NativeClient, CreateChannelOutput, DescribeAccountSettingsOutput, DescribeChannelOutput, DescribeLimitsOutput, DescribeStreamConsumerOutput, DescribeStreamOutput, DescribeStreamSummaryOutput, DisableEnhancedMonitoringOutput, EnableEnhancedMonitoringOutput, GetRecordsOutput, GetResourcePolicyOutput, GetShardIteratorOutput, ListChannelsOutput, ListShardsOutput, ListStreamConsumersOutput, ListStreamsOutput, ListTagsForResourceOutput, ListTagsForStreamOutput, PutRecordOutput, PutRecordsOutput, RegisterStreamConsumerOutput, UpdateAccountSettingsOutput, UpdateChannelOutput, UpdateShardCountOutput, UpdateStreamWarmThroughputOutput
+from ._native import KinesisClient as NativeClient, AcknowledgeDeadLetterQueueRecordsOutput, AcknowledgeQueueRecordsOutput, CreateChannelOutput, CreateQueueOutput, DescribeAccountSettingsOutput, DescribeChannelOutput, DescribeLimitsOutput, DescribeQueueOutput, DescribeStreamConsumerOutput, DescribeStreamOutput, DescribeStreamSummaryOutput, DisableEnhancedMonitoringOutput, EnableEnhancedMonitoringOutput, GetRecordsOutput, GetResourcePolicyOutput, GetShardIteratorOutput, ListChannelsOutput, ListQueuesOutput, ListShardsOutput, ListStreamConsumersOutput, ListStreamsOutput, ListTagsForResourceOutput, ListTagsForStreamOutput, PutRecordOutput, PutRecordsOutput, ReceiveDeadLetterQueueRecordsOutput, ReceiveQueueRecordsOutput, RegisterStreamConsumerOutput, RestoreDeadLetterQueueRecordsOutput, UpdateAccountSettingsOutput, UpdateChannelOutput, UpdateDeadLetterQueueRecordsVisibilityOutput, UpdateQueueOutput, UpdateQueueRecordsVisibilityOutput, UpdateShardCountOutput, UpdateStreamWarmThroughputOutput
 from .types import (
+    AcknowledgeDeadLetterQueueRecordsRequestEntry,
+    AcknowledgeQueueRecordsRequestEntry,
     ChannelEncryptionConfiguration,
     ChannelLoggingConfiguration,
     ChannelLoggingUpdateInput,
@@ -22,7 +24,11 @@ from .types import (
     MetricsName,
     MinimumThroughputBillingCommitmentInput,
     PutRecordsRequestEntry,
+    QueueAttributes,
+    QueueStreamConfiguration,
+    QueueStreamFilter,
     RecordDistributionStrategy,
+    RestoreDeadLetterQueueRecordsRequestEntry,
     S3DestinationConfiguration,
     S3DestinationUpdateInput,
     S3TablesDestinationConfiguration,
@@ -34,6 +40,8 @@ from .types import (
     StreamFilter,
     StreamModeDetails,
     SubscribeToShardOutput,
+    UpdateDeadLetterQueueRecordsVisibilityRequestEntry,
+    UpdateQueueRecordsVisibilityRequestEntry,
 )
 from .paginators import KinesisClientPaginators as _Paginators
 
@@ -105,6 +113,60 @@ class KinesisClient:
         if self._waiters is None:
             self._waiters = _Waiters(self)
         return self._waiters
+
+
+    async def acknowledge_dead_letter_queue_records(
+        self,
+        *,
+        queue_arn: str,
+        entries: Sequence[AcknowledgeDeadLetterQueueRecordsRequestEntry],
+    ) -> AcknowledgeDeadLetterQueueRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/acknowledge_dead_letter_queue_records/)."""
+        params: dict[str, object] = {
+            "queue_arn": queue_arn,
+            "entries": entries,
+        }
+        _interceptors = operation_interceptors("kinesis", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.acknowledge_dead_letter_queue_records, params, _interceptors,
+                "kinesis", "AcknowledgeDeadLetterQueueRecords", self._region,
+                AcknowledgeDeadLetterQueueRecordsOutput,
+                ("queue_arn", "entries", ),
+                ("queue_arn", "entries", ),
+                service_name='Kinesis',
+            )
+            return _response
+        _response = await self._native.acknowledge_dead_letter_queue_records(params)
+        return _response
+
+
+    async def acknowledge_queue_records(
+        self,
+        *,
+        queue_arn: str,
+        entries: Sequence[AcknowledgeQueueRecordsRequestEntry],
+    ) -> AcknowledgeQueueRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/acknowledge_queue_records/)."""
+        params: dict[str, object] = {
+            "queue_arn": queue_arn,
+            "entries": entries,
+        }
+        _interceptors = operation_interceptors("kinesis", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.acknowledge_queue_records, params, _interceptors,
+                "kinesis", "AcknowledgeQueueRecords", self._region,
+                AcknowledgeQueueRecordsOutput,
+                ("queue_arn", "entries", ),
+                ("queue_arn", "entries", ),
+                service_name='Kinesis',
+            )
+            return _response
+        _response = await self._native.acknowledge_queue_records(params)
+        return _response
 
 
     async def add_tags_to_stream(
@@ -182,6 +244,39 @@ class KinesisClient:
             )
             return _response
         _response = await self._native.create_channel(params)
+        return _response
+
+
+    async def create_queue(
+        self,
+        *,
+        queue_name: str,
+        stream_configuration_list: Sequence[QueueStreamConfiguration],
+        queue_attributes: QueueAttributes | None = None,
+        tags: dict[str, str] | None = None,
+    ) -> CreateQueueOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/create_queue/)."""
+        params: dict[str, object] = {
+            "queue_name": queue_name,
+            "stream_configuration_list": stream_configuration_list,
+        }
+        if queue_attributes is not None:
+            params["queue_attributes"] = queue_attributes
+        if tags is not None:
+            params["tags"] = tags
+        _interceptors = operation_interceptors("kinesis", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.create_queue, params, _interceptors,
+                "kinesis", "CreateQueue", self._region,
+                CreateQueueOutput,
+                ("queue_name", "stream_configuration_list", "queue_attributes", "tags", ),
+                ("queue_name", "stream_configuration_list", ),
+                service_name='Kinesis',
+            )
+            return _response
+        _response = await self._native.create_queue(params)
         return _response
 
 
@@ -284,6 +379,31 @@ class KinesisClient:
             )
             return None
         await self._native.delete_channel(params)
+        return None
+
+
+    async def delete_queue(
+        self,
+        *,
+        queue_arn: str,
+    ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/delete_queue/)."""
+        params: dict[str, object] = {
+            "queue_arn": queue_arn,
+        }
+        _interceptors = operation_interceptors("kinesis", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            await invoke(
+                self._native.delete_queue, params, _interceptors,
+                "kinesis", "DeleteQueue", self._region,
+                type(None),
+                ("queue_arn", ),
+                ("queue_arn", ),
+                service_name='Kinesis',
+            )
+            return None
+        await self._native.delete_queue(params)
         return None
 
 
@@ -451,6 +571,31 @@ class KinesisClient:
             )
             return _response
         _response = await self._native.describe_limits(params)
+        return _response
+
+
+    async def describe_queue(
+        self,
+        *,
+        queue_arn: str,
+    ) -> DescribeQueueOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/describe_queue/)."""
+        params: dict[str, object] = {
+            "queue_arn": queue_arn,
+        }
+        _interceptors = operation_interceptors("kinesis", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.describe_queue, params, _interceptors,
+                "kinesis", "DescribeQueue", self._region,
+                DescribeQueueOutput,
+                ("queue_arn", ),
+                ("queue_arn", ),
+                service_name='Kinesis',
+            )
+            return _response
+        _response = await self._native.describe_queue(params)
         return _response
 
 
@@ -803,6 +948,38 @@ class KinesisClient:
         return _response
 
 
+    async def list_queues(
+        self,
+        *,
+        max_results: int | None = None,
+        next_token: str | None = None,
+        stream_filter: Sequence[QueueStreamFilter] | None = None,
+    ) -> ListQueuesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/list_queues/)."""
+        params: dict[str, object] = {
+        }
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        if stream_filter is not None:
+            params["stream_filter"] = stream_filter
+        _interceptors = operation_interceptors("kinesis", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_queues, params, _interceptors,
+                "kinesis", "ListQueues", self._region,
+                ListQueuesOutput,
+                ("max_results", "next_token", "stream_filter", ),
+                (),
+                service_name='Kinesis',
+            )
+            return _response
+        _response = await self._native.list_queues(params)
+        return _response
+
+
     async def list_shards(
         self,
         *,
@@ -1134,6 +1311,74 @@ class KinesisClient:
         return None
 
 
+    async def receive_dead_letter_queue_records(
+        self,
+        *,
+        queue_arn: str,
+        limit: int | None = None,
+        wait_time_seconds: int | None = None,
+        visibility_timeout_seconds: int | None = None,
+    ) -> ReceiveDeadLetterQueueRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/receive_dead_letter_queue_records/)."""
+        params: dict[str, object] = {
+            "queue_arn": queue_arn,
+        }
+        if limit is not None:
+            params["limit"] = limit
+        if wait_time_seconds is not None:
+            params["wait_time_seconds"] = wait_time_seconds
+        if visibility_timeout_seconds is not None:
+            params["visibility_timeout_seconds"] = visibility_timeout_seconds
+        _interceptors = operation_interceptors("kinesis", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.receive_dead_letter_queue_records, params, _interceptors,
+                "kinesis", "ReceiveDeadLetterQueueRecords", self._region,
+                ReceiveDeadLetterQueueRecordsOutput,
+                ("queue_arn", "limit", "wait_time_seconds", "visibility_timeout_seconds", ),
+                ("queue_arn", ),
+                service_name='Kinesis',
+            )
+            return _response
+        _response = await self._native.receive_dead_letter_queue_records(params)
+        return _response
+
+
+    async def receive_queue_records(
+        self,
+        *,
+        queue_arn: str,
+        limit: int | None = None,
+        wait_time_seconds: int | None = None,
+        visibility_timeout_seconds: int | None = None,
+    ) -> ReceiveQueueRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/receive_queue_records/)."""
+        params: dict[str, object] = {
+            "queue_arn": queue_arn,
+        }
+        if limit is not None:
+            params["limit"] = limit
+        if wait_time_seconds is not None:
+            params["wait_time_seconds"] = wait_time_seconds
+        if visibility_timeout_seconds is not None:
+            params["visibility_timeout_seconds"] = visibility_timeout_seconds
+        _interceptors = operation_interceptors("kinesis", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.receive_queue_records, params, _interceptors,
+                "kinesis", "ReceiveQueueRecords", self._region,
+                ReceiveQueueRecordsOutput,
+                ("queue_arn", "limit", "wait_time_seconds", "visibility_timeout_seconds", ),
+                ("queue_arn", ),
+                service_name='Kinesis',
+            )
+            return _response
+        _response = await self._native.receive_queue_records(params)
+        return _response
+
+
     async def register_stream_consumer(
         self,
         *,
@@ -1199,6 +1444,33 @@ class KinesisClient:
             return None
         await self._native.remove_tags_from_stream(params)
         return None
+
+
+    async def restore_dead_letter_queue_records(
+        self,
+        *,
+        queue_arn: str,
+        entries: Sequence[RestoreDeadLetterQueueRecordsRequestEntry],
+    ) -> RestoreDeadLetterQueueRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/restore_dead_letter_queue_records/)."""
+        params: dict[str, object] = {
+            "queue_arn": queue_arn,
+            "entries": entries,
+        }
+        _interceptors = operation_interceptors("kinesis", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.restore_dead_letter_queue_records, params, _interceptors,
+                "kinesis", "RestoreDeadLetterQueueRecords", self._region,
+                RestoreDeadLetterQueueRecordsOutput,
+                ("queue_arn", "entries", ),
+                ("queue_arn", "entries", ),
+                service_name='Kinesis',
+            )
+            return _response
+        _response = await self._native.restore_dead_letter_queue_records(params)
+        return _response
 
 
     async def split_shard(
@@ -1463,6 +1735,33 @@ class KinesisClient:
         return _response
 
 
+    async def update_dead_letter_queue_records_visibility(
+        self,
+        *,
+        queue_arn: str,
+        entries: Sequence[UpdateDeadLetterQueueRecordsVisibilityRequestEntry],
+    ) -> UpdateDeadLetterQueueRecordsVisibilityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/update_dead_letter_queue_records_visibility/)."""
+        params: dict[str, object] = {
+            "queue_arn": queue_arn,
+            "entries": entries,
+        }
+        _interceptors = operation_interceptors("kinesis", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.update_dead_letter_queue_records_visibility, params, _interceptors,
+                "kinesis", "UpdateDeadLetterQueueRecordsVisibility", self._region,
+                UpdateDeadLetterQueueRecordsVisibilityOutput,
+                ("queue_arn", "entries", ),
+                ("queue_arn", "entries", ),
+                service_name='Kinesis',
+            )
+            return _response
+        _response = await self._native.update_dead_letter_queue_records_visibility(params)
+        return _response
+
+
     async def update_max_record_size(
         self,
         *,
@@ -1492,6 +1791,60 @@ class KinesisClient:
             return None
         await self._native.update_max_record_size(params)
         return None
+
+
+    async def update_queue(
+        self,
+        *,
+        queue_arn: str,
+        queue_attributes: QueueAttributes,
+    ) -> UpdateQueueOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/update_queue/)."""
+        params: dict[str, object] = {
+            "queue_arn": queue_arn,
+            "queue_attributes": queue_attributes,
+        }
+        _interceptors = operation_interceptors("kinesis", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.update_queue, params, _interceptors,
+                "kinesis", "UpdateQueue", self._region,
+                UpdateQueueOutput,
+                ("queue_arn", "queue_attributes", ),
+                ("queue_arn", "queue_attributes", ),
+                service_name='Kinesis',
+            )
+            return _response
+        _response = await self._native.update_queue(params)
+        return _response
+
+
+    async def update_queue_records_visibility(
+        self,
+        *,
+        queue_arn: str,
+        entries: Sequence[UpdateQueueRecordsVisibilityRequestEntry],
+    ) -> UpdateQueueRecordsVisibilityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/update_queue_records_visibility/)."""
+        params: dict[str, object] = {
+            "queue_arn": queue_arn,
+            "entries": entries,
+        }
+        _interceptors = operation_interceptors("kinesis", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.update_queue_records_visibility, params, _interceptors,
+                "kinesis", "UpdateQueueRecordsVisibility", self._region,
+                UpdateQueueRecordsVisibilityOutput,
+                ("queue_arn", "entries", ),
+                ("queue_arn", "entries", ),
+                service_name='Kinesis',
+            )
+            return _response
+        _response = await self._native.update_queue_records_visibility(params)
+        return _response
 
 
     async def update_shard_count(

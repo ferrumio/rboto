@@ -4883,6 +4883,101 @@ fn metric_data_query_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn metric_data_query_definition_summary_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_cloudwatch::types::MetricDataQueryDefinitionSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "path", "type", "updated_at"])?;
+    let mut builder = aws_sdk_cloudwatch::types::MetricDataQueryDefinitionSummary::builder();
+    if let Some(value) = dict_value(values, "id")? {
+        let converted_569 = (|| -> PyResult<_> {
+            let converted_569: String = value.extract()?;
+            Ok(converted_569)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
+        })?;
+        builder = builder.set_id(Some(converted_569));
+    }
+    if let Some(value) = dict_value(values, "path")? {
+        let converted_570 = (|| -> PyResult<_> {
+            let converted_570: String = value.extract()?;
+            Ok(converted_570)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("path"), "str")
+        })?;
+        builder = builder.set_path(Some(converted_570));
+    }
+    if let Some(value) = dict_value(values, "type")? {
+        let converted_571 = (|| -> PyResult<_> {
+            let enum_value_572: String = value.extract()?;
+            let converted_571 = aws_sdk_cloudwatch::types::QueryType::from(enum_value_572.as_str());
+            Ok(converted_571)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (QueryType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_571));
+    }
+    if let Some(value) = dict_value(values, "updated_at")? {
+        let converted_573 = (|| -> PyResult<_> {
+            let timestamp_574: String = value.extract()?;
+            let converted_573 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_574,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_573)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("updated_at"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_updated_at(Some(converted_573));
+    }
+    Ok(builder.build())
+}
+
+fn metric_data_query_definition_summary_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_cloudwatch::types::MetricDataQueryDefinitionSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.id {
+        let converted_575 = (value).as_str().into_py_any(py)?;
+        result.set_item("id", converted_575)?;
+    } else {
+        result.set_item("id", py.None())?;
+    }
+    if let Some(value) = &value.path {
+        let converted_576 = (value).as_str().into_py_any(py)?;
+        result.set_item("path", converted_576)?;
+    } else {
+        result.set_item("path", py.None())?;
+    }
+    if let Some(value) = &value.r#type {
+        let converted_577 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_577)?;
+    } else {
+        result.set_item("type", py.None())?;
+    }
+    if let Some(value) = &value.updated_at {
+        let converted_578 = (value).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_578)?;
+    } else {
+        result.set_item("updated_at", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 fn metric_data_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatch::types::MetricDataResult> {
@@ -4900,57 +4995,57 @@ fn metric_data_result_from_py(
     )?;
     let mut builder = aws_sdk_cloudwatch::types::MetricDataResult::builder();
     if let Some(value) = dict_value(values, "id")? {
-        let converted_569 = (|| -> PyResult<_> {
-            let converted_569: String = value.extract()?;
-            Ok(converted_569)
+        let converted_579 = (|| -> PyResult<_> {
+            let converted_579: String = value.extract()?;
+            Ok(converted_579)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
         })?;
-        builder = builder.set_id(Some(converted_569));
+        builder = builder.set_id(Some(converted_579));
     }
     if let Some(value) = dict_value(values, "label")? {
-        let converted_570 = (|| -> PyResult<_> {
-            let converted_570: String = value.extract()?;
-            Ok(converted_570)
+        let converted_580 = (|| -> PyResult<_> {
+            let converted_580: String = value.extract()?;
+            Ok(converted_580)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("label"), "str")
         })?;
-        builder = builder.set_label(Some(converted_570));
+        builder = builder.set_label(Some(converted_580));
     }
     if let Some(value) = dict_value(values, "timestamps")? {
-        let converted_571 = (|| -> PyResult<_> {
-            let mut converted_571 =
+        let converted_581 = (|| -> PyResult<_> {
+            let mut converted_581 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_575, item_result_572) in value.try_iter()?.enumerate() {
-                let item_573 = item_result_572.map_err(|error| {
+            for (index_585, item_result_582) in value.try_iter()?.enumerate() {
+                let item_583 = item_result_582.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_575),
+                        rboto_core::InputPath::Index(index_585),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_574 = (|| -> PyResult<_> {
-                    let timestamp_576: String = item_573.extract()?;
-                    let converted_item_574 = ::aws_smithy_types::DateTime::from_str(
-                        &timestamp_576,
+                let converted_item_584 = (|| -> PyResult<_> {
+                    let timestamp_586: String = item_583.extract()?;
+                    let converted_item_584 = ::aws_smithy_types::DateTime::from_str(
+                        &timestamp_586,
                         ::aws_smithy_types::date_time::Format::DateTime,
                     )
                     .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                    Ok(converted_item_574)
+                    Ok(converted_item_584)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_575),
+                        rboto_core::InputPath::Index(index_585),
                         "ISO 8601 timestamp string",
                     )
                 })?;
-                converted_571.push(converted_item_574);
+                converted_581.push(converted_item_584);
             }
-            Ok(converted_571)
+            Ok(converted_581)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -4959,43 +5054,43 @@ fn metric_data_result_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_timestamps(Some(converted_571));
+        builder = builder.set_timestamps(Some(converted_581));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let converted_577 = (|| -> PyResult<_> {
-            let mut converted_577 =
+        let converted_587 = (|| -> PyResult<_> {
+            let mut converted_587 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_581, item_result_578) in value.try_iter()?.enumerate() {
-                let item_579 = item_result_578.map_err(|error| {
+            for (index_591, item_result_588) in value.try_iter()?.enumerate() {
+                let item_589 = item_result_588.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_581),
+                        rboto_core::InputPath::Index(index_591),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_580 = (|| -> PyResult<_> {
-                    let converted_item_580: f64 = item_579.extract()?;
-                    Ok(converted_item_580)
+                let converted_item_590 = (|| -> PyResult<_> {
+                    let converted_item_590: f64 = item_589.extract()?;
+                    Ok(converted_item_590)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_581), "float")
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_591), "float")
                 })?;
-                converted_577.push(converted_item_580);
+                converted_587.push(converted_item_590);
             }
-            Ok(converted_577)
+            Ok(converted_587)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("values"), "sequence")
         })?;
-        builder = builder.set_values(Some(converted_577));
+        builder = builder.set_values(Some(converted_587));
     }
     if let Some(value) = dict_value(values, "status_code")? {
-        let converted_582 = (|| -> PyResult<_> {
-            let enum_value_583: String = value.extract()?;
-            let converted_582 =
-                aws_sdk_cloudwatch::types::StatusCode::from(enum_value_583.as_str());
-            Ok(converted_582)
+        let converted_592 = (|| -> PyResult<_> {
+            let enum_value_593: String = value.extract()?;
+            let converted_592 =
+                aws_sdk_cloudwatch::types::StatusCode::from(enum_value_593.as_str());
+            Ok(converted_592)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5004,40 +5099,40 @@ fn metric_data_result_from_py(
                 "str (StatusCode)",
             )
         })?;
-        builder = builder.set_status_code(Some(converted_582));
+        builder = builder.set_status_code(Some(converted_592));
     }
     if let Some(value) = dict_value(values, "messages")? {
-        let converted_584 = (|| -> PyResult<_> {
-            let mut converted_584 =
+        let converted_594 = (|| -> PyResult<_> {
+            let mut converted_594 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_588, item_result_585) in value.try_iter()?.enumerate() {
-                let item_586 = item_result_585.map_err(|error| {
+            for (index_598, item_result_595) in value.try_iter()?.enumerate() {
+                let item_596 = item_result_595.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_588),
+                        rboto_core::InputPath::Index(index_598),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_587 = (|| -> PyResult<_> {
-                    let converted_item_587 = message_data_from_py(&item_586)?;
-                    Ok(converted_item_587)
+                let converted_item_597 = (|| -> PyResult<_> {
+                    let converted_item_597 = message_data_from_py(&item_596)?;
+                    Ok(converted_item_597)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_588),
+                        rboto_core::InputPath::Index(index_598),
                         "dict (MessageData)",
                     )
                 })?;
-                converted_584.push(converted_item_587);
+                converted_594.push(converted_item_597);
             }
-            Ok(converted_584)
+            Ok(converted_594)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("messages"), "sequence")
         })?;
-        builder = builder.set_messages(Some(converted_584));
+        builder = builder.set_messages(Some(converted_594));
     }
     Ok(builder.build())
 }
@@ -5048,53 +5143,53 @@ fn metric_data_result_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.id {
-        let converted_589 = (value).as_str().into_py_any(py)?;
-        result.set_item("id", converted_589)?;
+        let converted_599 = (value).as_str().into_py_any(py)?;
+        result.set_item("id", converted_599)?;
     } else {
         result.set_item("id", py.None())?;
     }
     if let Some(value) = &value.label {
-        let converted_590 = (value).as_str().into_py_any(py)?;
-        result.set_item("label", converted_590)?;
+        let converted_600 = (value).as_str().into_py_any(py)?;
+        result.set_item("label", converted_600)?;
     } else {
         result.set_item("label", py.None())?;
     }
     if let Some(value) = &value.timestamps {
-        let converted_591_list = PyList::empty(py);
-        for item_592 in value {
-            let converted_item_593 = (item_592).to_string().into_py_any(py)?;
-            converted_591_list.append(converted_item_593)?;
+        let converted_601_list = PyList::empty(py);
+        for item_602 in value {
+            let converted_item_603 = (item_602).to_string().into_py_any(py)?;
+            converted_601_list.append(converted_item_603)?;
         }
-        let converted_591 = converted_591_list.into_any().unbind();
-        result.set_item("timestamps", converted_591)?;
+        let converted_601 = converted_601_list.into_any().unbind();
+        result.set_item("timestamps", converted_601)?;
     } else {
         result.set_item("timestamps", py.None())?;
     }
     if let Some(value) = &value.values {
-        let converted_594_list = PyList::empty(py);
-        for item_595 in value {
-            let converted_item_596 = (item_595).to_owned().into_py_any(py)?;
-            converted_594_list.append(converted_item_596)?;
+        let converted_604_list = PyList::empty(py);
+        for item_605 in value {
+            let converted_item_606 = (item_605).to_owned().into_py_any(py)?;
+            converted_604_list.append(converted_item_606)?;
         }
-        let converted_594 = converted_594_list.into_any().unbind();
-        result.set_item("values", converted_594)?;
+        let converted_604 = converted_604_list.into_any().unbind();
+        result.set_item("values", converted_604)?;
     } else {
         result.set_item("values", py.None())?;
     }
     if let Some(value) = &value.status_code {
-        let converted_597 = (value).as_str().into_py_any(py)?;
-        result.set_item("status_code", converted_597)?;
+        let converted_607 = (value).as_str().into_py_any(py)?;
+        result.set_item("status_code", converted_607)?;
     } else {
         result.set_item("status_code", py.None())?;
     }
     if let Some(value) = &value.messages {
-        let converted_598_list = PyList::empty(py);
-        for item_599 in value {
-            let converted_item_600 = message_data_to_py(py, item_599)?;
-            converted_598_list.append(converted_item_600)?;
+        let converted_608_list = PyList::empty(py);
+        for item_609 in value {
+            let converted_item_610 = message_data_to_py(py, item_609)?;
+            converted_608_list.append(converted_item_610)?;
         }
-        let converted_598 = converted_598_list.into_any().unbind();
-        result.set_item("messages", converted_598)?;
+        let converted_608 = converted_608_list.into_any().unbind();
+        result.set_item("messages", converted_608)?;
     } else {
         result.set_item("messages", py.None())?;
     }
@@ -5121,42 +5216,42 @@ fn metric_datum_from_py(
     )?;
     let mut builder = aws_sdk_cloudwatch::types::MetricDatum::builder();
     if let Some(value) = dict_value(values, "metric_name")? {
-        let converted_601 = (|| -> PyResult<_> {
-            let converted_601: String = value.extract()?;
-            Ok(converted_601)
+        let converted_611 = (|| -> PyResult<_> {
+            let converted_611: String = value.extract()?;
+            Ok(converted_611)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("metric_name"), "str")
         })?;
-        builder = builder.set_metric_name(Some(converted_601));
+        builder = builder.set_metric_name(Some(converted_611));
     }
     if let Some(value) = dict_value(values, "dimensions")? {
-        let converted_602 = (|| -> PyResult<_> {
-            let mut converted_602 =
+        let converted_612 = (|| -> PyResult<_> {
+            let mut converted_612 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_606, item_result_603) in value.try_iter()?.enumerate() {
-                let item_604 = item_result_603.map_err(|error| {
+            for (index_616, item_result_613) in value.try_iter()?.enumerate() {
+                let item_614 = item_result_613.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_606),
+                        rboto_core::InputPath::Index(index_616),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_605 = (|| -> PyResult<_> {
-                    let converted_item_605 = dimension_from_py(&item_604)?;
-                    Ok(converted_item_605)
+                let converted_item_615 = (|| -> PyResult<_> {
+                    let converted_item_615 = dimension_from_py(&item_614)?;
+                    Ok(converted_item_615)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_606),
+                        rboto_core::InputPath::Index(index_616),
                         "dict (Dimension)",
                     )
                 })?;
-                converted_602.push(converted_item_605);
+                converted_612.push(converted_item_615);
             }
-            Ok(converted_602)
+            Ok(converted_612)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5165,17 +5260,17 @@ fn metric_datum_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_dimensions(Some(converted_602));
+        builder = builder.set_dimensions(Some(converted_612));
     }
     if let Some(value) = dict_value(values, "timestamp")? {
-        let converted_607 = (|| -> PyResult<_> {
-            let timestamp_608: String = value.extract()?;
-            let converted_607 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_608,
+        let converted_617 = (|| -> PyResult<_> {
+            let timestamp_618: String = value.extract()?;
+            let converted_617 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_618,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_607)
+            Ok(converted_617)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5184,22 +5279,22 @@ fn metric_datum_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_timestamp(Some(converted_607));
+        builder = builder.set_timestamp(Some(converted_617));
     }
     if let Some(value) = dict_value(values, "value")? {
-        let converted_609 = (|| -> PyResult<_> {
-            let converted_609: f64 = value.extract()?;
-            Ok(converted_609)
+        let converted_619 = (|| -> PyResult<_> {
+            let converted_619: f64 = value.extract()?;
+            Ok(converted_619)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("value"), "float")
         })?;
-        builder = builder.set_value(Some(converted_609));
+        builder = builder.set_value(Some(converted_619));
     }
     if let Some(value) = dict_value(values, "statistic_values")? {
-        let converted_610 = (|| -> PyResult<_> {
-            let converted_610 = statistic_set_from_py(&value)?;
-            Ok(converted_610)
+        let converted_620 = (|| -> PyResult<_> {
+            let converted_620 = statistic_set_from_py(&value)?;
+            Ok(converted_620)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5208,72 +5303,72 @@ fn metric_datum_from_py(
                 "dict (StatisticSet)",
             )
         })?;
-        builder = builder.set_statistic_values(Some(converted_610));
+        builder = builder.set_statistic_values(Some(converted_620));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let converted_611 = (|| -> PyResult<_> {
-            let mut converted_611 =
+        let converted_621 = (|| -> PyResult<_> {
+            let mut converted_621 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_615, item_result_612) in value.try_iter()?.enumerate() {
-                let item_613 = item_result_612.map_err(|error| {
+            for (index_625, item_result_622) in value.try_iter()?.enumerate() {
+                let item_623 = item_result_622.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_615),
+                        rboto_core::InputPath::Index(index_625),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_614 = (|| -> PyResult<_> {
-                    let converted_item_614: f64 = item_613.extract()?;
-                    Ok(converted_item_614)
+                let converted_item_624 = (|| -> PyResult<_> {
+                    let converted_item_624: f64 = item_623.extract()?;
+                    Ok(converted_item_624)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_615), "float")
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_625), "float")
                 })?;
-                converted_611.push(converted_item_614);
+                converted_621.push(converted_item_624);
             }
-            Ok(converted_611)
+            Ok(converted_621)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("values"), "sequence")
         })?;
-        builder = builder.set_values(Some(converted_611));
+        builder = builder.set_values(Some(converted_621));
     }
     if let Some(value) = dict_value(values, "counts")? {
-        let converted_616 = (|| -> PyResult<_> {
-            let mut converted_616 =
+        let converted_626 = (|| -> PyResult<_> {
+            let mut converted_626 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_620, item_result_617) in value.try_iter()?.enumerate() {
-                let item_618 = item_result_617.map_err(|error| {
+            for (index_630, item_result_627) in value.try_iter()?.enumerate() {
+                let item_628 = item_result_627.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_620),
+                        rboto_core::InputPath::Index(index_630),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_619 = (|| -> PyResult<_> {
-                    let converted_item_619: f64 = item_618.extract()?;
-                    Ok(converted_item_619)
+                let converted_item_629 = (|| -> PyResult<_> {
+                    let converted_item_629: f64 = item_628.extract()?;
+                    Ok(converted_item_629)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_620), "float")
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_630), "float")
                 })?;
-                converted_616.push(converted_item_619);
+                converted_626.push(converted_item_629);
             }
-            Ok(converted_616)
+            Ok(converted_626)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("counts"), "sequence")
         })?;
-        builder = builder.set_counts(Some(converted_616));
+        builder = builder.set_counts(Some(converted_626));
     }
     if let Some(value) = dict_value(values, "unit")? {
-        let converted_621 = (|| -> PyResult<_> {
-            let enum_value_622: String = value.extract()?;
-            let converted_621 =
-                aws_sdk_cloudwatch::types::StandardUnit::from(enum_value_622.as_str());
-            Ok(converted_621)
+        let converted_631 = (|| -> PyResult<_> {
+            let enum_value_632: String = value.extract()?;
+            let converted_631 =
+                aws_sdk_cloudwatch::types::StandardUnit::from(enum_value_632.as_str());
+            Ok(converted_631)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5282,12 +5377,12 @@ fn metric_datum_from_py(
                 "str (StandardUnit)",
             )
         })?;
-        builder = builder.set_unit(Some(converted_621));
+        builder = builder.set_unit(Some(converted_631));
     }
     if let Some(value) = dict_value(values, "storage_resolution")? {
-        let converted_623 = (|| -> PyResult<_> {
-            let converted_623: i32 = value.extract()?;
-            Ok(converted_623)
+        let converted_633 = (|| -> PyResult<_> {
+            let converted_633: i32 = value.extract()?;
+            Ok(converted_633)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5296,7 +5391,7 @@ fn metric_datum_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_storage_resolution(Some(converted_623));
+        builder = builder.set_storage_resolution(Some(converted_633));
     }
     Ok(builder.build())
 }
@@ -5307,71 +5402,71 @@ fn metric_datum_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.metric_name {
-        let converted_624 = (value).as_str().into_py_any(py)?;
-        result.set_item("metric_name", converted_624)?;
+        let converted_634 = (value).as_str().into_py_any(py)?;
+        result.set_item("metric_name", converted_634)?;
     } else {
         result.set_item("metric_name", py.None())?;
     }
     if let Some(value) = &value.dimensions {
-        let converted_625_list = PyList::empty(py);
-        for item_626 in value {
-            let converted_item_627 = dimension_to_py(py, item_626)?;
-            converted_625_list.append(converted_item_627)?;
+        let converted_635_list = PyList::empty(py);
+        for item_636 in value {
+            let converted_item_637 = dimension_to_py(py, item_636)?;
+            converted_635_list.append(converted_item_637)?;
         }
-        let converted_625 = converted_625_list.into_any().unbind();
-        result.set_item("dimensions", converted_625)?;
+        let converted_635 = converted_635_list.into_any().unbind();
+        result.set_item("dimensions", converted_635)?;
     } else {
         result.set_item("dimensions", py.None())?;
     }
     if let Some(value) = &value.timestamp {
-        let converted_628 = (value).to_string().into_py_any(py)?;
-        result.set_item("timestamp", converted_628)?;
+        let converted_638 = (value).to_string().into_py_any(py)?;
+        result.set_item("timestamp", converted_638)?;
     } else {
         result.set_item("timestamp", py.None())?;
     }
     if let Some(value) = &value.value {
-        let converted_629 = (value).to_owned().into_py_any(py)?;
-        result.set_item("value", converted_629)?;
+        let converted_639 = (value).to_owned().into_py_any(py)?;
+        result.set_item("value", converted_639)?;
     } else {
         result.set_item("value", py.None())?;
     }
     if let Some(value) = &value.statistic_values {
-        let converted_630 = statistic_set_to_py(py, value)?;
-        result.set_item("statistic_values", converted_630)?;
+        let converted_640 = statistic_set_to_py(py, value)?;
+        result.set_item("statistic_values", converted_640)?;
     } else {
         result.set_item("statistic_values", py.None())?;
     }
     if let Some(value) = &value.values {
-        let converted_631_list = PyList::empty(py);
-        for item_632 in value {
-            let converted_item_633 = (item_632).to_owned().into_py_any(py)?;
-            converted_631_list.append(converted_item_633)?;
+        let converted_641_list = PyList::empty(py);
+        for item_642 in value {
+            let converted_item_643 = (item_642).to_owned().into_py_any(py)?;
+            converted_641_list.append(converted_item_643)?;
         }
-        let converted_631 = converted_631_list.into_any().unbind();
-        result.set_item("values", converted_631)?;
+        let converted_641 = converted_641_list.into_any().unbind();
+        result.set_item("values", converted_641)?;
     } else {
         result.set_item("values", py.None())?;
     }
     if let Some(value) = &value.counts {
-        let converted_634_list = PyList::empty(py);
-        for item_635 in value {
-            let converted_item_636 = (item_635).to_owned().into_py_any(py)?;
-            converted_634_list.append(converted_item_636)?;
+        let converted_644_list = PyList::empty(py);
+        for item_645 in value {
+            let converted_item_646 = (item_645).to_owned().into_py_any(py)?;
+            converted_644_list.append(converted_item_646)?;
         }
-        let converted_634 = converted_634_list.into_any().unbind();
-        result.set_item("counts", converted_634)?;
+        let converted_644 = converted_644_list.into_any().unbind();
+        result.set_item("counts", converted_644)?;
     } else {
         result.set_item("counts", py.None())?;
     }
     if let Some(value) = &value.unit {
-        let converted_637 = (value).as_str().into_py_any(py)?;
-        result.set_item("unit", converted_637)?;
+        let converted_647 = (value).as_str().into_py_any(py)?;
+        result.set_item("unit", converted_647)?;
     } else {
         result.set_item("unit", py.None())?;
     }
     if let Some(value) = &value.storage_resolution {
-        let converted_638 = (value).to_owned().into_py_any(py)?;
-        result.set_item("storage_resolution", converted_638)?;
+        let converted_648 = (value).to_owned().into_py_any(py)?;
+        result.set_item("storage_resolution", converted_648)?;
     } else {
         result.set_item("storage_resolution", py.None())?;
     }
@@ -5385,32 +5480,32 @@ fn metric_math_anomaly_detector_from_py(
     rboto_core::validate_input_fields(values, &["metric_data_queries"])?;
     let mut builder = aws_sdk_cloudwatch::types::MetricMathAnomalyDetector::builder();
     if let Some(value) = dict_value(values, "metric_data_queries")? {
-        let converted_639 = (|| -> PyResult<_> {
-            let mut converted_639 =
+        let converted_649 = (|| -> PyResult<_> {
+            let mut converted_649 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_643, item_result_640) in value.try_iter()?.enumerate() {
-                let item_641 = item_result_640.map_err(|error| {
+            for (index_653, item_result_650) in value.try_iter()?.enumerate() {
+                let item_651 = item_result_650.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_643),
+                        rboto_core::InputPath::Index(index_653),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_642 = (|| -> PyResult<_> {
-                    let converted_item_642 = metric_data_query_from_py(&item_641)?;
-                    Ok(converted_item_642)
+                let converted_item_652 = (|| -> PyResult<_> {
+                    let converted_item_652 = metric_data_query_from_py(&item_651)?;
+                    Ok(converted_item_652)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_643),
+                        rboto_core::InputPath::Index(index_653),
                         "dict (MetricDataQuery)",
                     )
                 })?;
-                converted_639.push(converted_item_642);
+                converted_649.push(converted_item_652);
             }
-            Ok(converted_639)
+            Ok(converted_649)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5419,7 +5514,7 @@ fn metric_math_anomaly_detector_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_metric_data_queries(Some(converted_639));
+        builder = builder.set_metric_data_queries(Some(converted_649));
     }
     Ok(builder.build())
 }
@@ -5430,13 +5525,13 @@ fn metric_math_anomaly_detector_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.metric_data_queries {
-        let converted_644_list = PyList::empty(py);
-        for item_645 in value {
-            let converted_item_646 = metric_data_query_to_py(py, item_645)?;
-            converted_644_list.append(converted_item_646)?;
+        let converted_654_list = PyList::empty(py);
+        for item_655 in value {
+            let converted_item_656 = metric_data_query_to_py(py, item_655)?;
+            converted_654_list.append(converted_item_656)?;
         }
-        let converted_644 = converted_644_list.into_any().unbind();
-        result.set_item("metric_data_queries", converted_644)?;
+        let converted_654 = converted_654_list.into_any().unbind();
+        result.set_item("metric_data_queries", converted_654)?;
     } else {
         result.set_item("metric_data_queries", py.None())?;
     }
@@ -5450,9 +5545,9 @@ fn metric_stat_from_py(
     rboto_core::validate_input_fields(values, &["metric", "period", "stat", "unit"])?;
     let mut builder = aws_sdk_cloudwatch::types::MetricStat::builder();
     if let Some(value) = dict_value(values, "metric")? {
-        let converted_647 = (|| -> PyResult<_> {
-            let converted_647 = metric_from_py(&value)?;
-            Ok(converted_647)
+        let converted_657 = (|| -> PyResult<_> {
+            let converted_657 = metric_from_py(&value)?;
+            Ok(converted_657)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5461,34 +5556,34 @@ fn metric_stat_from_py(
                 "dict (Metric)",
             )
         })?;
-        builder = builder.set_metric(Some(converted_647));
+        builder = builder.set_metric(Some(converted_657));
     }
     if let Some(value) = dict_value(values, "period")? {
-        let converted_648 = (|| -> PyResult<_> {
-            let converted_648: i32 = value.extract()?;
-            Ok(converted_648)
+        let converted_658 = (|| -> PyResult<_> {
+            let converted_658: i32 = value.extract()?;
+            Ok(converted_658)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("period"), "int")
         })?;
-        builder = builder.set_period(Some(converted_648));
+        builder = builder.set_period(Some(converted_658));
     }
     if let Some(value) = dict_value(values, "stat")? {
-        let converted_649 = (|| -> PyResult<_> {
-            let converted_649: String = value.extract()?;
-            Ok(converted_649)
+        let converted_659 = (|| -> PyResult<_> {
+            let converted_659: String = value.extract()?;
+            Ok(converted_659)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stat"), "str")
         })?;
-        builder = builder.set_stat(Some(converted_649));
+        builder = builder.set_stat(Some(converted_659));
     }
     if let Some(value) = dict_value(values, "unit")? {
-        let converted_650 = (|| -> PyResult<_> {
-            let enum_value_651: String = value.extract()?;
-            let converted_650 =
-                aws_sdk_cloudwatch::types::StandardUnit::from(enum_value_651.as_str());
-            Ok(converted_650)
+        let converted_660 = (|| -> PyResult<_> {
+            let enum_value_661: String = value.extract()?;
+            let converted_660 =
+                aws_sdk_cloudwatch::types::StandardUnit::from(enum_value_661.as_str());
+            Ok(converted_660)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5497,7 +5592,7 @@ fn metric_stat_from_py(
                 "str (StandardUnit)",
             )
         })?;
-        builder = builder.set_unit(Some(converted_650));
+        builder = builder.set_unit(Some(converted_660));
     }
     Ok(builder.build())
 }
@@ -5508,26 +5603,26 @@ fn metric_stat_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.metric {
-        let converted_652 = metric_to_py(py, value)?;
-        result.set_item("metric", converted_652)?;
+        let converted_662 = metric_to_py(py, value)?;
+        result.set_item("metric", converted_662)?;
     } else {
         result.set_item("metric", py.None())?;
     }
     if let Some(value) = &value.period {
-        let converted_653 = (value).to_owned().into_py_any(py)?;
-        result.set_item("period", converted_653)?;
+        let converted_663 = (value).to_owned().into_py_any(py)?;
+        result.set_item("period", converted_663)?;
     } else {
         result.set_item("period", py.None())?;
     }
     if let Some(value) = &value.stat {
-        let converted_654 = (value).as_str().into_py_any(py)?;
-        result.set_item("stat", converted_654)?;
+        let converted_664 = (value).as_str().into_py_any(py)?;
+        result.set_item("stat", converted_664)?;
     } else {
         result.set_item("stat", py.None())?;
     }
     if let Some(value) = &value.unit {
-        let converted_655 = (value).as_str().into_py_any(py)?;
-        result.set_item("unit", converted_655)?;
+        let converted_665 = (value).as_str().into_py_any(py)?;
+        result.set_item("unit", converted_665)?;
     } else {
         result.set_item("unit", py.None())?;
     }
@@ -5552,24 +5647,24 @@ fn metric_stream_entry_from_py(
     )?;
     let mut builder = aws_sdk_cloudwatch::types::MetricStreamEntry::builder();
     if let Some(value) = dict_value(values, "arn")? {
-        let converted_656 = (|| -> PyResult<_> {
-            let converted_656: String = value.extract()?;
-            Ok(converted_656)
+        let converted_666 = (|| -> PyResult<_> {
+            let converted_666: String = value.extract()?;
+            Ok(converted_666)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("arn"), "str")
         })?;
-        builder = builder.set_arn(Some(converted_656));
+        builder = builder.set_arn(Some(converted_666));
     }
     if let Some(value) = dict_value(values, "creation_date")? {
-        let converted_657 = (|| -> PyResult<_> {
-            let timestamp_658: String = value.extract()?;
-            let converted_657 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_658,
+        let converted_667 = (|| -> PyResult<_> {
+            let timestamp_668: String = value.extract()?;
+            let converted_667 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_668,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_657)
+            Ok(converted_667)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5578,17 +5673,17 @@ fn metric_stream_entry_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_creation_date(Some(converted_657));
+        builder = builder.set_creation_date(Some(converted_667));
     }
     if let Some(value) = dict_value(values, "last_update_date")? {
-        let converted_659 = (|| -> PyResult<_> {
-            let timestamp_660: String = value.extract()?;
-            let converted_659 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_660,
+        let converted_669 = (|| -> PyResult<_> {
+            let timestamp_670: String = value.extract()?;
+            let converted_669 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_670,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_659)
+            Ok(converted_669)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5597,44 +5692,44 @@ fn metric_stream_entry_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_last_update_date(Some(converted_659));
+        builder = builder.set_last_update_date(Some(converted_669));
     }
     if let Some(value) = dict_value(values, "name")? {
-        let converted_661 = (|| -> PyResult<_> {
-            let converted_661: String = value.extract()?;
-            Ok(converted_661)
+        let converted_671 = (|| -> PyResult<_> {
+            let converted_671: String = value.extract()?;
+            Ok(converted_671)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
         })?;
-        builder = builder.set_name(Some(converted_661));
+        builder = builder.set_name(Some(converted_671));
     }
     if let Some(value) = dict_value(values, "firehose_arn")? {
-        let converted_662 = (|| -> PyResult<_> {
-            let converted_662: String = value.extract()?;
-            Ok(converted_662)
+        let converted_672 = (|| -> PyResult<_> {
+            let converted_672: String = value.extract()?;
+            Ok(converted_672)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("firehose_arn"), "str")
         })?;
-        builder = builder.set_firehose_arn(Some(converted_662));
+        builder = builder.set_firehose_arn(Some(converted_672));
     }
     if let Some(value) = dict_value(values, "state")? {
-        let converted_663 = (|| -> PyResult<_> {
-            let converted_663: String = value.extract()?;
-            Ok(converted_663)
+        let converted_673 = (|| -> PyResult<_> {
+            let converted_673: String = value.extract()?;
+            Ok(converted_673)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("state"), "str")
         })?;
-        builder = builder.set_state(Some(converted_663));
+        builder = builder.set_state(Some(converted_673));
     }
     if let Some(value) = dict_value(values, "output_format")? {
-        let converted_664 = (|| -> PyResult<_> {
-            let enum_value_665: String = value.extract()?;
-            let converted_664 =
-                aws_sdk_cloudwatch::types::MetricStreamOutputFormat::from(enum_value_665.as_str());
-            Ok(converted_664)
+        let converted_674 = (|| -> PyResult<_> {
+            let enum_value_675: String = value.extract()?;
+            let converted_674 =
+                aws_sdk_cloudwatch::types::MetricStreamOutputFormat::from(enum_value_675.as_str());
+            Ok(converted_674)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5643,7 +5738,7 @@ fn metric_stream_entry_from_py(
                 "str (MetricStreamOutputFormat)",
             )
         })?;
-        builder = builder.set_output_format(Some(converted_664));
+        builder = builder.set_output_format(Some(converted_674));
     }
     Ok(builder.build())
 }
@@ -5654,44 +5749,44 @@ fn metric_stream_entry_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.arn {
-        let converted_666 = (value).as_str().into_py_any(py)?;
-        result.set_item("arn", converted_666)?;
+        let converted_676 = (value).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_676)?;
     } else {
         result.set_item("arn", py.None())?;
     }
     if let Some(value) = &value.creation_date {
-        let converted_667 = (value).to_string().into_py_any(py)?;
-        result.set_item("creation_date", converted_667)?;
+        let converted_677 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_677)?;
     } else {
         result.set_item("creation_date", py.None())?;
     }
     if let Some(value) = &value.last_update_date {
-        let converted_668 = (value).to_string().into_py_any(py)?;
-        result.set_item("last_update_date", converted_668)?;
+        let converted_678 = (value).to_string().into_py_any(py)?;
+        result.set_item("last_update_date", converted_678)?;
     } else {
         result.set_item("last_update_date", py.None())?;
     }
     if let Some(value) = &value.name {
-        let converted_669 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_669)?;
+        let converted_679 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_679)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.firehose_arn {
-        let converted_670 = (value).as_str().into_py_any(py)?;
-        result.set_item("firehose_arn", converted_670)?;
+        let converted_680 = (value).as_str().into_py_any(py)?;
+        result.set_item("firehose_arn", converted_680)?;
     } else {
         result.set_item("firehose_arn", py.None())?;
     }
     if let Some(value) = &value.state {
-        let converted_671 = (value).as_str().into_py_any(py)?;
-        result.set_item("state", converted_671)?;
+        let converted_681 = (value).as_str().into_py_any(py)?;
+        result.set_item("state", converted_681)?;
     } else {
         result.set_item("state", py.None())?;
     }
     if let Some(value) = &value.output_format {
-        let converted_672 = (value).as_str().into_py_any(py)?;
-        result.set_item("output_format", converted_672)?;
+        let converted_682 = (value).as_str().into_py_any(py)?;
+        result.set_item("output_format", converted_682)?;
     } else {
         result.set_item("output_format", py.None())?;
     }
@@ -5705,38 +5800,38 @@ fn metric_stream_filter_from_py(
     rboto_core::validate_input_fields(values, &["metric_names", "namespace"])?;
     let mut builder = aws_sdk_cloudwatch::types::MetricStreamFilter::builder();
     if let Some(value) = dict_value(values, "namespace")? {
-        let converted_673 = (|| -> PyResult<_> {
-            let converted_673: String = value.extract()?;
-            Ok(converted_673)
+        let converted_683 = (|| -> PyResult<_> {
+            let converted_683: String = value.extract()?;
+            Ok(converted_683)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("namespace"), "str")
         })?;
-        builder = builder.set_namespace(Some(converted_673));
+        builder = builder.set_namespace(Some(converted_683));
     }
     if let Some(value) = dict_value(values, "metric_names")? {
-        let converted_674 = (|| -> PyResult<_> {
-            let mut converted_674 =
+        let converted_684 = (|| -> PyResult<_> {
+            let mut converted_684 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_678, item_result_675) in value.try_iter()?.enumerate() {
-                let item_676 = item_result_675.map_err(|error| {
+            for (index_688, item_result_685) in value.try_iter()?.enumerate() {
+                let item_686 = item_result_685.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_678),
+                        rboto_core::InputPath::Index(index_688),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_677 = (|| -> PyResult<_> {
-                    let converted_item_677: String = item_676.extract()?;
-                    Ok(converted_item_677)
+                let converted_item_687 = (|| -> PyResult<_> {
+                    let converted_item_687: String = item_686.extract()?;
+                    Ok(converted_item_687)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_678), "str")
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_688), "str")
                 })?;
-                converted_674.push(converted_item_677);
+                converted_684.push(converted_item_687);
             }
-            Ok(converted_674)
+            Ok(converted_684)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5745,7 +5840,7 @@ fn metric_stream_filter_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_metric_names(Some(converted_674));
+        builder = builder.set_metric_names(Some(converted_684));
     }
     Ok(builder.build())
 }
@@ -5756,19 +5851,19 @@ fn metric_stream_filter_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.namespace {
-        let converted_679 = (value).as_str().into_py_any(py)?;
-        result.set_item("namespace", converted_679)?;
+        let converted_689 = (value).as_str().into_py_any(py)?;
+        result.set_item("namespace", converted_689)?;
     } else {
         result.set_item("namespace", py.None())?;
     }
     if let Some(value) = &value.metric_names {
-        let converted_680_list = PyList::empty(py);
-        for item_681 in value {
-            let converted_item_682 = (item_681).as_str().into_py_any(py)?;
-            converted_680_list.append(converted_item_682)?;
+        let converted_690_list = PyList::empty(py);
+        for item_691 in value {
+            let converted_item_692 = (item_691).as_str().into_py_any(py)?;
+            converted_690_list.append(converted_item_692)?;
         }
-        let converted_680 = converted_680_list.into_any().unbind();
-        result.set_item("metric_names", converted_680)?;
+        let converted_690 = converted_690_list.into_any().unbind();
+        result.set_item("metric_names", converted_690)?;
     } else {
         result.set_item("metric_names", py.None())?;
     }
@@ -5782,32 +5877,32 @@ fn metric_stream_statistics_configuration_from_py(
     rboto_core::validate_input_fields(values, &["additional_statistics", "include_metrics"])?;
     let mut builder = aws_sdk_cloudwatch::types::MetricStreamStatisticsConfiguration::builder();
     if let Some(value) = dict_value(values, "include_metrics")? {
-        let converted_683 = (|| -> PyResult<_> {
-            let mut converted_683 =
+        let converted_693 = (|| -> PyResult<_> {
+            let mut converted_693 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_687, item_result_684) in value.try_iter()?.enumerate() {
-                let item_685 = item_result_684.map_err(|error| {
+            for (index_697, item_result_694) in value.try_iter()?.enumerate() {
+                let item_695 = item_result_694.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_687),
+                        rboto_core::InputPath::Index(index_697),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_686 = (|| -> PyResult<_> {
-                    let converted_item_686 = metric_stream_statistics_metric_from_py(&item_685)?;
-                    Ok(converted_item_686)
+                let converted_item_696 = (|| -> PyResult<_> {
+                    let converted_item_696 = metric_stream_statistics_metric_from_py(&item_695)?;
+                    Ok(converted_item_696)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_687),
+                        rboto_core::InputPath::Index(index_697),
                         "dict (MetricStreamStatisticsMetric)",
                     )
                 })?;
-                converted_683.push(converted_item_686);
+                converted_693.push(converted_item_696);
             }
-            Ok(converted_683)
+            Ok(converted_693)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5816,31 +5911,31 @@ fn metric_stream_statistics_configuration_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_include_metrics(Some(converted_683));
+        builder = builder.set_include_metrics(Some(converted_693));
     }
     if let Some(value) = dict_value(values, "additional_statistics")? {
-        let converted_688 = (|| -> PyResult<_> {
-            let mut converted_688 =
+        let converted_698 = (|| -> PyResult<_> {
+            let mut converted_698 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_692, item_result_689) in value.try_iter()?.enumerate() {
-                let item_690 = item_result_689.map_err(|error| {
+            for (index_702, item_result_699) in value.try_iter()?.enumerate() {
+                let item_700 = item_result_699.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_692),
+                        rboto_core::InputPath::Index(index_702),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_691 = (|| -> PyResult<_> {
-                    let converted_item_691: String = item_690.extract()?;
-                    Ok(converted_item_691)
+                let converted_item_701 = (|| -> PyResult<_> {
+                    let converted_item_701: String = item_700.extract()?;
+                    Ok(converted_item_701)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_692), "str")
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_702), "str")
                 })?;
-                converted_688.push(converted_item_691);
+                converted_698.push(converted_item_701);
             }
-            Ok(converted_688)
+            Ok(converted_698)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5849,7 +5944,7 @@ fn metric_stream_statistics_configuration_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_additional_statistics(Some(converted_688));
+        builder = builder.set_additional_statistics(Some(converted_698));
     }
     Ok(builder.build())
 }
@@ -5860,24 +5955,24 @@ fn metric_stream_statistics_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.include_metrics {
-        let converted_693_list = PyList::empty(py);
-        for item_694 in value {
-            let converted_item_695 = metric_stream_statistics_metric_to_py(py, item_694)?;
-            converted_693_list.append(converted_item_695)?;
+        let converted_703_list = PyList::empty(py);
+        for item_704 in value {
+            let converted_item_705 = metric_stream_statistics_metric_to_py(py, item_704)?;
+            converted_703_list.append(converted_item_705)?;
         }
-        let converted_693 = converted_693_list.into_any().unbind();
-        result.set_item("include_metrics", converted_693)?;
+        let converted_703 = converted_703_list.into_any().unbind();
+        result.set_item("include_metrics", converted_703)?;
     } else {
         result.set_item("include_metrics", py.None())?;
     }
     if let Some(value) = &value.additional_statistics {
-        let converted_696_list = PyList::empty(py);
-        for item_697 in value {
-            let converted_item_698 = (item_697).as_str().into_py_any(py)?;
-            converted_696_list.append(converted_item_698)?;
+        let converted_706_list = PyList::empty(py);
+        for item_707 in value {
+            let converted_item_708 = (item_707).as_str().into_py_any(py)?;
+            converted_706_list.append(converted_item_708)?;
         }
-        let converted_696 = converted_696_list.into_any().unbind();
-        result.set_item("additional_statistics", converted_696)?;
+        let converted_706 = converted_706_list.into_any().unbind();
+        result.set_item("additional_statistics", converted_706)?;
     } else {
         result.set_item("additional_statistics", py.None())?;
     }
@@ -5891,24 +5986,24 @@ fn metric_stream_statistics_metric_from_py(
     rboto_core::validate_input_fields(values, &["metric_name", "namespace"])?;
     let mut builder = aws_sdk_cloudwatch::types::MetricStreamStatisticsMetric::builder();
     if let Some(value) = dict_value(values, "namespace")? {
-        let converted_699 = (|| -> PyResult<_> {
-            let converted_699: String = value.extract()?;
-            Ok(converted_699)
+        let converted_709 = (|| -> PyResult<_> {
+            let converted_709: String = value.extract()?;
+            Ok(converted_709)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("namespace"), "str")
         })?;
-        builder = builder.set_namespace(Some(converted_699));
+        builder = builder.set_namespace(Some(converted_709));
     }
     if let Some(value) = dict_value(values, "metric_name")? {
-        let converted_700 = (|| -> PyResult<_> {
-            let converted_700: String = value.extract()?;
-            Ok(converted_700)
+        let converted_710 = (|| -> PyResult<_> {
+            let converted_710: String = value.extract()?;
+            Ok(converted_710)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("metric_name"), "str")
         })?;
-        builder = builder.set_metric_name(Some(converted_700));
+        builder = builder.set_metric_name(Some(converted_710));
     }
     Ok(builder.build())
 }
@@ -5919,14 +6014,14 @@ fn metric_stream_statistics_metric_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.namespace {
-        let converted_701 = (value).as_str().into_py_any(py)?;
-        result.set_item("namespace", converted_701)?;
+        let converted_711 = (value).as_str().into_py_any(py)?;
+        result.set_item("namespace", converted_711)?;
     } else {
         result.set_item("namespace", py.None())?;
     }
     if let Some(value) = &value.metric_name {
-        let converted_702 = (value).as_str().into_py_any(py)?;
-        result.set_item("metric_name", converted_702)?;
+        let converted_712 = (value).as_str().into_py_any(py)?;
+        result.set_item("metric_name", converted_712)?;
     } else {
         result.set_item("metric_name", py.None())?;
     }
@@ -5940,28 +6035,28 @@ fn mute_targets_from_py(
     rboto_core::validate_input_fields(values, &["alarm_names"])?;
     let mut builder = aws_sdk_cloudwatch::types::MuteTargets::builder();
     if let Some(value) = dict_value(values, "alarm_names")? {
-        let converted_703 = (|| -> PyResult<_> {
-            let mut converted_703 =
+        let converted_713 = (|| -> PyResult<_> {
+            let mut converted_713 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_707, item_result_704) in value.try_iter()?.enumerate() {
-                let item_705 = item_result_704.map_err(|error| {
+            for (index_717, item_result_714) in value.try_iter()?.enumerate() {
+                let item_715 = item_result_714.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_707),
+                        rboto_core::InputPath::Index(index_717),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_706 = (|| -> PyResult<_> {
-                    let converted_item_706: String = item_705.extract()?;
-                    Ok(converted_item_706)
+                let converted_item_716 = (|| -> PyResult<_> {
+                    let converted_item_716: String = item_715.extract()?;
+                    Ok(converted_item_716)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_707), "str")
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_717), "str")
                 })?;
-                converted_703.push(converted_item_706);
+                converted_713.push(converted_item_716);
             }
-            Ok(converted_703)
+            Ok(converted_713)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5970,7 +6065,7 @@ fn mute_targets_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_alarm_names(Some(converted_703));
+        builder = builder.set_alarm_names(Some(converted_713));
     }
     Ok(builder.build())
 }
@@ -5981,13 +6076,13 @@ fn mute_targets_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.alarm_names {
-        let converted_708_list = PyList::empty(py);
-        for item_709 in value {
-            let converted_item_710 = (item_709).as_str().into_py_any(py)?;
-            converted_708_list.append(converted_item_710)?;
+        let converted_718_list = PyList::empty(py);
+        for item_719 in value {
+            let converted_item_720 = (item_719).as_str().into_py_any(py)?;
+            converted_718_list.append(converted_item_720)?;
         }
-        let converted_708 = converted_708_list.into_any().unbind();
-        result.set_item("alarm_names", converted_708)?;
+        let converted_718 = converted_718_list.into_any().unbind();
+        result.set_item("alarm_names", converted_718)?;
     } else {
         result.set_item("alarm_names", py.None())?;
     }
@@ -6001,38 +6096,38 @@ fn o_tel_enrichment_metric_selector_from_py(
     rboto_core::validate_input_fields(values, &["metric_names", "namespace"])?;
     let mut builder = aws_sdk_cloudwatch::types::OTelEnrichmentMetricSelector::builder();
     if let Some(value) = dict_value(values, "namespace")? {
-        let converted_711 = (|| -> PyResult<_> {
-            let converted_711: String = value.extract()?;
-            Ok(converted_711)
+        let converted_721 = (|| -> PyResult<_> {
+            let converted_721: String = value.extract()?;
+            Ok(converted_721)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("namespace"), "str")
         })?;
-        builder = builder.set_namespace(Some(converted_711));
+        builder = builder.set_namespace(Some(converted_721));
     }
     if let Some(value) = dict_value(values, "metric_names")? {
-        let converted_712 = (|| -> PyResult<_> {
-            let mut converted_712 =
+        let converted_722 = (|| -> PyResult<_> {
+            let mut converted_722 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_716, item_result_713) in value.try_iter()?.enumerate() {
-                let item_714 = item_result_713.map_err(|error| {
+            for (index_726, item_result_723) in value.try_iter()?.enumerate() {
+                let item_724 = item_result_723.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_716),
+                        rboto_core::InputPath::Index(index_726),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_715 = (|| -> PyResult<_> {
-                    let converted_item_715: String = item_714.extract()?;
-                    Ok(converted_item_715)
+                let converted_item_725 = (|| -> PyResult<_> {
+                    let converted_item_725: String = item_724.extract()?;
+                    Ok(converted_item_725)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_716), "str")
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_726), "str")
                 })?;
-                converted_712.push(converted_item_715);
+                converted_722.push(converted_item_725);
             }
-            Ok(converted_712)
+            Ok(converted_722)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6041,7 +6136,7 @@ fn o_tel_enrichment_metric_selector_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_metric_names(Some(converted_712));
+        builder = builder.set_metric_names(Some(converted_722));
     }
     Ok(builder.build())
 }
@@ -6052,19 +6147,19 @@ fn o_tel_enrichment_metric_selector_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.namespace {
-        let converted_717 = (value).as_str().into_py_any(py)?;
-        result.set_item("namespace", converted_717)?;
+        let converted_727 = (value).as_str().into_py_any(py)?;
+        result.set_item("namespace", converted_727)?;
     } else {
         result.set_item("namespace", py.None())?;
     }
     if let Some(value) = &value.metric_names {
-        let converted_718_list = PyList::empty(py);
-        for item_719 in value {
-            let converted_item_720 = (item_719).as_str().into_py_any(py)?;
-            converted_718_list.append(converted_item_720)?;
+        let converted_728_list = PyList::empty(py);
+        for item_729 in value {
+            let converted_item_730 = (item_729).as_str().into_py_any(py)?;
+            converted_728_list.append(converted_item_730)?;
         }
-        let converted_718 = converted_718_list.into_any().unbind();
-        result.set_item("metric_names", converted_718)?;
+        let converted_728 = converted_728_list.into_any().unbind();
+        result.set_item("metric_names", converted_728)?;
     } else {
         result.set_item("metric_names", py.None())?;
     }
@@ -6086,9 +6181,9 @@ fn partial_failure_from_py(
     )?;
     let mut builder = aws_sdk_cloudwatch::types::PartialFailure::builder();
     if let Some(value) = dict_value(values, "failure_resource")? {
-        let converted_721 = (|| -> PyResult<_> {
-            let converted_721: String = value.extract()?;
-            Ok(converted_721)
+        let converted_731 = (|| -> PyResult<_> {
+            let converted_731: String = value.extract()?;
+            Ok(converted_731)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6097,32 +6192,32 @@ fn partial_failure_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_failure_resource(Some(converted_721));
+        builder = builder.set_failure_resource(Some(converted_731));
     }
     if let Some(value) = dict_value(values, "exception_type")? {
-        let converted_722 = (|| -> PyResult<_> {
-            let converted_722: String = value.extract()?;
-            Ok(converted_722)
+        let converted_732 = (|| -> PyResult<_> {
+            let converted_732: String = value.extract()?;
+            Ok(converted_732)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("exception_type"), "str")
         })?;
-        builder = builder.set_exception_type(Some(converted_722));
+        builder = builder.set_exception_type(Some(converted_732));
     }
     if let Some(value) = dict_value(values, "failure_code")? {
-        let converted_723 = (|| -> PyResult<_> {
-            let converted_723: String = value.extract()?;
-            Ok(converted_723)
+        let converted_733 = (|| -> PyResult<_> {
+            let converted_733: String = value.extract()?;
+            Ok(converted_733)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("failure_code"), "str")
         })?;
-        builder = builder.set_failure_code(Some(converted_723));
+        builder = builder.set_failure_code(Some(converted_733));
     }
     if let Some(value) = dict_value(values, "failure_description")? {
-        let converted_724 = (|| -> PyResult<_> {
-            let converted_724: String = value.extract()?;
-            Ok(converted_724)
+        let converted_734 = (|| -> PyResult<_> {
+            let converted_734: String = value.extract()?;
+            Ok(converted_734)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6131,7 +6226,7 @@ fn partial_failure_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_failure_description(Some(converted_724));
+        builder = builder.set_failure_description(Some(converted_734));
     }
     Ok(builder.build())
 }
@@ -6142,26 +6237,26 @@ fn partial_failure_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.failure_resource {
-        let converted_725 = (value).as_str().into_py_any(py)?;
-        result.set_item("failure_resource", converted_725)?;
+        let converted_735 = (value).as_str().into_py_any(py)?;
+        result.set_item("failure_resource", converted_735)?;
     } else {
         result.set_item("failure_resource", py.None())?;
     }
     if let Some(value) = &value.exception_type {
-        let converted_726 = (value).as_str().into_py_any(py)?;
-        result.set_item("exception_type", converted_726)?;
+        let converted_736 = (value).as_str().into_py_any(py)?;
+        result.set_item("exception_type", converted_736)?;
     } else {
         result.set_item("exception_type", py.None())?;
     }
     if let Some(value) = &value.failure_code {
-        let converted_727 = (value).as_str().into_py_any(py)?;
-        result.set_item("failure_code", converted_727)?;
+        let converted_737 = (value).as_str().into_py_any(py)?;
+        result.set_item("failure_code", converted_737)?;
     } else {
         result.set_item("failure_code", py.None())?;
     }
     if let Some(value) = &value.failure_description {
-        let converted_728 = (value).as_str().into_py_any(py)?;
-        result.set_item("failure_description", converted_728)?;
+        let converted_738 = (value).as_str().into_py_any(py)?;
+        result.set_item("failure_description", converted_738)?;
     } else {
         result.set_item("failure_description", py.None())?;
     }
@@ -6173,14 +6268,14 @@ fn range_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatch::types
     rboto_core::validate_input_fields(values, &["end_time", "start_time"])?;
     let mut builder = aws_sdk_cloudwatch::types::Range::builder();
     if let Some(value) = dict_value(values, "start_time")? {
-        let converted_729 = (|| -> PyResult<_> {
-            let timestamp_730: String = value.extract()?;
-            let converted_729 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_730,
+        let converted_739 = (|| -> PyResult<_> {
+            let timestamp_740: String = value.extract()?;
+            let converted_739 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_740,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_729)
+            Ok(converted_739)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6189,17 +6284,17 @@ fn range_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatch::types
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_start_time(Some(converted_729));
+        builder = builder.set_start_time(Some(converted_739));
     }
     if let Some(value) = dict_value(values, "end_time")? {
-        let converted_731 = (|| -> PyResult<_> {
-            let timestamp_732: String = value.extract()?;
-            let converted_731 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_732,
+        let converted_741 = (|| -> PyResult<_> {
+            let timestamp_742: String = value.extract()?;
+            let converted_741 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_742,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_731)
+            Ok(converted_741)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6208,7 +6303,7 @@ fn range_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatch::types
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_end_time(Some(converted_731));
+        builder = builder.set_end_time(Some(converted_741));
     }
     Ok(builder.build())
 }
@@ -6216,14 +6311,14 @@ fn range_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatch::types
 fn range_to_py(py: Python<'_>, value: &aws_sdk_cloudwatch::types::Range) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.start_time {
-        let converted_733 = (value).to_string().into_py_any(py)?;
-        result.set_item("start_time", converted_733)?;
+        let converted_743 = (value).to_string().into_py_any(py)?;
+        result.set_item("start_time", converted_743)?;
     } else {
         result.set_item("start_time", py.None())?;
     }
     if let Some(value) = &value.end_time {
-        let converted_734 = (value).to_string().into_py_any(py)?;
-        result.set_item("end_time", converted_734)?;
+        let converted_744 = (value).to_string().into_py_any(py)?;
+        result.set_item("end_time", converted_744)?;
     } else {
         result.set_item("end_time", py.None())?;
     }
@@ -6237,28 +6332,28 @@ fn resource_metric_selection_from_py(
     rboto_core::validate_input_fields(values, &["include_metrics"])?;
     let mut builder = aws_sdk_cloudwatch::types::ResourceMetricSelection::builder();
     if let Some(value) = dict_value(values, "include_metrics")? {
-        let converted_735 = (|| -> PyResult<_> {
-            let mut converted_735 =
+        let converted_745 = (|| -> PyResult<_> {
+            let mut converted_745 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_739, item_result_736) in value.try_iter()?.enumerate() {
-                let item_737 = item_result_736.map_err(|error| {
+            for (index_749, item_result_746) in value.try_iter()?.enumerate() {
+                let item_747 = item_result_746.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_739),
+                        rboto_core::InputPath::Index(index_749),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_738 = (|| -> PyResult<_> {
-                    let converted_item_738: String = item_737.extract()?;
-                    Ok(converted_item_738)
+                let converted_item_748 = (|| -> PyResult<_> {
+                    let converted_item_748: String = item_747.extract()?;
+                    Ok(converted_item_748)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_739), "str")
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_749), "str")
                 })?;
-                converted_735.push(converted_item_738);
+                converted_745.push(converted_item_748);
             }
-            Ok(converted_735)
+            Ok(converted_745)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6267,7 +6362,7 @@ fn resource_metric_selection_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_include_metrics(Some(converted_735));
+        builder = builder.set_include_metrics(Some(converted_745));
     }
     Ok(builder.build())
 }
@@ -6278,13 +6373,13 @@ fn resource_metric_selection_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.include_metrics {
-        let converted_740_list = PyList::empty(py);
-        for item_741 in value {
-            let converted_item_742 = (item_741).as_str().into_py_any(py)?;
-            converted_740_list.append(converted_item_742)?;
+        let converted_750_list = PyList::empty(py);
+        for item_751 in value {
+            let converted_item_752 = (item_751).as_str().into_py_any(py)?;
+            converted_750_list.append(converted_item_752)?;
         }
-        let converted_740 = converted_740_list.into_any().unbind();
-        result.set_item("include_metrics", converted_740)?;
+        let converted_750 = converted_750_list.into_any().unbind();
+        result.set_item("include_metrics", converted_750)?;
     } else {
         result.set_item("include_metrics", py.None())?;
     }
@@ -6306,24 +6401,24 @@ fn resource_metrics_configuration_from_py(
     )?;
     let mut builder = aws_sdk_cloudwatch::types::ResourceMetricsConfiguration::builder();
     if let Some(value) = dict_value(values, "resource_arn")? {
-        let converted_743 = (|| -> PyResult<_> {
-            let converted_743: String = value.extract()?;
-            Ok(converted_743)
+        let converted_753 = (|| -> PyResult<_> {
+            let converted_753: String = value.extract()?;
+            Ok(converted_753)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("resource_arn"), "str")
         })?;
-        builder = builder.set_resource_arn(Some(converted_743));
+        builder = builder.set_resource_arn(Some(converted_753));
     }
     if let Some(value) = dict_value(values, "created_at")? {
-        let converted_744 = (|| -> PyResult<_> {
-            let timestamp_745: String = value.extract()?;
-            let converted_744 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_745,
+        let converted_754 = (|| -> PyResult<_> {
+            let timestamp_755: String = value.extract()?;
+            let converted_754 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_755,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_744)
+            Ok(converted_754)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6332,17 +6427,17 @@ fn resource_metrics_configuration_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_created_at(Some(converted_744));
+        builder = builder.set_created_at(Some(converted_754));
     }
     if let Some(value) = dict_value(values, "updated_at")? {
-        let converted_746 = (|| -> PyResult<_> {
-            let timestamp_747: String = value.extract()?;
-            let converted_746 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_747,
+        let converted_756 = (|| -> PyResult<_> {
+            let timestamp_757: String = value.extract()?;
+            let converted_756 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_757,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_746)
+            Ok(converted_756)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6351,35 +6446,35 @@ fn resource_metrics_configuration_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_updated_at(Some(converted_746));
+        builder = builder.set_updated_at(Some(converted_756));
     }
     if let Some(value) = dict_value(values, "metric_selections")? {
-        let converted_748 = (|| -> PyResult<_> {
-            let mut converted_748 =
+        let converted_758 = (|| -> PyResult<_> {
+            let mut converted_758 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_752, item_result_749) in value.try_iter()?.enumerate() {
-                let item_750 = item_result_749.map_err(|error| {
+            for (index_762, item_result_759) in value.try_iter()?.enumerate() {
+                let item_760 = item_result_759.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_752),
+                        rboto_core::InputPath::Index(index_762),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_751 = (|| -> PyResult<_> {
-                    let converted_item_751 = resource_metric_selection_from_py(&item_750)?;
-                    Ok(converted_item_751)
+                let converted_item_761 = (|| -> PyResult<_> {
+                    let converted_item_761 = resource_metric_selection_from_py(&item_760)?;
+                    Ok(converted_item_761)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_752),
+                        rboto_core::InputPath::Index(index_762),
                         "dict (ResourceMetricSelection)",
                     )
                 })?;
-                converted_748.push(converted_item_751);
+                converted_758.push(converted_item_761);
             }
-            Ok(converted_748)
+            Ok(converted_758)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6388,7 +6483,7 @@ fn resource_metrics_configuration_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_metric_selections(Some(converted_748));
+        builder = builder.set_metric_selections(Some(converted_758));
     }
     Ok(builder.build())
 }
@@ -6399,31 +6494,31 @@ fn resource_metrics_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.resource_arn {
-        let converted_753 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_arn", converted_753)?;
+        let converted_763 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_arn", converted_763)?;
     } else {
         result.set_item("resource_arn", py.None())?;
     }
     if let Some(value) = &value.created_at {
-        let converted_754 = (value).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_754)?;
+        let converted_764 = (value).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_764)?;
     } else {
         result.set_item("created_at", py.None())?;
     }
     if let Some(value) = &value.updated_at {
-        let converted_755 = (value).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_755)?;
+        let converted_765 = (value).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_765)?;
     } else {
         result.set_item("updated_at", py.None())?;
     }
     if let Some(value) = &value.metric_selections {
-        let converted_756_list = PyList::empty(py);
-        for item_757 in value {
-            let converted_item_758 = resource_metric_selection_to_py(py, item_757)?;
-            converted_756_list.append(converted_item_758)?;
+        let converted_766_list = PyList::empty(py);
+        for item_767 in value {
+            let converted_item_768 = resource_metric_selection_to_py(py, item_767)?;
+            converted_766_list.append(converted_item_768)?;
         }
-        let converted_756 = converted_756_list.into_any().unbind();
-        result.set_item("metric_selections", converted_756)?;
+        let converted_766 = converted_766_list.into_any().unbind();
+        result.set_item("metric_selections", converted_766)?;
     } else {
         result.set_item("metric_selections", py.None())?;
     }
@@ -6435,9 +6530,9 @@ fn rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatch::types:
     rboto_core::validate_input_fields(values, &["schedule"])?;
     let mut builder = aws_sdk_cloudwatch::types::Rule::builder();
     if let Some(value) = dict_value(values, "schedule")? {
-        let converted_759 = (|| -> PyResult<_> {
-            let converted_759 = schedule_from_py(&value)?;
-            Ok(converted_759)
+        let converted_769 = (|| -> PyResult<_> {
+            let converted_769 = schedule_from_py(&value)?;
+            Ok(converted_769)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6446,7 +6541,7 @@ fn rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatch::types:
                 "dict (Schedule)",
             )
         })?;
-        builder = builder.set_schedule(Some(converted_759));
+        builder = builder.set_schedule(Some(converted_769));
     }
     Ok(builder.build())
 }
@@ -6454,8 +6549,8 @@ fn rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatch::types:
 fn rule_to_py(py: Python<'_>, value: &aws_sdk_cloudwatch::types::Rule) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.schedule {
-        let converted_760 = schedule_to_py(py, value)?;
-        result.set_item("schedule", converted_760)?;
+        let converted_770 = schedule_to_py(py, value)?;
+        result.set_item("schedule", converted_770)?;
     } else {
         result.set_item("schedule", py.None())?;
     }
@@ -6467,34 +6562,34 @@ fn schedule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatch::ty
     rboto_core::validate_input_fields(values, &["duration", "expression", "timezone"])?;
     let mut builder = aws_sdk_cloudwatch::types::Schedule::builder();
     if let Some(value) = dict_value(values, "expression")? {
-        let converted_761 = (|| -> PyResult<_> {
-            let converted_761: String = value.extract()?;
-            Ok(converted_761)
+        let converted_771 = (|| -> PyResult<_> {
+            let converted_771: String = value.extract()?;
+            Ok(converted_771)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("expression"), "str")
         })?;
-        builder = builder.set_expression(Some(converted_761));
+        builder = builder.set_expression(Some(converted_771));
     }
     if let Some(value) = dict_value(values, "duration")? {
-        let converted_762 = (|| -> PyResult<_> {
-            let converted_762: String = value.extract()?;
-            Ok(converted_762)
+        let converted_772 = (|| -> PyResult<_> {
+            let converted_772: String = value.extract()?;
+            Ok(converted_772)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("duration"), "str")
         })?;
-        builder = builder.set_duration(Some(converted_762));
+        builder = builder.set_duration(Some(converted_772));
     }
     if let Some(value) = dict_value(values, "timezone")? {
-        let converted_763 = (|| -> PyResult<_> {
-            let converted_763: String = value.extract()?;
-            Ok(converted_763)
+        let converted_773 = (|| -> PyResult<_> {
+            let converted_773: String = value.extract()?;
+            Ok(converted_773)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("timezone"), "str")
         })?;
-        builder = builder.set_timezone(Some(converted_763));
+        builder = builder.set_timezone(Some(converted_773));
     }
     Ok(builder.build())
 }
@@ -6505,20 +6600,20 @@ fn schedule_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.expression {
-        let converted_764 = (value).as_str().into_py_any(py)?;
-        result.set_item("expression", converted_764)?;
+        let converted_774 = (value).as_str().into_py_any(py)?;
+        result.set_item("expression", converted_774)?;
     } else {
         result.set_item("expression", py.None())?;
     }
     if let Some(value) = &value.duration {
-        let converted_765 = (value).as_str().into_py_any(py)?;
-        result.set_item("duration", converted_765)?;
+        let converted_775 = (value).as_str().into_py_any(py)?;
+        result.set_item("duration", converted_775)?;
     } else {
         result.set_item("duration", py.None())?;
     }
     if let Some(value) = &value.timezone {
-        let converted_766 = (value).as_str().into_py_any(py)?;
-        result.set_item("timezone", converted_766)?;
+        let converted_776 = (value).as_str().into_py_any(py)?;
+        result.set_item("timezone", converted_776)?;
     } else {
         result.set_item("timezone", py.None())?;
     }
@@ -6539,9 +6634,9 @@ fn schedule_configuration_from_py(
     )?;
     let mut builder = aws_sdk_cloudwatch::types::ScheduleConfiguration::builder();
     if let Some(value) = dict_value(values, "schedule_expression")? {
-        let converted_767 = (|| -> PyResult<_> {
-            let converted_767: String = value.extract()?;
-            Ok(converted_767)
+        let converted_777 = (|| -> PyResult<_> {
+            let converted_777: String = value.extract()?;
+            Ok(converted_777)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6550,12 +6645,12 @@ fn schedule_configuration_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_schedule_expression(Some(converted_767));
+        builder = builder.set_schedule_expression(Some(converted_777));
     }
     if let Some(value) = dict_value(values, "start_time_offset")? {
-        let converted_768 = (|| -> PyResult<_> {
-            let converted_768: i64 = value.extract()?;
-            Ok(converted_768)
+        let converted_778 = (|| -> PyResult<_> {
+            let converted_778: i64 = value.extract()?;
+            Ok(converted_778)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6564,12 +6659,12 @@ fn schedule_configuration_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_start_time_offset(Some(converted_768));
+        builder = builder.set_start_time_offset(Some(converted_778));
     }
     if let Some(value) = dict_value(values, "end_time_offset")? {
-        let converted_769 = (|| -> PyResult<_> {
-            let converted_769: i64 = value.extract()?;
-            Ok(converted_769)
+        let converted_779 = (|| -> PyResult<_> {
+            let converted_779: i64 = value.extract()?;
+            Ok(converted_779)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6578,7 +6673,7 @@ fn schedule_configuration_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_end_time_offset(Some(converted_769));
+        builder = builder.set_end_time_offset(Some(converted_779));
     }
     Ok(builder.build())
 }
@@ -6589,20 +6684,20 @@ fn schedule_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.schedule_expression {
-        let converted_770 = (value).as_str().into_py_any(py)?;
-        result.set_item("schedule_expression", converted_770)?;
+        let converted_780 = (value).as_str().into_py_any(py)?;
+        result.set_item("schedule_expression", converted_780)?;
     } else {
         result.set_item("schedule_expression", py.None())?;
     }
     if let Some(value) = &value.start_time_offset {
-        let converted_771 = (value).to_owned().into_py_any(py)?;
-        result.set_item("start_time_offset", converted_771)?;
+        let converted_781 = (value).to_owned().into_py_any(py)?;
+        result.set_item("start_time_offset", converted_781)?;
     } else {
         result.set_item("start_time_offset", py.None())?;
     }
     if let Some(value) = &value.end_time_offset {
-        let converted_772 = (value).to_owned().into_py_any(py)?;
-        result.set_item("end_time_offset", converted_772)?;
+        let converted_782 = (value).to_owned().into_py_any(py)?;
+        result.set_item("end_time_offset", converted_782)?;
     } else {
         result.set_item("end_time_offset", py.None())?;
     }
@@ -6627,38 +6722,38 @@ fn scheduled_query_configuration_from_py(
     )?;
     let mut builder = aws_sdk_cloudwatch::types::ScheduledQueryConfiguration::builder();
     if let Some(value) = dict_value(values, "query_string")? {
-        let converted_773 = (|| -> PyResult<_> {
-            let converted_773: String = value.extract()?;
-            Ok(converted_773)
+        let converted_783 = (|| -> PyResult<_> {
+            let converted_783: String = value.extract()?;
+            Ok(converted_783)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("query_string"), "str")
         })?;
-        builder = builder.set_query_string(Some(converted_773));
+        builder = builder.set_query_string(Some(converted_783));
     }
     if let Some(value) = dict_value(values, "log_group_identifiers")? {
-        let converted_774 = (|| -> PyResult<_> {
-            let mut converted_774 =
+        let converted_784 = (|| -> PyResult<_> {
+            let mut converted_784 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_778, item_result_775) in value.try_iter()?.enumerate() {
-                let item_776 = item_result_775.map_err(|error| {
+            for (index_788, item_result_785) in value.try_iter()?.enumerate() {
+                let item_786 = item_result_785.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_778),
+                        rboto_core::InputPath::Index(index_788),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_777 = (|| -> PyResult<_> {
-                    let converted_item_777: String = item_776.extract()?;
-                    Ok(converted_item_777)
+                let converted_item_787 = (|| -> PyResult<_> {
+                    let converted_item_787: String = item_786.extract()?;
+                    Ok(converted_item_787)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_778), "str")
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_788), "str")
                 })?;
-                converted_774.push(converted_item_777);
+                converted_784.push(converted_item_787);
             }
-            Ok(converted_774)
+            Ok(converted_784)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6667,22 +6762,22 @@ fn scheduled_query_configuration_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_log_group_identifiers(Some(converted_774));
+        builder = builder.set_log_group_identifiers(Some(converted_784));
     }
     if let Some(value) = dict_value(values, "query_arn")? {
-        let converted_779 = (|| -> PyResult<_> {
-            let converted_779: String = value.extract()?;
-            Ok(converted_779)
+        let converted_789 = (|| -> PyResult<_> {
+            let converted_789: String = value.extract()?;
+            Ok(converted_789)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("query_arn"), "str")
         })?;
-        builder = builder.set_query_arn(Some(converted_779));
+        builder = builder.set_query_arn(Some(converted_789));
     }
     if let Some(value) = dict_value(values, "scheduled_query_role_arn")? {
-        let converted_780 = (|| -> PyResult<_> {
-            let converted_780: String = value.extract()?;
-            Ok(converted_780)
+        let converted_790 = (|| -> PyResult<_> {
+            let converted_790: String = value.extract()?;
+            Ok(converted_790)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6691,12 +6786,12 @@ fn scheduled_query_configuration_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_scheduled_query_role_arn(Some(converted_780));
+        builder = builder.set_scheduled_query_role_arn(Some(converted_790));
     }
     if let Some(value) = dict_value(values, "schedule_configuration")? {
-        let converted_781 = (|| -> PyResult<_> {
-            let converted_781 = schedule_configuration_from_py(&value)?;
-            Ok(converted_781)
+        let converted_791 = (|| -> PyResult<_> {
+            let converted_791 = schedule_configuration_from_py(&value)?;
+            Ok(converted_791)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6705,12 +6800,12 @@ fn scheduled_query_configuration_from_py(
                 "dict (ScheduleConfiguration)",
             )
         })?;
-        builder = builder.set_schedule_configuration(Some(converted_781));
+        builder = builder.set_schedule_configuration(Some(converted_791));
     }
     if let Some(value) = dict_value(values, "aggregation_expression")? {
-        let converted_782 = (|| -> PyResult<_> {
-            let converted_782: String = value.extract()?;
-            Ok(converted_782)
+        let converted_792 = (|| -> PyResult<_> {
+            let converted_792: String = value.extract()?;
+            Ok(converted_792)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6719,40 +6814,40 @@ fn scheduled_query_configuration_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_aggregation_expression(Some(converted_782));
+        builder = builder.set_aggregation_expression(Some(converted_792));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let converted_783 = (|| -> PyResult<_> {
-            let mut converted_783 =
+        let converted_793 = (|| -> PyResult<_> {
+            let mut converted_793 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_787, item_result_784) in value.try_iter()?.enumerate() {
-                let item_785 = item_result_784.map_err(|error| {
+            for (index_797, item_result_794) in value.try_iter()?.enumerate() {
+                let item_795 = item_result_794.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_787),
+                        rboto_core::InputPath::Index(index_797),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_786 = (|| -> PyResult<_> {
-                    let converted_item_786 = tag_from_py(&item_785)?;
-                    Ok(converted_item_786)
+                let converted_item_796 = (|| -> PyResult<_> {
+                    let converted_item_796 = tag_from_py(&item_795)?;
+                    Ok(converted_item_796)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_787),
+                        rboto_core::InputPath::Index(index_797),
                         "dict (Tag)",
                     )
                 })?;
-                converted_783.push(converted_item_786);
+                converted_793.push(converted_item_796);
             }
-            Ok(converted_783)
+            Ok(converted_793)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("tags"), "sequence")
         })?;
-        builder = builder.set_tags(Some(converted_783));
+        builder = builder.set_tags(Some(converted_793));
     }
     Ok(builder.build())
 }
@@ -6763,54 +6858,54 @@ fn scheduled_query_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.query_string {
-        let converted_788 = (value).as_str().into_py_any(py)?;
-        result.set_item("query_string", converted_788)?;
+        let converted_798 = (value).as_str().into_py_any(py)?;
+        result.set_item("query_string", converted_798)?;
     } else {
         result.set_item("query_string", py.None())?;
     }
     if let Some(value) = &value.log_group_identifiers {
-        let converted_789_list = PyList::empty(py);
-        for item_790 in value {
-            let converted_item_791 = (item_790).as_str().into_py_any(py)?;
-            converted_789_list.append(converted_item_791)?;
+        let converted_799_list = PyList::empty(py);
+        for item_800 in value {
+            let converted_item_801 = (item_800).as_str().into_py_any(py)?;
+            converted_799_list.append(converted_item_801)?;
         }
-        let converted_789 = converted_789_list.into_any().unbind();
-        result.set_item("log_group_identifiers", converted_789)?;
+        let converted_799 = converted_799_list.into_any().unbind();
+        result.set_item("log_group_identifiers", converted_799)?;
     } else {
         result.set_item("log_group_identifiers", py.None())?;
     }
     if let Some(value) = &value.query_arn {
-        let converted_792 = (value).as_str().into_py_any(py)?;
-        result.set_item("query_arn", converted_792)?;
+        let converted_802 = (value).as_str().into_py_any(py)?;
+        result.set_item("query_arn", converted_802)?;
     } else {
         result.set_item("query_arn", py.None())?;
     }
     if let Some(value) = &value.scheduled_query_role_arn {
-        let converted_793 = (value).as_str().into_py_any(py)?;
-        result.set_item("scheduled_query_role_arn", converted_793)?;
+        let converted_803 = (value).as_str().into_py_any(py)?;
+        result.set_item("scheduled_query_role_arn", converted_803)?;
     } else {
         result.set_item("scheduled_query_role_arn", py.None())?;
     }
     if let Some(value) = &value.schedule_configuration {
-        let converted_794 = schedule_configuration_to_py(py, value)?;
-        result.set_item("schedule_configuration", converted_794)?;
+        let converted_804 = schedule_configuration_to_py(py, value)?;
+        result.set_item("schedule_configuration", converted_804)?;
     } else {
         result.set_item("schedule_configuration", py.None())?;
     }
     if let Some(value) = &value.aggregation_expression {
-        let converted_795 = (value).as_str().into_py_any(py)?;
-        result.set_item("aggregation_expression", converted_795)?;
+        let converted_805 = (value).as_str().into_py_any(py)?;
+        result.set_item("aggregation_expression", converted_805)?;
     } else {
         result.set_item("aggregation_expression", py.None())?;
     }
     if let Some(value) = &value.tags {
-        let converted_796_list = PyList::empty(py);
-        for item_797 in value {
-            let converted_item_798 = tag_to_py(py, item_797)?;
-            converted_796_list.append(converted_item_798)?;
+        let converted_806_list = PyList::empty(py);
+        for item_807 in value {
+            let converted_item_808 = tag_to_py(py, item_807)?;
+            converted_806_list.append(converted_item_808)?;
         }
-        let converted_796 = converted_796_list.into_any().unbind();
-        result.set_item("tags", converted_796)?;
+        let converted_806 = converted_806_list.into_any().unbind();
+        result.set_item("tags", converted_806)?;
     } else {
         result.set_item("tags", py.None())?;
     }
@@ -6833,62 +6928,62 @@ fn single_metric_anomaly_detector_from_py(
     )?;
     let mut builder = aws_sdk_cloudwatch::types::SingleMetricAnomalyDetector::builder();
     if let Some(value) = dict_value(values, "account_id")? {
-        let converted_799 = (|| -> PyResult<_> {
-            let converted_799: String = value.extract()?;
-            Ok(converted_799)
+        let converted_809 = (|| -> PyResult<_> {
+            let converted_809: String = value.extract()?;
+            Ok(converted_809)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("account_id"), "str")
         })?;
-        builder = builder.set_account_id(Some(converted_799));
+        builder = builder.set_account_id(Some(converted_809));
     }
     if let Some(value) = dict_value(values, "namespace")? {
-        let converted_800 = (|| -> PyResult<_> {
-            let converted_800: String = value.extract()?;
-            Ok(converted_800)
+        let converted_810 = (|| -> PyResult<_> {
+            let converted_810: String = value.extract()?;
+            Ok(converted_810)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("namespace"), "str")
         })?;
-        builder = builder.set_namespace(Some(converted_800));
+        builder = builder.set_namespace(Some(converted_810));
     }
     if let Some(value) = dict_value(values, "metric_name")? {
-        let converted_801 = (|| -> PyResult<_> {
-            let converted_801: String = value.extract()?;
-            Ok(converted_801)
+        let converted_811 = (|| -> PyResult<_> {
+            let converted_811: String = value.extract()?;
+            Ok(converted_811)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("metric_name"), "str")
         })?;
-        builder = builder.set_metric_name(Some(converted_801));
+        builder = builder.set_metric_name(Some(converted_811));
     }
     if let Some(value) = dict_value(values, "dimensions")? {
-        let converted_802 = (|| -> PyResult<_> {
-            let mut converted_802 =
+        let converted_812 = (|| -> PyResult<_> {
+            let mut converted_812 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_806, item_result_803) in value.try_iter()?.enumerate() {
-                let item_804 = item_result_803.map_err(|error| {
+            for (index_816, item_result_813) in value.try_iter()?.enumerate() {
+                let item_814 = item_result_813.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_806),
+                        rboto_core::InputPath::Index(index_816),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_805 = (|| -> PyResult<_> {
-                    let converted_item_805 = dimension_from_py(&item_804)?;
-                    Ok(converted_item_805)
+                let converted_item_815 = (|| -> PyResult<_> {
+                    let converted_item_815 = dimension_from_py(&item_814)?;
+                    Ok(converted_item_815)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_806),
+                        rboto_core::InputPath::Index(index_816),
                         "dict (Dimension)",
                     )
                 })?;
-                converted_802.push(converted_item_805);
+                converted_812.push(converted_item_815);
             }
-            Ok(converted_802)
+            Ok(converted_812)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6897,17 +6992,17 @@ fn single_metric_anomaly_detector_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_dimensions(Some(converted_802));
+        builder = builder.set_dimensions(Some(converted_812));
     }
     if let Some(value) = dict_value(values, "stat")? {
-        let converted_807 = (|| -> PyResult<_> {
-            let converted_807: String = value.extract()?;
-            Ok(converted_807)
+        let converted_817 = (|| -> PyResult<_> {
+            let converted_817: String = value.extract()?;
+            Ok(converted_817)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stat"), "str")
         })?;
-        builder = builder.set_stat(Some(converted_807));
+        builder = builder.set_stat(Some(converted_817));
     }
     Ok(builder.build())
 }
@@ -6918,37 +7013,37 @@ fn single_metric_anomaly_detector_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.account_id {
-        let converted_808 = (value).as_str().into_py_any(py)?;
-        result.set_item("account_id", converted_808)?;
+        let converted_818 = (value).as_str().into_py_any(py)?;
+        result.set_item("account_id", converted_818)?;
     } else {
         result.set_item("account_id", py.None())?;
     }
     if let Some(value) = &value.namespace {
-        let converted_809 = (value).as_str().into_py_any(py)?;
-        result.set_item("namespace", converted_809)?;
+        let converted_819 = (value).as_str().into_py_any(py)?;
+        result.set_item("namespace", converted_819)?;
     } else {
         result.set_item("namespace", py.None())?;
     }
     if let Some(value) = &value.metric_name {
-        let converted_810 = (value).as_str().into_py_any(py)?;
-        result.set_item("metric_name", converted_810)?;
+        let converted_820 = (value).as_str().into_py_any(py)?;
+        result.set_item("metric_name", converted_820)?;
     } else {
         result.set_item("metric_name", py.None())?;
     }
     if let Some(value) = &value.dimensions {
-        let converted_811_list = PyList::empty(py);
-        for item_812 in value {
-            let converted_item_813 = dimension_to_py(py, item_812)?;
-            converted_811_list.append(converted_item_813)?;
+        let converted_821_list = PyList::empty(py);
+        for item_822 in value {
+            let converted_item_823 = dimension_to_py(py, item_822)?;
+            converted_821_list.append(converted_item_823)?;
         }
-        let converted_811 = converted_811_list.into_any().unbind();
-        result.set_item("dimensions", converted_811)?;
+        let converted_821 = converted_821_list.into_any().unbind();
+        result.set_item("dimensions", converted_821)?;
     } else {
         result.set_item("dimensions", py.None())?;
     }
     if let Some(value) = &value.stat {
-        let converted_814 = (value).as_str().into_py_any(py)?;
-        result.set_item("stat", converted_814)?;
+        let converted_824 = (value).as_str().into_py_any(py)?;
+        result.set_item("stat", converted_824)?;
     } else {
         result.set_item("stat", py.None())?;
     }
@@ -6979,44 +7074,44 @@ fn statistic_set_from_py(
     rboto_core::validate_input_fields(values, &["maximum", "minimum", "sample_count", "sum"])?;
     let mut builder = aws_sdk_cloudwatch::types::StatisticSet::builder();
     if let Some(value) = dict_value(values, "sample_count")? {
-        let converted_815 = (|| -> PyResult<_> {
-            let converted_815: f64 = value.extract()?;
-            Ok(converted_815)
+        let converted_825 = (|| -> PyResult<_> {
+            let converted_825: f64 = value.extract()?;
+            Ok(converted_825)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("sample_count"), "float")
         })?;
-        builder = builder.set_sample_count(Some(converted_815));
+        builder = builder.set_sample_count(Some(converted_825));
     }
     if let Some(value) = dict_value(values, "sum")? {
-        let converted_816 = (|| -> PyResult<_> {
-            let converted_816: f64 = value.extract()?;
-            Ok(converted_816)
+        let converted_826 = (|| -> PyResult<_> {
+            let converted_826: f64 = value.extract()?;
+            Ok(converted_826)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("sum"), "float")
         })?;
-        builder = builder.set_sum(Some(converted_816));
+        builder = builder.set_sum(Some(converted_826));
     }
     if let Some(value) = dict_value(values, "minimum")? {
-        let converted_817 = (|| -> PyResult<_> {
-            let converted_817: f64 = value.extract()?;
-            Ok(converted_817)
+        let converted_827 = (|| -> PyResult<_> {
+            let converted_827: f64 = value.extract()?;
+            Ok(converted_827)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("minimum"), "float")
         })?;
-        builder = builder.set_minimum(Some(converted_817));
+        builder = builder.set_minimum(Some(converted_827));
     }
     if let Some(value) = dict_value(values, "maximum")? {
-        let converted_818 = (|| -> PyResult<_> {
-            let converted_818: f64 = value.extract()?;
-            Ok(converted_818)
+        let converted_828 = (|| -> PyResult<_> {
+            let converted_828: f64 = value.extract()?;
+            Ok(converted_828)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("maximum"), "float")
         })?;
-        builder = builder.set_maximum(Some(converted_818));
+        builder = builder.set_maximum(Some(converted_828));
     }
     Ok(builder.build())
 }
@@ -7027,26 +7122,26 @@ fn statistic_set_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.sample_count {
-        let converted_819 = (value).to_owned().into_py_any(py)?;
-        result.set_item("sample_count", converted_819)?;
+        let converted_829 = (value).to_owned().into_py_any(py)?;
+        result.set_item("sample_count", converted_829)?;
     } else {
         result.set_item("sample_count", py.None())?;
     }
     if let Some(value) = &value.sum {
-        let converted_820 = (value).to_owned().into_py_any(py)?;
-        result.set_item("sum", converted_820)?;
+        let converted_830 = (value).to_owned().into_py_any(py)?;
+        result.set_item("sum", converted_830)?;
     } else {
         result.set_item("sum", py.None())?;
     }
     if let Some(value) = &value.minimum {
-        let converted_821 = (value).to_owned().into_py_any(py)?;
-        result.set_item("minimum", converted_821)?;
+        let converted_831 = (value).to_owned().into_py_any(py)?;
+        result.set_item("minimum", converted_831)?;
     } else {
         result.set_item("minimum", py.None())?;
     }
     if let Some(value) = &value.maximum {
-        let converted_822 = (value).to_owned().into_py_any(py)?;
-        result.set_item("maximum", converted_822)?;
+        let converted_832 = (value).to_owned().into_py_any(py)?;
+        result.set_item("maximum", converted_832)?;
     } else {
         result.set_item("maximum", py.None())?;
     }
@@ -7058,24 +7153,24 @@ fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatch::types::
     rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_cloudwatch::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
-        let converted_823 = (|| -> PyResult<_> {
-            let converted_823: String = value.extract()?;
-            Ok(converted_823)
+        let converted_833 = (|| -> PyResult<_> {
+            let converted_833: String = value.extract()?;
+            Ok(converted_833)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("key"), "str")
         })?;
-        builder = builder.set_key(Some(converted_823));
+        builder = builder.set_key(Some(converted_833));
     }
     if let Some(value) = dict_value(values, "value")? {
-        let converted_824 = (|| -> PyResult<_> {
-            let converted_824: String = value.extract()?;
-            Ok(converted_824)
+        let converted_834 = (|| -> PyResult<_> {
+            let converted_834: String = value.extract()?;
+            Ok(converted_834)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("value"), "str")
         })?;
-        builder = builder.set_value(Some(converted_824));
+        builder = builder.set_value(Some(converted_834));
     }
     Ok(builder.build())
 }
@@ -7083,14 +7178,14 @@ fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatch::types::
 fn tag_to_py(py: Python<'_>, value: &aws_sdk_cloudwatch::types::Tag) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.key {
-        let converted_825 = (value).as_str().into_py_any(py)?;
-        result.set_item("key", converted_825)?;
+        let converted_835 = (value).as_str().into_py_any(py)?;
+        result.set_item("key", converted_835)?;
     } else {
         result.set_item("key", py.None())?;
     }
     if let Some(value) = &value.value {
-        let converted_826 = (value).as_str().into_py_any(py)?;
-        result.set_item("value", converted_826)?;
+        let converted_836 = (value).as_str().into_py_any(py)?;
+        result.set_item("value", converted_836)?;
     } else {
         result.set_item("value", py.None())?;
     }
@@ -7104,14 +7199,14 @@ fn wall_clock_window_from_py(
     rboto_core::validate_input_fields(values, &["timezone"])?;
     let mut builder = aws_sdk_cloudwatch::types::WallClockWindow::builder();
     if let Some(value) = dict_value(values, "timezone")? {
-        let converted_827 = (|| -> PyResult<_> {
-            let converted_827: String = value.extract()?;
-            Ok(converted_827)
+        let converted_837 = (|| -> PyResult<_> {
+            let converted_837: String = value.extract()?;
+            Ok(converted_837)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("timezone"), "str")
         })?;
-        builder = builder.set_timezone(Some(converted_827));
+        builder = builder.set_timezone(Some(converted_837));
     }
     Ok(builder.build())
 }
@@ -7122,8 +7217,8 @@ fn wall_clock_window_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.timezone {
-        let converted_828 = (value).as_str().into_py_any(py)?;
-        result.set_item("timezone", converted_828)?;
+        let converted_838 = (value).as_str().into_py_any(py)?;
+        result.set_item("timezone", converted_838)?;
     } else {
         result.set_item("timezone", py.None())?;
     }
@@ -7143,9 +7238,9 @@ fn warm_up_configuration_from_py(
     )?;
     let mut builder = aws_sdk_cloudwatch::types::WarmUpConfiguration::builder();
     if let Some(value) = dict_value(values, "warm_up_period_duration_in_minutes")? {
-        let converted_829 = (|| -> PyResult<_> {
-            let converted_829: i32 = value.extract()?;
-            Ok(converted_829)
+        let converted_839 = (|| -> PyResult<_> {
+            let converted_839: i32 = value.extract()?;
+            Ok(converted_839)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -7154,12 +7249,12 @@ fn warm_up_configuration_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_warm_up_period_duration_in_minutes(Some(converted_829));
+        builder = builder.set_warm_up_period_duration_in_minutes(Some(converted_839));
     }
     if let Some(value) = dict_value(values, "only_start_evaluating_after_warm_up_period_ends")? {
-        let converted_830 = (|| -> PyResult<_> {
-            let converted_830: bool = value.extract()?;
-            Ok(converted_830)
+        let converted_840 = (|| -> PyResult<_> {
+            let converted_840: bool = value.extract()?;
+            Ok(converted_840)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -7168,7 +7263,7 @@ fn warm_up_configuration_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_only_start_evaluating_after_warm_up_period_ends(Some(converted_830));
+        builder = builder.set_only_start_evaluating_after_warm_up_period_ends(Some(converted_840));
     }
     Ok(builder.build())
 }
@@ -7179,16 +7274,16 @@ fn warm_up_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.warm_up_period_duration_in_minutes {
-        let converted_831 = (value).to_owned().into_py_any(py)?;
-        result.set_item("warm_up_period_duration_in_minutes", converted_831)?;
+        let converted_841 = (value).to_owned().into_py_any(py)?;
+        result.set_item("warm_up_period_duration_in_minutes", converted_841)?;
     } else {
         result.set_item("warm_up_period_duration_in_minutes", py.None())?;
     }
     if let Some(value) = &value.only_start_evaluating_after_warm_up_period_ends {
-        let converted_832 = (value).to_owned().into_py_any(py)?;
+        let converted_842 = (value).to_owned().into_py_any(py)?;
         result.set_item(
             "only_start_evaluating_after_warm_up_period_ends",
-            converted_832,
+            converted_842,
         )?;
     } else {
         result.set_item("only_start_evaluating_after_warm_up_period_ends", py.None())?;
@@ -7216,8 +7311,8 @@ fn action_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.alarm_tags_propagation {
-        let converted_1307 = alarm_tags_propagation_to_py(py, value)?;
-        result.set_item("alarm_tags_propagation", converted_1307)?;
+        let converted_1331 = alarm_tags_propagation_to_py(py, value)?;
+        result.set_item("alarm_tags_propagation", converted_1331)?;
     } else {
         result.set_item("alarm_tags_propagation", py.None())?;
     }
@@ -7238,14 +7333,14 @@ impl PyActionConfiguration {
     #[getter]
     fn alarm_tags_propagation(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_tags_propagation {
-            let converted_1306 = Py::new(
+            let converted_1330 = Py::new(
                 py,
                 PyAlarmTagsPropagation {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1306)
+            Ok(converted_1330)
         } else {
             Ok(py.None())
         }
@@ -7266,8 +7361,8 @@ impl PyAlarmContributor {
     #[getter]
     fn contributor_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contributor_id {
-            let converted_1308 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1308)
+            let converted_1332 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1332)
         } else {
             Ok(py.None())
         }
@@ -7276,14 +7371,14 @@ impl PyAlarmContributor {
     #[getter]
     fn contributor_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contributor_attributes {
-            let converted_1309_dict = PyDict::new(py);
-            for (key_1310, value_1311) in value {
-                let converted_key_1312 = (key_1310).as_str().into_py_any(py)?;
-                let converted_value_1313 = (value_1311).as_str().into_py_any(py)?;
-                converted_1309_dict.set_item(converted_key_1312, converted_value_1313)?;
+            let converted_1333_dict = PyDict::new(py);
+            for (key_1334, value_1335) in value {
+                let converted_key_1336 = (key_1334).as_str().into_py_any(py)?;
+                let converted_value_1337 = (value_1335).as_str().into_py_any(py)?;
+                converted_1333_dict.set_item(converted_key_1336, converted_value_1337)?;
             }
-            let converted_1309 = converted_1309_dict.into_any().unbind();
-            Ok(converted_1309)
+            let converted_1333 = converted_1333_dict.into_any().unbind();
+            Ok(converted_1333)
         } else {
             Ok(py.None())
         }
@@ -7292,8 +7387,8 @@ impl PyAlarmContributor {
     #[getter]
     fn state_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_reason {
-            let converted_1314 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1314)
+            let converted_1338 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1338)
         } else {
             Ok(py.None())
         }
@@ -7302,8 +7397,8 @@ impl PyAlarmContributor {
     #[getter]
     fn state_transitioned_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_transitioned_timestamp {
-            let converted_1315 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1315)
+            let converted_1339 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1339)
         } else {
             Ok(py.None())
         }
@@ -7324,8 +7419,8 @@ impl PyAlarmHistoryItem {
     #[getter]
     fn alarm_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_name {
-            let converted_1316 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1316)
+            let converted_1340 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1340)
         } else {
             Ok(py.None())
         }
@@ -7334,8 +7429,8 @@ impl PyAlarmHistoryItem {
     #[getter]
     fn alarm_contributor_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_contributor_id {
-            let converted_1317 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1317)
+            let converted_1341 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1341)
         } else {
             Ok(py.None())
         }
@@ -7344,8 +7439,8 @@ impl PyAlarmHistoryItem {
     #[getter]
     fn alarm_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_type {
-            let converted_1318 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1318)
+            let converted_1342 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1342)
         } else {
             Ok(py.None())
         }
@@ -7354,8 +7449,8 @@ impl PyAlarmHistoryItem {
     #[getter]
     fn timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timestamp {
-            let converted_1319 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1319)
+            let converted_1343 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1343)
         } else {
             Ok(py.None())
         }
@@ -7364,8 +7459,8 @@ impl PyAlarmHistoryItem {
     #[getter]
     fn history_item_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.history_item_type {
-            let converted_1320 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1320)
+            let converted_1344 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1344)
         } else {
             Ok(py.None())
         }
@@ -7374,8 +7469,8 @@ impl PyAlarmHistoryItem {
     #[getter]
     fn history_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.history_summary {
-            let converted_1321 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1321)
+            let converted_1345 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1345)
         } else {
             Ok(py.None())
         }
@@ -7384,8 +7479,8 @@ impl PyAlarmHistoryItem {
     #[getter]
     fn history_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.history_data {
-            let converted_1322 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1322)
+            let converted_1346 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1346)
         } else {
             Ok(py.None())
         }
@@ -7394,14 +7489,14 @@ impl PyAlarmHistoryItem {
     #[getter]
     fn alarm_contributor_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_contributor_attributes {
-            let converted_1323_dict = PyDict::new(py);
-            for (key_1324, value_1325) in value {
-                let converted_key_1326 = (key_1324).as_str().into_py_any(py)?;
-                let converted_value_1327 = (value_1325).as_str().into_py_any(py)?;
-                converted_1323_dict.set_item(converted_key_1326, converted_value_1327)?;
+            let converted_1347_dict = PyDict::new(py);
+            for (key_1348, value_1349) in value {
+                let converted_key_1350 = (key_1348).as_str().into_py_any(py)?;
+                let converted_value_1351 = (value_1349).as_str().into_py_any(py)?;
+                converted_1347_dict.set_item(converted_key_1350, converted_value_1351)?;
             }
-            let converted_1323 = converted_1323_dict.into_any().unbind();
-            Ok(converted_1323)
+            let converted_1347 = converted_1347_dict.into_any().unbind();
+            Ok(converted_1347)
         } else {
             Ok(py.None())
         }
@@ -7426,8 +7521,8 @@ impl PyAlarmMuteRuleSummary {
     #[getter]
     fn alarm_mute_rule_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_mute_rule_arn {
-            let converted_1328 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1328)
+            let converted_1352 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1352)
         } else {
             Ok(py.None())
         }
@@ -7436,8 +7531,8 @@ impl PyAlarmMuteRuleSummary {
     #[getter]
     fn expire_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expire_date {
-            let converted_1329 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1329)
+            let converted_1353 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1353)
         } else {
             Ok(py.None())
         }
@@ -7446,8 +7541,8 @@ impl PyAlarmMuteRuleSummary {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1330 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1330)
+            let converted_1354 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1354)
         } else {
             Ok(py.None())
         }
@@ -7456,8 +7551,8 @@ impl PyAlarmMuteRuleSummary {
     #[getter]
     fn mute_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.mute_type {
-            let converted_1331 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1331)
+            let converted_1355 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1355)
         } else {
             Ok(py.None())
         }
@@ -7466,8 +7561,8 @@ impl PyAlarmMuteRuleSummary {
     #[getter]
     fn last_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_updated_timestamp {
-            let converted_1332 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1332)
+            let converted_1356 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1356)
         } else {
             Ok(py.None())
         }
@@ -7492,8 +7587,8 @@ impl PyAlarmTagsPropagation {
     #[getter]
     fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.enabled {
-            let converted_1333 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1333)
+            let converted_1357 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1357)
         } else {
             Ok(py.None())
         }
@@ -7502,13 +7597,13 @@ impl PyAlarmTagsPropagation {
     #[getter]
     fn included_tag_keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.included_tag_keys {
-            let converted_1334_list = PyList::empty(py);
-            for item_1335 in value {
-                let converted_item_1336 = (item_1335).as_str().into_py_any(py)?;
-                converted_1334_list.append(converted_item_1336)?;
+            let converted_1358_list = PyList::empty(py);
+            for item_1359 in value {
+                let converted_item_1360 = (item_1359).as_str().into_py_any(py)?;
+                converted_1358_list.append(converted_item_1360)?;
             }
-            let converted_1334 = converted_1334_list.into_any().unbind();
-            Ok(converted_1334)
+            let converted_1358 = converted_1358_list.into_any().unbind();
+            Ok(converted_1358)
         } else {
             Ok(py.None())
         }
@@ -7517,13 +7612,13 @@ impl PyAlarmTagsPropagation {
     #[getter]
     fn excluded_tag_keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.excluded_tag_keys {
-            let converted_1337_list = PyList::empty(py);
-            for item_1338 in value {
-                let converted_item_1339 = (item_1338).as_str().into_py_any(py)?;
-                converted_1337_list.append(converted_item_1339)?;
+            let converted_1361_list = PyList::empty(py);
+            for item_1362 in value {
+                let converted_item_1363 = (item_1362).as_str().into_py_any(py)?;
+                converted_1361_list.append(converted_item_1363)?;
             }
-            let converted_1337 = converted_1337_list.into_any().unbind();
-            Ok(converted_1337)
+            let converted_1361 = converted_1361_list.into_any().unbind();
+            Ok(converted_1361)
         } else {
             Ok(py.None())
         }
@@ -7558,7 +7653,7 @@ impl From<aws_sdk_cloudwatch::types::AnomalyDetector> for SharedAnomalyDetector 
             dimensions: value.dimensions.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1352| Arc::new(owned_1352))
+                    .map(|owned_1376| Arc::new(owned_1376))
                     .collect()
             }),
             stat: value.stat,
@@ -7583,67 +7678,67 @@ fn anomaly_detector_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.anomaly_detector_id {
-        let converted_1353 = (value).as_str().into_py_any(py)?;
-        result.set_item("anomaly_detector_id", converted_1353)?;
+        let converted_1377 = (value).as_str().into_py_any(py)?;
+        result.set_item("anomaly_detector_id", converted_1377)?;
     } else {
         result.set_item("anomaly_detector_id", py.None())?;
     }
     if let Some(value) = &value.namespace {
-        let converted_1354 = (value).as_str().into_py_any(py)?;
-        result.set_item("namespace", converted_1354)?;
+        let converted_1378 = (value).as_str().into_py_any(py)?;
+        result.set_item("namespace", converted_1378)?;
     } else {
         result.set_item("namespace", py.None())?;
     }
     if let Some(value) = &value.metric_name {
-        let converted_1355 = (value).as_str().into_py_any(py)?;
-        result.set_item("metric_name", converted_1355)?;
+        let converted_1379 = (value).as_str().into_py_any(py)?;
+        result.set_item("metric_name", converted_1379)?;
     } else {
         result.set_item("metric_name", py.None())?;
     }
     if let Some(value) = &value.dimensions {
-        let converted_1356_list = PyList::empty(py);
-        for item_1357 in value {
-            let converted_item_1358 = dimension_to_py(py, item_1357)?;
-            converted_1356_list.append(converted_item_1358)?;
+        let converted_1380_list = PyList::empty(py);
+        for item_1381 in value {
+            let converted_item_1382 = dimension_to_py(py, item_1381)?;
+            converted_1380_list.append(converted_item_1382)?;
         }
-        let converted_1356 = converted_1356_list.into_any().unbind();
-        result.set_item("dimensions", converted_1356)?;
+        let converted_1380 = converted_1380_list.into_any().unbind();
+        result.set_item("dimensions", converted_1380)?;
     } else {
         result.set_item("dimensions", py.None())?;
     }
     if let Some(value) = &value.stat {
-        let converted_1359 = (value).as_str().into_py_any(py)?;
-        result.set_item("stat", converted_1359)?;
+        let converted_1383 = (value).as_str().into_py_any(py)?;
+        result.set_item("stat", converted_1383)?;
     } else {
         result.set_item("stat", py.None())?;
     }
     if let Some(value) = &value.configuration {
-        let converted_1360 = anomaly_detector_configuration_shared_to_py(py, value)?;
-        result.set_item("configuration", converted_1360)?;
+        let converted_1384 = anomaly_detector_configuration_shared_to_py(py, value)?;
+        result.set_item("configuration", converted_1384)?;
     } else {
         result.set_item("configuration", py.None())?;
     }
     if let Some(value) = &value.state_value {
-        let converted_1361 = (value).as_str().into_py_any(py)?;
-        result.set_item("state_value", converted_1361)?;
+        let converted_1385 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_value", converted_1385)?;
     } else {
         result.set_item("state_value", py.None())?;
     }
     if let Some(value) = &value.metric_characteristics {
-        let converted_1362 = metric_characteristics_to_py(py, value)?;
-        result.set_item("metric_characteristics", converted_1362)?;
+        let converted_1386 = metric_characteristics_to_py(py, value)?;
+        result.set_item("metric_characteristics", converted_1386)?;
     } else {
         result.set_item("metric_characteristics", py.None())?;
     }
     if let Some(value) = &value.single_metric_anomaly_detector {
-        let converted_1363 = single_metric_anomaly_detector_shared_to_py(py, value)?;
-        result.set_item("single_metric_anomaly_detector", converted_1363)?;
+        let converted_1387 = single_metric_anomaly_detector_shared_to_py(py, value)?;
+        result.set_item("single_metric_anomaly_detector", converted_1387)?;
     } else {
         result.set_item("single_metric_anomaly_detector", py.None())?;
     }
     if let Some(value) = &value.metric_math_anomaly_detector {
-        let converted_1364 = metric_math_anomaly_detector_shared_to_py(py, value)?;
-        result.set_item("metric_math_anomaly_detector", converted_1364)?;
+        let converted_1388 = metric_math_anomaly_detector_shared_to_py(py, value)?;
+        result.set_item("metric_math_anomaly_detector", converted_1388)?;
     } else {
         result.set_item("metric_math_anomaly_detector", py.None())?;
     }
@@ -7660,8 +7755,8 @@ impl PyAnomalyDetector {
     #[getter]
     fn anomaly_detector_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.anomaly_detector_id {
-            let converted_1340 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1340)
+            let converted_1364 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1364)
         } else {
             Ok(py.None())
         }
@@ -7670,8 +7765,8 @@ impl PyAnomalyDetector {
     #[getter]
     fn namespace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.namespace {
-            let converted_1341 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1341)
+            let converted_1365 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1365)
         } else {
             Ok(py.None())
         }
@@ -7680,8 +7775,8 @@ impl PyAnomalyDetector {
     #[getter]
     fn metric_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_name {
-            let converted_1342 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1342)
+            let converted_1366 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1366)
         } else {
             Ok(py.None())
         }
@@ -7690,19 +7785,19 @@ impl PyAnomalyDetector {
     #[getter]
     fn dimensions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dimensions {
-            let converted_1343_list = PyList::empty(py);
-            for item_1344 in value {
-                let converted_item_1345 = Py::new(
+            let converted_1367_list = PyList::empty(py);
+            for item_1368 in value {
+                let converted_item_1369 = Py::new(
                     py,
                     PyDimension {
-                        inner: Arc::clone(item_1344),
+                        inner: Arc::clone(item_1368),
                     },
                 )?
                 .into_any();
-                converted_1343_list.append(converted_item_1345)?;
+                converted_1367_list.append(converted_item_1369)?;
             }
-            let converted_1343 = converted_1343_list.into_any().unbind();
-            Ok(converted_1343)
+            let converted_1367 = converted_1367_list.into_any().unbind();
+            Ok(converted_1367)
         } else {
             Ok(py.None())
         }
@@ -7711,8 +7806,8 @@ impl PyAnomalyDetector {
     #[getter]
     fn stat(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stat {
-            let converted_1346 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1346)
+            let converted_1370 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1370)
         } else {
             Ok(py.None())
         }
@@ -7721,14 +7816,14 @@ impl PyAnomalyDetector {
     #[getter]
     fn configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.configuration {
-            let converted_1347 = Py::new(
+            let converted_1371 = Py::new(
                 py,
                 PyAnomalyDetectorConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1347)
+            Ok(converted_1371)
         } else {
             Ok(py.None())
         }
@@ -7737,8 +7832,8 @@ impl PyAnomalyDetector {
     #[getter]
     fn state_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_value {
-            let converted_1348 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1348)
+            let converted_1372 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1372)
         } else {
             Ok(py.None())
         }
@@ -7747,14 +7842,14 @@ impl PyAnomalyDetector {
     #[getter]
     fn metric_characteristics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_characteristics {
-            let converted_1349 = Py::new(
+            let converted_1373 = Py::new(
                 py,
                 PyMetricCharacteristics {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1349)
+            Ok(converted_1373)
         } else {
             Ok(py.None())
         }
@@ -7763,14 +7858,14 @@ impl PyAnomalyDetector {
     #[getter]
     fn single_metric_anomaly_detector(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.single_metric_anomaly_detector {
-            let converted_1350 = Py::new(
+            let converted_1374 = Py::new(
                 py,
                 PySingleMetricAnomalyDetector {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1350)
+            Ok(converted_1374)
         } else {
             Ok(py.None())
         }
@@ -7779,14 +7874,14 @@ impl PyAnomalyDetector {
     #[getter]
     fn metric_math_anomaly_detector(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_math_anomaly_detector {
-            let converted_1351 = Py::new(
+            let converted_1375 = Py::new(
                 py,
                 PyMetricMathAnomalyDetector {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1351)
+            Ok(converted_1375)
         } else {
             Ok(py.None())
         }
@@ -7815,7 +7910,7 @@ impl From<aws_sdk_cloudwatch::types::AnomalyDetectorConfiguration>
             excluded_time_ranges: value.excluded_time_ranges.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1371| Arc::new(owned_1371))
+                    .map(|owned_1395| Arc::new(owned_1395))
                     .collect()
             }),
             metric_timezone: value.metric_timezone,
@@ -7831,31 +7926,31 @@ fn anomaly_detector_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.excluded_time_ranges {
-        let converted_1372_list = PyList::empty(py);
-        for item_1373 in value {
-            let converted_item_1374 = range_to_py(py, item_1373)?;
-            converted_1372_list.append(converted_item_1374)?;
+        let converted_1396_list = PyList::empty(py);
+        for item_1397 in value {
+            let converted_item_1398 = range_to_py(py, item_1397)?;
+            converted_1396_list.append(converted_item_1398)?;
         }
-        let converted_1372 = converted_1372_list.into_any().unbind();
-        result.set_item("excluded_time_ranges", converted_1372)?;
+        let converted_1396 = converted_1396_list.into_any().unbind();
+        result.set_item("excluded_time_ranges", converted_1396)?;
     } else {
         result.set_item("excluded_time_ranges", py.None())?;
     }
     if let Some(value) = &value.metric_timezone {
-        let converted_1375 = (value).as_str().into_py_any(py)?;
-        result.set_item("metric_timezone", converted_1375)?;
+        let converted_1399 = (value).as_str().into_py_any(py)?;
+        result.set_item("metric_timezone", converted_1399)?;
     } else {
         result.set_item("metric_timezone", py.None())?;
     }
     if let Some(value) = &value.adaptation_speed {
-        let converted_1376 = (value).as_str().into_py_any(py)?;
-        result.set_item("adaptation_speed", converted_1376)?;
+        let converted_1400 = (value).as_str().into_py_any(py)?;
+        result.set_item("adaptation_speed", converted_1400)?;
     } else {
         result.set_item("adaptation_speed", py.None())?;
     }
     if let Some(value) = &value.outlier_filtering_strength {
-        let converted_1377 = (value).as_str().into_py_any(py)?;
-        result.set_item("outlier_filtering_strength", converted_1377)?;
+        let converted_1401 = (value).as_str().into_py_any(py)?;
+        result.set_item("outlier_filtering_strength", converted_1401)?;
     } else {
         result.set_item("outlier_filtering_strength", py.None())?;
     }
@@ -7876,19 +7971,19 @@ impl PyAnomalyDetectorConfiguration {
     #[getter]
     fn excluded_time_ranges(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.excluded_time_ranges {
-            let converted_1365_list = PyList::empty(py);
-            for item_1366 in value {
-                let converted_item_1367 = Py::new(
+            let converted_1389_list = PyList::empty(py);
+            for item_1390 in value {
+                let converted_item_1391 = Py::new(
                     py,
                     PyRange {
-                        inner: Arc::clone(item_1366),
+                        inner: Arc::clone(item_1390),
                     },
                 )?
                 .into_any();
-                converted_1365_list.append(converted_item_1367)?;
+                converted_1389_list.append(converted_item_1391)?;
             }
-            let converted_1365 = converted_1365_list.into_any().unbind();
-            Ok(converted_1365)
+            let converted_1389 = converted_1389_list.into_any().unbind();
+            Ok(converted_1389)
         } else {
             Ok(py.None())
         }
@@ -7897,8 +7992,8 @@ impl PyAnomalyDetectorConfiguration {
     #[getter]
     fn metric_timezone(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_timezone {
-            let converted_1368 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1368)
+            let converted_1392 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1392)
         } else {
             Ok(py.None())
         }
@@ -7907,8 +8002,8 @@ impl PyAnomalyDetectorConfiguration {
     #[getter]
     fn adaptation_speed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.adaptation_speed {
-            let converted_1369 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1369)
+            let converted_1393 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1393)
         } else {
             Ok(py.None())
         }
@@ -7917,8 +8012,8 @@ impl PyAnomalyDetectorConfiguration {
     #[getter]
     fn outlier_filtering_strength(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.outlier_filtering_strength {
-            let converted_1370 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1370)
+            let converted_1394 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1394)
         } else {
             Ok(py.None())
         }
@@ -7989,137 +8084,137 @@ fn composite_alarm_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.actions_enabled {
-        let converted_1404 = (value).to_owned().into_py_any(py)?;
-        result.set_item("actions_enabled", converted_1404)?;
+        let converted_1428 = (value).to_owned().into_py_any(py)?;
+        result.set_item("actions_enabled", converted_1428)?;
     } else {
         result.set_item("actions_enabled", py.None())?;
     }
     if let Some(value) = &value.alarm_actions {
-        let converted_1405_list = PyList::empty(py);
-        for item_1406 in value {
-            let converted_item_1407 = (item_1406).as_str().into_py_any(py)?;
-            converted_1405_list.append(converted_item_1407)?;
+        let converted_1429_list = PyList::empty(py);
+        for item_1430 in value {
+            let converted_item_1431 = (item_1430).as_str().into_py_any(py)?;
+            converted_1429_list.append(converted_item_1431)?;
         }
-        let converted_1405 = converted_1405_list.into_any().unbind();
-        result.set_item("alarm_actions", converted_1405)?;
+        let converted_1429 = converted_1429_list.into_any().unbind();
+        result.set_item("alarm_actions", converted_1429)?;
     } else {
         result.set_item("alarm_actions", py.None())?;
     }
     if let Some(value) = &value.alarm_arn {
-        let converted_1408 = (value).as_str().into_py_any(py)?;
-        result.set_item("alarm_arn", converted_1408)?;
+        let converted_1432 = (value).as_str().into_py_any(py)?;
+        result.set_item("alarm_arn", converted_1432)?;
     } else {
         result.set_item("alarm_arn", py.None())?;
     }
     if let Some(value) = &value.alarm_configuration_updated_timestamp {
-        let converted_1409 = (value).to_string().into_py_any(py)?;
-        result.set_item("alarm_configuration_updated_timestamp", converted_1409)?;
+        let converted_1433 = (value).to_string().into_py_any(py)?;
+        result.set_item("alarm_configuration_updated_timestamp", converted_1433)?;
     } else {
         result.set_item("alarm_configuration_updated_timestamp", py.None())?;
     }
     if let Some(value) = &value.alarm_description {
-        let converted_1410 = (value).as_str().into_py_any(py)?;
-        result.set_item("alarm_description", converted_1410)?;
+        let converted_1434 = (value).as_str().into_py_any(py)?;
+        result.set_item("alarm_description", converted_1434)?;
     } else {
         result.set_item("alarm_description", py.None())?;
     }
     if let Some(value) = &value.alarm_name {
-        let converted_1411 = (value).as_str().into_py_any(py)?;
-        result.set_item("alarm_name", converted_1411)?;
+        let converted_1435 = (value).as_str().into_py_any(py)?;
+        result.set_item("alarm_name", converted_1435)?;
     } else {
         result.set_item("alarm_name", py.None())?;
     }
     if let Some(value) = &value.alarm_rule {
-        let converted_1412 = (value).as_str().into_py_any(py)?;
-        result.set_item("alarm_rule", converted_1412)?;
+        let converted_1436 = (value).as_str().into_py_any(py)?;
+        result.set_item("alarm_rule", converted_1436)?;
     } else {
         result.set_item("alarm_rule", py.None())?;
     }
     if let Some(value) = &value.insufficient_data_actions {
-        let converted_1413_list = PyList::empty(py);
-        for item_1414 in value {
-            let converted_item_1415 = (item_1414).as_str().into_py_any(py)?;
-            converted_1413_list.append(converted_item_1415)?;
+        let converted_1437_list = PyList::empty(py);
+        for item_1438 in value {
+            let converted_item_1439 = (item_1438).as_str().into_py_any(py)?;
+            converted_1437_list.append(converted_item_1439)?;
         }
-        let converted_1413 = converted_1413_list.into_any().unbind();
-        result.set_item("insufficient_data_actions", converted_1413)?;
+        let converted_1437 = converted_1437_list.into_any().unbind();
+        result.set_item("insufficient_data_actions", converted_1437)?;
     } else {
         result.set_item("insufficient_data_actions", py.None())?;
     }
     if let Some(value) = &value.ok_actions {
-        let converted_1416_list = PyList::empty(py);
-        for item_1417 in value {
-            let converted_item_1418 = (item_1417).as_str().into_py_any(py)?;
-            converted_1416_list.append(converted_item_1418)?;
+        let converted_1440_list = PyList::empty(py);
+        for item_1441 in value {
+            let converted_item_1442 = (item_1441).as_str().into_py_any(py)?;
+            converted_1440_list.append(converted_item_1442)?;
         }
-        let converted_1416 = converted_1416_list.into_any().unbind();
-        result.set_item("ok_actions", converted_1416)?;
+        let converted_1440 = converted_1440_list.into_any().unbind();
+        result.set_item("ok_actions", converted_1440)?;
     } else {
         result.set_item("ok_actions", py.None())?;
     }
     if let Some(value) = &value.state_reason {
-        let converted_1419 = (value).as_str().into_py_any(py)?;
-        result.set_item("state_reason", converted_1419)?;
+        let converted_1443 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_reason", converted_1443)?;
     } else {
         result.set_item("state_reason", py.None())?;
     }
     if let Some(value) = &value.state_reason_data {
-        let converted_1420 = (value).as_str().into_py_any(py)?;
-        result.set_item("state_reason_data", converted_1420)?;
+        let converted_1444 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_reason_data", converted_1444)?;
     } else {
         result.set_item("state_reason_data", py.None())?;
     }
     if let Some(value) = &value.state_updated_timestamp {
-        let converted_1421 = (value).to_string().into_py_any(py)?;
-        result.set_item("state_updated_timestamp", converted_1421)?;
+        let converted_1445 = (value).to_string().into_py_any(py)?;
+        result.set_item("state_updated_timestamp", converted_1445)?;
     } else {
         result.set_item("state_updated_timestamp", py.None())?;
     }
     if let Some(value) = &value.state_value {
-        let converted_1422 = (value).as_str().into_py_any(py)?;
-        result.set_item("state_value", converted_1422)?;
+        let converted_1446 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_value", converted_1446)?;
     } else {
         result.set_item("state_value", py.None())?;
     }
     if let Some(value) = &value.state_transitioned_timestamp {
-        let converted_1423 = (value).to_string().into_py_any(py)?;
-        result.set_item("state_transitioned_timestamp", converted_1423)?;
+        let converted_1447 = (value).to_string().into_py_any(py)?;
+        result.set_item("state_transitioned_timestamp", converted_1447)?;
     } else {
         result.set_item("state_transitioned_timestamp", py.None())?;
     }
     if let Some(value) = &value.actions_suppressed_by {
-        let converted_1424 = (value).as_str().into_py_any(py)?;
-        result.set_item("actions_suppressed_by", converted_1424)?;
+        let converted_1448 = (value).as_str().into_py_any(py)?;
+        result.set_item("actions_suppressed_by", converted_1448)?;
     } else {
         result.set_item("actions_suppressed_by", py.None())?;
     }
     if let Some(value) = &value.actions_suppressed_reason {
-        let converted_1425 = (value).as_str().into_py_any(py)?;
-        result.set_item("actions_suppressed_reason", converted_1425)?;
+        let converted_1449 = (value).as_str().into_py_any(py)?;
+        result.set_item("actions_suppressed_reason", converted_1449)?;
     } else {
         result.set_item("actions_suppressed_reason", py.None())?;
     }
     if let Some(value) = &value.actions_suppressor {
-        let converted_1426 = (value).as_str().into_py_any(py)?;
-        result.set_item("actions_suppressor", converted_1426)?;
+        let converted_1450 = (value).as_str().into_py_any(py)?;
+        result.set_item("actions_suppressor", converted_1450)?;
     } else {
         result.set_item("actions_suppressor", py.None())?;
     }
     if let Some(value) = &value.actions_suppressor_wait_period {
-        let converted_1427 = (value).to_owned().into_py_any(py)?;
-        result.set_item("actions_suppressor_wait_period", converted_1427)?;
+        let converted_1451 = (value).to_owned().into_py_any(py)?;
+        result.set_item("actions_suppressor_wait_period", converted_1451)?;
     } else {
         result.set_item("actions_suppressor_wait_period", py.None())?;
     }
     if let Some(value) = &value.actions_suppressor_extension_period {
-        let converted_1428 = (value).to_owned().into_py_any(py)?;
-        result.set_item("actions_suppressor_extension_period", converted_1428)?;
+        let converted_1452 = (value).to_owned().into_py_any(py)?;
+        result.set_item("actions_suppressor_extension_period", converted_1452)?;
     } else {
         result.set_item("actions_suppressor_extension_period", py.None())?;
     }
     if let Some(value) = &value.action_configuration {
-        let converted_1429 = action_configuration_shared_to_py(py, value)?;
-        result.set_item("action_configuration", converted_1429)?;
+        let converted_1453 = action_configuration_shared_to_py(py, value)?;
+        result.set_item("action_configuration", converted_1453)?;
     } else {
         result.set_item("action_configuration", py.None())?;
     }
@@ -8136,201 +8231,6 @@ impl PyCompositeAlarm {
     #[getter]
     fn actions_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.actions_enabled {
-            let converted_1378 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1378)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn alarm_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.alarm_actions {
-            let converted_1379_list = PyList::empty(py);
-            for item_1380 in value {
-                let converted_item_1381 = (item_1380).as_str().into_py_any(py)?;
-                converted_1379_list.append(converted_item_1381)?;
-            }
-            let converted_1379 = converted_1379_list.into_any().unbind();
-            Ok(converted_1379)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn alarm_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.alarm_arn {
-            let converted_1382 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1382)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn alarm_configuration_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.alarm_configuration_updated_timestamp {
-            let converted_1383 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1383)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn alarm_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.alarm_description {
-            let converted_1384 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1384)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn alarm_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.alarm_name {
-            let converted_1385 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1385)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn alarm_rule(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.alarm_rule {
-            let converted_1386 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1386)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn insufficient_data_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.insufficient_data_actions {
-            let converted_1387_list = PyList::empty(py);
-            for item_1388 in value {
-                let converted_item_1389 = (item_1388).as_str().into_py_any(py)?;
-                converted_1387_list.append(converted_item_1389)?;
-            }
-            let converted_1387 = converted_1387_list.into_any().unbind();
-            Ok(converted_1387)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn ok_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.ok_actions {
-            let converted_1390_list = PyList::empty(py);
-            for item_1391 in value {
-                let converted_item_1392 = (item_1391).as_str().into_py_any(py)?;
-                converted_1390_list.append(converted_item_1392)?;
-            }
-            let converted_1390 = converted_1390_list.into_any().unbind();
-            Ok(converted_1390)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_reason {
-            let converted_1393 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1393)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_reason_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_reason_data {
-            let converted_1394 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1394)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_updated_timestamp {
-            let converted_1395 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1395)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_value {
-            let converted_1396 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1396)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_transitioned_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_transitioned_timestamp {
-            let converted_1397 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1397)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn actions_suppressed_by(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.actions_suppressed_by {
-            let converted_1398 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1398)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn actions_suppressed_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.actions_suppressed_reason {
-            let converted_1399 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1399)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn actions_suppressor(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.actions_suppressor {
-            let converted_1400 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1400)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn actions_suppressor_wait_period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.actions_suppressor_wait_period {
-            let converted_1401 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1401)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn actions_suppressor_extension_period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.actions_suppressor_extension_period {
             let converted_1402 = (value).to_owned().into_py_any(py)?;
             Ok(converted_1402)
         } else {
@@ -8339,16 +8239,211 @@ impl PyCompositeAlarm {
     }
 
     #[getter]
+    fn alarm_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.alarm_actions {
+            let converted_1403_list = PyList::empty(py);
+            for item_1404 in value {
+                let converted_item_1405 = (item_1404).as_str().into_py_any(py)?;
+                converted_1403_list.append(converted_item_1405)?;
+            }
+            let converted_1403 = converted_1403_list.into_any().unbind();
+            Ok(converted_1403)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn alarm_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.alarm_arn {
+            let converted_1406 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1406)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn alarm_configuration_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.alarm_configuration_updated_timestamp {
+            let converted_1407 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1407)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn alarm_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.alarm_description {
+            let converted_1408 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1408)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn alarm_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.alarm_name {
+            let converted_1409 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1409)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn alarm_rule(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.alarm_rule {
+            let converted_1410 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1410)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn insufficient_data_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.insufficient_data_actions {
+            let converted_1411_list = PyList::empty(py);
+            for item_1412 in value {
+                let converted_item_1413 = (item_1412).as_str().into_py_any(py)?;
+                converted_1411_list.append(converted_item_1413)?;
+            }
+            let converted_1411 = converted_1411_list.into_any().unbind();
+            Ok(converted_1411)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ok_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ok_actions {
+            let converted_1414_list = PyList::empty(py);
+            for item_1415 in value {
+                let converted_item_1416 = (item_1415).as_str().into_py_any(py)?;
+                converted_1414_list.append(converted_item_1416)?;
+            }
+            let converted_1414 = converted_1414_list.into_any().unbind();
+            Ok(converted_1414)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_reason {
+            let converted_1417 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1417)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_reason_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_reason_data {
+            let converted_1418 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1418)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_updated_timestamp {
+            let converted_1419 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1419)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_value {
+            let converted_1420 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1420)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_transitioned_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_transitioned_timestamp {
+            let converted_1421 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1421)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn actions_suppressed_by(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.actions_suppressed_by {
+            let converted_1422 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1422)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn actions_suppressed_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.actions_suppressed_reason {
+            let converted_1423 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1423)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn actions_suppressor(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.actions_suppressor {
+            let converted_1424 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1424)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn actions_suppressor_wait_period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.actions_suppressor_wait_period {
+            let converted_1425 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1425)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn actions_suppressor_extension_period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.actions_suppressor_extension_period {
+            let converted_1426 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1426)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
     fn action_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action_configuration {
-            let converted_1403 = Py::new(
+            let converted_1427 = Py::new(
                 py,
                 PyActionConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1403)
+            Ok(converted_1427)
         } else {
             Ok(py.None())
         }
@@ -8369,8 +8464,8 @@ impl PyDashboardEntry {
     #[getter]
     fn dashboard_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_name {
-            let converted_1430 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1430)
+            let converted_1454 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1454)
         } else {
             Ok(py.None())
         }
@@ -8379,8 +8474,8 @@ impl PyDashboardEntry {
     #[getter]
     fn dashboard_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_arn {
-            let converted_1431 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1431)
+            let converted_1455 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1455)
         } else {
             Ok(py.None())
         }
@@ -8389,8 +8484,8 @@ impl PyDashboardEntry {
     #[getter]
     fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified {
-            let converted_1432 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1432)
+            let converted_1456 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1456)
         } else {
             Ok(py.None())
         }
@@ -8399,8 +8494,8 @@ impl PyDashboardEntry {
     #[getter]
     fn size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.size {
-            let converted_1433 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1433)
+            let converted_1457 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1457)
         } else {
             Ok(py.None())
         }
@@ -8425,8 +8520,8 @@ impl PyDashboardValidationMessage {
     #[getter]
     fn data_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_path {
-            let converted_1434 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1434)
+            let converted_1458 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1458)
         } else {
             Ok(py.None())
         }
@@ -8435,8 +8530,8 @@ impl PyDashboardValidationMessage {
     #[getter]
     fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message {
-            let converted_1435 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1435)
+            let converted_1459 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1459)
         } else {
             Ok(py.None())
         }
@@ -8457,8 +8552,8 @@ impl PyDatapoint {
     #[getter]
     fn timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timestamp {
-            let converted_1436 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1436)
+            let converted_1460 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1460)
         } else {
             Ok(py.None())
         }
@@ -8467,8 +8562,8 @@ impl PyDatapoint {
     #[getter]
     fn sample_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sample_count {
-            let converted_1437 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1437)
+            let converted_1461 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1461)
         } else {
             Ok(py.None())
         }
@@ -8477,8 +8572,8 @@ impl PyDatapoint {
     #[getter]
     fn average(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.average {
-            let converted_1438 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1438)
+            let converted_1462 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1462)
         } else {
             Ok(py.None())
         }
@@ -8487,8 +8582,8 @@ impl PyDatapoint {
     #[getter]
     fn sum(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sum {
-            let converted_1439 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1439)
+            let converted_1463 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1463)
         } else {
             Ok(py.None())
         }
@@ -8497,8 +8592,8 @@ impl PyDatapoint {
     #[getter]
     fn minimum(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.minimum {
-            let converted_1440 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1440)
+            let converted_1464 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1464)
         } else {
             Ok(py.None())
         }
@@ -8507,8 +8602,8 @@ impl PyDatapoint {
     #[getter]
     fn maximum(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum {
-            let converted_1441 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1441)
+            let converted_1465 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1465)
         } else {
             Ok(py.None())
         }
@@ -8517,8 +8612,8 @@ impl PyDatapoint {
     #[getter]
     fn unit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unit {
-            let converted_1442 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1442)
+            let converted_1466 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1466)
         } else {
             Ok(py.None())
         }
@@ -8527,14 +8622,14 @@ impl PyDatapoint {
     #[getter]
     fn extended_statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.extended_statistics {
-            let converted_1443_dict = PyDict::new(py);
-            for (key_1444, value_1445) in value {
-                let converted_key_1446 = (key_1444).as_str().into_py_any(py)?;
-                let converted_value_1447 = (value_1445).to_owned().into_py_any(py)?;
-                converted_1443_dict.set_item(converted_key_1446, converted_value_1447)?;
+            let converted_1467_dict = PyDict::new(py);
+            for (key_1468, value_1469) in value {
+                let converted_key_1470 = (key_1468).as_str().into_py_any(py)?;
+                let converted_value_1471 = (value_1469).to_owned().into_py_any(py)?;
+                converted_1467_dict.set_item(converted_key_1470, converted_value_1471)?;
             }
-            let converted_1443 = converted_1443_dict.into_any().unbind();
-            Ok(converted_1443)
+            let converted_1467 = converted_1467_dict.into_any().unbind();
+            Ok(converted_1467)
         } else {
             Ok(py.None())
         }
@@ -8555,8 +8650,8 @@ impl PyDimension {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1448 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1448)
+            let converted_1472 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1472)
         } else {
             Ok(py.None())
         }
@@ -8565,8 +8660,8 @@ impl PyDimension {
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
-            let converted_1449 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1449)
+            let converted_1473 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1473)
         } else {
             Ok(py.None())
         }
@@ -8587,8 +8682,8 @@ impl PyInsightRule {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1450 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1450)
+            let converted_1474 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1474)
         } else {
             Ok(py.None())
         }
@@ -8597,8 +8692,8 @@ impl PyInsightRule {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1451 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1451)
+            let converted_1475 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1475)
         } else {
             Ok(py.None())
         }
@@ -8607,8 +8702,8 @@ impl PyInsightRule {
     #[getter]
     fn schema(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.schema {
-            let converted_1452 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1452)
+            let converted_1476 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1476)
         } else {
             Ok(py.None())
         }
@@ -8617,8 +8712,8 @@ impl PyInsightRule {
     #[getter]
     fn definition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.definition {
-            let converted_1453 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1453)
+            let converted_1477 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1477)
         } else {
             Ok(py.None())
         }
@@ -8627,8 +8722,8 @@ impl PyInsightRule {
     #[getter]
     fn managed_rule(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.managed_rule {
-            let converted_1454 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1454)
+            let converted_1478 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1478)
         } else {
             Ok(py.None())
         }
@@ -8637,8 +8732,8 @@ impl PyInsightRule {
     #[getter]
     fn apply_on_transformed_logs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.apply_on_transformed_logs {
-            let converted_1455 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1455)
+            let converted_1479 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1479)
         } else {
             Ok(py.None())
         }
@@ -8666,7 +8761,7 @@ impl From<aws_sdk_cloudwatch::types::InsightRuleContributor> for SharedInsightRu
             datapoints: value.datapoints.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1463| Arc::new(owned_1463))
+                    .map(|owned_1487| Arc::new(owned_1487))
                     .collect()
             }),
         }
@@ -8679,30 +8774,30 @@ fn insight_rule_contributor_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.keys {
-        let converted_1464_list = PyList::empty(py);
-        for item_1465 in value {
-            let converted_item_1466 = (item_1465).as_str().into_py_any(py)?;
-            converted_1464_list.append(converted_item_1466)?;
+        let converted_1488_list = PyList::empty(py);
+        for item_1489 in value {
+            let converted_item_1490 = (item_1489).as_str().into_py_any(py)?;
+            converted_1488_list.append(converted_item_1490)?;
         }
-        let converted_1464 = converted_1464_list.into_any().unbind();
-        result.set_item("keys", converted_1464)?;
+        let converted_1488 = converted_1488_list.into_any().unbind();
+        result.set_item("keys", converted_1488)?;
     } else {
         result.set_item("keys", py.None())?;
     }
     if let Some(value) = &value.approximate_aggregate_value {
-        let converted_1467 = (value).to_owned().into_py_any(py)?;
-        result.set_item("approximate_aggregate_value", converted_1467)?;
+        let converted_1491 = (value).to_owned().into_py_any(py)?;
+        result.set_item("approximate_aggregate_value", converted_1491)?;
     } else {
         result.set_item("approximate_aggregate_value", py.None())?;
     }
     if let Some(value) = &value.datapoints {
-        let converted_1468_list = PyList::empty(py);
-        for item_1469 in value {
-            let converted_item_1470 = insight_rule_contributor_datapoint_to_py(py, item_1469)?;
-            converted_1468_list.append(converted_item_1470)?;
+        let converted_1492_list = PyList::empty(py);
+        for item_1493 in value {
+            let converted_item_1494 = insight_rule_contributor_datapoint_to_py(py, item_1493)?;
+            converted_1492_list.append(converted_item_1494)?;
         }
-        let converted_1468 = converted_1468_list.into_any().unbind();
-        result.set_item("datapoints", converted_1468)?;
+        let converted_1492 = converted_1492_list.into_any().unbind();
+        result.set_item("datapoints", converted_1492)?;
     } else {
         result.set_item("datapoints", py.None())?;
     }
@@ -8723,13 +8818,13 @@ impl PyInsightRuleContributor {
     #[getter]
     fn keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.keys {
-            let converted_1456_list = PyList::empty(py);
-            for item_1457 in value {
-                let converted_item_1458 = (item_1457).as_str().into_py_any(py)?;
-                converted_1456_list.append(converted_item_1458)?;
+            let converted_1480_list = PyList::empty(py);
+            for item_1481 in value {
+                let converted_item_1482 = (item_1481).as_str().into_py_any(py)?;
+                converted_1480_list.append(converted_item_1482)?;
             }
-            let converted_1456 = converted_1456_list.into_any().unbind();
-            Ok(converted_1456)
+            let converted_1480 = converted_1480_list.into_any().unbind();
+            Ok(converted_1480)
         } else {
             Ok(py.None())
         }
@@ -8738,8 +8833,8 @@ impl PyInsightRuleContributor {
     #[getter]
     fn approximate_aggregate_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.approximate_aggregate_value {
-            let converted_1459 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1459)
+            let converted_1483 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1483)
         } else {
             Ok(py.None())
         }
@@ -8748,19 +8843,19 @@ impl PyInsightRuleContributor {
     #[getter]
     fn datapoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.datapoints {
-            let converted_1460_list = PyList::empty(py);
-            for item_1461 in value {
-                let converted_item_1462 = Py::new(
+            let converted_1484_list = PyList::empty(py);
+            for item_1485 in value {
+                let converted_item_1486 = Py::new(
                     py,
                     PyInsightRuleContributorDatapoint {
-                        inner: Arc::clone(item_1461),
+                        inner: Arc::clone(item_1485),
                     },
                 )?
                 .into_any();
-                converted_1460_list.append(converted_item_1462)?;
+                converted_1484_list.append(converted_item_1486)?;
             }
-            let converted_1460 = converted_1460_list.into_any().unbind();
-            Ok(converted_1460)
+            let converted_1484 = converted_1484_list.into_any().unbind();
+            Ok(converted_1484)
         } else {
             Ok(py.None())
         }
@@ -8785,8 +8880,8 @@ impl PyInsightRuleContributorDatapoint {
     #[getter]
     fn timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timestamp {
-            let converted_1471 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1471)
+            let converted_1495 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1495)
         } else {
             Ok(py.None())
         }
@@ -8795,8 +8890,8 @@ impl PyInsightRuleContributorDatapoint {
     #[getter]
     fn approximate_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.approximate_value {
-            let converted_1472 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1472)
+            let converted_1496 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1496)
         } else {
             Ok(py.None())
         }
@@ -8821,8 +8916,8 @@ impl PyInsightRuleMetricDatapoint {
     #[getter]
     fn timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timestamp {
-            let converted_1473 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1473)
+            let converted_1497 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1497)
         } else {
             Ok(py.None())
         }
@@ -8831,8 +8926,8 @@ impl PyInsightRuleMetricDatapoint {
     #[getter]
     fn unique_contributors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unique_contributors {
-            let converted_1474 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1474)
+            let converted_1498 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1498)
         } else {
             Ok(py.None())
         }
@@ -8841,8 +8936,8 @@ impl PyInsightRuleMetricDatapoint {
     #[getter]
     fn max_contributor_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.max_contributor_value {
-            let converted_1475 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1475)
+            let converted_1499 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1499)
         } else {
             Ok(py.None())
         }
@@ -8851,8 +8946,8 @@ impl PyInsightRuleMetricDatapoint {
     #[getter]
     fn sample_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sample_count {
-            let converted_1476 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1476)
+            let converted_1500 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1500)
         } else {
             Ok(py.None())
         }
@@ -8861,8 +8956,8 @@ impl PyInsightRuleMetricDatapoint {
     #[getter]
     fn average(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.average {
-            let converted_1477 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1477)
+            let converted_1501 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1501)
         } else {
             Ok(py.None())
         }
@@ -8871,8 +8966,8 @@ impl PyInsightRuleMetricDatapoint {
     #[getter]
     fn sum(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sum {
-            let converted_1478 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1478)
+            let converted_1502 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1502)
         } else {
             Ok(py.None())
         }
@@ -8881,8 +8976,8 @@ impl PyInsightRuleMetricDatapoint {
     #[getter]
     fn minimum(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.minimum {
-            let converted_1479 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1479)
+            let converted_1503 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1503)
         } else {
             Ok(py.None())
         }
@@ -8891,8 +8986,8 @@ impl PyInsightRuleMetricDatapoint {
     #[getter]
     fn maximum(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.maximum {
-            let converted_1480 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1480)
+            let converted_1504 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1504)
         } else {
             Ok(py.None())
         }
@@ -8970,161 +9065,161 @@ impl From<aws_sdk_cloudwatch::types::LogAlarm> for SharedLogAlarm {
 fn log_alarm_shared_to_py(py: Python<'_>, value: &SharedLogAlarm) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.alarm_name {
-        let converted_1511 = (value).as_str().into_py_any(py)?;
-        result.set_item("alarm_name", converted_1511)?;
+        let converted_1535 = (value).as_str().into_py_any(py)?;
+        result.set_item("alarm_name", converted_1535)?;
     } else {
         result.set_item("alarm_name", py.None())?;
     }
     if let Some(value) = &value.alarm_arn {
-        let converted_1512 = (value).as_str().into_py_any(py)?;
-        result.set_item("alarm_arn", converted_1512)?;
+        let converted_1536 = (value).as_str().into_py_any(py)?;
+        result.set_item("alarm_arn", converted_1536)?;
     } else {
         result.set_item("alarm_arn", py.None())?;
     }
     if let Some(value) = &value.alarm_description {
-        let converted_1513 = (value).as_str().into_py_any(py)?;
-        result.set_item("alarm_description", converted_1513)?;
+        let converted_1537 = (value).as_str().into_py_any(py)?;
+        result.set_item("alarm_description", converted_1537)?;
     } else {
         result.set_item("alarm_description", py.None())?;
     }
     if let Some(value) = &value.alarm_configuration_updated_timestamp {
-        let converted_1514 = (value).to_string().into_py_any(py)?;
-        result.set_item("alarm_configuration_updated_timestamp", converted_1514)?;
+        let converted_1538 = (value).to_string().into_py_any(py)?;
+        result.set_item("alarm_configuration_updated_timestamp", converted_1538)?;
     } else {
         result.set_item("alarm_configuration_updated_timestamp", py.None())?;
     }
     if let Some(value) = &value.actions_enabled {
-        let converted_1515 = (value).to_owned().into_py_any(py)?;
-        result.set_item("actions_enabled", converted_1515)?;
+        let converted_1539 = (value).to_owned().into_py_any(py)?;
+        result.set_item("actions_enabled", converted_1539)?;
     } else {
         result.set_item("actions_enabled", py.None())?;
     }
     if let Some(value) = &value.ok_actions {
-        let converted_1516_list = PyList::empty(py);
-        for item_1517 in value {
-            let converted_item_1518 = (item_1517).as_str().into_py_any(py)?;
-            converted_1516_list.append(converted_item_1518)?;
+        let converted_1540_list = PyList::empty(py);
+        for item_1541 in value {
+            let converted_item_1542 = (item_1541).as_str().into_py_any(py)?;
+            converted_1540_list.append(converted_item_1542)?;
         }
-        let converted_1516 = converted_1516_list.into_any().unbind();
-        result.set_item("ok_actions", converted_1516)?;
+        let converted_1540 = converted_1540_list.into_any().unbind();
+        result.set_item("ok_actions", converted_1540)?;
     } else {
         result.set_item("ok_actions", py.None())?;
     }
     if let Some(value) = &value.alarm_actions {
-        let converted_1519_list = PyList::empty(py);
-        for item_1520 in value {
-            let converted_item_1521 = (item_1520).as_str().into_py_any(py)?;
-            converted_1519_list.append(converted_item_1521)?;
+        let converted_1543_list = PyList::empty(py);
+        for item_1544 in value {
+            let converted_item_1545 = (item_1544).as_str().into_py_any(py)?;
+            converted_1543_list.append(converted_item_1545)?;
         }
-        let converted_1519 = converted_1519_list.into_any().unbind();
-        result.set_item("alarm_actions", converted_1519)?;
+        let converted_1543 = converted_1543_list.into_any().unbind();
+        result.set_item("alarm_actions", converted_1543)?;
     } else {
         result.set_item("alarm_actions", py.None())?;
     }
     if let Some(value) = &value.insufficient_data_actions {
-        let converted_1522_list = PyList::empty(py);
-        for item_1523 in value {
-            let converted_item_1524 = (item_1523).as_str().into_py_any(py)?;
-            converted_1522_list.append(converted_item_1524)?;
+        let converted_1546_list = PyList::empty(py);
+        for item_1547 in value {
+            let converted_item_1548 = (item_1547).as_str().into_py_any(py)?;
+            converted_1546_list.append(converted_item_1548)?;
         }
-        let converted_1522 = converted_1522_list.into_any().unbind();
-        result.set_item("insufficient_data_actions", converted_1522)?;
+        let converted_1546 = converted_1546_list.into_any().unbind();
+        result.set_item("insufficient_data_actions", converted_1546)?;
     } else {
         result.set_item("insufficient_data_actions", py.None())?;
     }
     if let Some(value) = &value.state_value {
-        let converted_1525 = (value).as_str().into_py_any(py)?;
-        result.set_item("state_value", converted_1525)?;
+        let converted_1549 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_value", converted_1549)?;
     } else {
         result.set_item("state_value", py.None())?;
     }
     if let Some(value) = &value.state_reason {
-        let converted_1526 = (value).as_str().into_py_any(py)?;
-        result.set_item("state_reason", converted_1526)?;
+        let converted_1550 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_reason", converted_1550)?;
     } else {
         result.set_item("state_reason", py.None())?;
     }
     if let Some(value) = &value.state_reason_data {
-        let converted_1527 = (value).as_str().into_py_any(py)?;
-        result.set_item("state_reason_data", converted_1527)?;
+        let converted_1551 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_reason_data", converted_1551)?;
     } else {
         result.set_item("state_reason_data", py.None())?;
     }
     if let Some(value) = &value.state_updated_timestamp {
-        let converted_1528 = (value).to_string().into_py_any(py)?;
-        result.set_item("state_updated_timestamp", converted_1528)?;
+        let converted_1552 = (value).to_string().into_py_any(py)?;
+        result.set_item("state_updated_timestamp", converted_1552)?;
     } else {
         result.set_item("state_updated_timestamp", py.None())?;
     }
     if let Some(value) = &value.scheduled_query_configuration {
-        let converted_1529 = scheduled_query_configuration_shared_to_py(py, value)?;
-        result.set_item("scheduled_query_configuration", converted_1529)?;
+        let converted_1553 = scheduled_query_configuration_shared_to_py(py, value)?;
+        result.set_item("scheduled_query_configuration", converted_1553)?;
     } else {
         result.set_item("scheduled_query_configuration", py.None())?;
     }
     if let Some(value) = &value.query_results_to_evaluate {
-        let converted_1530 = (value).to_owned().into_py_any(py)?;
-        result.set_item("query_results_to_evaluate", converted_1530)?;
+        let converted_1554 = (value).to_owned().into_py_any(py)?;
+        result.set_item("query_results_to_evaluate", converted_1554)?;
     } else {
         result.set_item("query_results_to_evaluate", py.None())?;
     }
     if let Some(value) = &value.query_results_to_alarm {
-        let converted_1531 = (value).to_owned().into_py_any(py)?;
-        result.set_item("query_results_to_alarm", converted_1531)?;
+        let converted_1555 = (value).to_owned().into_py_any(py)?;
+        result.set_item("query_results_to_alarm", converted_1555)?;
     } else {
         result.set_item("query_results_to_alarm", py.None())?;
     }
     if let Some(value) = &value.threshold {
-        let converted_1532 = (value).to_owned().into_py_any(py)?;
-        result.set_item("threshold", converted_1532)?;
+        let converted_1556 = (value).to_owned().into_py_any(py)?;
+        result.set_item("threshold", converted_1556)?;
     } else {
         result.set_item("threshold", py.None())?;
     }
     if let Some(value) = &value.comparison_operator {
-        let converted_1533 = (value).as_str().into_py_any(py)?;
-        result.set_item("comparison_operator", converted_1533)?;
+        let converted_1557 = (value).as_str().into_py_any(py)?;
+        result.set_item("comparison_operator", converted_1557)?;
     } else {
         result.set_item("comparison_operator", py.None())?;
     }
     if let Some(value) = &value.treat_missing_data {
-        let converted_1534 = (value).as_str().into_py_any(py)?;
-        result.set_item("treat_missing_data", converted_1534)?;
+        let converted_1558 = (value).as_str().into_py_any(py)?;
+        result.set_item("treat_missing_data", converted_1558)?;
     } else {
         result.set_item("treat_missing_data", py.None())?;
     }
     if let Some(value) = &value.state_transitioned_timestamp {
-        let converted_1535 = (value).to_string().into_py_any(py)?;
-        result.set_item("state_transitioned_timestamp", converted_1535)?;
+        let converted_1559 = (value).to_string().into_py_any(py)?;
+        result.set_item("state_transitioned_timestamp", converted_1559)?;
     } else {
         result.set_item("state_transitioned_timestamp", py.None())?;
     }
     if let Some(value) = &value.evaluation_state {
-        let converted_1536 = (value).as_str().into_py_any(py)?;
-        result.set_item("evaluation_state", converted_1536)?;
+        let converted_1560 = (value).as_str().into_py_any(py)?;
+        result.set_item("evaluation_state", converted_1560)?;
     } else {
         result.set_item("evaluation_state", py.None())?;
     }
     if let Some(value) = &value.action_log_line_count {
-        let converted_1537 = (value).to_owned().into_py_any(py)?;
-        result.set_item("action_log_line_count", converted_1537)?;
+        let converted_1561 = (value).to_owned().into_py_any(py)?;
+        result.set_item("action_log_line_count", converted_1561)?;
     } else {
         result.set_item("action_log_line_count", py.None())?;
     }
     if let Some(value) = &value.action_log_line_role_arn {
-        let converted_1538 = (value).as_str().into_py_any(py)?;
-        result.set_item("action_log_line_role_arn", converted_1538)?;
+        let converted_1562 = (value).as_str().into_py_any(py)?;
+        result.set_item("action_log_line_role_arn", converted_1562)?;
     } else {
         result.set_item("action_log_line_role_arn", py.None())?;
     }
     if let Some(value) = &value.warm_up_configuration {
-        let converted_1539 = warm_up_configuration_to_py(py, value)?;
-        result.set_item("warm_up_configuration", converted_1539)?;
+        let converted_1563 = warm_up_configuration_to_py(py, value)?;
+        result.set_item("warm_up_configuration", converted_1563)?;
     } else {
         result.set_item("warm_up_configuration", py.None())?;
     }
     if let Some(value) = &value.action_configuration {
-        let converted_1540 = action_configuration_shared_to_py(py, value)?;
-        result.set_item("action_configuration", converted_1540)?;
+        let converted_1564 = action_configuration_shared_to_py(py, value)?;
+        result.set_item("action_configuration", converted_1564)?;
     } else {
         result.set_item("action_configuration", py.None())?;
     }
@@ -9141,8 +9236,8 @@ impl PyLogAlarm {
     #[getter]
     fn alarm_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_name {
-            let converted_1481 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1481)
+            let converted_1505 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1505)
         } else {
             Ok(py.None())
         }
@@ -9151,207 +9246,6 @@ impl PyLogAlarm {
     #[getter]
     fn alarm_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_arn {
-            let converted_1482 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1482)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn alarm_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.alarm_description {
-            let converted_1483 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1483)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn alarm_configuration_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.alarm_configuration_updated_timestamp {
-            let converted_1484 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1484)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn actions_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.actions_enabled {
-            let converted_1485 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1485)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn ok_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.ok_actions {
-            let converted_1486_list = PyList::empty(py);
-            for item_1487 in value {
-                let converted_item_1488 = (item_1487).as_str().into_py_any(py)?;
-                converted_1486_list.append(converted_item_1488)?;
-            }
-            let converted_1486 = converted_1486_list.into_any().unbind();
-            Ok(converted_1486)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn alarm_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.alarm_actions {
-            let converted_1489_list = PyList::empty(py);
-            for item_1490 in value {
-                let converted_item_1491 = (item_1490).as_str().into_py_any(py)?;
-                converted_1489_list.append(converted_item_1491)?;
-            }
-            let converted_1489 = converted_1489_list.into_any().unbind();
-            Ok(converted_1489)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn insufficient_data_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.insufficient_data_actions {
-            let converted_1492_list = PyList::empty(py);
-            for item_1493 in value {
-                let converted_item_1494 = (item_1493).as_str().into_py_any(py)?;
-                converted_1492_list.append(converted_item_1494)?;
-            }
-            let converted_1492 = converted_1492_list.into_any().unbind();
-            Ok(converted_1492)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_value {
-            let converted_1495 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1495)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_reason {
-            let converted_1496 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1496)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_reason_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_reason_data {
-            let converted_1497 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1497)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_updated_timestamp {
-            let converted_1498 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1498)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn scheduled_query_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.scheduled_query_configuration {
-            let converted_1499 = Py::new(
-                py,
-                PyScheduledQueryConfiguration {
-                    inner: Arc::clone(value),
-                },
-            )?
-            .into_any();
-            Ok(converted_1499)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn query_results_to_evaluate(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.query_results_to_evaluate {
-            let converted_1500 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1500)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn query_results_to_alarm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.query_results_to_alarm {
-            let converted_1501 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1501)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn threshold(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.threshold {
-            let converted_1502 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1502)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn comparison_operator(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.comparison_operator {
-            let converted_1503 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1503)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn treat_missing_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.treat_missing_data {
-            let converted_1504 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1504)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_transitioned_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_transitioned_timestamp {
-            let converted_1505 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1505)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn evaluation_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.evaluation_state {
             let converted_1506 = (value).as_str().into_py_any(py)?;
             Ok(converted_1506)
         } else {
@@ -9360,10 +9254,211 @@ impl PyLogAlarm {
     }
 
     #[getter]
+    fn alarm_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.alarm_description {
+            let converted_1507 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1507)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn alarm_configuration_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.alarm_configuration_updated_timestamp {
+            let converted_1508 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1508)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn actions_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.actions_enabled {
+            let converted_1509 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1509)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ok_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ok_actions {
+            let converted_1510_list = PyList::empty(py);
+            for item_1511 in value {
+                let converted_item_1512 = (item_1511).as_str().into_py_any(py)?;
+                converted_1510_list.append(converted_item_1512)?;
+            }
+            let converted_1510 = converted_1510_list.into_any().unbind();
+            Ok(converted_1510)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn alarm_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.alarm_actions {
+            let converted_1513_list = PyList::empty(py);
+            for item_1514 in value {
+                let converted_item_1515 = (item_1514).as_str().into_py_any(py)?;
+                converted_1513_list.append(converted_item_1515)?;
+            }
+            let converted_1513 = converted_1513_list.into_any().unbind();
+            Ok(converted_1513)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn insufficient_data_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.insufficient_data_actions {
+            let converted_1516_list = PyList::empty(py);
+            for item_1517 in value {
+                let converted_item_1518 = (item_1517).as_str().into_py_any(py)?;
+                converted_1516_list.append(converted_item_1518)?;
+            }
+            let converted_1516 = converted_1516_list.into_any().unbind();
+            Ok(converted_1516)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_value {
+            let converted_1519 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1519)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_reason {
+            let converted_1520 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1520)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_reason_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_reason_data {
+            let converted_1521 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1521)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_updated_timestamp {
+            let converted_1522 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1522)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn scheduled_query_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.scheduled_query_configuration {
+            let converted_1523 = Py::new(
+                py,
+                PyScheduledQueryConfiguration {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1523)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn query_results_to_evaluate(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.query_results_to_evaluate {
+            let converted_1524 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1524)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn query_results_to_alarm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.query_results_to_alarm {
+            let converted_1525 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1525)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn threshold(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.threshold {
+            let converted_1526 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1526)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn comparison_operator(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.comparison_operator {
+            let converted_1527 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1527)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn treat_missing_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.treat_missing_data {
+            let converted_1528 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1528)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_transitioned_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_transitioned_timestamp {
+            let converted_1529 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1529)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn evaluation_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.evaluation_state {
+            let converted_1530 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1530)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
     fn action_log_line_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action_log_line_count {
-            let converted_1507 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1507)
+            let converted_1531 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1531)
         } else {
             Ok(py.None())
         }
@@ -9372,8 +9467,8 @@ impl PyLogAlarm {
     #[getter]
     fn action_log_line_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action_log_line_role_arn {
-            let converted_1508 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1508)
+            let converted_1532 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1532)
         } else {
             Ok(py.None())
         }
@@ -9382,14 +9477,14 @@ impl PyLogAlarm {
     #[getter]
     fn warm_up_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.warm_up_configuration {
-            let converted_1509 = Py::new(
+            let converted_1533 = Py::new(
                 py,
                 PyWarmUpConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1509)
+            Ok(converted_1533)
         } else {
             Ok(py.None())
         }
@@ -9398,14 +9493,14 @@ impl PyLogAlarm {
     #[getter]
     fn action_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action_configuration {
-            let converted_1510 = Py::new(
+            let converted_1534 = Py::new(
                 py,
                 PyActionConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1510)
+            Ok(converted_1534)
         } else {
             Ok(py.None())
         }
@@ -9440,20 +9535,20 @@ fn managed_rule_description_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.template_name {
-        let converted_1544 = (value).as_str().into_py_any(py)?;
-        result.set_item("template_name", converted_1544)?;
+        let converted_1568 = (value).as_str().into_py_any(py)?;
+        result.set_item("template_name", converted_1568)?;
     } else {
         result.set_item("template_name", py.None())?;
     }
     if let Some(value) = &value.resource_arn {
-        let converted_1545 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_arn", converted_1545)?;
+        let converted_1569 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_arn", converted_1569)?;
     } else {
         result.set_item("resource_arn", py.None())?;
     }
     if let Some(value) = &value.rule_state {
-        let converted_1546 = managed_rule_state_to_py(py, value)?;
-        result.set_item("rule_state", converted_1546)?;
+        let converted_1570 = managed_rule_state_to_py(py, value)?;
+        result.set_item("rule_state", converted_1570)?;
     } else {
         result.set_item("rule_state", py.None())?;
     }
@@ -9474,8 +9569,8 @@ impl PyManagedRuleDescription {
     #[getter]
     fn template_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.template_name {
-            let converted_1541 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1541)
+            let converted_1565 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1565)
         } else {
             Ok(py.None())
         }
@@ -9484,8 +9579,8 @@ impl PyManagedRuleDescription {
     #[getter]
     fn resource_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_arn {
-            let converted_1542 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1542)
+            let converted_1566 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1566)
         } else {
             Ok(py.None())
         }
@@ -9494,14 +9589,14 @@ impl PyManagedRuleDescription {
     #[getter]
     fn rule_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rule_state {
-            let converted_1543 = Py::new(
+            let converted_1567 = Py::new(
                 py,
                 PyManagedRuleState {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1543)
+            Ok(converted_1567)
         } else {
             Ok(py.None())
         }
@@ -9522,8 +9617,8 @@ impl PyManagedRuleState {
     #[getter]
     fn rule_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rule_name {
-            let converted_1547 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1547)
+            let converted_1571 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1571)
         } else {
             Ok(py.None())
         }
@@ -9532,8 +9627,8 @@ impl PyManagedRuleState {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1548 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1548)
+            let converted_1572 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1572)
         } else {
             Ok(py.None())
         }
@@ -9554,8 +9649,8 @@ impl PyMessageData {
     #[getter]
     fn code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.code {
-            let converted_1549 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1549)
+            let converted_1573 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1573)
         } else {
             Ok(py.None())
         }
@@ -9564,8 +9659,8 @@ impl PyMessageData {
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
-            let converted_1550 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1550)
+            let converted_1574 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1574)
         } else {
             Ok(py.None())
         }
@@ -9592,7 +9687,7 @@ impl From<aws_sdk_cloudwatch::types::Metric> for SharedMetric {
             dimensions: value.dimensions.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1556| Arc::new(owned_1556))
+                    .map(|owned_1580| Arc::new(owned_1580))
                     .collect()
             }),
         }
@@ -9602,25 +9697,25 @@ impl From<aws_sdk_cloudwatch::types::Metric> for SharedMetric {
 fn metric_shared_to_py(py: Python<'_>, value: &SharedMetric) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.namespace {
-        let converted_1557 = (value).as_str().into_py_any(py)?;
-        result.set_item("namespace", converted_1557)?;
+        let converted_1581 = (value).as_str().into_py_any(py)?;
+        result.set_item("namespace", converted_1581)?;
     } else {
         result.set_item("namespace", py.None())?;
     }
     if let Some(value) = &value.metric_name {
-        let converted_1558 = (value).as_str().into_py_any(py)?;
-        result.set_item("metric_name", converted_1558)?;
+        let converted_1582 = (value).as_str().into_py_any(py)?;
+        result.set_item("metric_name", converted_1582)?;
     } else {
         result.set_item("metric_name", py.None())?;
     }
     if let Some(value) = &value.dimensions {
-        let converted_1559_list = PyList::empty(py);
-        for item_1560 in value {
-            let converted_item_1561 = dimension_to_py(py, item_1560)?;
-            converted_1559_list.append(converted_item_1561)?;
+        let converted_1583_list = PyList::empty(py);
+        for item_1584 in value {
+            let converted_item_1585 = dimension_to_py(py, item_1584)?;
+            converted_1583_list.append(converted_item_1585)?;
         }
-        let converted_1559 = converted_1559_list.into_any().unbind();
-        result.set_item("dimensions", converted_1559)?;
+        let converted_1583 = converted_1583_list.into_any().unbind();
+        result.set_item("dimensions", converted_1583)?;
     } else {
         result.set_item("dimensions", py.None())?;
     }
@@ -9637,8 +9732,8 @@ impl PyMetric {
     #[getter]
     fn namespace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.namespace {
-            let converted_1551 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1551)
+            let converted_1575 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1575)
         } else {
             Ok(py.None())
         }
@@ -9647,8 +9742,8 @@ impl PyMetric {
     #[getter]
     fn metric_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_name {
-            let converted_1552 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1552)
+            let converted_1576 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1576)
         } else {
             Ok(py.None())
         }
@@ -9657,19 +9752,19 @@ impl PyMetric {
     #[getter]
     fn dimensions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dimensions {
-            let converted_1553_list = PyList::empty(py);
-            for item_1554 in value {
-                let converted_item_1555 = Py::new(
+            let converted_1577_list = PyList::empty(py);
+            for item_1578 in value {
+                let converted_item_1579 = Py::new(
                     py,
                     PyDimension {
-                        inner: Arc::clone(item_1554),
+                        inner: Arc::clone(item_1578),
                     },
                 )?
                 .into_any();
-                converted_1553_list.append(converted_item_1555)?;
+                converted_1577_list.append(converted_item_1579)?;
             }
-            let converted_1553 = converted_1553_list.into_any().unbind();
-            Ok(converted_1553)
+            let converted_1577 = converted_1577_list.into_any().unbind();
+            Ok(converted_1577)
         } else {
             Ok(py.None())
         }
@@ -9741,7 +9836,7 @@ impl From<aws_sdk_cloudwatch::types::MetricAlarm> for SharedMetricAlarm {
             dimensions: value.dimensions.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1606| Arc::new(owned_1606))
+                    .map(|owned_1630| Arc::new(owned_1630))
                     .collect()
             }),
             period: value.period,
@@ -9755,7 +9850,7 @@ impl From<aws_sdk_cloudwatch::types::MetricAlarm> for SharedMetricAlarm {
             metrics: value.metrics.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1607| Arc::new(SharedMetricDataQuery::from(owned_1607)))
+                    .map(|owned_1631| Arc::new(SharedMetricDataQuery::from(owned_1631)))
                     .collect()
             }),
             threshold_metric_id: value.threshold_metric_id,
@@ -9775,231 +9870,231 @@ impl From<aws_sdk_cloudwatch::types::MetricAlarm> for SharedMetricAlarm {
 fn metric_alarm_shared_to_py(py: Python<'_>, value: &SharedMetricAlarm) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.alarm_name {
-        let converted_1608 = (value).as_str().into_py_any(py)?;
-        result.set_item("alarm_name", converted_1608)?;
+        let converted_1632 = (value).as_str().into_py_any(py)?;
+        result.set_item("alarm_name", converted_1632)?;
     } else {
         result.set_item("alarm_name", py.None())?;
     }
     if let Some(value) = &value.alarm_arn {
-        let converted_1609 = (value).as_str().into_py_any(py)?;
-        result.set_item("alarm_arn", converted_1609)?;
+        let converted_1633 = (value).as_str().into_py_any(py)?;
+        result.set_item("alarm_arn", converted_1633)?;
     } else {
         result.set_item("alarm_arn", py.None())?;
     }
     if let Some(value) = &value.alarm_description {
-        let converted_1610 = (value).as_str().into_py_any(py)?;
-        result.set_item("alarm_description", converted_1610)?;
+        let converted_1634 = (value).as_str().into_py_any(py)?;
+        result.set_item("alarm_description", converted_1634)?;
     } else {
         result.set_item("alarm_description", py.None())?;
     }
     if let Some(value) = &value.alarm_configuration_updated_timestamp {
-        let converted_1611 = (value).to_string().into_py_any(py)?;
-        result.set_item("alarm_configuration_updated_timestamp", converted_1611)?;
+        let converted_1635 = (value).to_string().into_py_any(py)?;
+        result.set_item("alarm_configuration_updated_timestamp", converted_1635)?;
     } else {
         result.set_item("alarm_configuration_updated_timestamp", py.None())?;
     }
     if let Some(value) = &value.actions_enabled {
-        let converted_1612 = (value).to_owned().into_py_any(py)?;
-        result.set_item("actions_enabled", converted_1612)?;
+        let converted_1636 = (value).to_owned().into_py_any(py)?;
+        result.set_item("actions_enabled", converted_1636)?;
     } else {
         result.set_item("actions_enabled", py.None())?;
     }
     if let Some(value) = &value.ok_actions {
-        let converted_1613_list = PyList::empty(py);
-        for item_1614 in value {
-            let converted_item_1615 = (item_1614).as_str().into_py_any(py)?;
-            converted_1613_list.append(converted_item_1615)?;
+        let converted_1637_list = PyList::empty(py);
+        for item_1638 in value {
+            let converted_item_1639 = (item_1638).as_str().into_py_any(py)?;
+            converted_1637_list.append(converted_item_1639)?;
         }
-        let converted_1613 = converted_1613_list.into_any().unbind();
-        result.set_item("ok_actions", converted_1613)?;
+        let converted_1637 = converted_1637_list.into_any().unbind();
+        result.set_item("ok_actions", converted_1637)?;
     } else {
         result.set_item("ok_actions", py.None())?;
     }
     if let Some(value) = &value.alarm_actions {
-        let converted_1616_list = PyList::empty(py);
-        for item_1617 in value {
-            let converted_item_1618 = (item_1617).as_str().into_py_any(py)?;
-            converted_1616_list.append(converted_item_1618)?;
+        let converted_1640_list = PyList::empty(py);
+        for item_1641 in value {
+            let converted_item_1642 = (item_1641).as_str().into_py_any(py)?;
+            converted_1640_list.append(converted_item_1642)?;
         }
-        let converted_1616 = converted_1616_list.into_any().unbind();
-        result.set_item("alarm_actions", converted_1616)?;
+        let converted_1640 = converted_1640_list.into_any().unbind();
+        result.set_item("alarm_actions", converted_1640)?;
     } else {
         result.set_item("alarm_actions", py.None())?;
     }
     if let Some(value) = &value.insufficient_data_actions {
-        let converted_1619_list = PyList::empty(py);
-        for item_1620 in value {
-            let converted_item_1621 = (item_1620).as_str().into_py_any(py)?;
-            converted_1619_list.append(converted_item_1621)?;
+        let converted_1643_list = PyList::empty(py);
+        for item_1644 in value {
+            let converted_item_1645 = (item_1644).as_str().into_py_any(py)?;
+            converted_1643_list.append(converted_item_1645)?;
         }
-        let converted_1619 = converted_1619_list.into_any().unbind();
-        result.set_item("insufficient_data_actions", converted_1619)?;
+        let converted_1643 = converted_1643_list.into_any().unbind();
+        result.set_item("insufficient_data_actions", converted_1643)?;
     } else {
         result.set_item("insufficient_data_actions", py.None())?;
     }
     if let Some(value) = &value.state_value {
-        let converted_1622 = (value).as_str().into_py_any(py)?;
-        result.set_item("state_value", converted_1622)?;
+        let converted_1646 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_value", converted_1646)?;
     } else {
         result.set_item("state_value", py.None())?;
     }
     if let Some(value) = &value.state_reason {
-        let converted_1623 = (value).as_str().into_py_any(py)?;
-        result.set_item("state_reason", converted_1623)?;
+        let converted_1647 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_reason", converted_1647)?;
     } else {
         result.set_item("state_reason", py.None())?;
     }
     if let Some(value) = &value.state_reason_data {
-        let converted_1624 = (value).as_str().into_py_any(py)?;
-        result.set_item("state_reason_data", converted_1624)?;
+        let converted_1648 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_reason_data", converted_1648)?;
     } else {
         result.set_item("state_reason_data", py.None())?;
     }
     if let Some(value) = &value.state_updated_timestamp {
-        let converted_1625 = (value).to_string().into_py_any(py)?;
-        result.set_item("state_updated_timestamp", converted_1625)?;
+        let converted_1649 = (value).to_string().into_py_any(py)?;
+        result.set_item("state_updated_timestamp", converted_1649)?;
     } else {
         result.set_item("state_updated_timestamp", py.None())?;
     }
     if let Some(value) = &value.metric_name {
-        let converted_1626 = (value).as_str().into_py_any(py)?;
-        result.set_item("metric_name", converted_1626)?;
+        let converted_1650 = (value).as_str().into_py_any(py)?;
+        result.set_item("metric_name", converted_1650)?;
     } else {
         result.set_item("metric_name", py.None())?;
     }
     if let Some(value) = &value.namespace {
-        let converted_1627 = (value).as_str().into_py_any(py)?;
-        result.set_item("namespace", converted_1627)?;
+        let converted_1651 = (value).as_str().into_py_any(py)?;
+        result.set_item("namespace", converted_1651)?;
     } else {
         result.set_item("namespace", py.None())?;
     }
     if let Some(value) = &value.statistic {
-        let converted_1628 = (value).as_str().into_py_any(py)?;
-        result.set_item("statistic", converted_1628)?;
+        let converted_1652 = (value).as_str().into_py_any(py)?;
+        result.set_item("statistic", converted_1652)?;
     } else {
         result.set_item("statistic", py.None())?;
     }
     if let Some(value) = &value.extended_statistic {
-        let converted_1629 = (value).as_str().into_py_any(py)?;
-        result.set_item("extended_statistic", converted_1629)?;
+        let converted_1653 = (value).as_str().into_py_any(py)?;
+        result.set_item("extended_statistic", converted_1653)?;
     } else {
         result.set_item("extended_statistic", py.None())?;
     }
     if let Some(value) = &value.dimensions {
-        let converted_1630_list = PyList::empty(py);
-        for item_1631 in value {
-            let converted_item_1632 = dimension_to_py(py, item_1631)?;
-            converted_1630_list.append(converted_item_1632)?;
+        let converted_1654_list = PyList::empty(py);
+        for item_1655 in value {
+            let converted_item_1656 = dimension_to_py(py, item_1655)?;
+            converted_1654_list.append(converted_item_1656)?;
         }
-        let converted_1630 = converted_1630_list.into_any().unbind();
-        result.set_item("dimensions", converted_1630)?;
+        let converted_1654 = converted_1654_list.into_any().unbind();
+        result.set_item("dimensions", converted_1654)?;
     } else {
         result.set_item("dimensions", py.None())?;
     }
     if let Some(value) = &value.period {
-        let converted_1633 = (value).to_owned().into_py_any(py)?;
-        result.set_item("period", converted_1633)?;
+        let converted_1657 = (value).to_owned().into_py_any(py)?;
+        result.set_item("period", converted_1657)?;
     } else {
         result.set_item("period", py.None())?;
     }
     if let Some(value) = &value.unit {
-        let converted_1634 = (value).as_str().into_py_any(py)?;
-        result.set_item("unit", converted_1634)?;
+        let converted_1658 = (value).as_str().into_py_any(py)?;
+        result.set_item("unit", converted_1658)?;
     } else {
         result.set_item("unit", py.None())?;
     }
     if let Some(value) = &value.evaluation_periods {
-        let converted_1635 = (value).to_owned().into_py_any(py)?;
-        result.set_item("evaluation_periods", converted_1635)?;
+        let converted_1659 = (value).to_owned().into_py_any(py)?;
+        result.set_item("evaluation_periods", converted_1659)?;
     } else {
         result.set_item("evaluation_periods", py.None())?;
     }
     if let Some(value) = &value.datapoints_to_alarm {
-        let converted_1636 = (value).to_owned().into_py_any(py)?;
-        result.set_item("datapoints_to_alarm", converted_1636)?;
+        let converted_1660 = (value).to_owned().into_py_any(py)?;
+        result.set_item("datapoints_to_alarm", converted_1660)?;
     } else {
         result.set_item("datapoints_to_alarm", py.None())?;
     }
     if let Some(value) = &value.threshold {
-        let converted_1637 = (value).to_owned().into_py_any(py)?;
-        result.set_item("threshold", converted_1637)?;
+        let converted_1661 = (value).to_owned().into_py_any(py)?;
+        result.set_item("threshold", converted_1661)?;
     } else {
         result.set_item("threshold", py.None())?;
     }
     if let Some(value) = &value.comparison_operator {
-        let converted_1638 = (value).as_str().into_py_any(py)?;
-        result.set_item("comparison_operator", converted_1638)?;
+        let converted_1662 = (value).as_str().into_py_any(py)?;
+        result.set_item("comparison_operator", converted_1662)?;
     } else {
         result.set_item("comparison_operator", py.None())?;
     }
     if let Some(value) = &value.treat_missing_data {
-        let converted_1639 = (value).as_str().into_py_any(py)?;
-        result.set_item("treat_missing_data", converted_1639)?;
+        let converted_1663 = (value).as_str().into_py_any(py)?;
+        result.set_item("treat_missing_data", converted_1663)?;
     } else {
         result.set_item("treat_missing_data", py.None())?;
     }
     if let Some(value) = &value.evaluate_low_sample_count_percentile {
-        let converted_1640 = (value).as_str().into_py_any(py)?;
-        result.set_item("evaluate_low_sample_count_percentile", converted_1640)?;
+        let converted_1664 = (value).as_str().into_py_any(py)?;
+        result.set_item("evaluate_low_sample_count_percentile", converted_1664)?;
     } else {
         result.set_item("evaluate_low_sample_count_percentile", py.None())?;
     }
     if let Some(value) = &value.metrics {
-        let converted_1641_list = PyList::empty(py);
-        for item_1642 in value {
-            let converted_item_1643 = metric_data_query_shared_to_py(py, item_1642)?;
-            converted_1641_list.append(converted_item_1643)?;
+        let converted_1665_list = PyList::empty(py);
+        for item_1666 in value {
+            let converted_item_1667 = metric_data_query_shared_to_py(py, item_1666)?;
+            converted_1665_list.append(converted_item_1667)?;
         }
-        let converted_1641 = converted_1641_list.into_any().unbind();
-        result.set_item("metrics", converted_1641)?;
+        let converted_1665 = converted_1665_list.into_any().unbind();
+        result.set_item("metrics", converted_1665)?;
     } else {
         result.set_item("metrics", py.None())?;
     }
     if let Some(value) = &value.threshold_metric_id {
-        let converted_1644 = (value).as_str().into_py_any(py)?;
-        result.set_item("threshold_metric_id", converted_1644)?;
+        let converted_1668 = (value).as_str().into_py_any(py)?;
+        result.set_item("threshold_metric_id", converted_1668)?;
     } else {
         result.set_item("threshold_metric_id", py.None())?;
     }
     if let Some(value) = &value.evaluation_state {
-        let converted_1645 = (value).as_str().into_py_any(py)?;
-        result.set_item("evaluation_state", converted_1645)?;
+        let converted_1669 = (value).as_str().into_py_any(py)?;
+        result.set_item("evaluation_state", converted_1669)?;
     } else {
         result.set_item("evaluation_state", py.None())?;
     }
     if let Some(value) = &value.state_transitioned_timestamp {
-        let converted_1646 = (value).to_string().into_py_any(py)?;
-        result.set_item("state_transitioned_timestamp", converted_1646)?;
+        let converted_1670 = (value).to_string().into_py_any(py)?;
+        result.set_item("state_transitioned_timestamp", converted_1670)?;
     } else {
         result.set_item("state_transitioned_timestamp", py.None())?;
     }
     if let Some(value) = &value.evaluation_window {
-        let converted_1647 = evaluation_window_to_py(py, value)?;
-        result.set_item("evaluation_window", converted_1647)?;
+        let converted_1671 = evaluation_window_to_py(py, value)?;
+        result.set_item("evaluation_window", converted_1671)?;
     } else {
         result.set_item("evaluation_window", py.None())?;
     }
     if let Some(value) = &value.warm_up_configuration {
-        let converted_1648 = warm_up_configuration_to_py(py, value)?;
-        result.set_item("warm_up_configuration", converted_1648)?;
+        let converted_1672 = warm_up_configuration_to_py(py, value)?;
+        result.set_item("warm_up_configuration", converted_1672)?;
     } else {
         result.set_item("warm_up_configuration", py.None())?;
     }
     if let Some(value) = &value.evaluation_criteria {
-        let converted_1649 = evaluation_criteria_to_py(py, value)?;
-        result.set_item("evaluation_criteria", converted_1649)?;
+        let converted_1673 = evaluation_criteria_to_py(py, value)?;
+        result.set_item("evaluation_criteria", converted_1673)?;
     } else {
         result.set_item("evaluation_criteria", py.None())?;
     }
     if let Some(value) = &value.evaluation_interval {
-        let converted_1650 = (value).to_owned().into_py_any(py)?;
-        result.set_item("evaluation_interval", converted_1650)?;
+        let converted_1674 = (value).to_owned().into_py_any(py)?;
+        result.set_item("evaluation_interval", converted_1674)?;
     } else {
         result.set_item("evaluation_interval", py.None())?;
     }
     if let Some(value) = &value.action_configuration {
-        let converted_1651 = action_configuration_shared_to_py(py, value)?;
-        result.set_item("action_configuration", converted_1651)?;
+        let converted_1675 = action_configuration_shared_to_py(py, value)?;
+        result.set_item("action_configuration", converted_1675)?;
     } else {
         result.set_item("action_configuration", py.None())?;
     }
@@ -10016,8 +10111,8 @@ impl PyMetricAlarm {
     #[getter]
     fn alarm_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_name {
-            let converted_1562 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1562)
+            let converted_1586 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1586)
         } else {
             Ok(py.None())
         }
@@ -10026,8 +10121,8 @@ impl PyMetricAlarm {
     #[getter]
     fn alarm_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_arn {
-            let converted_1563 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1563)
+            let converted_1587 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1587)
         } else {
             Ok(py.None())
         }
@@ -10036,192 +10131,6 @@ impl PyMetricAlarm {
     #[getter]
     fn alarm_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_description {
-            let converted_1564 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1564)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn alarm_configuration_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.alarm_configuration_updated_timestamp {
-            let converted_1565 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1565)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn actions_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.actions_enabled {
-            let converted_1566 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1566)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn ok_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.ok_actions {
-            let converted_1567_list = PyList::empty(py);
-            for item_1568 in value {
-                let converted_item_1569 = (item_1568).as_str().into_py_any(py)?;
-                converted_1567_list.append(converted_item_1569)?;
-            }
-            let converted_1567 = converted_1567_list.into_any().unbind();
-            Ok(converted_1567)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn alarm_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.alarm_actions {
-            let converted_1570_list = PyList::empty(py);
-            for item_1571 in value {
-                let converted_item_1572 = (item_1571).as_str().into_py_any(py)?;
-                converted_1570_list.append(converted_item_1572)?;
-            }
-            let converted_1570 = converted_1570_list.into_any().unbind();
-            Ok(converted_1570)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn insufficient_data_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.insufficient_data_actions {
-            let converted_1573_list = PyList::empty(py);
-            for item_1574 in value {
-                let converted_item_1575 = (item_1574).as_str().into_py_any(py)?;
-                converted_1573_list.append(converted_item_1575)?;
-            }
-            let converted_1573 = converted_1573_list.into_any().unbind();
-            Ok(converted_1573)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_value {
-            let converted_1576 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1576)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_reason {
-            let converted_1577 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1577)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_reason_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_reason_data {
-            let converted_1578 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1578)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn state_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.state_updated_timestamp {
-            let converted_1579 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1579)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn metric_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.metric_name {
-            let converted_1580 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1580)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn namespace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.namespace {
-            let converted_1581 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1581)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn statistic(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.statistic {
-            let converted_1582 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1582)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn extended_statistic(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.extended_statistic {
-            let converted_1583 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1583)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn dimensions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.dimensions {
-            let converted_1584_list = PyList::empty(py);
-            for item_1585 in value {
-                let converted_item_1586 = Py::new(
-                    py,
-                    PyDimension {
-                        inner: Arc::clone(item_1585),
-                    },
-                )?
-                .into_any();
-                converted_1584_list.append(converted_item_1586)?;
-            }
-            let converted_1584 = converted_1584_list.into_any().unbind();
-            Ok(converted_1584)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.period {
-            let converted_1587 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1587)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn unit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.unit {
             let converted_1588 = (value).as_str().into_py_any(py)?;
             Ok(converted_1588)
         } else {
@@ -10230,9 +10139,9 @@ impl PyMetricAlarm {
     }
 
     #[getter]
-    fn evaluation_periods(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.evaluation_periods {
-            let converted_1589 = (value).to_owned().into_py_any(py)?;
+    fn alarm_configuration_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.alarm_configuration_updated_timestamp {
+            let converted_1589 = (value).to_string().into_py_any(py)?;
             Ok(converted_1589)
         } else {
             Ok(py.None())
@@ -10240,8 +10149,8 @@ impl PyMetricAlarm {
     }
 
     #[getter]
-    fn datapoints_to_alarm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.datapoints_to_alarm {
+    fn actions_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.actions_enabled {
             let converted_1590 = (value).to_owned().into_py_any(py)?;
             Ok(converted_1590)
         } else {
@@ -10250,10 +10159,196 @@ impl PyMetricAlarm {
     }
 
     #[getter]
+    fn ok_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ok_actions {
+            let converted_1591_list = PyList::empty(py);
+            for item_1592 in value {
+                let converted_item_1593 = (item_1592).as_str().into_py_any(py)?;
+                converted_1591_list.append(converted_item_1593)?;
+            }
+            let converted_1591 = converted_1591_list.into_any().unbind();
+            Ok(converted_1591)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn alarm_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.alarm_actions {
+            let converted_1594_list = PyList::empty(py);
+            for item_1595 in value {
+                let converted_item_1596 = (item_1595).as_str().into_py_any(py)?;
+                converted_1594_list.append(converted_item_1596)?;
+            }
+            let converted_1594 = converted_1594_list.into_any().unbind();
+            Ok(converted_1594)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn insufficient_data_actions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.insufficient_data_actions {
+            let converted_1597_list = PyList::empty(py);
+            for item_1598 in value {
+                let converted_item_1599 = (item_1598).as_str().into_py_any(py)?;
+                converted_1597_list.append(converted_item_1599)?;
+            }
+            let converted_1597 = converted_1597_list.into_any().unbind();
+            Ok(converted_1597)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_value {
+            let converted_1600 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1600)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_reason {
+            let converted_1601 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1601)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_reason_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_reason_data {
+            let converted_1602 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1602)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn state_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.state_updated_timestamp {
+            let converted_1603 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1603)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn metric_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.metric_name {
+            let converted_1604 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1604)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn namespace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.namespace {
+            let converted_1605 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1605)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn statistic(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.statistic {
+            let converted_1606 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1606)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn extended_statistic(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.extended_statistic {
+            let converted_1607 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1607)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn dimensions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.dimensions {
+            let converted_1608_list = PyList::empty(py);
+            for item_1609 in value {
+                let converted_item_1610 = Py::new(
+                    py,
+                    PyDimension {
+                        inner: Arc::clone(item_1609),
+                    },
+                )?
+                .into_any();
+                converted_1608_list.append(converted_item_1610)?;
+            }
+            let converted_1608 = converted_1608_list.into_any().unbind();
+            Ok(converted_1608)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.period {
+            let converted_1611 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1611)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn unit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.unit {
+            let converted_1612 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1612)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn evaluation_periods(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.evaluation_periods {
+            let converted_1613 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1613)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn datapoints_to_alarm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.datapoints_to_alarm {
+            let converted_1614 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1614)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
     fn threshold(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.threshold {
-            let converted_1591 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1591)
+            let converted_1615 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1615)
         } else {
             Ok(py.None())
         }
@@ -10262,8 +10357,8 @@ impl PyMetricAlarm {
     #[getter]
     fn comparison_operator(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.comparison_operator {
-            let converted_1592 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1592)
+            let converted_1616 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1616)
         } else {
             Ok(py.None())
         }
@@ -10272,8 +10367,8 @@ impl PyMetricAlarm {
     #[getter]
     fn treat_missing_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.treat_missing_data {
-            let converted_1593 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1593)
+            let converted_1617 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1617)
         } else {
             Ok(py.None())
         }
@@ -10282,8 +10377,8 @@ impl PyMetricAlarm {
     #[getter]
     fn evaluate_low_sample_count_percentile(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.evaluate_low_sample_count_percentile {
-            let converted_1594 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1594)
+            let converted_1618 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1618)
         } else {
             Ok(py.None())
         }
@@ -10292,19 +10387,19 @@ impl PyMetricAlarm {
     #[getter]
     fn metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metrics {
-            let converted_1595_list = PyList::empty(py);
-            for item_1596 in value {
-                let converted_item_1597 = Py::new(
+            let converted_1619_list = PyList::empty(py);
+            for item_1620 in value {
+                let converted_item_1621 = Py::new(
                     py,
                     PyMetricDataQuery {
-                        inner: Arc::clone(item_1596),
+                        inner: Arc::clone(item_1620),
                     },
                 )?
                 .into_any();
-                converted_1595_list.append(converted_item_1597)?;
+                converted_1619_list.append(converted_item_1621)?;
             }
-            let converted_1595 = converted_1595_list.into_any().unbind();
-            Ok(converted_1595)
+            let converted_1619 = converted_1619_list.into_any().unbind();
+            Ok(converted_1619)
         } else {
             Ok(py.None())
         }
@@ -10313,8 +10408,8 @@ impl PyMetricAlarm {
     #[getter]
     fn threshold_metric_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.threshold_metric_id {
-            let converted_1598 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1598)
+            let converted_1622 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1622)
         } else {
             Ok(py.None())
         }
@@ -10323,8 +10418,8 @@ impl PyMetricAlarm {
     #[getter]
     fn evaluation_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.evaluation_state {
-            let converted_1599 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1599)
+            let converted_1623 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1623)
         } else {
             Ok(py.None())
         }
@@ -10333,8 +10428,8 @@ impl PyMetricAlarm {
     #[getter]
     fn state_transitioned_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_transitioned_timestamp {
-            let converted_1600 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1600)
+            let converted_1624 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1624)
         } else {
             Ok(py.None())
         }
@@ -10343,8 +10438,8 @@ impl PyMetricAlarm {
     #[getter]
     fn evaluation_window(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.evaluation_window {
-            let converted_1601 = evaluation_window_to_py(py, value)?;
-            Ok(converted_1601)
+            let converted_1625 = evaluation_window_to_py(py, value)?;
+            Ok(converted_1625)
         } else {
             Ok(py.None())
         }
@@ -10353,14 +10448,14 @@ impl PyMetricAlarm {
     #[getter]
     fn warm_up_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.warm_up_configuration {
-            let converted_1602 = Py::new(
+            let converted_1626 = Py::new(
                 py,
                 PyWarmUpConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1602)
+            Ok(converted_1626)
         } else {
             Ok(py.None())
         }
@@ -10369,8 +10464,8 @@ impl PyMetricAlarm {
     #[getter]
     fn evaluation_criteria(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.evaluation_criteria {
-            let converted_1603 = evaluation_criteria_to_py(py, value)?;
-            Ok(converted_1603)
+            let converted_1627 = evaluation_criteria_to_py(py, value)?;
+            Ok(converted_1627)
         } else {
             Ok(py.None())
         }
@@ -10379,8 +10474,8 @@ impl PyMetricAlarm {
     #[getter]
     fn evaluation_interval(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.evaluation_interval {
-            let converted_1604 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1604)
+            let converted_1628 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1628)
         } else {
             Ok(py.None())
         }
@@ -10389,14 +10484,14 @@ impl PyMetricAlarm {
     #[getter]
     fn action_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action_configuration {
-            let converted_1605 = Py::new(
+            let converted_1629 = Py::new(
                 py,
                 PyActionConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1605)
+            Ok(converted_1629)
         } else {
             Ok(py.None())
         }
@@ -10421,8 +10516,8 @@ impl PyMetricCharacteristics {
     #[getter]
     fn periodic_spikes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.periodic_spikes {
-            let converted_1652 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1652)
+            let converted_1676 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1676)
         } else {
             Ok(py.None())
         }
@@ -10467,44 +10562,44 @@ fn metric_data_query_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.id {
-        let converted_1660 = (value).as_str().into_py_any(py)?;
-        result.set_item("id", converted_1660)?;
+        let converted_1684 = (value).as_str().into_py_any(py)?;
+        result.set_item("id", converted_1684)?;
     } else {
         result.set_item("id", py.None())?;
     }
     if let Some(value) = &value.metric_stat {
-        let converted_1661 = metric_stat_shared_to_py(py, value)?;
-        result.set_item("metric_stat", converted_1661)?;
+        let converted_1685 = metric_stat_shared_to_py(py, value)?;
+        result.set_item("metric_stat", converted_1685)?;
     } else {
         result.set_item("metric_stat", py.None())?;
     }
     if let Some(value) = &value.expression {
-        let converted_1662 = (value).as_str().into_py_any(py)?;
-        result.set_item("expression", converted_1662)?;
+        let converted_1686 = (value).as_str().into_py_any(py)?;
+        result.set_item("expression", converted_1686)?;
     } else {
         result.set_item("expression", py.None())?;
     }
     if let Some(value) = &value.label {
-        let converted_1663 = (value).as_str().into_py_any(py)?;
-        result.set_item("label", converted_1663)?;
+        let converted_1687 = (value).as_str().into_py_any(py)?;
+        result.set_item("label", converted_1687)?;
     } else {
         result.set_item("label", py.None())?;
     }
     if let Some(value) = &value.return_data {
-        let converted_1664 = (value).to_owned().into_py_any(py)?;
-        result.set_item("return_data", converted_1664)?;
+        let converted_1688 = (value).to_owned().into_py_any(py)?;
+        result.set_item("return_data", converted_1688)?;
     } else {
         result.set_item("return_data", py.None())?;
     }
     if let Some(value) = &value.period {
-        let converted_1665 = (value).to_owned().into_py_any(py)?;
-        result.set_item("period", converted_1665)?;
+        let converted_1689 = (value).to_owned().into_py_any(py)?;
+        result.set_item("period", converted_1689)?;
     } else {
         result.set_item("period", py.None())?;
     }
     if let Some(value) = &value.account_id {
-        let converted_1666 = (value).as_str().into_py_any(py)?;
-        result.set_item("account_id", converted_1666)?;
+        let converted_1690 = (value).as_str().into_py_any(py)?;
+        result.set_item("account_id", converted_1690)?;
     } else {
         result.set_item("account_id", py.None())?;
     }
@@ -10521,8 +10616,8 @@ impl PyMetricDataQuery {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
-            let converted_1653 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1653)
+            let converted_1677 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1677)
         } else {
             Ok(py.None())
         }
@@ -10531,14 +10626,14 @@ impl PyMetricDataQuery {
     #[getter]
     fn metric_stat(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_stat {
-            let converted_1654 = Py::new(
+            let converted_1678 = Py::new(
                 py,
                 PyMetricStat {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1654)
+            Ok(converted_1678)
         } else {
             Ok(py.None())
         }
@@ -10547,8 +10642,8 @@ impl PyMetricDataQuery {
     #[getter]
     fn expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expression {
-            let converted_1655 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1655)
+            let converted_1679 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1679)
         } else {
             Ok(py.None())
         }
@@ -10557,8 +10652,8 @@ impl PyMetricDataQuery {
     #[getter]
     fn label(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.label {
-            let converted_1656 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1656)
+            let converted_1680 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1680)
         } else {
             Ok(py.None())
         }
@@ -10567,8 +10662,8 @@ impl PyMetricDataQuery {
     #[getter]
     fn return_data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.return_data {
-            let converted_1657 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1657)
+            let converted_1681 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1681)
         } else {
             Ok(py.None())
         }
@@ -10577,8 +10672,8 @@ impl PyMetricDataQuery {
     #[getter]
     fn period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.period {
-            let converted_1658 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1658)
+            let converted_1682 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1682)
         } else {
             Ok(py.None())
         }
@@ -10587,8 +10682,8 @@ impl PyMetricDataQuery {
     #[getter]
     fn account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account_id {
-            let converted_1659 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1659)
+            let converted_1683 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1683)
         } else {
             Ok(py.None())
         }
@@ -10596,6 +10691,62 @@ impl PyMetricDataQuery {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         metric_data_query_shared_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "MetricDataQueryDefinitionSummary",
+    module = "rboto_cloudwatch._native",
+    frozen
+)]
+struct PyMetricDataQueryDefinitionSummary {
+    inner: Arc<aws_sdk_cloudwatch::types::MetricDataQueryDefinitionSummary>,
+}
+
+#[pymethods]
+impl PyMetricDataQueryDefinitionSummary {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
+            let converted_1691 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1691)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.path {
+            let converted_1692 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1692)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.r#type {
+            let converted_1693 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1693)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.updated_at {
+            let converted_1694 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1694)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        metric_data_query_definition_summary_to_py(py, &self.inner)
     }
 }
 
@@ -10621,7 +10772,7 @@ impl From<aws_sdk_cloudwatch::types::MetricDataResult> for SharedMetricDataResul
             messages: value.messages.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1679| Arc::new(owned_1679))
+                    .map(|owned_1707| Arc::new(owned_1707))
                     .collect()
             }),
         }
@@ -10634,53 +10785,53 @@ fn metric_data_result_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.id {
-        let converted_1680 = (value).as_str().into_py_any(py)?;
-        result.set_item("id", converted_1680)?;
+        let converted_1708 = (value).as_str().into_py_any(py)?;
+        result.set_item("id", converted_1708)?;
     } else {
         result.set_item("id", py.None())?;
     }
     if let Some(value) = &value.label {
-        let converted_1681 = (value).as_str().into_py_any(py)?;
-        result.set_item("label", converted_1681)?;
+        let converted_1709 = (value).as_str().into_py_any(py)?;
+        result.set_item("label", converted_1709)?;
     } else {
         result.set_item("label", py.None())?;
     }
     if let Some(value) = &value.timestamps {
-        let converted_1682_list = PyList::empty(py);
-        for item_1683 in value {
-            let converted_item_1684 = (item_1683).to_string().into_py_any(py)?;
-            converted_1682_list.append(converted_item_1684)?;
+        let converted_1710_list = PyList::empty(py);
+        for item_1711 in value {
+            let converted_item_1712 = (item_1711).to_string().into_py_any(py)?;
+            converted_1710_list.append(converted_item_1712)?;
         }
-        let converted_1682 = converted_1682_list.into_any().unbind();
-        result.set_item("timestamps", converted_1682)?;
+        let converted_1710 = converted_1710_list.into_any().unbind();
+        result.set_item("timestamps", converted_1710)?;
     } else {
         result.set_item("timestamps", py.None())?;
     }
     if let Some(value) = &value.values {
-        let converted_1685_list = PyList::empty(py);
-        for item_1686 in value {
-            let converted_item_1687 = (item_1686).to_owned().into_py_any(py)?;
-            converted_1685_list.append(converted_item_1687)?;
+        let converted_1713_list = PyList::empty(py);
+        for item_1714 in value {
+            let converted_item_1715 = (item_1714).to_owned().into_py_any(py)?;
+            converted_1713_list.append(converted_item_1715)?;
         }
-        let converted_1685 = converted_1685_list.into_any().unbind();
-        result.set_item("values", converted_1685)?;
+        let converted_1713 = converted_1713_list.into_any().unbind();
+        result.set_item("values", converted_1713)?;
     } else {
         result.set_item("values", py.None())?;
     }
     if let Some(value) = &value.status_code {
-        let converted_1688 = (value).as_str().into_py_any(py)?;
-        result.set_item("status_code", converted_1688)?;
+        let converted_1716 = (value).as_str().into_py_any(py)?;
+        result.set_item("status_code", converted_1716)?;
     } else {
         result.set_item("status_code", py.None())?;
     }
     if let Some(value) = &value.messages {
-        let converted_1689_list = PyList::empty(py);
-        for item_1690 in value {
-            let converted_item_1691 = message_data_to_py(py, item_1690)?;
-            converted_1689_list.append(converted_item_1691)?;
+        let converted_1717_list = PyList::empty(py);
+        for item_1718 in value {
+            let converted_item_1719 = message_data_to_py(py, item_1718)?;
+            converted_1717_list.append(converted_item_1719)?;
         }
-        let converted_1689 = converted_1689_list.into_any().unbind();
-        result.set_item("messages", converted_1689)?;
+        let converted_1717 = converted_1717_list.into_any().unbind();
+        result.set_item("messages", converted_1717)?;
     } else {
         result.set_item("messages", py.None())?;
     }
@@ -10697,8 +10848,8 @@ impl PyMetricDataResult {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
-            let converted_1667 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1667)
+            let converted_1695 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1695)
         } else {
             Ok(py.None())
         }
@@ -10707,8 +10858,8 @@ impl PyMetricDataResult {
     #[getter]
     fn label(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.label {
-            let converted_1668 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1668)
+            let converted_1696 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1696)
         } else {
             Ok(py.None())
         }
@@ -10717,13 +10868,13 @@ impl PyMetricDataResult {
     #[getter]
     fn timestamps(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timestamps {
-            let converted_1669_list = PyList::empty(py);
-            for item_1670 in value {
-                let converted_item_1671 = (item_1670).to_string().into_py_any(py)?;
-                converted_1669_list.append(converted_item_1671)?;
+            let converted_1697_list = PyList::empty(py);
+            for item_1698 in value {
+                let converted_item_1699 = (item_1698).to_string().into_py_any(py)?;
+                converted_1697_list.append(converted_item_1699)?;
             }
-            let converted_1669 = converted_1669_list.into_any().unbind();
-            Ok(converted_1669)
+            let converted_1697 = converted_1697_list.into_any().unbind();
+            Ok(converted_1697)
         } else {
             Ok(py.None())
         }
@@ -10732,13 +10883,13 @@ impl PyMetricDataResult {
     #[getter]
     fn values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.values {
-            let converted_1672_list = PyList::empty(py);
-            for item_1673 in value {
-                let converted_item_1674 = (item_1673).to_owned().into_py_any(py)?;
-                converted_1672_list.append(converted_item_1674)?;
+            let converted_1700_list = PyList::empty(py);
+            for item_1701 in value {
+                let converted_item_1702 = (item_1701).to_owned().into_py_any(py)?;
+                converted_1700_list.append(converted_item_1702)?;
             }
-            let converted_1672 = converted_1672_list.into_any().unbind();
-            Ok(converted_1672)
+            let converted_1700 = converted_1700_list.into_any().unbind();
+            Ok(converted_1700)
         } else {
             Ok(py.None())
         }
@@ -10747,8 +10898,8 @@ impl PyMetricDataResult {
     #[getter]
     fn status_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_code {
-            let converted_1675 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1675)
+            let converted_1703 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1703)
         } else {
             Ok(py.None())
         }
@@ -10757,19 +10908,19 @@ impl PyMetricDataResult {
     #[getter]
     fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.messages {
-            let converted_1676_list = PyList::empty(py);
-            for item_1677 in value {
-                let converted_item_1678 = Py::new(
+            let converted_1704_list = PyList::empty(py);
+            for item_1705 in value {
+                let converted_item_1706 = Py::new(
                     py,
                     PyMessageData {
-                        inner: Arc::clone(item_1677),
+                        inner: Arc::clone(item_1705),
                     },
                 )?
                 .into_any();
-                converted_1676_list.append(converted_item_1678)?;
+                converted_1704_list.append(converted_item_1706)?;
             }
-            let converted_1676 = converted_1676_list.into_any().unbind();
-            Ok(converted_1676)
+            let converted_1704 = converted_1704_list.into_any().unbind();
+            Ok(converted_1704)
         } else {
             Ok(py.None())
         }
@@ -10794,7 +10945,7 @@ impl From<aws_sdk_cloudwatch::types::MetricMathAnomalyDetector>
             metric_data_queries: value.metric_data_queries.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1695| Arc::new(SharedMetricDataQuery::from(owned_1695)))
+                    .map(|owned_1723| Arc::new(SharedMetricDataQuery::from(owned_1723)))
                     .collect()
             }),
         }
@@ -10807,13 +10958,13 @@ fn metric_math_anomaly_detector_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.metric_data_queries {
-        let converted_1696_list = PyList::empty(py);
-        for item_1697 in value {
-            let converted_item_1698 = metric_data_query_shared_to_py(py, item_1697)?;
-            converted_1696_list.append(converted_item_1698)?;
+        let converted_1724_list = PyList::empty(py);
+        for item_1725 in value {
+            let converted_item_1726 = metric_data_query_shared_to_py(py, item_1725)?;
+            converted_1724_list.append(converted_item_1726)?;
         }
-        let converted_1696 = converted_1696_list.into_any().unbind();
-        result.set_item("metric_data_queries", converted_1696)?;
+        let converted_1724 = converted_1724_list.into_any().unbind();
+        result.set_item("metric_data_queries", converted_1724)?;
     } else {
         result.set_item("metric_data_queries", py.None())?;
     }
@@ -10834,19 +10985,19 @@ impl PyMetricMathAnomalyDetector {
     #[getter]
     fn metric_data_queries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_data_queries {
-            let converted_1692_list = PyList::empty(py);
-            for item_1693 in value {
-                let converted_item_1694 = Py::new(
+            let converted_1720_list = PyList::empty(py);
+            for item_1721 in value {
+                let converted_item_1722 = Py::new(
                     py,
                     PyMetricDataQuery {
-                        inner: Arc::clone(item_1693),
+                        inner: Arc::clone(item_1721),
                     },
                 )?
                 .into_any();
-                converted_1692_list.append(converted_item_1694)?;
+                converted_1720_list.append(converted_item_1722)?;
             }
-            let converted_1692 = converted_1692_list.into_any().unbind();
-            Ok(converted_1692)
+            let converted_1720 = converted_1720_list.into_any().unbind();
+            Ok(converted_1720)
         } else {
             Ok(py.None())
         }
@@ -10880,26 +11031,26 @@ impl From<aws_sdk_cloudwatch::types::MetricStat> for SharedMetricStat {
 fn metric_stat_shared_to_py(py: Python<'_>, value: &SharedMetricStat) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.metric {
-        let converted_1703 = metric_shared_to_py(py, value)?;
-        result.set_item("metric", converted_1703)?;
+        let converted_1731 = metric_shared_to_py(py, value)?;
+        result.set_item("metric", converted_1731)?;
     } else {
         result.set_item("metric", py.None())?;
     }
     if let Some(value) = &value.period {
-        let converted_1704 = (value).to_owned().into_py_any(py)?;
-        result.set_item("period", converted_1704)?;
+        let converted_1732 = (value).to_owned().into_py_any(py)?;
+        result.set_item("period", converted_1732)?;
     } else {
         result.set_item("period", py.None())?;
     }
     if let Some(value) = &value.stat {
-        let converted_1705 = (value).as_str().into_py_any(py)?;
-        result.set_item("stat", converted_1705)?;
+        let converted_1733 = (value).as_str().into_py_any(py)?;
+        result.set_item("stat", converted_1733)?;
     } else {
         result.set_item("stat", py.None())?;
     }
     if let Some(value) = &value.unit {
-        let converted_1706 = (value).as_str().into_py_any(py)?;
-        result.set_item("unit", converted_1706)?;
+        let converted_1734 = (value).as_str().into_py_any(py)?;
+        result.set_item("unit", converted_1734)?;
     } else {
         result.set_item("unit", py.None())?;
     }
@@ -10916,14 +11067,14 @@ impl PyMetricStat {
     #[getter]
     fn metric(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric {
-            let converted_1699 = Py::new(
+            let converted_1727 = Py::new(
                 py,
                 PyMetric {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1699)
+            Ok(converted_1727)
         } else {
             Ok(py.None())
         }
@@ -10932,8 +11083,8 @@ impl PyMetricStat {
     #[getter]
     fn period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.period {
-            let converted_1700 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1700)
+            let converted_1728 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1728)
         } else {
             Ok(py.None())
         }
@@ -10942,8 +11093,8 @@ impl PyMetricStat {
     #[getter]
     fn stat(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stat {
-            let converted_1701 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1701)
+            let converted_1729 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1729)
         } else {
             Ok(py.None())
         }
@@ -10952,8 +11103,8 @@ impl PyMetricStat {
     #[getter]
     fn unit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unit {
-            let converted_1702 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1702)
+            let converted_1730 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1730)
         } else {
             Ok(py.None())
         }
@@ -10978,8 +11129,8 @@ impl PyMetricStreamEntry {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_1707 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1707)
+            let converted_1735 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1735)
         } else {
             Ok(py.None())
         }
@@ -10988,8 +11139,8 @@ impl PyMetricStreamEntry {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date {
-            let converted_1708 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1708)
+            let converted_1736 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1736)
         } else {
             Ok(py.None())
         }
@@ -10998,8 +11149,8 @@ impl PyMetricStreamEntry {
     #[getter]
     fn last_update_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_update_date {
-            let converted_1709 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1709)
+            let converted_1737 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1737)
         } else {
             Ok(py.None())
         }
@@ -11008,8 +11159,8 @@ impl PyMetricStreamEntry {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1710 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1710)
+            let converted_1738 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1738)
         } else {
             Ok(py.None())
         }
@@ -11018,8 +11169,8 @@ impl PyMetricStreamEntry {
     #[getter]
     fn firehose_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.firehose_arn {
-            let converted_1711 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1711)
+            let converted_1739 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1739)
         } else {
             Ok(py.None())
         }
@@ -11028,8 +11179,8 @@ impl PyMetricStreamEntry {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1712 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1712)
+            let converted_1740 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1740)
         } else {
             Ok(py.None())
         }
@@ -11038,8 +11189,8 @@ impl PyMetricStreamEntry {
     #[getter]
     fn output_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_format {
-            let converted_1713 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1713)
+            let converted_1741 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1741)
         } else {
             Ok(py.None())
         }
@@ -11064,8 +11215,8 @@ impl PyMetricStreamFilter {
     #[getter]
     fn namespace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.namespace {
-            let converted_1714 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1714)
+            let converted_1742 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1742)
         } else {
             Ok(py.None())
         }
@@ -11074,13 +11225,13 @@ impl PyMetricStreamFilter {
     #[getter]
     fn metric_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_names {
-            let converted_1715_list = PyList::empty(py);
-            for item_1716 in value {
-                let converted_item_1717 = (item_1716).as_str().into_py_any(py)?;
-                converted_1715_list.append(converted_item_1717)?;
+            let converted_1743_list = PyList::empty(py);
+            for item_1744 in value {
+                let converted_item_1745 = (item_1744).as_str().into_py_any(py)?;
+                converted_1743_list.append(converted_item_1745)?;
             }
-            let converted_1715 = converted_1715_list.into_any().unbind();
-            Ok(converted_1715)
+            let converted_1743 = converted_1743_list.into_any().unbind();
+            Ok(converted_1743)
         } else {
             Ok(py.None())
         }
@@ -11107,7 +11258,7 @@ impl From<aws_sdk_cloudwatch::types::MetricStreamStatisticsConfiguration>
             include_metrics: value.include_metrics.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1724| Arc::new(owned_1724))
+                    .map(|owned_1752| Arc::new(owned_1752))
                     .collect()
             }),
             additional_statistics: value.additional_statistics,
@@ -11121,24 +11272,24 @@ fn metric_stream_statistics_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.include_metrics {
-        let converted_1725_list = PyList::empty(py);
-        for item_1726 in value {
-            let converted_item_1727 = metric_stream_statistics_metric_to_py(py, item_1726)?;
-            converted_1725_list.append(converted_item_1727)?;
+        let converted_1753_list = PyList::empty(py);
+        for item_1754 in value {
+            let converted_item_1755 = metric_stream_statistics_metric_to_py(py, item_1754)?;
+            converted_1753_list.append(converted_item_1755)?;
         }
-        let converted_1725 = converted_1725_list.into_any().unbind();
-        result.set_item("include_metrics", converted_1725)?;
+        let converted_1753 = converted_1753_list.into_any().unbind();
+        result.set_item("include_metrics", converted_1753)?;
     } else {
         result.set_item("include_metrics", py.None())?;
     }
     if let Some(value) = &value.additional_statistics {
-        let converted_1728_list = PyList::empty(py);
-        for item_1729 in value {
-            let converted_item_1730 = (item_1729).as_str().into_py_any(py)?;
-            converted_1728_list.append(converted_item_1730)?;
+        let converted_1756_list = PyList::empty(py);
+        for item_1757 in value {
+            let converted_item_1758 = (item_1757).as_str().into_py_any(py)?;
+            converted_1756_list.append(converted_item_1758)?;
         }
-        let converted_1728 = converted_1728_list.into_any().unbind();
-        result.set_item("additional_statistics", converted_1728)?;
+        let converted_1756 = converted_1756_list.into_any().unbind();
+        result.set_item("additional_statistics", converted_1756)?;
     } else {
         result.set_item("additional_statistics", py.None())?;
     }
@@ -11159,19 +11310,19 @@ impl PyMetricStreamStatisticsConfiguration {
     #[getter]
     fn include_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.include_metrics {
-            let converted_1718_list = PyList::empty(py);
-            for item_1719 in value {
-                let converted_item_1720 = Py::new(
+            let converted_1746_list = PyList::empty(py);
+            for item_1747 in value {
+                let converted_item_1748 = Py::new(
                     py,
                     PyMetricStreamStatisticsMetric {
-                        inner: Arc::clone(item_1719),
+                        inner: Arc::clone(item_1747),
                     },
                 )?
                 .into_any();
-                converted_1718_list.append(converted_item_1720)?;
+                converted_1746_list.append(converted_item_1748)?;
             }
-            let converted_1718 = converted_1718_list.into_any().unbind();
-            Ok(converted_1718)
+            let converted_1746 = converted_1746_list.into_any().unbind();
+            Ok(converted_1746)
         } else {
             Ok(py.None())
         }
@@ -11180,13 +11331,13 @@ impl PyMetricStreamStatisticsConfiguration {
     #[getter]
     fn additional_statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.additional_statistics {
-            let converted_1721_list = PyList::empty(py);
-            for item_1722 in value {
-                let converted_item_1723 = (item_1722).as_str().into_py_any(py)?;
-                converted_1721_list.append(converted_item_1723)?;
+            let converted_1749_list = PyList::empty(py);
+            for item_1750 in value {
+                let converted_item_1751 = (item_1750).as_str().into_py_any(py)?;
+                converted_1749_list.append(converted_item_1751)?;
             }
-            let converted_1721 = converted_1721_list.into_any().unbind();
-            Ok(converted_1721)
+            let converted_1749 = converted_1749_list.into_any().unbind();
+            Ok(converted_1749)
         } else {
             Ok(py.None())
         }
@@ -11211,8 +11362,8 @@ impl PyMetricStreamStatisticsMetric {
     #[getter]
     fn namespace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.namespace {
-            let converted_1731 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1731)
+            let converted_1759 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1759)
         } else {
             Ok(py.None())
         }
@@ -11221,8 +11372,8 @@ impl PyMetricStreamStatisticsMetric {
     #[getter]
     fn metric_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_name {
-            let converted_1732 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1732)
+            let converted_1760 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1760)
         } else {
             Ok(py.None())
         }
@@ -11243,13 +11394,13 @@ impl PyMuteTargets {
     #[getter]
     fn alarm_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_names {
-            let converted_1733_list = PyList::empty(py);
-            for item_1734 in value {
-                let converted_item_1735 = (item_1734).as_str().into_py_any(py)?;
-                converted_1733_list.append(converted_item_1735)?;
+            let converted_1761_list = PyList::empty(py);
+            for item_1762 in value {
+                let converted_item_1763 = (item_1762).as_str().into_py_any(py)?;
+                converted_1761_list.append(converted_item_1763)?;
             }
-            let converted_1733 = converted_1733_list.into_any().unbind();
-            Ok(converted_1733)
+            let converted_1761 = converted_1761_list.into_any().unbind();
+            Ok(converted_1761)
         } else {
             Ok(py.None())
         }
@@ -11274,8 +11425,8 @@ impl PyOTelEnrichmentMetricSelector {
     #[getter]
     fn namespace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.namespace {
-            let converted_1736 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1736)
+            let converted_1764 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1764)
         } else {
             Ok(py.None())
         }
@@ -11284,13 +11435,13 @@ impl PyOTelEnrichmentMetricSelector {
     #[getter]
     fn metric_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_names {
-            let converted_1737_list = PyList::empty(py);
-            for item_1738 in value {
-                let converted_item_1739 = (item_1738).as_str().into_py_any(py)?;
-                converted_1737_list.append(converted_item_1739)?;
+            let converted_1765_list = PyList::empty(py);
+            for item_1766 in value {
+                let converted_item_1767 = (item_1766).as_str().into_py_any(py)?;
+                converted_1765_list.append(converted_item_1767)?;
             }
-            let converted_1737 = converted_1737_list.into_any().unbind();
-            Ok(converted_1737)
+            let converted_1765 = converted_1765_list.into_any().unbind();
+            Ok(converted_1765)
         } else {
             Ok(py.None())
         }
@@ -11311,8 +11462,8 @@ impl PyPartialFailure {
     #[getter]
     fn failure_resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_resource {
-            let converted_1740 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1740)
+            let converted_1768 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1768)
         } else {
             Ok(py.None())
         }
@@ -11321,8 +11472,8 @@ impl PyPartialFailure {
     #[getter]
     fn exception_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.exception_type {
-            let converted_1741 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1741)
+            let converted_1769 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1769)
         } else {
             Ok(py.None())
         }
@@ -11331,8 +11482,8 @@ impl PyPartialFailure {
     #[getter]
     fn failure_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_code {
-            let converted_1742 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1742)
+            let converted_1770 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1770)
         } else {
             Ok(py.None())
         }
@@ -11341,8 +11492,8 @@ impl PyPartialFailure {
     #[getter]
     fn failure_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_description {
-            let converted_1743 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1743)
+            let converted_1771 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1771)
         } else {
             Ok(py.None())
         }
@@ -11363,8 +11514,8 @@ impl PyRange {
     #[getter]
     fn start_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.start_time {
-            let converted_1744 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1744)
+            let converted_1772 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1772)
         } else {
             Ok(py.None())
         }
@@ -11373,8 +11524,8 @@ impl PyRange {
     #[getter]
     fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time {
-            let converted_1745 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1745)
+            let converted_1773 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1773)
         } else {
             Ok(py.None())
         }
@@ -11399,13 +11550,13 @@ impl PyResourceMetricSelection {
     #[getter]
     fn include_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.include_metrics {
-            let converted_1746_list = PyList::empty(py);
-            for item_1747 in value {
-                let converted_item_1748 = (item_1747).as_str().into_py_any(py)?;
-                converted_1746_list.append(converted_item_1748)?;
+            let converted_1774_list = PyList::empty(py);
+            for item_1775 in value {
+                let converted_item_1776 = (item_1775).as_str().into_py_any(py)?;
+                converted_1774_list.append(converted_item_1776)?;
             }
-            let converted_1746 = converted_1746_list.into_any().unbind();
-            Ok(converted_1746)
+            let converted_1774 = converted_1774_list.into_any().unbind();
+            Ok(converted_1774)
         } else {
             Ok(py.None())
         }
@@ -11437,7 +11588,7 @@ impl From<aws_sdk_cloudwatch::types::ResourceMetricsConfiguration>
             metric_selections: value.metric_selections.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1755| Arc::new(owned_1755))
+                    .map(|owned_1783| Arc::new(owned_1783))
                     .collect()
             }),
         }
@@ -11450,31 +11601,31 @@ fn resource_metrics_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.resource_arn {
-        let converted_1756 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_arn", converted_1756)?;
+        let converted_1784 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_arn", converted_1784)?;
     } else {
         result.set_item("resource_arn", py.None())?;
     }
     if let Some(value) = &value.created_at {
-        let converted_1757 = (value).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_1757)?;
+        let converted_1785 = (value).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_1785)?;
     } else {
         result.set_item("created_at", py.None())?;
     }
     if let Some(value) = &value.updated_at {
-        let converted_1758 = (value).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_1758)?;
+        let converted_1786 = (value).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_1786)?;
     } else {
         result.set_item("updated_at", py.None())?;
     }
     if let Some(value) = &value.metric_selections {
-        let converted_1759_list = PyList::empty(py);
-        for item_1760 in value {
-            let converted_item_1761 = resource_metric_selection_to_py(py, item_1760)?;
-            converted_1759_list.append(converted_item_1761)?;
+        let converted_1787_list = PyList::empty(py);
+        for item_1788 in value {
+            let converted_item_1789 = resource_metric_selection_to_py(py, item_1788)?;
+            converted_1787_list.append(converted_item_1789)?;
         }
-        let converted_1759 = converted_1759_list.into_any().unbind();
-        result.set_item("metric_selections", converted_1759)?;
+        let converted_1787 = converted_1787_list.into_any().unbind();
+        result.set_item("metric_selections", converted_1787)?;
     } else {
         result.set_item("metric_selections", py.None())?;
     }
@@ -11495,8 +11646,8 @@ impl PyResourceMetricsConfiguration {
     #[getter]
     fn resource_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_arn {
-            let converted_1749 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1749)
+            let converted_1777 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1777)
         } else {
             Ok(py.None())
         }
@@ -11505,8 +11656,8 @@ impl PyResourceMetricsConfiguration {
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_at {
-            let converted_1750 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1750)
+            let converted_1778 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1778)
         } else {
             Ok(py.None())
         }
@@ -11515,8 +11666,8 @@ impl PyResourceMetricsConfiguration {
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_at {
-            let converted_1751 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1751)
+            let converted_1779 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1779)
         } else {
             Ok(py.None())
         }
@@ -11525,19 +11676,19 @@ impl PyResourceMetricsConfiguration {
     #[getter]
     fn metric_selections(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_selections {
-            let converted_1752_list = PyList::empty(py);
-            for item_1753 in value {
-                let converted_item_1754 = Py::new(
+            let converted_1780_list = PyList::empty(py);
+            for item_1781 in value {
+                let converted_item_1782 = Py::new(
                     py,
                     PyResourceMetricSelection {
-                        inner: Arc::clone(item_1753),
+                        inner: Arc::clone(item_1781),
                     },
                 )?
                 .into_any();
-                converted_1752_list.append(converted_item_1754)?;
+                converted_1780_list.append(converted_item_1782)?;
             }
-            let converted_1752 = converted_1752_list.into_any().unbind();
-            Ok(converted_1752)
+            let converted_1780 = converted_1780_list.into_any().unbind();
+            Ok(converted_1780)
         } else {
             Ok(py.None())
         }
@@ -11565,8 +11716,8 @@ impl From<aws_sdk_cloudwatch::types::Rule> for SharedRule {
 fn rule_shared_to_py(py: Python<'_>, value: &SharedRule) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.schedule {
-        let converted_1763 = schedule_to_py(py, value)?;
-        result.set_item("schedule", converted_1763)?;
+        let converted_1791 = schedule_to_py(py, value)?;
+        result.set_item("schedule", converted_1791)?;
     } else {
         result.set_item("schedule", py.None())?;
     }
@@ -11583,14 +11734,14 @@ impl PyRule {
     #[getter]
     fn schedule(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.schedule {
-            let converted_1762 = Py::new(
+            let converted_1790 = Py::new(
                 py,
                 PySchedule {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1762)
+            Ok(converted_1790)
         } else {
             Ok(py.None())
         }
@@ -11611,8 +11762,8 @@ impl PySchedule {
     #[getter]
     fn expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expression {
-            let converted_1764 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1764)
+            let converted_1792 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1792)
         } else {
             Ok(py.None())
         }
@@ -11621,8 +11772,8 @@ impl PySchedule {
     #[getter]
     fn duration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.duration {
-            let converted_1765 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1765)
+            let converted_1793 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1793)
         } else {
             Ok(py.None())
         }
@@ -11631,8 +11782,8 @@ impl PySchedule {
     #[getter]
     fn timezone(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timezone {
-            let converted_1766 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1766)
+            let converted_1794 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1794)
         } else {
             Ok(py.None())
         }
@@ -11657,8 +11808,8 @@ impl PyScheduleConfiguration {
     #[getter]
     fn schedule_expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.schedule_expression {
-            let converted_1767 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1767)
+            let converted_1795 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1795)
         } else {
             Ok(py.None())
         }
@@ -11667,8 +11818,8 @@ impl PyScheduleConfiguration {
     #[getter]
     fn start_time_offset(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.start_time_offset {
-            let converted_1768 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1768)
+            let converted_1796 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1796)
         } else {
             Ok(py.None())
         }
@@ -11677,8 +11828,8 @@ impl PyScheduleConfiguration {
     #[getter]
     fn end_time_offset(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time_offset {
-            let converted_1769 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1769)
+            let converted_1797 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1797)
         } else {
             Ok(py.None())
         }
@@ -11715,7 +11866,7 @@ impl From<aws_sdk_cloudwatch::types::ScheduledQueryConfiguration>
             tags: value.tags.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1781| Arc::new(owned_1781))
+                    .map(|owned_1809| Arc::new(owned_1809))
                     .collect()
             }),
         }
@@ -11728,54 +11879,54 @@ fn scheduled_query_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.query_string {
-        let converted_1782 = (value).as_str().into_py_any(py)?;
-        result.set_item("query_string", converted_1782)?;
+        let converted_1810 = (value).as_str().into_py_any(py)?;
+        result.set_item("query_string", converted_1810)?;
     } else {
         result.set_item("query_string", py.None())?;
     }
     if let Some(value) = &value.log_group_identifiers {
-        let converted_1783_list = PyList::empty(py);
-        for item_1784 in value {
-            let converted_item_1785 = (item_1784).as_str().into_py_any(py)?;
-            converted_1783_list.append(converted_item_1785)?;
+        let converted_1811_list = PyList::empty(py);
+        for item_1812 in value {
+            let converted_item_1813 = (item_1812).as_str().into_py_any(py)?;
+            converted_1811_list.append(converted_item_1813)?;
         }
-        let converted_1783 = converted_1783_list.into_any().unbind();
-        result.set_item("log_group_identifiers", converted_1783)?;
+        let converted_1811 = converted_1811_list.into_any().unbind();
+        result.set_item("log_group_identifiers", converted_1811)?;
     } else {
         result.set_item("log_group_identifiers", py.None())?;
     }
     if let Some(value) = &value.query_arn {
-        let converted_1786 = (value).as_str().into_py_any(py)?;
-        result.set_item("query_arn", converted_1786)?;
+        let converted_1814 = (value).as_str().into_py_any(py)?;
+        result.set_item("query_arn", converted_1814)?;
     } else {
         result.set_item("query_arn", py.None())?;
     }
     if let Some(value) = &value.scheduled_query_role_arn {
-        let converted_1787 = (value).as_str().into_py_any(py)?;
-        result.set_item("scheduled_query_role_arn", converted_1787)?;
+        let converted_1815 = (value).as_str().into_py_any(py)?;
+        result.set_item("scheduled_query_role_arn", converted_1815)?;
     } else {
         result.set_item("scheduled_query_role_arn", py.None())?;
     }
     if let Some(value) = &value.schedule_configuration {
-        let converted_1788 = schedule_configuration_to_py(py, value)?;
-        result.set_item("schedule_configuration", converted_1788)?;
+        let converted_1816 = schedule_configuration_to_py(py, value)?;
+        result.set_item("schedule_configuration", converted_1816)?;
     } else {
         result.set_item("schedule_configuration", py.None())?;
     }
     if let Some(value) = &value.aggregation_expression {
-        let converted_1789 = (value).as_str().into_py_any(py)?;
-        result.set_item("aggregation_expression", converted_1789)?;
+        let converted_1817 = (value).as_str().into_py_any(py)?;
+        result.set_item("aggregation_expression", converted_1817)?;
     } else {
         result.set_item("aggregation_expression", py.None())?;
     }
     if let Some(value) = &value.tags {
-        let converted_1790_list = PyList::empty(py);
-        for item_1791 in value {
-            let converted_item_1792 = tag_to_py(py, item_1791)?;
-            converted_1790_list.append(converted_item_1792)?;
+        let converted_1818_list = PyList::empty(py);
+        for item_1819 in value {
+            let converted_item_1820 = tag_to_py(py, item_1819)?;
+            converted_1818_list.append(converted_item_1820)?;
         }
-        let converted_1790 = converted_1790_list.into_any().unbind();
-        result.set_item("tags", converted_1790)?;
+        let converted_1818 = converted_1818_list.into_any().unbind();
+        result.set_item("tags", converted_1818)?;
     } else {
         result.set_item("tags", py.None())?;
     }
@@ -11796,8 +11947,8 @@ impl PyScheduledQueryConfiguration {
     #[getter]
     fn query_string(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_string {
-            let converted_1770 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1770)
+            let converted_1798 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1798)
         } else {
             Ok(py.None())
         }
@@ -11806,13 +11957,13 @@ impl PyScheduledQueryConfiguration {
     #[getter]
     fn log_group_identifiers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_group_identifiers {
-            let converted_1771_list = PyList::empty(py);
-            for item_1772 in value {
-                let converted_item_1773 = (item_1772).as_str().into_py_any(py)?;
-                converted_1771_list.append(converted_item_1773)?;
+            let converted_1799_list = PyList::empty(py);
+            for item_1800 in value {
+                let converted_item_1801 = (item_1800).as_str().into_py_any(py)?;
+                converted_1799_list.append(converted_item_1801)?;
             }
-            let converted_1771 = converted_1771_list.into_any().unbind();
-            Ok(converted_1771)
+            let converted_1799 = converted_1799_list.into_any().unbind();
+            Ok(converted_1799)
         } else {
             Ok(py.None())
         }
@@ -11821,8 +11972,8 @@ impl PyScheduledQueryConfiguration {
     #[getter]
     fn query_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_arn {
-            let converted_1774 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1774)
+            let converted_1802 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1802)
         } else {
             Ok(py.None())
         }
@@ -11831,8 +11982,8 @@ impl PyScheduledQueryConfiguration {
     #[getter]
     fn scheduled_query_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.scheduled_query_role_arn {
-            let converted_1775 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1775)
+            let converted_1803 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1803)
         } else {
             Ok(py.None())
         }
@@ -11841,14 +11992,14 @@ impl PyScheduledQueryConfiguration {
     #[getter]
     fn schedule_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.schedule_configuration {
-            let converted_1776 = Py::new(
+            let converted_1804 = Py::new(
                 py,
                 PyScheduleConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1776)
+            Ok(converted_1804)
         } else {
             Ok(py.None())
         }
@@ -11857,8 +12008,8 @@ impl PyScheduledQueryConfiguration {
     #[getter]
     fn aggregation_expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.aggregation_expression {
-            let converted_1777 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1777)
+            let converted_1805 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1805)
         } else {
             Ok(py.None())
         }
@@ -11867,19 +12018,19 @@ impl PyScheduledQueryConfiguration {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_1778_list = PyList::empty(py);
-            for item_1779 in value {
-                let converted_item_1780 = Py::new(
+            let converted_1806_list = PyList::empty(py);
+            for item_1807 in value {
+                let converted_item_1808 = Py::new(
                     py,
                     PyTag {
-                        inner: Arc::clone(item_1779),
+                        inner: Arc::clone(item_1807),
                     },
                 )?
                 .into_any();
-                converted_1778_list.append(converted_item_1780)?;
+                converted_1806_list.append(converted_item_1808)?;
             }
-            let converted_1778 = converted_1778_list.into_any().unbind();
-            Ok(converted_1778)
+            let converted_1806 = converted_1806_list.into_any().unbind();
+            Ok(converted_1806)
         } else {
             Ok(py.None())
         }
@@ -11911,7 +12062,7 @@ impl From<aws_sdk_cloudwatch::types::SingleMetricAnomalyDetector>
             dimensions: value.dimensions.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1800| Arc::new(owned_1800))
+                    .map(|owned_1828| Arc::new(owned_1828))
                     .collect()
             }),
             stat: value.stat,
@@ -11925,37 +12076,37 @@ fn single_metric_anomaly_detector_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.account_id {
-        let converted_1801 = (value).as_str().into_py_any(py)?;
-        result.set_item("account_id", converted_1801)?;
+        let converted_1829 = (value).as_str().into_py_any(py)?;
+        result.set_item("account_id", converted_1829)?;
     } else {
         result.set_item("account_id", py.None())?;
     }
     if let Some(value) = &value.namespace {
-        let converted_1802 = (value).as_str().into_py_any(py)?;
-        result.set_item("namespace", converted_1802)?;
+        let converted_1830 = (value).as_str().into_py_any(py)?;
+        result.set_item("namespace", converted_1830)?;
     } else {
         result.set_item("namespace", py.None())?;
     }
     if let Some(value) = &value.metric_name {
-        let converted_1803 = (value).as_str().into_py_any(py)?;
-        result.set_item("metric_name", converted_1803)?;
+        let converted_1831 = (value).as_str().into_py_any(py)?;
+        result.set_item("metric_name", converted_1831)?;
     } else {
         result.set_item("metric_name", py.None())?;
     }
     if let Some(value) = &value.dimensions {
-        let converted_1804_list = PyList::empty(py);
-        for item_1805 in value {
-            let converted_item_1806 = dimension_to_py(py, item_1805)?;
-            converted_1804_list.append(converted_item_1806)?;
+        let converted_1832_list = PyList::empty(py);
+        for item_1833 in value {
+            let converted_item_1834 = dimension_to_py(py, item_1833)?;
+            converted_1832_list.append(converted_item_1834)?;
         }
-        let converted_1804 = converted_1804_list.into_any().unbind();
-        result.set_item("dimensions", converted_1804)?;
+        let converted_1832 = converted_1832_list.into_any().unbind();
+        result.set_item("dimensions", converted_1832)?;
     } else {
         result.set_item("dimensions", py.None())?;
     }
     if let Some(value) = &value.stat {
-        let converted_1807 = (value).as_str().into_py_any(py)?;
-        result.set_item("stat", converted_1807)?;
+        let converted_1835 = (value).as_str().into_py_any(py)?;
+        result.set_item("stat", converted_1835)?;
     } else {
         result.set_item("stat", py.None())?;
     }
@@ -11976,8 +12127,8 @@ impl PySingleMetricAnomalyDetector {
     #[getter]
     fn account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account_id {
-            let converted_1793 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1793)
+            let converted_1821 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1821)
         } else {
             Ok(py.None())
         }
@@ -11986,8 +12137,8 @@ impl PySingleMetricAnomalyDetector {
     #[getter]
     fn namespace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.namespace {
-            let converted_1794 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1794)
+            let converted_1822 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1822)
         } else {
             Ok(py.None())
         }
@@ -11996,8 +12147,8 @@ impl PySingleMetricAnomalyDetector {
     #[getter]
     fn metric_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_name {
-            let converted_1795 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1795)
+            let converted_1823 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1823)
         } else {
             Ok(py.None())
         }
@@ -12006,19 +12157,19 @@ impl PySingleMetricAnomalyDetector {
     #[getter]
     fn dimensions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dimensions {
-            let converted_1796_list = PyList::empty(py);
-            for item_1797 in value {
-                let converted_item_1798 = Py::new(
+            let converted_1824_list = PyList::empty(py);
+            for item_1825 in value {
+                let converted_item_1826 = Py::new(
                     py,
                     PyDimension {
-                        inner: Arc::clone(item_1797),
+                        inner: Arc::clone(item_1825),
                     },
                 )?
                 .into_any();
-                converted_1796_list.append(converted_item_1798)?;
+                converted_1824_list.append(converted_item_1826)?;
             }
-            let converted_1796 = converted_1796_list.into_any().unbind();
-            Ok(converted_1796)
+            let converted_1824 = converted_1824_list.into_any().unbind();
+            Ok(converted_1824)
         } else {
             Ok(py.None())
         }
@@ -12027,8 +12178,8 @@ impl PySingleMetricAnomalyDetector {
     #[getter]
     fn stat(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stat {
-            let converted_1799 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1799)
+            let converted_1827 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1827)
         } else {
             Ok(py.None())
         }
@@ -12049,8 +12200,8 @@ impl PyTag {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key {
-            let converted_1808 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1808)
+            let converted_1836 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1836)
         } else {
             Ok(py.None())
         }
@@ -12059,8 +12210,8 @@ impl PyTag {
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
-            let converted_1809 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1809)
+            let converted_1837 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1837)
         } else {
             Ok(py.None())
         }
@@ -12085,8 +12236,8 @@ impl PyWarmUpConfiguration {
     #[getter]
     fn warm_up_period_duration_in_minutes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.warm_up_period_duration_in_minutes {
-            let converted_1810 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1810)
+            let converted_1838 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1838)
         } else {
             Ok(py.None())
         }
@@ -12098,8 +12249,8 @@ impl PyWarmUpConfiguration {
         py: Python<'_>,
     ) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.only_start_evaluating_after_warm_up_period_ends {
-            let converted_1811 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1811)
+            let converted_1839 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1839)
         } else {
             Ok(py.None())
         }
@@ -12155,14 +12306,14 @@ impl PyOperationCreateResourceMetricsConfigurationOutput {
     #[getter]
     fn resource_metrics_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_metrics_configuration {
-            let converted_1812 = Py::new(
+            let converted_1840 = Py::new(
                 py,
                 PyResourceMetricsConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1812)
+            Ok(converted_1840)
         } else {
             Ok(py.None())
         }
@@ -12171,8 +12322,8 @@ impl PyOperationCreateResourceMetricsConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.resource_metrics_configuration {
-            let converted_1813 = resource_metrics_configuration_shared_to_py(py, value)?;
-            result.set_item("resource_metrics_configuration", converted_1813)?;
+            let converted_1841 = resource_metrics_configuration_shared_to_py(py, value)?;
+            result.set_item("resource_metrics_configuration", converted_1841)?;
         } else {
             result.set_item("resource_metrics_configuration", py.None())?;
         }
@@ -12230,7 +12381,7 @@ impl From<aws_sdk_cloudwatch::operation::delete_insight_rules::DeleteInsightRule
             failures: value.failures.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1817| Arc::new(owned_1817))
+                    .map(|owned_1845| Arc::new(owned_1845))
                     .collect()
             }),
         }
@@ -12251,19 +12402,19 @@ impl PyOperationDeleteInsightRulesOutput {
     #[getter]
     fn failures(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failures {
-            let converted_1814_list = PyList::empty(py);
-            for item_1815 in value {
-                let converted_item_1816 = Py::new(
+            let converted_1842_list = PyList::empty(py);
+            for item_1843 in value {
+                let converted_item_1844 = Py::new(
                     py,
                     PyPartialFailure {
-                        inner: Arc::clone(item_1815),
+                        inner: Arc::clone(item_1843),
                     },
                 )?
                 .into_any();
-                converted_1814_list.append(converted_item_1816)?;
+                converted_1842_list.append(converted_item_1844)?;
             }
-            let converted_1814 = converted_1814_list.into_any().unbind();
-            Ok(converted_1814)
+            let converted_1842 = converted_1842_list.into_any().unbind();
+            Ok(converted_1842)
         } else {
             Ok(py.None())
         }
@@ -12272,16 +12423,33 @@ impl PyOperationDeleteInsightRulesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.failures {
-            let converted_1818_list = PyList::empty(py);
-            for item_1819 in value {
-                let converted_item_1820 = partial_failure_to_py(py, item_1819)?;
-                converted_1818_list.append(converted_item_1820)?;
+            let converted_1846_list = PyList::empty(py);
+            for item_1847 in value {
+                let converted_item_1848 = partial_failure_to_py(py, item_1847)?;
+                converted_1846_list.append(converted_item_1848)?;
             }
-            let converted_1818 = converted_1818_list.into_any().unbind();
-            result.set_item("failures", converted_1818)?;
+            let converted_1846 = converted_1846_list.into_any().unbind();
+            result.set_item("failures", converted_1846)?;
         } else {
             result.set_item("failures", py.None())?;
         }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "DeleteMetricDataQueryDefinitionOutput",
+    module = "rboto_cloudwatch._native",
+    frozen
+)]
+struct PyOperationDeleteMetricDataQueryDefinitionOutput {
+    inner: aws_sdk_cloudwatch::operation::delete_metric_data_query_definition::DeleteMetricDataQueryDefinitionOutput,
+}
+
+#[pymethods]
+impl PyOperationDeleteMetricDataQueryDefinitionOutput {
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
@@ -12339,7 +12507,7 @@ impl
             alarm_contributors: value.alarm_contributors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1825| Arc::new(owned_1825))
+                    .map(|owned_1853| Arc::new(owned_1853))
                     .collect()
             }),
             next_token: value.next_token,
@@ -12361,19 +12529,19 @@ impl PyOperationDescribeAlarmContributorsOutput {
     #[getter]
     fn alarm_contributors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_contributors {
-            let converted_1821_list = PyList::empty(py);
-            for item_1822 in value {
-                let converted_item_1823 = Py::new(
+            let converted_1849_list = PyList::empty(py);
+            for item_1850 in value {
+                let converted_item_1851 = Py::new(
                     py,
                     PyAlarmContributor {
-                        inner: Arc::clone(item_1822),
+                        inner: Arc::clone(item_1850),
                     },
                 )?
                 .into_any();
-                converted_1821_list.append(converted_item_1823)?;
+                converted_1849_list.append(converted_item_1851)?;
             }
-            let converted_1821 = converted_1821_list.into_any().unbind();
-            Ok(converted_1821)
+            let converted_1849 = converted_1849_list.into_any().unbind();
+            Ok(converted_1849)
         } else {
             Ok(py.None())
         }
@@ -12382,8 +12550,8 @@ impl PyOperationDescribeAlarmContributorsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1824 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1824)
+            let converted_1852 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1852)
         } else {
             Ok(py.None())
         }
@@ -12392,19 +12560,19 @@ impl PyOperationDescribeAlarmContributorsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.alarm_contributors {
-            let converted_1826_list = PyList::empty(py);
-            for item_1827 in value {
-                let converted_item_1828 = alarm_contributor_to_py(py, item_1827)?;
-                converted_1826_list.append(converted_item_1828)?;
+            let converted_1854_list = PyList::empty(py);
+            for item_1855 in value {
+                let converted_item_1856 = alarm_contributor_to_py(py, item_1855)?;
+                converted_1854_list.append(converted_item_1856)?;
             }
-            let converted_1826 = converted_1826_list.into_any().unbind();
-            result.set_item("alarm_contributors", converted_1826)?;
+            let converted_1854 = converted_1854_list.into_any().unbind();
+            result.set_item("alarm_contributors", converted_1854)?;
         } else {
             result.set_item("alarm_contributors", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1829 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1829)?;
+            let converted_1857 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1857)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -12429,7 +12597,7 @@ impl From<aws_sdk_cloudwatch::operation::describe_alarm_history::DescribeAlarmHi
             alarm_history_items: value.alarm_history_items.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1834| Arc::new(owned_1834))
+                    .map(|owned_1862| Arc::new(owned_1862))
                     .collect()
             }),
             next_token: value.next_token,
@@ -12451,19 +12619,19 @@ impl PyOperationDescribeAlarmHistoryOutput {
     #[getter]
     fn alarm_history_items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_history_items {
-            let converted_1830_list = PyList::empty(py);
-            for item_1831 in value {
-                let converted_item_1832 = Py::new(
+            let converted_1858_list = PyList::empty(py);
+            for item_1859 in value {
+                let converted_item_1860 = Py::new(
                     py,
                     PyAlarmHistoryItem {
-                        inner: Arc::clone(item_1831),
+                        inner: Arc::clone(item_1859),
                     },
                 )?
                 .into_any();
-                converted_1830_list.append(converted_item_1832)?;
+                converted_1858_list.append(converted_item_1860)?;
             }
-            let converted_1830 = converted_1830_list.into_any().unbind();
-            Ok(converted_1830)
+            let converted_1858 = converted_1858_list.into_any().unbind();
+            Ok(converted_1858)
         } else {
             Ok(py.None())
         }
@@ -12472,8 +12640,8 @@ impl PyOperationDescribeAlarmHistoryOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1833 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1833)
+            let converted_1861 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1861)
         } else {
             Ok(py.None())
         }
@@ -12482,19 +12650,19 @@ impl PyOperationDescribeAlarmHistoryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.alarm_history_items {
-            let converted_1835_list = PyList::empty(py);
-            for item_1836 in value {
-                let converted_item_1837 = alarm_history_item_to_py(py, item_1836)?;
-                converted_1835_list.append(converted_item_1837)?;
+            let converted_1863_list = PyList::empty(py);
+            for item_1864 in value {
+                let converted_item_1865 = alarm_history_item_to_py(py, item_1864)?;
+                converted_1863_list.append(converted_item_1865)?;
             }
-            let converted_1835 = converted_1835_list.into_any().unbind();
-            result.set_item("alarm_history_items", converted_1835)?;
+            let converted_1863 = converted_1863_list.into_any().unbind();
+            result.set_item("alarm_history_items", converted_1863)?;
         } else {
             result.set_item("alarm_history_items", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1838 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1838)?;
+            let converted_1866 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1866)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -12519,19 +12687,19 @@ impl From<aws_sdk_cloudwatch::operation::describe_alarms::DescribeAlarmsOutput>
             composite_alarms: value.composite_alarms.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1849| Arc::new(SharedCompositeAlarm::from(owned_1849)))
+                    .map(|owned_1877| Arc::new(SharedCompositeAlarm::from(owned_1877)))
                     .collect()
             }),
             metric_alarms: value.metric_alarms.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1850| Arc::new(SharedMetricAlarm::from(owned_1850)))
+                    .map(|owned_1878| Arc::new(SharedMetricAlarm::from(owned_1878)))
                     .collect()
             }),
             log_alarms: value.log_alarms.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1851| Arc::new(SharedLogAlarm::from(owned_1851)))
+                    .map(|owned_1879| Arc::new(SharedLogAlarm::from(owned_1879)))
                     .collect()
             }),
             next_token: value.next_token,
@@ -12553,19 +12721,19 @@ impl PyOperationDescribeAlarmsOutput {
     #[getter]
     fn composite_alarms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.composite_alarms {
-            let converted_1839_list = PyList::empty(py);
-            for item_1840 in value {
-                let converted_item_1841 = Py::new(
+            let converted_1867_list = PyList::empty(py);
+            for item_1868 in value {
+                let converted_item_1869 = Py::new(
                     py,
                     PyCompositeAlarm {
-                        inner: Arc::clone(item_1840),
+                        inner: Arc::clone(item_1868),
                     },
                 )?
                 .into_any();
-                converted_1839_list.append(converted_item_1841)?;
+                converted_1867_list.append(converted_item_1869)?;
             }
-            let converted_1839 = converted_1839_list.into_any().unbind();
-            Ok(converted_1839)
+            let converted_1867 = converted_1867_list.into_any().unbind();
+            Ok(converted_1867)
         } else {
             Ok(py.None())
         }
@@ -12574,19 +12742,19 @@ impl PyOperationDescribeAlarmsOutput {
     #[getter]
     fn metric_alarms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_alarms {
-            let converted_1842_list = PyList::empty(py);
-            for item_1843 in value {
-                let converted_item_1844 = Py::new(
+            let converted_1870_list = PyList::empty(py);
+            for item_1871 in value {
+                let converted_item_1872 = Py::new(
                     py,
                     PyMetricAlarm {
-                        inner: Arc::clone(item_1843),
+                        inner: Arc::clone(item_1871),
                     },
                 )?
                 .into_any();
-                converted_1842_list.append(converted_item_1844)?;
+                converted_1870_list.append(converted_item_1872)?;
             }
-            let converted_1842 = converted_1842_list.into_any().unbind();
-            Ok(converted_1842)
+            let converted_1870 = converted_1870_list.into_any().unbind();
+            Ok(converted_1870)
         } else {
             Ok(py.None())
         }
@@ -12595,19 +12763,19 @@ impl PyOperationDescribeAlarmsOutput {
     #[getter]
     fn log_alarms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_alarms {
-            let converted_1845_list = PyList::empty(py);
-            for item_1846 in value {
-                let converted_item_1847 = Py::new(
+            let converted_1873_list = PyList::empty(py);
+            for item_1874 in value {
+                let converted_item_1875 = Py::new(
                     py,
                     PyLogAlarm {
-                        inner: Arc::clone(item_1846),
+                        inner: Arc::clone(item_1874),
                     },
                 )?
                 .into_any();
-                converted_1845_list.append(converted_item_1847)?;
+                converted_1873_list.append(converted_item_1875)?;
             }
-            let converted_1845 = converted_1845_list.into_any().unbind();
-            Ok(converted_1845)
+            let converted_1873 = converted_1873_list.into_any().unbind();
+            Ok(converted_1873)
         } else {
             Ok(py.None())
         }
@@ -12616,8 +12784,8 @@ impl PyOperationDescribeAlarmsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1848 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1848)
+            let converted_1876 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1876)
         } else {
             Ok(py.None())
         }
@@ -12626,41 +12794,41 @@ impl PyOperationDescribeAlarmsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.composite_alarms {
-            let converted_1852_list = PyList::empty(py);
-            for item_1853 in value {
-                let converted_item_1854 = composite_alarm_shared_to_py(py, item_1853)?;
-                converted_1852_list.append(converted_item_1854)?;
+            let converted_1880_list = PyList::empty(py);
+            for item_1881 in value {
+                let converted_item_1882 = composite_alarm_shared_to_py(py, item_1881)?;
+                converted_1880_list.append(converted_item_1882)?;
             }
-            let converted_1852 = converted_1852_list.into_any().unbind();
-            result.set_item("composite_alarms", converted_1852)?;
+            let converted_1880 = converted_1880_list.into_any().unbind();
+            result.set_item("composite_alarms", converted_1880)?;
         } else {
             result.set_item("composite_alarms", py.None())?;
         }
         if let Some(value) = &self.inner.metric_alarms {
-            let converted_1855_list = PyList::empty(py);
-            for item_1856 in value {
-                let converted_item_1857 = metric_alarm_shared_to_py(py, item_1856)?;
-                converted_1855_list.append(converted_item_1857)?;
+            let converted_1883_list = PyList::empty(py);
+            for item_1884 in value {
+                let converted_item_1885 = metric_alarm_shared_to_py(py, item_1884)?;
+                converted_1883_list.append(converted_item_1885)?;
             }
-            let converted_1855 = converted_1855_list.into_any().unbind();
-            result.set_item("metric_alarms", converted_1855)?;
+            let converted_1883 = converted_1883_list.into_any().unbind();
+            result.set_item("metric_alarms", converted_1883)?;
         } else {
             result.set_item("metric_alarms", py.None())?;
         }
         if let Some(value) = &self.inner.log_alarms {
-            let converted_1858_list = PyList::empty(py);
-            for item_1859 in value {
-                let converted_item_1860 = log_alarm_shared_to_py(py, item_1859)?;
-                converted_1858_list.append(converted_item_1860)?;
+            let converted_1886_list = PyList::empty(py);
+            for item_1887 in value {
+                let converted_item_1888 = log_alarm_shared_to_py(py, item_1887)?;
+                converted_1886_list.append(converted_item_1888)?;
             }
-            let converted_1858 = converted_1858_list.into_any().unbind();
-            result.set_item("log_alarms", converted_1858)?;
+            let converted_1886 = converted_1886_list.into_any().unbind();
+            result.set_item("log_alarms", converted_1886)?;
         } else {
             result.set_item("log_alarms", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1861 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1861)?;
+            let converted_1889 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1889)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -12684,7 +12852,7 @@ impl From<aws_sdk_cloudwatch::operation::describe_alarms_for_metric::DescribeAla
             metric_alarms: value.metric_alarms.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1865| Arc::new(SharedMetricAlarm::from(owned_1865)))
+                    .map(|owned_1893| Arc::new(SharedMetricAlarm::from(owned_1893)))
                     .collect()
             }),
         }
@@ -12705,19 +12873,19 @@ impl PyOperationDescribeAlarmsForMetricOutput {
     #[getter]
     fn metric_alarms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_alarms {
-            let converted_1862_list = PyList::empty(py);
-            for item_1863 in value {
-                let converted_item_1864 = Py::new(
+            let converted_1890_list = PyList::empty(py);
+            for item_1891 in value {
+                let converted_item_1892 = Py::new(
                     py,
                     PyMetricAlarm {
-                        inner: Arc::clone(item_1863),
+                        inner: Arc::clone(item_1891),
                     },
                 )?
                 .into_any();
-                converted_1862_list.append(converted_item_1864)?;
+                converted_1890_list.append(converted_item_1892)?;
             }
-            let converted_1862 = converted_1862_list.into_any().unbind();
-            Ok(converted_1862)
+            let converted_1890 = converted_1890_list.into_any().unbind();
+            Ok(converted_1890)
         } else {
             Ok(py.None())
         }
@@ -12726,13 +12894,13 @@ impl PyOperationDescribeAlarmsForMetricOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.metric_alarms {
-            let converted_1866_list = PyList::empty(py);
-            for item_1867 in value {
-                let converted_item_1868 = metric_alarm_shared_to_py(py, item_1867)?;
-                converted_1866_list.append(converted_item_1868)?;
+            let converted_1894_list = PyList::empty(py);
+            for item_1895 in value {
+                let converted_item_1896 = metric_alarm_shared_to_py(py, item_1895)?;
+                converted_1894_list.append(converted_item_1896)?;
             }
-            let converted_1866 = converted_1866_list.into_any().unbind();
-            result.set_item("metric_alarms", converted_1866)?;
+            let converted_1894 = converted_1894_list.into_any().unbind();
+            result.set_item("metric_alarms", converted_1894)?;
         } else {
             result.set_item("metric_alarms", py.None())?;
         }
@@ -12757,7 +12925,7 @@ impl From<aws_sdk_cloudwatch::operation::describe_anomaly_detectors::DescribeAno
             anomaly_detectors: value.anomaly_detectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1873| Arc::new(SharedAnomalyDetector::from(owned_1873)))
+                    .map(|owned_1901| Arc::new(SharedAnomalyDetector::from(owned_1901)))
                     .collect()
             }),
             next_token: value.next_token,
@@ -12779,19 +12947,19 @@ impl PyOperationDescribeAnomalyDetectorsOutput {
     #[getter]
     fn anomaly_detectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.anomaly_detectors {
-            let converted_1869_list = PyList::empty(py);
-            for item_1870 in value {
-                let converted_item_1871 = Py::new(
+            let converted_1897_list = PyList::empty(py);
+            for item_1898 in value {
+                let converted_item_1899 = Py::new(
                     py,
                     PyAnomalyDetector {
-                        inner: Arc::clone(item_1870),
+                        inner: Arc::clone(item_1898),
                     },
                 )?
                 .into_any();
-                converted_1869_list.append(converted_item_1871)?;
+                converted_1897_list.append(converted_item_1899)?;
             }
-            let converted_1869 = converted_1869_list.into_any().unbind();
-            Ok(converted_1869)
+            let converted_1897 = converted_1897_list.into_any().unbind();
+            Ok(converted_1897)
         } else {
             Ok(py.None())
         }
@@ -12800,8 +12968,8 @@ impl PyOperationDescribeAnomalyDetectorsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1872 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1872)
+            let converted_1900 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1900)
         } else {
             Ok(py.None())
         }
@@ -12810,19 +12978,19 @@ impl PyOperationDescribeAnomalyDetectorsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.anomaly_detectors {
-            let converted_1874_list = PyList::empty(py);
-            for item_1875 in value {
-                let converted_item_1876 = anomaly_detector_shared_to_py(py, item_1875)?;
-                converted_1874_list.append(converted_item_1876)?;
+            let converted_1902_list = PyList::empty(py);
+            for item_1903 in value {
+                let converted_item_1904 = anomaly_detector_shared_to_py(py, item_1903)?;
+                converted_1902_list.append(converted_item_1904)?;
             }
-            let converted_1874 = converted_1874_list.into_any().unbind();
-            result.set_item("anomaly_detectors", converted_1874)?;
+            let converted_1902 = converted_1902_list.into_any().unbind();
+            result.set_item("anomaly_detectors", converted_1902)?;
         } else {
             result.set_item("anomaly_detectors", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1877 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1877)?;
+            let converted_1905 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1905)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -12848,7 +13016,7 @@ impl From<aws_sdk_cloudwatch::operation::describe_insight_rules::DescribeInsight
             insight_rules: value.insight_rules.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1882| Arc::new(owned_1882))
+                    .map(|owned_1910| Arc::new(owned_1910))
                     .collect()
             }),
         }
@@ -12869,8 +13037,8 @@ impl PyOperationDescribeInsightRulesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1878 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1878)
+            let converted_1906 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1906)
         } else {
             Ok(py.None())
         }
@@ -12879,19 +13047,19 @@ impl PyOperationDescribeInsightRulesOutput {
     #[getter]
     fn insight_rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.insight_rules {
-            let converted_1879_list = PyList::empty(py);
-            for item_1880 in value {
-                let converted_item_1881 = Py::new(
+            let converted_1907_list = PyList::empty(py);
+            for item_1908 in value {
+                let converted_item_1909 = Py::new(
                     py,
                     PyInsightRule {
-                        inner: Arc::clone(item_1880),
+                        inner: Arc::clone(item_1908),
                     },
                 )?
                 .into_any();
-                converted_1879_list.append(converted_item_1881)?;
+                converted_1907_list.append(converted_item_1909)?;
             }
-            let converted_1879 = converted_1879_list.into_any().unbind();
-            Ok(converted_1879)
+            let converted_1907 = converted_1907_list.into_any().unbind();
+            Ok(converted_1907)
         } else {
             Ok(py.None())
         }
@@ -12900,19 +13068,19 @@ impl PyOperationDescribeInsightRulesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_1883 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1883)?;
+            let converted_1911 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1911)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.insight_rules {
-            let converted_1884_list = PyList::empty(py);
-            for item_1885 in value {
-                let converted_item_1886 = insight_rule_to_py(py, item_1885)?;
-                converted_1884_list.append(converted_item_1886)?;
+            let converted_1912_list = PyList::empty(py);
+            for item_1913 in value {
+                let converted_item_1914 = insight_rule_to_py(py, item_1913)?;
+                converted_1912_list.append(converted_item_1914)?;
             }
-            let converted_1884 = converted_1884_list.into_any().unbind();
-            result.set_item("insight_rules", converted_1884)?;
+            let converted_1912 = converted_1912_list.into_any().unbind();
+            result.set_item("insight_rules", converted_1912)?;
         } else {
             result.set_item("insight_rules", py.None())?;
         }
@@ -12936,7 +13104,7 @@ impl From<aws_sdk_cloudwatch::operation::disable_insight_rules::DisableInsightRu
             failures: value.failures.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1890| Arc::new(owned_1890))
+                    .map(|owned_1918| Arc::new(owned_1918))
                     .collect()
             }),
         }
@@ -12957,19 +13125,19 @@ impl PyOperationDisableInsightRulesOutput {
     #[getter]
     fn failures(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failures {
-            let converted_1887_list = PyList::empty(py);
-            for item_1888 in value {
-                let converted_item_1889 = Py::new(
+            let converted_1915_list = PyList::empty(py);
+            for item_1916 in value {
+                let converted_item_1917 = Py::new(
                     py,
                     PyPartialFailure {
-                        inner: Arc::clone(item_1888),
+                        inner: Arc::clone(item_1916),
                     },
                 )?
                 .into_any();
-                converted_1887_list.append(converted_item_1889)?;
+                converted_1915_list.append(converted_item_1917)?;
             }
-            let converted_1887 = converted_1887_list.into_any().unbind();
-            Ok(converted_1887)
+            let converted_1915 = converted_1915_list.into_any().unbind();
+            Ok(converted_1915)
         } else {
             Ok(py.None())
         }
@@ -12978,13 +13146,13 @@ impl PyOperationDisableInsightRulesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.failures {
-            let converted_1891_list = PyList::empty(py);
-            for item_1892 in value {
-                let converted_item_1893 = partial_failure_to_py(py, item_1892)?;
-                converted_1891_list.append(converted_item_1893)?;
+            let converted_1919_list = PyList::empty(py);
+            for item_1920 in value {
+                let converted_item_1921 = partial_failure_to_py(py, item_1920)?;
+                converted_1919_list.append(converted_item_1921)?;
             }
-            let converted_1891 = converted_1891_list.into_any().unbind();
-            result.set_item("failures", converted_1891)?;
+            let converted_1919 = converted_1919_list.into_any().unbind();
+            result.set_item("failures", converted_1919)?;
         } else {
             result.set_item("failures", py.None())?;
         }
@@ -13025,7 +13193,7 @@ impl From<aws_sdk_cloudwatch::operation::enable_insight_rules::EnableInsightRule
             failures: value.failures.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1897| Arc::new(owned_1897))
+                    .map(|owned_1925| Arc::new(owned_1925))
                     .collect()
             }),
         }
@@ -13046,19 +13214,19 @@ impl PyOperationEnableInsightRulesOutput {
     #[getter]
     fn failures(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failures {
-            let converted_1894_list = PyList::empty(py);
-            for item_1895 in value {
-                let converted_item_1896 = Py::new(
+            let converted_1922_list = PyList::empty(py);
+            for item_1923 in value {
+                let converted_item_1924 = Py::new(
                     py,
                     PyPartialFailure {
-                        inner: Arc::clone(item_1895),
+                        inner: Arc::clone(item_1923),
                     },
                 )?
                 .into_any();
-                converted_1894_list.append(converted_item_1896)?;
+                converted_1922_list.append(converted_item_1924)?;
             }
-            let converted_1894 = converted_1894_list.into_any().unbind();
-            Ok(converted_1894)
+            let converted_1922 = converted_1922_list.into_any().unbind();
+            Ok(converted_1922)
         } else {
             Ok(py.None())
         }
@@ -13067,13 +13235,13 @@ impl PyOperationEnableInsightRulesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.failures {
-            let converted_1898_list = PyList::empty(py);
-            for item_1899 in value {
-                let converted_item_1900 = partial_failure_to_py(py, item_1899)?;
-                converted_1898_list.append(converted_item_1900)?;
+            let converted_1926_list = PyList::empty(py);
+            for item_1927 in value {
+                let converted_item_1928 = partial_failure_to_py(py, item_1927)?;
+                converted_1926_list.append(converted_item_1928)?;
             }
-            let converted_1898 = converted_1898_list.into_any().unbind();
-            result.set_item("failures", converted_1898)?;
+            let converted_1926 = converted_1926_list.into_any().unbind();
+            result.set_item("failures", converted_1926)?;
         } else {
             result.set_item("failures", py.None())?;
         }
@@ -13131,8 +13299,8 @@ impl PyOperationGetAlarmMuteRuleOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1901 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1901)
+            let converted_1929 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1929)
         } else {
             Ok(py.None())
         }
@@ -13141,8 +13309,8 @@ impl PyOperationGetAlarmMuteRuleOutput {
     #[getter]
     fn alarm_mute_rule_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_mute_rule_arn {
-            let converted_1902 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1902)
+            let converted_1930 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1930)
         } else {
             Ok(py.None())
         }
@@ -13151,8 +13319,8 @@ impl PyOperationGetAlarmMuteRuleOutput {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1903 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1903)
+            let converted_1931 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1931)
         } else {
             Ok(py.None())
         }
@@ -13161,14 +13329,14 @@ impl PyOperationGetAlarmMuteRuleOutput {
     #[getter]
     fn rule(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rule {
-            let converted_1904 = Py::new(
+            let converted_1932 = Py::new(
                 py,
                 PyRule {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1904)
+            Ok(converted_1932)
         } else {
             Ok(py.None())
         }
@@ -13177,14 +13345,14 @@ impl PyOperationGetAlarmMuteRuleOutput {
     #[getter]
     fn mute_targets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.mute_targets {
-            let converted_1905 = Py::new(
+            let converted_1933 = Py::new(
                 py,
                 PyMuteTargets {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1905)
+            Ok(converted_1933)
         } else {
             Ok(py.None())
         }
@@ -13193,8 +13361,8 @@ impl PyOperationGetAlarmMuteRuleOutput {
     #[getter]
     fn start_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.start_date {
-            let converted_1906 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1906)
+            let converted_1934 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1934)
         } else {
             Ok(py.None())
         }
@@ -13203,8 +13371,8 @@ impl PyOperationGetAlarmMuteRuleOutput {
     #[getter]
     fn expire_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expire_date {
-            let converted_1907 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1907)
+            let converted_1935 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1935)
         } else {
             Ok(py.None())
         }
@@ -13213,8 +13381,8 @@ impl PyOperationGetAlarmMuteRuleOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1908 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1908)
+            let converted_1936 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1936)
         } else {
             Ok(py.None())
         }
@@ -13223,8 +13391,8 @@ impl PyOperationGetAlarmMuteRuleOutput {
     #[getter]
     fn last_updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_updated_timestamp {
-            let converted_1909 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1909)
+            let converted_1937 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1937)
         } else {
             Ok(py.None())
         }
@@ -13233,8 +13401,8 @@ impl PyOperationGetAlarmMuteRuleOutput {
     #[getter]
     fn mute_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.mute_type {
-            let converted_1910 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1910)
+            let converted_1938 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1938)
         } else {
             Ok(py.None())
         }
@@ -13243,62 +13411,62 @@ impl PyOperationGetAlarmMuteRuleOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.name {
-            let converted_1911 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1911)?;
+            let converted_1939 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1939)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.alarm_mute_rule_arn {
-            let converted_1912 = (value).as_str().into_py_any(py)?;
-            result.set_item("alarm_mute_rule_arn", converted_1912)?;
+            let converted_1940 = (value).as_str().into_py_any(py)?;
+            result.set_item("alarm_mute_rule_arn", converted_1940)?;
         } else {
             result.set_item("alarm_mute_rule_arn", py.None())?;
         }
         if let Some(value) = &self.inner.description {
-            let converted_1913 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_1913)?;
+            let converted_1941 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_1941)?;
         } else {
             result.set_item("description", py.None())?;
         }
         if let Some(value) = &self.inner.rule {
-            let converted_1914 = rule_shared_to_py(py, value)?;
-            result.set_item("rule", converted_1914)?;
+            let converted_1942 = rule_shared_to_py(py, value)?;
+            result.set_item("rule", converted_1942)?;
         } else {
             result.set_item("rule", py.None())?;
         }
         if let Some(value) = &self.inner.mute_targets {
-            let converted_1915 = mute_targets_to_py(py, value)?;
-            result.set_item("mute_targets", converted_1915)?;
+            let converted_1943 = mute_targets_to_py(py, value)?;
+            result.set_item("mute_targets", converted_1943)?;
         } else {
             result.set_item("mute_targets", py.None())?;
         }
         if let Some(value) = &self.inner.start_date {
-            let converted_1916 = (value).to_string().into_py_any(py)?;
-            result.set_item("start_date", converted_1916)?;
+            let converted_1944 = (value).to_string().into_py_any(py)?;
+            result.set_item("start_date", converted_1944)?;
         } else {
             result.set_item("start_date", py.None())?;
         }
         if let Some(value) = &self.inner.expire_date {
-            let converted_1917 = (value).to_string().into_py_any(py)?;
-            result.set_item("expire_date", converted_1917)?;
+            let converted_1945 = (value).to_string().into_py_any(py)?;
+            result.set_item("expire_date", converted_1945)?;
         } else {
             result.set_item("expire_date", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_1918 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_1918)?;
+            let converted_1946 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1946)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.last_updated_timestamp {
-            let converted_1919 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_updated_timestamp", converted_1919)?;
+            let converted_1947 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_updated_timestamp", converted_1947)?;
         } else {
             result.set_item("last_updated_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.mute_type {
-            let converted_1920 = (value).as_str().into_py_any(py)?;
-            result.set_item("mute_type", converted_1920)?;
+            let converted_1948 = (value).as_str().into_py_any(py)?;
+            result.set_item("mute_type", converted_1948)?;
         } else {
             result.set_item("mute_type", py.None())?;
         }
@@ -13320,8 +13488,8 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn dashboard_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_arn {
-            let converted_1921 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1921)
+            let converted_1949 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1949)
         } else {
             Ok(py.None())
         }
@@ -13330,8 +13498,8 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn dashboard_body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_body {
-            let converted_1922 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1922)
+            let converted_1950 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1950)
         } else {
             Ok(py.None())
         }
@@ -13340,8 +13508,8 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn dashboard_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_name {
-            let converted_1923 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1923)
+            let converted_1951 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1951)
         } else {
             Ok(py.None())
         }
@@ -13350,20 +13518,20 @@ impl PyOperationGetDashboardOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.dashboard_arn {
-            let converted_1924 = (value).as_str().into_py_any(py)?;
-            result.set_item("dashboard_arn", converted_1924)?;
+            let converted_1952 = (value).as_str().into_py_any(py)?;
+            result.set_item("dashboard_arn", converted_1952)?;
         } else {
             result.set_item("dashboard_arn", py.None())?;
         }
         if let Some(value) = &self.inner.dashboard_body {
-            let converted_1925 = (value).as_str().into_py_any(py)?;
-            result.set_item("dashboard_body", converted_1925)?;
+            let converted_1953 = (value).as_str().into_py_any(py)?;
+            result.set_item("dashboard_body", converted_1953)?;
         } else {
             result.set_item("dashboard_body", py.None())?;
         }
         if let Some(value) = &self.inner.dashboard_name {
-            let converted_1926 = (value).as_str().into_py_any(py)?;
-            result.set_item("dashboard_name", converted_1926)?;
+            let converted_1954 = (value).as_str().into_py_any(py)?;
+            result.set_item("dashboard_name", converted_1954)?;
         } else {
             result.set_item("dashboard_name", py.None())?;
         }
@@ -13381,8 +13549,8 @@ impl PyOperationGetDatasetOutput {
     #[getter]
     fn dataset_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dataset_id {
-            let converted_1927 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1927)
+            let converted_1955 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1955)
         } else {
             Ok(py.None())
         }
@@ -13391,8 +13559,8 @@ impl PyOperationGetDatasetOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_1928 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1928)
+            let converted_1956 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1956)
         } else {
             Ok(py.None())
         }
@@ -13401,8 +13569,8 @@ impl PyOperationGetDatasetOutput {
     #[getter]
     fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_1929 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1929)
+            let converted_1957 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1957)
         } else {
             Ok(py.None())
         }
@@ -13411,20 +13579,20 @@ impl PyOperationGetDatasetOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.dataset_id {
-            let converted_1930 = (value).as_str().into_py_any(py)?;
-            result.set_item("dataset_id", converted_1930)?;
+            let converted_1958 = (value).as_str().into_py_any(py)?;
+            result.set_item("dataset_id", converted_1958)?;
         } else {
             result.set_item("dataset_id", py.None())?;
         }
         if let Some(value) = &self.inner.arn {
-            let converted_1931 = (value).as_str().into_py_any(py)?;
-            result.set_item("arn", converted_1931)?;
+            let converted_1959 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_1959)?;
         } else {
             result.set_item("arn", py.None())?;
         }
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_1932 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_arn", converted_1932)?;
+            let converted_1960 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_arn", converted_1960)?;
         } else {
             result.set_item("kms_key_arn", py.None())?;
         }
@@ -13458,13 +13626,13 @@ impl From<aws_sdk_cloudwatch::operation::get_insight_rule_report::GetInsightRule
             contributors: value.contributors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1945| Arc::new(SharedInsightRuleContributor::from(owned_1945)))
+                    .map(|owned_1973| Arc::new(SharedInsightRuleContributor::from(owned_1973)))
                     .collect()
             }),
             metric_datapoints: value.metric_datapoints.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1946| Arc::new(owned_1946))
+                    .map(|owned_1974| Arc::new(owned_1974))
                     .collect()
             }),
         }
@@ -13485,13 +13653,13 @@ impl PyOperationGetInsightRuleReportOutput {
     #[getter]
     fn key_labels(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_labels {
-            let converted_1933_list = PyList::empty(py);
-            for item_1934 in value {
-                let converted_item_1935 = (item_1934).as_str().into_py_any(py)?;
-                converted_1933_list.append(converted_item_1935)?;
+            let converted_1961_list = PyList::empty(py);
+            for item_1962 in value {
+                let converted_item_1963 = (item_1962).as_str().into_py_any(py)?;
+                converted_1961_list.append(converted_item_1963)?;
             }
-            let converted_1933 = converted_1933_list.into_any().unbind();
-            Ok(converted_1933)
+            let converted_1961 = converted_1961_list.into_any().unbind();
+            Ok(converted_1961)
         } else {
             Ok(py.None())
         }
@@ -13500,8 +13668,8 @@ impl PyOperationGetInsightRuleReportOutput {
     #[getter]
     fn aggregation_statistic(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.aggregation_statistic {
-            let converted_1936 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1936)
+            let converted_1964 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1964)
         } else {
             Ok(py.None())
         }
@@ -13510,8 +13678,8 @@ impl PyOperationGetInsightRuleReportOutput {
     #[getter]
     fn aggregate_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.aggregate_value {
-            let converted_1937 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1937)
+            let converted_1965 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1965)
         } else {
             Ok(py.None())
         }
@@ -13520,8 +13688,8 @@ impl PyOperationGetInsightRuleReportOutput {
     #[getter]
     fn approximate_unique_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.approximate_unique_count {
-            let converted_1938 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1938)
+            let converted_1966 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1966)
         } else {
             Ok(py.None())
         }
@@ -13530,19 +13698,19 @@ impl PyOperationGetInsightRuleReportOutput {
     #[getter]
     fn contributors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contributors {
-            let converted_1939_list = PyList::empty(py);
-            for item_1940 in value {
-                let converted_item_1941 = Py::new(
+            let converted_1967_list = PyList::empty(py);
+            for item_1968 in value {
+                let converted_item_1969 = Py::new(
                     py,
                     PyInsightRuleContributor {
-                        inner: Arc::clone(item_1940),
+                        inner: Arc::clone(item_1968),
                     },
                 )?
                 .into_any();
-                converted_1939_list.append(converted_item_1941)?;
+                converted_1967_list.append(converted_item_1969)?;
             }
-            let converted_1939 = converted_1939_list.into_any().unbind();
-            Ok(converted_1939)
+            let converted_1967 = converted_1967_list.into_any().unbind();
+            Ok(converted_1967)
         } else {
             Ok(py.None())
         }
@@ -13551,19 +13719,19 @@ impl PyOperationGetInsightRuleReportOutput {
     #[getter]
     fn metric_datapoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_datapoints {
-            let converted_1942_list = PyList::empty(py);
-            for item_1943 in value {
-                let converted_item_1944 = Py::new(
+            let converted_1970_list = PyList::empty(py);
+            for item_1971 in value {
+                let converted_item_1972 = Py::new(
                     py,
                     PyInsightRuleMetricDatapoint {
-                        inner: Arc::clone(item_1943),
+                        inner: Arc::clone(item_1971),
                     },
                 )?
                 .into_any();
-                converted_1942_list.append(converted_item_1944)?;
+                converted_1970_list.append(converted_item_1972)?;
             }
-            let converted_1942 = converted_1942_list.into_any().unbind();
-            Ok(converted_1942)
+            let converted_1970 = converted_1970_list.into_any().unbind();
+            Ok(converted_1970)
         } else {
             Ok(py.None())
         }
@@ -13572,53 +13740,53 @@ impl PyOperationGetInsightRuleReportOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_labels {
-            let converted_1947_list = PyList::empty(py);
-            for item_1948 in value {
-                let converted_item_1949 = (item_1948).as_str().into_py_any(py)?;
-                converted_1947_list.append(converted_item_1949)?;
+            let converted_1975_list = PyList::empty(py);
+            for item_1976 in value {
+                let converted_item_1977 = (item_1976).as_str().into_py_any(py)?;
+                converted_1975_list.append(converted_item_1977)?;
             }
-            let converted_1947 = converted_1947_list.into_any().unbind();
-            result.set_item("key_labels", converted_1947)?;
+            let converted_1975 = converted_1975_list.into_any().unbind();
+            result.set_item("key_labels", converted_1975)?;
         } else {
             result.set_item("key_labels", py.None())?;
         }
         if let Some(value) = &self.inner.aggregation_statistic {
-            let converted_1950 = (value).as_str().into_py_any(py)?;
-            result.set_item("aggregation_statistic", converted_1950)?;
+            let converted_1978 = (value).as_str().into_py_any(py)?;
+            result.set_item("aggregation_statistic", converted_1978)?;
         } else {
             result.set_item("aggregation_statistic", py.None())?;
         }
         if let Some(value) = &self.inner.aggregate_value {
-            let converted_1951 = (value).to_owned().into_py_any(py)?;
-            result.set_item("aggregate_value", converted_1951)?;
+            let converted_1979 = (value).to_owned().into_py_any(py)?;
+            result.set_item("aggregate_value", converted_1979)?;
         } else {
             result.set_item("aggregate_value", py.None())?;
         }
         if let Some(value) = &self.inner.approximate_unique_count {
-            let converted_1952 = (value).to_owned().into_py_any(py)?;
-            result.set_item("approximate_unique_count", converted_1952)?;
+            let converted_1980 = (value).to_owned().into_py_any(py)?;
+            result.set_item("approximate_unique_count", converted_1980)?;
         } else {
             result.set_item("approximate_unique_count", py.None())?;
         }
         if let Some(value) = &self.inner.contributors {
-            let converted_1953_list = PyList::empty(py);
-            for item_1954 in value {
-                let converted_item_1955 = insight_rule_contributor_shared_to_py(py, item_1954)?;
-                converted_1953_list.append(converted_item_1955)?;
+            let converted_1981_list = PyList::empty(py);
+            for item_1982 in value {
+                let converted_item_1983 = insight_rule_contributor_shared_to_py(py, item_1982)?;
+                converted_1981_list.append(converted_item_1983)?;
             }
-            let converted_1953 = converted_1953_list.into_any().unbind();
-            result.set_item("contributors", converted_1953)?;
+            let converted_1981 = converted_1981_list.into_any().unbind();
+            result.set_item("contributors", converted_1981)?;
         } else {
             result.set_item("contributors", py.None())?;
         }
         if let Some(value) = &self.inner.metric_datapoints {
-            let converted_1956_list = PyList::empty(py);
-            for item_1957 in value {
-                let converted_item_1958 = insight_rule_metric_datapoint_to_py(py, item_1957)?;
-                converted_1956_list.append(converted_item_1958)?;
+            let converted_1984_list = PyList::empty(py);
+            for item_1985 in value {
+                let converted_item_1986 = insight_rule_metric_datapoint_to_py(py, item_1985)?;
+                converted_1984_list.append(converted_item_1986)?;
             }
-            let converted_1956 = converted_1956_list.into_any().unbind();
-            result.set_item("metric_datapoints", converted_1956)?;
+            let converted_1984 = converted_1984_list.into_any().unbind();
+            result.set_item("metric_datapoints", converted_1984)?;
         } else {
             result.set_item("metric_datapoints", py.None())?;
         }
@@ -13642,14 +13810,14 @@ impl From<aws_sdk_cloudwatch::operation::get_metric_data::GetMetricDataOutput>
             metric_data_results: value.metric_data_results.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1966| Arc::new(SharedMetricDataResult::from(owned_1966)))
+                    .map(|owned_1994| Arc::new(SharedMetricDataResult::from(owned_1994)))
                     .collect()
             }),
             next_token: value.next_token,
             messages: value.messages.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1967| Arc::new(owned_1967))
+                    .map(|owned_1995| Arc::new(owned_1995))
                     .collect()
             }),
         }
@@ -13670,19 +13838,19 @@ impl PyOperationGetMetricDataOutput {
     #[getter]
     fn metric_data_results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_data_results {
-            let converted_1959_list = PyList::empty(py);
-            for item_1960 in value {
-                let converted_item_1961 = Py::new(
+            let converted_1987_list = PyList::empty(py);
+            for item_1988 in value {
+                let converted_item_1989 = Py::new(
                     py,
                     PyMetricDataResult {
-                        inner: Arc::clone(item_1960),
+                        inner: Arc::clone(item_1988),
                     },
                 )?
                 .into_any();
-                converted_1959_list.append(converted_item_1961)?;
+                converted_1987_list.append(converted_item_1989)?;
             }
-            let converted_1959 = converted_1959_list.into_any().unbind();
-            Ok(converted_1959)
+            let converted_1987 = converted_1987_list.into_any().unbind();
+            Ok(converted_1987)
         } else {
             Ok(py.None())
         }
@@ -13691,8 +13859,8 @@ impl PyOperationGetMetricDataOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1962 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1962)
+            let converted_1990 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1990)
         } else {
             Ok(py.None())
         }
@@ -13701,19 +13869,19 @@ impl PyOperationGetMetricDataOutput {
     #[getter]
     fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.messages {
-            let converted_1963_list = PyList::empty(py);
-            for item_1964 in value {
-                let converted_item_1965 = Py::new(
+            let converted_1991_list = PyList::empty(py);
+            for item_1992 in value {
+                let converted_item_1993 = Py::new(
                     py,
                     PyMessageData {
-                        inner: Arc::clone(item_1964),
+                        inner: Arc::clone(item_1992),
                     },
                 )?
                 .into_any();
-                converted_1963_list.append(converted_item_1965)?;
+                converted_1991_list.append(converted_item_1993)?;
             }
-            let converted_1963 = converted_1963_list.into_any().unbind();
-            Ok(converted_1963)
+            let converted_1991 = converted_1991_list.into_any().unbind();
+            Ok(converted_1991)
         } else {
             Ok(py.None())
         }
@@ -13722,32 +13890,161 @@ impl PyOperationGetMetricDataOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.metric_data_results {
-            let converted_1968_list = PyList::empty(py);
-            for item_1969 in value {
-                let converted_item_1970 = metric_data_result_shared_to_py(py, item_1969)?;
-                converted_1968_list.append(converted_item_1970)?;
+            let converted_1996_list = PyList::empty(py);
+            for item_1997 in value {
+                let converted_item_1998 = metric_data_result_shared_to_py(py, item_1997)?;
+                converted_1996_list.append(converted_item_1998)?;
             }
-            let converted_1968 = converted_1968_list.into_any().unbind();
-            result.set_item("metric_data_results", converted_1968)?;
+            let converted_1996 = converted_1996_list.into_any().unbind();
+            result.set_item("metric_data_results", converted_1996)?;
         } else {
             result.set_item("metric_data_results", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1971 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1971)?;
+            let converted_1999 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1999)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.messages {
-            let converted_1972_list = PyList::empty(py);
-            for item_1973 in value {
-                let converted_item_1974 = message_data_to_py(py, item_1973)?;
-                converted_1972_list.append(converted_item_1974)?;
+            let converted_2000_list = PyList::empty(py);
+            for item_2001 in value {
+                let converted_item_2002 = message_data_to_py(py, item_2001)?;
+                converted_2000_list.append(converted_item_2002)?;
             }
-            let converted_1972 = converted_1972_list.into_any().unbind();
-            result.set_item("messages", converted_1972)?;
+            let converted_2000 = converted_2000_list.into_any().unbind();
+            result.set_item("messages", converted_2000)?;
         } else {
             result.set_item("messages", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "GetMetricDataQueryDefinitionOutput",
+    module = "rboto_cloudwatch._native",
+    frozen
+)]
+struct PyOperationGetMetricDataQueryDefinitionOutput {
+    inner: aws_sdk_cloudwatch::operation::get_metric_data_query_definition::GetMetricDataQueryDefinitionOutput,
+}
+
+#[pymethods]
+impl PyOperationGetMetricDataQueryDefinitionOutput {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
+            let converted_2003 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2003)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.arn {
+            let converted_2004 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2004)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.path {
+            let converted_2005 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2005)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expression {
+            let converted_2006 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2006)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.r#type {
+            let converted_2007 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2007)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.created_at {
+            let converted_2008 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2008)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.updated_at {
+            let converted_2009 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2009)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.id {
+            let converted_2010 = (value).as_str().into_py_any(py)?;
+            result.set_item("id", converted_2010)?;
+        } else {
+            result.set_item("id", py.None())?;
+        }
+        if let Some(value) = &self.inner.arn {
+            let converted_2011 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_2011)?;
+        } else {
+            result.set_item("arn", py.None())?;
+        }
+        if let Some(value) = &self.inner.path {
+            let converted_2012 = (value).as_str().into_py_any(py)?;
+            result.set_item("path", converted_2012)?;
+        } else {
+            result.set_item("path", py.None())?;
+        }
+        if let Some(value) = &self.inner.expression {
+            let converted_2013 = (value).as_str().into_py_any(py)?;
+            result.set_item("expression", converted_2013)?;
+        } else {
+            result.set_item("expression", py.None())?;
+        }
+        if let Some(value) = &self.inner.r#type {
+            let converted_2014 = (value).as_str().into_py_any(py)?;
+            result.set_item("type", converted_2014)?;
+        } else {
+            result.set_item("type", py.None())?;
+        }
+        if let Some(value) = &self.inner.created_at {
+            let converted_2015 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_at", converted_2015)?;
+        } else {
+            result.set_item("created_at", py.None())?;
+        }
+        if let Some(value) = &self.inner.updated_at {
+            let converted_2016 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_at", converted_2016)?;
+        } else {
+            result.set_item("updated_at", py.None())?;
         }
         Ok(result.into_any().unbind())
     }
@@ -13771,7 +14068,7 @@ impl From<aws_sdk_cloudwatch::operation::get_metric_statistics::GetMetricStatist
             datapoints: value.datapoints.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1979| Arc::new(owned_1979))
+                    .map(|owned_2021| Arc::new(owned_2021))
                     .collect()
             }),
         }
@@ -13792,8 +14089,8 @@ impl PyOperationGetMetricStatisticsOutput {
     #[getter]
     fn label(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.label {
-            let converted_1975 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1975)
+            let converted_2017 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2017)
         } else {
             Ok(py.None())
         }
@@ -13802,19 +14099,19 @@ impl PyOperationGetMetricStatisticsOutput {
     #[getter]
     fn datapoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.datapoints {
-            let converted_1976_list = PyList::empty(py);
-            for item_1977 in value {
-                let converted_item_1978 = Py::new(
+            let converted_2018_list = PyList::empty(py);
+            for item_2019 in value {
+                let converted_item_2020 = Py::new(
                     py,
                     PyDatapoint {
-                        inner: Arc::clone(item_1977),
+                        inner: Arc::clone(item_2019),
                     },
                 )?
                 .into_any();
-                converted_1976_list.append(converted_item_1978)?;
+                converted_2018_list.append(converted_item_2020)?;
             }
-            let converted_1976 = converted_1976_list.into_any().unbind();
-            Ok(converted_1976)
+            let converted_2018 = converted_2018_list.into_any().unbind();
+            Ok(converted_2018)
         } else {
             Ok(py.None())
         }
@@ -13823,19 +14120,19 @@ impl PyOperationGetMetricStatisticsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.label {
-            let converted_1980 = (value).as_str().into_py_any(py)?;
-            result.set_item("label", converted_1980)?;
+            let converted_2022 = (value).as_str().into_py_any(py)?;
+            result.set_item("label", converted_2022)?;
         } else {
             result.set_item("label", py.None())?;
         }
         if let Some(value) = &self.inner.datapoints {
-            let converted_1981_list = PyList::empty(py);
-            for item_1982 in value {
-                let converted_item_1983 = datapoint_to_py(py, item_1982)?;
-                converted_1981_list.append(converted_item_1983)?;
+            let converted_2023_list = PyList::empty(py);
+            for item_2024 in value {
+                let converted_item_2025 = datapoint_to_py(py, item_2024)?;
+                converted_2023_list.append(converted_item_2025)?;
             }
-            let converted_1981 = converted_1981_list.into_any().unbind();
-            result.set_item("datapoints", converted_1981)?;
+            let converted_2023 = converted_2023_list.into_any().unbind();
+            result.set_item("datapoints", converted_2023)?;
         } else {
             result.set_item("datapoints", py.None())?;
         }
@@ -13873,13 +14170,13 @@ impl From<aws_sdk_cloudwatch::operation::get_metric_stream::GetMetricStreamOutpu
             include_filters: value.include_filters.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2002| Arc::new(owned_2002))
+                    .map(|owned_2044| Arc::new(owned_2044))
                     .collect()
             }),
             exclude_filters: value.exclude_filters.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2003| Arc::new(owned_2003))
+                    .map(|owned_2045| Arc::new(owned_2045))
                     .collect()
             }),
             firehose_arn: value.firehose_arn,
@@ -13891,8 +14188,8 @@ impl From<aws_sdk_cloudwatch::operation::get_metric_stream::GetMetricStreamOutpu
             statistics_configurations: value.statistics_configurations.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2004| {
-                        Arc::new(SharedMetricStreamStatisticsConfiguration::from(owned_2004))
+                    .map(|owned_2046| {
+                        Arc::new(SharedMetricStreamStatisticsConfiguration::from(owned_2046))
                     })
                     .collect()
             }),
@@ -13915,8 +14212,8 @@ impl PyOperationGetMetricStreamOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_1984 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1984)
+            let converted_2026 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2026)
         } else {
             Ok(py.None())
         }
@@ -13925,8 +14222,8 @@ impl PyOperationGetMetricStreamOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1985 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1985)
+            let converted_2027 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2027)
         } else {
             Ok(py.None())
         }
@@ -13935,19 +14232,19 @@ impl PyOperationGetMetricStreamOutput {
     #[getter]
     fn include_filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.include_filters {
-            let converted_1986_list = PyList::empty(py);
-            for item_1987 in value {
-                let converted_item_1988 = Py::new(
+            let converted_2028_list = PyList::empty(py);
+            for item_2029 in value {
+                let converted_item_2030 = Py::new(
                     py,
                     PyMetricStreamFilter {
-                        inner: Arc::clone(item_1987),
+                        inner: Arc::clone(item_2029),
                     },
                 )?
                 .into_any();
-                converted_1986_list.append(converted_item_1988)?;
+                converted_2028_list.append(converted_item_2030)?;
             }
-            let converted_1986 = converted_1986_list.into_any().unbind();
-            Ok(converted_1986)
+            let converted_2028 = converted_2028_list.into_any().unbind();
+            Ok(converted_2028)
         } else {
             Ok(py.None())
         }
@@ -13956,19 +14253,19 @@ impl PyOperationGetMetricStreamOutput {
     #[getter]
     fn exclude_filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.exclude_filters {
-            let converted_1989_list = PyList::empty(py);
-            for item_1990 in value {
-                let converted_item_1991 = Py::new(
+            let converted_2031_list = PyList::empty(py);
+            for item_2032 in value {
+                let converted_item_2033 = Py::new(
                     py,
                     PyMetricStreamFilter {
-                        inner: Arc::clone(item_1990),
+                        inner: Arc::clone(item_2032),
                     },
                 )?
                 .into_any();
-                converted_1989_list.append(converted_item_1991)?;
+                converted_2031_list.append(converted_item_2033)?;
             }
-            let converted_1989 = converted_1989_list.into_any().unbind();
-            Ok(converted_1989)
+            let converted_2031 = converted_2031_list.into_any().unbind();
+            Ok(converted_2031)
         } else {
             Ok(py.None())
         }
@@ -13977,8 +14274,8 @@ impl PyOperationGetMetricStreamOutput {
     #[getter]
     fn firehose_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.firehose_arn {
-            let converted_1992 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1992)
+            let converted_2034 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2034)
         } else {
             Ok(py.None())
         }
@@ -13987,8 +14284,8 @@ impl PyOperationGetMetricStreamOutput {
     #[getter]
     fn role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.role_arn {
-            let converted_1993 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1993)
+            let converted_2035 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2035)
         } else {
             Ok(py.None())
         }
@@ -13997,8 +14294,8 @@ impl PyOperationGetMetricStreamOutput {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1994 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1994)
+            let converted_2036 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2036)
         } else {
             Ok(py.None())
         }
@@ -14007,8 +14304,8 @@ impl PyOperationGetMetricStreamOutput {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date {
-            let converted_1995 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1995)
+            let converted_2037 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2037)
         } else {
             Ok(py.None())
         }
@@ -14017,8 +14314,8 @@ impl PyOperationGetMetricStreamOutput {
     #[getter]
     fn last_update_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_update_date {
-            let converted_1996 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1996)
+            let converted_2038 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2038)
         } else {
             Ok(py.None())
         }
@@ -14027,8 +14324,8 @@ impl PyOperationGetMetricStreamOutput {
     #[getter]
     fn output_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_format {
-            let converted_1997 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1997)
+            let converted_2039 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2039)
         } else {
             Ok(py.None())
         }
@@ -14037,19 +14334,19 @@ impl PyOperationGetMetricStreamOutput {
     #[getter]
     fn statistics_configurations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statistics_configurations {
-            let converted_1998_list = PyList::empty(py);
-            for item_1999 in value {
-                let converted_item_2000 = Py::new(
+            let converted_2040_list = PyList::empty(py);
+            for item_2041 in value {
+                let converted_item_2042 = Py::new(
                     py,
                     PyMetricStreamStatisticsConfiguration {
-                        inner: Arc::clone(item_1999),
+                        inner: Arc::clone(item_2041),
                     },
                 )?
                 .into_any();
-                converted_1998_list.append(converted_item_2000)?;
+                converted_2040_list.append(converted_item_2042)?;
             }
-            let converted_1998 = converted_1998_list.into_any().unbind();
-            Ok(converted_1998)
+            let converted_2040 = converted_2040_list.into_any().unbind();
+            Ok(converted_2040)
         } else {
             Ok(py.None())
         }
@@ -14058,8 +14355,8 @@ impl PyOperationGetMetricStreamOutput {
     #[getter]
     fn include_linked_accounts_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.include_linked_accounts_metrics {
-            let converted_2001 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_2001)
+            let converted_2043 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2043)
         } else {
             Ok(py.None())
         }
@@ -14068,90 +14365,90 @@ impl PyOperationGetMetricStreamOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.arn {
-            let converted_2005 = (value).as_str().into_py_any(py)?;
-            result.set_item("arn", converted_2005)?;
+            let converted_2047 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_2047)?;
         } else {
             result.set_item("arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_2006 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_2006)?;
+            let converted_2048 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_2048)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.include_filters {
-            let converted_2007_list = PyList::empty(py);
-            for item_2008 in value {
-                let converted_item_2009 = metric_stream_filter_to_py(py, item_2008)?;
-                converted_2007_list.append(converted_item_2009)?;
+            let converted_2049_list = PyList::empty(py);
+            for item_2050 in value {
+                let converted_item_2051 = metric_stream_filter_to_py(py, item_2050)?;
+                converted_2049_list.append(converted_item_2051)?;
             }
-            let converted_2007 = converted_2007_list.into_any().unbind();
-            result.set_item("include_filters", converted_2007)?;
+            let converted_2049 = converted_2049_list.into_any().unbind();
+            result.set_item("include_filters", converted_2049)?;
         } else {
             result.set_item("include_filters", py.None())?;
         }
         if let Some(value) = &self.inner.exclude_filters {
-            let converted_2010_list = PyList::empty(py);
-            for item_2011 in value {
-                let converted_item_2012 = metric_stream_filter_to_py(py, item_2011)?;
-                converted_2010_list.append(converted_item_2012)?;
+            let converted_2052_list = PyList::empty(py);
+            for item_2053 in value {
+                let converted_item_2054 = metric_stream_filter_to_py(py, item_2053)?;
+                converted_2052_list.append(converted_item_2054)?;
             }
-            let converted_2010 = converted_2010_list.into_any().unbind();
-            result.set_item("exclude_filters", converted_2010)?;
+            let converted_2052 = converted_2052_list.into_any().unbind();
+            result.set_item("exclude_filters", converted_2052)?;
         } else {
             result.set_item("exclude_filters", py.None())?;
         }
         if let Some(value) = &self.inner.firehose_arn {
-            let converted_2013 = (value).as_str().into_py_any(py)?;
-            result.set_item("firehose_arn", converted_2013)?;
+            let converted_2055 = (value).as_str().into_py_any(py)?;
+            result.set_item("firehose_arn", converted_2055)?;
         } else {
             result.set_item("firehose_arn", py.None())?;
         }
         if let Some(value) = &self.inner.role_arn {
-            let converted_2014 = (value).as_str().into_py_any(py)?;
-            result.set_item("role_arn", converted_2014)?;
+            let converted_2056 = (value).as_str().into_py_any(py)?;
+            result.set_item("role_arn", converted_2056)?;
         } else {
             result.set_item("role_arn", py.None())?;
         }
         if let Some(value) = &self.inner.state {
-            let converted_2015 = (value).as_str().into_py_any(py)?;
-            result.set_item("state", converted_2015)?;
+            let converted_2057 = (value).as_str().into_py_any(py)?;
+            result.set_item("state", converted_2057)?;
         } else {
             result.set_item("state", py.None())?;
         }
         if let Some(value) = &self.inner.creation_date {
-            let converted_2016 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_date", converted_2016)?;
+            let converted_2058 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_date", converted_2058)?;
         } else {
             result.set_item("creation_date", py.None())?;
         }
         if let Some(value) = &self.inner.last_update_date {
-            let converted_2017 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_update_date", converted_2017)?;
+            let converted_2059 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_update_date", converted_2059)?;
         } else {
             result.set_item("last_update_date", py.None())?;
         }
         if let Some(value) = &self.inner.output_format {
-            let converted_2018 = (value).as_str().into_py_any(py)?;
-            result.set_item("output_format", converted_2018)?;
+            let converted_2060 = (value).as_str().into_py_any(py)?;
+            result.set_item("output_format", converted_2060)?;
         } else {
             result.set_item("output_format", py.None())?;
         }
         if let Some(value) = &self.inner.statistics_configurations {
-            let converted_2019_list = PyList::empty(py);
-            for item_2020 in value {
-                let converted_item_2021 =
-                    metric_stream_statistics_configuration_shared_to_py(py, item_2020)?;
-                converted_2019_list.append(converted_item_2021)?;
+            let converted_2061_list = PyList::empty(py);
+            for item_2062 in value {
+                let converted_item_2063 =
+                    metric_stream_statistics_configuration_shared_to_py(py, item_2062)?;
+                converted_2061_list.append(converted_item_2063)?;
             }
-            let converted_2019 = converted_2019_list.into_any().unbind();
-            result.set_item("statistics_configurations", converted_2019)?;
+            let converted_2061 = converted_2061_list.into_any().unbind();
+            result.set_item("statistics_configurations", converted_2061)?;
         } else {
             result.set_item("statistics_configurations", py.None())?;
         }
         if let Some(value) = &self.inner.include_linked_accounts_metrics {
-            let converted_2022 = (value).to_owned().into_py_any(py)?;
-            result.set_item("include_linked_accounts_metrics", converted_2022)?;
+            let converted_2064 = (value).to_owned().into_py_any(py)?;
+            result.set_item("include_linked_accounts_metrics", converted_2064)?;
         } else {
             result.set_item("include_linked_accounts_metrics", py.None())?;
         }
@@ -14173,8 +14470,8 @@ impl PyOperationGetMetricWidgetImageOutput {
     #[getter]
     fn metric_widget_image(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metric_widget_image {
-            let converted_2023 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_2023)
+            let converted_2065 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_2065)
         } else {
             Ok(py.None())
         }
@@ -14183,8 +14480,8 @@ impl PyOperationGetMetricWidgetImageOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.metric_widget_image {
-            let converted_2024 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("metric_widget_image", converted_2024)?;
+            let converted_2066 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("metric_widget_image", converted_2066)?;
         } else {
             result.set_item("metric_widget_image", py.None())?;
         }
@@ -14215,13 +14512,13 @@ impl From<aws_sdk_cloudwatch::operation::get_o_tel_enrichment::GetOTelEnrichment
             include_filters: value.include_filters.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2034| Arc::new(owned_2034))
+                    .map(|owned_2076| Arc::new(owned_2076))
                     .collect()
             }),
             exclude_filters: value.exclude_filters.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2035| Arc::new(owned_2035))
+                    .map(|owned_2077| Arc::new(owned_2077))
                     .collect()
             }),
             created_at: value.created_at,
@@ -14244,8 +14541,8 @@ impl PyOperationGetOTelEnrichmentOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_2025 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2025)
+            let converted_2067 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2067)
         } else {
             Ok(py.None())
         }
@@ -14254,19 +14551,19 @@ impl PyOperationGetOTelEnrichmentOutput {
     #[getter]
     fn include_filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.include_filters {
-            let converted_2026_list = PyList::empty(py);
-            for item_2027 in value {
-                let converted_item_2028 = Py::new(
+            let converted_2068_list = PyList::empty(py);
+            for item_2069 in value {
+                let converted_item_2070 = Py::new(
                     py,
                     PyOTelEnrichmentMetricSelector {
-                        inner: Arc::clone(item_2027),
+                        inner: Arc::clone(item_2069),
                     },
                 )?
                 .into_any();
-                converted_2026_list.append(converted_item_2028)?;
+                converted_2068_list.append(converted_item_2070)?;
             }
-            let converted_2026 = converted_2026_list.into_any().unbind();
-            Ok(converted_2026)
+            let converted_2068 = converted_2068_list.into_any().unbind();
+            Ok(converted_2068)
         } else {
             Ok(py.None())
         }
@@ -14275,19 +14572,19 @@ impl PyOperationGetOTelEnrichmentOutput {
     #[getter]
     fn exclude_filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.exclude_filters {
-            let converted_2029_list = PyList::empty(py);
-            for item_2030 in value {
-                let converted_item_2031 = Py::new(
+            let converted_2071_list = PyList::empty(py);
+            for item_2072 in value {
+                let converted_item_2073 = Py::new(
                     py,
                     PyOTelEnrichmentMetricSelector {
-                        inner: Arc::clone(item_2030),
+                        inner: Arc::clone(item_2072),
                     },
                 )?
                 .into_any();
-                converted_2029_list.append(converted_item_2031)?;
+                converted_2071_list.append(converted_item_2073)?;
             }
-            let converted_2029 = converted_2029_list.into_any().unbind();
-            Ok(converted_2029)
+            let converted_2071 = converted_2071_list.into_any().unbind();
+            Ok(converted_2071)
         } else {
             Ok(py.None())
         }
@@ -14296,8 +14593,8 @@ impl PyOperationGetOTelEnrichmentOutput {
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_at {
-            let converted_2032 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2032)
+            let converted_2074 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2074)
         } else {
             Ok(py.None())
         }
@@ -14306,8 +14603,8 @@ impl PyOperationGetOTelEnrichmentOutput {
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_at {
-            let converted_2033 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2033)
+            let converted_2075 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2075)
         } else {
             Ok(py.None())
         }
@@ -14316,42 +14613,42 @@ impl PyOperationGetOTelEnrichmentOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.status {
-            let converted_2036 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_2036)?;
+            let converted_2078 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_2078)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.include_filters {
-            let converted_2037_list = PyList::empty(py);
-            for item_2038 in value {
-                let converted_item_2039 = o_tel_enrichment_metric_selector_to_py(py, item_2038)?;
-                converted_2037_list.append(converted_item_2039)?;
+            let converted_2079_list = PyList::empty(py);
+            for item_2080 in value {
+                let converted_item_2081 = o_tel_enrichment_metric_selector_to_py(py, item_2080)?;
+                converted_2079_list.append(converted_item_2081)?;
             }
-            let converted_2037 = converted_2037_list.into_any().unbind();
-            result.set_item("include_filters", converted_2037)?;
+            let converted_2079 = converted_2079_list.into_any().unbind();
+            result.set_item("include_filters", converted_2079)?;
         } else {
             result.set_item("include_filters", py.None())?;
         }
         if let Some(value) = &self.inner.exclude_filters {
-            let converted_2040_list = PyList::empty(py);
-            for item_2041 in value {
-                let converted_item_2042 = o_tel_enrichment_metric_selector_to_py(py, item_2041)?;
-                converted_2040_list.append(converted_item_2042)?;
+            let converted_2082_list = PyList::empty(py);
+            for item_2083 in value {
+                let converted_item_2084 = o_tel_enrichment_metric_selector_to_py(py, item_2083)?;
+                converted_2082_list.append(converted_item_2084)?;
             }
-            let converted_2040 = converted_2040_list.into_any().unbind();
-            result.set_item("exclude_filters", converted_2040)?;
+            let converted_2082 = converted_2082_list.into_any().unbind();
+            result.set_item("exclude_filters", converted_2082)?;
         } else {
             result.set_item("exclude_filters", py.None())?;
         }
         if let Some(value) = &self.inner.created_at {
-            let converted_2043 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_at", converted_2043)?;
+            let converted_2085 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_at", converted_2085)?;
         } else {
             result.set_item("created_at", py.None())?;
         }
         if let Some(value) = &self.inner.updated_at {
-            let converted_2044 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_at", converted_2044)?;
+            let converted_2086 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_at", converted_2086)?;
         } else {
             result.set_item("updated_at", py.None())?;
         }
@@ -14387,14 +14684,14 @@ impl PyOperationGetResourceMetricsConfigurationOutput {
     #[getter]
     fn resource_metrics_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_metrics_configuration {
-            let converted_2045 = Py::new(
+            let converted_2087 = Py::new(
                 py,
                 PyResourceMetricsConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2045)
+            Ok(converted_2087)
         } else {
             Ok(py.None())
         }
@@ -14403,8 +14700,8 @@ impl PyOperationGetResourceMetricsConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.resource_metrics_configuration {
-            let converted_2046 = resource_metrics_configuration_shared_to_py(py, value)?;
-            result.set_item("resource_metrics_configuration", converted_2046)?;
+            let converted_2088 = resource_metrics_configuration_shared_to_py(py, value)?;
+            result.set_item("resource_metrics_configuration", converted_2088)?;
         } else {
             result.set_item("resource_metrics_configuration", py.None())?;
         }
@@ -14430,7 +14727,7 @@ impl From<aws_sdk_cloudwatch::operation::list_alarm_mute_rules::ListAlarmMuteRul
             alarm_mute_rule_summaries: value.alarm_mute_rule_summaries.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2051| Arc::new(owned_2051))
+                    .map(|owned_2093| Arc::new(owned_2093))
                     .collect()
             }),
             next_token: value.next_token,
@@ -14452,19 +14749,19 @@ impl PyOperationListAlarmMuteRulesOutput {
     #[getter]
     fn alarm_mute_rule_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alarm_mute_rule_summaries {
-            let converted_2047_list = PyList::empty(py);
-            for item_2048 in value {
-                let converted_item_2049 = Py::new(
+            let converted_2089_list = PyList::empty(py);
+            for item_2090 in value {
+                let converted_item_2091 = Py::new(
                     py,
                     PyAlarmMuteRuleSummary {
-                        inner: Arc::clone(item_2048),
+                        inner: Arc::clone(item_2090),
                     },
                 )?
                 .into_any();
-                converted_2047_list.append(converted_item_2049)?;
+                converted_2089_list.append(converted_item_2091)?;
             }
-            let converted_2047 = converted_2047_list.into_any().unbind();
-            Ok(converted_2047)
+            let converted_2089 = converted_2089_list.into_any().unbind();
+            Ok(converted_2089)
         } else {
             Ok(py.None())
         }
@@ -14473,8 +14770,8 @@ impl PyOperationListAlarmMuteRulesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_2050 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2050)
+            let converted_2092 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2092)
         } else {
             Ok(py.None())
         }
@@ -14483,19 +14780,19 @@ impl PyOperationListAlarmMuteRulesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.alarm_mute_rule_summaries {
-            let converted_2052_list = PyList::empty(py);
-            for item_2053 in value {
-                let converted_item_2054 = alarm_mute_rule_summary_to_py(py, item_2053)?;
-                converted_2052_list.append(converted_item_2054)?;
+            let converted_2094_list = PyList::empty(py);
+            for item_2095 in value {
+                let converted_item_2096 = alarm_mute_rule_summary_to_py(py, item_2095)?;
+                converted_2094_list.append(converted_item_2096)?;
             }
-            let converted_2052 = converted_2052_list.into_any().unbind();
-            result.set_item("alarm_mute_rule_summaries", converted_2052)?;
+            let converted_2094 = converted_2094_list.into_any().unbind();
+            result.set_item("alarm_mute_rule_summaries", converted_2094)?;
         } else {
             result.set_item("alarm_mute_rule_summaries", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_2055 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_2055)?;
+            let converted_2097 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_2097)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -14518,7 +14815,7 @@ impl From<aws_sdk_cloudwatch::operation::list_dashboards::ListDashboardsOutput>
             dashboard_entries: value.dashboard_entries.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2060| Arc::new(owned_2060))
+                    .map(|owned_2102| Arc::new(owned_2102))
                     .collect()
             }),
             next_token: value.next_token,
@@ -14540,19 +14837,19 @@ impl PyOperationListDashboardsOutput {
     #[getter]
     fn dashboard_entries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_entries {
-            let converted_2056_list = PyList::empty(py);
-            for item_2057 in value {
-                let converted_item_2058 = Py::new(
+            let converted_2098_list = PyList::empty(py);
+            for item_2099 in value {
+                let converted_item_2100 = Py::new(
                     py,
                     PyDashboardEntry {
-                        inner: Arc::clone(item_2057),
+                        inner: Arc::clone(item_2099),
                     },
                 )?
                 .into_any();
-                converted_2056_list.append(converted_item_2058)?;
+                converted_2098_list.append(converted_item_2100)?;
             }
-            let converted_2056 = converted_2056_list.into_any().unbind();
-            Ok(converted_2056)
+            let converted_2098 = converted_2098_list.into_any().unbind();
+            Ok(converted_2098)
         } else {
             Ok(py.None())
         }
@@ -14561,8 +14858,8 @@ impl PyOperationListDashboardsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_2059 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2059)
+            let converted_2101 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2101)
         } else {
             Ok(py.None())
         }
@@ -14571,19 +14868,19 @@ impl PyOperationListDashboardsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.dashboard_entries {
-            let converted_2061_list = PyList::empty(py);
-            for item_2062 in value {
-                let converted_item_2063 = dashboard_entry_to_py(py, item_2062)?;
-                converted_2061_list.append(converted_item_2063)?;
+            let converted_2103_list = PyList::empty(py);
+            for item_2104 in value {
+                let converted_item_2105 = dashboard_entry_to_py(py, item_2104)?;
+                converted_2103_list.append(converted_item_2105)?;
             }
-            let converted_2061 = converted_2061_list.into_any().unbind();
-            result.set_item("dashboard_entries", converted_2061)?;
+            let converted_2103 = converted_2103_list.into_any().unbind();
+            result.set_item("dashboard_entries", converted_2103)?;
         } else {
             result.set_item("dashboard_entries", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_2064 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_2064)?;
+            let converted_2106 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_2106)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -14608,7 +14905,7 @@ impl From<aws_sdk_cloudwatch::operation::list_managed_insight_rules::ListManaged
             managed_rules: value.managed_rules.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2069| Arc::new(SharedManagedRuleDescription::from(owned_2069)))
+                    .map(|owned_2111| Arc::new(SharedManagedRuleDescription::from(owned_2111)))
                     .collect()
             }),
             next_token: value.next_token,
@@ -14630,19 +14927,19 @@ impl PyOperationListManagedInsightRulesOutput {
     #[getter]
     fn managed_rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.managed_rules {
-            let converted_2065_list = PyList::empty(py);
-            for item_2066 in value {
-                let converted_item_2067 = Py::new(
+            let converted_2107_list = PyList::empty(py);
+            for item_2108 in value {
+                let converted_item_2109 = Py::new(
                     py,
                     PyManagedRuleDescription {
-                        inner: Arc::clone(item_2066),
+                        inner: Arc::clone(item_2108),
                     },
                 )?
                 .into_any();
-                converted_2065_list.append(converted_item_2067)?;
+                converted_2107_list.append(converted_item_2109)?;
             }
-            let converted_2065 = converted_2065_list.into_any().unbind();
-            Ok(converted_2065)
+            let converted_2107 = converted_2107_list.into_any().unbind();
+            Ok(converted_2107)
         } else {
             Ok(py.None())
         }
@@ -14651,8 +14948,8 @@ impl PyOperationListManagedInsightRulesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_2068 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2068)
+            let converted_2110 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2110)
         } else {
             Ok(py.None())
         }
@@ -14661,19 +14958,102 @@ impl PyOperationListManagedInsightRulesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.managed_rules {
-            let converted_2070_list = PyList::empty(py);
-            for item_2071 in value {
-                let converted_item_2072 = managed_rule_description_shared_to_py(py, item_2071)?;
-                converted_2070_list.append(converted_item_2072)?;
+            let converted_2112_list = PyList::empty(py);
+            for item_2113 in value {
+                let converted_item_2114 = managed_rule_description_shared_to_py(py, item_2113)?;
+                converted_2112_list.append(converted_item_2114)?;
             }
-            let converted_2070 = converted_2070_list.into_any().unbind();
-            result.set_item("managed_rules", converted_2070)?;
+            let converted_2112 = converted_2112_list.into_any().unbind();
+            result.set_item("managed_rules", converted_2112)?;
         } else {
             result.set_item("managed_rules", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_2073 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_2073)?;
+            let converted_2115 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_2115)?;
+        } else {
+            result.set_item("next_token", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationListMetricDataQueryDefinitionsOutput {
+    items:
+        Option<::std::vec::Vec<Arc<aws_sdk_cloudwatch::types::MetricDataQueryDefinitionSummary>>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_cloudwatch::operation::list_metric_data_query_definitions::ListMetricDataQueryDefinitionsOutput> for SharedPyOperationListMetricDataQueryDefinitionsOutput {
+    fn from(value: aws_sdk_cloudwatch::operation::list_metric_data_query_definitions::ListMetricDataQueryDefinitionsOutput) -> Self {
+        Self {
+            items: value.items.map(|item| (item).into_iter().map(|owned_2120| Arc::new(owned_2120)).collect()),
+            next_token: value.next_token,
+        }
+    }
+}
+
+#[pyclass(
+    name = "ListMetricDataQueryDefinitionsOutput",
+    module = "rboto_cloudwatch._native",
+    frozen
+)]
+struct PyOperationListMetricDataQueryDefinitionsOutput {
+    inner: SharedPyOperationListMetricDataQueryDefinitionsOutput,
+}
+
+#[pymethods]
+impl PyOperationListMetricDataQueryDefinitionsOutput {
+    #[getter]
+    fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.items {
+            let converted_2116_list = PyList::empty(py);
+            for item_2117 in value {
+                let converted_item_2118 = Py::new(
+                    py,
+                    PyMetricDataQueryDefinitionSummary {
+                        inner: Arc::clone(item_2117),
+                    },
+                )?
+                .into_any();
+                converted_2116_list.append(converted_item_2118)?;
+            }
+            let converted_2116 = converted_2116_list.into_any().unbind();
+            Ok(converted_2116)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_token {
+            let converted_2119 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2119)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.items {
+            let converted_2121_list = PyList::empty(py);
+            for item_2122 in value {
+                let converted_item_2123 =
+                    metric_data_query_definition_summary_to_py(py, item_2122)?;
+                converted_2121_list.append(converted_item_2123)?;
+            }
+            let converted_2121 = converted_2121_list.into_any().unbind();
+            result.set_item("items", converted_2121)?;
+        } else {
+            result.set_item("items", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_token {
+            let converted_2124 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_2124)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -14699,7 +15079,7 @@ impl From<aws_sdk_cloudwatch::operation::list_metric_streams::ListMetricStreamsO
             entries: value.entries.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2078| Arc::new(owned_2078))
+                    .map(|owned_2129| Arc::new(owned_2129))
                     .collect()
             }),
         }
@@ -14720,8 +15100,8 @@ impl PyOperationListMetricStreamsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_2074 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2074)
+            let converted_2125 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2125)
         } else {
             Ok(py.None())
         }
@@ -14730,19 +15110,19 @@ impl PyOperationListMetricStreamsOutput {
     #[getter]
     fn entries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.entries {
-            let converted_2075_list = PyList::empty(py);
-            for item_2076 in value {
-                let converted_item_2077 = Py::new(
+            let converted_2126_list = PyList::empty(py);
+            for item_2127 in value {
+                let converted_item_2128 = Py::new(
                     py,
                     PyMetricStreamEntry {
-                        inner: Arc::clone(item_2076),
+                        inner: Arc::clone(item_2127),
                     },
                 )?
                 .into_any();
-                converted_2075_list.append(converted_item_2077)?;
+                converted_2126_list.append(converted_item_2128)?;
             }
-            let converted_2075 = converted_2075_list.into_any().unbind();
-            Ok(converted_2075)
+            let converted_2126 = converted_2126_list.into_any().unbind();
+            Ok(converted_2126)
         } else {
             Ok(py.None())
         }
@@ -14751,19 +15131,19 @@ impl PyOperationListMetricStreamsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_2079 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_2079)?;
+            let converted_2130 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_2130)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.entries {
-            let converted_2080_list = PyList::empty(py);
-            for item_2081 in value {
-                let converted_item_2082 = metric_stream_entry_to_py(py, item_2081)?;
-                converted_2080_list.append(converted_item_2082)?;
+            let converted_2131_list = PyList::empty(py);
+            for item_2132 in value {
+                let converted_item_2133 = metric_stream_entry_to_py(py, item_2132)?;
+                converted_2131_list.append(converted_item_2133)?;
             }
-            let converted_2080 = converted_2080_list.into_any().unbind();
-            result.set_item("entries", converted_2080)?;
+            let converted_2131 = converted_2131_list.into_any().unbind();
+            result.set_item("entries", converted_2131)?;
         } else {
             result.set_item("entries", py.None())?;
         }
@@ -14787,7 +15167,7 @@ impl From<aws_sdk_cloudwatch::operation::list_metrics::ListMetricsOutput>
             metrics: value.metrics.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2090| Arc::new(SharedMetric::from(owned_2090)))
+                    .map(|owned_2141| Arc::new(SharedMetric::from(owned_2141)))
                     .collect()
             }),
             next_token: value.next_token,
@@ -14810,19 +15190,19 @@ impl PyOperationListMetricsOutput {
     #[getter]
     fn metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metrics {
-            let converted_2083_list = PyList::empty(py);
-            for item_2084 in value {
-                let converted_item_2085 = Py::new(
+            let converted_2134_list = PyList::empty(py);
+            for item_2135 in value {
+                let converted_item_2136 = Py::new(
                     py,
                     PyMetric {
-                        inner: Arc::clone(item_2084),
+                        inner: Arc::clone(item_2135),
                     },
                 )?
                 .into_any();
-                converted_2083_list.append(converted_item_2085)?;
+                converted_2134_list.append(converted_item_2136)?;
             }
-            let converted_2083 = converted_2083_list.into_any().unbind();
-            Ok(converted_2083)
+            let converted_2134 = converted_2134_list.into_any().unbind();
+            Ok(converted_2134)
         } else {
             Ok(py.None())
         }
@@ -14831,8 +15211,8 @@ impl PyOperationListMetricsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_2086 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2086)
+            let converted_2137 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2137)
         } else {
             Ok(py.None())
         }
@@ -14841,13 +15221,13 @@ impl PyOperationListMetricsOutput {
     #[getter]
     fn owning_accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.owning_accounts {
-            let converted_2087_list = PyList::empty(py);
-            for item_2088 in value {
-                let converted_item_2089 = (item_2088).as_str().into_py_any(py)?;
-                converted_2087_list.append(converted_item_2089)?;
+            let converted_2138_list = PyList::empty(py);
+            for item_2139 in value {
+                let converted_item_2140 = (item_2139).as_str().into_py_any(py)?;
+                converted_2138_list.append(converted_item_2140)?;
             }
-            let converted_2087 = converted_2087_list.into_any().unbind();
-            Ok(converted_2087)
+            let converted_2138 = converted_2138_list.into_any().unbind();
+            Ok(converted_2138)
         } else {
             Ok(py.None())
         }
@@ -14856,30 +15236,30 @@ impl PyOperationListMetricsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.metrics {
-            let converted_2091_list = PyList::empty(py);
-            for item_2092 in value {
-                let converted_item_2093 = metric_shared_to_py(py, item_2092)?;
-                converted_2091_list.append(converted_item_2093)?;
+            let converted_2142_list = PyList::empty(py);
+            for item_2143 in value {
+                let converted_item_2144 = metric_shared_to_py(py, item_2143)?;
+                converted_2142_list.append(converted_item_2144)?;
             }
-            let converted_2091 = converted_2091_list.into_any().unbind();
-            result.set_item("metrics", converted_2091)?;
+            let converted_2142 = converted_2142_list.into_any().unbind();
+            result.set_item("metrics", converted_2142)?;
         } else {
             result.set_item("metrics", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_2094 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_2094)?;
+            let converted_2145 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_2145)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.owning_accounts {
-            let converted_2095_list = PyList::empty(py);
-            for item_2096 in value {
-                let converted_item_2097 = (item_2096).as_str().into_py_any(py)?;
-                converted_2095_list.append(converted_item_2097)?;
+            let converted_2146_list = PyList::empty(py);
+            for item_2147 in value {
+                let converted_item_2148 = (item_2147).as_str().into_py_any(py)?;
+                converted_2146_list.append(converted_item_2148)?;
             }
-            let converted_2095 = converted_2095_list.into_any().unbind();
-            result.set_item("owning_accounts", converted_2095)?;
+            let converted_2146 = converted_2146_list.into_any().unbind();
+            result.set_item("owning_accounts", converted_2146)?;
         } else {
             result.set_item("owning_accounts", py.None())?;
         }
@@ -14903,7 +15283,7 @@ impl From<aws_sdk_cloudwatch::operation::list_tags_for_resource::ListTagsForReso
             tags: value.tags.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2101| Arc::new(owned_2101))
+                    .map(|owned_2152| Arc::new(owned_2152))
                     .collect()
             }),
         }
@@ -14924,19 +15304,19 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_2098_list = PyList::empty(py);
-            for item_2099 in value {
-                let converted_item_2100 = Py::new(
+            let converted_2149_list = PyList::empty(py);
+            for item_2150 in value {
+                let converted_item_2151 = Py::new(
                     py,
                     PyTag {
-                        inner: Arc::clone(item_2099),
+                        inner: Arc::clone(item_2150),
                     },
                 )?
                 .into_any();
-                converted_2098_list.append(converted_item_2100)?;
+                converted_2149_list.append(converted_item_2151)?;
             }
-            let converted_2098 = converted_2098_list.into_any().unbind();
-            Ok(converted_2098)
+            let converted_2149 = converted_2149_list.into_any().unbind();
+            Ok(converted_2149)
         } else {
             Ok(py.None())
         }
@@ -14945,13 +15325,13 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_2102_list = PyList::empty(py);
-            for item_2103 in value {
-                let converted_item_2104 = tag_to_py(py, item_2103)?;
-                converted_2102_list.append(converted_item_2104)?;
+            let converted_2153_list = PyList::empty(py);
+            for item_2154 in value {
+                let converted_item_2155 = tag_to_py(py, item_2154)?;
+                converted_2153_list.append(converted_item_2155)?;
             }
-            let converted_2102 = converted_2102_list.into_any().unbind();
-            result.set_item("tags", converted_2102)?;
+            let converted_2153 = converted_2153_list.into_any().unbind();
+            result.set_item("tags", converted_2153)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -14973,8 +15353,8 @@ impl PyOperationPutAnomalyDetectorOutput {
     #[getter]
     fn anomaly_detector_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.anomaly_detector_id {
-            let converted_2105 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2105)
+            let converted_2156 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2156)
         } else {
             Ok(py.None())
         }
@@ -14983,8 +15363,8 @@ impl PyOperationPutAnomalyDetectorOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.anomaly_detector_id {
-            let converted_2106 = (value).as_str().into_py_any(py)?;
-            result.set_item("anomaly_detector_id", converted_2106)?;
+            let converted_2157 = (value).as_str().into_py_any(py)?;
+            result.set_item("anomaly_detector_id", converted_2157)?;
         } else {
             result.set_item("anomaly_detector_id", py.None())?;
         }
@@ -15007,7 +15387,7 @@ impl From<aws_sdk_cloudwatch::operation::put_dashboard::PutDashboardOutput>
             dashboard_validation_messages: value.dashboard_validation_messages.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2110| Arc::new(owned_2110))
+                    .map(|owned_2161| Arc::new(owned_2161))
                     .collect()
             }),
         }
@@ -15028,19 +15408,19 @@ impl PyOperationPutDashboardOutput {
     #[getter]
     fn dashboard_validation_messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_validation_messages {
-            let converted_2107_list = PyList::empty(py);
-            for item_2108 in value {
-                let converted_item_2109 = Py::new(
+            let converted_2158_list = PyList::empty(py);
+            for item_2159 in value {
+                let converted_item_2160 = Py::new(
                     py,
                     PyDashboardValidationMessage {
-                        inner: Arc::clone(item_2108),
+                        inner: Arc::clone(item_2159),
                     },
                 )?
                 .into_any();
-                converted_2107_list.append(converted_item_2109)?;
+                converted_2158_list.append(converted_item_2160)?;
             }
-            let converted_2107 = converted_2107_list.into_any().unbind();
-            Ok(converted_2107)
+            let converted_2158 = converted_2158_list.into_any().unbind();
+            Ok(converted_2158)
         } else {
             Ok(py.None())
         }
@@ -15049,13 +15429,13 @@ impl PyOperationPutDashboardOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.dashboard_validation_messages {
-            let converted_2111_list = PyList::empty(py);
-            for item_2112 in value {
-                let converted_item_2113 = dashboard_validation_message_to_py(py, item_2112)?;
-                converted_2111_list.append(converted_item_2113)?;
+            let converted_2162_list = PyList::empty(py);
+            for item_2163 in value {
+                let converted_item_2164 = dashboard_validation_message_to_py(py, item_2163)?;
+                converted_2162_list.append(converted_item_2164)?;
             }
-            let converted_2111 = converted_2111_list.into_any().unbind();
-            result.set_item("dashboard_validation_messages", converted_2111)?;
+            let converted_2162 = converted_2162_list.into_any().unbind();
+            result.set_item("dashboard_validation_messages", converted_2162)?;
         } else {
             result.set_item("dashboard_validation_messages", py.None())?;
         }
@@ -15096,7 +15476,7 @@ impl From<aws_sdk_cloudwatch::operation::put_managed_insight_rules::PutManagedIn
             failures: value.failures.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2117| Arc::new(owned_2117))
+                    .map(|owned_2168| Arc::new(owned_2168))
                     .collect()
             }),
         }
@@ -15117,19 +15497,19 @@ impl PyOperationPutManagedInsightRulesOutput {
     #[getter]
     fn failures(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failures {
-            let converted_2114_list = PyList::empty(py);
-            for item_2115 in value {
-                let converted_item_2116 = Py::new(
+            let converted_2165_list = PyList::empty(py);
+            for item_2166 in value {
+                let converted_item_2167 = Py::new(
                     py,
                     PyPartialFailure {
-                        inner: Arc::clone(item_2115),
+                        inner: Arc::clone(item_2166),
                     },
                 )?
                 .into_any();
-                converted_2114_list.append(converted_item_2116)?;
+                converted_2165_list.append(converted_item_2167)?;
             }
-            let converted_2114 = converted_2114_list.into_any().unbind();
-            Ok(converted_2114)
+            let converted_2165 = converted_2165_list.into_any().unbind();
+            Ok(converted_2165)
         } else {
             Ok(py.None())
         }
@@ -15138,15 +15518,144 @@ impl PyOperationPutManagedInsightRulesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.failures {
-            let converted_2118_list = PyList::empty(py);
-            for item_2119 in value {
-                let converted_item_2120 = partial_failure_to_py(py, item_2119)?;
-                converted_2118_list.append(converted_item_2120)?;
+            let converted_2169_list = PyList::empty(py);
+            for item_2170 in value {
+                let converted_item_2171 = partial_failure_to_py(py, item_2170)?;
+                converted_2169_list.append(converted_item_2171)?;
             }
-            let converted_2118 = converted_2118_list.into_any().unbind();
-            result.set_item("failures", converted_2118)?;
+            let converted_2169 = converted_2169_list.into_any().unbind();
+            result.set_item("failures", converted_2169)?;
         } else {
             result.set_item("failures", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "PutMetricDataQueryDefinitionOutput",
+    module = "rboto_cloudwatch._native",
+    frozen
+)]
+struct PyOperationPutMetricDataQueryDefinitionOutput {
+    inner: aws_sdk_cloudwatch::operation::put_metric_data_query_definition::PutMetricDataQueryDefinitionOutput,
+}
+
+#[pymethods]
+impl PyOperationPutMetricDataQueryDefinitionOutput {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
+            let converted_2172 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2172)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.arn {
+            let converted_2173 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2173)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.path {
+            let converted_2174 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2174)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn expression(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expression {
+            let converted_2175 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2175)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.r#type {
+            let converted_2176 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2176)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.created_at {
+            let converted_2177 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2177)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.updated_at {
+            let converted_2178 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2178)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.id {
+            let converted_2179 = (value).as_str().into_py_any(py)?;
+            result.set_item("id", converted_2179)?;
+        } else {
+            result.set_item("id", py.None())?;
+        }
+        if let Some(value) = &self.inner.arn {
+            let converted_2180 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_2180)?;
+        } else {
+            result.set_item("arn", py.None())?;
+        }
+        if let Some(value) = &self.inner.path {
+            let converted_2181 = (value).as_str().into_py_any(py)?;
+            result.set_item("path", converted_2181)?;
+        } else {
+            result.set_item("path", py.None())?;
+        }
+        if let Some(value) = &self.inner.expression {
+            let converted_2182 = (value).as_str().into_py_any(py)?;
+            result.set_item("expression", converted_2182)?;
+        } else {
+            result.set_item("expression", py.None())?;
+        }
+        if let Some(value) = &self.inner.r#type {
+            let converted_2183 = (value).as_str().into_py_any(py)?;
+            result.set_item("type", converted_2183)?;
+        } else {
+            result.set_item("type", py.None())?;
+        }
+        if let Some(value) = &self.inner.created_at {
+            let converted_2184 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_at", converted_2184)?;
+        } else {
+            result.set_item("created_at", py.None())?;
+        }
+        if let Some(value) = &self.inner.updated_at {
+            let converted_2185 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_at", converted_2185)?;
+        } else {
+            result.set_item("updated_at", py.None())?;
         }
         Ok(result.into_any().unbind())
     }
@@ -15166,8 +15675,8 @@ impl PyOperationPutMetricStreamOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_2121 = (value).as_str().into_py_any(py)?;
-            Ok(converted_2121)
+            let converted_2186 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2186)
         } else {
             Ok(py.None())
         }
@@ -15176,8 +15685,8 @@ impl PyOperationPutMetricStreamOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.arn {
-            let converted_2122 = (value).as_str().into_py_any(py)?;
-            result.set_item("arn", converted_2122)?;
+            let converted_2187 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_2187)?;
         } else {
             result.set_item("arn", py.None())?;
         }
@@ -15223,13 +15732,13 @@ impl From<aws_sdk_cloudwatch::operation::start_o_tel_enrichment::StartOTelEnrich
             include_filters: value.include_filters.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2131| Arc::new(owned_2131))
+                    .map(|owned_2196| Arc::new(owned_2196))
                     .collect()
             }),
             exclude_filters: value.exclude_filters.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2132| Arc::new(owned_2132))
+                    .map(|owned_2197| Arc::new(owned_2197))
                     .collect()
             }),
             created_at: value.created_at,
@@ -15252,19 +15761,19 @@ impl PyOperationStartOTelEnrichmentOutput {
     #[getter]
     fn include_filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.include_filters {
-            let converted_2123_list = PyList::empty(py);
-            for item_2124 in value {
-                let converted_item_2125 = Py::new(
+            let converted_2188_list = PyList::empty(py);
+            for item_2189 in value {
+                let converted_item_2190 = Py::new(
                     py,
                     PyOTelEnrichmentMetricSelector {
-                        inner: Arc::clone(item_2124),
+                        inner: Arc::clone(item_2189),
                     },
                 )?
                 .into_any();
-                converted_2123_list.append(converted_item_2125)?;
+                converted_2188_list.append(converted_item_2190)?;
             }
-            let converted_2123 = converted_2123_list.into_any().unbind();
-            Ok(converted_2123)
+            let converted_2188 = converted_2188_list.into_any().unbind();
+            Ok(converted_2188)
         } else {
             Ok(py.None())
         }
@@ -15273,19 +15782,19 @@ impl PyOperationStartOTelEnrichmentOutput {
     #[getter]
     fn exclude_filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.exclude_filters {
-            let converted_2126_list = PyList::empty(py);
-            for item_2127 in value {
-                let converted_item_2128 = Py::new(
+            let converted_2191_list = PyList::empty(py);
+            for item_2192 in value {
+                let converted_item_2193 = Py::new(
                     py,
                     PyOTelEnrichmentMetricSelector {
-                        inner: Arc::clone(item_2127),
+                        inner: Arc::clone(item_2192),
                     },
                 )?
                 .into_any();
-                converted_2126_list.append(converted_item_2128)?;
+                converted_2191_list.append(converted_item_2193)?;
             }
-            let converted_2126 = converted_2126_list.into_any().unbind();
-            Ok(converted_2126)
+            let converted_2191 = converted_2191_list.into_any().unbind();
+            Ok(converted_2191)
         } else {
             Ok(py.None())
         }
@@ -15294,8 +15803,8 @@ impl PyOperationStartOTelEnrichmentOutput {
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_at {
-            let converted_2129 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2129)
+            let converted_2194 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2194)
         } else {
             Ok(py.None())
         }
@@ -15304,8 +15813,8 @@ impl PyOperationStartOTelEnrichmentOutput {
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_at {
-            let converted_2130 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2130)
+            let converted_2195 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2195)
         } else {
             Ok(py.None())
         }
@@ -15314,36 +15823,36 @@ impl PyOperationStartOTelEnrichmentOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.include_filters {
-            let converted_2133_list = PyList::empty(py);
-            for item_2134 in value {
-                let converted_item_2135 = o_tel_enrichment_metric_selector_to_py(py, item_2134)?;
-                converted_2133_list.append(converted_item_2135)?;
+            let converted_2198_list = PyList::empty(py);
+            for item_2199 in value {
+                let converted_item_2200 = o_tel_enrichment_metric_selector_to_py(py, item_2199)?;
+                converted_2198_list.append(converted_item_2200)?;
             }
-            let converted_2133 = converted_2133_list.into_any().unbind();
-            result.set_item("include_filters", converted_2133)?;
+            let converted_2198 = converted_2198_list.into_any().unbind();
+            result.set_item("include_filters", converted_2198)?;
         } else {
             result.set_item("include_filters", py.None())?;
         }
         if let Some(value) = &self.inner.exclude_filters {
-            let converted_2136_list = PyList::empty(py);
-            for item_2137 in value {
-                let converted_item_2138 = o_tel_enrichment_metric_selector_to_py(py, item_2137)?;
-                converted_2136_list.append(converted_item_2138)?;
+            let converted_2201_list = PyList::empty(py);
+            for item_2202 in value {
+                let converted_item_2203 = o_tel_enrichment_metric_selector_to_py(py, item_2202)?;
+                converted_2201_list.append(converted_item_2203)?;
             }
-            let converted_2136 = converted_2136_list.into_any().unbind();
-            result.set_item("exclude_filters", converted_2136)?;
+            let converted_2201 = converted_2201_list.into_any().unbind();
+            result.set_item("exclude_filters", converted_2201)?;
         } else {
             result.set_item("exclude_filters", py.None())?;
         }
         if let Some(value) = &self.inner.created_at {
-            let converted_2139 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_at", converted_2139)?;
+            let converted_2204 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_at", converted_2204)?;
         } else {
             result.set_item("created_at", py.None())?;
         }
         if let Some(value) = &self.inner.updated_at {
-            let converted_2140 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_at", converted_2140)?;
+            let converted_2205 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_at", converted_2205)?;
         } else {
             result.set_item("updated_at", py.None())?;
         }
@@ -15440,13 +15949,13 @@ impl From<aws_sdk_cloudwatch::operation::update_o_tel_enrichment::UpdateOTelEnri
             include_filters: value.include_filters.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2149| Arc::new(owned_2149))
+                    .map(|owned_2214| Arc::new(owned_2214))
                     .collect()
             }),
             exclude_filters: value.exclude_filters.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_2150| Arc::new(owned_2150))
+                    .map(|owned_2215| Arc::new(owned_2215))
                     .collect()
             }),
             created_at: value.created_at,
@@ -15469,19 +15978,19 @@ impl PyOperationUpdateOTelEnrichmentOutput {
     #[getter]
     fn include_filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.include_filters {
-            let converted_2141_list = PyList::empty(py);
-            for item_2142 in value {
-                let converted_item_2143 = Py::new(
+            let converted_2206_list = PyList::empty(py);
+            for item_2207 in value {
+                let converted_item_2208 = Py::new(
                     py,
                     PyOTelEnrichmentMetricSelector {
-                        inner: Arc::clone(item_2142),
+                        inner: Arc::clone(item_2207),
                     },
                 )?
                 .into_any();
-                converted_2141_list.append(converted_item_2143)?;
+                converted_2206_list.append(converted_item_2208)?;
             }
-            let converted_2141 = converted_2141_list.into_any().unbind();
-            Ok(converted_2141)
+            let converted_2206 = converted_2206_list.into_any().unbind();
+            Ok(converted_2206)
         } else {
             Ok(py.None())
         }
@@ -15490,19 +15999,19 @@ impl PyOperationUpdateOTelEnrichmentOutput {
     #[getter]
     fn exclude_filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.exclude_filters {
-            let converted_2144_list = PyList::empty(py);
-            for item_2145 in value {
-                let converted_item_2146 = Py::new(
+            let converted_2209_list = PyList::empty(py);
+            for item_2210 in value {
+                let converted_item_2211 = Py::new(
                     py,
                     PyOTelEnrichmentMetricSelector {
-                        inner: Arc::clone(item_2145),
+                        inner: Arc::clone(item_2210),
                     },
                 )?
                 .into_any();
-                converted_2144_list.append(converted_item_2146)?;
+                converted_2209_list.append(converted_item_2211)?;
             }
-            let converted_2144 = converted_2144_list.into_any().unbind();
-            Ok(converted_2144)
+            let converted_2209 = converted_2209_list.into_any().unbind();
+            Ok(converted_2209)
         } else {
             Ok(py.None())
         }
@@ -15511,8 +16020,8 @@ impl PyOperationUpdateOTelEnrichmentOutput {
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_at {
-            let converted_2147 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2147)
+            let converted_2212 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2212)
         } else {
             Ok(py.None())
         }
@@ -15521,8 +16030,8 @@ impl PyOperationUpdateOTelEnrichmentOutput {
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_at {
-            let converted_2148 = (value).to_string().into_py_any(py)?;
-            Ok(converted_2148)
+            let converted_2213 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2213)
         } else {
             Ok(py.None())
         }
@@ -15531,36 +16040,36 @@ impl PyOperationUpdateOTelEnrichmentOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.include_filters {
-            let converted_2151_list = PyList::empty(py);
-            for item_2152 in value {
-                let converted_item_2153 = o_tel_enrichment_metric_selector_to_py(py, item_2152)?;
-                converted_2151_list.append(converted_item_2153)?;
+            let converted_2216_list = PyList::empty(py);
+            for item_2217 in value {
+                let converted_item_2218 = o_tel_enrichment_metric_selector_to_py(py, item_2217)?;
+                converted_2216_list.append(converted_item_2218)?;
             }
-            let converted_2151 = converted_2151_list.into_any().unbind();
-            result.set_item("include_filters", converted_2151)?;
+            let converted_2216 = converted_2216_list.into_any().unbind();
+            result.set_item("include_filters", converted_2216)?;
         } else {
             result.set_item("include_filters", py.None())?;
         }
         if let Some(value) = &self.inner.exclude_filters {
-            let converted_2154_list = PyList::empty(py);
-            for item_2155 in value {
-                let converted_item_2156 = o_tel_enrichment_metric_selector_to_py(py, item_2155)?;
-                converted_2154_list.append(converted_item_2156)?;
+            let converted_2219_list = PyList::empty(py);
+            for item_2220 in value {
+                let converted_item_2221 = o_tel_enrichment_metric_selector_to_py(py, item_2220)?;
+                converted_2219_list.append(converted_item_2221)?;
             }
-            let converted_2154 = converted_2154_list.into_any().unbind();
-            result.set_item("exclude_filters", converted_2154)?;
+            let converted_2219 = converted_2219_list.into_any().unbind();
+            result.set_item("exclude_filters", converted_2219)?;
         } else {
             result.set_item("exclude_filters", py.None())?;
         }
         if let Some(value) = &self.inner.created_at {
-            let converted_2157 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_at", converted_2157)?;
+            let converted_2222 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_at", converted_2222)?;
         } else {
             result.set_item("created_at", py.None())?;
         }
         if let Some(value) = &self.inner.updated_at {
-            let converted_2158 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_at", converted_2158)?;
+            let converted_2223 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_at", converted_2223)?;
         } else {
             result.set_item("updated_at", py.None())?;
         }
@@ -15596,14 +16105,14 @@ impl PyOperationUpdateResourceMetricsConfigurationOutput {
     #[getter]
     fn resource_metrics_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_metrics_configuration {
-            let converted_2159 = Py::new(
+            let converted_2224 = Py::new(
                 py,
                 PyResourceMetricsConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_2159)
+            Ok(converted_2224)
         } else {
             Ok(py.None())
         }
@@ -15612,8 +16121,8 @@ impl PyOperationUpdateResourceMetricsConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.resource_metrics_configuration {
-            let converted_2160 = resource_metrics_configuration_shared_to_py(py, value)?;
-            result.set_item("resource_metrics_configuration", converted_2160)?;
+            let converted_2225 = resource_metrics_configuration_shared_to_py(py, value)?;
+            result.set_item("resource_metrics_configuration", converted_2225)?;
         } else {
             result.set_item("resource_metrics_configuration", py.None())?;
         }
@@ -15627,13 +16136,13 @@ fn dashboard_invalid_input_error_error_details(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.dashboard_validation_messages {
-        let detail_2161_list = PyList::empty(py);
-        for item_2162 in value {
-            let converted_item_2163 = dashboard_validation_message_to_py(py, item_2162)?;
-            detail_2161_list.append(converted_item_2163)?;
+        let detail_2226_list = PyList::empty(py);
+        for item_2227 in value {
+            let converted_item_2228 = dashboard_validation_message_to_py(py, item_2227)?;
+            detail_2226_list.append(converted_item_2228)?;
         }
-        let detail_2161 = detail_2161_list.into_any().unbind();
-        result.set_item("dashboard_validation_messages", detail_2161)?;
+        let detail_2226 = detail_2226_list.into_any().unbind();
+        result.set_item("dashboard_validation_messages", detail_2226)?;
     }
     Ok(result.into_any().unbind())
 }
@@ -15644,12 +16153,12 @@ fn resource_not_found_exception_error_details(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.resource_type {
-        let detail_2164 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_type", detail_2164)?;
+        let detail_2229 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_type", detail_2229)?;
     }
     if let Some(value) = &value.resource_id {
-        let detail_2165 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_id", detail_2165)?;
+        let detail_2230 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_id", detail_2230)?;
     }
     Ok(result.into_any().unbind())
 }
@@ -15757,6 +16266,7 @@ impl ModeledErrorDetails
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_cloudwatch::operation::delete_metric_data_query_definition::DeleteMetricDataQueryDefinitionError {}
 impl ModeledErrorDetails
     for aws_sdk_cloudwatch::operation::delete_metric_stream::DeleteMetricStreamError
 {
@@ -15986,6 +16496,21 @@ impl ModeledErrorDetails for aws_sdk_cloudwatch::operation::get_metric_data::Get
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_cloudwatch::operation::get_metric_data_query_definition::GetMetricDataQueryDefinitionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatch::operation::get_metric_statistics::GetMetricStatisticsError
 {
@@ -16093,6 +16618,7 @@ impl ModeledErrorDetails
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_cloudwatch::operation::list_metric_data_query_definitions::ListMetricDataQueryDefinitionsError {}
 impl ModeledErrorDetails
     for aws_sdk_cloudwatch::operation::list_metric_streams::ListMetricStreamsError
 {
@@ -16248,6 +16774,23 @@ impl ModeledErrorDetails for aws_sdk_cloudwatch::operation::put_metric_data::Put
             Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
             Self::MissingRequiredParameterException(_) => Some("MissingRequiredParameterException"),
             _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatch::operation::put_metric_data_query_definition::PutMetricDataQueryDefinitionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
         }
     }
 }
@@ -16422,6 +16965,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyMetricAlarm>()?;
     module.add_class::<PyMetricCharacteristics>()?;
     module.add_class::<PyMetricDataQuery>()?;
+    module.add_class::<PyMetricDataQueryDefinitionSummary>()?;
     module.add_class::<PyMetricDataResult>()?;
     module.add_class::<PyMetricMathAnomalyDetector>()?;
     module.add_class::<PyMetricStat>()?;
@@ -16447,6 +16991,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOperationDeleteAnomalyDetectorOutput>()?;
     module.add_class::<PyOperationDeleteDashboardsOutput>()?;
     module.add_class::<PyOperationDeleteInsightRulesOutput>()?;
+    module.add_class::<PyOperationDeleteMetricDataQueryDefinitionOutput>()?;
     module.add_class::<PyOperationDeleteMetricStreamOutput>()?;
     module.add_class::<PyOperationDeleteResourceMetricsConfigurationOutput>()?;
     module.add_class::<PyOperationDescribeAlarmContributorsOutput>()?;
@@ -16463,6 +17008,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOperationGetDatasetOutput>()?;
     module.add_class::<PyOperationGetInsightRuleReportOutput>()?;
     module.add_class::<PyOperationGetMetricDataOutput>()?;
+    module.add_class::<PyOperationGetMetricDataQueryDefinitionOutput>()?;
     module.add_class::<PyOperationGetMetricStatisticsOutput>()?;
     module.add_class::<PyOperationGetMetricStreamOutput>()?;
     module.add_class::<PyOperationGetMetricWidgetImageOutput>()?;
@@ -16471,6 +17017,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOperationListAlarmMuteRulesOutput>()?;
     module.add_class::<PyOperationListDashboardsOutput>()?;
     module.add_class::<PyOperationListManagedInsightRulesOutput>()?;
+    module.add_class::<PyOperationListMetricDataQueryDefinitionsOutput>()?;
     module.add_class::<PyOperationListMetricStreamsOutput>()?;
     module.add_class::<PyOperationListMetricsOutput>()?;
     module.add_class::<PyOperationListTagsForResourceOutput>()?;
@@ -16478,6 +17025,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOperationPutDashboardOutput>()?;
     module.add_class::<PyOperationPutInsightRuleOutput>()?;
     module.add_class::<PyOperationPutManagedInsightRulesOutput>()?;
+    module.add_class::<PyOperationPutMetricDataQueryDefinitionOutput>()?;
     module.add_class::<PyOperationPutMetricStreamOutput>()?;
     module.add_class::<PyOperationStartMetricStreamsOutput>()?;
     module.add_class::<PyOperationStartOTelEnrichmentOutput>()?;
@@ -16555,9 +17103,9 @@ impl CloudWatchClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let dataset_identifier_value =
             if let Some(value) = dict_value(params, "dataset_identifier")? {
-                let converted_833 = (|| -> PyResult<_> {
-                    let converted_833: String = value.extract()?;
-                    Ok(converted_833)
+                let converted_843 = (|| -> PyResult<_> {
+                    let converted_843: String = value.extract()?;
+                    Ok(converted_843)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -16570,14 +17118,14 @@ impl CloudWatchClient {
                         "AssociateDatasetKmsKey",
                     )
                 })?;
-                Some(converted_833)
+                Some(converted_843)
             } else {
                 None
             };
         let kms_key_arn_value = if let Some(value) = dict_value(params, "kms_key_arn")? {
-            let converted_834 = (|| -> PyResult<_> {
-                let converted_834: String = value.extract()?;
-                Ok(converted_834)
+            let converted_844 = (|| -> PyResult<_> {
+                let converted_844: String = value.extract()?;
+                Ok(converted_844)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16590,7 +17138,7 @@ impl CloudWatchClient {
                     "AssociateDatasetKmsKey",
                 )
             })?;
-            Some(converted_834)
+            Some(converted_844)
         } else {
             None
         };
@@ -16632,9 +17180,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_835 = (|| -> PyResult<_> {
-                let converted_835: String = value.extract()?;
-                Ok(converted_835)
+            let converted_845 = (|| -> PyResult<_> {
+                let converted_845: String = value.extract()?;
+                Ok(converted_845)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16647,38 +17195,38 @@ impl CloudWatchClient {
                     "CreateResourceMetricsConfiguration",
                 )
             })?;
-            Some(converted_835)
+            Some(converted_845)
         } else {
             None
         };
         let metric_selections_value = if let Some(value) = dict_value(params, "metric_selections")?
         {
-            let converted_836 = (|| -> PyResult<_> {
-                let mut converted_836 =
+            let converted_846 = (|| -> PyResult<_> {
+                let mut converted_846 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_840, item_result_837) in value.try_iter()?.enumerate() {
-                    let item_838 = item_result_837.map_err(|error| {
+                for (index_850, item_result_847) in value.try_iter()?.enumerate() {
+                    let item_848 = item_result_847.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_840),
+                            rboto_core::InputPath::Index(index_850),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_839 = (|| -> PyResult<_> {
-                        let converted_item_839 = resource_metric_selection_from_py(&item_838)?;
-                        Ok(converted_item_839)
+                    let converted_item_849 = (|| -> PyResult<_> {
+                        let converted_item_849 = resource_metric_selection_from_py(&item_848)?;
+                        Ok(converted_item_849)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_840),
+                            rboto_core::InputPath::Index(index_850),
                             "dict (ResourceMetricSelection)",
                         )
                     })?;
-                    converted_836.push(converted_item_839);
+                    converted_846.push(converted_item_849);
                 }
-                Ok(converted_836)
+                Ok(converted_846)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16691,7 +17239,7 @@ impl CloudWatchClient {
                     "CreateResourceMetricsConfiguration",
                 )
             })?;
-            Some(converted_836)
+            Some(converted_846)
         } else {
             None
         };
@@ -16736,9 +17284,9 @@ impl CloudWatchClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alarm_mute_rule_name_value =
             if let Some(value) = dict_value(params, "alarm_mute_rule_name")? {
-                let converted_841 = (|| -> PyResult<_> {
-                    let converted_841: String = value.extract()?;
-                    Ok(converted_841)
+                let converted_851 = (|| -> PyResult<_> {
+                    let converted_851: String = value.extract()?;
+                    Ok(converted_851)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -16751,7 +17299,7 @@ impl CloudWatchClient {
                         "DeleteAlarmMuteRule",
                     )
                 })?;
-                Some(converted_841)
+                Some(converted_851)
             } else {
                 None
             };
@@ -16796,32 +17344,32 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alarm_names_value = if let Some(value) = dict_value(params, "alarm_names")? {
-            let converted_842 = (|| -> PyResult<_> {
-                let mut converted_842 =
+            let converted_852 = (|| -> PyResult<_> {
+                let mut converted_852 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_846, item_result_843) in value.try_iter()?.enumerate() {
-                    let item_844 = item_result_843.map_err(|error| {
+                for (index_856, item_result_853) in value.try_iter()?.enumerate() {
+                    let item_854 = item_result_853.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_846),
+                            rboto_core::InputPath::Index(index_856),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_845 = (|| -> PyResult<_> {
-                        let converted_item_845: String = item_844.extract()?;
-                        Ok(converted_item_845)
+                    let converted_item_855 = (|| -> PyResult<_> {
+                        let converted_item_855: String = item_854.extract()?;
+                        Ok(converted_item_855)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_846),
+                            rboto_core::InputPath::Index(index_856),
                             "str",
                         )
                     })?;
-                    converted_842.push(converted_item_845);
+                    converted_852.push(converted_item_855);
                 }
-                Ok(converted_842)
+                Ok(converted_852)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16834,7 +17382,7 @@ impl CloudWatchClient {
                     "DeleteAlarms",
                 )
             })?;
-            Some(converted_842)
+            Some(converted_852)
         } else {
             None
         };
@@ -16873,9 +17421,9 @@ impl CloudWatchClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let anomaly_detector_id_value =
             if let Some(value) = dict_value(params, "anomaly_detector_id")? {
-                let converted_847 = (|| -> PyResult<_> {
-                    let converted_847: String = value.extract()?;
-                    Ok(converted_847)
+                let converted_857 = (|| -> PyResult<_> {
+                    let converted_857: String = value.extract()?;
+                    Ok(converted_857)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -16888,14 +17436,14 @@ impl CloudWatchClient {
                         "DeleteAnomalyDetector",
                     )
                 })?;
-                Some(converted_847)
+                Some(converted_857)
             } else {
                 None
             };
         let namespace_value = if let Some(value) = dict_value(params, "namespace")? {
-            let converted_848 = (|| -> PyResult<_> {
-                let converted_848: String = value.extract()?;
-                Ok(converted_848)
+            let converted_858 = (|| -> PyResult<_> {
+                let converted_858: String = value.extract()?;
+                Ok(converted_858)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16908,14 +17456,14 @@ impl CloudWatchClient {
                     "DeleteAnomalyDetector",
                 )
             })?;
-            Some(converted_848)
+            Some(converted_858)
         } else {
             None
         };
         let metric_name_value = if let Some(value) = dict_value(params, "metric_name")? {
-            let converted_849 = (|| -> PyResult<_> {
-                let converted_849: String = value.extract()?;
-                Ok(converted_849)
+            let converted_859 = (|| -> PyResult<_> {
+                let converted_859: String = value.extract()?;
+                Ok(converted_859)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16928,37 +17476,37 @@ impl CloudWatchClient {
                     "DeleteAnomalyDetector",
                 )
             })?;
-            Some(converted_849)
+            Some(converted_859)
         } else {
             None
         };
         let dimensions_value = if let Some(value) = dict_value(params, "dimensions")? {
-            let converted_850 = (|| -> PyResult<_> {
-                let mut converted_850 =
+            let converted_860 = (|| -> PyResult<_> {
+                let mut converted_860 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_854, item_result_851) in value.try_iter()?.enumerate() {
-                    let item_852 = item_result_851.map_err(|error| {
+                for (index_864, item_result_861) in value.try_iter()?.enumerate() {
+                    let item_862 = item_result_861.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_854),
+                            rboto_core::InputPath::Index(index_864),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_853 = (|| -> PyResult<_> {
-                        let converted_item_853 = dimension_from_py(&item_852)?;
-                        Ok(converted_item_853)
+                    let converted_item_863 = (|| -> PyResult<_> {
+                        let converted_item_863 = dimension_from_py(&item_862)?;
+                        Ok(converted_item_863)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_854),
+                            rboto_core::InputPath::Index(index_864),
                             "dict (Dimension)",
                         )
                     })?;
-                    converted_850.push(converted_item_853);
+                    converted_860.push(converted_item_863);
                 }
-                Ok(converted_850)
+                Ok(converted_860)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16971,14 +17519,14 @@ impl CloudWatchClient {
                     "DeleteAnomalyDetector",
                 )
             })?;
-            Some(converted_850)
+            Some(converted_860)
         } else {
             None
         };
         let stat_value = if let Some(value) = dict_value(params, "stat")? {
-            let converted_855 = (|| -> PyResult<_> {
-                let converted_855: String = value.extract()?;
-                Ok(converted_855)
+            let converted_865 = (|| -> PyResult<_> {
+                let converted_865: String = value.extract()?;
+                Ok(converted_865)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16987,15 +17535,15 @@ impl CloudWatchClient {
                     "DeleteAnomalyDetector",
                 )
             })?;
-            Some(converted_855)
+            Some(converted_865)
         } else {
             None
         };
         let single_metric_anomaly_detector_value =
             if let Some(value) = dict_value(params, "single_metric_anomaly_detector")? {
-                let converted_856 = (|| -> PyResult<_> {
-                    let converted_856 = single_metric_anomaly_detector_from_py(&value)?;
-                    Ok(converted_856)
+                let converted_866 = (|| -> PyResult<_> {
+                    let converted_866 = single_metric_anomaly_detector_from_py(&value)?;
+                    Ok(converted_866)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -17008,15 +17556,15 @@ impl CloudWatchClient {
                         "DeleteAnomalyDetector",
                     )
                 })?;
-                Some(converted_856)
+                Some(converted_866)
             } else {
                 None
             };
         let metric_math_anomaly_detector_value =
             if let Some(value) = dict_value(params, "metric_math_anomaly_detector")? {
-                let converted_857 = (|| -> PyResult<_> {
-                    let converted_857 = metric_math_anomaly_detector_from_py(&value)?;
-                    Ok(converted_857)
+                let converted_867 = (|| -> PyResult<_> {
+                    let converted_867 = metric_math_anomaly_detector_from_py(&value)?;
+                    Ok(converted_867)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -17029,7 +17577,7 @@ impl CloudWatchClient {
                         "DeleteAnomalyDetector",
                     )
                 })?;
-                Some(converted_857)
+                Some(converted_867)
             } else {
                 None
             };
@@ -17076,32 +17624,32 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let dashboard_names_value = if let Some(value) = dict_value(params, "dashboard_names")? {
-            let converted_858 = (|| -> PyResult<_> {
-                let mut converted_858 =
+            let converted_868 = (|| -> PyResult<_> {
+                let mut converted_868 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_862, item_result_859) in value.try_iter()?.enumerate() {
-                    let item_860 = item_result_859.map_err(|error| {
+                for (index_872, item_result_869) in value.try_iter()?.enumerate() {
+                    let item_870 = item_result_869.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_862),
+                            rboto_core::InputPath::Index(index_872),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_861 = (|| -> PyResult<_> {
-                        let converted_item_861: String = item_860.extract()?;
-                        Ok(converted_item_861)
+                    let converted_item_871 = (|| -> PyResult<_> {
+                        let converted_item_871: String = item_870.extract()?;
+                        Ok(converted_item_871)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_862),
+                            rboto_core::InputPath::Index(index_872),
                             "str",
                         )
                     })?;
-                    converted_858.push(converted_item_861);
+                    converted_868.push(converted_item_871);
                 }
-                Ok(converted_858)
+                Ok(converted_868)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17114,7 +17662,7 @@ impl CloudWatchClient {
                     "DeleteDashboards",
                 )
             })?;
-            Some(converted_858)
+            Some(converted_868)
         } else {
             None
         };
@@ -17155,32 +17703,32 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_names_value = if let Some(value) = dict_value(params, "rule_names")? {
-            let converted_863 = (|| -> PyResult<_> {
-                let mut converted_863 =
+            let converted_873 = (|| -> PyResult<_> {
+                let mut converted_873 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_867, item_result_864) in value.try_iter()?.enumerate() {
-                    let item_865 = item_result_864.map_err(|error| {
+                for (index_877, item_result_874) in value.try_iter()?.enumerate() {
+                    let item_875 = item_result_874.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_867),
+                            rboto_core::InputPath::Index(index_877),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_866 = (|| -> PyResult<_> {
-                        let converted_item_866: String = item_865.extract()?;
-                        Ok(converted_item_866)
+                    let converted_item_876 = (|| -> PyResult<_> {
+                        let converted_item_876: String = item_875.extract()?;
+                        Ok(converted_item_876)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_867),
+                            rboto_core::InputPath::Index(index_877),
                             "str",
                         )
                     })?;
-                    converted_863.push(converted_item_866);
+                    converted_873.push(converted_item_876);
                 }
-                Ok(converted_863)
+                Ok(converted_873)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17193,7 +17741,7 @@ impl CloudWatchClient {
                     "DeleteInsightRules",
                 )
             })?;
-            Some(converted_863)
+            Some(converted_873)
         } else {
             None
         };
@@ -17228,6 +17776,58 @@ impl CloudWatchClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn delete_metric_data_query_definition<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let id_value = if let Some(value) = dict_value(params, "id")? {
+            let converted_878 = (|| -> PyResult<_> {
+                let converted_878: String = value.extract()?;
+                Ok(converted_878)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str"),
+                    "cloudwatch",
+                    "DeleteMetricDataQueryDefinition",
+                )
+            })?;
+            Some(converted_878)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .delete_metric_data_query_definition()
+                .set_id(id_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteMetricDataQueryDefinition",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationDeleteMetricDataQueryDefinitionOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn delete_metric_stream<'py>(
         &self,
         py: Python<'py>,
@@ -17236,9 +17836,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_868 = (|| -> PyResult<_> {
-                let converted_868: String = value.extract()?;
-                Ok(converted_868)
+            let converted_879 = (|| -> PyResult<_> {
+                let converted_879: String = value.extract()?;
+                Ok(converted_879)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17247,7 +17847,7 @@ impl CloudWatchClient {
                     "DeleteMetricStream",
                 )
             })?;
-            Some(converted_868)
+            Some(converted_879)
         } else {
             None
         };
@@ -17286,9 +17886,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_869 = (|| -> PyResult<_> {
-                let converted_869: String = value.extract()?;
-                Ok(converted_869)
+            let converted_880 = (|| -> PyResult<_> {
+                let converted_880: String = value.extract()?;
+                Ok(converted_880)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17301,7 +17901,7 @@ impl CloudWatchClient {
                     "DeleteResourceMetricsConfiguration",
                 )
             })?;
-            Some(converted_869)
+            Some(converted_880)
         } else {
             None
         };
@@ -17342,9 +17942,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alarm_name_value = if let Some(value) = dict_value(params, "alarm_name")? {
-            let converted_870 = (|| -> PyResult<_> {
-                let converted_870: String = value.extract()?;
-                Ok(converted_870)
+            let converted_881 = (|| -> PyResult<_> {
+                let converted_881: String = value.extract()?;
+                Ok(converted_881)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17357,14 +17957,14 @@ impl CloudWatchClient {
                     "DescribeAlarmContributors",
                 )
             })?;
-            Some(converted_870)
+            Some(converted_881)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_871 = (|| -> PyResult<_> {
-                let converted_871: String = value.extract()?;
-                Ok(converted_871)
+            let converted_882 = (|| -> PyResult<_> {
+                let converted_882: String = value.extract()?;
+                Ok(converted_882)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17377,7 +17977,7 @@ impl CloudWatchClient {
                     "DescribeAlarmContributors",
                 )
             })?;
-            Some(converted_871)
+            Some(converted_882)
         } else {
             None
         };
@@ -17421,9 +18021,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alarm_name_value = if let Some(value) = dict_value(params, "alarm_name")? {
-            let converted_872 = (|| -> PyResult<_> {
-                let converted_872: String = value.extract()?;
-                Ok(converted_872)
+            let converted_883 = (|| -> PyResult<_> {
+                let converted_883: String = value.extract()?;
+                Ok(converted_883)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17436,15 +18036,15 @@ impl CloudWatchClient {
                     "DescribeAlarmHistory",
                 )
             })?;
-            Some(converted_872)
+            Some(converted_883)
         } else {
             None
         };
         let alarm_contributor_id_value =
             if let Some(value) = dict_value(params, "alarm_contributor_id")? {
-                let converted_873 = (|| -> PyResult<_> {
-                    let converted_873: String = value.extract()?;
-                    Ok(converted_873)
+                let converted_884 = (|| -> PyResult<_> {
+                    let converted_884: String = value.extract()?;
+                    Ok(converted_884)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -17457,39 +18057,39 @@ impl CloudWatchClient {
                         "DescribeAlarmHistory",
                     )
                 })?;
-                Some(converted_873)
+                Some(converted_884)
             } else {
                 None
             };
         let alarm_types_value = if let Some(value) = dict_value(params, "alarm_types")? {
-            let converted_874 = (|| -> PyResult<_> {
-                let mut converted_874 =
+            let converted_885 = (|| -> PyResult<_> {
+                let mut converted_885 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_878, item_result_875) in value.try_iter()?.enumerate() {
-                    let item_876 = item_result_875.map_err(|error| {
+                for (index_889, item_result_886) in value.try_iter()?.enumerate() {
+                    let item_887 = item_result_886.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_878),
+                            rboto_core::InputPath::Index(index_889),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_877 = (|| -> PyResult<_> {
-                        let enum_value_879: String = item_876.extract()?;
-                        let converted_item_877 =
-                            aws_sdk_cloudwatch::types::AlarmType::from(enum_value_879.as_str());
-                        Ok(converted_item_877)
+                    let converted_item_888 = (|| -> PyResult<_> {
+                        let enum_value_890: String = item_887.extract()?;
+                        let converted_item_888 =
+                            aws_sdk_cloudwatch::types::AlarmType::from(enum_value_890.as_str());
+                        Ok(converted_item_888)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_878),
+                            rboto_core::InputPath::Index(index_889),
                             "str (AlarmType)",
                         )
                     })?;
-                    converted_874.push(converted_item_877);
+                    converted_885.push(converted_item_888);
                 }
-                Ok(converted_874)
+                Ok(converted_885)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17502,17 +18102,17 @@ impl CloudWatchClient {
                     "DescribeAlarmHistory",
                 )
             })?;
-            Some(converted_874)
+            Some(converted_885)
         } else {
             None
         };
         let history_item_type_value = if let Some(value) = dict_value(params, "history_item_type")?
         {
-            let converted_880 = (|| -> PyResult<_> {
-                let enum_value_881: String = value.extract()?;
-                let converted_880 =
-                    aws_sdk_cloudwatch::types::HistoryItemType::from(enum_value_881.as_str());
-                Ok(converted_880)
+            let converted_891 = (|| -> PyResult<_> {
+                let enum_value_892: String = value.extract()?;
+                let converted_891 =
+                    aws_sdk_cloudwatch::types::HistoryItemType::from(enum_value_892.as_str());
+                Ok(converted_891)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17525,19 +18125,19 @@ impl CloudWatchClient {
                     "DescribeAlarmHistory",
                 )
             })?;
-            Some(converted_880)
+            Some(converted_891)
         } else {
             None
         };
         let start_date_value = if let Some(value) = dict_value(params, "start_date")? {
-            let converted_882 = (|| -> PyResult<_> {
-                let timestamp_883: String = value.extract()?;
-                let converted_882 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_883,
+            let converted_893 = (|| -> PyResult<_> {
+                let timestamp_894: String = value.extract()?;
+                let converted_893 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_894,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                Ok(converted_882)
+                Ok(converted_893)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17550,19 +18150,19 @@ impl CloudWatchClient {
                     "DescribeAlarmHistory",
                 )
             })?;
-            Some(converted_882)
+            Some(converted_893)
         } else {
             None
         };
         let end_date_value = if let Some(value) = dict_value(params, "end_date")? {
-            let converted_884 = (|| -> PyResult<_> {
-                let timestamp_885: String = value.extract()?;
-                let converted_884 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_885,
+            let converted_895 = (|| -> PyResult<_> {
+                let timestamp_896: String = value.extract()?;
+                let converted_895 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_896,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                Ok(converted_884)
+                Ok(converted_895)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17575,14 +18175,14 @@ impl CloudWatchClient {
                     "DescribeAlarmHistory",
                 )
             })?;
-            Some(converted_884)
+            Some(converted_895)
         } else {
             None
         };
         let max_records_value = if let Some(value) = dict_value(params, "max_records")? {
-            let converted_886 = (|| -> PyResult<_> {
-                let converted_886: i32 = value.extract()?;
-                Ok(converted_886)
+            let converted_897 = (|| -> PyResult<_> {
+                let converted_897: i32 = value.extract()?;
+                Ok(converted_897)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17595,14 +18195,14 @@ impl CloudWatchClient {
                     "DescribeAlarmHistory",
                 )
             })?;
-            Some(converted_886)
+            Some(converted_897)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_887 = (|| -> PyResult<_> {
-                let converted_887: String = value.extract()?;
-                Ok(converted_887)
+            let converted_898 = (|| -> PyResult<_> {
+                let converted_898: String = value.extract()?;
+                Ok(converted_898)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17615,16 +18215,16 @@ impl CloudWatchClient {
                     "DescribeAlarmHistory",
                 )
             })?;
-            Some(converted_887)
+            Some(converted_898)
         } else {
             None
         };
         let scan_by_value = if let Some(value) = dict_value(params, "scan_by")? {
-            let converted_888 = (|| -> PyResult<_> {
-                let enum_value_889: String = value.extract()?;
-                let converted_888 =
-                    aws_sdk_cloudwatch::types::ScanBy::from(enum_value_889.as_str());
-                Ok(converted_888)
+            let converted_899 = (|| -> PyResult<_> {
+                let enum_value_900: String = value.extract()?;
+                let converted_899 =
+                    aws_sdk_cloudwatch::types::ScanBy::from(enum_value_900.as_str());
+                Ok(converted_899)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17637,7 +18237,7 @@ impl CloudWatchClient {
                     "DescribeAlarmHistory",
                 )
             })?;
-            Some(converted_888)
+            Some(converted_899)
         } else {
             None
         };
@@ -17688,32 +18288,32 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alarm_names_value = if let Some(value) = dict_value(params, "alarm_names")? {
-            let converted_890 = (|| -> PyResult<_> {
-                let mut converted_890 =
+            let converted_901 = (|| -> PyResult<_> {
+                let mut converted_901 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_894, item_result_891) in value.try_iter()?.enumerate() {
-                    let item_892 = item_result_891.map_err(|error| {
+                for (index_905, item_result_902) in value.try_iter()?.enumerate() {
+                    let item_903 = item_result_902.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_894),
+                            rboto_core::InputPath::Index(index_905),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_893 = (|| -> PyResult<_> {
-                        let converted_item_893: String = item_892.extract()?;
-                        Ok(converted_item_893)
+                    let converted_item_904 = (|| -> PyResult<_> {
+                        let converted_item_904: String = item_903.extract()?;
+                        Ok(converted_item_904)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_894),
+                            rboto_core::InputPath::Index(index_905),
                             "str",
                         )
                     })?;
-                    converted_890.push(converted_item_893);
+                    converted_901.push(converted_item_904);
                 }
-                Ok(converted_890)
+                Ok(converted_901)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17726,15 +18326,15 @@ impl CloudWatchClient {
                     "DescribeAlarms",
                 )
             })?;
-            Some(converted_890)
+            Some(converted_901)
         } else {
             None
         };
         let alarm_name_prefix_value = if let Some(value) = dict_value(params, "alarm_name_prefix")?
         {
-            let converted_895 = (|| -> PyResult<_> {
-                let converted_895: String = value.extract()?;
-                Ok(converted_895)
+            let converted_906 = (|| -> PyResult<_> {
+                let converted_906: String = value.extract()?;
+                Ok(converted_906)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17747,39 +18347,39 @@ impl CloudWatchClient {
                     "DescribeAlarms",
                 )
             })?;
-            Some(converted_895)
+            Some(converted_906)
         } else {
             None
         };
         let alarm_types_value = if let Some(value) = dict_value(params, "alarm_types")? {
-            let converted_896 = (|| -> PyResult<_> {
-                let mut converted_896 =
+            let converted_907 = (|| -> PyResult<_> {
+                let mut converted_907 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_900, item_result_897) in value.try_iter()?.enumerate() {
-                    let item_898 = item_result_897.map_err(|error| {
+                for (index_911, item_result_908) in value.try_iter()?.enumerate() {
+                    let item_909 = item_result_908.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_900),
+                            rboto_core::InputPath::Index(index_911),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_899 = (|| -> PyResult<_> {
-                        let enum_value_901: String = item_898.extract()?;
-                        let converted_item_899 =
-                            aws_sdk_cloudwatch::types::AlarmType::from(enum_value_901.as_str());
-                        Ok(converted_item_899)
+                    let converted_item_910 = (|| -> PyResult<_> {
+                        let enum_value_912: String = item_909.extract()?;
+                        let converted_item_910 =
+                            aws_sdk_cloudwatch::types::AlarmType::from(enum_value_912.as_str());
+                        Ok(converted_item_910)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_900),
+                            rboto_core::InputPath::Index(index_911),
                             "str (AlarmType)",
                         )
                     })?;
-                    converted_896.push(converted_item_899);
+                    converted_907.push(converted_item_910);
                 }
-                Ok(converted_896)
+                Ok(converted_907)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17792,15 +18392,15 @@ impl CloudWatchClient {
                     "DescribeAlarms",
                 )
             })?;
-            Some(converted_896)
+            Some(converted_907)
         } else {
             None
         };
         let children_of_alarm_name_value =
             if let Some(value) = dict_value(params, "children_of_alarm_name")? {
-                let converted_902 = (|| -> PyResult<_> {
-                    let converted_902: String = value.extract()?;
-                    Ok(converted_902)
+                let converted_913 = (|| -> PyResult<_> {
+                    let converted_913: String = value.extract()?;
+                    Ok(converted_913)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -17813,15 +18413,15 @@ impl CloudWatchClient {
                         "DescribeAlarms",
                     )
                 })?;
-                Some(converted_902)
+                Some(converted_913)
             } else {
                 None
             };
         let parents_of_alarm_name_value =
             if let Some(value) = dict_value(params, "parents_of_alarm_name")? {
-                let converted_903 = (|| -> PyResult<_> {
-                    let converted_903: String = value.extract()?;
-                    Ok(converted_903)
+                let converted_914 = (|| -> PyResult<_> {
+                    let converted_914: String = value.extract()?;
+                    Ok(converted_914)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -17834,16 +18434,16 @@ impl CloudWatchClient {
                         "DescribeAlarms",
                     )
                 })?;
-                Some(converted_903)
+                Some(converted_914)
             } else {
                 None
             };
         let state_value_value = if let Some(value) = dict_value(params, "state_value")? {
-            let converted_904 = (|| -> PyResult<_> {
-                let enum_value_905: String = value.extract()?;
-                let converted_904 =
-                    aws_sdk_cloudwatch::types::StateValue::from(enum_value_905.as_str());
-                Ok(converted_904)
+            let converted_915 = (|| -> PyResult<_> {
+                let enum_value_916: String = value.extract()?;
+                let converted_915 =
+                    aws_sdk_cloudwatch::types::StateValue::from(enum_value_916.as_str());
+                Ok(converted_915)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17856,14 +18456,14 @@ impl CloudWatchClient {
                     "DescribeAlarms",
                 )
             })?;
-            Some(converted_904)
+            Some(converted_915)
         } else {
             None
         };
         let action_prefix_value = if let Some(value) = dict_value(params, "action_prefix")? {
-            let converted_906 = (|| -> PyResult<_> {
-                let converted_906: String = value.extract()?;
-                Ok(converted_906)
+            let converted_917 = (|| -> PyResult<_> {
+                let converted_917: String = value.extract()?;
+                Ok(converted_917)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17876,14 +18476,14 @@ impl CloudWatchClient {
                     "DescribeAlarms",
                 )
             })?;
-            Some(converted_906)
+            Some(converted_917)
         } else {
             None
         };
         let max_records_value = if let Some(value) = dict_value(params, "max_records")? {
-            let converted_907 = (|| -> PyResult<_> {
-                let converted_907: i32 = value.extract()?;
-                Ok(converted_907)
+            let converted_918 = (|| -> PyResult<_> {
+                let converted_918: i32 = value.extract()?;
+                Ok(converted_918)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17896,14 +18496,14 @@ impl CloudWatchClient {
                     "DescribeAlarms",
                 )
             })?;
-            Some(converted_907)
+            Some(converted_918)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_908 = (|| -> PyResult<_> {
-                let converted_908: String = value.extract()?;
-                Ok(converted_908)
+            let converted_919 = (|| -> PyResult<_> {
+                let converted_919: String = value.extract()?;
+                Ok(converted_919)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17916,7 +18516,7 @@ impl CloudWatchClient {
                     "DescribeAlarms",
                 )
             })?;
-            Some(converted_908)
+            Some(converted_919)
         } else {
             None
         };
@@ -17962,9 +18562,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let metric_name_value = if let Some(value) = dict_value(params, "metric_name")? {
-            let converted_909 = (|| -> PyResult<_> {
-                let converted_909: String = value.extract()?;
-                Ok(converted_909)
+            let converted_920 = (|| -> PyResult<_> {
+                let converted_920: String = value.extract()?;
+                Ok(converted_920)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17977,14 +18577,14 @@ impl CloudWatchClient {
                     "DescribeAlarmsForMetric",
                 )
             })?;
-            Some(converted_909)
+            Some(converted_920)
         } else {
             None
         };
         let namespace_value = if let Some(value) = dict_value(params, "namespace")? {
-            let converted_910 = (|| -> PyResult<_> {
-                let converted_910: String = value.extract()?;
-                Ok(converted_910)
+            let converted_921 = (|| -> PyResult<_> {
+                let converted_921: String = value.extract()?;
+                Ok(converted_921)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17997,16 +18597,16 @@ impl CloudWatchClient {
                     "DescribeAlarmsForMetric",
                 )
             })?;
-            Some(converted_910)
+            Some(converted_921)
         } else {
             None
         };
         let statistic_value = if let Some(value) = dict_value(params, "statistic")? {
-            let converted_911 = (|| -> PyResult<_> {
-                let enum_value_912: String = value.extract()?;
-                let converted_911 =
-                    aws_sdk_cloudwatch::types::Statistic::from(enum_value_912.as_str());
-                Ok(converted_911)
+            let converted_922 = (|| -> PyResult<_> {
+                let enum_value_923: String = value.extract()?;
+                let converted_922 =
+                    aws_sdk_cloudwatch::types::Statistic::from(enum_value_923.as_str());
+                Ok(converted_922)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18019,15 +18619,15 @@ impl CloudWatchClient {
                     "DescribeAlarmsForMetric",
                 )
             })?;
-            Some(converted_911)
+            Some(converted_922)
         } else {
             None
         };
         let extended_statistic_value =
             if let Some(value) = dict_value(params, "extended_statistic")? {
-                let converted_913 = (|| -> PyResult<_> {
-                    let converted_913: String = value.extract()?;
-                    Ok(converted_913)
+                let converted_924 = (|| -> PyResult<_> {
+                    let converted_924: String = value.extract()?;
+                    Ok(converted_924)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -18040,37 +18640,37 @@ impl CloudWatchClient {
                         "DescribeAlarmsForMetric",
                     )
                 })?;
-                Some(converted_913)
+                Some(converted_924)
             } else {
                 None
             };
         let dimensions_value = if let Some(value) = dict_value(params, "dimensions")? {
-            let converted_914 = (|| -> PyResult<_> {
-                let mut converted_914 =
+            let converted_925 = (|| -> PyResult<_> {
+                let mut converted_925 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_918, item_result_915) in value.try_iter()?.enumerate() {
-                    let item_916 = item_result_915.map_err(|error| {
+                for (index_929, item_result_926) in value.try_iter()?.enumerate() {
+                    let item_927 = item_result_926.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_918),
+                            rboto_core::InputPath::Index(index_929),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_917 = (|| -> PyResult<_> {
-                        let converted_item_917 = dimension_from_py(&item_916)?;
-                        Ok(converted_item_917)
+                    let converted_item_928 = (|| -> PyResult<_> {
+                        let converted_item_928 = dimension_from_py(&item_927)?;
+                        Ok(converted_item_928)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_918),
+                            rboto_core::InputPath::Index(index_929),
                             "dict (Dimension)",
                         )
                     })?;
-                    converted_914.push(converted_item_917);
+                    converted_925.push(converted_item_928);
                 }
-                Ok(converted_914)
+                Ok(converted_925)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18083,14 +18683,14 @@ impl CloudWatchClient {
                     "DescribeAlarmsForMetric",
                 )
             })?;
-            Some(converted_914)
+            Some(converted_925)
         } else {
             None
         };
         let period_value = if let Some(value) = dict_value(params, "period")? {
-            let converted_919 = (|| -> PyResult<_> {
-                let converted_919: i32 = value.extract()?;
-                Ok(converted_919)
+            let converted_930 = (|| -> PyResult<_> {
+                let converted_930: i32 = value.extract()?;
+                Ok(converted_930)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18099,16 +18699,16 @@ impl CloudWatchClient {
                     "DescribeAlarmsForMetric",
                 )
             })?;
-            Some(converted_919)
+            Some(converted_930)
         } else {
             None
         };
         let unit_value = if let Some(value) = dict_value(params, "unit")? {
-            let converted_920 = (|| -> PyResult<_> {
-                let enum_value_921: String = value.extract()?;
-                let converted_920 =
-                    aws_sdk_cloudwatch::types::StandardUnit::from(enum_value_921.as_str());
-                Ok(converted_920)
+            let converted_931 = (|| -> PyResult<_> {
+                let enum_value_932: String = value.extract()?;
+                let converted_931 =
+                    aws_sdk_cloudwatch::types::StandardUnit::from(enum_value_932.as_str());
+                Ok(converted_931)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18121,7 +18721,7 @@ impl CloudWatchClient {
                     "DescribeAlarmsForMetric",
                 )
             })?;
-            Some(converted_920)
+            Some(converted_931)
         } else {
             None
         };
@@ -18171,32 +18771,32 @@ impl CloudWatchClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let anomaly_detector_ids_value =
             if let Some(value) = dict_value(params, "anomaly_detector_ids")? {
-                let converted_922 = (|| -> PyResult<_> {
-                    let mut converted_922 =
+                let converted_933 = (|| -> PyResult<_> {
+                    let mut converted_933 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_926, item_result_923) in value.try_iter()?.enumerate() {
-                        let item_924 = item_result_923.map_err(|error| {
+                    for (index_937, item_result_934) in value.try_iter()?.enumerate() {
+                        let item_935 = item_result_934.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_926),
+                                rboto_core::InputPath::Index(index_937),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_925 = (|| -> PyResult<_> {
-                            let converted_item_925: String = item_924.extract()?;
-                            Ok(converted_item_925)
+                        let converted_item_936 = (|| -> PyResult<_> {
+                            let converted_item_936: String = item_935.extract()?;
+                            Ok(converted_item_936)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_926),
+                                rboto_core::InputPath::Index(index_937),
                                 "str",
                             )
                         })?;
-                        converted_922.push(converted_item_925);
+                        converted_933.push(converted_item_936);
                     }
-                    Ok(converted_922)
+                    Ok(converted_933)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -18209,14 +18809,14 @@ impl CloudWatchClient {
                         "DescribeAnomalyDetectors",
                     )
                 })?;
-                Some(converted_922)
+                Some(converted_933)
             } else {
                 None
             };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_927 = (|| -> PyResult<_> {
-                let converted_927: String = value.extract()?;
-                Ok(converted_927)
+            let converted_938 = (|| -> PyResult<_> {
+                let converted_938: String = value.extract()?;
+                Ok(converted_938)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18229,14 +18829,14 @@ impl CloudWatchClient {
                     "DescribeAnomalyDetectors",
                 )
             })?;
-            Some(converted_927)
+            Some(converted_938)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_928 = (|| -> PyResult<_> {
-                let converted_928: i32 = value.extract()?;
-                Ok(converted_928)
+            let converted_939 = (|| -> PyResult<_> {
+                let converted_939: i32 = value.extract()?;
+                Ok(converted_939)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18249,14 +18849,14 @@ impl CloudWatchClient {
                     "DescribeAnomalyDetectors",
                 )
             })?;
-            Some(converted_928)
+            Some(converted_939)
         } else {
             None
         };
         let namespace_value = if let Some(value) = dict_value(params, "namespace")? {
-            let converted_929 = (|| -> PyResult<_> {
-                let converted_929: String = value.extract()?;
-                Ok(converted_929)
+            let converted_940 = (|| -> PyResult<_> {
+                let converted_940: String = value.extract()?;
+                Ok(converted_940)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18269,14 +18869,14 @@ impl CloudWatchClient {
                     "DescribeAnomalyDetectors",
                 )
             })?;
-            Some(converted_929)
+            Some(converted_940)
         } else {
             None
         };
         let metric_name_value = if let Some(value) = dict_value(params, "metric_name")? {
-            let converted_930 = (|| -> PyResult<_> {
-                let converted_930: String = value.extract()?;
-                Ok(converted_930)
+            let converted_941 = (|| -> PyResult<_> {
+                let converted_941: String = value.extract()?;
+                Ok(converted_941)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18289,37 +18889,37 @@ impl CloudWatchClient {
                     "DescribeAnomalyDetectors",
                 )
             })?;
-            Some(converted_930)
+            Some(converted_941)
         } else {
             None
         };
         let dimensions_value = if let Some(value) = dict_value(params, "dimensions")? {
-            let converted_931 = (|| -> PyResult<_> {
-                let mut converted_931 =
+            let converted_942 = (|| -> PyResult<_> {
+                let mut converted_942 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_935, item_result_932) in value.try_iter()?.enumerate() {
-                    let item_933 = item_result_932.map_err(|error| {
+                for (index_946, item_result_943) in value.try_iter()?.enumerate() {
+                    let item_944 = item_result_943.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_935),
+                            rboto_core::InputPath::Index(index_946),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_934 = (|| -> PyResult<_> {
-                        let converted_item_934 = dimension_from_py(&item_933)?;
-                        Ok(converted_item_934)
+                    let converted_item_945 = (|| -> PyResult<_> {
+                        let converted_item_945 = dimension_from_py(&item_944)?;
+                        Ok(converted_item_945)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_935),
+                            rboto_core::InputPath::Index(index_946),
                             "dict (Dimension)",
                         )
                     })?;
-                    converted_931.push(converted_item_934);
+                    converted_942.push(converted_item_945);
                 }
-                Ok(converted_931)
+                Ok(converted_942)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18332,42 +18932,42 @@ impl CloudWatchClient {
                     "DescribeAnomalyDetectors",
                 )
             })?;
-            Some(converted_931)
+            Some(converted_942)
         } else {
             None
         };
         let anomaly_detector_types_value =
             if let Some(value) = dict_value(params, "anomaly_detector_types")? {
-                let converted_936 = (|| -> PyResult<_> {
-                    let mut converted_936 =
+                let converted_947 = (|| -> PyResult<_> {
+                    let mut converted_947 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_940, item_result_937) in value.try_iter()?.enumerate() {
-                        let item_938 = item_result_937.map_err(|error| {
+                    for (index_951, item_result_948) in value.try_iter()?.enumerate() {
+                        let item_949 = item_result_948.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_940),
+                                rboto_core::InputPath::Index(index_951),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_939 = (|| -> PyResult<_> {
-                            let enum_value_941: String = item_938.extract()?;
-                            let converted_item_939 =
+                        let converted_item_950 = (|| -> PyResult<_> {
+                            let enum_value_952: String = item_949.extract()?;
+                            let converted_item_950 =
                                 aws_sdk_cloudwatch::types::AnomalyDetectorType::from(
-                                    enum_value_941.as_str(),
+                                    enum_value_952.as_str(),
                                 );
-                            Ok(converted_item_939)
+                            Ok(converted_item_950)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_940),
+                                rboto_core::InputPath::Index(index_951),
                                 "str (AnomalyDetectorType)",
                             )
                         })?;
-                        converted_936.push(converted_item_939);
+                        converted_947.push(converted_item_950);
                     }
-                    Ok(converted_936)
+                    Ok(converted_947)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -18380,7 +18980,7 @@ impl CloudWatchClient {
                         "DescribeAnomalyDetectors",
                     )
                 })?;
-                Some(converted_936)
+                Some(converted_947)
             } else {
                 None
             };
@@ -18429,9 +19029,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_942 = (|| -> PyResult<_> {
-                let converted_942: String = value.extract()?;
-                Ok(converted_942)
+            let converted_953 = (|| -> PyResult<_> {
+                let converted_953: String = value.extract()?;
+                Ok(converted_953)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18444,14 +19044,14 @@ impl CloudWatchClient {
                     "DescribeInsightRules",
                 )
             })?;
-            Some(converted_942)
+            Some(converted_953)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_943 = (|| -> PyResult<_> {
-                let converted_943: i32 = value.extract()?;
-                Ok(converted_943)
+            let converted_954 = (|| -> PyResult<_> {
+                let converted_954: i32 = value.extract()?;
+                Ok(converted_954)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18464,7 +19064,7 @@ impl CloudWatchClient {
                     "DescribeInsightRules",
                 )
             })?;
-            Some(converted_943)
+            Some(converted_954)
         } else {
             None
         };
@@ -18508,32 +19108,32 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alarm_names_value = if let Some(value) = dict_value(params, "alarm_names")? {
-            let converted_944 = (|| -> PyResult<_> {
-                let mut converted_944 =
+            let converted_955 = (|| -> PyResult<_> {
+                let mut converted_955 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_948, item_result_945) in value.try_iter()?.enumerate() {
-                    let item_946 = item_result_945.map_err(|error| {
+                for (index_959, item_result_956) in value.try_iter()?.enumerate() {
+                    let item_957 = item_result_956.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_948),
+                            rboto_core::InputPath::Index(index_959),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_947 = (|| -> PyResult<_> {
-                        let converted_item_947: String = item_946.extract()?;
-                        Ok(converted_item_947)
+                    let converted_item_958 = (|| -> PyResult<_> {
+                        let converted_item_958: String = item_957.extract()?;
+                        Ok(converted_item_958)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_948),
+                            rboto_core::InputPath::Index(index_959),
                             "str",
                         )
                     })?;
-                    converted_944.push(converted_item_947);
+                    converted_955.push(converted_item_958);
                 }
-                Ok(converted_944)
+                Ok(converted_955)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18546,7 +19146,7 @@ impl CloudWatchClient {
                     "DisableAlarmActions",
                 )
             })?;
-            Some(converted_944)
+            Some(converted_955)
         } else {
             None
         };
@@ -18591,32 +19191,32 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_names_value = if let Some(value) = dict_value(params, "rule_names")? {
-            let converted_949 = (|| -> PyResult<_> {
-                let mut converted_949 =
+            let converted_960 = (|| -> PyResult<_> {
+                let mut converted_960 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_953, item_result_950) in value.try_iter()?.enumerate() {
-                    let item_951 = item_result_950.map_err(|error| {
+                for (index_964, item_result_961) in value.try_iter()?.enumerate() {
+                    let item_962 = item_result_961.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_953),
+                            rboto_core::InputPath::Index(index_964),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_952 = (|| -> PyResult<_> {
-                        let converted_item_952: String = item_951.extract()?;
-                        Ok(converted_item_952)
+                    let converted_item_963 = (|| -> PyResult<_> {
+                        let converted_item_963: String = item_962.extract()?;
+                        Ok(converted_item_963)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_953),
+                            rboto_core::InputPath::Index(index_964),
                             "str",
                         )
                     })?;
-                    converted_949.push(converted_item_952);
+                    converted_960.push(converted_item_963);
                 }
-                Ok(converted_949)
+                Ok(converted_960)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18629,7 +19229,7 @@ impl CloudWatchClient {
                     "DisableInsightRules",
                 )
             })?;
-            Some(converted_949)
+            Some(converted_960)
         } else {
             None
         };
@@ -18673,9 +19273,9 @@ impl CloudWatchClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let dataset_identifier_value =
             if let Some(value) = dict_value(params, "dataset_identifier")? {
-                let converted_954 = (|| -> PyResult<_> {
-                    let converted_954: String = value.extract()?;
-                    Ok(converted_954)
+                let converted_965 = (|| -> PyResult<_> {
+                    let converted_965: String = value.extract()?;
+                    Ok(converted_965)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -18688,7 +19288,7 @@ impl CloudWatchClient {
                         "DisassociateDatasetKmsKey",
                     )
                 })?;
-                Some(converted_954)
+                Some(converted_965)
             } else {
                 None
             };
@@ -18729,32 +19329,32 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alarm_names_value = if let Some(value) = dict_value(params, "alarm_names")? {
-            let converted_955 = (|| -> PyResult<_> {
-                let mut converted_955 =
+            let converted_966 = (|| -> PyResult<_> {
+                let mut converted_966 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_959, item_result_956) in value.try_iter()?.enumerate() {
-                    let item_957 = item_result_956.map_err(|error| {
+                for (index_970, item_result_967) in value.try_iter()?.enumerate() {
+                    let item_968 = item_result_967.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_959),
+                            rboto_core::InputPath::Index(index_970),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_958 = (|| -> PyResult<_> {
-                        let converted_item_958: String = item_957.extract()?;
-                        Ok(converted_item_958)
+                    let converted_item_969 = (|| -> PyResult<_> {
+                        let converted_item_969: String = item_968.extract()?;
+                        Ok(converted_item_969)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_959),
+                            rboto_core::InputPath::Index(index_970),
                             "str",
                         )
                     })?;
-                    converted_955.push(converted_item_958);
+                    converted_966.push(converted_item_969);
                 }
-                Ok(converted_955)
+                Ok(converted_966)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18767,7 +19367,7 @@ impl CloudWatchClient {
                     "EnableAlarmActions",
                 )
             })?;
-            Some(converted_955)
+            Some(converted_966)
         } else {
             None
         };
@@ -18812,32 +19412,32 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_names_value = if let Some(value) = dict_value(params, "rule_names")? {
-            let converted_960 = (|| -> PyResult<_> {
-                let mut converted_960 =
+            let converted_971 = (|| -> PyResult<_> {
+                let mut converted_971 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_964, item_result_961) in value.try_iter()?.enumerate() {
-                    let item_962 = item_result_961.map_err(|error| {
+                for (index_975, item_result_972) in value.try_iter()?.enumerate() {
+                    let item_973 = item_result_972.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_964),
+                            rboto_core::InputPath::Index(index_975),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_963 = (|| -> PyResult<_> {
-                        let converted_item_963: String = item_962.extract()?;
-                        Ok(converted_item_963)
+                    let converted_item_974 = (|| -> PyResult<_> {
+                        let converted_item_974: String = item_973.extract()?;
+                        Ok(converted_item_974)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_964),
+                            rboto_core::InputPath::Index(index_975),
                             "str",
                         )
                     })?;
-                    converted_960.push(converted_item_963);
+                    converted_971.push(converted_item_974);
                 }
-                Ok(converted_960)
+                Ok(converted_971)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18850,7 +19450,7 @@ impl CloudWatchClient {
                     "EnableInsightRules",
                 )
             })?;
-            Some(converted_960)
+            Some(converted_971)
         } else {
             None
         };
@@ -18894,9 +19494,9 @@ impl CloudWatchClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alarm_mute_rule_name_value =
             if let Some(value) = dict_value(params, "alarm_mute_rule_name")? {
-                let converted_965 = (|| -> PyResult<_> {
-                    let converted_965: String = value.extract()?;
-                    Ok(converted_965)
+                let converted_976 = (|| -> PyResult<_> {
+                    let converted_976: String = value.extract()?;
+                    Ok(converted_976)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -18909,7 +19509,7 @@ impl CloudWatchClient {
                         "GetAlarmMuteRule",
                     )
                 })?;
-                Some(converted_965)
+                Some(converted_976)
             } else {
                 None
             };
@@ -18952,9 +19552,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let dashboard_name_value = if let Some(value) = dict_value(params, "dashboard_name")? {
-            let converted_966 = (|| -> PyResult<_> {
-                let converted_966: String = value.extract()?;
-                Ok(converted_966)
+            let converted_977 = (|| -> PyResult<_> {
+                let converted_977: String = value.extract()?;
+                Ok(converted_977)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18967,7 +19567,7 @@ impl CloudWatchClient {
                     "GetDashboard",
                 )
             })?;
-            Some(converted_966)
+            Some(converted_977)
         } else {
             None
         };
@@ -19004,9 +19604,9 @@ impl CloudWatchClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let dataset_identifier_value =
             if let Some(value) = dict_value(params, "dataset_identifier")? {
-                let converted_967 = (|| -> PyResult<_> {
-                    let converted_967: String = value.extract()?;
-                    Ok(converted_967)
+                let converted_978 = (|| -> PyResult<_> {
+                    let converted_978: String = value.extract()?;
+                    Ok(converted_978)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -19019,7 +19619,7 @@ impl CloudWatchClient {
                         "GetDataset",
                     )
                 })?;
-                Some(converted_967)
+                Some(converted_978)
             } else {
                 None
             };
@@ -19055,9 +19655,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_name_value = if let Some(value) = dict_value(params, "rule_name")? {
-            let converted_968 = (|| -> PyResult<_> {
-                let converted_968: String = value.extract()?;
-                Ok(converted_968)
+            let converted_979 = (|| -> PyResult<_> {
+                let converted_979: String = value.extract()?;
+                Ok(converted_979)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19070,19 +19670,19 @@ impl CloudWatchClient {
                     "GetInsightRuleReport",
                 )
             })?;
-            Some(converted_968)
+            Some(converted_979)
         } else {
             None
         };
         let start_time_value = if let Some(value) = dict_value(params, "start_time")? {
-            let converted_969 = (|| -> PyResult<_> {
-                let timestamp_970: String = value.extract()?;
-                let converted_969 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_970,
+            let converted_980 = (|| -> PyResult<_> {
+                let timestamp_981: String = value.extract()?;
+                let converted_980 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_981,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                Ok(converted_969)
+                Ok(converted_980)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19095,19 +19695,19 @@ impl CloudWatchClient {
                     "GetInsightRuleReport",
                 )
             })?;
-            Some(converted_969)
+            Some(converted_980)
         } else {
             None
         };
         let end_time_value = if let Some(value) = dict_value(params, "end_time")? {
-            let converted_971 = (|| -> PyResult<_> {
-                let timestamp_972: String = value.extract()?;
-                let converted_971 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_972,
+            let converted_982 = (|| -> PyResult<_> {
+                let timestamp_983: String = value.extract()?;
+                let converted_982 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_983,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                Ok(converted_971)
+                Ok(converted_982)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19120,14 +19720,14 @@ impl CloudWatchClient {
                     "GetInsightRuleReport",
                 )
             })?;
-            Some(converted_971)
+            Some(converted_982)
         } else {
             None
         };
         let period_value = if let Some(value) = dict_value(params, "period")? {
-            let converted_973 = (|| -> PyResult<_> {
-                let converted_973: i32 = value.extract()?;
-                Ok(converted_973)
+            let converted_984 = (|| -> PyResult<_> {
+                let converted_984: i32 = value.extract()?;
+                Ok(converted_984)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19136,15 +19736,15 @@ impl CloudWatchClient {
                     "GetInsightRuleReport",
                 )
             })?;
-            Some(converted_973)
+            Some(converted_984)
         } else {
             None
         };
         let max_contributor_count_value =
             if let Some(value) = dict_value(params, "max_contributor_count")? {
-                let converted_974 = (|| -> PyResult<_> {
-                    let converted_974: i32 = value.extract()?;
-                    Ok(converted_974)
+                let converted_985 = (|| -> PyResult<_> {
+                    let converted_985: i32 = value.extract()?;
+                    Ok(converted_985)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -19157,37 +19757,37 @@ impl CloudWatchClient {
                         "GetInsightRuleReport",
                     )
                 })?;
-                Some(converted_974)
+                Some(converted_985)
             } else {
                 None
             };
         let metrics_value = if let Some(value) = dict_value(params, "metrics")? {
-            let converted_975 = (|| -> PyResult<_> {
-                let mut converted_975 =
+            let converted_986 = (|| -> PyResult<_> {
+                let mut converted_986 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_979, item_result_976) in value.try_iter()?.enumerate() {
-                    let item_977 = item_result_976.map_err(|error| {
+                for (index_990, item_result_987) in value.try_iter()?.enumerate() {
+                    let item_988 = item_result_987.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_979),
+                            rboto_core::InputPath::Index(index_990),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_978 = (|| -> PyResult<_> {
-                        let converted_item_978: String = item_977.extract()?;
-                        Ok(converted_item_978)
+                    let converted_item_989 = (|| -> PyResult<_> {
+                        let converted_item_989: String = item_988.extract()?;
+                        Ok(converted_item_989)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_979),
+                            rboto_core::InputPath::Index(index_990),
                             "str",
                         )
                     })?;
-                    converted_975.push(converted_item_978);
+                    converted_986.push(converted_item_989);
                 }
-                Ok(converted_975)
+                Ok(converted_986)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19200,14 +19800,14 @@ impl CloudWatchClient {
                     "GetInsightRuleReport",
                 )
             })?;
-            Some(converted_975)
+            Some(converted_986)
         } else {
             None
         };
         let order_by_value = if let Some(value) = dict_value(params, "order_by")? {
-            let converted_980 = (|| -> PyResult<_> {
-                let converted_980: String = value.extract()?;
-                Ok(converted_980)
+            let converted_991 = (|| -> PyResult<_> {
+                let converted_991: String = value.extract()?;
+                Ok(converted_991)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19216,7 +19816,7 @@ impl CloudWatchClient {
                     "GetInsightRuleReport",
                 )
             })?;
-            Some(converted_980)
+            Some(converted_991)
         } else {
             None
         };
@@ -19266,32 +19866,32 @@ impl CloudWatchClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let metric_data_queries_value =
             if let Some(value) = dict_value(params, "metric_data_queries")? {
-                let converted_981 = (|| -> PyResult<_> {
-                    let mut converted_981 =
+                let converted_992 = (|| -> PyResult<_> {
+                    let mut converted_992 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_985, item_result_982) in value.try_iter()?.enumerate() {
-                        let item_983 = item_result_982.map_err(|error| {
+                    for (index_996, item_result_993) in value.try_iter()?.enumerate() {
+                        let item_994 = item_result_993.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_985),
+                                rboto_core::InputPath::Index(index_996),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_984 = (|| -> PyResult<_> {
-                            let converted_item_984 = metric_data_query_from_py(&item_983)?;
-                            Ok(converted_item_984)
+                        let converted_item_995 = (|| -> PyResult<_> {
+                            let converted_item_995 = metric_data_query_from_py(&item_994)?;
+                            Ok(converted_item_995)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_985),
+                                rboto_core::InputPath::Index(index_996),
                                 "dict (MetricDataQuery)",
                             )
                         })?;
-                        converted_981.push(converted_item_984);
+                        converted_992.push(converted_item_995);
                     }
-                    Ok(converted_981)
+                    Ok(converted_992)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -19304,19 +19904,19 @@ impl CloudWatchClient {
                         "GetMetricData",
                     )
                 })?;
-                Some(converted_981)
+                Some(converted_992)
             } else {
                 None
             };
         let start_time_value = if let Some(value) = dict_value(params, "start_time")? {
-            let converted_986 = (|| -> PyResult<_> {
-                let timestamp_987: String = value.extract()?;
-                let converted_986 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_987,
+            let converted_997 = (|| -> PyResult<_> {
+                let timestamp_998: String = value.extract()?;
+                let converted_997 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_998,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                Ok(converted_986)
+                Ok(converted_997)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19329,19 +19929,19 @@ impl CloudWatchClient {
                     "GetMetricData",
                 )
             })?;
-            Some(converted_986)
+            Some(converted_997)
         } else {
             None
         };
         let end_time_value = if let Some(value) = dict_value(params, "end_time")? {
-            let converted_988 = (|| -> PyResult<_> {
-                let timestamp_989: String = value.extract()?;
-                let converted_988 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_989,
+            let converted_999 = (|| -> PyResult<_> {
+                let timestamp_1000: String = value.extract()?;
+                let converted_999 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1000,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                Ok(converted_988)
+                Ok(converted_999)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19354,14 +19954,14 @@ impl CloudWatchClient {
                     "GetMetricData",
                 )
             })?;
-            Some(converted_988)
+            Some(converted_999)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_990 = (|| -> PyResult<_> {
-                let converted_990: String = value.extract()?;
-                Ok(converted_990)
+            let converted_1001 = (|| -> PyResult<_> {
+                let converted_1001: String = value.extract()?;
+                Ok(converted_1001)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19374,16 +19974,16 @@ impl CloudWatchClient {
                     "GetMetricData",
                 )
             })?;
-            Some(converted_990)
+            Some(converted_1001)
         } else {
             None
         };
         let scan_by_value = if let Some(value) = dict_value(params, "scan_by")? {
-            let converted_991 = (|| -> PyResult<_> {
-                let enum_value_992: String = value.extract()?;
-                let converted_991 =
-                    aws_sdk_cloudwatch::types::ScanBy::from(enum_value_992.as_str());
-                Ok(converted_991)
+            let converted_1002 = (|| -> PyResult<_> {
+                let enum_value_1003: String = value.extract()?;
+                let converted_1002 =
+                    aws_sdk_cloudwatch::types::ScanBy::from(enum_value_1003.as_str());
+                Ok(converted_1002)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19396,14 +19996,14 @@ impl CloudWatchClient {
                     "GetMetricData",
                 )
             })?;
-            Some(converted_991)
+            Some(converted_1002)
         } else {
             None
         };
         let max_datapoints_value = if let Some(value) = dict_value(params, "max_datapoints")? {
-            let converted_993 = (|| -> PyResult<_> {
-                let converted_993: i32 = value.extract()?;
-                Ok(converted_993)
+            let converted_1004 = (|| -> PyResult<_> {
+                let converted_1004: i32 = value.extract()?;
+                Ok(converted_1004)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19416,14 +20016,14 @@ impl CloudWatchClient {
                     "GetMetricData",
                 )
             })?;
-            Some(converted_993)
+            Some(converted_1004)
         } else {
             None
         };
         let label_options_value = if let Some(value) = dict_value(params, "label_options")? {
-            let converted_994 = (|| -> PyResult<_> {
-                let converted_994 = label_options_from_py(&value)?;
-                Ok(converted_994)
+            let converted_1005 = (|| -> PyResult<_> {
+                let converted_1005 = label_options_from_py(&value)?;
+                Ok(converted_1005)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19436,7 +20036,7 @@ impl CloudWatchClient {
                     "GetMetricData",
                 )
             })?;
-            Some(converted_994)
+            Some(converted_1005)
         } else {
             None
         };
@@ -19472,6 +20072,56 @@ impl CloudWatchClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn get_metric_data_query_definition<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let id_value = if let Some(value) = dict_value(params, "id")? {
+            let converted_1006 = (|| -> PyResult<_> {
+                let converted_1006: String = value.extract()?;
+                Ok(converted_1006)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str"),
+                    "cloudwatch",
+                    "GetMetricDataQueryDefinition",
+                )
+            })?;
+            Some(converted_1006)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client.get_metric_data_query_definition().set_id(id_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMetricDataQueryDefinition",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationGetMetricDataQueryDefinitionOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn get_metric_statistics<'py>(
         &self,
         py: Python<'py>,
@@ -19480,9 +20130,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let namespace_value = if let Some(value) = dict_value(params, "namespace")? {
-            let converted_995 = (|| -> PyResult<_> {
-                let converted_995: String = value.extract()?;
-                Ok(converted_995)
+            let converted_1007 = (|| -> PyResult<_> {
+                let converted_1007: String = value.extract()?;
+                Ok(converted_1007)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19495,14 +20145,14 @@ impl CloudWatchClient {
                     "GetMetricStatistics",
                 )
             })?;
-            Some(converted_995)
+            Some(converted_1007)
         } else {
             None
         };
         let metric_name_value = if let Some(value) = dict_value(params, "metric_name")? {
-            let converted_996 = (|| -> PyResult<_> {
-                let converted_996: String = value.extract()?;
-                Ok(converted_996)
+            let converted_1008 = (|| -> PyResult<_> {
+                let converted_1008: String = value.extract()?;
+                Ok(converted_1008)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19515,37 +20165,37 @@ impl CloudWatchClient {
                     "GetMetricStatistics",
                 )
             })?;
-            Some(converted_996)
+            Some(converted_1008)
         } else {
             None
         };
         let dimensions_value = if let Some(value) = dict_value(params, "dimensions")? {
-            let converted_997 = (|| -> PyResult<_> {
-                let mut converted_997 =
+            let converted_1009 = (|| -> PyResult<_> {
+                let mut converted_1009 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1001, item_result_998) in value.try_iter()?.enumerate() {
-                    let item_999 = item_result_998.map_err(|error| {
+                for (index_1013, item_result_1010) in value.try_iter()?.enumerate() {
+                    let item_1011 = item_result_1010.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1001),
+                            rboto_core::InputPath::Index(index_1013),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1000 = (|| -> PyResult<_> {
-                        let converted_item_1000 = dimension_from_py(&item_999)?;
-                        Ok(converted_item_1000)
+                    let converted_item_1012 = (|| -> PyResult<_> {
+                        let converted_item_1012 = dimension_from_py(&item_1011)?;
+                        Ok(converted_item_1012)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1001),
+                            rboto_core::InputPath::Index(index_1013),
                             "dict (Dimension)",
                         )
                     })?;
-                    converted_997.push(converted_item_1000);
+                    converted_1009.push(converted_item_1012);
                 }
-                Ok(converted_997)
+                Ok(converted_1009)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19558,19 +20208,19 @@ impl CloudWatchClient {
                     "GetMetricStatistics",
                 )
             })?;
-            Some(converted_997)
+            Some(converted_1009)
         } else {
             None
         };
         let start_time_value = if let Some(value) = dict_value(params, "start_time")? {
-            let converted_1002 = (|| -> PyResult<_> {
-                let timestamp_1003: String = value.extract()?;
-                let converted_1002 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1003,
+            let converted_1014 = (|| -> PyResult<_> {
+                let timestamp_1015: String = value.extract()?;
+                let converted_1014 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1015,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                Ok(converted_1002)
+                Ok(converted_1014)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19583,19 +20233,19 @@ impl CloudWatchClient {
                     "GetMetricStatistics",
                 )
             })?;
-            Some(converted_1002)
+            Some(converted_1014)
         } else {
             None
         };
         let end_time_value = if let Some(value) = dict_value(params, "end_time")? {
-            let converted_1004 = (|| -> PyResult<_> {
-                let timestamp_1005: String = value.extract()?;
-                let converted_1004 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1005,
+            let converted_1016 = (|| -> PyResult<_> {
+                let timestamp_1017: String = value.extract()?;
+                let converted_1016 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1017,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                Ok(converted_1004)
+                Ok(converted_1016)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19608,14 +20258,14 @@ impl CloudWatchClient {
                     "GetMetricStatistics",
                 )
             })?;
-            Some(converted_1004)
+            Some(converted_1016)
         } else {
             None
         };
         let period_value = if let Some(value) = dict_value(params, "period")? {
-            let converted_1006 = (|| -> PyResult<_> {
-                let converted_1006: i32 = value.extract()?;
-                Ok(converted_1006)
+            let converted_1018 = (|| -> PyResult<_> {
+                let converted_1018: i32 = value.extract()?;
+                Ok(converted_1018)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19624,39 +20274,39 @@ impl CloudWatchClient {
                     "GetMetricStatistics",
                 )
             })?;
-            Some(converted_1006)
+            Some(converted_1018)
         } else {
             None
         };
         let statistics_value = if let Some(value) = dict_value(params, "statistics")? {
-            let converted_1007 = (|| -> PyResult<_> {
-                let mut converted_1007 =
+            let converted_1019 = (|| -> PyResult<_> {
+                let mut converted_1019 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1011, item_result_1008) in value.try_iter()?.enumerate() {
-                    let item_1009 = item_result_1008.map_err(|error| {
+                for (index_1023, item_result_1020) in value.try_iter()?.enumerate() {
+                    let item_1021 = item_result_1020.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1011),
+                            rboto_core::InputPath::Index(index_1023),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1010 = (|| -> PyResult<_> {
-                        let enum_value_1012: String = item_1009.extract()?;
-                        let converted_item_1010 =
-                            aws_sdk_cloudwatch::types::Statistic::from(enum_value_1012.as_str());
-                        Ok(converted_item_1010)
+                    let converted_item_1022 = (|| -> PyResult<_> {
+                        let enum_value_1024: String = item_1021.extract()?;
+                        let converted_item_1022 =
+                            aws_sdk_cloudwatch::types::Statistic::from(enum_value_1024.as_str());
+                        Ok(converted_item_1022)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1011),
+                            rboto_core::InputPath::Index(index_1023),
                             "str (Statistic)",
                         )
                     })?;
-                    converted_1007.push(converted_item_1010);
+                    converted_1019.push(converted_item_1022);
                 }
-                Ok(converted_1007)
+                Ok(converted_1019)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19669,38 +20319,38 @@ impl CloudWatchClient {
                     "GetMetricStatistics",
                 )
             })?;
-            Some(converted_1007)
+            Some(converted_1019)
         } else {
             None
         };
         let extended_statistics_value =
             if let Some(value) = dict_value(params, "extended_statistics")? {
-                let converted_1013 = (|| -> PyResult<_> {
-                    let mut converted_1013 =
+                let converted_1025 = (|| -> PyResult<_> {
+                    let mut converted_1025 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_1017, item_result_1014) in value.try_iter()?.enumerate() {
-                        let item_1015 = item_result_1014.map_err(|error| {
+                    for (index_1029, item_result_1026) in value.try_iter()?.enumerate() {
+                        let item_1027 = item_result_1026.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_1017),
+                                rboto_core::InputPath::Index(index_1029),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_1016 = (|| -> PyResult<_> {
-                            let converted_item_1016: String = item_1015.extract()?;
-                            Ok(converted_item_1016)
+                        let converted_item_1028 = (|| -> PyResult<_> {
+                            let converted_item_1028: String = item_1027.extract()?;
+                            Ok(converted_item_1028)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_1017),
+                                rboto_core::InputPath::Index(index_1029),
                                 "str",
                             )
                         })?;
-                        converted_1013.push(converted_item_1016);
+                        converted_1025.push(converted_item_1028);
                     }
-                    Ok(converted_1013)
+                    Ok(converted_1025)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -19713,16 +20363,16 @@ impl CloudWatchClient {
                         "GetMetricStatistics",
                     )
                 })?;
-                Some(converted_1013)
+                Some(converted_1025)
             } else {
                 None
             };
         let unit_value = if let Some(value) = dict_value(params, "unit")? {
-            let converted_1018 = (|| -> PyResult<_> {
-                let enum_value_1019: String = value.extract()?;
-                let converted_1018 =
-                    aws_sdk_cloudwatch::types::StandardUnit::from(enum_value_1019.as_str());
-                Ok(converted_1018)
+            let converted_1030 = (|| -> PyResult<_> {
+                let enum_value_1031: String = value.extract()?;
+                let converted_1030 =
+                    aws_sdk_cloudwatch::types::StandardUnit::from(enum_value_1031.as_str());
+                Ok(converted_1030)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19735,7 +20385,7 @@ impl CloudWatchClient {
                     "GetMetricStatistics",
                 )
             })?;
-            Some(converted_1018)
+            Some(converted_1030)
         } else {
             None
         };
@@ -19786,9 +20436,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_1020 = (|| -> PyResult<_> {
-                let converted_1020: String = value.extract()?;
-                Ok(converted_1020)
+            let converted_1032 = (|| -> PyResult<_> {
+                let converted_1032: String = value.extract()?;
+                Ok(converted_1032)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19797,7 +20447,7 @@ impl CloudWatchClient {
                     "GetMetricStream",
                 )
             })?;
-            Some(converted_1020)
+            Some(converted_1032)
         } else {
             None
         };
@@ -19833,9 +20483,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let metric_widget_value = if let Some(value) = dict_value(params, "metric_widget")? {
-            let converted_1021 = (|| -> PyResult<_> {
-                let converted_1021: String = value.extract()?;
-                Ok(converted_1021)
+            let converted_1033 = (|| -> PyResult<_> {
+                let converted_1033: String = value.extract()?;
+                Ok(converted_1033)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19848,14 +20498,14 @@ impl CloudWatchClient {
                     "GetMetricWidgetImage",
                 )
             })?;
-            Some(converted_1021)
+            Some(converted_1033)
         } else {
             None
         };
         let output_format_value = if let Some(value) = dict_value(params, "output_format")? {
-            let converted_1022 = (|| -> PyResult<_> {
-                let converted_1022: String = value.extract()?;
-                Ok(converted_1022)
+            let converted_1034 = (|| -> PyResult<_> {
+                let converted_1034: String = value.extract()?;
+                Ok(converted_1034)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19868,7 +20518,7 @@ impl CloudWatchClient {
                     "GetMetricWidgetImage",
                 )
             })?;
-            Some(converted_1022)
+            Some(converted_1034)
         } else {
             None
         };
@@ -19946,9 +20596,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_1023 = (|| -> PyResult<_> {
-                let converted_1023: String = value.extract()?;
-                Ok(converted_1023)
+            let converted_1035 = (|| -> PyResult<_> {
+                let converted_1035: String = value.extract()?;
+                Ok(converted_1035)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19961,7 +20611,7 @@ impl CloudWatchClient {
                     "GetResourceMetricsConfiguration",
                 )
             })?;
-            Some(converted_1023)
+            Some(converted_1035)
         } else {
             None
         };
@@ -20004,9 +20654,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alarm_name_value = if let Some(value) = dict_value(params, "alarm_name")? {
-            let converted_1024 = (|| -> PyResult<_> {
-                let converted_1024: String = value.extract()?;
-                Ok(converted_1024)
+            let converted_1036 = (|| -> PyResult<_> {
+                let converted_1036: String = value.extract()?;
+                Ok(converted_1036)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20019,41 +20669,41 @@ impl CloudWatchClient {
                     "ListAlarmMuteRules",
                 )
             })?;
-            Some(converted_1024)
+            Some(converted_1036)
         } else {
             None
         };
         let statuses_value = if let Some(value) = dict_value(params, "statuses")? {
-            let converted_1025 = (|| -> PyResult<_> {
-                let mut converted_1025 =
+            let converted_1037 = (|| -> PyResult<_> {
+                let mut converted_1037 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1029, item_result_1026) in value.try_iter()?.enumerate() {
-                    let item_1027 = item_result_1026.map_err(|error| {
+                for (index_1041, item_result_1038) in value.try_iter()?.enumerate() {
+                    let item_1039 = item_result_1038.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1029),
+                            rboto_core::InputPath::Index(index_1041),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1028 = (|| -> PyResult<_> {
-                        let enum_value_1030: String = item_1027.extract()?;
-                        let converted_item_1028 =
+                    let converted_item_1040 = (|| -> PyResult<_> {
+                        let enum_value_1042: String = item_1039.extract()?;
+                        let converted_item_1040 =
                             aws_sdk_cloudwatch::types::AlarmMuteRuleStatus::from(
-                                enum_value_1030.as_str(),
+                                enum_value_1042.as_str(),
                             );
-                        Ok(converted_item_1028)
+                        Ok(converted_item_1040)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1029),
+                            rboto_core::InputPath::Index(index_1041),
                             "str (AlarmMuteRuleStatus)",
                         )
                     })?;
-                    converted_1025.push(converted_item_1028);
+                    converted_1037.push(converted_item_1040);
                 }
-                Ok(converted_1025)
+                Ok(converted_1037)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20066,14 +20716,14 @@ impl CloudWatchClient {
                     "ListAlarmMuteRules",
                 )
             })?;
-            Some(converted_1025)
+            Some(converted_1037)
         } else {
             None
         };
         let max_records_value = if let Some(value) = dict_value(params, "max_records")? {
-            let converted_1031 = (|| -> PyResult<_> {
-                let converted_1031: i32 = value.extract()?;
-                Ok(converted_1031)
+            let converted_1043 = (|| -> PyResult<_> {
+                let converted_1043: i32 = value.extract()?;
+                Ok(converted_1043)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20086,14 +20736,14 @@ impl CloudWatchClient {
                     "ListAlarmMuteRules",
                 )
             })?;
-            Some(converted_1031)
+            Some(converted_1043)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_1032 = (|| -> PyResult<_> {
-                let converted_1032: String = value.extract()?;
-                Ok(converted_1032)
+            let converted_1044 = (|| -> PyResult<_> {
+                let converted_1044: String = value.extract()?;
+                Ok(converted_1044)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20106,7 +20756,7 @@ impl CloudWatchClient {
                     "ListAlarmMuteRules",
                 )
             })?;
-            Some(converted_1032)
+            Some(converted_1044)
         } else {
             None
         };
@@ -20153,9 +20803,9 @@ impl CloudWatchClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let dashboard_name_prefix_value =
             if let Some(value) = dict_value(params, "dashboard_name_prefix")? {
-                let converted_1033 = (|| -> PyResult<_> {
-                    let converted_1033: String = value.extract()?;
-                    Ok(converted_1033)
+                let converted_1045 = (|| -> PyResult<_> {
+                    let converted_1045: String = value.extract()?;
+                    Ok(converted_1045)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -20168,14 +20818,14 @@ impl CloudWatchClient {
                         "ListDashboards",
                     )
                 })?;
-                Some(converted_1033)
+                Some(converted_1045)
             } else {
                 None
             };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_1034 = (|| -> PyResult<_> {
-                let converted_1034: String = value.extract()?;
-                Ok(converted_1034)
+            let converted_1046 = (|| -> PyResult<_> {
+                let converted_1046: String = value.extract()?;
+                Ok(converted_1046)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20188,7 +20838,7 @@ impl CloudWatchClient {
                     "ListDashboards",
                 )
             })?;
-            Some(converted_1034)
+            Some(converted_1046)
         } else {
             None
         };
@@ -20227,9 +20877,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_1035 = (|| -> PyResult<_> {
-                let converted_1035: String = value.extract()?;
-                Ok(converted_1035)
+            let converted_1047 = (|| -> PyResult<_> {
+                let converted_1047: String = value.extract()?;
+                Ok(converted_1047)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20242,14 +20892,14 @@ impl CloudWatchClient {
                     "ListManagedInsightRules",
                 )
             })?;
-            Some(converted_1035)
+            Some(converted_1047)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_1036 = (|| -> PyResult<_> {
-                let converted_1036: String = value.extract()?;
-                Ok(converted_1036)
+            let converted_1048 = (|| -> PyResult<_> {
+                let converted_1048: String = value.extract()?;
+                Ok(converted_1048)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20262,14 +20912,14 @@ impl CloudWatchClient {
                     "ListManagedInsightRules",
                 )
             })?;
-            Some(converted_1036)
+            Some(converted_1048)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_1037 = (|| -> PyResult<_> {
-                let converted_1037: i32 = value.extract()?;
-                Ok(converted_1037)
+            let converted_1049 = (|| -> PyResult<_> {
+                let converted_1049: i32 = value.extract()?;
+                Ok(converted_1049)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20282,7 +20932,7 @@ impl CloudWatchClient {
                     "ListManagedInsightRules",
                 )
             })?;
-            Some(converted_1037)
+            Some(converted_1049)
         } else {
             None
         };
@@ -20319,6 +20969,85 @@ impl CloudWatchClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn list_metric_data_query_definitions<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
+            let converted_1050 = (|| -> PyResult<_> {
+                let converted_1050: i32 = value.extract()?;
+                Ok(converted_1050)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "cloudwatch",
+                    "ListMetricDataQueryDefinitions",
+                )
+            })?;
+            Some(converted_1050)
+        } else {
+            None
+        };
+        let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
+            let converted_1051 = (|| -> PyResult<_> {
+                let converted_1051: String = value.extract()?;
+                Ok(converted_1051)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudwatch",
+                    "ListMetricDataQueryDefinitions",
+                )
+            })?;
+            Some(converted_1051)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .list_metric_data_query_definitions()
+                .set_max_results(max_results_value)
+                .set_next_token(next_token_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListMetricDataQueryDefinitions",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationListMetricDataQueryDefinitionsOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn list_metric_streams<'py>(
         &self,
         py: Python<'py>,
@@ -20327,9 +21056,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_1038 = (|| -> PyResult<_> {
-                let converted_1038: String = value.extract()?;
-                Ok(converted_1038)
+            let converted_1052 = (|| -> PyResult<_> {
+                let converted_1052: String = value.extract()?;
+                Ok(converted_1052)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20342,14 +21071,14 @@ impl CloudWatchClient {
                     "ListMetricStreams",
                 )
             })?;
-            Some(converted_1038)
+            Some(converted_1052)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_1039 = (|| -> PyResult<_> {
-                let converted_1039: i32 = value.extract()?;
-                Ok(converted_1039)
+            let converted_1053 = (|| -> PyResult<_> {
+                let converted_1053: i32 = value.extract()?;
+                Ok(converted_1053)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20362,7 +21091,7 @@ impl CloudWatchClient {
                     "ListMetricStreams",
                 )
             })?;
-            Some(converted_1039)
+            Some(converted_1053)
         } else {
             None
         };
@@ -20406,9 +21135,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let namespace_value = if let Some(value) = dict_value(params, "namespace")? {
-            let converted_1040 = (|| -> PyResult<_> {
-                let converted_1040: String = value.extract()?;
-                Ok(converted_1040)
+            let converted_1054 = (|| -> PyResult<_> {
+                let converted_1054: String = value.extract()?;
+                Ok(converted_1054)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20421,14 +21150,14 @@ impl CloudWatchClient {
                     "ListMetrics",
                 )
             })?;
-            Some(converted_1040)
+            Some(converted_1054)
         } else {
             None
         };
         let metric_name_value = if let Some(value) = dict_value(params, "metric_name")? {
-            let converted_1041 = (|| -> PyResult<_> {
-                let converted_1041: String = value.extract()?;
-                Ok(converted_1041)
+            let converted_1055 = (|| -> PyResult<_> {
+                let converted_1055: String = value.extract()?;
+                Ok(converted_1055)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20441,37 +21170,37 @@ impl CloudWatchClient {
                     "ListMetrics",
                 )
             })?;
-            Some(converted_1041)
+            Some(converted_1055)
         } else {
             None
         };
         let dimensions_value = if let Some(value) = dict_value(params, "dimensions")? {
-            let converted_1042 = (|| -> PyResult<_> {
-                let mut converted_1042 =
+            let converted_1056 = (|| -> PyResult<_> {
+                let mut converted_1056 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1046, item_result_1043) in value.try_iter()?.enumerate() {
-                    let item_1044 = item_result_1043.map_err(|error| {
+                for (index_1060, item_result_1057) in value.try_iter()?.enumerate() {
+                    let item_1058 = item_result_1057.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1046),
+                            rboto_core::InputPath::Index(index_1060),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1045 = (|| -> PyResult<_> {
-                        let converted_item_1045 = dimension_filter_from_py(&item_1044)?;
-                        Ok(converted_item_1045)
+                    let converted_item_1059 = (|| -> PyResult<_> {
+                        let converted_item_1059 = dimension_filter_from_py(&item_1058)?;
+                        Ok(converted_item_1059)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1046),
+                            rboto_core::InputPath::Index(index_1060),
                             "dict (DimensionFilter)",
                         )
                     })?;
-                    converted_1042.push(converted_item_1045);
+                    converted_1056.push(converted_item_1059);
                 }
-                Ok(converted_1042)
+                Ok(converted_1056)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20484,14 +21213,14 @@ impl CloudWatchClient {
                     "ListMetrics",
                 )
             })?;
-            Some(converted_1042)
+            Some(converted_1056)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_1047 = (|| -> PyResult<_> {
-                let converted_1047: String = value.extract()?;
-                Ok(converted_1047)
+            let converted_1061 = (|| -> PyResult<_> {
+                let converted_1061: String = value.extract()?;
+                Ok(converted_1061)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20504,16 +21233,16 @@ impl CloudWatchClient {
                     "ListMetrics",
                 )
             })?;
-            Some(converted_1047)
+            Some(converted_1061)
         } else {
             None
         };
         let recently_active_value = if let Some(value) = dict_value(params, "recently_active")? {
-            let converted_1048 = (|| -> PyResult<_> {
-                let enum_value_1049: String = value.extract()?;
-                let converted_1048 =
-                    aws_sdk_cloudwatch::types::RecentlyActive::from(enum_value_1049.as_str());
-                Ok(converted_1048)
+            let converted_1062 = (|| -> PyResult<_> {
+                let enum_value_1063: String = value.extract()?;
+                let converted_1062 =
+                    aws_sdk_cloudwatch::types::RecentlyActive::from(enum_value_1063.as_str());
+                Ok(converted_1062)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20526,15 +21255,15 @@ impl CloudWatchClient {
                     "ListMetrics",
                 )
             })?;
-            Some(converted_1048)
+            Some(converted_1062)
         } else {
             None
         };
         let include_linked_accounts_value =
             if let Some(value) = dict_value(params, "include_linked_accounts")? {
-                let converted_1050 = (|| -> PyResult<_> {
-                    let converted_1050: bool = value.extract()?;
-                    Ok(converted_1050)
+                let converted_1064 = (|| -> PyResult<_> {
+                    let converted_1064: bool = value.extract()?;
+                    Ok(converted_1064)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -20547,14 +21276,14 @@ impl CloudWatchClient {
                         "ListMetrics",
                     )
                 })?;
-                Some(converted_1050)
+                Some(converted_1064)
             } else {
                 None
             };
         let owning_account_value = if let Some(value) = dict_value(params, "owning_account")? {
-            let converted_1051 = (|| -> PyResult<_> {
-                let converted_1051: String = value.extract()?;
-                Ok(converted_1051)
+            let converted_1065 = (|| -> PyResult<_> {
+                let converted_1065: String = value.extract()?;
+                Ok(converted_1065)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20567,7 +21296,7 @@ impl CloudWatchClient {
                     "ListMetrics",
                 )
             })?;
-            Some(converted_1051)
+            Some(converted_1065)
         } else {
             None
         };
@@ -20611,9 +21340,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_1052 = (|| -> PyResult<_> {
-                let converted_1052: String = value.extract()?;
-                Ok(converted_1052)
+            let converted_1066 = (|| -> PyResult<_> {
+                let converted_1066: String = value.extract()?;
+                Ok(converted_1066)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20626,7 +21355,7 @@ impl CloudWatchClient {
                     "ListTagsForResource",
                 )
             })?;
-            Some(converted_1052)
+            Some(converted_1066)
         } else {
             None
         };
@@ -20669,9 +21398,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_1053 = (|| -> PyResult<_> {
-                let converted_1053: String = value.extract()?;
-                Ok(converted_1053)
+            let converted_1067 = (|| -> PyResult<_> {
+                let converted_1067: String = value.extract()?;
+                Ok(converted_1067)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20680,14 +21409,14 @@ impl CloudWatchClient {
                     "PutAlarmMuteRule",
                 )
             })?;
-            Some(converted_1053)
+            Some(converted_1067)
         } else {
             None
         };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_1054 = (|| -> PyResult<_> {
-                let converted_1054: String = value.extract()?;
-                Ok(converted_1054)
+            let converted_1068 = (|| -> PyResult<_> {
+                let converted_1068: String = value.extract()?;
+                Ok(converted_1068)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20700,14 +21429,14 @@ impl CloudWatchClient {
                     "PutAlarmMuteRule",
                 )
             })?;
-            Some(converted_1054)
+            Some(converted_1068)
         } else {
             None
         };
         let rule_value = if let Some(value) = dict_value(params, "rule")? {
-            let converted_1055 = (|| -> PyResult<_> {
-                let converted_1055 = rule_from_py(&value)?;
-                Ok(converted_1055)
+            let converted_1069 = (|| -> PyResult<_> {
+                let converted_1069 = rule_from_py(&value)?;
+                Ok(converted_1069)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20720,14 +21449,14 @@ impl CloudWatchClient {
                     "PutAlarmMuteRule",
                 )
             })?;
-            Some(converted_1055)
+            Some(converted_1069)
         } else {
             None
         };
         let mute_targets_value = if let Some(value) = dict_value(params, "mute_targets")? {
-            let converted_1056 = (|| -> PyResult<_> {
-                let converted_1056 = mute_targets_from_py(&value)?;
-                Ok(converted_1056)
+            let converted_1070 = (|| -> PyResult<_> {
+                let converted_1070 = mute_targets_from_py(&value)?;
+                Ok(converted_1070)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20740,37 +21469,37 @@ impl CloudWatchClient {
                     "PutAlarmMuteRule",
                 )
             })?;
-            Some(converted_1056)
+            Some(converted_1070)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_1057 = (|| -> PyResult<_> {
-                let mut converted_1057 =
+            let converted_1071 = (|| -> PyResult<_> {
+                let mut converted_1071 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1061, item_result_1058) in value.try_iter()?.enumerate() {
-                    let item_1059 = item_result_1058.map_err(|error| {
+                for (index_1075, item_result_1072) in value.try_iter()?.enumerate() {
+                    let item_1073 = item_result_1072.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1061),
+                            rboto_core::InputPath::Index(index_1075),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1060 = (|| -> PyResult<_> {
-                        let converted_item_1060 = tag_from_py(&item_1059)?;
-                        Ok(converted_item_1060)
+                    let converted_item_1074 = (|| -> PyResult<_> {
+                        let converted_item_1074 = tag_from_py(&item_1073)?;
+                        Ok(converted_item_1074)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1061),
+                            rboto_core::InputPath::Index(index_1075),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_1057.push(converted_item_1060);
+                    converted_1071.push(converted_item_1074);
                 }
-                Ok(converted_1057)
+                Ok(converted_1071)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20783,19 +21512,19 @@ impl CloudWatchClient {
                     "PutAlarmMuteRule",
                 )
             })?;
-            Some(converted_1057)
+            Some(converted_1071)
         } else {
             None
         };
         let start_date_value = if let Some(value) = dict_value(params, "start_date")? {
-            let converted_1062 = (|| -> PyResult<_> {
-                let timestamp_1063: String = value.extract()?;
-                let converted_1062 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1063,
+            let converted_1076 = (|| -> PyResult<_> {
+                let timestamp_1077: String = value.extract()?;
+                let converted_1076 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1077,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                Ok(converted_1062)
+                Ok(converted_1076)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20808,19 +21537,19 @@ impl CloudWatchClient {
                     "PutAlarmMuteRule",
                 )
             })?;
-            Some(converted_1062)
+            Some(converted_1076)
         } else {
             None
         };
         let expire_date_value = if let Some(value) = dict_value(params, "expire_date")? {
-            let converted_1064 = (|| -> PyResult<_> {
-                let timestamp_1065: String = value.extract()?;
-                let converted_1064 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1065,
+            let converted_1078 = (|| -> PyResult<_> {
+                let timestamp_1079: String = value.extract()?;
+                let converted_1078 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1079,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                Ok(converted_1064)
+                Ok(converted_1078)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20833,7 +21562,7 @@ impl CloudWatchClient {
                     "PutAlarmMuteRule",
                 )
             })?;
-            Some(converted_1064)
+            Some(converted_1078)
         } else {
             None
         };
@@ -20884,9 +21613,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let namespace_value = if let Some(value) = dict_value(params, "namespace")? {
-            let converted_1066 = (|| -> PyResult<_> {
-                let converted_1066: String = value.extract()?;
-                Ok(converted_1066)
+            let converted_1080 = (|| -> PyResult<_> {
+                let converted_1080: String = value.extract()?;
+                Ok(converted_1080)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20899,14 +21628,14 @@ impl CloudWatchClient {
                     "PutAnomalyDetector",
                 )
             })?;
-            Some(converted_1066)
+            Some(converted_1080)
         } else {
             None
         };
         let metric_name_value = if let Some(value) = dict_value(params, "metric_name")? {
-            let converted_1067 = (|| -> PyResult<_> {
-                let converted_1067: String = value.extract()?;
-                Ok(converted_1067)
+            let converted_1081 = (|| -> PyResult<_> {
+                let converted_1081: String = value.extract()?;
+                Ok(converted_1081)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20919,37 +21648,37 @@ impl CloudWatchClient {
                     "PutAnomalyDetector",
                 )
             })?;
-            Some(converted_1067)
+            Some(converted_1081)
         } else {
             None
         };
         let dimensions_value = if let Some(value) = dict_value(params, "dimensions")? {
-            let converted_1068 = (|| -> PyResult<_> {
-                let mut converted_1068 =
+            let converted_1082 = (|| -> PyResult<_> {
+                let mut converted_1082 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1072, item_result_1069) in value.try_iter()?.enumerate() {
-                    let item_1070 = item_result_1069.map_err(|error| {
+                for (index_1086, item_result_1083) in value.try_iter()?.enumerate() {
+                    let item_1084 = item_result_1083.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1072),
+                            rboto_core::InputPath::Index(index_1086),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1071 = (|| -> PyResult<_> {
-                        let converted_item_1071 = dimension_from_py(&item_1070)?;
-                        Ok(converted_item_1071)
+                    let converted_item_1085 = (|| -> PyResult<_> {
+                        let converted_item_1085 = dimension_from_py(&item_1084)?;
+                        Ok(converted_item_1085)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1072),
+                            rboto_core::InputPath::Index(index_1086),
                             "dict (Dimension)",
                         )
                     })?;
-                    converted_1068.push(converted_item_1071);
+                    converted_1082.push(converted_item_1085);
                 }
-                Ok(converted_1068)
+                Ok(converted_1082)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20962,14 +21691,14 @@ impl CloudWatchClient {
                     "PutAnomalyDetector",
                 )
             })?;
-            Some(converted_1068)
+            Some(converted_1082)
         } else {
             None
         };
         let stat_value = if let Some(value) = dict_value(params, "stat")? {
-            let converted_1073 = (|| -> PyResult<_> {
-                let converted_1073: String = value.extract()?;
-                Ok(converted_1073)
+            let converted_1087 = (|| -> PyResult<_> {
+                let converted_1087: String = value.extract()?;
+                Ok(converted_1087)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20978,14 +21707,14 @@ impl CloudWatchClient {
                     "PutAnomalyDetector",
                 )
             })?;
-            Some(converted_1073)
+            Some(converted_1087)
         } else {
             None
         };
         let configuration_value = if let Some(value) = dict_value(params, "configuration")? {
-            let converted_1074 = (|| -> PyResult<_> {
-                let converted_1074 = anomaly_detector_configuration_from_py(&value)?;
-                Ok(converted_1074)
+            let converted_1088 = (|| -> PyResult<_> {
+                let converted_1088 = anomaly_detector_configuration_from_py(&value)?;
+                Ok(converted_1088)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20998,15 +21727,15 @@ impl CloudWatchClient {
                     "PutAnomalyDetector",
                 )
             })?;
-            Some(converted_1074)
+            Some(converted_1088)
         } else {
             None
         };
         let metric_characteristics_value =
             if let Some(value) = dict_value(params, "metric_characteristics")? {
-                let converted_1075 = (|| -> PyResult<_> {
-                    let converted_1075 = metric_characteristics_from_py(&value)?;
-                    Ok(converted_1075)
+                let converted_1089 = (|| -> PyResult<_> {
+                    let converted_1089 = metric_characteristics_from_py(&value)?;
+                    Ok(converted_1089)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21019,15 +21748,15 @@ impl CloudWatchClient {
                         "PutAnomalyDetector",
                     )
                 })?;
-                Some(converted_1075)
+                Some(converted_1089)
             } else {
                 None
             };
         let single_metric_anomaly_detector_value =
             if let Some(value) = dict_value(params, "single_metric_anomaly_detector")? {
-                let converted_1076 = (|| -> PyResult<_> {
-                    let converted_1076 = single_metric_anomaly_detector_from_py(&value)?;
-                    Ok(converted_1076)
+                let converted_1090 = (|| -> PyResult<_> {
+                    let converted_1090 = single_metric_anomaly_detector_from_py(&value)?;
+                    Ok(converted_1090)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21040,15 +21769,15 @@ impl CloudWatchClient {
                         "PutAnomalyDetector",
                     )
                 })?;
-                Some(converted_1076)
+                Some(converted_1090)
             } else {
                 None
             };
         let metric_math_anomaly_detector_value =
             if let Some(value) = dict_value(params, "metric_math_anomaly_detector")? {
-                let converted_1077 = (|| -> PyResult<_> {
-                    let converted_1077 = metric_math_anomaly_detector_from_py(&value)?;
-                    Ok(converted_1077)
+                let converted_1091 = (|| -> PyResult<_> {
+                    let converted_1091 = metric_math_anomaly_detector_from_py(&value)?;
+                    Ok(converted_1091)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21061,7 +21790,7 @@ impl CloudWatchClient {
                         "PutAnomalyDetector",
                     )
                 })?;
-                Some(converted_1077)
+                Some(converted_1091)
             } else {
                 None
             };
@@ -21109,9 +21838,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let actions_enabled_value = if let Some(value) = dict_value(params, "actions_enabled")? {
-            let converted_1078 = (|| -> PyResult<_> {
-                let converted_1078: bool = value.extract()?;
-                Ok(converted_1078)
+            let converted_1092 = (|| -> PyResult<_> {
+                let converted_1092: bool = value.extract()?;
+                Ok(converted_1092)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21124,37 +21853,37 @@ impl CloudWatchClient {
                     "PutCompositeAlarm",
                 )
             })?;
-            Some(converted_1078)
+            Some(converted_1092)
         } else {
             None
         };
         let alarm_actions_value = if let Some(value) = dict_value(params, "alarm_actions")? {
-            let converted_1079 = (|| -> PyResult<_> {
-                let mut converted_1079 =
+            let converted_1093 = (|| -> PyResult<_> {
+                let mut converted_1093 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1083, item_result_1080) in value.try_iter()?.enumerate() {
-                    let item_1081 = item_result_1080.map_err(|error| {
+                for (index_1097, item_result_1094) in value.try_iter()?.enumerate() {
+                    let item_1095 = item_result_1094.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1083),
+                            rboto_core::InputPath::Index(index_1097),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1082 = (|| -> PyResult<_> {
-                        let converted_item_1082: String = item_1081.extract()?;
-                        Ok(converted_item_1082)
+                    let converted_item_1096 = (|| -> PyResult<_> {
+                        let converted_item_1096: String = item_1095.extract()?;
+                        Ok(converted_item_1096)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1083),
+                            rboto_core::InputPath::Index(index_1097),
                             "str",
                         )
                     })?;
-                    converted_1079.push(converted_item_1082);
+                    converted_1093.push(converted_item_1096);
                 }
-                Ok(converted_1079)
+                Ok(converted_1093)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21167,15 +21896,15 @@ impl CloudWatchClient {
                     "PutCompositeAlarm",
                 )
             })?;
-            Some(converted_1079)
+            Some(converted_1093)
         } else {
             None
         };
         let alarm_description_value = if let Some(value) = dict_value(params, "alarm_description")?
         {
-            let converted_1084 = (|| -> PyResult<_> {
-                let converted_1084: String = value.extract()?;
-                Ok(converted_1084)
+            let converted_1098 = (|| -> PyResult<_> {
+                let converted_1098: String = value.extract()?;
+                Ok(converted_1098)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21188,14 +21917,14 @@ impl CloudWatchClient {
                     "PutCompositeAlarm",
                 )
             })?;
-            Some(converted_1084)
+            Some(converted_1098)
         } else {
             None
         };
         let alarm_name_value = if let Some(value) = dict_value(params, "alarm_name")? {
-            let converted_1085 = (|| -> PyResult<_> {
-                let converted_1085: String = value.extract()?;
-                Ok(converted_1085)
+            let converted_1099 = (|| -> PyResult<_> {
+                let converted_1099: String = value.extract()?;
+                Ok(converted_1099)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21208,14 +21937,14 @@ impl CloudWatchClient {
                     "PutCompositeAlarm",
                 )
             })?;
-            Some(converted_1085)
+            Some(converted_1099)
         } else {
             None
         };
         let alarm_rule_value = if let Some(value) = dict_value(params, "alarm_rule")? {
-            let converted_1086 = (|| -> PyResult<_> {
-                let converted_1086: String = value.extract()?;
-                Ok(converted_1086)
+            let converted_1100 = (|| -> PyResult<_> {
+                let converted_1100: String = value.extract()?;
+                Ok(converted_1100)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21228,38 +21957,38 @@ impl CloudWatchClient {
                     "PutCompositeAlarm",
                 )
             })?;
-            Some(converted_1086)
+            Some(converted_1100)
         } else {
             None
         };
         let insufficient_data_actions_value =
             if let Some(value) = dict_value(params, "insufficient_data_actions")? {
-                let converted_1087 = (|| -> PyResult<_> {
-                    let mut converted_1087 =
+                let converted_1101 = (|| -> PyResult<_> {
+                    let mut converted_1101 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_1091, item_result_1088) in value.try_iter()?.enumerate() {
-                        let item_1089 = item_result_1088.map_err(|error| {
+                    for (index_1105, item_result_1102) in value.try_iter()?.enumerate() {
+                        let item_1103 = item_result_1102.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_1091),
+                                rboto_core::InputPath::Index(index_1105),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_1090 = (|| -> PyResult<_> {
-                            let converted_item_1090: String = item_1089.extract()?;
-                            Ok(converted_item_1090)
+                        let converted_item_1104 = (|| -> PyResult<_> {
+                            let converted_item_1104: String = item_1103.extract()?;
+                            Ok(converted_item_1104)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_1091),
+                                rboto_core::InputPath::Index(index_1105),
                                 "str",
                             )
                         })?;
-                        converted_1087.push(converted_item_1090);
+                        converted_1101.push(converted_item_1104);
                     }
-                    Ok(converted_1087)
+                    Ok(converted_1101)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21272,37 +22001,37 @@ impl CloudWatchClient {
                         "PutCompositeAlarm",
                     )
                 })?;
-                Some(converted_1087)
+                Some(converted_1101)
             } else {
                 None
             };
         let ok_actions_value = if let Some(value) = dict_value(params, "ok_actions")? {
-            let converted_1092 = (|| -> PyResult<_> {
-                let mut converted_1092 =
+            let converted_1106 = (|| -> PyResult<_> {
+                let mut converted_1106 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1096, item_result_1093) in value.try_iter()?.enumerate() {
-                    let item_1094 = item_result_1093.map_err(|error| {
+                for (index_1110, item_result_1107) in value.try_iter()?.enumerate() {
+                    let item_1108 = item_result_1107.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1096),
+                            rboto_core::InputPath::Index(index_1110),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1095 = (|| -> PyResult<_> {
-                        let converted_item_1095: String = item_1094.extract()?;
-                        Ok(converted_item_1095)
+                    let converted_item_1109 = (|| -> PyResult<_> {
+                        let converted_item_1109: String = item_1108.extract()?;
+                        Ok(converted_item_1109)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1096),
+                            rboto_core::InputPath::Index(index_1110),
                             "str",
                         )
                     })?;
-                    converted_1092.push(converted_item_1095);
+                    converted_1106.push(converted_item_1109);
                 }
-                Ok(converted_1092)
+                Ok(converted_1106)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21315,37 +22044,37 @@ impl CloudWatchClient {
                     "PutCompositeAlarm",
                 )
             })?;
-            Some(converted_1092)
+            Some(converted_1106)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_1097 = (|| -> PyResult<_> {
-                let mut converted_1097 =
+            let converted_1111 = (|| -> PyResult<_> {
+                let mut converted_1111 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1101, item_result_1098) in value.try_iter()?.enumerate() {
-                    let item_1099 = item_result_1098.map_err(|error| {
+                for (index_1115, item_result_1112) in value.try_iter()?.enumerate() {
+                    let item_1113 = item_result_1112.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1101),
+                            rboto_core::InputPath::Index(index_1115),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1100 = (|| -> PyResult<_> {
-                        let converted_item_1100 = tag_from_py(&item_1099)?;
-                        Ok(converted_item_1100)
+                    let converted_item_1114 = (|| -> PyResult<_> {
+                        let converted_item_1114 = tag_from_py(&item_1113)?;
+                        Ok(converted_item_1114)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1101),
+                            rboto_core::InputPath::Index(index_1115),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_1097.push(converted_item_1100);
+                    converted_1111.push(converted_item_1114);
                 }
-                Ok(converted_1097)
+                Ok(converted_1111)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21358,15 +22087,15 @@ impl CloudWatchClient {
                     "PutCompositeAlarm",
                 )
             })?;
-            Some(converted_1097)
+            Some(converted_1111)
         } else {
             None
         };
         let actions_suppressor_value =
             if let Some(value) = dict_value(params, "actions_suppressor")? {
-                let converted_1102 = (|| -> PyResult<_> {
-                    let converted_1102: String = value.extract()?;
-                    Ok(converted_1102)
+                let converted_1116 = (|| -> PyResult<_> {
+                    let converted_1116: String = value.extract()?;
+                    Ok(converted_1116)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21379,15 +22108,15 @@ impl CloudWatchClient {
                         "PutCompositeAlarm",
                     )
                 })?;
-                Some(converted_1102)
+                Some(converted_1116)
             } else {
                 None
             };
         let actions_suppressor_wait_period_value =
             if let Some(value) = dict_value(params, "actions_suppressor_wait_period")? {
-                let converted_1103 = (|| -> PyResult<_> {
-                    let converted_1103: i32 = value.extract()?;
-                    Ok(converted_1103)
+                let converted_1117 = (|| -> PyResult<_> {
+                    let converted_1117: i32 = value.extract()?;
+                    Ok(converted_1117)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21400,15 +22129,15 @@ impl CloudWatchClient {
                         "PutCompositeAlarm",
                     )
                 })?;
-                Some(converted_1103)
+                Some(converted_1117)
             } else {
                 None
             };
         let actions_suppressor_extension_period_value =
             if let Some(value) = dict_value(params, "actions_suppressor_extension_period")? {
-                let converted_1104 = (|| -> PyResult<_> {
-                    let converted_1104: i32 = value.extract()?;
-                    Ok(converted_1104)
+                let converted_1118 = (|| -> PyResult<_> {
+                    let converted_1118: i32 = value.extract()?;
+                    Ok(converted_1118)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21421,15 +22150,15 @@ impl CloudWatchClient {
                         "PutCompositeAlarm",
                     )
                 })?;
-                Some(converted_1104)
+                Some(converted_1118)
             } else {
                 None
             };
         let action_configuration_value =
             if let Some(value) = dict_value(params, "action_configuration")? {
-                let converted_1105 = (|| -> PyResult<_> {
-                    let converted_1105 = action_configuration_from_py(&value)?;
-                    Ok(converted_1105)
+                let converted_1119 = (|| -> PyResult<_> {
+                    let converted_1119 = action_configuration_from_py(&value)?;
+                    Ok(converted_1119)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21442,7 +22171,7 @@ impl CloudWatchClient {
                         "PutCompositeAlarm",
                     )
                 })?;
-                Some(converted_1105)
+                Some(converted_1119)
             } else {
                 None
             };
@@ -21498,9 +22227,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let dashboard_name_value = if let Some(value) = dict_value(params, "dashboard_name")? {
-            let converted_1106 = (|| -> PyResult<_> {
-                let converted_1106: String = value.extract()?;
-                Ok(converted_1106)
+            let converted_1120 = (|| -> PyResult<_> {
+                let converted_1120: String = value.extract()?;
+                Ok(converted_1120)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21513,14 +22242,14 @@ impl CloudWatchClient {
                     "PutDashboard",
                 )
             })?;
-            Some(converted_1106)
+            Some(converted_1120)
         } else {
             None
         };
         let dashboard_body_value = if let Some(value) = dict_value(params, "dashboard_body")? {
-            let converted_1107 = (|| -> PyResult<_> {
-                let converted_1107: String = value.extract()?;
-                Ok(converted_1107)
+            let converted_1121 = (|| -> PyResult<_> {
+                let converted_1121: String = value.extract()?;
+                Ok(converted_1121)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21533,37 +22262,37 @@ impl CloudWatchClient {
                     "PutDashboard",
                 )
             })?;
-            Some(converted_1107)
+            Some(converted_1121)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_1108 = (|| -> PyResult<_> {
-                let mut converted_1108 =
+            let converted_1122 = (|| -> PyResult<_> {
+                let mut converted_1122 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1112, item_result_1109) in value.try_iter()?.enumerate() {
-                    let item_1110 = item_result_1109.map_err(|error| {
+                for (index_1126, item_result_1123) in value.try_iter()?.enumerate() {
+                    let item_1124 = item_result_1123.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1112),
+                            rboto_core::InputPath::Index(index_1126),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1111 = (|| -> PyResult<_> {
-                        let converted_item_1111 = tag_from_py(&item_1110)?;
-                        Ok(converted_item_1111)
+                    let converted_item_1125 = (|| -> PyResult<_> {
+                        let converted_item_1125 = tag_from_py(&item_1124)?;
+                        Ok(converted_item_1125)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1112),
+                            rboto_core::InputPath::Index(index_1126),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_1108.push(converted_item_1111);
+                    converted_1122.push(converted_item_1125);
                 }
-                Ok(converted_1108)
+                Ok(converted_1122)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21576,7 +22305,7 @@ impl CloudWatchClient {
                     "PutDashboard",
                 )
             })?;
-            Some(converted_1108)
+            Some(converted_1122)
         } else {
             None
         };
@@ -21616,9 +22345,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_name_value = if let Some(value) = dict_value(params, "rule_name")? {
-            let converted_1113 = (|| -> PyResult<_> {
-                let converted_1113: String = value.extract()?;
-                Ok(converted_1113)
+            let converted_1127 = (|| -> PyResult<_> {
+                let converted_1127: String = value.extract()?;
+                Ok(converted_1127)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21631,14 +22360,14 @@ impl CloudWatchClient {
                     "PutInsightRule",
                 )
             })?;
-            Some(converted_1113)
+            Some(converted_1127)
         } else {
             None
         };
         let rule_state_value = if let Some(value) = dict_value(params, "rule_state")? {
-            let converted_1114 = (|| -> PyResult<_> {
-                let converted_1114: String = value.extract()?;
-                Ok(converted_1114)
+            let converted_1128 = (|| -> PyResult<_> {
+                let converted_1128: String = value.extract()?;
+                Ok(converted_1128)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21651,14 +22380,14 @@ impl CloudWatchClient {
                     "PutInsightRule",
                 )
             })?;
-            Some(converted_1114)
+            Some(converted_1128)
         } else {
             None
         };
         let rule_definition_value = if let Some(value) = dict_value(params, "rule_definition")? {
-            let converted_1115 = (|| -> PyResult<_> {
-                let converted_1115: String = value.extract()?;
-                Ok(converted_1115)
+            let converted_1129 = (|| -> PyResult<_> {
+                let converted_1129: String = value.extract()?;
+                Ok(converted_1129)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21671,37 +22400,37 @@ impl CloudWatchClient {
                     "PutInsightRule",
                 )
             })?;
-            Some(converted_1115)
+            Some(converted_1129)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_1116 = (|| -> PyResult<_> {
-                let mut converted_1116 =
+            let converted_1130 = (|| -> PyResult<_> {
+                let mut converted_1130 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1120, item_result_1117) in value.try_iter()?.enumerate() {
-                    let item_1118 = item_result_1117.map_err(|error| {
+                for (index_1134, item_result_1131) in value.try_iter()?.enumerate() {
+                    let item_1132 = item_result_1131.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1120),
+                            rboto_core::InputPath::Index(index_1134),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1119 = (|| -> PyResult<_> {
-                        let converted_item_1119 = tag_from_py(&item_1118)?;
-                        Ok(converted_item_1119)
+                    let converted_item_1133 = (|| -> PyResult<_> {
+                        let converted_item_1133 = tag_from_py(&item_1132)?;
+                        Ok(converted_item_1133)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1120),
+                            rboto_core::InputPath::Index(index_1134),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_1116.push(converted_item_1119);
+                    converted_1130.push(converted_item_1133);
                 }
-                Ok(converted_1116)
+                Ok(converted_1130)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21714,15 +22443,15 @@ impl CloudWatchClient {
                     "PutInsightRule",
                 )
             })?;
-            Some(converted_1116)
+            Some(converted_1130)
         } else {
             None
         };
         let apply_on_transformed_logs_value =
             if let Some(value) = dict_value(params, "apply_on_transformed_logs")? {
-                let converted_1121 = (|| -> PyResult<_> {
-                    let converted_1121: bool = value.extract()?;
-                    Ok(converted_1121)
+                let converted_1135 = (|| -> PyResult<_> {
+                    let converted_1135: bool = value.extract()?;
+                    Ok(converted_1135)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21735,7 +22464,7 @@ impl CloudWatchClient {
                         "PutInsightRule",
                     )
                 })?;
-                Some(converted_1121)
+                Some(converted_1135)
             } else {
                 None
             };
@@ -21775,9 +22504,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alarm_name_value = if let Some(value) = dict_value(params, "alarm_name")? {
-            let converted_1122 = (|| -> PyResult<_> {
-                let converted_1122: String = value.extract()?;
-                Ok(converted_1122)
+            let converted_1136 = (|| -> PyResult<_> {
+                let converted_1136: String = value.extract()?;
+                Ok(converted_1136)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21790,15 +22519,15 @@ impl CloudWatchClient {
                     "PutLogAlarm",
                 )
             })?;
-            Some(converted_1122)
+            Some(converted_1136)
         } else {
             None
         };
         let alarm_description_value = if let Some(value) = dict_value(params, "alarm_description")?
         {
-            let converted_1123 = (|| -> PyResult<_> {
-                let converted_1123: String = value.extract()?;
-                Ok(converted_1123)
+            let converted_1137 = (|| -> PyResult<_> {
+                let converted_1137: String = value.extract()?;
+                Ok(converted_1137)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21811,15 +22540,15 @@ impl CloudWatchClient {
                     "PutLogAlarm",
                 )
             })?;
-            Some(converted_1123)
+            Some(converted_1137)
         } else {
             None
         };
         let scheduled_query_configuration_value =
             if let Some(value) = dict_value(params, "scheduled_query_configuration")? {
-                let converted_1124 = (|| -> PyResult<_> {
-                    let converted_1124 = scheduled_query_configuration_from_py(&value)?;
-                    Ok(converted_1124)
+                let converted_1138 = (|| -> PyResult<_> {
+                    let converted_1138 = scheduled_query_configuration_from_py(&value)?;
+                    Ok(converted_1138)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21832,15 +22561,15 @@ impl CloudWatchClient {
                         "PutLogAlarm",
                     )
                 })?;
-                Some(converted_1124)
+                Some(converted_1138)
             } else {
                 None
             };
         let action_log_line_count_value =
             if let Some(value) = dict_value(params, "action_log_line_count")? {
-                let converted_1125 = (|| -> PyResult<_> {
-                    let converted_1125: i32 = value.extract()?;
-                    Ok(converted_1125)
+                let converted_1139 = (|| -> PyResult<_> {
+                    let converted_1139: i32 = value.extract()?;
+                    Ok(converted_1139)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21853,15 +22582,15 @@ impl CloudWatchClient {
                         "PutLogAlarm",
                     )
                 })?;
-                Some(converted_1125)
+                Some(converted_1139)
             } else {
                 None
             };
         let action_log_line_role_arn_value =
             if let Some(value) = dict_value(params, "action_log_line_role_arn")? {
-                let converted_1126 = (|| -> PyResult<_> {
-                    let converted_1126: String = value.extract()?;
-                    Ok(converted_1126)
+                let converted_1140 = (|| -> PyResult<_> {
+                    let converted_1140: String = value.extract()?;
+                    Ok(converted_1140)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21874,14 +22603,14 @@ impl CloudWatchClient {
                         "PutLogAlarm",
                     )
                 })?;
-                Some(converted_1126)
+                Some(converted_1140)
             } else {
                 None
             };
         let actions_enabled_value = if let Some(value) = dict_value(params, "actions_enabled")? {
-            let converted_1127 = (|| -> PyResult<_> {
-                let converted_1127: bool = value.extract()?;
-                Ok(converted_1127)
+            let converted_1141 = (|| -> PyResult<_> {
+                let converted_1141: bool = value.extract()?;
+                Ok(converted_1141)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21894,37 +22623,37 @@ impl CloudWatchClient {
                     "PutLogAlarm",
                 )
             })?;
-            Some(converted_1127)
+            Some(converted_1141)
         } else {
             None
         };
         let ok_actions_value = if let Some(value) = dict_value(params, "ok_actions")? {
-            let converted_1128 = (|| -> PyResult<_> {
-                let mut converted_1128 =
+            let converted_1142 = (|| -> PyResult<_> {
+                let mut converted_1142 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1132, item_result_1129) in value.try_iter()?.enumerate() {
-                    let item_1130 = item_result_1129.map_err(|error| {
+                for (index_1146, item_result_1143) in value.try_iter()?.enumerate() {
+                    let item_1144 = item_result_1143.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1132),
+                            rboto_core::InputPath::Index(index_1146),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1131 = (|| -> PyResult<_> {
-                        let converted_item_1131: String = item_1130.extract()?;
-                        Ok(converted_item_1131)
+                    let converted_item_1145 = (|| -> PyResult<_> {
+                        let converted_item_1145: String = item_1144.extract()?;
+                        Ok(converted_item_1145)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1132),
+                            rboto_core::InputPath::Index(index_1146),
                             "str",
                         )
                     })?;
-                    converted_1128.push(converted_item_1131);
+                    converted_1142.push(converted_item_1145);
                 }
-                Ok(converted_1128)
+                Ok(converted_1142)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21937,37 +22666,37 @@ impl CloudWatchClient {
                     "PutLogAlarm",
                 )
             })?;
-            Some(converted_1128)
+            Some(converted_1142)
         } else {
             None
         };
         let alarm_actions_value = if let Some(value) = dict_value(params, "alarm_actions")? {
-            let converted_1133 = (|| -> PyResult<_> {
-                let mut converted_1133 =
+            let converted_1147 = (|| -> PyResult<_> {
+                let mut converted_1147 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1137, item_result_1134) in value.try_iter()?.enumerate() {
-                    let item_1135 = item_result_1134.map_err(|error| {
+                for (index_1151, item_result_1148) in value.try_iter()?.enumerate() {
+                    let item_1149 = item_result_1148.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1137),
+                            rboto_core::InputPath::Index(index_1151),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1136 = (|| -> PyResult<_> {
-                        let converted_item_1136: String = item_1135.extract()?;
-                        Ok(converted_item_1136)
+                    let converted_item_1150 = (|| -> PyResult<_> {
+                        let converted_item_1150: String = item_1149.extract()?;
+                        Ok(converted_item_1150)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1137),
+                            rboto_core::InputPath::Index(index_1151),
                             "str",
                         )
                     })?;
-                    converted_1133.push(converted_item_1136);
+                    converted_1147.push(converted_item_1150);
                 }
-                Ok(converted_1133)
+                Ok(converted_1147)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21980,38 +22709,38 @@ impl CloudWatchClient {
                     "PutLogAlarm",
                 )
             })?;
-            Some(converted_1133)
+            Some(converted_1147)
         } else {
             None
         };
         let insufficient_data_actions_value =
             if let Some(value) = dict_value(params, "insufficient_data_actions")? {
-                let converted_1138 = (|| -> PyResult<_> {
-                    let mut converted_1138 =
+                let converted_1152 = (|| -> PyResult<_> {
+                    let mut converted_1152 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_1142, item_result_1139) in value.try_iter()?.enumerate() {
-                        let item_1140 = item_result_1139.map_err(|error| {
+                    for (index_1156, item_result_1153) in value.try_iter()?.enumerate() {
+                        let item_1154 = item_result_1153.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_1142),
+                                rboto_core::InputPath::Index(index_1156),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_1141 = (|| -> PyResult<_> {
-                            let converted_item_1141: String = item_1140.extract()?;
-                            Ok(converted_item_1141)
+                        let converted_item_1155 = (|| -> PyResult<_> {
+                            let converted_item_1155: String = item_1154.extract()?;
+                            Ok(converted_item_1155)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_1142),
+                                rboto_core::InputPath::Index(index_1156),
                                 "str",
                             )
                         })?;
-                        converted_1138.push(converted_item_1141);
+                        converted_1152.push(converted_item_1155);
                     }
-                    Ok(converted_1138)
+                    Ok(converted_1152)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22024,15 +22753,15 @@ impl CloudWatchClient {
                         "PutLogAlarm",
                     )
                 })?;
-                Some(converted_1138)
+                Some(converted_1152)
             } else {
                 None
             };
         let query_results_to_evaluate_value =
             if let Some(value) = dict_value(params, "query_results_to_evaluate")? {
-                let converted_1143 = (|| -> PyResult<_> {
-                    let converted_1143: i32 = value.extract()?;
-                    Ok(converted_1143)
+                let converted_1157 = (|| -> PyResult<_> {
+                    let converted_1157: i32 = value.extract()?;
+                    Ok(converted_1157)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22045,15 +22774,15 @@ impl CloudWatchClient {
                         "PutLogAlarm",
                     )
                 })?;
-                Some(converted_1143)
+                Some(converted_1157)
             } else {
                 None
             };
         let query_results_to_alarm_value =
             if let Some(value) = dict_value(params, "query_results_to_alarm")? {
-                let converted_1144 = (|| -> PyResult<_> {
-                    let converted_1144: i32 = value.extract()?;
-                    Ok(converted_1144)
+                let converted_1158 = (|| -> PyResult<_> {
+                    let converted_1158: i32 = value.extract()?;
+                    Ok(converted_1158)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22066,14 +22795,14 @@ impl CloudWatchClient {
                         "PutLogAlarm",
                     )
                 })?;
-                Some(converted_1144)
+                Some(converted_1158)
             } else {
                 None
             };
         let threshold_value = if let Some(value) = dict_value(params, "threshold")? {
-            let converted_1145 = (|| -> PyResult<_> {
-                let converted_1145: f64 = value.extract()?;
-                Ok(converted_1145)
+            let converted_1159 = (|| -> PyResult<_> {
+                let converted_1159: f64 = value.extract()?;
+                Ok(converted_1159)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22086,18 +22815,18 @@ impl CloudWatchClient {
                     "PutLogAlarm",
                 )
             })?;
-            Some(converted_1145)
+            Some(converted_1159)
         } else {
             None
         };
         let comparison_operator_value = if let Some(value) =
             dict_value(params, "comparison_operator")?
         {
-            let converted_1146 = (|| -> PyResult<_> {
-                let enum_value_1147: String = value.extract()?;
-                let converted_1146 =
-                    aws_sdk_cloudwatch::types::ComparisonOperator::from(enum_value_1147.as_str());
-                Ok(converted_1146)
+            let converted_1160 = (|| -> PyResult<_> {
+                let enum_value_1161: String = value.extract()?;
+                let converted_1160 =
+                    aws_sdk_cloudwatch::types::ComparisonOperator::from(enum_value_1161.as_str());
+                Ok(converted_1160)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22110,15 +22839,15 @@ impl CloudWatchClient {
                     "PutLogAlarm",
                 )
             })?;
-            Some(converted_1146)
+            Some(converted_1160)
         } else {
             None
         };
         let treat_missing_data_value =
             if let Some(value) = dict_value(params, "treat_missing_data")? {
-                let converted_1148 = (|| -> PyResult<_> {
-                    let converted_1148: String = value.extract()?;
-                    Ok(converted_1148)
+                let converted_1162 = (|| -> PyResult<_> {
+                    let converted_1162: String = value.extract()?;
+                    Ok(converted_1162)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22131,37 +22860,37 @@ impl CloudWatchClient {
                         "PutLogAlarm",
                     )
                 })?;
-                Some(converted_1148)
+                Some(converted_1162)
             } else {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_1149 = (|| -> PyResult<_> {
-                let mut converted_1149 =
+            let converted_1163 = (|| -> PyResult<_> {
+                let mut converted_1163 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1153, item_result_1150) in value.try_iter()?.enumerate() {
-                    let item_1151 = item_result_1150.map_err(|error| {
+                for (index_1167, item_result_1164) in value.try_iter()?.enumerate() {
+                    let item_1165 = item_result_1164.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1153),
+                            rboto_core::InputPath::Index(index_1167),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1152 = (|| -> PyResult<_> {
-                        let converted_item_1152 = tag_from_py(&item_1151)?;
-                        Ok(converted_item_1152)
+                    let converted_item_1166 = (|| -> PyResult<_> {
+                        let converted_item_1166 = tag_from_py(&item_1165)?;
+                        Ok(converted_item_1166)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1153),
+                            rboto_core::InputPath::Index(index_1167),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_1149.push(converted_item_1152);
+                    converted_1163.push(converted_item_1166);
                 }
-                Ok(converted_1149)
+                Ok(converted_1163)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22174,15 +22903,15 @@ impl CloudWatchClient {
                     "PutLogAlarm",
                 )
             })?;
-            Some(converted_1149)
+            Some(converted_1163)
         } else {
             None
         };
         let warm_up_configuration_value =
             if let Some(value) = dict_value(params, "warm_up_configuration")? {
-                let converted_1154 = (|| -> PyResult<_> {
-                    let converted_1154 = warm_up_configuration_from_py(&value)?;
-                    Ok(converted_1154)
+                let converted_1168 = (|| -> PyResult<_> {
+                    let converted_1168 = warm_up_configuration_from_py(&value)?;
+                    Ok(converted_1168)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22195,15 +22924,15 @@ impl CloudWatchClient {
                         "PutLogAlarm",
                     )
                 })?;
-                Some(converted_1154)
+                Some(converted_1168)
             } else {
                 None
             };
         let action_configuration_value =
             if let Some(value) = dict_value(params, "action_configuration")? {
-                let converted_1155 = (|| -> PyResult<_> {
-                    let converted_1155 = action_configuration_from_py(&value)?;
-                    Ok(converted_1155)
+                let converted_1169 = (|| -> PyResult<_> {
+                    let converted_1169 = action_configuration_from_py(&value)?;
+                    Ok(converted_1169)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22216,7 +22945,7 @@ impl CloudWatchClient {
                         "PutLogAlarm",
                     )
                 })?;
-                Some(converted_1155)
+                Some(converted_1169)
             } else {
                 None
             };
@@ -22272,32 +23001,32 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let managed_rules_value = if let Some(value) = dict_value(params, "managed_rules")? {
-            let converted_1156 = (|| -> PyResult<_> {
-                let mut converted_1156 =
+            let converted_1170 = (|| -> PyResult<_> {
+                let mut converted_1170 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1160, item_result_1157) in value.try_iter()?.enumerate() {
-                    let item_1158 = item_result_1157.map_err(|error| {
+                for (index_1174, item_result_1171) in value.try_iter()?.enumerate() {
+                    let item_1172 = item_result_1171.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1160),
+                            rboto_core::InputPath::Index(index_1174),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1159 = (|| -> PyResult<_> {
-                        let converted_item_1159 = managed_rule_from_py(&item_1158)?;
-                        Ok(converted_item_1159)
+                    let converted_item_1173 = (|| -> PyResult<_> {
+                        let converted_item_1173 = managed_rule_from_py(&item_1172)?;
+                        Ok(converted_item_1173)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1160),
+                            rboto_core::InputPath::Index(index_1174),
                             "dict (ManagedRule)",
                         )
                     })?;
-                    converted_1156.push(converted_item_1159);
+                    converted_1170.push(converted_item_1173);
                 }
-                Ok(converted_1156)
+                Ok(converted_1170)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22310,7 +23039,7 @@ impl CloudWatchClient {
                     "PutManagedInsightRules",
                 )
             })?;
-            Some(converted_1156)
+            Some(converted_1170)
         } else {
             None
         };
@@ -22353,9 +23082,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alarm_name_value = if let Some(value) = dict_value(params, "alarm_name")? {
-            let converted_1161 = (|| -> PyResult<_> {
-                let converted_1161: String = value.extract()?;
-                Ok(converted_1161)
+            let converted_1175 = (|| -> PyResult<_> {
+                let converted_1175: String = value.extract()?;
+                Ok(converted_1175)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22368,15 +23097,15 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1161)
+            Some(converted_1175)
         } else {
             None
         };
         let alarm_description_value = if let Some(value) = dict_value(params, "alarm_description")?
         {
-            let converted_1162 = (|| -> PyResult<_> {
-                let converted_1162: String = value.extract()?;
-                Ok(converted_1162)
+            let converted_1176 = (|| -> PyResult<_> {
+                let converted_1176: String = value.extract()?;
+                Ok(converted_1176)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22389,14 +23118,14 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1162)
+            Some(converted_1176)
         } else {
             None
         };
         let actions_enabled_value = if let Some(value) = dict_value(params, "actions_enabled")? {
-            let converted_1163 = (|| -> PyResult<_> {
-                let converted_1163: bool = value.extract()?;
-                Ok(converted_1163)
+            let converted_1177 = (|| -> PyResult<_> {
+                let converted_1177: bool = value.extract()?;
+                Ok(converted_1177)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22409,37 +23138,37 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1163)
+            Some(converted_1177)
         } else {
             None
         };
         let ok_actions_value = if let Some(value) = dict_value(params, "ok_actions")? {
-            let converted_1164 = (|| -> PyResult<_> {
-                let mut converted_1164 =
+            let converted_1178 = (|| -> PyResult<_> {
+                let mut converted_1178 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1168, item_result_1165) in value.try_iter()?.enumerate() {
-                    let item_1166 = item_result_1165.map_err(|error| {
+                for (index_1182, item_result_1179) in value.try_iter()?.enumerate() {
+                    let item_1180 = item_result_1179.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1168),
+                            rboto_core::InputPath::Index(index_1182),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1167 = (|| -> PyResult<_> {
-                        let converted_item_1167: String = item_1166.extract()?;
-                        Ok(converted_item_1167)
+                    let converted_item_1181 = (|| -> PyResult<_> {
+                        let converted_item_1181: String = item_1180.extract()?;
+                        Ok(converted_item_1181)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1168),
+                            rboto_core::InputPath::Index(index_1182),
                             "str",
                         )
                     })?;
-                    converted_1164.push(converted_item_1167);
+                    converted_1178.push(converted_item_1181);
                 }
-                Ok(converted_1164)
+                Ok(converted_1178)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22452,37 +23181,37 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1164)
+            Some(converted_1178)
         } else {
             None
         };
         let alarm_actions_value = if let Some(value) = dict_value(params, "alarm_actions")? {
-            let converted_1169 = (|| -> PyResult<_> {
-                let mut converted_1169 =
+            let converted_1183 = (|| -> PyResult<_> {
+                let mut converted_1183 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1173, item_result_1170) in value.try_iter()?.enumerate() {
-                    let item_1171 = item_result_1170.map_err(|error| {
+                for (index_1187, item_result_1184) in value.try_iter()?.enumerate() {
+                    let item_1185 = item_result_1184.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1173),
+                            rboto_core::InputPath::Index(index_1187),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1172 = (|| -> PyResult<_> {
-                        let converted_item_1172: String = item_1171.extract()?;
-                        Ok(converted_item_1172)
+                    let converted_item_1186 = (|| -> PyResult<_> {
+                        let converted_item_1186: String = item_1185.extract()?;
+                        Ok(converted_item_1186)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1173),
+                            rboto_core::InputPath::Index(index_1187),
                             "str",
                         )
                     })?;
-                    converted_1169.push(converted_item_1172);
+                    converted_1183.push(converted_item_1186);
                 }
-                Ok(converted_1169)
+                Ok(converted_1183)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22495,38 +23224,38 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1169)
+            Some(converted_1183)
         } else {
             None
         };
         let insufficient_data_actions_value =
             if let Some(value) = dict_value(params, "insufficient_data_actions")? {
-                let converted_1174 = (|| -> PyResult<_> {
-                    let mut converted_1174 =
+                let converted_1188 = (|| -> PyResult<_> {
+                    let mut converted_1188 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_1178, item_result_1175) in value.try_iter()?.enumerate() {
-                        let item_1176 = item_result_1175.map_err(|error| {
+                    for (index_1192, item_result_1189) in value.try_iter()?.enumerate() {
+                        let item_1190 = item_result_1189.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_1178),
+                                rboto_core::InputPath::Index(index_1192),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_1177 = (|| -> PyResult<_> {
-                            let converted_item_1177: String = item_1176.extract()?;
-                            Ok(converted_item_1177)
+                        let converted_item_1191 = (|| -> PyResult<_> {
+                            let converted_item_1191: String = item_1190.extract()?;
+                            Ok(converted_item_1191)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_1178),
+                                rboto_core::InputPath::Index(index_1192),
                                 "str",
                             )
                         })?;
-                        converted_1174.push(converted_item_1177);
+                        converted_1188.push(converted_item_1191);
                     }
-                    Ok(converted_1174)
+                    Ok(converted_1188)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22539,14 +23268,14 @@ impl CloudWatchClient {
                         "PutMetricAlarm",
                     )
                 })?;
-                Some(converted_1174)
+                Some(converted_1188)
             } else {
                 None
             };
         let metric_name_value = if let Some(value) = dict_value(params, "metric_name")? {
-            let converted_1179 = (|| -> PyResult<_> {
-                let converted_1179: String = value.extract()?;
-                Ok(converted_1179)
+            let converted_1193 = (|| -> PyResult<_> {
+                let converted_1193: String = value.extract()?;
+                Ok(converted_1193)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22559,14 +23288,14 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1179)
+            Some(converted_1193)
         } else {
             None
         };
         let namespace_value = if let Some(value) = dict_value(params, "namespace")? {
-            let converted_1180 = (|| -> PyResult<_> {
-                let converted_1180: String = value.extract()?;
-                Ok(converted_1180)
+            let converted_1194 = (|| -> PyResult<_> {
+                let converted_1194: String = value.extract()?;
+                Ok(converted_1194)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22579,16 +23308,16 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1180)
+            Some(converted_1194)
         } else {
             None
         };
         let statistic_value = if let Some(value) = dict_value(params, "statistic")? {
-            let converted_1181 = (|| -> PyResult<_> {
-                let enum_value_1182: String = value.extract()?;
-                let converted_1181 =
-                    aws_sdk_cloudwatch::types::Statistic::from(enum_value_1182.as_str());
-                Ok(converted_1181)
+            let converted_1195 = (|| -> PyResult<_> {
+                let enum_value_1196: String = value.extract()?;
+                let converted_1195 =
+                    aws_sdk_cloudwatch::types::Statistic::from(enum_value_1196.as_str());
+                Ok(converted_1195)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22601,15 +23330,15 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1181)
+            Some(converted_1195)
         } else {
             None
         };
         let extended_statistic_value =
             if let Some(value) = dict_value(params, "extended_statistic")? {
-                let converted_1183 = (|| -> PyResult<_> {
-                    let converted_1183: String = value.extract()?;
-                    Ok(converted_1183)
+                let converted_1197 = (|| -> PyResult<_> {
+                    let converted_1197: String = value.extract()?;
+                    Ok(converted_1197)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22622,37 +23351,37 @@ impl CloudWatchClient {
                         "PutMetricAlarm",
                     )
                 })?;
-                Some(converted_1183)
+                Some(converted_1197)
             } else {
                 None
             };
         let dimensions_value = if let Some(value) = dict_value(params, "dimensions")? {
-            let converted_1184 = (|| -> PyResult<_> {
-                let mut converted_1184 =
+            let converted_1198 = (|| -> PyResult<_> {
+                let mut converted_1198 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1188, item_result_1185) in value.try_iter()?.enumerate() {
-                    let item_1186 = item_result_1185.map_err(|error| {
+                for (index_1202, item_result_1199) in value.try_iter()?.enumerate() {
+                    let item_1200 = item_result_1199.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1188),
+                            rboto_core::InputPath::Index(index_1202),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1187 = (|| -> PyResult<_> {
-                        let converted_item_1187 = dimension_from_py(&item_1186)?;
-                        Ok(converted_item_1187)
+                    let converted_item_1201 = (|| -> PyResult<_> {
+                        let converted_item_1201 = dimension_from_py(&item_1200)?;
+                        Ok(converted_item_1201)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1188),
+                            rboto_core::InputPath::Index(index_1202),
                             "dict (Dimension)",
                         )
                     })?;
-                    converted_1184.push(converted_item_1187);
+                    converted_1198.push(converted_item_1201);
                 }
-                Ok(converted_1184)
+                Ok(converted_1198)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22665,14 +23394,14 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1184)
+            Some(converted_1198)
         } else {
             None
         };
         let period_value = if let Some(value) = dict_value(params, "period")? {
-            let converted_1189 = (|| -> PyResult<_> {
-                let converted_1189: i32 = value.extract()?;
-                Ok(converted_1189)
+            let converted_1203 = (|| -> PyResult<_> {
+                let converted_1203: i32 = value.extract()?;
+                Ok(converted_1203)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22681,16 +23410,16 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1189)
+            Some(converted_1203)
         } else {
             None
         };
         let unit_value = if let Some(value) = dict_value(params, "unit")? {
-            let converted_1190 = (|| -> PyResult<_> {
-                let enum_value_1191: String = value.extract()?;
-                let converted_1190 =
-                    aws_sdk_cloudwatch::types::StandardUnit::from(enum_value_1191.as_str());
-                Ok(converted_1190)
+            let converted_1204 = (|| -> PyResult<_> {
+                let enum_value_1205: String = value.extract()?;
+                let converted_1204 =
+                    aws_sdk_cloudwatch::types::StandardUnit::from(enum_value_1205.as_str());
+                Ok(converted_1204)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22703,15 +23432,15 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1190)
+            Some(converted_1204)
         } else {
             None
         };
         let evaluation_periods_value =
             if let Some(value) = dict_value(params, "evaluation_periods")? {
-                let converted_1192 = (|| -> PyResult<_> {
-                    let converted_1192: i32 = value.extract()?;
-                    Ok(converted_1192)
+                let converted_1206 = (|| -> PyResult<_> {
+                    let converted_1206: i32 = value.extract()?;
+                    Ok(converted_1206)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22724,15 +23453,15 @@ impl CloudWatchClient {
                         "PutMetricAlarm",
                     )
                 })?;
-                Some(converted_1192)
+                Some(converted_1206)
             } else {
                 None
             };
         let datapoints_to_alarm_value =
             if let Some(value) = dict_value(params, "datapoints_to_alarm")? {
-                let converted_1193 = (|| -> PyResult<_> {
-                    let converted_1193: i32 = value.extract()?;
-                    Ok(converted_1193)
+                let converted_1207 = (|| -> PyResult<_> {
+                    let converted_1207: i32 = value.extract()?;
+                    Ok(converted_1207)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22745,14 +23474,14 @@ impl CloudWatchClient {
                         "PutMetricAlarm",
                     )
                 })?;
-                Some(converted_1193)
+                Some(converted_1207)
             } else {
                 None
             };
         let threshold_value = if let Some(value) = dict_value(params, "threshold")? {
-            let converted_1194 = (|| -> PyResult<_> {
-                let converted_1194: f64 = value.extract()?;
-                Ok(converted_1194)
+            let converted_1208 = (|| -> PyResult<_> {
+                let converted_1208: f64 = value.extract()?;
+                Ok(converted_1208)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22765,18 +23494,18 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1194)
+            Some(converted_1208)
         } else {
             None
         };
         let comparison_operator_value = if let Some(value) =
             dict_value(params, "comparison_operator")?
         {
-            let converted_1195 = (|| -> PyResult<_> {
-                let enum_value_1196: String = value.extract()?;
-                let converted_1195 =
-                    aws_sdk_cloudwatch::types::ComparisonOperator::from(enum_value_1196.as_str());
-                Ok(converted_1195)
+            let converted_1209 = (|| -> PyResult<_> {
+                let enum_value_1210: String = value.extract()?;
+                let converted_1209 =
+                    aws_sdk_cloudwatch::types::ComparisonOperator::from(enum_value_1210.as_str());
+                Ok(converted_1209)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22789,15 +23518,15 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1195)
+            Some(converted_1209)
         } else {
             None
         };
         let treat_missing_data_value =
             if let Some(value) = dict_value(params, "treat_missing_data")? {
-                let converted_1197 = (|| -> PyResult<_> {
-                    let converted_1197: String = value.extract()?;
-                    Ok(converted_1197)
+                let converted_1211 = (|| -> PyResult<_> {
+                    let converted_1211: String = value.extract()?;
+                    Ok(converted_1211)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22810,15 +23539,15 @@ impl CloudWatchClient {
                         "PutMetricAlarm",
                     )
                 })?;
-                Some(converted_1197)
+                Some(converted_1211)
             } else {
                 None
             };
         let evaluate_low_sample_count_percentile_value =
             if let Some(value) = dict_value(params, "evaluate_low_sample_count_percentile")? {
-                let converted_1198 = (|| -> PyResult<_> {
-                    let converted_1198: String = value.extract()?;
-                    Ok(converted_1198)
+                let converted_1212 = (|| -> PyResult<_> {
+                    let converted_1212: String = value.extract()?;
+                    Ok(converted_1212)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22831,37 +23560,37 @@ impl CloudWatchClient {
                         "PutMetricAlarm",
                     )
                 })?;
-                Some(converted_1198)
+                Some(converted_1212)
             } else {
                 None
             };
         let metrics_value = if let Some(value) = dict_value(params, "metrics")? {
-            let converted_1199 = (|| -> PyResult<_> {
-                let mut converted_1199 =
+            let converted_1213 = (|| -> PyResult<_> {
+                let mut converted_1213 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1203, item_result_1200) in value.try_iter()?.enumerate() {
-                    let item_1201 = item_result_1200.map_err(|error| {
+                for (index_1217, item_result_1214) in value.try_iter()?.enumerate() {
+                    let item_1215 = item_result_1214.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1203),
+                            rboto_core::InputPath::Index(index_1217),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1202 = (|| -> PyResult<_> {
-                        let converted_item_1202 = metric_data_query_from_py(&item_1201)?;
-                        Ok(converted_item_1202)
+                    let converted_item_1216 = (|| -> PyResult<_> {
+                        let converted_item_1216 = metric_data_query_from_py(&item_1215)?;
+                        Ok(converted_item_1216)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1203),
+                            rboto_core::InputPath::Index(index_1217),
                             "dict (MetricDataQuery)",
                         )
                     })?;
-                    converted_1199.push(converted_item_1202);
+                    converted_1213.push(converted_item_1216);
                 }
-                Ok(converted_1199)
+                Ok(converted_1213)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22874,37 +23603,37 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1199)
+            Some(converted_1213)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_1204 = (|| -> PyResult<_> {
-                let mut converted_1204 =
+            let converted_1218 = (|| -> PyResult<_> {
+                let mut converted_1218 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1208, item_result_1205) in value.try_iter()?.enumerate() {
-                    let item_1206 = item_result_1205.map_err(|error| {
+                for (index_1222, item_result_1219) in value.try_iter()?.enumerate() {
+                    let item_1220 = item_result_1219.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1208),
+                            rboto_core::InputPath::Index(index_1222),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1207 = (|| -> PyResult<_> {
-                        let converted_item_1207 = tag_from_py(&item_1206)?;
-                        Ok(converted_item_1207)
+                    let converted_item_1221 = (|| -> PyResult<_> {
+                        let converted_item_1221 = tag_from_py(&item_1220)?;
+                        Ok(converted_item_1221)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1208),
+                            rboto_core::InputPath::Index(index_1222),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_1204.push(converted_item_1207);
+                    converted_1218.push(converted_item_1221);
                 }
-                Ok(converted_1204)
+                Ok(converted_1218)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22917,15 +23646,15 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1204)
+            Some(converted_1218)
         } else {
             None
         };
         let threshold_metric_id_value =
             if let Some(value) = dict_value(params, "threshold_metric_id")? {
-                let converted_1209 = (|| -> PyResult<_> {
-                    let converted_1209: String = value.extract()?;
-                    Ok(converted_1209)
+                let converted_1223 = (|| -> PyResult<_> {
+                    let converted_1223: String = value.extract()?;
+                    Ok(converted_1223)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22938,15 +23667,15 @@ impl CloudWatchClient {
                         "PutMetricAlarm",
                     )
                 })?;
-                Some(converted_1209)
+                Some(converted_1223)
             } else {
                 None
             };
         let evaluation_window_value = if let Some(value) = dict_value(params, "evaluation_window")?
         {
-            let converted_1210 = (|| -> PyResult<_> {
-                let converted_1210 = evaluation_window_from_py(&value)?;
-                Ok(converted_1210)
+            let converted_1224 = (|| -> PyResult<_> {
+                let converted_1224 = evaluation_window_from_py(&value)?;
+                Ok(converted_1224)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22959,15 +23688,15 @@ impl CloudWatchClient {
                     "PutMetricAlarm",
                 )
             })?;
-            Some(converted_1210)
+            Some(converted_1224)
         } else {
             None
         };
         let warm_up_configuration_value =
             if let Some(value) = dict_value(params, "warm_up_configuration")? {
-                let converted_1211 = (|| -> PyResult<_> {
-                    let converted_1211 = warm_up_configuration_from_py(&value)?;
-                    Ok(converted_1211)
+                let converted_1225 = (|| -> PyResult<_> {
+                    let converted_1225 = warm_up_configuration_from_py(&value)?;
+                    Ok(converted_1225)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22980,15 +23709,15 @@ impl CloudWatchClient {
                         "PutMetricAlarm",
                     )
                 })?;
-                Some(converted_1211)
+                Some(converted_1225)
             } else {
                 None
             };
         let evaluation_criteria_value =
             if let Some(value) = dict_value(params, "evaluation_criteria")? {
-                let converted_1212 = (|| -> PyResult<_> {
-                    let converted_1212 = evaluation_criteria_from_py(&value)?;
-                    Ok(converted_1212)
+                let converted_1226 = (|| -> PyResult<_> {
+                    let converted_1226 = evaluation_criteria_from_py(&value)?;
+                    Ok(converted_1226)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -23001,15 +23730,15 @@ impl CloudWatchClient {
                         "PutMetricAlarm",
                     )
                 })?;
-                Some(converted_1212)
+                Some(converted_1226)
             } else {
                 None
             };
         let evaluation_interval_value =
             if let Some(value) = dict_value(params, "evaluation_interval")? {
-                let converted_1213 = (|| -> PyResult<_> {
-                    let converted_1213: i32 = value.extract()?;
-                    Ok(converted_1213)
+                let converted_1227 = (|| -> PyResult<_> {
+                    let converted_1227: i32 = value.extract()?;
+                    Ok(converted_1227)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -23022,15 +23751,15 @@ impl CloudWatchClient {
                         "PutMetricAlarm",
                     )
                 })?;
-                Some(converted_1213)
+                Some(converted_1227)
             } else {
                 None
             };
         let action_configuration_value =
             if let Some(value) = dict_value(params, "action_configuration")? {
-                let converted_1214 = (|| -> PyResult<_> {
-                    let converted_1214 = action_configuration_from_py(&value)?;
-                    Ok(converted_1214)
+                let converted_1228 = (|| -> PyResult<_> {
+                    let converted_1228 = action_configuration_from_py(&value)?;
+                    Ok(converted_1228)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -23043,7 +23772,7 @@ impl CloudWatchClient {
                         "PutMetricAlarm",
                     )
                 })?;
-                Some(converted_1214)
+                Some(converted_1228)
             } else {
                 None
             };
@@ -23111,9 +23840,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let namespace_value = if let Some(value) = dict_value(params, "namespace")? {
-            let converted_1215 = (|| -> PyResult<_> {
-                let converted_1215: String = value.extract()?;
-                Ok(converted_1215)
+            let converted_1229 = (|| -> PyResult<_> {
+                let converted_1229: String = value.extract()?;
+                Ok(converted_1229)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23126,37 +23855,37 @@ impl CloudWatchClient {
                     "PutMetricData",
                 )
             })?;
-            Some(converted_1215)
+            Some(converted_1229)
         } else {
             None
         };
         let metric_data_value = if let Some(value) = dict_value(params, "metric_data")? {
-            let converted_1216 = (|| -> PyResult<_> {
-                let mut converted_1216 =
+            let converted_1230 = (|| -> PyResult<_> {
+                let mut converted_1230 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1220, item_result_1217) in value.try_iter()?.enumerate() {
-                    let item_1218 = item_result_1217.map_err(|error| {
+                for (index_1234, item_result_1231) in value.try_iter()?.enumerate() {
+                    let item_1232 = item_result_1231.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1220),
+                            rboto_core::InputPath::Index(index_1234),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1219 = (|| -> PyResult<_> {
-                        let converted_item_1219 = metric_datum_from_py(&item_1218)?;
-                        Ok(converted_item_1219)
+                    let converted_item_1233 = (|| -> PyResult<_> {
+                        let converted_item_1233 = metric_datum_from_py(&item_1232)?;
+                        Ok(converted_item_1233)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1220),
+                            rboto_core::InputPath::Index(index_1234),
                             "dict (MetricDatum)",
                         )
                     })?;
-                    converted_1216.push(converted_item_1219);
+                    converted_1230.push(converted_item_1233);
                 }
-                Ok(converted_1216)
+                Ok(converted_1230)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23169,38 +23898,38 @@ impl CloudWatchClient {
                     "PutMetricData",
                 )
             })?;
-            Some(converted_1216)
+            Some(converted_1230)
         } else {
             None
         };
         let entity_metric_data_value =
             if let Some(value) = dict_value(params, "entity_metric_data")? {
-                let converted_1221 = (|| -> PyResult<_> {
-                    let mut converted_1221 =
+                let converted_1235 = (|| -> PyResult<_> {
+                    let mut converted_1235 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_1225, item_result_1222) in value.try_iter()?.enumerate() {
-                        let item_1223 = item_result_1222.map_err(|error| {
+                    for (index_1239, item_result_1236) in value.try_iter()?.enumerate() {
+                        let item_1237 = item_result_1236.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_1225),
+                                rboto_core::InputPath::Index(index_1239),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_1224 = (|| -> PyResult<_> {
-                            let converted_item_1224 = entity_metric_data_from_py(&item_1223)?;
-                            Ok(converted_item_1224)
+                        let converted_item_1238 = (|| -> PyResult<_> {
+                            let converted_item_1238 = entity_metric_data_from_py(&item_1237)?;
+                            Ok(converted_item_1238)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_1225),
+                                rboto_core::InputPath::Index(index_1239),
                                 "dict (EntityMetricData)",
                             )
                         })?;
-                        converted_1221.push(converted_item_1224);
+                        converted_1235.push(converted_item_1238);
                     }
-                    Ok(converted_1221)
+                    Ok(converted_1235)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -23213,15 +23942,15 @@ impl CloudWatchClient {
                         "PutMetricData",
                     )
                 })?;
-                Some(converted_1221)
+                Some(converted_1235)
             } else {
                 None
             };
         let strict_entity_validation_value =
             if let Some(value) = dict_value(params, "strict_entity_validation")? {
-                let converted_1226 = (|| -> PyResult<_> {
-                    let converted_1226: bool = value.extract()?;
-                    Ok(converted_1226)
+                let converted_1240 = (|| -> PyResult<_> {
+                    let converted_1240: bool = value.extract()?;
+                    Ok(converted_1240)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -23234,7 +23963,7 @@ impl CloudWatchClient {
                         "PutMetricData",
                     )
                 })?;
-                Some(converted_1226)
+                Some(converted_1240)
             } else {
                 None
             };
@@ -23269,6 +23998,163 @@ impl CloudWatchClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn put_metric_data_query_definition<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let id_value = if let Some(value) = dict_value(params, "id")? {
+            let converted_1241 = (|| -> PyResult<_> {
+                let converted_1241: String = value.extract()?;
+                Ok(converted_1241)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str"),
+                    "cloudwatch",
+                    "PutMetricDataQueryDefinition",
+                )
+            })?;
+            Some(converted_1241)
+        } else {
+            None
+        };
+        let path_value = if let Some(value) = dict_value(params, "path")? {
+            let converted_1242 = (|| -> PyResult<_> {
+                let converted_1242: String = value.extract()?;
+                Ok(converted_1242)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("path"), "str"),
+                    "cloudwatch",
+                    "PutMetricDataQueryDefinition",
+                )
+            })?;
+            Some(converted_1242)
+        } else {
+            None
+        };
+        let expression_value = if let Some(value) = dict_value(params, "expression")? {
+            let converted_1243 = (|| -> PyResult<_> {
+                let converted_1243: String = value.extract()?;
+                Ok(converted_1243)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("expression"),
+                        "str",
+                    ),
+                    "cloudwatch",
+                    "PutMetricDataQueryDefinition",
+                )
+            })?;
+            Some(converted_1243)
+        } else {
+            None
+        };
+        let type_value = if let Some(value) = dict_value(params, "type")? {
+            let converted_1244 = (|| -> PyResult<_> {
+                let enum_value_1245: String = value.extract()?;
+                let converted_1244 =
+                    aws_sdk_cloudwatch::types::QueryType::from(enum_value_1245.as_str());
+                Ok(converted_1244)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("type"),
+                        "str (QueryType)",
+                    ),
+                    "cloudwatch",
+                    "PutMetricDataQueryDefinition",
+                )
+            })?;
+            Some(converted_1244)
+        } else {
+            None
+        };
+        let tags_value = if let Some(value) = dict_value(params, "tags")? {
+            let converted_1246 = (|| -> PyResult<_> {
+                let mut converted_1246 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_1250, item_result_1247) in value.try_iter()?.enumerate() {
+                    let item_1248 = item_result_1247.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_1250),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_1249 = (|| -> PyResult<_> {
+                        let converted_item_1249 = tag_from_py(&item_1248)?;
+                        Ok(converted_item_1249)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_1250),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_1246.push(converted_item_1249);
+                }
+                Ok(converted_1246)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "cloudwatch",
+                    "PutMetricDataQueryDefinition",
+                )
+            })?;
+            Some(converted_1246)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .put_metric_data_query_definition()
+                .set_id(id_value)
+                .set_path(path_value)
+                .set_expression(expression_value)
+                .set_type(type_value)
+                .set_tags(tags_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutMetricDataQueryDefinition",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationPutMetricDataQueryDefinitionOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn put_metric_stream<'py>(
         &self,
         py: Python<'py>,
@@ -23277,9 +24163,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_1227 = (|| -> PyResult<_> {
-                let converted_1227: String = value.extract()?;
-                Ok(converted_1227)
+            let converted_1251 = (|| -> PyResult<_> {
+                let converted_1251: String = value.extract()?;
+                Ok(converted_1251)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23288,37 +24174,37 @@ impl CloudWatchClient {
                     "PutMetricStream",
                 )
             })?;
-            Some(converted_1227)
+            Some(converted_1251)
         } else {
             None
         };
         let include_filters_value = if let Some(value) = dict_value(params, "include_filters")? {
-            let converted_1228 = (|| -> PyResult<_> {
-                let mut converted_1228 =
+            let converted_1252 = (|| -> PyResult<_> {
+                let mut converted_1252 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1232, item_result_1229) in value.try_iter()?.enumerate() {
-                    let item_1230 = item_result_1229.map_err(|error| {
+                for (index_1256, item_result_1253) in value.try_iter()?.enumerate() {
+                    let item_1254 = item_result_1253.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1232),
+                            rboto_core::InputPath::Index(index_1256),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1231 = (|| -> PyResult<_> {
-                        let converted_item_1231 = metric_stream_filter_from_py(&item_1230)?;
-                        Ok(converted_item_1231)
+                    let converted_item_1255 = (|| -> PyResult<_> {
+                        let converted_item_1255 = metric_stream_filter_from_py(&item_1254)?;
+                        Ok(converted_item_1255)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1232),
+                            rboto_core::InputPath::Index(index_1256),
                             "dict (MetricStreamFilter)",
                         )
                     })?;
-                    converted_1228.push(converted_item_1231);
+                    converted_1252.push(converted_item_1255);
                 }
-                Ok(converted_1228)
+                Ok(converted_1252)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23331,37 +24217,37 @@ impl CloudWatchClient {
                     "PutMetricStream",
                 )
             })?;
-            Some(converted_1228)
+            Some(converted_1252)
         } else {
             None
         };
         let exclude_filters_value = if let Some(value) = dict_value(params, "exclude_filters")? {
-            let converted_1233 = (|| -> PyResult<_> {
-                let mut converted_1233 =
+            let converted_1257 = (|| -> PyResult<_> {
+                let mut converted_1257 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1237, item_result_1234) in value.try_iter()?.enumerate() {
-                    let item_1235 = item_result_1234.map_err(|error| {
+                for (index_1261, item_result_1258) in value.try_iter()?.enumerate() {
+                    let item_1259 = item_result_1258.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1237),
+                            rboto_core::InputPath::Index(index_1261),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1236 = (|| -> PyResult<_> {
-                        let converted_item_1236 = metric_stream_filter_from_py(&item_1235)?;
-                        Ok(converted_item_1236)
+                    let converted_item_1260 = (|| -> PyResult<_> {
+                        let converted_item_1260 = metric_stream_filter_from_py(&item_1259)?;
+                        Ok(converted_item_1260)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1237),
+                            rboto_core::InputPath::Index(index_1261),
                             "dict (MetricStreamFilter)",
                         )
                     })?;
-                    converted_1233.push(converted_item_1236);
+                    converted_1257.push(converted_item_1260);
                 }
-                Ok(converted_1233)
+                Ok(converted_1257)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23374,14 +24260,14 @@ impl CloudWatchClient {
                     "PutMetricStream",
                 )
             })?;
-            Some(converted_1233)
+            Some(converted_1257)
         } else {
             None
         };
         let firehose_arn_value = if let Some(value) = dict_value(params, "firehose_arn")? {
-            let converted_1238 = (|| -> PyResult<_> {
-                let converted_1238: String = value.extract()?;
-                Ok(converted_1238)
+            let converted_1262 = (|| -> PyResult<_> {
+                let converted_1262: String = value.extract()?;
+                Ok(converted_1262)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23394,14 +24280,14 @@ impl CloudWatchClient {
                     "PutMetricStream",
                 )
             })?;
-            Some(converted_1238)
+            Some(converted_1262)
         } else {
             None
         };
         let role_arn_value = if let Some(value) = dict_value(params, "role_arn")? {
-            let converted_1239 = (|| -> PyResult<_> {
-                let converted_1239: String = value.extract()?;
-                Ok(converted_1239)
+            let converted_1263 = (|| -> PyResult<_> {
+                let converted_1263: String = value.extract()?;
+                Ok(converted_1263)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23410,17 +24296,17 @@ impl CloudWatchClient {
                     "PutMetricStream",
                 )
             })?;
-            Some(converted_1239)
+            Some(converted_1263)
         } else {
             None
         };
         let output_format_value = if let Some(value) = dict_value(params, "output_format")? {
-            let converted_1240 = (|| -> PyResult<_> {
-                let enum_value_1241: String = value.extract()?;
-                let converted_1240 = aws_sdk_cloudwatch::types::MetricStreamOutputFormat::from(
-                    enum_value_1241.as_str(),
+            let converted_1264 = (|| -> PyResult<_> {
+                let enum_value_1265: String = value.extract()?;
+                let converted_1264 = aws_sdk_cloudwatch::types::MetricStreamOutputFormat::from(
+                    enum_value_1265.as_str(),
                 );
-                Ok(converted_1240)
+                Ok(converted_1264)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23433,37 +24319,37 @@ impl CloudWatchClient {
                     "PutMetricStream",
                 )
             })?;
-            Some(converted_1240)
+            Some(converted_1264)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_1242 = (|| -> PyResult<_> {
-                let mut converted_1242 =
+            let converted_1266 = (|| -> PyResult<_> {
+                let mut converted_1266 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1246, item_result_1243) in value.try_iter()?.enumerate() {
-                    let item_1244 = item_result_1243.map_err(|error| {
+                for (index_1270, item_result_1267) in value.try_iter()?.enumerate() {
+                    let item_1268 = item_result_1267.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1246),
+                            rboto_core::InputPath::Index(index_1270),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1245 = (|| -> PyResult<_> {
-                        let converted_item_1245 = tag_from_py(&item_1244)?;
-                        Ok(converted_item_1245)
+                    let converted_item_1269 = (|| -> PyResult<_> {
+                        let converted_item_1269 = tag_from_py(&item_1268)?;
+                        Ok(converted_item_1269)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1246),
+                            rboto_core::InputPath::Index(index_1270),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_1242.push(converted_item_1245);
+                    converted_1266.push(converted_item_1269);
                 }
-                Ok(converted_1242)
+                Ok(converted_1266)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23476,39 +24362,39 @@ impl CloudWatchClient {
                     "PutMetricStream",
                 )
             })?;
-            Some(converted_1242)
+            Some(converted_1266)
         } else {
             None
         };
         let statistics_configurations_value =
             if let Some(value) = dict_value(params, "statistics_configurations")? {
-                let converted_1247 = (|| -> PyResult<_> {
-                    let mut converted_1247 =
+                let converted_1271 = (|| -> PyResult<_> {
+                    let mut converted_1271 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_1251, item_result_1248) in value.try_iter()?.enumerate() {
-                        let item_1249 = item_result_1248.map_err(|error| {
+                    for (index_1275, item_result_1272) in value.try_iter()?.enumerate() {
+                        let item_1273 = item_result_1272.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_1251),
+                                rboto_core::InputPath::Index(index_1275),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_1250 = (|| -> PyResult<_> {
-                            let converted_item_1250 =
-                                metric_stream_statistics_configuration_from_py(&item_1249)?;
-                            Ok(converted_item_1250)
+                        let converted_item_1274 = (|| -> PyResult<_> {
+                            let converted_item_1274 =
+                                metric_stream_statistics_configuration_from_py(&item_1273)?;
+                            Ok(converted_item_1274)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_1251),
+                                rboto_core::InputPath::Index(index_1275),
                                 "dict (MetricStreamStatisticsConfiguration)",
                             )
                         })?;
-                        converted_1247.push(converted_item_1250);
+                        converted_1271.push(converted_item_1274);
                     }
-                    Ok(converted_1247)
+                    Ok(converted_1271)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -23521,15 +24407,15 @@ impl CloudWatchClient {
                         "PutMetricStream",
                     )
                 })?;
-                Some(converted_1247)
+                Some(converted_1271)
             } else {
                 None
             };
         let include_linked_accounts_metrics_value =
             if let Some(value) = dict_value(params, "include_linked_accounts_metrics")? {
-                let converted_1252 = (|| -> PyResult<_> {
-                    let converted_1252: bool = value.extract()?;
-                    Ok(converted_1252)
+                let converted_1276 = (|| -> PyResult<_> {
+                    let converted_1276: bool = value.extract()?;
+                    Ok(converted_1276)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -23542,7 +24428,7 @@ impl CloudWatchClient {
                         "PutMetricStream",
                     )
                 })?;
-                Some(converted_1252)
+                Some(converted_1276)
             } else {
                 None
             };
@@ -23586,9 +24472,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alarm_name_value = if let Some(value) = dict_value(params, "alarm_name")? {
-            let converted_1253 = (|| -> PyResult<_> {
-                let converted_1253: String = value.extract()?;
-                Ok(converted_1253)
+            let converted_1277 = (|| -> PyResult<_> {
+                let converted_1277: String = value.extract()?;
+                Ok(converted_1277)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23601,16 +24487,16 @@ impl CloudWatchClient {
                     "SetAlarmState",
                 )
             })?;
-            Some(converted_1253)
+            Some(converted_1277)
         } else {
             None
         };
         let state_value_value = if let Some(value) = dict_value(params, "state_value")? {
-            let converted_1254 = (|| -> PyResult<_> {
-                let enum_value_1255: String = value.extract()?;
-                let converted_1254 =
-                    aws_sdk_cloudwatch::types::StateValue::from(enum_value_1255.as_str());
-                Ok(converted_1254)
+            let converted_1278 = (|| -> PyResult<_> {
+                let enum_value_1279: String = value.extract()?;
+                let converted_1278 =
+                    aws_sdk_cloudwatch::types::StateValue::from(enum_value_1279.as_str());
+                Ok(converted_1278)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23623,14 +24509,14 @@ impl CloudWatchClient {
                     "SetAlarmState",
                 )
             })?;
-            Some(converted_1254)
+            Some(converted_1278)
         } else {
             None
         };
         let state_reason_value = if let Some(value) = dict_value(params, "state_reason")? {
-            let converted_1256 = (|| -> PyResult<_> {
-                let converted_1256: String = value.extract()?;
-                Ok(converted_1256)
+            let converted_1280 = (|| -> PyResult<_> {
+                let converted_1280: String = value.extract()?;
+                Ok(converted_1280)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23643,15 +24529,15 @@ impl CloudWatchClient {
                     "SetAlarmState",
                 )
             })?;
-            Some(converted_1256)
+            Some(converted_1280)
         } else {
             None
         };
         let state_reason_data_value = if let Some(value) = dict_value(params, "state_reason_data")?
         {
-            let converted_1257 = (|| -> PyResult<_> {
-                let converted_1257: String = value.extract()?;
-                Ok(converted_1257)
+            let converted_1281 = (|| -> PyResult<_> {
+                let converted_1281: String = value.extract()?;
+                Ok(converted_1281)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23664,7 +24550,7 @@ impl CloudWatchClient {
                     "SetAlarmState",
                 )
             })?;
-            Some(converted_1257)
+            Some(converted_1281)
         } else {
             None
         };
@@ -23707,32 +24593,32 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let names_value = if let Some(value) = dict_value(params, "names")? {
-            let converted_1258 = (|| -> PyResult<_> {
-                let mut converted_1258 =
+            let converted_1282 = (|| -> PyResult<_> {
+                let mut converted_1282 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1262, item_result_1259) in value.try_iter()?.enumerate() {
-                    let item_1260 = item_result_1259.map_err(|error| {
+                for (index_1286, item_result_1283) in value.try_iter()?.enumerate() {
+                    let item_1284 = item_result_1283.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1262),
+                            rboto_core::InputPath::Index(index_1286),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1261 = (|| -> PyResult<_> {
-                        let converted_item_1261: String = item_1260.extract()?;
-                        Ok(converted_item_1261)
+                    let converted_item_1285 = (|| -> PyResult<_> {
+                        let converted_item_1285: String = item_1284.extract()?;
+                        Ok(converted_item_1285)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1262),
+                            rboto_core::InputPath::Index(index_1286),
                             "str",
                         )
                     })?;
-                    converted_1258.push(converted_item_1261);
+                    converted_1282.push(converted_item_1285);
                 }
-                Ok(converted_1258)
+                Ok(converted_1282)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23745,7 +24631,7 @@ impl CloudWatchClient {
                     "StartMetricStreams",
                 )
             })?;
-            Some(converted_1258)
+            Some(converted_1282)
         } else {
             None
         };
@@ -23784,33 +24670,33 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let include_filters_value = if let Some(value) = dict_value(params, "include_filters")? {
-            let converted_1263 = (|| -> PyResult<_> {
-                let mut converted_1263 =
+            let converted_1287 = (|| -> PyResult<_> {
+                let mut converted_1287 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1267, item_result_1264) in value.try_iter()?.enumerate() {
-                    let item_1265 = item_result_1264.map_err(|error| {
+                for (index_1291, item_result_1288) in value.try_iter()?.enumerate() {
+                    let item_1289 = item_result_1288.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1267),
+                            rboto_core::InputPath::Index(index_1291),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1266 = (|| -> PyResult<_> {
-                        let converted_item_1266 =
-                            o_tel_enrichment_metric_selector_from_py(&item_1265)?;
-                        Ok(converted_item_1266)
+                    let converted_item_1290 = (|| -> PyResult<_> {
+                        let converted_item_1290 =
+                            o_tel_enrichment_metric_selector_from_py(&item_1289)?;
+                        Ok(converted_item_1290)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1267),
+                            rboto_core::InputPath::Index(index_1291),
                             "dict (OTelEnrichmentMetricSelector)",
                         )
                     })?;
-                    converted_1263.push(converted_item_1266);
+                    converted_1287.push(converted_item_1290);
                 }
-                Ok(converted_1263)
+                Ok(converted_1287)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23823,38 +24709,38 @@ impl CloudWatchClient {
                     "StartOTelEnrichment",
                 )
             })?;
-            Some(converted_1263)
+            Some(converted_1287)
         } else {
             None
         };
         let exclude_filters_value = if let Some(value) = dict_value(params, "exclude_filters")? {
-            let converted_1268 = (|| -> PyResult<_> {
-                let mut converted_1268 =
+            let converted_1292 = (|| -> PyResult<_> {
+                let mut converted_1292 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1272, item_result_1269) in value.try_iter()?.enumerate() {
-                    let item_1270 = item_result_1269.map_err(|error| {
+                for (index_1296, item_result_1293) in value.try_iter()?.enumerate() {
+                    let item_1294 = item_result_1293.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1272),
+                            rboto_core::InputPath::Index(index_1296),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1271 = (|| -> PyResult<_> {
-                        let converted_item_1271 =
-                            o_tel_enrichment_metric_selector_from_py(&item_1270)?;
-                        Ok(converted_item_1271)
+                    let converted_item_1295 = (|| -> PyResult<_> {
+                        let converted_item_1295 =
+                            o_tel_enrichment_metric_selector_from_py(&item_1294)?;
+                        Ok(converted_item_1295)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1272),
+                            rboto_core::InputPath::Index(index_1296),
                             "dict (OTelEnrichmentMetricSelector)",
                         )
                     })?;
-                    converted_1268.push(converted_item_1271);
+                    converted_1292.push(converted_item_1295);
                 }
-                Ok(converted_1268)
+                Ok(converted_1292)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23867,7 +24753,7 @@ impl CloudWatchClient {
                     "StartOTelEnrichment",
                 )
             })?;
-            Some(converted_1268)
+            Some(converted_1292)
         } else {
             None
         };
@@ -23911,32 +24797,32 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let names_value = if let Some(value) = dict_value(params, "names")? {
-            let converted_1273 = (|| -> PyResult<_> {
-                let mut converted_1273 =
+            let converted_1297 = (|| -> PyResult<_> {
+                let mut converted_1297 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1277, item_result_1274) in value.try_iter()?.enumerate() {
-                    let item_1275 = item_result_1274.map_err(|error| {
+                for (index_1301, item_result_1298) in value.try_iter()?.enumerate() {
+                    let item_1299 = item_result_1298.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1277),
+                            rboto_core::InputPath::Index(index_1301),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1276 = (|| -> PyResult<_> {
-                        let converted_item_1276: String = item_1275.extract()?;
-                        Ok(converted_item_1276)
+                    let converted_item_1300 = (|| -> PyResult<_> {
+                        let converted_item_1300: String = item_1299.extract()?;
+                        Ok(converted_item_1300)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1277),
+                            rboto_core::InputPath::Index(index_1301),
                             "str",
                         )
                     })?;
-                    converted_1273.push(converted_item_1276);
+                    converted_1297.push(converted_item_1300);
                 }
-                Ok(converted_1273)
+                Ok(converted_1297)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23949,7 +24835,7 @@ impl CloudWatchClient {
                     "StopMetricStreams",
                 )
             })?;
-            Some(converted_1273)
+            Some(converted_1297)
         } else {
             None
         };
@@ -24022,9 +24908,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_1278 = (|| -> PyResult<_> {
-                let converted_1278: String = value.extract()?;
-                Ok(converted_1278)
+            let converted_1302 = (|| -> PyResult<_> {
+                let converted_1302: String = value.extract()?;
+                Ok(converted_1302)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24037,37 +24923,37 @@ impl CloudWatchClient {
                     "TagResource",
                 )
             })?;
-            Some(converted_1278)
+            Some(converted_1302)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_1279 = (|| -> PyResult<_> {
-                let mut converted_1279 =
+            let converted_1303 = (|| -> PyResult<_> {
+                let mut converted_1303 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1283, item_result_1280) in value.try_iter()?.enumerate() {
-                    let item_1281 = item_result_1280.map_err(|error| {
+                for (index_1307, item_result_1304) in value.try_iter()?.enumerate() {
+                    let item_1305 = item_result_1304.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1283),
+                            rboto_core::InputPath::Index(index_1307),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1282 = (|| -> PyResult<_> {
-                        let converted_item_1282 = tag_from_py(&item_1281)?;
-                        Ok(converted_item_1282)
+                    let converted_item_1306 = (|| -> PyResult<_> {
+                        let converted_item_1306 = tag_from_py(&item_1305)?;
+                        Ok(converted_item_1306)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1283),
+                            rboto_core::InputPath::Index(index_1307),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_1279.push(converted_item_1282);
+                    converted_1303.push(converted_item_1306);
                 }
-                Ok(converted_1279)
+                Ok(converted_1303)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24080,7 +24966,7 @@ impl CloudWatchClient {
                     "TagResource",
                 )
             })?;
-            Some(converted_1279)
+            Some(converted_1303)
         } else {
             None
         };
@@ -24117,9 +25003,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_1284 = (|| -> PyResult<_> {
-                let converted_1284: String = value.extract()?;
-                Ok(converted_1284)
+            let converted_1308 = (|| -> PyResult<_> {
+                let converted_1308: String = value.extract()?;
+                Ok(converted_1308)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24132,37 +25018,37 @@ impl CloudWatchClient {
                     "UntagResource",
                 )
             })?;
-            Some(converted_1284)
+            Some(converted_1308)
         } else {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let converted_1285 = (|| -> PyResult<_> {
-                let mut converted_1285 =
+            let converted_1309 = (|| -> PyResult<_> {
+                let mut converted_1309 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1289, item_result_1286) in value.try_iter()?.enumerate() {
-                    let item_1287 = item_result_1286.map_err(|error| {
+                for (index_1313, item_result_1310) in value.try_iter()?.enumerate() {
+                    let item_1311 = item_result_1310.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1289),
+                            rboto_core::InputPath::Index(index_1313),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1288 = (|| -> PyResult<_> {
-                        let converted_item_1288: String = item_1287.extract()?;
-                        Ok(converted_item_1288)
+                    let converted_item_1312 = (|| -> PyResult<_> {
+                        let converted_item_1312: String = item_1311.extract()?;
+                        Ok(converted_item_1312)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1289),
+                            rboto_core::InputPath::Index(index_1313),
                             "str",
                         )
                     })?;
-                    converted_1285.push(converted_item_1288);
+                    converted_1309.push(converted_item_1312);
                 }
-                Ok(converted_1285)
+                Ok(converted_1309)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24175,7 +25061,7 @@ impl CloudWatchClient {
                     "UntagResource",
                 )
             })?;
-            Some(converted_1285)
+            Some(converted_1309)
         } else {
             None
         };
@@ -24212,33 +25098,33 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let include_filters_value = if let Some(value) = dict_value(params, "include_filters")? {
-            let converted_1290 = (|| -> PyResult<_> {
-                let mut converted_1290 =
+            let converted_1314 = (|| -> PyResult<_> {
+                let mut converted_1314 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1294, item_result_1291) in value.try_iter()?.enumerate() {
-                    let item_1292 = item_result_1291.map_err(|error| {
+                for (index_1318, item_result_1315) in value.try_iter()?.enumerate() {
+                    let item_1316 = item_result_1315.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1294),
+                            rboto_core::InputPath::Index(index_1318),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1293 = (|| -> PyResult<_> {
-                        let converted_item_1293 =
-                            o_tel_enrichment_metric_selector_from_py(&item_1292)?;
-                        Ok(converted_item_1293)
+                    let converted_item_1317 = (|| -> PyResult<_> {
+                        let converted_item_1317 =
+                            o_tel_enrichment_metric_selector_from_py(&item_1316)?;
+                        Ok(converted_item_1317)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1294),
+                            rboto_core::InputPath::Index(index_1318),
                             "dict (OTelEnrichmentMetricSelector)",
                         )
                     })?;
-                    converted_1290.push(converted_item_1293);
+                    converted_1314.push(converted_item_1317);
                 }
-                Ok(converted_1290)
+                Ok(converted_1314)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24251,38 +25137,38 @@ impl CloudWatchClient {
                     "UpdateOTelEnrichment",
                 )
             })?;
-            Some(converted_1290)
+            Some(converted_1314)
         } else {
             None
         };
         let exclude_filters_value = if let Some(value) = dict_value(params, "exclude_filters")? {
-            let converted_1295 = (|| -> PyResult<_> {
-                let mut converted_1295 =
+            let converted_1319 = (|| -> PyResult<_> {
+                let mut converted_1319 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1299, item_result_1296) in value.try_iter()?.enumerate() {
-                    let item_1297 = item_result_1296.map_err(|error| {
+                for (index_1323, item_result_1320) in value.try_iter()?.enumerate() {
+                    let item_1321 = item_result_1320.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1299),
+                            rboto_core::InputPath::Index(index_1323),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1298 = (|| -> PyResult<_> {
-                        let converted_item_1298 =
-                            o_tel_enrichment_metric_selector_from_py(&item_1297)?;
-                        Ok(converted_item_1298)
+                    let converted_item_1322 = (|| -> PyResult<_> {
+                        let converted_item_1322 =
+                            o_tel_enrichment_metric_selector_from_py(&item_1321)?;
+                        Ok(converted_item_1322)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1299),
+                            rboto_core::InputPath::Index(index_1323),
                             "dict (OTelEnrichmentMetricSelector)",
                         )
                     })?;
-                    converted_1295.push(converted_item_1298);
+                    converted_1319.push(converted_item_1322);
                 }
-                Ok(converted_1295)
+                Ok(converted_1319)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24295,7 +25181,7 @@ impl CloudWatchClient {
                     "UpdateOTelEnrichment",
                 )
             })?;
-            Some(converted_1295)
+            Some(converted_1319)
         } else {
             None
         };
@@ -24339,9 +25225,9 @@ impl CloudWatchClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_1300 = (|| -> PyResult<_> {
-                let converted_1300: String = value.extract()?;
-                Ok(converted_1300)
+            let converted_1324 = (|| -> PyResult<_> {
+                let converted_1324: String = value.extract()?;
+                Ok(converted_1324)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24354,38 +25240,38 @@ impl CloudWatchClient {
                     "UpdateResourceMetricsConfiguration",
                 )
             })?;
-            Some(converted_1300)
+            Some(converted_1324)
         } else {
             None
         };
         let metric_selections_value = if let Some(value) = dict_value(params, "metric_selections")?
         {
-            let converted_1301 = (|| -> PyResult<_> {
-                let mut converted_1301 =
+            let converted_1325 = (|| -> PyResult<_> {
+                let mut converted_1325 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1305, item_result_1302) in value.try_iter()?.enumerate() {
-                    let item_1303 = item_result_1302.map_err(|error| {
+                for (index_1329, item_result_1326) in value.try_iter()?.enumerate() {
+                    let item_1327 = item_result_1326.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1305),
+                            rboto_core::InputPath::Index(index_1329),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1304 = (|| -> PyResult<_> {
-                        let converted_item_1304 = resource_metric_selection_from_py(&item_1303)?;
-                        Ok(converted_item_1304)
+                    let converted_item_1328 = (|| -> PyResult<_> {
+                        let converted_item_1328 = resource_metric_selection_from_py(&item_1327)?;
+                        Ok(converted_item_1328)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1305),
+                            rboto_core::InputPath::Index(index_1329),
                             "dict (ResourceMetricSelection)",
                         )
                     })?;
-                    converted_1301.push(converted_item_1304);
+                    converted_1325.push(converted_item_1328);
                 }
-                Ok(converted_1301)
+                Ok(converted_1325)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24398,7 +25284,7 @@ impl CloudWatchClient {
                     "UpdateResourceMetricsConfiguration",
                 )
             })?;
-            Some(converted_1301)
+            Some(converted_1325)
         } else {
             None
         };

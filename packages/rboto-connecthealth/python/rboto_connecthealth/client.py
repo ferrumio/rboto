@@ -12,12 +12,18 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import ConnectHealthClient as NativeClient, ActivateSubscriptionOutput, CreateDomainOutput, CreateSubscriptionOutput, DeactivateSubscriptionOutput, DeleteDomainOutput, GetDomainOutput, GetMedicalScribeListeningSessionOutput, GetPatientInsightsJobOutput, GetSubscriptionOutput, ListDomainsOutput, ListSubscriptionsOutput, ListTagsForResourceOutput, StartPatientInsightsJobOutput
+from ._native import ConnectHealthClient as NativeClient, ActivateSubscriptionOutput, CreateDatasetOutput, CreateDomainOutput, CreateSubscriptionOutput, DeactivateSubscriptionOutput, DeleteDatasetOutput, DeleteDomainOutput, GetDatasetOutput, GetDomainOutput, GetMedicalCodingJobOutput, GetMedicalScribeListeningSessionOutput, GetPatientInsightsJobOutput, GetSubscriptionOutput, ListDatasetsOutput, ListDomainsOutput, ListSubscriptionsOutput, ListTagsForResourceOutput, StartMedicalCodingJobOutput, StartPatientInsightsJobOutput, SubmitFeedbackOutput
 from .types import (
     CreateWebAppConfiguration,
+    DatasetConfig,
+    DatasetType,
     DomainStatus,
+    FeedbackArtifactType,
     InputDataConfig,
     InsightsContext,
+    MedicalCodesEncounterContext,
+    MedicalCodesPatientContext,
+    MedicalCodingOutputDataConfig,
     MedicalScribeInputStream,
     MedicalScribeLanguageCode,
     MedicalScribeMediaEncoding,
@@ -115,6 +121,38 @@ class ConnectHealthClient:
         return _response
 
 
+    async def create_dataset(
+        self,
+        *,
+        domain_id: str,
+        name: str,
+        config: DatasetConfig,
+        client_token: str | None = None,
+    ) -> CreateDatasetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/create_dataset/)."""
+        params: dict[str, object] = {
+            "domain_id": domain_id,
+            "name": name,
+            "config": config,
+        }
+        if client_token is not None:
+            params["client_token"] = client_token
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.create_dataset, params, _interceptors,
+                "connecthealth", "CreateDataset", self._region,
+                CreateDatasetOutput,
+                ("domain_id", "name", "config", "client_token", ),
+                ("domain_id", "name", "config", ),
+                service_name='ConnectHealth',
+            )
+            return _response
+        _response = await self._native.create_dataset(params)
+        return _response
+
+
     async def create_domain(
         self,
         *,
@@ -201,6 +239,33 @@ class ConnectHealthClient:
         return _response
 
 
+    async def delete_dataset(
+        self,
+        *,
+        domain_id: str,
+        dataset_id: str,
+    ) -> DeleteDatasetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/delete_dataset/)."""
+        params: dict[str, object] = {
+            "domain_id": domain_id,
+            "dataset_id": dataset_id,
+        }
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.delete_dataset, params, _interceptors,
+                "connecthealth", "DeleteDataset", self._region,
+                DeleteDatasetOutput,
+                ("domain_id", "dataset_id", ),
+                ("domain_id", "dataset_id", ),
+                service_name='ConnectHealth',
+            )
+            return _response
+        _response = await self._native.delete_dataset(params)
+        return _response
+
+
     async def delete_domain(
         self,
         *,
@@ -226,6 +291,33 @@ class ConnectHealthClient:
         return _response
 
 
+    async def get_dataset(
+        self,
+        *,
+        domain_id: str,
+        dataset_id: str,
+    ) -> GetDatasetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/get_dataset/)."""
+        params: dict[str, object] = {
+            "domain_id": domain_id,
+            "dataset_id": dataset_id,
+        }
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_dataset, params, _interceptors,
+                "connecthealth", "GetDataset", self._region,
+                GetDatasetOutput,
+                ("domain_id", "dataset_id", ),
+                ("domain_id", "dataset_id", ),
+                service_name='ConnectHealth',
+            )
+            return _response
+        _response = await self._native.get_dataset(params)
+        return _response
+
+
     async def get_domain(
         self,
         *,
@@ -248,6 +340,33 @@ class ConnectHealthClient:
             )
             return _response
         _response = await self._native.get_domain(params)
+        return _response
+
+
+    async def get_medical_coding_job(
+        self,
+        *,
+        domain_id: str,
+        job_id: str,
+    ) -> GetMedicalCodingJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/get_medical_coding_job/)."""
+        params: dict[str, object] = {
+            "domain_id": domain_id,
+            "job_id": job_id,
+        }
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_medical_coding_job, params, _interceptors,
+                "connecthealth", "GetMedicalCodingJob", self._region,
+                GetMedicalCodingJobOutput,
+                ("domain_id", "job_id", ),
+                ("domain_id", "job_id", ),
+                service_name='ConnectHealth',
+            )
+            return _response
+        _response = await self._native.get_medical_coding_job(params)
         return _response
 
 
@@ -331,6 +450,40 @@ class ConnectHealthClient:
             )
             return _response
         _response = await self._native.get_subscription(params)
+        return _response
+
+
+    async def list_datasets(
+        self,
+        *,
+        domain_id: str,
+        type: DatasetType | None = None,
+        next_token: str | None = None,
+        max_results: int | None = None,
+    ) -> ListDatasetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/list_datasets/)."""
+        params: dict[str, object] = {
+            "domain_id": domain_id,
+        }
+        if type is not None:
+            params["type"] = type
+        if next_token is not None:
+            params["next_token"] = next_token
+        if max_results is not None:
+            params["max_results"] = max_results
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_datasets, params, _interceptors,
+                "connecthealth", "ListDatasets", self._region,
+                ListDatasetsOutput,
+                ("domain_id", "type", "next_token", "max_results", ),
+                ("domain_id", ),
+                service_name='ConnectHealth',
+            )
+            return _response
+        _response = await self._native.list_datasets(params)
         return _response
 
 
@@ -422,6 +575,47 @@ class ConnectHealthClient:
         return _response
 
 
+    async def start_medical_coding_job(
+        self,
+        *,
+        domain_id: str,
+        text: str,
+        output_data_config: MedicalCodingOutputDataConfig,
+        patient_context: MedicalCodesPatientContext | None = None,
+        encounter_context: MedicalCodesEncounterContext | None = None,
+        dataset_id: str | None = None,
+        client_token: str | None = None,
+    ) -> StartMedicalCodingJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/start_medical_coding_job/)."""
+        params: dict[str, object] = {
+            "domain_id": domain_id,
+            "text": text,
+            "output_data_config": output_data_config,
+        }
+        if patient_context is not None:
+            params["patient_context"] = patient_context
+        if encounter_context is not None:
+            params["encounter_context"] = encounter_context
+        if dataset_id is not None:
+            params["dataset_id"] = dataset_id
+        if client_token is not None:
+            params["client_token"] = client_token
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.start_medical_coding_job, params, _interceptors,
+                "connecthealth", "StartMedicalCodingJob", self._region,
+                StartMedicalCodingJobOutput,
+                ("domain_id", "text", "output_data_config", "patient_context", "encounter_context", "dataset_id", "client_token", ),
+                ("domain_id", "text", "output_data_config", ),
+                service_name='ConnectHealth',
+            )
+            return _response
+        _response = await self._native.start_medical_coding_job(params)
+        return _response
+
+
     async def start_medical_scribe_listening_session(
         self,
         *,
@@ -497,6 +691,49 @@ class ConnectHealthClient:
             )
             return _response
         _response = await self._native.start_patient_insights_job(params)
+        return _response
+
+
+    async def submit_feedback(
+        self,
+        *,
+        domain_id: str,
+        artifact_source_id: str,
+        artifact_type: FeedbackArtifactType,
+        signed_artifact_s3_uri: str,
+        subscription_id: str | None = None,
+        generated_artifact_s3_uri: str | None = None,
+        comments: str | None = None,
+        client_token: str | None = None,
+    ) -> SubmitFeedbackOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/submit_feedback/)."""
+        params: dict[str, object] = {
+            "domain_id": domain_id,
+            "artifact_source_id": artifact_source_id,
+            "artifact_type": artifact_type,
+            "signed_artifact_s3_uri": signed_artifact_s3_uri,
+        }
+        if subscription_id is not None:
+            params["subscription_id"] = subscription_id
+        if generated_artifact_s3_uri is not None:
+            params["generated_artifact_s3_uri"] = generated_artifact_s3_uri
+        if comments is not None:
+            params["comments"] = comments
+        if client_token is not None:
+            params["client_token"] = client_token
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.submit_feedback, params, _interceptors,
+                "connecthealth", "SubmitFeedback", self._region,
+                SubmitFeedbackOutput,
+                ("domain_id", "artifact_source_id", "artifact_type", "signed_artifact_s3_uri", "subscription_id", "generated_artifact_s3_uri", "comments", "client_token", ),
+                ("domain_id", "artifact_source_id", "artifact_type", "signed_artifact_s3_uri", ),
+                service_name='ConnectHealth',
+            )
+            return _response
+        _response = await self._native.submit_feedback(params)
         return _response
 
 

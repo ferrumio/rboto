@@ -530,6 +530,8 @@ TargetOutput: TypeAlias = _native.Target
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TargetOutput/)."""
 TargetLocationOutput: TypeAlias = _native.TargetLocation
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TargetLocationOutput/)."""
+TargetsSummaryOutput: TypeAlias = _native.TargetsSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TargetsSummaryOutput/)."""
 TerminateSessionOutput: TypeAlias = _native.TerminateSessionOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TerminateSessionOutput/)."""
 UnlabelParameterVersionOutput: TypeAlias = _native.UnlabelParameterVersionOutput
@@ -638,10 +640,14 @@ CalendarState: TypeAlias = Literal['OPEN', 'CLOSED']
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CalendarState/)."""
 CalendarStateOutput: TypeAlias = CalendarState | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CalendarStateOutput/)."""
-CloudConnectorFilterKey: TypeAlias = Literal['SubscriptionId', 'TenantId']
+CloudConnectorFilterKey: TypeAlias = Literal['SubscriptionId', 'TenantId', 'ProjectId', 'OrganizationId']
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorFilterKey/)."""
 CloudConnectorFilterKeyOutput: TypeAlias = CloudConnectorFilterKey | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorFilterKeyOutput/)."""
+CloudProvider: TypeAlias = Literal['AWS', 'Azure', 'GCP']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudProvider/)."""
+CloudProviderOutput: TypeAlias = CloudProvider | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudProviderOutput/)."""
 CommandFilterKey: TypeAlias = Literal['InvokedAfter', 'InvokedBefore', 'Status', 'ExecutionStage', 'DocumentName']
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandFilterKey/)."""
 CommandFilterKeyOutput: TypeAlias = CommandFilterKey | UnknownEnumValue
@@ -930,6 +936,10 @@ PlatformType: TypeAlias = Literal['Windows', 'Linux', 'MacOS']
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PlatformType/)."""
 PlatformTypeOutput: TypeAlias = PlatformType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PlatformTypeOutput/)."""
+Provider: TypeAlias = Literal['Azure', 'GCP']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Provider/)."""
+ProviderOutput: TypeAlias = Provider | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ProviderOutput/)."""
 RebootOption: TypeAlias = Literal['RebootIfNeeded', 'NoReboot']
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RebootOption/)."""
 RebootOptionOutput: TypeAlias = RebootOption | UnknownEnumValue
@@ -966,7 +976,7 @@ SignalType: TypeAlias = Literal['Approve', 'Reject', 'StartStep', 'StopStep', 'R
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SignalType/)."""
 SignalTypeOutput: TypeAlias = SignalType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SignalTypeOutput/)."""
-SourceType: TypeAlias = Literal['AWS::EC2::Instance', 'AWS::IoT::Thing', 'AWS::SSM::ManagedInstance', 'Microsoft.Compute/virtualMachines']
+SourceType: TypeAlias = Literal['AWS::EC2::Instance', 'AWS::IoT::Thing', 'AWS::SSM::ManagedInstance', 'Microsoft.Compute/virtualMachines', 'compute.googleapis.com/Instance']
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SourceType/)."""
 SourceTypeOutput: TypeAlias = SourceType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SourceTypeOutput/)."""
@@ -978,11 +988,11 @@ StopType: TypeAlias = Literal['Complete', 'Cancel']
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StopType/)."""
 StopTypeOutput: TypeAlias = StopType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StopTypeOutput/)."""
-ValidationFindingCode: TypeAlias = Literal['TargetInaccessible', 'TargetUnusable', 'TargetStateWarning', 'AwsRoleAssumptionFailed', 'WebIdentityTokenFailed', 'OutboundWebIdentityFederationDisabled', 'ProviderCredentialCreationFailed', 'TenantSummary', 'SubscriptionAccessible']
+ValidationFindingCode: TypeAlias = Literal['TargetInaccessible', 'TargetUnusable', 'TargetMissingPermissions', 'TargetApiDisabled', 'TargetStateWarning', 'AwsRoleAssumptionFailed', 'WebIdentityTokenFailed', 'OutboundWebIdentityFederationDisabled', 'ProviderCredentialCreationFailed', 'TenantSummary', 'SubscriptionAccessible']
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingCode/)."""
 ValidationFindingCodeOutput: TypeAlias = ValidationFindingCode | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingCodeOutput/)."""
-ValidationFindingScopeType: TypeAlias = Literal['azure:tenant', 'azure:subscription']
+ValidationFindingScopeType: TypeAlias = Literal['azure:tenant', 'azure:subscription', 'gcp:organization', 'gcp:project']
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingScopeType/)."""
 ValidationFindingScopeTypeOutput: TypeAlias = ValidationFindingScopeType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingScopeTypeOutput/)."""
@@ -1300,6 +1310,7 @@ AutomationExecution = TypedDict(
     "association_id": NotRequired["str"],
     "change_request_name": NotRequired["str"],
     "variables": NotRequired["dict[str, Sequence[str]]"],
+    "targets_summary": NotRequired["TargetsSummary"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecution/)."""
@@ -1454,14 +1465,18 @@ CancelMaintenanceWindowExecutionRequest = TypedDict(
 
 CloudConnectorConfigurationAzureConfiguration = TypedDict("CloudConnectorConfigurationAzureConfiguration", {"azure_configuration": Required["AzureConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationAzureConfiguration/)."""
-CloudConnectorConfiguration: TypeAlias = CloudConnectorConfigurationAzureConfiguration
+CloudConnectorConfigurationGcpConfiguration = TypedDict("CloudConnectorConfigurationGcpConfiguration", {"gcp_configuration": Required["GcpConfiguration"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationGcpConfiguration/)."""
+CloudConnectorConfiguration: TypeAlias = CloudConnectorConfigurationAzureConfiguration | CloudConnectorConfigurationGcpConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfiguration/)."""
 
 CloudConnectorConfigurationOutputAzureConfiguration = TypedDict("CloudConnectorConfigurationOutputAzureConfiguration", {"azure_configuration": Required["AzureConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationOutputAzureConfiguration/)."""
+CloudConnectorConfigurationOutputGcpConfiguration = TypedDict("CloudConnectorConfigurationOutputGcpConfiguration", {"gcp_configuration": Required["GcpConfigurationOutput"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationOutputGcpConfiguration/)."""
 CloudConnectorConfigurationOutputUnknown = TypedDict("CloudConnectorConfigurationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationOutputUnknown/)."""
-CloudConnectorConfigurationOutput: TypeAlias = CloudConnectorConfigurationOutputAzureConfiguration | CloudConnectorConfigurationOutputUnknown
+CloudConnectorConfigurationOutput: TypeAlias = CloudConnectorConfigurationOutputAzureConfiguration | CloudConnectorConfigurationOutputGcpConfiguration | CloudConnectorConfigurationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationOutput/)."""
 
 CloudConnectorFilter = TypedDict(
@@ -1482,6 +1497,8 @@ CloudConnectorSummary = TypedDict(
     "role_arn": NotRequired["str"],
     "created_at": NotRequired["str"],
     "updated_at": NotRequired["str"],
+    "provider": NotRequired["Provider"],
+    "config_connector_arn": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorSummary/)."""
@@ -1744,7 +1761,7 @@ CreateCloudConnectorRequest = TypedDict(
     "role_arn": Required["str"],
     "description": NotRequired["str"],
     "configuration": Required["CloudConnectorConfiguration"],
-    "config_connector_arn": Required["str"],
+    "config_connector_arn": NotRequired["str"],
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
@@ -1763,6 +1780,7 @@ CreateDocumentRequest = TypedDict(
     "document_format": NotRequired["DocumentFormat"],
     "target_type": NotRequired["str"],
     "tags": NotRequired["Sequence[Tag]"],
+    "cloud_providers": NotRequired["Sequence[CloudProvider]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateDocumentRequest/)."""
@@ -2436,6 +2454,7 @@ DocumentDescription = TypedDict(
     "review_status": NotRequired["ReviewStatus"],
     "category": NotRequired["Sequence[str]"],
     "category_enum": NotRequired["Sequence[str]"],
+    "cloud_providers": NotRequired["Sequence[CloudProvider]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentDescription/)."""
@@ -2467,6 +2486,7 @@ DocumentIdentifier = TypedDict(
     "requires": NotRequired["Sequence[DocumentRequires]"],
     "review_status": NotRequired["ReviewStatus"],
     "author": NotRequired["str"],
+    "cloud_providers": NotRequired["Sequence[CloudProvider]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentIdentifier/)."""
@@ -2553,6 +2573,7 @@ DocumentVersionInfo = TypedDict(
     "status": NotRequired["DocumentStatus"],
     "status_information": NotRequired["str"],
     "review_status": NotRequired["ReviewStatus"],
+    "cloud_providers": NotRequired["Sequence[CloudProvider]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentVersionInfo/)."""
@@ -2597,6 +2618,58 @@ FailureDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/FailureDetails/)."""
+
+GcpConfiguration = TypedDict(
+    "GcpConfiguration",
+    {
+    "organization_id": NotRequired["str"],
+    "workload_identity_pool_provider": Required["str"],
+    "service_account_email": Required["str"],
+    "targets": NotRequired["GcpConfigurationTargets"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GcpConfiguration/)."""
+
+GcpConfigurationOutput = TypedDict(
+    "GcpConfigurationOutput",
+    {
+    "organization_id": Required["str | None"],
+    "workload_identity_pool_provider": Required["str"],
+    "service_account_email": Required["str"],
+    "targets": Required["GcpConfigurationTargetsOutput | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GcpConfigurationOutput/)."""
+
+GcpConfigurationTargetsProjects = TypedDict("GcpConfigurationTargetsProjects", {"projects": Required["Sequence[GcpProject]"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GcpConfigurationTargetsProjects/)."""
+GcpConfigurationTargets: TypeAlias = GcpConfigurationTargetsProjects
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GcpConfigurationTargets/)."""
+
+GcpConfigurationTargetsOutputProjects = TypedDict("GcpConfigurationTargetsOutputProjects", {"projects": Required["list[GcpProjectOutput]"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GcpConfigurationTargetsOutputProjects/)."""
+GcpConfigurationTargetsOutputUnknown = TypedDict("GcpConfigurationTargetsOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GcpConfigurationTargetsOutputUnknown/)."""
+GcpConfigurationTargetsOutput: TypeAlias = GcpConfigurationTargetsOutputProjects | GcpConfigurationTargetsOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GcpConfigurationTargetsOutput/)."""
+
+GcpProject = TypedDict(
+    "GcpProject",
+    {
+    "project_id": Required["str"],
+    "project_display_name": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GcpProject/)."""
+
+GcpProjectOutput = TypedDict(
+    "GcpProjectOutput",
+    {
+    "project_id": Required["str"],
+    "project_display_name": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GcpProjectOutput/)."""
 
 GetAccessTokenRequest = TypedDict(
     "GetAccessTokenRequest",
@@ -4843,6 +4916,18 @@ TargetPreview = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TargetPreview/)."""
 
+TargetsSummary = TypedDict(
+    "TargetsSummary",
+    {
+    "total_count": NotRequired["int"],
+    "started_count": NotRequired["int"],
+    "completed_count": NotRequired["int"],
+    "successful_count": NotRequired["int"],
+    "failed_count": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TargetsSummary/)."""
+
 TerminateSessionRequest = TypedDict(
     "TerminateSessionRequest",
     {
@@ -4954,6 +5039,7 @@ UpdateDocumentRequest = TypedDict(
     "document_version": NotRequired["str"],
     "document_format": NotRequired["DocumentFormat"],
     "target_type": NotRequired["str"],
+    "cloud_providers": NotRequired["Sequence[CloudProvider]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentRequest/)."""

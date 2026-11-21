@@ -50,6 +50,14 @@ class ServiceQuotaExceededError(BedrockAgentCoreError):
     """Modeled bedrock-agentcore error: ServiceQuotaExceededException."""
 
 
+class ServiceUnavailableError(BedrockAgentCoreError):
+    """Modeled bedrock-agentcore error: ServiceUnavailableException."""
+
+    @property
+    def details(self) -> _types.ServiceUnavailableErrorDetails:
+        return cast(_types.ServiceUnavailableErrorDetails, self._details)
+
+
 class SubscriptionRequiredError(BedrockAgentCoreError):
     """Modeled bedrock-agentcore error: SubscriptionRequiredException."""
 

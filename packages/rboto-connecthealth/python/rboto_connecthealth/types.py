@@ -20,12 +20,18 @@ ClinicalNoteGenerationResultOutput: TypeAlias = _native.ClinicalNoteGenerationRe
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ClinicalNoteGenerationResultOutput/)."""
 ClinicalNoteGenerationSettingsResponseOutput: TypeAlias = _native.ClinicalNoteGenerationSettingsResponse
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ClinicalNoteGenerationSettingsResponseOutput/)."""
+CreateDatasetOutput: TypeAlias = _native.CreateDatasetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/CreateDatasetOutput/)."""
 CreateDomainOutput: TypeAlias = _native.CreateDomainOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/CreateDomainOutput/)."""
 CreateSubscriptionOutput: TypeAlias = _native.CreateSubscriptionOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/CreateSubscriptionOutput/)."""
+DatasetSummaryOutput: TypeAlias = _native.DatasetSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetSummaryOutput/)."""
 DeactivateSubscriptionOutput: TypeAlias = _native.DeactivateSubscriptionOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DeactivateSubscriptionOutput/)."""
+DeleteDatasetOutput: TypeAlias = _native.DeleteDatasetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DeleteDatasetOutput/)."""
 DeleteDomainOutput: TypeAlias = _native.DeleteDomainOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DeleteDomainOutput/)."""
 DomainSummaryOutput: TypeAlias = _native.DomainSummary
@@ -34,8 +40,12 @@ EncryptionContextOutput: TypeAlias = _native.EncryptionContext
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/EncryptionContextOutput/)."""
 FhirServer: TypeAlias = _native.FhirServer
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/FhirServer-618cdbd19e7a/)."""
+GetDatasetOutput: TypeAlias = _native.GetDatasetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetDatasetOutput/)."""
 GetDomainOutput: TypeAlias = _native.GetDomainOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetDomainOutput/)."""
+GetMedicalCodingJobOutput: TypeAlias = _native.GetMedicalCodingJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetMedicalCodingJobOutput/)."""
 GetMedicalScribeListeningSessionOutput: TypeAlias = _native.GetMedicalScribeListeningSessionOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetMedicalScribeListeningSessionOutput/)."""
 GetPatientInsightsJobOutput: TypeAlias = _native.GetPatientInsightsJobOutput
@@ -48,12 +58,26 @@ InsightsContextOutput: TypeAlias = _native.InsightsContext
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/InsightsContextOutput/)."""
 InsightsValueOutput: TypeAlias = _native.InsightsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/InsightsValueOutput/)."""
+ListDatasetsOutput: TypeAlias = _native.ListDatasetsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ListDatasetsOutput/)."""
 ListDomainsOutput: TypeAlias = _native.ListDomainsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ListDomainsOutput/)."""
 ListSubscriptionsOutput: TypeAlias = _native.ListSubscriptionsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ListSubscriptionsOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ListTagsForResourceOutput/)."""
+MedicalCodeGenerationResultOutput: TypeAlias = _native.MedicalCodeGenerationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodeGenerationResultOutput/)."""
+MedicalCodeGenerationSettingsResponseOutput: TypeAlias = _native.MedicalCodeGenerationSettingsResponse
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodeGenerationSettingsResponseOutput/)."""
+MedicalCodesEncounterContextOutput: TypeAlias = _native.MedicalCodesEncounterContext
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodesEncounterContextOutput/)."""
+MedicalCodesPatientContextOutput: TypeAlias = _native.MedicalCodesPatientContext
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodesPatientContextOutput/)."""
+MedicalCodingValueOutput: TypeAlias = _native.MedicalCodingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodingValueOutput/)."""
+MedicalCodingOutputDataConfigOutput: TypeAlias = _native.MedicalCodingOutputDataConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodingOutputDataConfigOutput/)."""
 MedicalScribeChannelDefinitionOutput: TypeAlias = _native.MedicalScribeChannelDefinition
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeChannelDefinitionOutput/)."""
 MedicalScribeListeningSessionDetailsOutput: TypeAlias = _native.MedicalScribeListeningSessionDetails
@@ -72,8 +96,12 @@ PatientInsightsPatientContextOutput: TypeAlias = _native.PatientInsightsPatientC
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PatientInsightsPatientContextOutput/)."""
 S3SourceOutput: TypeAlias = _native.S3Source
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/S3SourceOutput/)."""
+StartMedicalCodingJobOutput: TypeAlias = _native.StartMedicalCodingJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/StartMedicalCodingJobOutput/)."""
 StartPatientInsightsJobOutput: TypeAlias = _native.StartPatientInsightsJobOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/StartPatientInsightsJobOutput/)."""
+SubmitFeedbackOutput: TypeAlias = _native.SubmitFeedbackOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/SubmitFeedbackOutput/)."""
 SubscriptionDescriptionOutput: TypeAlias = _native.SubscriptionDescription
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/SubscriptionDescriptionOutput/)."""
 UserContextOutput: TypeAlias = _native.UserContext
@@ -84,18 +112,38 @@ WebAppConfigurationOutput: TypeAlias = _native.WebAppConfiguration
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/JSONValue/)."""
 
+ChecklistItemStatus: TypeAlias = Literal['DISCUSSED', 'PARTIALLY_DISCUSSED', 'NOT_DISCUSSED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ChecklistItemStatus/)."""
+ChecklistItemStatusOutput: TypeAlias = ChecklistItemStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ChecklistItemStatusOutput/)."""
 CustomTemplateBase: TypeAlias = Literal['HISTORY_AND_PHYSICAL', 'GIRPP', 'DAP', 'SIRP', 'BIRP', 'BEHAVIORAL_SOAP']
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/CustomTemplateBase/)."""
 CustomTemplateBaseOutput: TypeAlias = CustomTemplateBase | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/CustomTemplateBaseOutput/)."""
+DatasetStatus: TypeAlias = Literal['CREATING', 'ACTIVE', 'CREATE_FAILED', 'DELETING', 'DELETE_FAILED', 'DELETED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetStatus/)."""
+DatasetStatusOutput: TypeAlias = DatasetStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetStatusOutput/)."""
+DatasetType: TypeAlias = Literal['MEDICAL_CODING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetType/)."""
+DatasetTypeOutput: TypeAlias = DatasetType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetTypeOutput/)."""
 DomainStatus: TypeAlias = Literal['ACTIVE', 'DELETING', 'DELETED']
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DomainStatus/)."""
 DomainStatusOutput: TypeAlias = DomainStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DomainStatusOutput/)."""
+EncounterType: TypeAlias = Literal['TELEHEALTH', 'IN_PERSON']
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/EncounterType/)."""
+EncounterTypeOutput: TypeAlias = EncounterType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/EncounterTypeOutput/)."""
 EncryptionType: TypeAlias = Literal['AWS_OWNED_KEY', 'CUSTOMER_MANAGED_KEY']
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/EncryptionType/)."""
 EncryptionTypeOutput: TypeAlias = EncryptionType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/EncryptionTypeOutput/)."""
+FeedbackArtifactType: TypeAlias = Literal['CLINICAL_DOC', 'MEDICAL_CODES']
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/FeedbackArtifactType/)."""
+FeedbackArtifactTypeOutput: TypeAlias = FeedbackArtifactType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/FeedbackArtifactTypeOutput/)."""
 InsightsType: TypeAlias = Literal['PRE_VISIT']
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/InsightsType/)."""
 InsightsTypeOutput: TypeAlias = InsightsType | UnknownEnumValue
@@ -128,7 +176,19 @@ MedicalScribeStreamStatus: TypeAlias = Literal['IN_PROGRESS', 'PAUSED', 'FAILED'
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeStreamStatus/)."""
 MedicalScribeStreamStatusOutput: TypeAlias = MedicalScribeStreamStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeStreamStatusOutput/)."""
-PostStreamArtifactGenerationStatus: TypeAlias = Literal['IN_PROGRESS', 'FAILED', 'COMPLETED']
+PatientStatus: TypeAlias = Literal['NEW', 'ESTABLISHED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PatientStatus/)."""
+PatientStatusOutput: TypeAlias = PatientStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PatientStatusOutput/)."""
+PeriodontalReviewReason: TypeAlias = Literal['SITE_NOT_CHARTED', 'VALUE_NOT_CHARTED', 'READING_COUNT_MISMATCH', 'LINE_UNCLEAR', 'TOOTH_UNCLEAR', 'MISSING_TOOTH_CONFLICT', 'MEASUREMENT_NOT_CHARTED', 'SESSION_ISSUE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PeriodontalReviewReason/)."""
+PeriodontalReviewReasonOutput: TypeAlias = PeriodontalReviewReason | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PeriodontalReviewReasonOutput/)."""
+PeriodontalSiteName: TypeAlias = Literal['DB', 'B', 'MB', 'DL', 'L', 'ML']
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PeriodontalSiteName/)."""
+PeriodontalSiteNameOutput: TypeAlias = PeriodontalSiteName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PeriodontalSiteNameOutput/)."""
+PostStreamArtifactGenerationStatus: TypeAlias = Literal['IN_PROGRESS', 'FAILED', 'COMPLETED', 'PENDING', 'SKIPPED']
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PostStreamArtifactGenerationStatus/)."""
 PostStreamArtifactGenerationStatusOutput: TypeAlias = PostStreamArtifactGenerationStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PostStreamArtifactGenerationStatusOutput/)."""
@@ -140,6 +200,10 @@ ProviderRole: TypeAlias = Literal['CLINICIAN']
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ProviderRole/)."""
 ProviderRoleOutput: TypeAlias = ProviderRole | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ProviderRoleOutput/)."""
+Sex: TypeAlias = Literal['MALE', 'FEMALE', 'NON_BINARY', 'UNKNOWN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/Sex/)."""
+SexOutput: TypeAlias = Sex | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/SexOutput/)."""
 Specialty: TypeAlias = Literal['PRIMARY_CARE']
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/Specialty/)."""
 SpecialtyOutput: TypeAlias = Specialty | UnknownEnumValue
@@ -168,6 +232,24 @@ ArtifactDetails = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ArtifactDetails/)."""
 
+Checklist = TypedDict(
+    "Checklist",
+    {
+    "checklist_id": Required["str"],
+    "items": Required["list[ChecklistItem]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/Checklist/)."""
+
+ChecklistItem = TypedDict(
+    "ChecklistItem",
+    {
+    "item_key": Required["str"],
+    "status": Required["ChecklistItemStatusOutput"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ChecklistItem/)."""
+
 ClinicalNoteGenerationResult = TypedDict(
     "ClinicalNoteGenerationResult",
     {
@@ -193,6 +275,17 @@ ClinicalNoteGenerationSettingsResponse = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ClinicalNoteGenerationSettingsResponse/)."""
+
+CreateDatasetInput = TypedDict(
+    "CreateDatasetInput",
+    {
+    "domain_id": Required["str"],
+    "name": Required["str"],
+    "config": Required["DatasetConfig"],
+    "client_token": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/CreateDatasetInput/)."""
 
 CreateDomainInput = TypedDict(
     "CreateDomainInput",
@@ -240,6 +333,40 @@ CustomTemplateResponse = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/CustomTemplateResponse/)."""
 
+DatasetArtifactsmedicalCoding = TypedDict("DatasetArtifactsmedicalCoding", {"medical_coding": Required["MedicalCodingDatasetArtifacts"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetArtifactsmedicalCoding/)."""
+DatasetArtifactsUnknown = TypedDict("DatasetArtifactsUnknown", {"unknown": Required[Literal[True]]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetArtifactsUnknown/)."""
+DatasetArtifacts: TypeAlias = DatasetArtifactsmedicalCoding | DatasetArtifactsUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetArtifacts/)."""
+
+DatasetConfigmedicalCoding = TypedDict("DatasetConfigmedicalCoding", {"medical_coding": Required["MedicalCodingDatasetConfig"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetConfigmedicalCoding/)."""
+DatasetConfig: TypeAlias = DatasetConfigmedicalCoding
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetConfig/)."""
+
+DatasetConfigOutputmedicalCoding = TypedDict("DatasetConfigOutputmedicalCoding", {"medical_coding": Required["MedicalCodingDatasetConfigOutput"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetConfigOutputmedicalCoding/)."""
+DatasetConfigOutputUnknown = TypedDict("DatasetConfigOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetConfigOutputUnknown/)."""
+DatasetConfigOutput: TypeAlias = DatasetConfigOutputmedicalCoding | DatasetConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetConfigOutput/)."""
+
+DatasetSummary = TypedDict(
+    "DatasetSummary",
+    {
+    "arn": Required["str"],
+    "dataset_id": Required["str"],
+    "name": Required["str"],
+    "type": Required["DatasetType"],
+    "status": Required["DatasetStatus"],
+    "status_details": NotRequired["str"],
+    "created_at": Required["str"],
+    "updated_at": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DatasetSummary/)."""
+
 DeactivateSubscriptionInput = TypedDict(
     "DeactivateSubscriptionInput",
     {
@@ -248,6 +375,15 @@ DeactivateSubscriptionInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DeactivateSubscriptionInput/)."""
+
+DeleteDatasetInput = TypedDict(
+    "DeleteDatasetInput",
+    {
+    "domain_id": Required["str"],
+    "dataset_id": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DeleteDatasetInput/)."""
 
 DeleteDomainInput = TypedDict(
     "DeleteDomainInput",
@@ -273,6 +409,7 @@ EncounterContext = TypedDict(
     "EncounterContext",
     {
     "unstructured_context": NotRequired["str"],
+    "medical_coding_context": NotRequired["MedicalCodingContext"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/EncounterContext/)."""
@@ -295,6 +432,15 @@ FHIRServer = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/FHIRServer-eae8826ef45f/)."""
 
+GetDatasetInput = TypedDict(
+    "GetDatasetInput",
+    {
+    "domain_id": Required["str"],
+    "dataset_id": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetDatasetInput/)."""
+
 GetDomainInput = TypedDict(
     "GetDomainInput",
     {
@@ -302,6 +448,15 @@ GetDomainInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetDomainInput/)."""
+
+GetMedicalCodingJobRequest = TypedDict(
+    "GetMedicalCodingJobRequest",
+    {
+    "domain_id": Required["str"],
+    "job_id": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetMedicalCodingJobRequest/)."""
 
 GetMedicalScribeListeningSessionInput = TypedDict(
     "GetMedicalScribeListeningSessionInput",
@@ -356,6 +511,17 @@ InsightsOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/InsightsOutput/)."""
 
+ListDatasetsInput = TypedDict(
+    "ListDatasetsInput",
+    {
+    "domain_id": Required["str"],
+    "type": NotRequired["DatasetType"],
+    "next_token": NotRequired["str"],
+    "max_results": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ListDatasetsInput/)."""
+
 ListDomainsInput = TypedDict(
     "ListDomainsInput",
     {
@@ -400,6 +566,110 @@ ManagedTemplateResponse = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ManagedTemplateResponse/)."""
 
+MedicalCodeGenerationResult = TypedDict(
+    "MedicalCodeGenerationResult",
+    {
+    "medical_codes_result": NotRequired["ArtifactDetails"],
+    "job_id": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodeGenerationResult/)."""
+
+MedicalCodeGenerationSettings = TypedDict(
+    "MedicalCodeGenerationSettings",
+    {
+    "enabled": Required["bool"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodeGenerationSettings/)."""
+
+MedicalCodeGenerationSettingsResponse = TypedDict(
+    "MedicalCodeGenerationSettingsResponse",
+    {
+    "enabled": NotRequired["bool"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodeGenerationSettingsResponse/)."""
+
+MedicalCodesEncounterContext = TypedDict(
+    "MedicalCodesEncounterContext",
+    {
+    "encounter_type": NotRequired["EncounterType"],
+    "encounter_reason": NotRequired["str"],
+    "after_hours": NotRequired["bool"],
+    "encounter_date": NotRequired["str"],
+    "encounter_duration_minutes": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodesEncounterContext/)."""
+
+MedicalCodesPatientContext = TypedDict(
+    "MedicalCodesPatientContext",
+    {
+    "sex": NotRequired["Sex"],
+    "status": NotRequired["PatientStatus"],
+    "date_of_birth": NotRequired["str"],
+    "insurance": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodesPatientContext/)."""
+
+MedicalCodingContext = TypedDict(
+    "MedicalCodingContext",
+    {
+    "sex": NotRequired["Sex"],
+    "status": NotRequired["PatientStatus"],
+    "date_of_birth": NotRequired["str"],
+    "encounter_type": NotRequired["EncounterType"],
+    "encounter_reason": NotRequired["str"],
+    "after_hours": NotRequired["bool"],
+    "encounter_date": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodingContext/)."""
+
+MedicalCodingDatasetArtifacts = TypedDict(
+    "MedicalCodingDatasetArtifacts",
+    {
+    "evaluation_s3_uri": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodingDatasetArtifacts/)."""
+
+MedicalCodingDatasetConfig = TypedDict(
+    "MedicalCodingDatasetConfig",
+    {
+    "s3_input_path": Required["str"],
+    "s3_output_path": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodingDatasetConfig/)."""
+
+MedicalCodingDatasetConfigOutput = TypedDict(
+    "MedicalCodingDatasetConfigOutput",
+    {
+    "s3_input_path": Required["str"],
+    "s3_output_path": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodingDatasetConfigOutput/)."""
+
+MedicalCodingOutput = TypedDict(
+    "MedicalCodingOutput",
+    {
+    "uri": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodingOutput/)."""
+
+MedicalCodingOutputDataConfig = TypedDict(
+    "MedicalCodingOutputDataConfig",
+    {
+    "s3_output_path": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalCodingOutputDataConfig/)."""
+
 MedicalScribeAudioEvent = TypedDict(
     "MedicalScribeAudioEvent",
     {
@@ -424,6 +694,15 @@ MedicalScribeChannelDefinition = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeChannelDefinition/)."""
+
+MedicalScribeChecklistEvent = TypedDict(
+    "MedicalScribeChecklistEvent",
+    {
+    "snapshot_version": Required["int"],
+    "checklists": Required["list[Checklist]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeChecklistEvent/)."""
 
 MedicalScribeConfigurationEvent = TypedDict(
     "MedicalScribeConfigurationEvent",
@@ -459,6 +738,7 @@ MedicalScribeListeningSessionDetails = TypedDict(
     "post_stream_action_settings": NotRequired["MedicalScribePostStreamActionSettingsResponse"],
     "post_stream_action_result": NotRequired["MedicalScribePostStreamActionsResult"],
     "encounter_context_provided": NotRequired["bool"],
+    "medical_coding_context_provided": NotRequired["bool"],
     "stream_status": NotRequired["MedicalScribeStreamStatus"],
     "stream_creation_time": NotRequired["str"],
     "stream_end_time": NotRequired["str"],
@@ -468,16 +748,31 @@ MedicalScribeListeningSessionDetails = TypedDict(
 
 MedicalScribeOutputStreamtranscriptEvent = TypedDict("MedicalScribeOutputStreamtranscriptEvent", {"transcript_event": Required["MedicalScribeTranscriptEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeOutputStreamtranscriptEvent/)."""
+MedicalScribeOutputStreamperiodontalChartEvent = TypedDict("MedicalScribeOutputStreamperiodontalChartEvent", {"periodontal_chart_event": Required["MedicalScribePeriodontalChartEvent"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeOutputStreamperiodontalChartEvent/)."""
+MedicalScribeOutputStreamchecklistEvent = TypedDict("MedicalScribeOutputStreamchecklistEvent", {"checklist_event": Required["MedicalScribeChecklistEvent"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeOutputStreamchecklistEvent/)."""
 MedicalScribeOutputStreamUnknown = TypedDict("MedicalScribeOutputStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeOutputStreamUnknown/)."""
-MedicalScribeOutputStream: TypeAlias = MedicalScribeOutputStreamtranscriptEvent | MedicalScribeOutputStreamUnknown
+MedicalScribeOutputStream: TypeAlias = MedicalScribeOutputStreamtranscriptEvent | MedicalScribeOutputStreamperiodontalChartEvent | MedicalScribeOutputStreamchecklistEvent | MedicalScribeOutputStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeOutputStream/)."""
+
+MedicalScribePeriodontalChartEvent = TypedDict(
+    "MedicalScribePeriodontalChartEvent",
+    {
+    "snapshot_version": Required["int"],
+    "teeth": Required["list[PeriodontalTooth]"],
+    "review_items": Required["list[PeriodontalReview] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribePeriodontalChartEvent/)."""
 
 MedicalScribePostStreamActionSettings = TypedDict(
     "MedicalScribePostStreamActionSettings",
     {
     "output_s3_uri": Required["str"],
     "clinical_note_generation_settings": Required["ClinicalNoteGenerationSettings"],
+    "medical_code_generation_settings": NotRequired["MedicalCodeGenerationSettings"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribePostStreamActionSettings/)."""
@@ -487,6 +782,7 @@ MedicalScribePostStreamActionSettingsResponse = TypedDict(
     {
     "output_s3_uri": Required["str"],
     "clinical_note_generation_settings": Required["ClinicalNoteGenerationSettingsResponse"],
+    "medical_code_generation_settings": NotRequired["MedicalCodeGenerationSettingsResponse"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribePostStreamActionSettingsResponse/)."""
@@ -495,6 +791,7 @@ MedicalScribePostStreamActionsResult = TypedDict(
     "MedicalScribePostStreamActionsResult",
     {
     "clinical_note_generation_result": NotRequired["ClinicalNoteGenerationResult"],
+    "medical_code_generation_result": NotRequired["MedicalCodeGenerationResult"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribePostStreamActionsResult/)."""
@@ -570,6 +867,40 @@ PatientInsightsPatientContext = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PatientInsightsPatientContext/)."""
 
+PeriodontalReview = TypedDict(
+    "PeriodontalReview",
+    {
+    "reason": Required["PeriodontalReviewReasonOutput"],
+    "tooth_number": Required["int | None"],
+    "sites": Required["list[PeriodontalSiteNameOutput] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PeriodontalReview/)."""
+
+PeriodontalSite = TypedDict(
+    "PeriodontalSite",
+    {
+    "site": Required["PeriodontalSiteNameOutput"],
+    "probing_depth": Required["int | None"],
+    "recession": Required["int | None"],
+    "bleeding": Required["bool | None"],
+    "suppuration": Required["bool | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PeriodontalSite/)."""
+
+PeriodontalTooth = TypedDict(
+    "PeriodontalTooth",
+    {
+    "tooth_number": Required["int"],
+    "missing": Required["bool"],
+    "mobility": Required["int | None"],
+    "furcation": Required["int | None"],
+    "sites": Required["list[PeriodontalSite] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PeriodontalTooth/)."""
+
 S3Source = TypedDict(
     "S3Source",
     {
@@ -577,6 +908,20 @@ S3Source = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/S3Source/)."""
+
+StartMedicalCodingJobRequest = TypedDict(
+    "StartMedicalCodingJobRequest",
+    {
+    "domain_id": Required["str"],
+    "text": Required["str"],
+    "patient_context": NotRequired["MedicalCodesPatientContext"],
+    "encounter_context": NotRequired["MedicalCodesEncounterContext"],
+    "output_data_config": Required["MedicalCodingOutputDataConfig"],
+    "dataset_id": NotRequired["str"],
+    "client_token": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/StartMedicalCodingJobRequest/)."""
 
 StartMedicalScribeListeningSessionInput = TypedDict(
     "StartMedicalScribeListeningSessionInput",
@@ -621,6 +966,21 @@ StartPatientInsightsJobRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/StartPatientInsightsJobRequest/)."""
+
+SubmitFeedbackRequest = TypedDict(
+    "SubmitFeedbackRequest",
+    {
+    "domain_id": Required["str"],
+    "artifact_source_id": Required["str"],
+    "subscription_id": NotRequired["str"],
+    "artifact_type": Required["FeedbackArtifactType"],
+    "signed_artifact_s3_uri": Required["str"],
+    "generated_artifact_s3_uri": NotRequired["str"],
+    "comments": NotRequired["str"],
+    "client_token": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/SubmitFeedbackRequest/)."""
 
 SubscriptionDescription = TypedDict(
     "SubscriptionDescription",

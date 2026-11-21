@@ -12035,8 +12035,8 @@ impl PyAppliedGuardrailDetails {
     #[getter]
     fn guardrail_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_id {
-            let converted_1304 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1304)
+            let converted_1308 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1308)
         } else {
             Ok(py.None())
         }
@@ -12045,8 +12045,8 @@ impl PyAppliedGuardrailDetails {
     #[getter]
     fn guardrail_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_version {
-            let converted_1305 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1305)
+            let converted_1309 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1309)
         } else {
             Ok(py.None())
         }
@@ -12055,8 +12055,8 @@ impl PyAppliedGuardrailDetails {
     #[getter]
     fn guardrail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_arn {
-            let converted_1306 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1306)
+            let converted_1310 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1310)
         } else {
             Ok(py.None())
         }
@@ -12065,13 +12065,13 @@ impl PyAppliedGuardrailDetails {
     #[getter]
     fn guardrail_origin(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_origin {
-            let converted_1307_list = PyList::empty(py);
-            for item_1308 in value {
-                let converted_item_1309 = (item_1308).as_str().into_py_any(py)?;
-                converted_1307_list.append(converted_item_1309)?;
+            let converted_1311_list = PyList::empty(py);
+            for item_1312 in value {
+                let converted_item_1313 = (item_1312).as_str().into_py_any(py)?;
+                converted_1311_list.append(converted_item_1313)?;
             }
-            let converted_1307 = converted_1307_list.into_any().unbind();
-            Ok(converted_1307)
+            let converted_1311 = converted_1311_list.into_any().unbind();
+            Ok(converted_1311)
         } else {
             Ok(py.None())
         }
@@ -12080,8 +12080,8 @@ impl PyAppliedGuardrailDetails {
     #[getter]
     fn guardrail_ownership(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_ownership {
-            let converted_1310 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1310)
+            let converted_1314 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1314)
         } else {
             Ok(py.None())
         }
@@ -12105,21 +12105,21 @@ struct PyAsyncInvokeSummary {
 impl PyAsyncInvokeSummary {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1311 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        Ok(converted_1311)
+        let converted_1315 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        Ok(converted_1315)
     }
 
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1312 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_1312)
+        let converted_1316 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_1316)
     }
 
     #[getter]
     fn client_request_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_request_token {
-            let converted_1313 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1313)
+            let converted_1317 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1317)
         } else {
             Ok(py.None())
         }
@@ -12128,8 +12128,8 @@ impl PyAsyncInvokeSummary {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1314 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1314)
+            let converted_1318 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1318)
         } else {
             Ok(py.None())
         }
@@ -12138,8 +12138,8 @@ impl PyAsyncInvokeSummary {
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_1315 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1315)
+            let converted_1319 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1319)
         } else {
             Ok(py.None())
         }
@@ -12147,15 +12147,15 @@ impl PyAsyncInvokeSummary {
 
     #[getter]
     fn submit_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1316 = (&self.inner.submit_time).to_string().into_py_any(py)?;
-        Ok(converted_1316)
+        let converted_1320 = (&self.inner.submit_time).to_string().into_py_any(py)?;
+        Ok(converted_1320)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1317 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1317)
+            let converted_1321 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1321)
         } else {
             Ok(py.None())
         }
@@ -12164,8 +12164,8 @@ impl PyAsyncInvokeSummary {
     #[getter]
     fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time {
-            let converted_1318 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1318)
+            let converted_1322 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1322)
         } else {
             Ok(py.None())
         }
@@ -12174,8 +12174,8 @@ impl PyAsyncInvokeSummary {
     #[getter]
     fn output_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_data_config {
-            let converted_1319 = async_invoke_output_data_config_to_py(py, value)?;
-            Ok(converted_1319)
+            let converted_1323 = async_invoke_output_data_config_to_py(py, value)?;
+            Ok(converted_1323)
         } else {
             Ok(py.None())
         }
@@ -12195,14 +12195,14 @@ struct PyCacheDetail {
 impl PyCacheDetail {
     #[getter]
     fn ttl(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1320 = (&self.inner.ttl).as_str().into_py_any(py)?;
-        Ok(converted_1320)
+        let converted_1324 = (&self.inner.ttl).as_str().into_py_any(py)?;
+        Ok(converted_1324)
     }
 
     #[getter]
     fn input_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1321 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
-        Ok(converted_1321)
+        let converted_1325 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
+        Ok(converted_1325)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -12223,8 +12223,8 @@ struct PyConverseMetrics {
 impl PyConverseMetrics {
     #[getter]
     fn latency_ms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1322 = (&self.inner.latency_ms).to_owned().into_py_any(py)?;
-        Ok(converted_1322)
+        let converted_1326 = (&self.inner.latency_ms).to_owned().into_py_any(py)?;
+        Ok(converted_1326)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -12253,14 +12253,14 @@ impl From<aws_sdk_bedrockruntime::types::ConverseTrace> for SharedConverseTrace 
 fn converse_trace_shared_to_py(py: Python<'_>, value: &SharedConverseTrace) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.guardrail {
-        let converted_1325 = guardrail_trace_assessment_shared_to_py(py, value)?;
-        result.set_item("guardrail", converted_1325)?;
+        let converted_1329 = guardrail_trace_assessment_shared_to_py(py, value)?;
+        result.set_item("guardrail", converted_1329)?;
     } else {
         result.set_item("guardrail", py.None())?;
     }
     if let Some(value) = &value.prompt_router {
-        let converted_1326 = prompt_router_trace_to_py(py, value)?;
-        result.set_item("prompt_router", converted_1326)?;
+        let converted_1330 = prompt_router_trace_to_py(py, value)?;
+        result.set_item("prompt_router", converted_1330)?;
     } else {
         result.set_item("prompt_router", py.None())?;
     }
@@ -12281,14 +12281,14 @@ impl PyConverseTrace {
     #[getter]
     fn guardrail(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail {
-            let converted_1323 = Py::new(
+            let converted_1327 = Py::new(
                 py,
                 PyGuardrailTraceAssessment {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1323)
+            Ok(converted_1327)
         } else {
             Ok(py.None())
         }
@@ -12297,14 +12297,14 @@ impl PyConverseTrace {
     #[getter]
     fn prompt_router(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prompt_router {
-            let converted_1324 = Py::new(
+            let converted_1328 = Py::new(
                 py,
                 PyPromptRouterTrace {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1324)
+            Ok(converted_1328)
         } else {
             Ok(py.None())
         }
@@ -12366,52 +12366,52 @@ fn guardrail_assessment_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.topic_policy {
-        let converted_1335 = guardrail_topic_policy_assessment_shared_to_py(py, value)?;
-        result.set_item("topic_policy", converted_1335)?;
+        let converted_1339 = guardrail_topic_policy_assessment_shared_to_py(py, value)?;
+        result.set_item("topic_policy", converted_1339)?;
     } else {
         result.set_item("topic_policy", py.None())?;
     }
     if let Some(value) = &value.content_policy {
-        let converted_1336 = guardrail_content_policy_assessment_shared_to_py(py, value)?;
-        result.set_item("content_policy", converted_1336)?;
+        let converted_1340 = guardrail_content_policy_assessment_shared_to_py(py, value)?;
+        result.set_item("content_policy", converted_1340)?;
     } else {
         result.set_item("content_policy", py.None())?;
     }
     if let Some(value) = &value.word_policy {
-        let converted_1337 = guardrail_word_policy_assessment_shared_to_py(py, value)?;
-        result.set_item("word_policy", converted_1337)?;
+        let converted_1341 = guardrail_word_policy_assessment_shared_to_py(py, value)?;
+        result.set_item("word_policy", converted_1341)?;
     } else {
         result.set_item("word_policy", py.None())?;
     }
     if let Some(value) = &value.sensitive_information_policy {
-        let converted_1338 =
+        let converted_1342 =
             guardrail_sensitive_information_policy_assessment_shared_to_py(py, value)?;
-        result.set_item("sensitive_information_policy", converted_1338)?;
+        result.set_item("sensitive_information_policy", converted_1342)?;
     } else {
         result.set_item("sensitive_information_policy", py.None())?;
     }
     if let Some(value) = &value.contextual_grounding_policy {
-        let converted_1339 =
+        let converted_1343 =
             guardrail_contextual_grounding_policy_assessment_shared_to_py(py, value)?;
-        result.set_item("contextual_grounding_policy", converted_1339)?;
+        result.set_item("contextual_grounding_policy", converted_1343)?;
     } else {
         result.set_item("contextual_grounding_policy", py.None())?;
     }
     if let Some(value) = &value.automated_reasoning_policy {
-        let converted_1340 = guardrail_automated_reasoning_policy_assessment_to_py(py, value)?;
-        result.set_item("automated_reasoning_policy", converted_1340)?;
+        let converted_1344 = guardrail_automated_reasoning_policy_assessment_to_py(py, value)?;
+        result.set_item("automated_reasoning_policy", converted_1344)?;
     } else {
         result.set_item("automated_reasoning_policy", py.None())?;
     }
     if let Some(value) = &value.invocation_metrics {
-        let converted_1341 = guardrail_invocation_metrics_shared_to_py(py, value)?;
-        result.set_item("invocation_metrics", converted_1341)?;
+        let converted_1345 = guardrail_invocation_metrics_shared_to_py(py, value)?;
+        result.set_item("invocation_metrics", converted_1345)?;
     } else {
         result.set_item("invocation_metrics", py.None())?;
     }
     if let Some(value) = &value.applied_guardrail_details {
-        let converted_1342 = applied_guardrail_details_to_py(py, value)?;
-        result.set_item("applied_guardrail_details", converted_1342)?;
+        let converted_1346 = applied_guardrail_details_to_py(py, value)?;
+        result.set_item("applied_guardrail_details", converted_1346)?;
     } else {
         result.set_item("applied_guardrail_details", py.None())?;
     }
@@ -12432,73 +12432,9 @@ impl PyGuardrailAssessment {
     #[getter]
     fn topic_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.topic_policy {
-            let converted_1327 = Py::new(
-                py,
-                PyGuardrailTopicPolicyAssessment {
-                    inner: Arc::clone(value),
-                },
-            )?
-            .into_any();
-            Ok(converted_1327)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn content_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.content_policy {
-            let converted_1328 = Py::new(
-                py,
-                PyGuardrailContentPolicyAssessment {
-                    inner: Arc::clone(value),
-                },
-            )?
-            .into_any();
-            Ok(converted_1328)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn word_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.word_policy {
-            let converted_1329 = Py::new(
-                py,
-                PyGuardrailWordPolicyAssessment {
-                    inner: Arc::clone(value),
-                },
-            )?
-            .into_any();
-            Ok(converted_1329)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn sensitive_information_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.sensitive_information_policy {
-            let converted_1330 = Py::new(
-                py,
-                PyGuardrailSensitiveInformationPolicyAssessment {
-                    inner: Arc::clone(value),
-                },
-            )?
-            .into_any();
-            Ok(converted_1330)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn contextual_grounding_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.contextual_grounding_policy {
             let converted_1331 = Py::new(
                 py,
-                PyGuardrailContextualGroundingPolicyAssessment {
+                PyGuardrailTopicPolicyAssessment {
                     inner: Arc::clone(value),
                 },
             )?
@@ -12510,11 +12446,11 @@ impl PyGuardrailAssessment {
     }
 
     #[getter]
-    fn automated_reasoning_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.automated_reasoning_policy {
+    fn content_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_policy {
             let converted_1332 = Py::new(
                 py,
-                PyGuardrailAutomatedReasoningPolicyAssessment {
+                PyGuardrailContentPolicyAssessment {
                     inner: Arc::clone(value),
                 },
             )?
@@ -12526,11 +12462,11 @@ impl PyGuardrailAssessment {
     }
 
     #[getter]
-    fn invocation_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.invocation_metrics {
+    fn word_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.word_policy {
             let converted_1333 = Py::new(
                 py,
-                PyGuardrailInvocationMetrics {
+                PyGuardrailWordPolicyAssessment {
                     inner: Arc::clone(value),
                 },
             )?
@@ -12542,16 +12478,80 @@ impl PyGuardrailAssessment {
     }
 
     #[getter]
+    fn sensitive_information_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sensitive_information_policy {
+            let converted_1334 = Py::new(
+                py,
+                PyGuardrailSensitiveInformationPolicyAssessment {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1334)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn contextual_grounding_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.contextual_grounding_policy {
+            let converted_1335 = Py::new(
+                py,
+                PyGuardrailContextualGroundingPolicyAssessment {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1335)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn automated_reasoning_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.automated_reasoning_policy {
+            let converted_1336 = Py::new(
+                py,
+                PyGuardrailAutomatedReasoningPolicyAssessment {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1336)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn invocation_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.invocation_metrics {
+            let converted_1337 = Py::new(
+                py,
+                PyGuardrailInvocationMetrics {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1337)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
     fn applied_guardrail_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.applied_guardrail_details {
-            let converted_1334 = Py::new(
+            let converted_1338 = Py::new(
                 py,
                 PyAppliedGuardrailDetails {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1334)
+            Ok(converted_1338)
         } else {
             Ok(py.None())
         }
@@ -12576,14 +12576,14 @@ impl PyGuardrailAutomatedReasoningPolicyAssessment {
     #[getter]
     fn findings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.findings {
-            let converted_1343_list = PyList::empty(py);
-            for item_1344 in value {
-                let converted_item_1345 =
-                    guardrail_automated_reasoning_finding_to_py(py, item_1344)?;
-                converted_1343_list.append(converted_item_1345)?;
+            let converted_1347_list = PyList::empty(py);
+            for item_1348 in value {
+                let converted_item_1349 =
+                    guardrail_automated_reasoning_finding_to_py(py, item_1348)?;
+                converted_1347_list.append(converted_item_1349)?;
             }
-            let converted_1343 = converted_1343_list.into_any().unbind();
-            Ok(converted_1343)
+            let converted_1347 = converted_1347_list.into_any().unbind();
+            Ok(converted_1347)
         } else {
             Ok(py.None())
         }
@@ -12609,7 +12609,7 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterResult>
         Self {
             results: (value.results)
                 .into_iter()
-                .map(|owned_1349| Arc::new(owned_1349))
+                .map(|owned_1353| Arc::new(owned_1353))
                 .collect(),
         }
     }
@@ -12620,14 +12620,14 @@ fn guardrail_checks_content_filter_result_shared_to_py(
     value: &SharedGuardrailChecksContentFilterResult,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1350_list = PyList::empty(py);
-    for item_1351 in &value.results {
-        let converted_item_1352 =
-            guardrail_checks_content_filter_result_entry_to_py(py, item_1351)?;
-        converted_1350_list.append(converted_item_1352)?;
+    let converted_1354_list = PyList::empty(py);
+    for item_1355 in &value.results {
+        let converted_item_1356 =
+            guardrail_checks_content_filter_result_entry_to_py(py, item_1355)?;
+        converted_1354_list.append(converted_item_1356)?;
     }
-    let converted_1350 = converted_1350_list.into_any().unbind();
-    result.set_item("results", converted_1350)?;
+    let converted_1354 = converted_1354_list.into_any().unbind();
+    result.set_item("results", converted_1354)?;
     Ok(result.into_any().unbind())
 }
 
@@ -12644,19 +12644,19 @@ struct PyGuardrailChecksContentFilterResult {
 impl PyGuardrailChecksContentFilterResult {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1346_list = PyList::empty(py);
-        for item_1347 in &self.inner.results {
-            let converted_item_1348 = Py::new(
+        let converted_1350_list = PyList::empty(py);
+        for item_1351 in &self.inner.results {
+            let converted_item_1352 = Py::new(
                 py,
                 PyGuardrailChecksContentFilterResultEntry {
-                    inner: Arc::clone(item_1347),
+                    inner: Arc::clone(item_1351),
                 },
             )?
             .into_any();
-            converted_1346_list.append(converted_item_1348)?;
+            converted_1350_list.append(converted_item_1352)?;
         }
-        let converted_1346 = converted_1346_list.into_any().unbind();
-        Ok(converted_1346)
+        let converted_1350 = converted_1350_list.into_any().unbind();
+        Ok(converted_1350)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -12677,14 +12677,14 @@ struct PyGuardrailChecksContentFilterResultEntry {
 impl PyGuardrailChecksContentFilterResultEntry {
     #[getter]
     fn category(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1353 = (&self.inner.category).as_str().into_py_any(py)?;
-        Ok(converted_1353)
+        let converted_1357 = (&self.inner.category).as_str().into_py_any(py)?;
+        Ok(converted_1357)
     }
 
     #[getter]
     fn severity_score(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1354 = (&self.inner.severity_score).to_owned().into_py_any(py)?;
-        Ok(converted_1354)
+        let converted_1358 = (&self.inner.severity_score).to_owned().into_py_any(py)?;
+        Ok(converted_1358)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -12705,8 +12705,8 @@ struct PyGuardrailChecksContentFilterUsage {
 impl PyGuardrailChecksContentFilterUsage {
     #[getter]
     fn text_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1355 = (&self.inner.text_units).to_owned().into_py_any(py)?;
-        Ok(converted_1355)
+        let converted_1359 = (&self.inner.text_units).to_owned().into_py_any(py)?;
+        Ok(converted_1359)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -12728,7 +12728,7 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackResult>
         Self {
             results: (value.results)
                 .into_iter()
-                .map(|owned_1359| Arc::new(owned_1359))
+                .map(|owned_1363| Arc::new(owned_1363))
                 .collect(),
         }
     }
@@ -12739,13 +12739,13 @@ fn guardrail_checks_prompt_attack_result_shared_to_py(
     value: &SharedGuardrailChecksPromptAttackResult,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1360_list = PyList::empty(py);
-    for item_1361 in &value.results {
-        let converted_item_1362 = guardrail_checks_prompt_attack_result_entry_to_py(py, item_1361)?;
-        converted_1360_list.append(converted_item_1362)?;
+    let converted_1364_list = PyList::empty(py);
+    for item_1365 in &value.results {
+        let converted_item_1366 = guardrail_checks_prompt_attack_result_entry_to_py(py, item_1365)?;
+        converted_1364_list.append(converted_item_1366)?;
     }
-    let converted_1360 = converted_1360_list.into_any().unbind();
-    result.set_item("results", converted_1360)?;
+    let converted_1364 = converted_1364_list.into_any().unbind();
+    result.set_item("results", converted_1364)?;
     Ok(result.into_any().unbind())
 }
 
@@ -12762,19 +12762,19 @@ struct PyGuardrailChecksPromptAttackResult {
 impl PyGuardrailChecksPromptAttackResult {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1356_list = PyList::empty(py);
-        for item_1357 in &self.inner.results {
-            let converted_item_1358 = Py::new(
+        let converted_1360_list = PyList::empty(py);
+        for item_1361 in &self.inner.results {
+            let converted_item_1362 = Py::new(
                 py,
                 PyGuardrailChecksPromptAttackResultEntry {
-                    inner: Arc::clone(item_1357),
+                    inner: Arc::clone(item_1361),
                 },
             )?
             .into_any();
-            converted_1356_list.append(converted_item_1358)?;
+            converted_1360_list.append(converted_item_1362)?;
         }
-        let converted_1356 = converted_1356_list.into_any().unbind();
-        Ok(converted_1356)
+        let converted_1360 = converted_1360_list.into_any().unbind();
+        Ok(converted_1360)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -12795,14 +12795,14 @@ struct PyGuardrailChecksPromptAttackResultEntry {
 impl PyGuardrailChecksPromptAttackResultEntry {
     #[getter]
     fn category(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1363 = (&self.inner.category).as_str().into_py_any(py)?;
-        Ok(converted_1363)
+        let converted_1367 = (&self.inner.category).as_str().into_py_any(py)?;
+        Ok(converted_1367)
     }
 
     #[getter]
     fn severity_score(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1364 = (&self.inner.severity_score).to_owned().into_py_any(py)?;
-        Ok(converted_1364)
+        let converted_1368 = (&self.inner.severity_score).to_owned().into_py_any(py)?;
+        Ok(converted_1368)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -12823,8 +12823,8 @@ struct PyGuardrailChecksPromptAttackUsage {
 impl PyGuardrailChecksPromptAttackUsage {
     #[getter]
     fn text_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1365 = (&self.inner.text_units).to_owned().into_py_any(py)?;
-        Ok(converted_1365)
+        let converted_1369 = (&self.inner.text_units).to_owned().into_py_any(py)?;
+        Ok(converted_1369)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -12862,20 +12862,20 @@ fn guardrail_checks_results_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.content_filter {
-        let converted_1369 = guardrail_checks_content_filter_result_shared_to_py(py, value)?;
-        result.set_item("content_filter", converted_1369)?;
+        let converted_1373 = guardrail_checks_content_filter_result_shared_to_py(py, value)?;
+        result.set_item("content_filter", converted_1373)?;
     } else {
         result.set_item("content_filter", py.None())?;
     }
     if let Some(value) = &value.prompt_attack {
-        let converted_1370 = guardrail_checks_prompt_attack_result_shared_to_py(py, value)?;
-        result.set_item("prompt_attack", converted_1370)?;
+        let converted_1374 = guardrail_checks_prompt_attack_result_shared_to_py(py, value)?;
+        result.set_item("prompt_attack", converted_1374)?;
     } else {
         result.set_item("prompt_attack", py.None())?;
     }
     if let Some(value) = &value.sensitive_information {
-        let converted_1371 = guardrail_checks_sensitive_information_result_shared_to_py(py, value)?;
-        result.set_item("sensitive_information", converted_1371)?;
+        let converted_1375 = guardrail_checks_sensitive_information_result_shared_to_py(py, value)?;
+        result.set_item("sensitive_information", converted_1375)?;
     } else {
         result.set_item("sensitive_information", py.None())?;
     }
@@ -12896,14 +12896,14 @@ impl PyGuardrailChecksResults {
     #[getter]
     fn content_filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_filter {
-            let converted_1366 = Py::new(
+            let converted_1370 = Py::new(
                 py,
                 PyGuardrailChecksContentFilterResult {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1366)
+            Ok(converted_1370)
         } else {
             Ok(py.None())
         }
@@ -12912,14 +12912,14 @@ impl PyGuardrailChecksResults {
     #[getter]
     fn prompt_attack(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prompt_attack {
-            let converted_1367 = Py::new(
+            let converted_1371 = Py::new(
                 py,
                 PyGuardrailChecksPromptAttackResult {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1367)
+            Ok(converted_1371)
         } else {
             Ok(py.None())
         }
@@ -12928,14 +12928,14 @@ impl PyGuardrailChecksResults {
     #[getter]
     fn sensitive_information(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sensitive_information {
-            let converted_1368 = Py::new(
+            let converted_1372 = Py::new(
                 py,
                 PyGuardrailChecksSensitiveInformationResult {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1368)
+            Ok(converted_1372)
         } else {
             Ok(py.None())
         }
@@ -12964,7 +12964,7 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationResu
         Self {
             results: (value.results)
                 .into_iter()
-                .map(|owned_1376| Arc::new(owned_1376))
+                .map(|owned_1380| Arc::new(owned_1380))
                 .collect(),
             truncated: value.truncated,
         }
@@ -12976,17 +12976,17 @@ fn guardrail_checks_sensitive_information_result_shared_to_py(
     value: &SharedGuardrailChecksSensitiveInformationResult,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1377_list = PyList::empty(py);
-    for item_1378 in &value.results {
-        let converted_item_1379 =
-            guardrail_checks_sensitive_information_result_entry_to_py(py, item_1378)?;
-        converted_1377_list.append(converted_item_1379)?;
+    let converted_1381_list = PyList::empty(py);
+    for item_1382 in &value.results {
+        let converted_item_1383 =
+            guardrail_checks_sensitive_information_result_entry_to_py(py, item_1382)?;
+        converted_1381_list.append(converted_item_1383)?;
     }
-    let converted_1377 = converted_1377_list.into_any().unbind();
-    result.set_item("results", converted_1377)?;
+    let converted_1381 = converted_1381_list.into_any().unbind();
+    result.set_item("results", converted_1381)?;
     if let Some(value) = &value.truncated {
-        let converted_1380 = (value).to_owned().into_py_any(py)?;
-        result.set_item("truncated", converted_1380)?;
+        let converted_1384 = (value).to_owned().into_py_any(py)?;
+        result.set_item("truncated", converted_1384)?;
     } else {
         result.set_item("truncated", py.None())?;
     }
@@ -13006,26 +13006,26 @@ struct PyGuardrailChecksSensitiveInformationResult {
 impl PyGuardrailChecksSensitiveInformationResult {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1372_list = PyList::empty(py);
-        for item_1373 in &self.inner.results {
-            let converted_item_1374 = Py::new(
+        let converted_1376_list = PyList::empty(py);
+        for item_1377 in &self.inner.results {
+            let converted_item_1378 = Py::new(
                 py,
                 PyGuardrailChecksSensitiveInformationResultEntry {
-                    inner: Arc::clone(item_1373),
+                    inner: Arc::clone(item_1377),
                 },
             )?
             .into_any();
-            converted_1372_list.append(converted_item_1374)?;
+            converted_1376_list.append(converted_item_1378)?;
         }
-        let converted_1372 = converted_1372_list.into_any().unbind();
-        Ok(converted_1372)
+        let converted_1376 = converted_1376_list.into_any().unbind();
+        Ok(converted_1376)
     }
 
     #[getter]
     fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.truncated {
-            let converted_1375 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1375)
+            let converted_1379 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1379)
         } else {
             Ok(py.None())
         }
@@ -13049,38 +13049,38 @@ struct PyGuardrailChecksSensitiveInformationResultEntry {
 impl PyGuardrailChecksSensitiveInformationResultEntry {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1381 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1381)
-    }
-
-    #[getter]
-    fn confidence_score(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1382 = (&self.inner.confidence_score).to_owned().into_py_any(py)?;
-        Ok(converted_1382)
-    }
-
-    #[getter]
-    fn begin_offset(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1383 = (&self.inner.begin_offset).to_owned().into_py_any(py)?;
-        Ok(converted_1383)
-    }
-
-    #[getter]
-    fn end_offset(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1384 = (&self.inner.end_offset).to_owned().into_py_any(py)?;
-        Ok(converted_1384)
-    }
-
-    #[getter]
-    fn message_index(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1385 = (&self.inner.message_index).to_owned().into_py_any(py)?;
+        let converted_1385 = (&self.inner.r#type).as_str().into_py_any(py)?;
         Ok(converted_1385)
     }
 
     #[getter]
-    fn content_index(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1386 = (&self.inner.content_index).to_owned().into_py_any(py)?;
+    fn confidence_score(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1386 = (&self.inner.confidence_score).to_owned().into_py_any(py)?;
         Ok(converted_1386)
+    }
+
+    #[getter]
+    fn begin_offset(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1387 = (&self.inner.begin_offset).to_owned().into_py_any(py)?;
+        Ok(converted_1387)
+    }
+
+    #[getter]
+    fn end_offset(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1388 = (&self.inner.end_offset).to_owned().into_py_any(py)?;
+        Ok(converted_1388)
+    }
+
+    #[getter]
+    fn message_index(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1389 = (&self.inner.message_index).to_owned().into_py_any(py)?;
+        Ok(converted_1389)
+    }
+
+    #[getter]
+    fn content_index(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1390 = (&self.inner.content_index).to_owned().into_py_any(py)?;
+        Ok(converted_1390)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -13101,8 +13101,8 @@ struct PyGuardrailChecksSensitiveInformationUsage {
 impl PyGuardrailChecksSensitiveInformationUsage {
     #[getter]
     fn text_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1387 = (&self.inner.text_units).to_owned().into_py_any(py)?;
-        Ok(converted_1387)
+        let converted_1391 = (&self.inner.text_units).to_owned().into_py_any(py)?;
+        Ok(converted_1391)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -13137,20 +13137,20 @@ fn guardrail_checks_usage_results_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.content_filter {
-        let converted_1391 = guardrail_checks_content_filter_usage_to_py(py, value)?;
-        result.set_item("content_filter", converted_1391)?;
+        let converted_1395 = guardrail_checks_content_filter_usage_to_py(py, value)?;
+        result.set_item("content_filter", converted_1395)?;
     } else {
         result.set_item("content_filter", py.None())?;
     }
     if let Some(value) = &value.prompt_attack {
-        let converted_1392 = guardrail_checks_prompt_attack_usage_to_py(py, value)?;
-        result.set_item("prompt_attack", converted_1392)?;
+        let converted_1396 = guardrail_checks_prompt_attack_usage_to_py(py, value)?;
+        result.set_item("prompt_attack", converted_1396)?;
     } else {
         result.set_item("prompt_attack", py.None())?;
     }
     if let Some(value) = &value.sensitive_information {
-        let converted_1393 = guardrail_checks_sensitive_information_usage_to_py(py, value)?;
-        result.set_item("sensitive_information", converted_1393)?;
+        let converted_1397 = guardrail_checks_sensitive_information_usage_to_py(py, value)?;
+        result.set_item("sensitive_information", converted_1397)?;
     } else {
         result.set_item("sensitive_information", py.None())?;
     }
@@ -13171,14 +13171,14 @@ impl PyGuardrailChecksUsageResults {
     #[getter]
     fn content_filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_filter {
-            let converted_1388 = Py::new(
+            let converted_1392 = Py::new(
                 py,
                 PyGuardrailChecksContentFilterUsage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1388)
+            Ok(converted_1392)
         } else {
             Ok(py.None())
         }
@@ -13187,14 +13187,14 @@ impl PyGuardrailChecksUsageResults {
     #[getter]
     fn prompt_attack(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prompt_attack {
-            let converted_1389 = Py::new(
+            let converted_1393 = Py::new(
                 py,
                 PyGuardrailChecksPromptAttackUsage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1389)
+            Ok(converted_1393)
         } else {
             Ok(py.None())
         }
@@ -13203,14 +13203,14 @@ impl PyGuardrailChecksUsageResults {
     #[getter]
     fn sensitive_information(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sensitive_information {
-            let converted_1390 = Py::new(
+            let converted_1394 = Py::new(
                 py,
                 PyGuardrailChecksSensitiveInformationUsage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1390)
+            Ok(converted_1394)
         } else {
             Ok(py.None())
         }
@@ -13234,21 +13234,21 @@ struct PyGuardrailContentFilter {
 impl PyGuardrailContentFilter {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1394 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1394)
+        let converted_1398 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1398)
     }
 
     #[getter]
     fn confidence(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1395 = (&self.inner.confidence).as_str().into_py_any(py)?;
-        Ok(converted_1395)
+        let converted_1399 = (&self.inner.confidence).as_str().into_py_any(py)?;
+        Ok(converted_1399)
     }
 
     #[getter]
     fn filter_strength(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.filter_strength {
-            let converted_1396 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1396)
+            let converted_1400 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1400)
         } else {
             Ok(py.None())
         }
@@ -13256,15 +13256,15 @@ impl PyGuardrailContentFilter {
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1397 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1397)
+        let converted_1401 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1401)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1398 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1398)
+            let converted_1402 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1402)
         } else {
             Ok(py.None())
         }
@@ -13288,7 +13288,7 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailContentPolicyAssessment>
         Self {
             filters: (value.filters)
                 .into_iter()
-                .map(|owned_1402| Arc::new(owned_1402))
+                .map(|owned_1406| Arc::new(owned_1406))
                 .collect(),
         }
     }
@@ -13299,13 +13299,13 @@ fn guardrail_content_policy_assessment_shared_to_py(
     value: &SharedGuardrailContentPolicyAssessment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1403_list = PyList::empty(py);
-    for item_1404 in &value.filters {
-        let converted_item_1405 = guardrail_content_filter_to_py(py, item_1404)?;
-        converted_1403_list.append(converted_item_1405)?;
+    let converted_1407_list = PyList::empty(py);
+    for item_1408 in &value.filters {
+        let converted_item_1409 = guardrail_content_filter_to_py(py, item_1408)?;
+        converted_1407_list.append(converted_item_1409)?;
     }
-    let converted_1403 = converted_1403_list.into_any().unbind();
-    result.set_item("filters", converted_1403)?;
+    let converted_1407 = converted_1407_list.into_any().unbind();
+    result.set_item("filters", converted_1407)?;
     Ok(result.into_any().unbind())
 }
 
@@ -13322,19 +13322,19 @@ struct PyGuardrailContentPolicyAssessment {
 impl PyGuardrailContentPolicyAssessment {
     #[getter]
     fn filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1399_list = PyList::empty(py);
-        for item_1400 in &self.inner.filters {
-            let converted_item_1401 = Py::new(
+        let converted_1403_list = PyList::empty(py);
+        for item_1404 in &self.inner.filters {
+            let converted_item_1405 = Py::new(
                 py,
                 PyGuardrailContentFilter {
-                    inner: Arc::clone(item_1400),
+                    inner: Arc::clone(item_1404),
                 },
             )?
             .into_any();
-            converted_1399_list.append(converted_item_1401)?;
+            converted_1403_list.append(converted_item_1405)?;
         }
-        let converted_1399 = converted_1399_list.into_any().unbind();
-        Ok(converted_1399)
+        let converted_1403 = converted_1403_list.into_any().unbind();
+        Ok(converted_1403)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -13355,33 +13355,33 @@ struct PyGuardrailContextualGroundingFilter {
 impl PyGuardrailContextualGroundingFilter {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1406 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1406)
+        let converted_1410 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1410)
     }
 
     #[getter]
     fn threshold(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1407 = (&self.inner.threshold).to_owned().into_py_any(py)?;
-        Ok(converted_1407)
+        let converted_1411 = (&self.inner.threshold).to_owned().into_py_any(py)?;
+        Ok(converted_1411)
     }
 
     #[getter]
     fn score(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1408 = (&self.inner.score).to_owned().into_py_any(py)?;
-        Ok(converted_1408)
+        let converted_1412 = (&self.inner.score).to_owned().into_py_any(py)?;
+        Ok(converted_1412)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1409 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1409)
+        let converted_1413 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1413)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1410 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1410)
+            let converted_1414 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1414)
         } else {
             Ok(py.None())
         }
@@ -13410,7 +13410,7 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailContextualGroundingPolicyAsses
             filters: value.filters.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1414| Arc::new(owned_1414))
+                    .map(|owned_1418| Arc::new(owned_1418))
                     .collect()
             }),
         }
@@ -13423,13 +13423,13 @@ fn guardrail_contextual_grounding_policy_assessment_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.filters {
-        let converted_1415_list = PyList::empty(py);
-        for item_1416 in value {
-            let converted_item_1417 = guardrail_contextual_grounding_filter_to_py(py, item_1416)?;
-            converted_1415_list.append(converted_item_1417)?;
+        let converted_1419_list = PyList::empty(py);
+        for item_1420 in value {
+            let converted_item_1421 = guardrail_contextual_grounding_filter_to_py(py, item_1420)?;
+            converted_1419_list.append(converted_item_1421)?;
         }
-        let converted_1415 = converted_1415_list.into_any().unbind();
-        result.set_item("filters", converted_1415)?;
+        let converted_1419 = converted_1419_list.into_any().unbind();
+        result.set_item("filters", converted_1419)?;
     } else {
         result.set_item("filters", py.None())?;
     }
@@ -13450,19 +13450,19 @@ impl PyGuardrailContextualGroundingPolicyAssessment {
     #[getter]
     fn filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.filters {
-            let converted_1411_list = PyList::empty(py);
-            for item_1412 in value {
-                let converted_item_1413 = Py::new(
+            let converted_1415_list = PyList::empty(py);
+            for item_1416 in value {
+                let converted_item_1417 = Py::new(
                     py,
                     PyGuardrailContextualGroundingFilter {
-                        inner: Arc::clone(item_1412),
+                        inner: Arc::clone(item_1416),
                     },
                 )?
                 .into_any();
-                converted_1411_list.append(converted_item_1413)?;
+                converted_1415_list.append(converted_item_1417)?;
             }
-            let converted_1411 = converted_1411_list.into_any().unbind();
-            Ok(converted_1411)
+            let converted_1415 = converted_1415_list.into_any().unbind();
+            Ok(converted_1415)
         } else {
             Ok(py.None())
         }
@@ -13495,14 +13495,14 @@ fn guardrail_coverage_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.text_characters {
-        let converted_1420 = guardrail_text_characters_coverage_to_py(py, value)?;
-        result.set_item("text_characters", converted_1420)?;
+        let converted_1424 = guardrail_text_characters_coverage_to_py(py, value)?;
+        result.set_item("text_characters", converted_1424)?;
     } else {
         result.set_item("text_characters", py.None())?;
     }
     if let Some(value) = &value.images {
-        let converted_1421 = guardrail_image_coverage_to_py(py, value)?;
-        result.set_item("images", converted_1421)?;
+        let converted_1425 = guardrail_image_coverage_to_py(py, value)?;
+        result.set_item("images", converted_1425)?;
     } else {
         result.set_item("images", py.None())?;
     }
@@ -13523,14 +13523,14 @@ impl PyGuardrailCoverage {
     #[getter]
     fn text_characters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.text_characters {
-            let converted_1418 = Py::new(
+            let converted_1422 = Py::new(
                 py,
                 PyGuardrailTextCharactersCoverage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1418)
+            Ok(converted_1422)
         } else {
             Ok(py.None())
         }
@@ -13539,14 +13539,14 @@ impl PyGuardrailCoverage {
     #[getter]
     fn images(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.images {
-            let converted_1419 = Py::new(
+            let converted_1423 = Py::new(
                 py,
                 PyGuardrailImageCoverage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1419)
+            Ok(converted_1423)
         } else {
             Ok(py.None())
         }
@@ -13570,21 +13570,21 @@ struct PyGuardrailCustomWord {
 impl PyGuardrailCustomWord {
     #[getter]
     fn r#match(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1422 = (&self.inner.r#match).as_str().into_py_any(py)?;
-        Ok(converted_1422)
+        let converted_1426 = (&self.inner.r#match).as_str().into_py_any(py)?;
+        Ok(converted_1426)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1423 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1423)
+        let converted_1427 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1427)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1424 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1424)
+            let converted_1428 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1428)
         } else {
             Ok(py.None())
         }
@@ -13609,8 +13609,8 @@ impl PyGuardrailImageCoverage {
     #[getter]
     fn guarded(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guarded {
-            let converted_1425 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1425)
+            let converted_1429 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1429)
         } else {
             Ok(py.None())
         }
@@ -13619,8 +13619,8 @@ impl PyGuardrailImageCoverage {
     #[getter]
     fn total(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.total {
-            let converted_1426 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1426)
+            let converted_1430 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1430)
         } else {
             Ok(py.None())
         }
@@ -13659,20 +13659,20 @@ fn guardrail_invocation_metrics_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.guardrail_processing_latency {
-        let converted_1430 = (value).to_owned().into_py_any(py)?;
-        result.set_item("guardrail_processing_latency", converted_1430)?;
+        let converted_1434 = (value).to_owned().into_py_any(py)?;
+        result.set_item("guardrail_processing_latency", converted_1434)?;
     } else {
         result.set_item("guardrail_processing_latency", py.None())?;
     }
     if let Some(value) = &value.usage {
-        let converted_1431 = guardrail_usage_to_py(py, value)?;
-        result.set_item("usage", converted_1431)?;
+        let converted_1435 = guardrail_usage_to_py(py, value)?;
+        result.set_item("usage", converted_1435)?;
     } else {
         result.set_item("usage", py.None())?;
     }
     if let Some(value) = &value.guardrail_coverage {
-        let converted_1432 = guardrail_coverage_shared_to_py(py, value)?;
-        result.set_item("guardrail_coverage", converted_1432)?;
+        let converted_1436 = guardrail_coverage_shared_to_py(py, value)?;
+        result.set_item("guardrail_coverage", converted_1436)?;
     } else {
         result.set_item("guardrail_coverage", py.None())?;
     }
@@ -13693,8 +13693,8 @@ impl PyGuardrailInvocationMetrics {
     #[getter]
     fn guardrail_processing_latency(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_processing_latency {
-            let converted_1427 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1427)
+            let converted_1431 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1431)
         } else {
             Ok(py.None())
         }
@@ -13703,14 +13703,14 @@ impl PyGuardrailInvocationMetrics {
     #[getter]
     fn usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.usage {
-            let converted_1428 = Py::new(
+            let converted_1432 = Py::new(
                 py,
                 PyGuardrailUsage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1428)
+            Ok(converted_1432)
         } else {
             Ok(py.None())
         }
@@ -13719,14 +13719,14 @@ impl PyGuardrailInvocationMetrics {
     #[getter]
     fn guardrail_coverage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_coverage {
-            let converted_1429 = Py::new(
+            let converted_1433 = Py::new(
                 py,
                 PyGuardrailCoverage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1429)
+            Ok(converted_1433)
         } else {
             Ok(py.None())
         }
@@ -13750,27 +13750,27 @@ struct PyGuardrailManagedWord {
 impl PyGuardrailManagedWord {
     #[getter]
     fn r#match(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1433 = (&self.inner.r#match).as_str().into_py_any(py)?;
-        Ok(converted_1433)
+        let converted_1437 = (&self.inner.r#match).as_str().into_py_any(py)?;
+        Ok(converted_1437)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1434 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1434)
+        let converted_1438 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1438)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1435 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1435)
+        let converted_1439 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1439)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1436 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1436)
+            let converted_1440 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1440)
         } else {
             Ok(py.None())
         }
@@ -13795,8 +13795,8 @@ impl PyGuardrailOutputContent {
     #[getter]
     fn text(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.text {
-            let converted_1437 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1437)
+            let converted_1441 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1441)
         } else {
             Ok(py.None())
         }
@@ -13820,27 +13820,27 @@ struct PyGuardrailPiiEntityFilter {
 impl PyGuardrailPiiEntityFilter {
     #[getter]
     fn r#match(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1438 = (&self.inner.r#match).as_str().into_py_any(py)?;
-        Ok(converted_1438)
+        let converted_1442 = (&self.inner.r#match).as_str().into_py_any(py)?;
+        Ok(converted_1442)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1439 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1439)
+        let converted_1443 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1443)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1440 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1440)
+        let converted_1444 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1444)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1441 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1441)
+            let converted_1445 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1445)
         } else {
             Ok(py.None())
         }
@@ -13865,8 +13865,8 @@ impl PyGuardrailRegexFilter {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1442 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1442)
+            let converted_1446 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1446)
         } else {
             Ok(py.None())
         }
@@ -13875,8 +13875,8 @@ impl PyGuardrailRegexFilter {
     #[getter]
     fn r#match(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#match {
-            let converted_1443 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1443)
+            let converted_1447 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1447)
         } else {
             Ok(py.None())
         }
@@ -13885,8 +13885,8 @@ impl PyGuardrailRegexFilter {
     #[getter]
     fn regex(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.regex {
-            let converted_1444 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1444)
+            let converted_1448 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1448)
         } else {
             Ok(py.None())
         }
@@ -13894,15 +13894,15 @@ impl PyGuardrailRegexFilter {
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1445 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1445)
+        let converted_1449 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1449)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1446 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1446)
+            let converted_1450 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1450)
         } else {
             Ok(py.None())
         }
@@ -13929,11 +13929,11 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailSensitiveInformationPolicyAsse
         Self {
             pii_entities: (value.pii_entities)
                 .into_iter()
-                .map(|owned_1453| Arc::new(owned_1453))
+                .map(|owned_1457| Arc::new(owned_1457))
                 .collect(),
             regexes: (value.regexes)
                 .into_iter()
-                .map(|owned_1454| Arc::new(owned_1454))
+                .map(|owned_1458| Arc::new(owned_1458))
                 .collect(),
         }
     }
@@ -13944,20 +13944,20 @@ fn guardrail_sensitive_information_policy_assessment_shared_to_py(
     value: &SharedGuardrailSensitiveInformationPolicyAssessment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1455_list = PyList::empty(py);
-    for item_1456 in &value.pii_entities {
-        let converted_item_1457 = guardrail_pii_entity_filter_to_py(py, item_1456)?;
-        converted_1455_list.append(converted_item_1457)?;
+    let converted_1459_list = PyList::empty(py);
+    for item_1460 in &value.pii_entities {
+        let converted_item_1461 = guardrail_pii_entity_filter_to_py(py, item_1460)?;
+        converted_1459_list.append(converted_item_1461)?;
     }
-    let converted_1455 = converted_1455_list.into_any().unbind();
-    result.set_item("pii_entities", converted_1455)?;
-    let converted_1458_list = PyList::empty(py);
-    for item_1459 in &value.regexes {
-        let converted_item_1460 = guardrail_regex_filter_to_py(py, item_1459)?;
-        converted_1458_list.append(converted_item_1460)?;
+    let converted_1459 = converted_1459_list.into_any().unbind();
+    result.set_item("pii_entities", converted_1459)?;
+    let converted_1462_list = PyList::empty(py);
+    for item_1463 in &value.regexes {
+        let converted_item_1464 = guardrail_regex_filter_to_py(py, item_1463)?;
+        converted_1462_list.append(converted_item_1464)?;
     }
-    let converted_1458 = converted_1458_list.into_any().unbind();
-    result.set_item("regexes", converted_1458)?;
+    let converted_1462 = converted_1462_list.into_any().unbind();
+    result.set_item("regexes", converted_1462)?;
     Ok(result.into_any().unbind())
 }
 
@@ -13974,36 +13974,36 @@ struct PyGuardrailSensitiveInformationPolicyAssessment {
 impl PyGuardrailSensitiveInformationPolicyAssessment {
     #[getter]
     fn pii_entities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1447_list = PyList::empty(py);
-        for item_1448 in &self.inner.pii_entities {
-            let converted_item_1449 = Py::new(
+        let converted_1451_list = PyList::empty(py);
+        for item_1452 in &self.inner.pii_entities {
+            let converted_item_1453 = Py::new(
                 py,
                 PyGuardrailPiiEntityFilter {
-                    inner: Arc::clone(item_1448),
+                    inner: Arc::clone(item_1452),
                 },
             )?
             .into_any();
-            converted_1447_list.append(converted_item_1449)?;
+            converted_1451_list.append(converted_item_1453)?;
         }
-        let converted_1447 = converted_1447_list.into_any().unbind();
-        Ok(converted_1447)
+        let converted_1451 = converted_1451_list.into_any().unbind();
+        Ok(converted_1451)
     }
 
     #[getter]
     fn regexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1450_list = PyList::empty(py);
-        for item_1451 in &self.inner.regexes {
-            let converted_item_1452 = Py::new(
+        let converted_1454_list = PyList::empty(py);
+        for item_1455 in &self.inner.regexes {
+            let converted_item_1456 = Py::new(
                 py,
                 PyGuardrailRegexFilter {
-                    inner: Arc::clone(item_1451),
+                    inner: Arc::clone(item_1455),
                 },
             )?
             .into_any();
-            converted_1450_list.append(converted_item_1452)?;
+            converted_1454_list.append(converted_item_1456)?;
         }
-        let converted_1450 = converted_1450_list.into_any().unbind();
-        Ok(converted_1450)
+        let converted_1454 = converted_1454_list.into_any().unbind();
+        Ok(converted_1454)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -14025,8 +14025,8 @@ impl PyGuardrailTextCharactersCoverage {
     #[getter]
     fn guarded(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guarded {
-            let converted_1461 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1461)
+            let converted_1465 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1465)
         } else {
             Ok(py.None())
         }
@@ -14035,8 +14035,8 @@ impl PyGuardrailTextCharactersCoverage {
     #[getter]
     fn total(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.total {
-            let converted_1462 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1462)
+            let converted_1466 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1466)
         } else {
             Ok(py.None())
         }
@@ -14060,27 +14060,27 @@ struct PyGuardrailTopic {
 impl PyGuardrailTopic {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1463 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1463)
+        let converted_1467 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1467)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1464 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1464)
+        let converted_1468 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1468)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1465 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1465)
+        let converted_1469 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1469)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1466 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1466)
+            let converted_1470 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1470)
         } else {
             Ok(py.None())
         }
@@ -14104,7 +14104,7 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailTopicPolicyAssessment>
         Self {
             topics: (value.topics)
                 .into_iter()
-                .map(|owned_1470| Arc::new(owned_1470))
+                .map(|owned_1474| Arc::new(owned_1474))
                 .collect(),
         }
     }
@@ -14115,13 +14115,13 @@ fn guardrail_topic_policy_assessment_shared_to_py(
     value: &SharedGuardrailTopicPolicyAssessment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1471_list = PyList::empty(py);
-    for item_1472 in &value.topics {
-        let converted_item_1473 = guardrail_topic_to_py(py, item_1472)?;
-        converted_1471_list.append(converted_item_1473)?;
+    let converted_1475_list = PyList::empty(py);
+    for item_1476 in &value.topics {
+        let converted_item_1477 = guardrail_topic_to_py(py, item_1476)?;
+        converted_1475_list.append(converted_item_1477)?;
     }
-    let converted_1471 = converted_1471_list.into_any().unbind();
-    result.set_item("topics", converted_1471)?;
+    let converted_1475 = converted_1475_list.into_any().unbind();
+    result.set_item("topics", converted_1475)?;
     Ok(result.into_any().unbind())
 }
 
@@ -14138,19 +14138,19 @@ struct PyGuardrailTopicPolicyAssessment {
 impl PyGuardrailTopicPolicyAssessment {
     #[getter]
     fn topics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1467_list = PyList::empty(py);
-        for item_1468 in &self.inner.topics {
-            let converted_item_1469 = Py::new(
+        let converted_1471_list = PyList::empty(py);
+        for item_1472 in &self.inner.topics {
+            let converted_item_1473 = Py::new(
                 py,
                 PyGuardrailTopic {
-                    inner: Arc::clone(item_1468),
+                    inner: Arc::clone(item_1472),
                 },
             )?
             .into_any();
-            converted_1467_list.append(converted_item_1469)?;
+            converted_1471_list.append(converted_item_1473)?;
         }
-        let converted_1467 = converted_1467_list.into_any().unbind();
-        Ok(converted_1467)
+        let converted_1471 = converted_1471_list.into_any().unbind();
+        Ok(converted_1471)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -14182,21 +14182,21 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailTraceAssessment>
             input_assessment: value.input_assessment.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|(key, owned_1490)| {
-                        (key, Arc::new(SharedGuardrailAssessment::from(owned_1490)))
+                    .map(|(key, owned_1494)| {
+                        (key, Arc::new(SharedGuardrailAssessment::from(owned_1494)))
                     })
                     .collect()
             }),
             output_assessments: value.output_assessments.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|(key, owned_1491)| {
+                    .map(|(key, owned_1495)| {
                         (
                             key,
-                            (owned_1491)
+                            (owned_1495)
                                 .into_iter()
-                                .map(|owned_1492| {
-                                    Arc::new(SharedGuardrailAssessment::from(owned_1492))
+                                .map(|owned_1496| {
+                                    Arc::new(SharedGuardrailAssessment::from(owned_1496))
                                 })
                                 .collect(),
                         )
@@ -14214,48 +14214,48 @@ fn guardrail_trace_assessment_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.model_output {
-        let converted_1493_list = PyList::empty(py);
-        for item_1494 in value {
-            let converted_item_1495 = (item_1494).as_str().into_py_any(py)?;
-            converted_1493_list.append(converted_item_1495)?;
+        let converted_1497_list = PyList::empty(py);
+        for item_1498 in value {
+            let converted_item_1499 = (item_1498).as_str().into_py_any(py)?;
+            converted_1497_list.append(converted_item_1499)?;
         }
-        let converted_1493 = converted_1493_list.into_any().unbind();
-        result.set_item("model_output", converted_1493)?;
+        let converted_1497 = converted_1497_list.into_any().unbind();
+        result.set_item("model_output", converted_1497)?;
     } else {
         result.set_item("model_output", py.None())?;
     }
     if let Some(value) = &value.input_assessment {
-        let converted_1496_dict = PyDict::new(py);
-        for (key_1497, value_1498) in value {
-            let converted_key_1499 = (key_1497).as_str().into_py_any(py)?;
-            let converted_value_1500 = guardrail_assessment_shared_to_py(py, value_1498)?;
-            converted_1496_dict.set_item(converted_key_1499, converted_value_1500)?;
+        let converted_1500_dict = PyDict::new(py);
+        for (key_1501, value_1502) in value {
+            let converted_key_1503 = (key_1501).as_str().into_py_any(py)?;
+            let converted_value_1504 = guardrail_assessment_shared_to_py(py, value_1502)?;
+            converted_1500_dict.set_item(converted_key_1503, converted_value_1504)?;
         }
-        let converted_1496 = converted_1496_dict.into_any().unbind();
-        result.set_item("input_assessment", converted_1496)?;
+        let converted_1500 = converted_1500_dict.into_any().unbind();
+        result.set_item("input_assessment", converted_1500)?;
     } else {
         result.set_item("input_assessment", py.None())?;
     }
     if let Some(value) = &value.output_assessments {
-        let converted_1501_dict = PyDict::new(py);
-        for (key_1502, value_1503) in value {
-            let converted_key_1504 = (key_1502).as_str().into_py_any(py)?;
-            let converted_value_1505_list = PyList::empty(py);
-            for item_1506 in value_1503 {
-                let converted_item_1507 = guardrail_assessment_shared_to_py(py, item_1506)?;
-                converted_value_1505_list.append(converted_item_1507)?;
+        let converted_1505_dict = PyDict::new(py);
+        for (key_1506, value_1507) in value {
+            let converted_key_1508 = (key_1506).as_str().into_py_any(py)?;
+            let converted_value_1509_list = PyList::empty(py);
+            for item_1510 in value_1507 {
+                let converted_item_1511 = guardrail_assessment_shared_to_py(py, item_1510)?;
+                converted_value_1509_list.append(converted_item_1511)?;
             }
-            let converted_value_1505 = converted_value_1505_list.into_any().unbind();
-            converted_1501_dict.set_item(converted_key_1504, converted_value_1505)?;
+            let converted_value_1509 = converted_value_1509_list.into_any().unbind();
+            converted_1505_dict.set_item(converted_key_1508, converted_value_1509)?;
         }
-        let converted_1501 = converted_1501_dict.into_any().unbind();
-        result.set_item("output_assessments", converted_1501)?;
+        let converted_1505 = converted_1505_dict.into_any().unbind();
+        result.set_item("output_assessments", converted_1505)?;
     } else {
         result.set_item("output_assessments", py.None())?;
     }
     if let Some(value) = &value.action_reason {
-        let converted_1508 = (value).as_str().into_py_any(py)?;
-        result.set_item("action_reason", converted_1508)?;
+        let converted_1512 = (value).as_str().into_py_any(py)?;
+        result.set_item("action_reason", converted_1512)?;
     } else {
         result.set_item("action_reason", py.None())?;
     }
@@ -14276,13 +14276,13 @@ impl PyGuardrailTraceAssessment {
     #[getter]
     fn model_output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_output {
-            let converted_1474_list = PyList::empty(py);
-            for item_1475 in value {
-                let converted_item_1476 = (item_1475).as_str().into_py_any(py)?;
-                converted_1474_list.append(converted_item_1476)?;
+            let converted_1478_list = PyList::empty(py);
+            for item_1479 in value {
+                let converted_item_1480 = (item_1479).as_str().into_py_any(py)?;
+                converted_1478_list.append(converted_item_1480)?;
             }
-            let converted_1474 = converted_1474_list.into_any().unbind();
-            Ok(converted_1474)
+            let converted_1478 = converted_1478_list.into_any().unbind();
+            Ok(converted_1478)
         } else {
             Ok(py.None())
         }
@@ -14291,20 +14291,20 @@ impl PyGuardrailTraceAssessment {
     #[getter]
     fn input_assessment(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_assessment {
-            let converted_1477_dict = PyDict::new(py);
-            for (key_1478, value_1479) in value {
-                let converted_key_1480 = (key_1478).as_str().into_py_any(py)?;
-                let converted_value_1481 = Py::new(
+            let converted_1481_dict = PyDict::new(py);
+            for (key_1482, value_1483) in value {
+                let converted_key_1484 = (key_1482).as_str().into_py_any(py)?;
+                let converted_value_1485 = Py::new(
                     py,
                     PyGuardrailAssessment {
-                        inner: Arc::clone(value_1479),
+                        inner: Arc::clone(value_1483),
                     },
                 )?
                 .into_any();
-                converted_1477_dict.set_item(converted_key_1480, converted_value_1481)?;
+                converted_1481_dict.set_item(converted_key_1484, converted_value_1485)?;
             }
-            let converted_1477 = converted_1477_dict.into_any().unbind();
-            Ok(converted_1477)
+            let converted_1481 = converted_1481_dict.into_any().unbind();
+            Ok(converted_1481)
         } else {
             Ok(py.None())
         }
@@ -14313,25 +14313,25 @@ impl PyGuardrailTraceAssessment {
     #[getter]
     fn output_assessments(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_assessments {
-            let converted_1482_dict = PyDict::new(py);
-            for (key_1483, value_1484) in value {
-                let converted_key_1485 = (key_1483).as_str().into_py_any(py)?;
-                let converted_value_1486_list = PyList::empty(py);
-                for item_1487 in value_1484 {
-                    let converted_item_1488 = Py::new(
+            let converted_1486_dict = PyDict::new(py);
+            for (key_1487, value_1488) in value {
+                let converted_key_1489 = (key_1487).as_str().into_py_any(py)?;
+                let converted_value_1490_list = PyList::empty(py);
+                for item_1491 in value_1488 {
+                    let converted_item_1492 = Py::new(
                         py,
                         PyGuardrailAssessment {
-                            inner: Arc::clone(item_1487),
+                            inner: Arc::clone(item_1491),
                         },
                     )?
                     .into_any();
-                    converted_value_1486_list.append(converted_item_1488)?;
+                    converted_value_1490_list.append(converted_item_1492)?;
                 }
-                let converted_value_1486 = converted_value_1486_list.into_any().unbind();
-                converted_1482_dict.set_item(converted_key_1485, converted_value_1486)?;
+                let converted_value_1490 = converted_value_1490_list.into_any().unbind();
+                converted_1486_dict.set_item(converted_key_1489, converted_value_1490)?;
             }
-            let converted_1482 = converted_1482_dict.into_any().unbind();
-            Ok(converted_1482)
+            let converted_1486 = converted_1486_dict.into_any().unbind();
+            Ok(converted_1486)
         } else {
             Ok(py.None())
         }
@@ -14340,8 +14340,8 @@ impl PyGuardrailTraceAssessment {
     #[getter]
     fn action_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action_reason {
-            let converted_1489 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1489)
+            let converted_1493 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1493)
         } else {
             Ok(py.None())
         }
@@ -14365,55 +14365,55 @@ struct PyGuardrailUsage {
 impl PyGuardrailUsage {
     #[getter]
     fn topic_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1509 = (&self.inner.topic_policy_units)
-            .to_owned()
-            .into_py_any(py)?;
-        Ok(converted_1509)
-    }
-
-    #[getter]
-    fn content_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1510 = (&self.inner.content_policy_units)
-            .to_owned()
-            .into_py_any(py)?;
-        Ok(converted_1510)
-    }
-
-    #[getter]
-    fn word_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1511 = (&self.inner.word_policy_units).to_owned().into_py_any(py)?;
-        Ok(converted_1511)
-    }
-
-    #[getter]
-    fn sensitive_information_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1512 = (&self.inner.sensitive_information_policy_units)
-            .to_owned()
-            .into_py_any(py)?;
-        Ok(converted_1512)
-    }
-
-    #[getter]
-    fn sensitive_information_policy_free_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1513 = (&self.inner.sensitive_information_policy_free_units)
+        let converted_1513 = (&self.inner.topic_policy_units)
             .to_owned()
             .into_py_any(py)?;
         Ok(converted_1513)
     }
 
     #[getter]
-    fn contextual_grounding_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1514 = (&self.inner.contextual_grounding_policy_units)
+    fn content_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1514 = (&self.inner.content_policy_units)
             .to_owned()
             .into_py_any(py)?;
         Ok(converted_1514)
     }
 
     #[getter]
+    fn word_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1515 = (&self.inner.word_policy_units).to_owned().into_py_any(py)?;
+        Ok(converted_1515)
+    }
+
+    #[getter]
+    fn sensitive_information_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1516 = (&self.inner.sensitive_information_policy_units)
+            .to_owned()
+            .into_py_any(py)?;
+        Ok(converted_1516)
+    }
+
+    #[getter]
+    fn sensitive_information_policy_free_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1517 = (&self.inner.sensitive_information_policy_free_units)
+            .to_owned()
+            .into_py_any(py)?;
+        Ok(converted_1517)
+    }
+
+    #[getter]
+    fn contextual_grounding_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1518 = (&self.inner.contextual_grounding_policy_units)
+            .to_owned()
+            .into_py_any(py)?;
+        Ok(converted_1518)
+    }
+
+    #[getter]
     fn content_policy_image_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_policy_image_units {
-            let converted_1515 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1515)
+            let converted_1519 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1519)
         } else {
             Ok(py.None())
         }
@@ -14422,8 +14422,8 @@ impl PyGuardrailUsage {
     #[getter]
     fn automated_reasoning_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.automated_reasoning_policy_units {
-            let converted_1516 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1516)
+            let converted_1520 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1520)
         } else {
             Ok(py.None())
         }
@@ -14432,8 +14432,8 @@ impl PyGuardrailUsage {
     #[getter]
     fn automated_reasoning_policies(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.automated_reasoning_policies {
-            let converted_1517 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1517)
+            let converted_1521 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1521)
         } else {
             Ok(py.None())
         }
@@ -14458,11 +14458,11 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailWordPolicyAssessment>
         Self {
             custom_words: (value.custom_words)
                 .into_iter()
-                .map(|owned_1524| Arc::new(owned_1524))
+                .map(|owned_1528| Arc::new(owned_1528))
                 .collect(),
             managed_word_lists: (value.managed_word_lists)
                 .into_iter()
-                .map(|owned_1525| Arc::new(owned_1525))
+                .map(|owned_1529| Arc::new(owned_1529))
                 .collect(),
         }
     }
@@ -14473,20 +14473,20 @@ fn guardrail_word_policy_assessment_shared_to_py(
     value: &SharedGuardrailWordPolicyAssessment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1526_list = PyList::empty(py);
-    for item_1527 in &value.custom_words {
-        let converted_item_1528 = guardrail_custom_word_to_py(py, item_1527)?;
-        converted_1526_list.append(converted_item_1528)?;
+    let converted_1530_list = PyList::empty(py);
+    for item_1531 in &value.custom_words {
+        let converted_item_1532 = guardrail_custom_word_to_py(py, item_1531)?;
+        converted_1530_list.append(converted_item_1532)?;
     }
-    let converted_1526 = converted_1526_list.into_any().unbind();
-    result.set_item("custom_words", converted_1526)?;
-    let converted_1529_list = PyList::empty(py);
-    for item_1530 in &value.managed_word_lists {
-        let converted_item_1531 = guardrail_managed_word_to_py(py, item_1530)?;
-        converted_1529_list.append(converted_item_1531)?;
+    let converted_1530 = converted_1530_list.into_any().unbind();
+    result.set_item("custom_words", converted_1530)?;
+    let converted_1533_list = PyList::empty(py);
+    for item_1534 in &value.managed_word_lists {
+        let converted_item_1535 = guardrail_managed_word_to_py(py, item_1534)?;
+        converted_1533_list.append(converted_item_1535)?;
     }
-    let converted_1529 = converted_1529_list.into_any().unbind();
-    result.set_item("managed_word_lists", converted_1529)?;
+    let converted_1533 = converted_1533_list.into_any().unbind();
+    result.set_item("managed_word_lists", converted_1533)?;
     Ok(result.into_any().unbind())
 }
 
@@ -14503,36 +14503,36 @@ struct PyGuardrailWordPolicyAssessment {
 impl PyGuardrailWordPolicyAssessment {
     #[getter]
     fn custom_words(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1518_list = PyList::empty(py);
-        for item_1519 in &self.inner.custom_words {
-            let converted_item_1520 = Py::new(
+        let converted_1522_list = PyList::empty(py);
+        for item_1523 in &self.inner.custom_words {
+            let converted_item_1524 = Py::new(
                 py,
                 PyGuardrailCustomWord {
-                    inner: Arc::clone(item_1519),
+                    inner: Arc::clone(item_1523),
                 },
             )?
             .into_any();
-            converted_1518_list.append(converted_item_1520)?;
+            converted_1522_list.append(converted_item_1524)?;
         }
-        let converted_1518 = converted_1518_list.into_any().unbind();
-        Ok(converted_1518)
+        let converted_1522 = converted_1522_list.into_any().unbind();
+        Ok(converted_1522)
     }
 
     #[getter]
     fn managed_word_lists(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1521_list = PyList::empty(py);
-        for item_1522 in &self.inner.managed_word_lists {
-            let converted_item_1523 = Py::new(
+        let converted_1525_list = PyList::empty(py);
+        for item_1526 in &self.inner.managed_word_lists {
+            let converted_item_1527 = Py::new(
                 py,
                 PyGuardrailManagedWord {
-                    inner: Arc::clone(item_1522),
+                    inner: Arc::clone(item_1526),
                 },
             )?
             .into_any();
-            converted_1521_list.append(converted_item_1523)?;
+            converted_1525_list.append(converted_item_1527)?;
         }
-        let converted_1521 = converted_1521_list.into_any().unbind();
-        Ok(converted_1521)
+        let converted_1525 = converted_1525_list.into_any().unbind();
+        Ok(converted_1525)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -14553,8 +14553,8 @@ struct PyPerformanceConfiguration {
 impl PyPerformanceConfiguration {
     #[getter]
     fn latency(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1532 = (&self.inner.latency).as_str().into_py_any(py)?;
-        Ok(converted_1532)
+        let converted_1536 = (&self.inner.latency).as_str().into_py_any(py)?;
+        Ok(converted_1536)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -14576,8 +14576,8 @@ impl PyPromptRouterTrace {
     #[getter]
     fn invoked_model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.invoked_model_id {
-            let converted_1533 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1533)
+            let converted_1537 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1537)
         } else {
             Ok(py.None())
         }
@@ -14597,8 +14597,8 @@ struct PyServiceTier {
 impl PyServiceTier {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1534 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1534)
+        let converted_1538 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1538)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -14628,7 +14628,7 @@ impl From<aws_sdk_bedrockruntime::types::TokenUsage> for SharedTokenUsage {
             cache_details: value.cache_details.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1543| Arc::new(owned_1543))
+                    .map(|owned_1547| Arc::new(owned_1547))
                     .collect()
             }),
         }
@@ -14637,32 +14637,32 @@ impl From<aws_sdk_bedrockruntime::types::TokenUsage> for SharedTokenUsage {
 
 fn token_usage_shared_to_py(py: Python<'_>, value: &SharedTokenUsage) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1544 = (&value.input_tokens).to_owned().into_py_any(py)?;
-    result.set_item("input_tokens", converted_1544)?;
-    let converted_1545 = (&value.output_tokens).to_owned().into_py_any(py)?;
-    result.set_item("output_tokens", converted_1545)?;
-    let converted_1546 = (&value.total_tokens).to_owned().into_py_any(py)?;
-    result.set_item("total_tokens", converted_1546)?;
+    let converted_1548 = (&value.input_tokens).to_owned().into_py_any(py)?;
+    result.set_item("input_tokens", converted_1548)?;
+    let converted_1549 = (&value.output_tokens).to_owned().into_py_any(py)?;
+    result.set_item("output_tokens", converted_1549)?;
+    let converted_1550 = (&value.total_tokens).to_owned().into_py_any(py)?;
+    result.set_item("total_tokens", converted_1550)?;
     if let Some(value) = &value.cache_read_input_tokens {
-        let converted_1547 = (value).to_owned().into_py_any(py)?;
-        result.set_item("cache_read_input_tokens", converted_1547)?;
+        let converted_1551 = (value).to_owned().into_py_any(py)?;
+        result.set_item("cache_read_input_tokens", converted_1551)?;
     } else {
         result.set_item("cache_read_input_tokens", py.None())?;
     }
     if let Some(value) = &value.cache_write_input_tokens {
-        let converted_1548 = (value).to_owned().into_py_any(py)?;
-        result.set_item("cache_write_input_tokens", converted_1548)?;
+        let converted_1552 = (value).to_owned().into_py_any(py)?;
+        result.set_item("cache_write_input_tokens", converted_1552)?;
     } else {
         result.set_item("cache_write_input_tokens", py.None())?;
     }
     if let Some(value) = &value.cache_details {
-        let converted_1549_list = PyList::empty(py);
-        for item_1550 in value {
-            let converted_item_1551 = cache_detail_to_py(py, item_1550)?;
-            converted_1549_list.append(converted_item_1551)?;
+        let converted_1553_list = PyList::empty(py);
+        for item_1554 in value {
+            let converted_item_1555 = cache_detail_to_py(py, item_1554)?;
+            converted_1553_list.append(converted_item_1555)?;
         }
-        let converted_1549 = converted_1549_list.into_any().unbind();
-        result.set_item("cache_details", converted_1549)?;
+        let converted_1553 = converted_1553_list.into_any().unbind();
+        result.set_item("cache_details", converted_1553)?;
     } else {
         result.set_item("cache_details", py.None())?;
     }
@@ -14678,27 +14678,27 @@ struct PyTokenUsage {
 impl PyTokenUsage {
     #[getter]
     fn input_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1535 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
-        Ok(converted_1535)
+        let converted_1539 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
+        Ok(converted_1539)
     }
 
     #[getter]
     fn output_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1536 = (&self.inner.output_tokens).to_owned().into_py_any(py)?;
-        Ok(converted_1536)
+        let converted_1540 = (&self.inner.output_tokens).to_owned().into_py_any(py)?;
+        Ok(converted_1540)
     }
 
     #[getter]
     fn total_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1537 = (&self.inner.total_tokens).to_owned().into_py_any(py)?;
-        Ok(converted_1537)
+        let converted_1541 = (&self.inner.total_tokens).to_owned().into_py_any(py)?;
+        Ok(converted_1541)
     }
 
     #[getter]
     fn cache_read_input_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cache_read_input_tokens {
-            let converted_1538 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1538)
+            let converted_1542 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1542)
         } else {
             Ok(py.None())
         }
@@ -14707,8 +14707,8 @@ impl PyTokenUsage {
     #[getter]
     fn cache_write_input_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cache_write_input_tokens {
-            let converted_1539 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1539)
+            let converted_1543 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1543)
         } else {
             Ok(py.None())
         }
@@ -14717,19 +14717,19 @@ impl PyTokenUsage {
     #[getter]
     fn cache_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cache_details {
-            let converted_1540_list = PyList::empty(py);
-            for item_1541 in value {
-                let converted_item_1542 = Py::new(
+            let converted_1544_list = PyList::empty(py);
+            for item_1545 in value {
+                let converted_item_1546 = Py::new(
                     py,
                     PyCacheDetail {
-                        inner: Arc::clone(item_1541),
+                        inner: Arc::clone(item_1545),
                     },
                 )?
                 .into_any();
-                converted_1540_list.append(converted_item_1542)?;
+                converted_1544_list.append(converted_item_1546)?;
             }
-            let converted_1540 = converted_1540_list.into_any().unbind();
-            Ok(converted_1540)
+            let converted_1544 = converted_1544_list.into_any().unbind();
+            Ok(converted_1544)
         } else {
             Ok(py.None())
         }
@@ -14763,11 +14763,11 @@ impl From<aws_sdk_bedrockruntime::operation::apply_guardrail::ApplyGuardrailOutp
             action_reason: value.action_reason,
             outputs: (value.outputs)
                 .into_iter()
-                .map(|owned_1562| Arc::new(owned_1562))
+                .map(|owned_1566| Arc::new(owned_1566))
                 .collect(),
             assessments: (value.assessments)
                 .into_iter()
-                .map(|owned_1563| Arc::new(SharedGuardrailAssessment::from(owned_1563)))
+                .map(|owned_1567| Arc::new(SharedGuardrailAssessment::from(owned_1567)))
                 .collect(),
             guardrail_coverage: value
                 .guardrail_coverage
@@ -14790,14 +14790,14 @@ impl PyOperationApplyGuardrailOutput {
     #[getter]
     fn usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.usage {
-            let converted_1552 = Py::new(
+            let converted_1556 = Py::new(
                 py,
                 PyGuardrailUsage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1552)
+            Ok(converted_1556)
         } else {
             Ok(py.None())
         }
@@ -14805,15 +14805,15 @@ impl PyOperationApplyGuardrailOutput {
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1553 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1553)
+        let converted_1557 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1557)
     }
 
     #[getter]
     fn action_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action_reason {
-            let converted_1554 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1554)
+            let converted_1558 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1558)
         } else {
             Ok(py.None())
         }
@@ -14821,49 +14821,49 @@ impl PyOperationApplyGuardrailOutput {
 
     #[getter]
     fn outputs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1555_list = PyList::empty(py);
-        for item_1556 in &self.inner.outputs {
-            let converted_item_1557 = Py::new(
+        let converted_1559_list = PyList::empty(py);
+        for item_1560 in &self.inner.outputs {
+            let converted_item_1561 = Py::new(
                 py,
                 PyGuardrailOutputContent {
-                    inner: Arc::clone(item_1556),
+                    inner: Arc::clone(item_1560),
                 },
             )?
             .into_any();
-            converted_1555_list.append(converted_item_1557)?;
+            converted_1559_list.append(converted_item_1561)?;
         }
-        let converted_1555 = converted_1555_list.into_any().unbind();
-        Ok(converted_1555)
+        let converted_1559 = converted_1559_list.into_any().unbind();
+        Ok(converted_1559)
     }
 
     #[getter]
     fn assessments(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1558_list = PyList::empty(py);
-        for item_1559 in &self.inner.assessments {
-            let converted_item_1560 = Py::new(
+        let converted_1562_list = PyList::empty(py);
+        for item_1563 in &self.inner.assessments {
+            let converted_item_1564 = Py::new(
                 py,
                 PyGuardrailAssessment {
-                    inner: Arc::clone(item_1559),
+                    inner: Arc::clone(item_1563),
                 },
             )?
             .into_any();
-            converted_1558_list.append(converted_item_1560)?;
+            converted_1562_list.append(converted_item_1564)?;
         }
-        let converted_1558 = converted_1558_list.into_any().unbind();
-        Ok(converted_1558)
+        let converted_1562 = converted_1562_list.into_any().unbind();
+        Ok(converted_1562)
     }
 
     #[getter]
     fn guardrail_coverage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_coverage {
-            let converted_1561 = Py::new(
+            let converted_1565 = Py::new(
                 py,
                 PyGuardrailCoverage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1561)
+            Ok(converted_1565)
         } else {
             Ok(py.None())
         }
@@ -14872,36 +14872,36 @@ impl PyOperationApplyGuardrailOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.usage {
-            let converted_1564 = guardrail_usage_to_py(py, value)?;
-            result.set_item("usage", converted_1564)?;
+            let converted_1568 = guardrail_usage_to_py(py, value)?;
+            result.set_item("usage", converted_1568)?;
         } else {
             result.set_item("usage", py.None())?;
         }
-        let converted_1565 = (&self.inner.action).as_str().into_py_any(py)?;
-        result.set_item("action", converted_1565)?;
+        let converted_1569 = (&self.inner.action).as_str().into_py_any(py)?;
+        result.set_item("action", converted_1569)?;
         if let Some(value) = &self.inner.action_reason {
-            let converted_1566 = (value).as_str().into_py_any(py)?;
-            result.set_item("action_reason", converted_1566)?;
+            let converted_1570 = (value).as_str().into_py_any(py)?;
+            result.set_item("action_reason", converted_1570)?;
         } else {
             result.set_item("action_reason", py.None())?;
         }
-        let converted_1567_list = PyList::empty(py);
-        for item_1568 in &self.inner.outputs {
-            let converted_item_1569 = guardrail_output_content_to_py(py, item_1568)?;
-            converted_1567_list.append(converted_item_1569)?;
+        let converted_1571_list = PyList::empty(py);
+        for item_1572 in &self.inner.outputs {
+            let converted_item_1573 = guardrail_output_content_to_py(py, item_1572)?;
+            converted_1571_list.append(converted_item_1573)?;
         }
-        let converted_1567 = converted_1567_list.into_any().unbind();
-        result.set_item("outputs", converted_1567)?;
-        let converted_1570_list = PyList::empty(py);
-        for item_1571 in &self.inner.assessments {
-            let converted_item_1572 = guardrail_assessment_shared_to_py(py, item_1571)?;
-            converted_1570_list.append(converted_item_1572)?;
+        let converted_1571 = converted_1571_list.into_any().unbind();
+        result.set_item("outputs", converted_1571)?;
+        let converted_1574_list = PyList::empty(py);
+        for item_1575 in &self.inner.assessments {
+            let converted_item_1576 = guardrail_assessment_shared_to_py(py, item_1575)?;
+            converted_1574_list.append(converted_item_1576)?;
         }
-        let converted_1570 = converted_1570_list.into_any().unbind();
-        result.set_item("assessments", converted_1570)?;
+        let converted_1574 = converted_1574_list.into_any().unbind();
+        result.set_item("assessments", converted_1574)?;
         if let Some(value) = &self.inner.guardrail_coverage {
-            let converted_1573 = guardrail_coverage_shared_to_py(py, value)?;
-            result.set_item("guardrail_coverage", converted_1573)?;
+            let converted_1577 = guardrail_coverage_shared_to_py(py, value)?;
+            result.set_item("guardrail_coverage", converted_1577)?;
         } else {
             result.set_item("guardrail_coverage", py.None())?;
         }
@@ -14957,55 +14957,7 @@ impl PyOperationConverseOutput {
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
-            let converted_1574 = converse_output_to_py(py, value)?;
-            Ok(converted_1574)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn stop_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1575 = (&self.inner.stop_reason).as_str().into_py_any(py)?;
-        Ok(converted_1575)
-    }
-
-    #[getter]
-    fn usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.usage {
-            let converted_1576 = Py::new(
-                py,
-                PyTokenUsage {
-                    inner: Arc::clone(value),
-                },
-            )?
-            .into_any();
-            Ok(converted_1576)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.metrics {
-            let converted_1577 = Py::new(
-                py,
-                PyConverseMetrics {
-                    inner: Arc::clone(value),
-                },
-            )?
-            .into_any();
-            Ok(converted_1577)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn additional_model_response_fields(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.additional_model_response_fields {
-            let converted_1578 = rboto_core::document_to_py(py, value)?;
+            let converted_1578 = converse_output_to_py(py, value)?;
             Ok(converted_1578)
         } else {
             Ok(py.None())
@@ -15013,27 +14965,17 @@ impl PyOperationConverseOutput {
     }
 
     #[getter]
-    fn trace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.trace {
-            let converted_1579 = Py::new(
-                py,
-                PyConverseTrace {
-                    inner: Arc::clone(value),
-                },
-            )?
-            .into_any();
-            Ok(converted_1579)
-        } else {
-            Ok(py.None())
-        }
+    fn stop_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1579 = (&self.inner.stop_reason).as_str().into_py_any(py)?;
+        Ok(converted_1579)
     }
 
     #[getter]
-    fn performance_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.performance_config {
+    fn usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.usage {
             let converted_1580 = Py::new(
                 py,
-                PyPerformanceConfiguration {
+                PyTokenUsage {
                     inner: Arc::clone(value),
                 },
             )?
@@ -15045,11 +14987,11 @@ impl PyOperationConverseOutput {
     }
 
     #[getter]
-    fn service_tier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.service_tier {
+    fn metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.metrics {
             let converted_1581 = Py::new(
                 py,
-                PyServiceTier {
+                PyConverseMetrics {
                     inner: Arc::clone(value),
                 },
             )?
@@ -15060,49 +15002,107 @@ impl PyOperationConverseOutput {
         }
     }
 
+    #[getter]
+    fn additional_model_response_fields(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.additional_model_response_fields {
+            let converted_1582 = rboto_core::document_to_py(py, value)?;
+            Ok(converted_1582)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn trace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.trace {
+            let converted_1583 = Py::new(
+                py,
+                PyConverseTrace {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1583)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn performance_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.performance_config {
+            let converted_1584 = Py::new(
+                py,
+                PyPerformanceConfiguration {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1584)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn service_tier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.service_tier {
+            let converted_1585 = Py::new(
+                py,
+                PyServiceTier {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1585)
+        } else {
+            Ok(py.None())
+        }
+    }
+
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.output {
-            let converted_1582 = converse_output_to_py(py, value)?;
-            result.set_item("output", converted_1582)?;
+            let converted_1586 = converse_output_to_py(py, value)?;
+            result.set_item("output", converted_1586)?;
         } else {
             result.set_item("output", py.None())?;
         }
-        let converted_1583 = (&self.inner.stop_reason).as_str().into_py_any(py)?;
-        result.set_item("stop_reason", converted_1583)?;
+        let converted_1587 = (&self.inner.stop_reason).as_str().into_py_any(py)?;
+        result.set_item("stop_reason", converted_1587)?;
         if let Some(value) = &self.inner.usage {
-            let converted_1584 = token_usage_shared_to_py(py, value)?;
-            result.set_item("usage", converted_1584)?;
+            let converted_1588 = token_usage_shared_to_py(py, value)?;
+            result.set_item("usage", converted_1588)?;
         } else {
             result.set_item("usage", py.None())?;
         }
         if let Some(value) = &self.inner.metrics {
-            let converted_1585 = converse_metrics_to_py(py, value)?;
-            result.set_item("metrics", converted_1585)?;
+            let converted_1589 = converse_metrics_to_py(py, value)?;
+            result.set_item("metrics", converted_1589)?;
         } else {
             result.set_item("metrics", py.None())?;
         }
         if let Some(value) = &self.inner.additional_model_response_fields {
-            let converted_1586 = rboto_core::document_to_py(py, value)?;
-            result.set_item("additional_model_response_fields", converted_1586)?;
+            let converted_1590 = rboto_core::document_to_py(py, value)?;
+            result.set_item("additional_model_response_fields", converted_1590)?;
         } else {
             result.set_item("additional_model_response_fields", py.None())?;
         }
         if let Some(value) = &self.inner.trace {
-            let converted_1587 = converse_trace_shared_to_py(py, value)?;
-            result.set_item("trace", converted_1587)?;
+            let converted_1591 = converse_trace_shared_to_py(py, value)?;
+            result.set_item("trace", converted_1591)?;
         } else {
             result.set_item("trace", py.None())?;
         }
         if let Some(value) = &self.inner.performance_config {
-            let converted_1588 = performance_configuration_to_py(py, value)?;
-            result.set_item("performance_config", converted_1588)?;
+            let converted_1592 = performance_configuration_to_py(py, value)?;
+            result.set_item("performance_config", converted_1592)?;
         } else {
             result.set_item("performance_config", py.None())?;
         }
         if let Some(value) = &self.inner.service_tier {
-            let converted_1589 = service_tier_to_py(py, value)?;
-            result.set_item("service_tier", converted_1589)?;
+            let converted_1593 = service_tier_to_py(py, value)?;
+            result.set_item("service_tier", converted_1593)?;
         } else {
             result.set_item("service_tier", py.None())?;
         }
@@ -15123,14 +15123,14 @@ struct PyOperationCountTokensOutput {
 impl PyOperationCountTokensOutput {
     #[getter]
     fn input_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1590 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
-        Ok(converted_1590)
+        let converted_1594 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
+        Ok(converted_1594)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1591 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
-        result.set_item("input_tokens", converted_1591)?;
+        let converted_1595 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
+        result.set_item("input_tokens", converted_1595)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -15148,21 +15148,21 @@ struct PyOperationGetAsyncInvokeOutput {
 impl PyOperationGetAsyncInvokeOutput {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1592 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        Ok(converted_1592)
+        let converted_1596 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        Ok(converted_1596)
     }
 
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1593 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_1593)
+        let converted_1597 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_1597)
     }
 
     #[getter]
     fn client_request_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_request_token {
-            let converted_1594 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1594)
+            let converted_1598 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1598)
         } else {
             Ok(py.None())
         }
@@ -15170,15 +15170,15 @@ impl PyOperationGetAsyncInvokeOutput {
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1595 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_1595)
+        let converted_1599 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_1599)
     }
 
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_1596 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1596)
+            let converted_1600 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1600)
         } else {
             Ok(py.None())
         }
@@ -15186,15 +15186,15 @@ impl PyOperationGetAsyncInvokeOutput {
 
     #[getter]
     fn submit_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1597 = (&self.inner.submit_time).to_string().into_py_any(py)?;
-        Ok(converted_1597)
+        let converted_1601 = (&self.inner.submit_time).to_string().into_py_any(py)?;
+        Ok(converted_1601)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1598 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1598)
+            let converted_1602 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1602)
         } else {
             Ok(py.None())
         }
@@ -15203,8 +15203,8 @@ impl PyOperationGetAsyncInvokeOutput {
     #[getter]
     fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time {
-            let converted_1599 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1599)
+            let converted_1603 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1603)
         } else {
             Ok(py.None())
         }
@@ -15213,8 +15213,8 @@ impl PyOperationGetAsyncInvokeOutput {
     #[getter]
     fn output_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_data_config {
-            let converted_1600 = async_invoke_output_data_config_to_py(py, value)?;
-            Ok(converted_1600)
+            let converted_1604 = async_invoke_output_data_config_to_py(py, value)?;
+            Ok(converted_1604)
         } else {
             Ok(py.None())
         }
@@ -15222,41 +15222,41 @@ impl PyOperationGetAsyncInvokeOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1601 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        result.set_item("invocation_arn", converted_1601)?;
-        let converted_1602 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        result.set_item("model_arn", converted_1602)?;
+        let converted_1605 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        result.set_item("invocation_arn", converted_1605)?;
+        let converted_1606 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        result.set_item("model_arn", converted_1606)?;
         if let Some(value) = &self.inner.client_request_token {
-            let converted_1603 = (value).as_str().into_py_any(py)?;
-            result.set_item("client_request_token", converted_1603)?;
+            let converted_1607 = (value).as_str().into_py_any(py)?;
+            result.set_item("client_request_token", converted_1607)?;
         } else {
             result.set_item("client_request_token", py.None())?;
         }
-        let converted_1604 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_1604)?;
+        let converted_1608 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_1608)?;
         if let Some(value) = &self.inner.failure_message {
-            let converted_1605 = (value).as_str().into_py_any(py)?;
-            result.set_item("failure_message", converted_1605)?;
+            let converted_1609 = (value).as_str().into_py_any(py)?;
+            result.set_item("failure_message", converted_1609)?;
         } else {
             result.set_item("failure_message", py.None())?;
         }
-        let converted_1606 = (&self.inner.submit_time).to_string().into_py_any(py)?;
-        result.set_item("submit_time", converted_1606)?;
+        let converted_1610 = (&self.inner.submit_time).to_string().into_py_any(py)?;
+        result.set_item("submit_time", converted_1610)?;
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1607 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_1607)?;
+            let converted_1611 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_1611)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
         if let Some(value) = &self.inner.end_time {
-            let converted_1608 = (value).to_string().into_py_any(py)?;
-            result.set_item("end_time", converted_1608)?;
+            let converted_1612 = (value).to_string().into_py_any(py)?;
+            result.set_item("end_time", converted_1612)?;
         } else {
             result.set_item("end_time", py.None())?;
         }
         if let Some(value) = &self.inner.output_data_config {
-            let converted_1609 = async_invoke_output_data_config_to_py(py, value)?;
-            result.set_item("output_data_config", converted_1609)?;
+            let converted_1613 = async_invoke_output_data_config_to_py(py, value)?;
+            result.set_item("output_data_config", converted_1613)?;
         } else {
             result.set_item("output_data_config", py.None())?;
         }
@@ -15302,14 +15302,14 @@ impl PyOperationInvokeGuardrailChecksOutput {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.results {
-            let converted_1610 = Py::new(
+            let converted_1614 = Py::new(
                 py,
                 PyGuardrailChecksResults {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1610)
+            Ok(converted_1614)
         } else {
             Ok(py.None())
         }
@@ -15318,14 +15318,14 @@ impl PyOperationInvokeGuardrailChecksOutput {
     #[getter]
     fn usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.usage {
-            let converted_1611 = Py::new(
+            let converted_1615 = Py::new(
                 py,
                 PyGuardrailChecksUsageResults {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1611)
+            Ok(converted_1615)
         } else {
             Ok(py.None())
         }
@@ -15334,14 +15334,14 @@ impl PyOperationInvokeGuardrailChecksOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.results {
-            let converted_1612 = guardrail_checks_results_shared_to_py(py, value)?;
-            result.set_item("results", converted_1612)?;
+            let converted_1616 = guardrail_checks_results_shared_to_py(py, value)?;
+            result.set_item("results", converted_1616)?;
         } else {
             result.set_item("results", py.None())?;
         }
         if let Some(value) = &self.inner.usage {
-            let converted_1613 = guardrail_checks_usage_results_shared_to_py(py, value)?;
-            result.set_item("usage", converted_1613)?;
+            let converted_1617 = guardrail_checks_usage_results_shared_to_py(py, value)?;
+            result.set_item("usage", converted_1617)?;
         } else {
             result.set_item("usage", py.None())?;
         }
@@ -15362,23 +15362,23 @@ struct PyOperationInvokeModelOutput {
 impl PyOperationInvokeModelOutput {
     #[getter]
     fn body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1614 = PyBytes::new(py, (&self.inner.body).as_ref())
+        let converted_1618 = PyBytes::new(py, (&self.inner.body).as_ref())
             .into_any()
             .unbind();
-        Ok(converted_1614)
+        Ok(converted_1618)
     }
 
     #[getter]
     fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1615 = (&self.inner.content_type).as_str().into_py_any(py)?;
-        Ok(converted_1615)
+        let converted_1619 = (&self.inner.content_type).as_str().into_py_any(py)?;
+        Ok(converted_1619)
     }
 
     #[getter]
     fn performance_config_latency(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.performance_config_latency {
-            let converted_1616 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1616)
+            let converted_1620 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1620)
         } else {
             Ok(py.None())
         }
@@ -15387,8 +15387,8 @@ impl PyOperationInvokeModelOutput {
     #[getter]
     fn service_tier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.service_tier {
-            let converted_1617 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1617)
+            let converted_1621 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1621)
         } else {
             Ok(py.None())
         }
@@ -15396,21 +15396,21 @@ impl PyOperationInvokeModelOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1618 = PyBytes::new(py, (&self.inner.body).as_ref())
+        let converted_1622 = PyBytes::new(py, (&self.inner.body).as_ref())
             .into_any()
             .unbind();
-        result.set_item("body", converted_1618)?;
-        let converted_1619 = (&self.inner.content_type).as_str().into_py_any(py)?;
-        result.set_item("content_type", converted_1619)?;
+        result.set_item("body", converted_1622)?;
+        let converted_1623 = (&self.inner.content_type).as_str().into_py_any(py)?;
+        result.set_item("content_type", converted_1623)?;
         if let Some(value) = &self.inner.performance_config_latency {
-            let converted_1620 = (value).as_str().into_py_any(py)?;
-            result.set_item("performance_config_latency", converted_1620)?;
+            let converted_1624 = (value).as_str().into_py_any(py)?;
+            result.set_item("performance_config_latency", converted_1624)?;
         } else {
             result.set_item("performance_config_latency", py.None())?;
         }
         if let Some(value) = &self.inner.service_tier {
-            let converted_1621 = (value).as_str().into_py_any(py)?;
-            result.set_item("service_tier", converted_1621)?;
+            let converted_1625 = (value).as_str().into_py_any(py)?;
+            result.set_item("service_tier", converted_1625)?;
         } else {
             result.set_item("service_tier", py.None())?;
         }
@@ -15437,7 +15437,7 @@ impl From<aws_sdk_bedrockruntime::operation::list_async_invokes::ListAsyncInvoke
             async_invoke_summaries: value.async_invoke_summaries.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1626| Arc::new(owned_1626))
+                    .map(|owned_1630| Arc::new(owned_1630))
                     .collect()
             }),
         }
@@ -15458,8 +15458,8 @@ impl PyOperationListAsyncInvokesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1622 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1622)
+            let converted_1626 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1626)
         } else {
             Ok(py.None())
         }
@@ -15468,19 +15468,19 @@ impl PyOperationListAsyncInvokesOutput {
     #[getter]
     fn async_invoke_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.async_invoke_summaries {
-            let converted_1623_list = PyList::empty(py);
-            for item_1624 in value {
-                let converted_item_1625 = Py::new(
+            let converted_1627_list = PyList::empty(py);
+            for item_1628 in value {
+                let converted_item_1629 = Py::new(
                     py,
                     PyAsyncInvokeSummary {
-                        inner: Arc::clone(item_1624),
+                        inner: Arc::clone(item_1628),
                     },
                 )?
                 .into_any();
-                converted_1623_list.append(converted_item_1625)?;
+                converted_1627_list.append(converted_item_1629)?;
             }
-            let converted_1623 = converted_1623_list.into_any().unbind();
-            Ok(converted_1623)
+            let converted_1627 = converted_1627_list.into_any().unbind();
+            Ok(converted_1627)
         } else {
             Ok(py.None())
         }
@@ -15489,19 +15489,19 @@ impl PyOperationListAsyncInvokesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_1627 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1627)?;
+            let converted_1631 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1631)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.async_invoke_summaries {
-            let converted_1628_list = PyList::empty(py);
-            for item_1629 in value {
-                let converted_item_1630 = async_invoke_summary_to_py(py, item_1629)?;
-                converted_1628_list.append(converted_item_1630)?;
+            let converted_1632_list = PyList::empty(py);
+            for item_1633 in value {
+                let converted_item_1634 = async_invoke_summary_to_py(py, item_1633)?;
+                converted_1632_list.append(converted_item_1634)?;
             }
-            let converted_1628 = converted_1628_list.into_any().unbind();
-            result.set_item("async_invoke_summaries", converted_1628)?;
+            let converted_1632 = converted_1632_list.into_any().unbind();
+            result.set_item("async_invoke_summaries", converted_1632)?;
         } else {
             result.set_item("async_invoke_summaries", py.None())?;
         }
@@ -15522,14 +15522,14 @@ struct PyOperationStartAsyncInvokeOutput {
 impl PyOperationStartAsyncInvokeOutput {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1631 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        Ok(converted_1631)
+        let converted_1635 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        Ok(converted_1635)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1632 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        result.set_item("invocation_arn", converted_1632)?;
+        let converted_1636 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        result.set_item("invocation_arn", converted_1636)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -15540,12 +15540,12 @@ fn model_error_exception_error_details(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.original_status_code {
-        let detail_1633 = (value).to_owned().into_py_any(py)?;
-        result.set_item("original_status_code", detail_1633)?;
+        let detail_1637 = (value).to_owned().into_py_any(py)?;
+        result.set_item("original_status_code", detail_1637)?;
     }
     if let Some(value) = &value.resource_name {
-        let detail_1634 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_name", detail_1634)?;
+        let detail_1638 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_name", detail_1638)?;
     }
     Ok(result.into_any().unbind())
 }
@@ -15556,12 +15556,12 @@ fn model_stream_error_exception_error_details(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.original_status_code {
-        let detail_1635 = (value).to_owned().into_py_any(py)?;
-        result.set_item("original_status_code", detail_1635)?;
+        let detail_1639 = (value).to_owned().into_py_any(py)?;
+        result.set_item("original_status_code", detail_1639)?;
     }
     if let Some(value) = &value.original_message {
-        let detail_1636 = (value).as_str().into_py_any(py)?;
-        result.set_item("original_message", detail_1636)?;
+        let detail_1640 = (value).as_str().into_py_any(py)?;
+        result.set_item("original_message", detail_1640)?;
     }
     Ok(result.into_any().unbind())
 }
@@ -16590,11 +16590,32 @@ impl BedrockRuntimeClient {
         } else {
             None
         };
+        let project_identifier_value =
+            if let Some(value) = dict_value(params, "project_identifier")? {
+                let converted_1181 = (|| -> PyResult<_> {
+                    let converted_1181: String = value.extract()?;
+                    Ok(converted_1181)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("project_identifier"),
+                            "str",
+                        ),
+                        "bedrock-runtime",
+                        "Converse",
+                    )
+                })?;
+                Some(converted_1181)
+            } else {
+                None
+            };
         let additional_model_request_fields_value =
             if let Some(value) = dict_value(params, "additional_model_request_fields")? {
-                let converted_1181 = (|| -> PyResult<_> {
-                    let converted_1181 = rboto_core::document_from_py(&value)?;
-                    Ok(converted_1181)
+                let converted_1182 = (|| -> PyResult<_> {
+                    let converted_1182 = rboto_core::document_from_py(&value)?;
+                    Ok(converted_1182)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -16607,40 +16628,40 @@ impl BedrockRuntimeClient {
                         "Converse",
                     )
                 })?;
-                Some(converted_1181)
+                Some(converted_1182)
             } else {
                 None
             };
         let prompt_variables_value = if let Some(value) = dict_value(params, "prompt_variables")? {
-            let converted_1182 = (|| -> PyResult<_> {
-                let mapping_1183 = value.cast::<PyDict>()?;
-                let mut converted_1182 = HashMap::with_capacity(mapping_1183.len());
-                for (index_1188, (key_1184, value_1185)) in mapping_1183.iter().enumerate() {
-                    let converted_key_1186 = (|| -> PyResult<_> {
-                        let converted_key_1186: String = key_1184.extract()?;
-                        Ok(converted_key_1186)
+            let converted_1183 = (|| -> PyResult<_> {
+                let mapping_1184 = value.cast::<PyDict>()?;
+                let mut converted_1183 = HashMap::with_capacity(mapping_1184.len());
+                for (index_1189, (key_1185, value_1186)) in mapping_1184.iter().enumerate() {
+                    let converted_key_1187 = (|| -> PyResult<_> {
+                        let converted_key_1187: String = key_1185.extract()?;
+                        Ok(converted_key_1187)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_1188),
+                            rboto_core::InputPath::MapKey(index_1189),
                             "str",
                         )
                     })?;
-                    let converted_value_1187 = (|| -> PyResult<_> {
-                        let converted_value_1187 = prompt_variable_values_from_py(&value_1185)?;
-                        Ok(converted_value_1187)
+                    let converted_value_1188 = (|| -> PyResult<_> {
+                        let converted_value_1188 = prompt_variable_values_from_py(&value_1186)?;
+                        Ok(converted_value_1188)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_1188),
+                            rboto_core::InputPath::MapValue(index_1189),
                             "exactly one known union variant",
                         )
                     })?;
-                    converted_1182.insert(converted_key_1186, converted_value_1187);
+                    converted_1183.insert(converted_key_1187, converted_value_1188);
                 }
-                Ok(converted_1182)
+                Ok(converted_1183)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16653,38 +16674,38 @@ impl BedrockRuntimeClient {
                     "Converse",
                 )
             })?;
-            Some(converted_1182)
+            Some(converted_1183)
         } else {
             None
         };
         let additional_model_response_field_paths_value =
             if let Some(value) = dict_value(params, "additional_model_response_field_paths")? {
-                let converted_1189 = (|| -> PyResult<_> {
-                    let mut converted_1189 =
+                let converted_1190 = (|| -> PyResult<_> {
+                    let mut converted_1190 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_1193, item_result_1190) in value.try_iter()?.enumerate() {
-                        let item_1191 = item_result_1190.map_err(|error| {
+                    for (index_1194, item_result_1191) in value.try_iter()?.enumerate() {
+                        let item_1192 = item_result_1191.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_1193),
+                                rboto_core::InputPath::Index(index_1194),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_1192 = (|| -> PyResult<_> {
-                            let converted_item_1192: String = item_1191.extract()?;
-                            Ok(converted_item_1192)
+                        let converted_item_1193 = (|| -> PyResult<_> {
+                            let converted_item_1193: String = item_1192.extract()?;
+                            Ok(converted_item_1193)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_1193),
+                                rboto_core::InputPath::Index(index_1194),
                                 "str",
                             )
                         })?;
-                        converted_1189.push(converted_item_1192);
+                        converted_1190.push(converted_item_1193);
                     }
-                    Ok(converted_1189)
+                    Ok(converted_1190)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -16697,40 +16718,40 @@ impl BedrockRuntimeClient {
                         "Converse",
                     )
                 })?;
-                Some(converted_1189)
+                Some(converted_1190)
             } else {
                 None
             };
         let request_metadata_value = if let Some(value) = dict_value(params, "request_metadata")? {
-            let converted_1194 = (|| -> PyResult<_> {
-                let mapping_1195 = value.cast::<PyDict>()?;
-                let mut converted_1194 = HashMap::with_capacity(mapping_1195.len());
-                for (index_1200, (key_1196, value_1197)) in mapping_1195.iter().enumerate() {
-                    let converted_key_1198 = (|| -> PyResult<_> {
-                        let converted_key_1198: String = key_1196.extract()?;
-                        Ok(converted_key_1198)
+            let converted_1195 = (|| -> PyResult<_> {
+                let mapping_1196 = value.cast::<PyDict>()?;
+                let mut converted_1195 = HashMap::with_capacity(mapping_1196.len());
+                for (index_1201, (key_1197, value_1198)) in mapping_1196.iter().enumerate() {
+                    let converted_key_1199 = (|| -> PyResult<_> {
+                        let converted_key_1199: String = key_1197.extract()?;
+                        Ok(converted_key_1199)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_1200),
+                            rboto_core::InputPath::MapKey(index_1201),
                             "str",
                         )
                     })?;
-                    let converted_value_1199 = (|| -> PyResult<_> {
-                        let converted_value_1199: String = value_1197.extract()?;
-                        Ok(converted_value_1199)
+                    let converted_value_1200 = (|| -> PyResult<_> {
+                        let converted_value_1200: String = value_1198.extract()?;
+                        Ok(converted_value_1200)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_1200),
+                            rboto_core::InputPath::MapValue(index_1201),
                             "str",
                         )
                     })?;
-                    converted_1194.insert(converted_key_1198, converted_value_1199);
+                    converted_1195.insert(converted_key_1199, converted_value_1200);
                 }
-                Ok(converted_1194)
+                Ok(converted_1195)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16743,15 +16764,15 @@ impl BedrockRuntimeClient {
                     "Converse",
                 )
             })?;
-            Some(converted_1194)
+            Some(converted_1195)
         } else {
             None
         };
         let performance_config_value =
             if let Some(value) = dict_value(params, "performance_config")? {
-                let converted_1201 = (|| -> PyResult<_> {
-                    let converted_1201 = performance_configuration_from_py(&value)?;
-                    Ok(converted_1201)
+                let converted_1202 = (|| -> PyResult<_> {
+                    let converted_1202 = performance_configuration_from_py(&value)?;
+                    Ok(converted_1202)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -16764,14 +16785,14 @@ impl BedrockRuntimeClient {
                         "Converse",
                     )
                 })?;
-                Some(converted_1201)
+                Some(converted_1202)
             } else {
                 None
             };
         let service_tier_value = if let Some(value) = dict_value(params, "service_tier")? {
-            let converted_1202 = (|| -> PyResult<_> {
-                let converted_1202 = service_tier_from_py(&value)?;
-                Ok(converted_1202)
+            let converted_1203 = (|| -> PyResult<_> {
+                let converted_1203 = service_tier_from_py(&value)?;
+                Ok(converted_1203)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16784,14 +16805,14 @@ impl BedrockRuntimeClient {
                     "Converse",
                 )
             })?;
-            Some(converted_1202)
+            Some(converted_1203)
         } else {
             None
         };
         let output_config_value = if let Some(value) = dict_value(params, "output_config")? {
-            let converted_1203 = (|| -> PyResult<_> {
-                let converted_1203 = output_config_from_py(&value)?;
-                Ok(converted_1203)
+            let converted_1204 = (|| -> PyResult<_> {
+                let converted_1204 = output_config_from_py(&value)?;
+                Ok(converted_1204)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16804,7 +16825,7 @@ impl BedrockRuntimeClient {
                     "Converse",
                 )
             })?;
-            Some(converted_1203)
+            Some(converted_1204)
         } else {
             None
         };
@@ -16818,6 +16839,7 @@ impl BedrockRuntimeClient {
                 .set_inference_config(inference_config_value)
                 .set_tool_config(tool_config_value)
                 .set_guardrail_config(guardrail_config_value)
+                .set_project_identifier(project_identifier_value)
                 .set_additional_model_request_fields(additional_model_request_fields_value)
                 .set_prompt_variables(prompt_variables_value)
                 .set_additional_model_response_field_paths(
@@ -16856,9 +16878,9 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1204 = (|| -> PyResult<_> {
-                let converted_1204: String = value.extract()?;
-                Ok(converted_1204)
+            let converted_1205 = (|| -> PyResult<_> {
+                let converted_1205: String = value.extract()?;
+                Ok(converted_1205)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16867,37 +16889,37 @@ impl BedrockRuntimeClient {
                     "ConverseStream",
                 )
             })?;
-            Some(converted_1204)
+            Some(converted_1205)
         } else {
             None
         };
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
-            let converted_1205 = (|| -> PyResult<_> {
-                let mut converted_1205 =
+            let converted_1206 = (|| -> PyResult<_> {
+                let mut converted_1206 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1209, item_result_1206) in value.try_iter()?.enumerate() {
-                    let item_1207 = item_result_1206.map_err(|error| {
+                for (index_1210, item_result_1207) in value.try_iter()?.enumerate() {
+                    let item_1208 = item_result_1207.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1209),
+                            rboto_core::InputPath::Index(index_1210),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1208 = (|| -> PyResult<_> {
-                        let converted_item_1208 = message_from_py(&item_1207)?;
-                        Ok(converted_item_1208)
+                    let converted_item_1209 = (|| -> PyResult<_> {
+                        let converted_item_1209 = message_from_py(&item_1208)?;
+                        Ok(converted_item_1209)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1209),
+                            rboto_core::InputPath::Index(index_1210),
                             "dict (Message)",
                         )
                     })?;
-                    converted_1205.push(converted_item_1208);
+                    converted_1206.push(converted_item_1209);
                 }
-                Ok(converted_1205)
+                Ok(converted_1206)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16910,37 +16932,37 @@ impl BedrockRuntimeClient {
                     "ConverseStream",
                 )
             })?;
-            Some(converted_1205)
+            Some(converted_1206)
         } else {
             None
         };
         let system_value = if let Some(value) = dict_value(params, "system")? {
-            let converted_1210 = (|| -> PyResult<_> {
-                let mut converted_1210 =
+            let converted_1211 = (|| -> PyResult<_> {
+                let mut converted_1211 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1214, item_result_1211) in value.try_iter()?.enumerate() {
-                    let item_1212 = item_result_1211.map_err(|error| {
+                for (index_1215, item_result_1212) in value.try_iter()?.enumerate() {
+                    let item_1213 = item_result_1212.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1214),
+                            rboto_core::InputPath::Index(index_1215),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1213 = (|| -> PyResult<_> {
-                        let converted_item_1213 = system_content_block_from_py(&item_1212)?;
-                        Ok(converted_item_1213)
+                    let converted_item_1214 = (|| -> PyResult<_> {
+                        let converted_item_1214 = system_content_block_from_py(&item_1213)?;
+                        Ok(converted_item_1214)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1214),
+                            rboto_core::InputPath::Index(index_1215),
                             "exactly one known union variant",
                         )
                     })?;
-                    converted_1210.push(converted_item_1213);
+                    converted_1211.push(converted_item_1214);
                 }
-                Ok(converted_1210)
+                Ok(converted_1211)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16953,14 +16975,14 @@ impl BedrockRuntimeClient {
                     "ConverseStream",
                 )
             })?;
-            Some(converted_1210)
+            Some(converted_1211)
         } else {
             None
         };
         let inference_config_value = if let Some(value) = dict_value(params, "inference_config")? {
-            let converted_1215 = (|| -> PyResult<_> {
-                let converted_1215 = inference_configuration_from_py(&value)?;
-                Ok(converted_1215)
+            let converted_1216 = (|| -> PyResult<_> {
+                let converted_1216 = inference_configuration_from_py(&value)?;
+                Ok(converted_1216)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16973,14 +16995,14 @@ impl BedrockRuntimeClient {
                     "ConverseStream",
                 )
             })?;
-            Some(converted_1215)
+            Some(converted_1216)
         } else {
             None
         };
         let tool_config_value = if let Some(value) = dict_value(params, "tool_config")? {
-            let converted_1216 = (|| -> PyResult<_> {
-                let converted_1216 = tool_configuration_from_py(&value)?;
-                Ok(converted_1216)
+            let converted_1217 = (|| -> PyResult<_> {
+                let converted_1217 = tool_configuration_from_py(&value)?;
+                Ok(converted_1217)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -16993,14 +17015,14 @@ impl BedrockRuntimeClient {
                     "ConverseStream",
                 )
             })?;
-            Some(converted_1216)
+            Some(converted_1217)
         } else {
             None
         };
         let guardrail_config_value = if let Some(value) = dict_value(params, "guardrail_config")? {
-            let converted_1217 = (|| -> PyResult<_> {
-                let converted_1217 = guardrail_stream_configuration_from_py(&value)?;
-                Ok(converted_1217)
+            let converted_1218 = (|| -> PyResult<_> {
+                let converted_1218 = guardrail_stream_configuration_from_py(&value)?;
+                Ok(converted_1218)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17013,15 +17035,36 @@ impl BedrockRuntimeClient {
                     "ConverseStream",
                 )
             })?;
-            Some(converted_1217)
+            Some(converted_1218)
         } else {
             None
         };
+        let project_identifier_value =
+            if let Some(value) = dict_value(params, "project_identifier")? {
+                let converted_1219 = (|| -> PyResult<_> {
+                    let converted_1219: String = value.extract()?;
+                    Ok(converted_1219)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("project_identifier"),
+                            "str",
+                        ),
+                        "bedrock-runtime",
+                        "ConverseStream",
+                    )
+                })?;
+                Some(converted_1219)
+            } else {
+                None
+            };
         let additional_model_request_fields_value =
             if let Some(value) = dict_value(params, "additional_model_request_fields")? {
-                let converted_1218 = (|| -> PyResult<_> {
-                    let converted_1218 = rboto_core::document_from_py(&value)?;
-                    Ok(converted_1218)
+                let converted_1220 = (|| -> PyResult<_> {
+                    let converted_1220 = rboto_core::document_from_py(&value)?;
+                    Ok(converted_1220)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -17034,40 +17077,40 @@ impl BedrockRuntimeClient {
                         "ConverseStream",
                     )
                 })?;
-                Some(converted_1218)
+                Some(converted_1220)
             } else {
                 None
             };
         let prompt_variables_value = if let Some(value) = dict_value(params, "prompt_variables")? {
-            let converted_1219 = (|| -> PyResult<_> {
-                let mapping_1220 = value.cast::<PyDict>()?;
-                let mut converted_1219 = HashMap::with_capacity(mapping_1220.len());
-                for (index_1225, (key_1221, value_1222)) in mapping_1220.iter().enumerate() {
-                    let converted_key_1223 = (|| -> PyResult<_> {
-                        let converted_key_1223: String = key_1221.extract()?;
-                        Ok(converted_key_1223)
+            let converted_1221 = (|| -> PyResult<_> {
+                let mapping_1222 = value.cast::<PyDict>()?;
+                let mut converted_1221 = HashMap::with_capacity(mapping_1222.len());
+                for (index_1227, (key_1223, value_1224)) in mapping_1222.iter().enumerate() {
+                    let converted_key_1225 = (|| -> PyResult<_> {
+                        let converted_key_1225: String = key_1223.extract()?;
+                        Ok(converted_key_1225)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_1225),
+                            rboto_core::InputPath::MapKey(index_1227),
                             "str",
                         )
                     })?;
-                    let converted_value_1224 = (|| -> PyResult<_> {
-                        let converted_value_1224 = prompt_variable_values_from_py(&value_1222)?;
-                        Ok(converted_value_1224)
+                    let converted_value_1226 = (|| -> PyResult<_> {
+                        let converted_value_1226 = prompt_variable_values_from_py(&value_1224)?;
+                        Ok(converted_value_1226)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_1225),
+                            rboto_core::InputPath::MapValue(index_1227),
                             "exactly one known union variant",
                         )
                     })?;
-                    converted_1219.insert(converted_key_1223, converted_value_1224);
+                    converted_1221.insert(converted_key_1225, converted_value_1226);
                 }
-                Ok(converted_1219)
+                Ok(converted_1221)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17080,38 +17123,38 @@ impl BedrockRuntimeClient {
                     "ConverseStream",
                 )
             })?;
-            Some(converted_1219)
+            Some(converted_1221)
         } else {
             None
         };
         let additional_model_response_field_paths_value =
             if let Some(value) = dict_value(params, "additional_model_response_field_paths")? {
-                let converted_1226 = (|| -> PyResult<_> {
-                    let mut converted_1226 =
+                let converted_1228 = (|| -> PyResult<_> {
+                    let mut converted_1228 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_1230, item_result_1227) in value.try_iter()?.enumerate() {
-                        let item_1228 = item_result_1227.map_err(|error| {
+                    for (index_1232, item_result_1229) in value.try_iter()?.enumerate() {
+                        let item_1230 = item_result_1229.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_1230),
+                                rboto_core::InputPath::Index(index_1232),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_1229 = (|| -> PyResult<_> {
-                            let converted_item_1229: String = item_1228.extract()?;
-                            Ok(converted_item_1229)
+                        let converted_item_1231 = (|| -> PyResult<_> {
+                            let converted_item_1231: String = item_1230.extract()?;
+                            Ok(converted_item_1231)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_1230),
+                                rboto_core::InputPath::Index(index_1232),
                                 "str",
                             )
                         })?;
-                        converted_1226.push(converted_item_1229);
+                        converted_1228.push(converted_item_1231);
                     }
-                    Ok(converted_1226)
+                    Ok(converted_1228)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -17124,40 +17167,40 @@ impl BedrockRuntimeClient {
                         "ConverseStream",
                     )
                 })?;
-                Some(converted_1226)
+                Some(converted_1228)
             } else {
                 None
             };
         let request_metadata_value = if let Some(value) = dict_value(params, "request_metadata")? {
-            let converted_1231 = (|| -> PyResult<_> {
-                let mapping_1232 = value.cast::<PyDict>()?;
-                let mut converted_1231 = HashMap::with_capacity(mapping_1232.len());
-                for (index_1237, (key_1233, value_1234)) in mapping_1232.iter().enumerate() {
-                    let converted_key_1235 = (|| -> PyResult<_> {
-                        let converted_key_1235: String = key_1233.extract()?;
-                        Ok(converted_key_1235)
+            let converted_1233 = (|| -> PyResult<_> {
+                let mapping_1234 = value.cast::<PyDict>()?;
+                let mut converted_1233 = HashMap::with_capacity(mapping_1234.len());
+                for (index_1239, (key_1235, value_1236)) in mapping_1234.iter().enumerate() {
+                    let converted_key_1237 = (|| -> PyResult<_> {
+                        let converted_key_1237: String = key_1235.extract()?;
+                        Ok(converted_key_1237)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_1237),
+                            rboto_core::InputPath::MapKey(index_1239),
                             "str",
                         )
                     })?;
-                    let converted_value_1236 = (|| -> PyResult<_> {
-                        let converted_value_1236: String = value_1234.extract()?;
-                        Ok(converted_value_1236)
+                    let converted_value_1238 = (|| -> PyResult<_> {
+                        let converted_value_1238: String = value_1236.extract()?;
+                        Ok(converted_value_1238)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_1237),
+                            rboto_core::InputPath::MapValue(index_1239),
                             "str",
                         )
                     })?;
-                    converted_1231.insert(converted_key_1235, converted_value_1236);
+                    converted_1233.insert(converted_key_1237, converted_value_1238);
                 }
-                Ok(converted_1231)
+                Ok(converted_1233)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17170,15 +17213,15 @@ impl BedrockRuntimeClient {
                     "ConverseStream",
                 )
             })?;
-            Some(converted_1231)
+            Some(converted_1233)
         } else {
             None
         };
         let performance_config_value =
             if let Some(value) = dict_value(params, "performance_config")? {
-                let converted_1238 = (|| -> PyResult<_> {
-                    let converted_1238 = performance_configuration_from_py(&value)?;
-                    Ok(converted_1238)
+                let converted_1240 = (|| -> PyResult<_> {
+                    let converted_1240 = performance_configuration_from_py(&value)?;
+                    Ok(converted_1240)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -17191,14 +17234,14 @@ impl BedrockRuntimeClient {
                         "ConverseStream",
                     )
                 })?;
-                Some(converted_1238)
+                Some(converted_1240)
             } else {
                 None
             };
         let service_tier_value = if let Some(value) = dict_value(params, "service_tier")? {
-            let converted_1239 = (|| -> PyResult<_> {
-                let converted_1239 = service_tier_from_py(&value)?;
-                Ok(converted_1239)
+            let converted_1241 = (|| -> PyResult<_> {
+                let converted_1241 = service_tier_from_py(&value)?;
+                Ok(converted_1241)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17211,14 +17254,14 @@ impl BedrockRuntimeClient {
                     "ConverseStream",
                 )
             })?;
-            Some(converted_1239)
+            Some(converted_1241)
         } else {
             None
         };
         let output_config_value = if let Some(value) = dict_value(params, "output_config")? {
-            let converted_1240 = (|| -> PyResult<_> {
-                let converted_1240 = output_config_from_py(&value)?;
-                Ok(converted_1240)
+            let converted_1242 = (|| -> PyResult<_> {
+                let converted_1242 = output_config_from_py(&value)?;
+                Ok(converted_1242)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17231,7 +17274,7 @@ impl BedrockRuntimeClient {
                     "ConverseStream",
                 )
             })?;
-            Some(converted_1240)
+            Some(converted_1242)
         } else {
             None
         };
@@ -17245,6 +17288,7 @@ impl BedrockRuntimeClient {
                 .set_inference_config(inference_config_value)
                 .set_tool_config(tool_config_value)
                 .set_guardrail_config(guardrail_config_value)
+                .set_project_identifier(project_identifier_value)
                 .set_additional_model_request_fields(additional_model_request_fields_value)
                 .set_prompt_variables(prompt_variables_value)
                 .set_additional_model_response_field_paths(
@@ -17293,9 +17337,9 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1241 = (|| -> PyResult<_> {
-                let converted_1241: String = value.extract()?;
-                Ok(converted_1241)
+            let converted_1243 = (|| -> PyResult<_> {
+                let converted_1243: String = value.extract()?;
+                Ok(converted_1243)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17304,14 +17348,14 @@ impl BedrockRuntimeClient {
                     "CountTokens",
                 )
             })?;
-            Some(converted_1241)
+            Some(converted_1243)
         } else {
             None
         };
         let input_value = if let Some(value) = dict_value(params, "input")? {
-            let converted_1242 = (|| -> PyResult<_> {
-                let converted_1242 = count_tokens_input_from_py(&value)?;
-                Ok(converted_1242)
+            let converted_1244 = (|| -> PyResult<_> {
+                let converted_1244 = count_tokens_input_from_py(&value)?;
+                Ok(converted_1244)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17324,7 +17368,7 @@ impl BedrockRuntimeClient {
                     "CountTokens",
                 )
             })?;
-            Some(converted_1242)
+            Some(converted_1244)
         } else {
             None
         };
@@ -17361,9 +17405,9 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let invocation_arn_value = if let Some(value) = dict_value(params, "invocation_arn")? {
-            let converted_1243 = (|| -> PyResult<_> {
-                let converted_1243: String = value.extract()?;
-                Ok(converted_1243)
+            let converted_1245 = (|| -> PyResult<_> {
+                let converted_1245: String = value.extract()?;
+                Ok(converted_1245)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17376,7 +17420,7 @@ impl BedrockRuntimeClient {
                     "GetAsyncInvoke",
                 )
             })?;
-            Some(converted_1243)
+            Some(converted_1245)
         } else {
             None
         };
@@ -17412,32 +17456,32 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
-            let converted_1244 = (|| -> PyResult<_> {
-                let mut converted_1244 =
+            let converted_1246 = (|| -> PyResult<_> {
+                let mut converted_1246 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1248, item_result_1245) in value.try_iter()?.enumerate() {
-                    let item_1246 = item_result_1245.map_err(|error| {
+                for (index_1250, item_result_1247) in value.try_iter()?.enumerate() {
+                    let item_1248 = item_result_1247.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1248),
+                            rboto_core::InputPath::Index(index_1250),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1247 = (|| -> PyResult<_> {
-                        let converted_item_1247 = guardrail_checks_message_from_py(&item_1246)?;
-                        Ok(converted_item_1247)
+                    let converted_item_1249 = (|| -> PyResult<_> {
+                        let converted_item_1249 = guardrail_checks_message_from_py(&item_1248)?;
+                        Ok(converted_item_1249)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1248),
+                            rboto_core::InputPath::Index(index_1250),
                             "dict (GuardrailChecksMessage)",
                         )
                     })?;
-                    converted_1244.push(converted_item_1247);
+                    converted_1246.push(converted_item_1249);
                 }
-                Ok(converted_1244)
+                Ok(converted_1246)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17450,14 +17494,14 @@ impl BedrockRuntimeClient {
                     "InvokeGuardrailChecks",
                 )
             })?;
-            Some(converted_1244)
+            Some(converted_1246)
         } else {
             None
         };
         let checks_value = if let Some(value) = dict_value(params, "checks")? {
-            let converted_1249 = (|| -> PyResult<_> {
-                let converted_1249 = guardrail_checks_config_from_py(&value)?;
-                Ok(converted_1249)
+            let converted_1251 = (|| -> PyResult<_> {
+                let converted_1251 = guardrail_checks_config_from_py(&value)?;
+                Ok(converted_1251)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17470,7 +17514,7 @@ impl BedrockRuntimeClient {
                     "InvokeGuardrailChecks",
                 )
             })?;
-            Some(converted_1249)
+            Some(converted_1251)
         } else {
             None
         };
@@ -17514,10 +17558,10 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let body_value = if let Some(value) = dict_value(params, "body")? {
-            let converted_1250 = (|| -> PyResult<_> {
-                let bytes_1251: Vec<u8> = value.extract()?;
-                let converted_1250 = ::aws_smithy_types::Blob::new(bytes_1251);
-                Ok(converted_1250)
+            let converted_1252 = (|| -> PyResult<_> {
+                let bytes_1253: Vec<u8> = value.extract()?;
+                let converted_1252 = ::aws_smithy_types::Blob::new(bytes_1253);
+                Ok(converted_1252)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17526,14 +17570,14 @@ impl BedrockRuntimeClient {
                     "InvokeModel",
                 )
             })?;
-            Some(converted_1250)
+            Some(converted_1252)
         } else {
             None
         };
         let content_type_value = if let Some(value) = dict_value(params, "content_type")? {
-            let converted_1252 = (|| -> PyResult<_> {
-                let converted_1252: String = value.extract()?;
-                Ok(converted_1252)
+            let converted_1254 = (|| -> PyResult<_> {
+                let converted_1254: String = value.extract()?;
+                Ok(converted_1254)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17546,14 +17590,14 @@ impl BedrockRuntimeClient {
                     "InvokeModel",
                 )
             })?;
-            Some(converted_1252)
+            Some(converted_1254)
         } else {
             None
         };
         let accept_value = if let Some(value) = dict_value(params, "accept")? {
-            let converted_1253 = (|| -> PyResult<_> {
-                let converted_1253: String = value.extract()?;
-                Ok(converted_1253)
+            let converted_1255 = (|| -> PyResult<_> {
+                let converted_1255: String = value.extract()?;
+                Ok(converted_1255)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17562,14 +17606,14 @@ impl BedrockRuntimeClient {
                     "InvokeModel",
                 )
             })?;
-            Some(converted_1253)
+            Some(converted_1255)
         } else {
             None
         };
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1254 = (|| -> PyResult<_> {
-                let converted_1254: String = value.extract()?;
-                Ok(converted_1254)
+            let converted_1256 = (|| -> PyResult<_> {
+                let converted_1256: String = value.extract()?;
+                Ok(converted_1256)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17578,16 +17622,16 @@ impl BedrockRuntimeClient {
                     "InvokeModel",
                 )
             })?;
-            Some(converted_1254)
+            Some(converted_1256)
         } else {
             None
         };
         let trace_value = if let Some(value) = dict_value(params, "trace")? {
-            let converted_1255 = (|| -> PyResult<_> {
-                let enum_value_1256: String = value.extract()?;
-                let converted_1255 =
-                    aws_sdk_bedrockruntime::types::Trace::from(enum_value_1256.as_str());
-                Ok(converted_1255)
+            let converted_1257 = (|| -> PyResult<_> {
+                let enum_value_1258: String = value.extract()?;
+                let converted_1257 =
+                    aws_sdk_bedrockruntime::types::Trace::from(enum_value_1258.as_str());
+                Ok(converted_1257)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17600,15 +17644,15 @@ impl BedrockRuntimeClient {
                     "InvokeModel",
                 )
             })?;
-            Some(converted_1255)
+            Some(converted_1257)
         } else {
             None
         };
         let guardrail_identifier_value =
             if let Some(value) = dict_value(params, "guardrail_identifier")? {
-                let converted_1257 = (|| -> PyResult<_> {
-                    let converted_1257: String = value.extract()?;
-                    Ok(converted_1257)
+                let converted_1259 = (|| -> PyResult<_> {
+                    let converted_1259: String = value.extract()?;
+                    Ok(converted_1259)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -17621,15 +17665,15 @@ impl BedrockRuntimeClient {
                         "InvokeModel",
                     )
                 })?;
-                Some(converted_1257)
+                Some(converted_1259)
             } else {
                 None
             };
         let guardrail_version_value = if let Some(value) = dict_value(params, "guardrail_version")?
         {
-            let converted_1258 = (|| -> PyResult<_> {
-                let converted_1258: String = value.extract()?;
-                Ok(converted_1258)
+            let converted_1260 = (|| -> PyResult<_> {
+                let converted_1260: String = value.extract()?;
+                Ok(converted_1260)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17642,19 +17686,19 @@ impl BedrockRuntimeClient {
                     "InvokeModel",
                 )
             })?;
-            Some(converted_1258)
+            Some(converted_1260)
         } else {
             None
         };
         let performance_config_latency_value = if let Some(value) =
             dict_value(params, "performance_config_latency")?
         {
-            let converted_1259 = (|| -> PyResult<_> {
-                let enum_value_1260: String = value.extract()?;
-                let converted_1259 = aws_sdk_bedrockruntime::types::PerformanceConfigLatency::from(
-                    enum_value_1260.as_str(),
+            let converted_1261 = (|| -> PyResult<_> {
+                let enum_value_1262: String = value.extract()?;
+                let converted_1261 = aws_sdk_bedrockruntime::types::PerformanceConfigLatency::from(
+                    enum_value_1262.as_str(),
                 );
-                Ok(converted_1259)
+                Ok(converted_1261)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17667,16 +17711,16 @@ impl BedrockRuntimeClient {
                     "InvokeModel",
                 )
             })?;
-            Some(converted_1259)
+            Some(converted_1261)
         } else {
             None
         };
         let service_tier_value = if let Some(value) = dict_value(params, "service_tier")? {
-            let converted_1261 = (|| -> PyResult<_> {
-                let enum_value_1262: String = value.extract()?;
-                let converted_1261 =
-                    aws_sdk_bedrockruntime::types::ServiceTierType::from(enum_value_1262.as_str());
-                Ok(converted_1261)
+            let converted_1263 = (|| -> PyResult<_> {
+                let enum_value_1264: String = value.extract()?;
+                let converted_1263 =
+                    aws_sdk_bedrockruntime::types::ServiceTierType::from(enum_value_1264.as_str());
+                Ok(converted_1263)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17689,14 +17733,14 @@ impl BedrockRuntimeClient {
                     "InvokeModel",
                 )
             })?;
-            Some(converted_1261)
+            Some(converted_1263)
         } else {
             None
         };
         let request_metadata_value = if let Some(value) = dict_value(params, "request_metadata")? {
-            let converted_1263 = (|| -> PyResult<_> {
-                let converted_1263: String = value.extract()?;
-                Ok(converted_1263)
+            let converted_1265 = (|| -> PyResult<_> {
+                let converted_1265: String = value.extract()?;
+                Ok(converted_1265)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17709,10 +17753,31 @@ impl BedrockRuntimeClient {
                     "InvokeModel",
                 )
             })?;
-            Some(converted_1263)
+            Some(converted_1265)
         } else {
             None
         };
+        let project_identifier_value =
+            if let Some(value) = dict_value(params, "project_identifier")? {
+                let converted_1266 = (|| -> PyResult<_> {
+                    let converted_1266: String = value.extract()?;
+                    Ok(converted_1266)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("project_identifier"),
+                            "str",
+                        ),
+                        "bedrock-runtime",
+                        "InvokeModel",
+                    )
+                })?;
+                Some(converted_1266)
+            } else {
+                None
+            };
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
@@ -17726,7 +17791,8 @@ impl BedrockRuntimeClient {
                 .set_guardrail_version(guardrail_version_value)
                 .set_performance_config_latency(performance_config_latency_value)
                 .set_service_tier(service_tier_value)
-                .set_request_metadata(request_metadata_value);
+                .set_request_metadata(request_metadata_value)
+                .set_project_identifier(project_identifier_value);
             let observer = rboto_core::OperationObservation::new(observation.is_some());
             let result = request
                 .customize()
@@ -17754,9 +17820,9 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1264 = (|| -> PyResult<_> {
-                let converted_1264: String = value.extract()?;
-                Ok(converted_1264)
+            let converted_1267 = (|| -> PyResult<_> {
+                let converted_1267: String = value.extract()?;
+                Ok(converted_1267)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17765,19 +17831,19 @@ impl BedrockRuntimeClient {
                     "InvokeModelWithBidirectionalStream",
                 )
             })?;
-            Some(converted_1264)
+            Some(converted_1267)
         } else {
             None
         };
         let body_value = if let Some(value) = dict_value(params, "body")? {
-            let converted_1265 = (|| -> PyResult<_> {
-                let converted_1265: aws_sdk_bedrockruntime::primitives::event_stream::EventStreamSender<aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamInput, aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamInputError> = rboto_core::python_event_stream(
+            let converted_1268 = (|| -> PyResult<_> {
+                let converted_1268: aws_sdk_bedrockruntime::primitives::event_stream::EventStreamSender<aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamInput, aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamInputError> = rboto_core::python_event_stream(
                     &value, invoke_model_with_bidirectional_stream_input_from_py,
                     aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamInputError::unhandled,
                 )?.into();
-                Ok(converted_1265)
+                Ok(converted_1268)
             })().map_err(|error| rboto_core::input_operation(rboto_core::input_error(error, rboto_core::InputPath::Field("body"), "async iterator"), "bedrock-runtime", "InvokeModelWithBidirectionalStream"))?;
-            Some(converted_1265)
+            Some(converted_1268)
         } else {
             None
         };
@@ -17834,10 +17900,10 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let body_value = if let Some(value) = dict_value(params, "body")? {
-            let converted_1266 = (|| -> PyResult<_> {
-                let bytes_1267: Vec<u8> = value.extract()?;
-                let converted_1266 = ::aws_smithy_types::Blob::new(bytes_1267);
-                Ok(converted_1266)
+            let converted_1269 = (|| -> PyResult<_> {
+                let bytes_1270: Vec<u8> = value.extract()?;
+                let converted_1269 = ::aws_smithy_types::Blob::new(bytes_1270);
+                Ok(converted_1269)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17846,14 +17912,14 @@ impl BedrockRuntimeClient {
                     "InvokeModelWithResponseStream",
                 )
             })?;
-            Some(converted_1266)
+            Some(converted_1269)
         } else {
             None
         };
         let content_type_value = if let Some(value) = dict_value(params, "content_type")? {
-            let converted_1268 = (|| -> PyResult<_> {
-                let converted_1268: String = value.extract()?;
-                Ok(converted_1268)
+            let converted_1271 = (|| -> PyResult<_> {
+                let converted_1271: String = value.extract()?;
+                Ok(converted_1271)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17866,14 +17932,14 @@ impl BedrockRuntimeClient {
                     "InvokeModelWithResponseStream",
                 )
             })?;
-            Some(converted_1268)
+            Some(converted_1271)
         } else {
             None
         };
         let accept_value = if let Some(value) = dict_value(params, "accept")? {
-            let converted_1269 = (|| -> PyResult<_> {
-                let converted_1269: String = value.extract()?;
-                Ok(converted_1269)
+            let converted_1272 = (|| -> PyResult<_> {
+                let converted_1272: String = value.extract()?;
+                Ok(converted_1272)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17882,14 +17948,14 @@ impl BedrockRuntimeClient {
                     "InvokeModelWithResponseStream",
                 )
             })?;
-            Some(converted_1269)
+            Some(converted_1272)
         } else {
             None
         };
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1270 = (|| -> PyResult<_> {
-                let converted_1270: String = value.extract()?;
-                Ok(converted_1270)
+            let converted_1273 = (|| -> PyResult<_> {
+                let converted_1273: String = value.extract()?;
+                Ok(converted_1273)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17898,16 +17964,16 @@ impl BedrockRuntimeClient {
                     "InvokeModelWithResponseStream",
                 )
             })?;
-            Some(converted_1270)
+            Some(converted_1273)
         } else {
             None
         };
         let trace_value = if let Some(value) = dict_value(params, "trace")? {
-            let converted_1271 = (|| -> PyResult<_> {
-                let enum_value_1272: String = value.extract()?;
-                let converted_1271 =
-                    aws_sdk_bedrockruntime::types::Trace::from(enum_value_1272.as_str());
-                Ok(converted_1271)
+            let converted_1274 = (|| -> PyResult<_> {
+                let enum_value_1275: String = value.extract()?;
+                let converted_1274 =
+                    aws_sdk_bedrockruntime::types::Trace::from(enum_value_1275.as_str());
+                Ok(converted_1274)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17920,15 +17986,15 @@ impl BedrockRuntimeClient {
                     "InvokeModelWithResponseStream",
                 )
             })?;
-            Some(converted_1271)
+            Some(converted_1274)
         } else {
             None
         };
         let guardrail_identifier_value =
             if let Some(value) = dict_value(params, "guardrail_identifier")? {
-                let converted_1273 = (|| -> PyResult<_> {
-                    let converted_1273: String = value.extract()?;
-                    Ok(converted_1273)
+                let converted_1276 = (|| -> PyResult<_> {
+                    let converted_1276: String = value.extract()?;
+                    Ok(converted_1276)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -17941,15 +18007,15 @@ impl BedrockRuntimeClient {
                         "InvokeModelWithResponseStream",
                     )
                 })?;
-                Some(converted_1273)
+                Some(converted_1276)
             } else {
                 None
             };
         let guardrail_version_value = if let Some(value) = dict_value(params, "guardrail_version")?
         {
-            let converted_1274 = (|| -> PyResult<_> {
-                let converted_1274: String = value.extract()?;
-                Ok(converted_1274)
+            let converted_1277 = (|| -> PyResult<_> {
+                let converted_1277: String = value.extract()?;
+                Ok(converted_1277)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17962,19 +18028,19 @@ impl BedrockRuntimeClient {
                     "InvokeModelWithResponseStream",
                 )
             })?;
-            Some(converted_1274)
+            Some(converted_1277)
         } else {
             None
         };
         let performance_config_latency_value = if let Some(value) =
             dict_value(params, "performance_config_latency")?
         {
-            let converted_1275 = (|| -> PyResult<_> {
-                let enum_value_1276: String = value.extract()?;
-                let converted_1275 = aws_sdk_bedrockruntime::types::PerformanceConfigLatency::from(
-                    enum_value_1276.as_str(),
+            let converted_1278 = (|| -> PyResult<_> {
+                let enum_value_1279: String = value.extract()?;
+                let converted_1278 = aws_sdk_bedrockruntime::types::PerformanceConfigLatency::from(
+                    enum_value_1279.as_str(),
                 );
-                Ok(converted_1275)
+                Ok(converted_1278)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17987,16 +18053,16 @@ impl BedrockRuntimeClient {
                     "InvokeModelWithResponseStream",
                 )
             })?;
-            Some(converted_1275)
+            Some(converted_1278)
         } else {
             None
         };
         let service_tier_value = if let Some(value) = dict_value(params, "service_tier")? {
-            let converted_1277 = (|| -> PyResult<_> {
-                let enum_value_1278: String = value.extract()?;
-                let converted_1277 =
-                    aws_sdk_bedrockruntime::types::ServiceTierType::from(enum_value_1278.as_str());
-                Ok(converted_1277)
+            let converted_1280 = (|| -> PyResult<_> {
+                let enum_value_1281: String = value.extract()?;
+                let converted_1280 =
+                    aws_sdk_bedrockruntime::types::ServiceTierType::from(enum_value_1281.as_str());
+                Ok(converted_1280)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18009,14 +18075,14 @@ impl BedrockRuntimeClient {
                     "InvokeModelWithResponseStream",
                 )
             })?;
-            Some(converted_1277)
+            Some(converted_1280)
         } else {
             None
         };
         let request_metadata_value = if let Some(value) = dict_value(params, "request_metadata")? {
-            let converted_1279 = (|| -> PyResult<_> {
-                let converted_1279: String = value.extract()?;
-                Ok(converted_1279)
+            let converted_1282 = (|| -> PyResult<_> {
+                let converted_1282: String = value.extract()?;
+                Ok(converted_1282)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18029,10 +18095,31 @@ impl BedrockRuntimeClient {
                     "InvokeModelWithResponseStream",
                 )
             })?;
-            Some(converted_1279)
+            Some(converted_1282)
         } else {
             None
         };
+        let project_identifier_value =
+            if let Some(value) = dict_value(params, "project_identifier")? {
+                let converted_1283 = (|| -> PyResult<_> {
+                    let converted_1283: String = value.extract()?;
+                    Ok(converted_1283)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("project_identifier"),
+                            "str",
+                        ),
+                        "bedrock-runtime",
+                        "InvokeModelWithResponseStream",
+                    )
+                })?;
+                Some(converted_1283)
+            } else {
+                None
+            };
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
@@ -18046,7 +18133,8 @@ impl BedrockRuntimeClient {
                 .set_guardrail_version(guardrail_version_value)
                 .set_performance_config_latency(performance_config_latency_value)
                 .set_service_tier(service_tier_value)
-                .set_request_metadata(request_metadata_value);
+                .set_request_metadata(request_metadata_value)
+                .set_project_identifier(project_identifier_value);
             let observer = rboto_core::OperationObservation::new(observation.is_some());
             let result = request
                 .customize()
@@ -18077,17 +18165,17 @@ impl BedrockRuntimeClient {
                     PyResponseStreamReceiver::new(output.body, context.clone()),
                 )?;
                 result.set_item("body", stream)?;
-                let converted_1280 = (&output.content_type).as_str().into_py_any(py)?;
-                result.set_item("content_type", converted_1280)?;
+                let converted_1284 = (&output.content_type).as_str().into_py_any(py)?;
+                result.set_item("content_type", converted_1284)?;
                 if let Some(value) = &output.performance_config_latency {
-                    let converted_1281 = (value).as_str().into_py_any(py)?;
-                    result.set_item("performance_config_latency", converted_1281)?;
+                    let converted_1285 = (value).as_str().into_py_any(py)?;
+                    result.set_item("performance_config_latency", converted_1285)?;
                 } else {
                     result.set_item("performance_config_latency", py.None())?;
                 }
                 if let Some(value) = &output.service_tier {
-                    let converted_1282 = (value).as_str().into_py_any(py)?;
-                    result.set_item("service_tier", converted_1282)?;
+                    let converted_1286 = (value).as_str().into_py_any(py)?;
+                    result.set_item("service_tier", converted_1286)?;
                 } else {
                     result.set_item("service_tier", py.None())?;
                 }
@@ -18106,14 +18194,14 @@ impl BedrockRuntimeClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let submit_time_after_value = if let Some(value) = dict_value(params, "submit_time_after")?
         {
-            let converted_1283 = (|| -> PyResult<_> {
-                let timestamp_1284: String = value.extract()?;
-                let converted_1283 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1284,
+            let converted_1287 = (|| -> PyResult<_> {
+                let timestamp_1288: String = value.extract()?;
+                let converted_1287 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1288,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                Ok(converted_1283)
+                Ok(converted_1287)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18126,20 +18214,20 @@ impl BedrockRuntimeClient {
                     "ListAsyncInvokes",
                 )
             })?;
-            Some(converted_1283)
+            Some(converted_1287)
         } else {
             None
         };
         let submit_time_before_value =
             if let Some(value) = dict_value(params, "submit_time_before")? {
-                let converted_1285 = (|| -> PyResult<_> {
-                    let timestamp_1286: String = value.extract()?;
-                    let converted_1285 = ::aws_smithy_types::DateTime::from_str(
-                        &timestamp_1286,
+                let converted_1289 = (|| -> PyResult<_> {
+                    let timestamp_1290: String = value.extract()?;
+                    let converted_1289 = ::aws_smithy_types::DateTime::from_str(
+                        &timestamp_1290,
                         ::aws_smithy_types::date_time::Format::DateTime,
                     )
                     .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                    Ok(converted_1285)
+                    Ok(converted_1289)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -18152,17 +18240,17 @@ impl BedrockRuntimeClient {
                         "ListAsyncInvokes",
                     )
                 })?;
-                Some(converted_1285)
+                Some(converted_1289)
             } else {
                 None
             };
         let status_equals_value = if let Some(value) = dict_value(params, "status_equals")? {
-            let converted_1287 = (|| -> PyResult<_> {
-                let enum_value_1288: String = value.extract()?;
-                let converted_1287 = aws_sdk_bedrockruntime::types::AsyncInvokeStatus::from(
-                    enum_value_1288.as_str(),
+            let converted_1291 = (|| -> PyResult<_> {
+                let enum_value_1292: String = value.extract()?;
+                let converted_1291 = aws_sdk_bedrockruntime::types::AsyncInvokeStatus::from(
+                    enum_value_1292.as_str(),
                 );
-                Ok(converted_1287)
+                Ok(converted_1291)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18175,14 +18263,14 @@ impl BedrockRuntimeClient {
                     "ListAsyncInvokes",
                 )
             })?;
-            Some(converted_1287)
+            Some(converted_1291)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_1289 = (|| -> PyResult<_> {
-                let converted_1289: i32 = value.extract()?;
-                Ok(converted_1289)
+            let converted_1293 = (|| -> PyResult<_> {
+                let converted_1293: i32 = value.extract()?;
+                Ok(converted_1293)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18195,14 +18283,14 @@ impl BedrockRuntimeClient {
                     "ListAsyncInvokes",
                 )
             })?;
-            Some(converted_1289)
+            Some(converted_1293)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_1290 = (|| -> PyResult<_> {
-                let converted_1290: String = value.extract()?;
-                Ok(converted_1290)
+            let converted_1294 = (|| -> PyResult<_> {
+                let converted_1294: String = value.extract()?;
+                Ok(converted_1294)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18215,17 +18303,17 @@ impl BedrockRuntimeClient {
                     "ListAsyncInvokes",
                 )
             })?;
-            Some(converted_1290)
+            Some(converted_1294)
         } else {
             None
         };
         let sort_by_value = if let Some(value) = dict_value(params, "sort_by")? {
-            let converted_1291 = (|| -> PyResult<_> {
-                let enum_value_1292: String = value.extract()?;
-                let converted_1291 = aws_sdk_bedrockruntime::types::SortAsyncInvocationBy::from(
-                    enum_value_1292.as_str(),
+            let converted_1295 = (|| -> PyResult<_> {
+                let enum_value_1296: String = value.extract()?;
+                let converted_1295 = aws_sdk_bedrockruntime::types::SortAsyncInvocationBy::from(
+                    enum_value_1296.as_str(),
                 );
-                Ok(converted_1291)
+                Ok(converted_1295)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18238,16 +18326,16 @@ impl BedrockRuntimeClient {
                     "ListAsyncInvokes",
                 )
             })?;
-            Some(converted_1291)
+            Some(converted_1295)
         } else {
             None
         };
         let sort_order_value = if let Some(value) = dict_value(params, "sort_order")? {
-            let converted_1293 = (|| -> PyResult<_> {
-                let enum_value_1294: String = value.extract()?;
-                let converted_1293 =
-                    aws_sdk_bedrockruntime::types::SortOrder::from(enum_value_1294.as_str());
-                Ok(converted_1293)
+            let converted_1297 = (|| -> PyResult<_> {
+                let enum_value_1298: String = value.extract()?;
+                let converted_1297 =
+                    aws_sdk_bedrockruntime::types::SortOrder::from(enum_value_1298.as_str());
+                Ok(converted_1297)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18260,7 +18348,7 @@ impl BedrockRuntimeClient {
                     "ListAsyncInvokes",
                 )
             })?;
-            Some(converted_1293)
+            Some(converted_1297)
         } else {
             None
         };
@@ -18310,9 +18398,9 @@ impl BedrockRuntimeClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let client_request_token_value =
             if let Some(value) = dict_value(params, "client_request_token")? {
-                let converted_1295 = (|| -> PyResult<_> {
-                    let converted_1295: String = value.extract()?;
-                    Ok(converted_1295)
+                let converted_1299 = (|| -> PyResult<_> {
+                    let converted_1299: String = value.extract()?;
+                    Ok(converted_1299)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -18325,14 +18413,14 @@ impl BedrockRuntimeClient {
                         "StartAsyncInvoke",
                     )
                 })?;
-                Some(converted_1295)
+                Some(converted_1299)
             } else {
                 None
             };
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1296 = (|| -> PyResult<_> {
-                let converted_1296: String = value.extract()?;
-                Ok(converted_1296)
+            let converted_1300 = (|| -> PyResult<_> {
+                let converted_1300: String = value.extract()?;
+                Ok(converted_1300)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18341,14 +18429,14 @@ impl BedrockRuntimeClient {
                     "StartAsyncInvoke",
                 )
             })?;
-            Some(converted_1296)
+            Some(converted_1300)
         } else {
             None
         };
         let model_input_value = if let Some(value) = dict_value(params, "model_input")? {
-            let converted_1297 = (|| -> PyResult<_> {
-                let converted_1297 = rboto_core::document_from_py(&value)?;
-                Ok(converted_1297)
+            let converted_1301 = (|| -> PyResult<_> {
+                let converted_1301 = rboto_core::document_from_py(&value)?;
+                Ok(converted_1301)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18361,15 +18449,15 @@ impl BedrockRuntimeClient {
                     "StartAsyncInvoke",
                 )
             })?;
-            Some(converted_1297)
+            Some(converted_1301)
         } else {
             None
         };
         let output_data_config_value =
             if let Some(value) = dict_value(params, "output_data_config")? {
-                let converted_1298 = (|| -> PyResult<_> {
-                    let converted_1298 = async_invoke_output_data_config_from_py(&value)?;
-                    Ok(converted_1298)
+                let converted_1302 = (|| -> PyResult<_> {
+                    let converted_1302 = async_invoke_output_data_config_from_py(&value)?;
+                    Ok(converted_1302)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -18382,37 +18470,37 @@ impl BedrockRuntimeClient {
                         "StartAsyncInvoke",
                     )
                 })?;
-                Some(converted_1298)
+                Some(converted_1302)
             } else {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_1299 = (|| -> PyResult<_> {
-                let mut converted_1299 =
+            let converted_1303 = (|| -> PyResult<_> {
+                let mut converted_1303 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_1303, item_result_1300) in value.try_iter()?.enumerate() {
-                    let item_1301 = item_result_1300.map_err(|error| {
+                for (index_1307, item_result_1304) in value.try_iter()?.enumerate() {
+                    let item_1305 = item_result_1304.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_1303),
+                            rboto_core::InputPath::Index(index_1307),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_1302 = (|| -> PyResult<_> {
-                        let converted_item_1302 = tag_from_py(&item_1301)?;
-                        Ok(converted_item_1302)
+                    let converted_item_1306 = (|| -> PyResult<_> {
+                        let converted_item_1306 = tag_from_py(&item_1305)?;
+                        Ok(converted_item_1306)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_1303),
+                            rboto_core::InputPath::Index(index_1307),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_1299.push(converted_item_1302);
+                    converted_1303.push(converted_item_1306);
                 }
-                Ok(converted_1299)
+                Ok(converted_1303)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18425,7 +18513,7 @@ impl BedrockRuntimeClient {
                     "StartAsyncInvoke",
                 )
             })?;
-            Some(converted_1299)
+            Some(converted_1303)
         } else {
             None
         };

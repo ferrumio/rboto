@@ -8,11 +8,11 @@ client_class = "KinesisClient"
 adapter_crate = "rboto-kinesis-native"
 rust_crate = "aws-sdk-kinesis"
 rust_module = "aws_sdk_kinesis"
-rust_crate_version = "1.130.0"
-model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-06/aws-models/kinesis.json"
-model_sha256 = "b3cd88f396f3591df7f1a809957379a9c8afba1e593e3eb38ee7d99afb689636"
-aws_model_hash = "5accc034b99d00bd9f6fda07b87ace4fe56394edbd03746b105fb09699d9459e"
-smithy_codegen_revision = "e181b22c1588cb6abd3c5840b3236dacaabb1d38"
+rust_crate_version = "1.133.0"
+model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-21/aws-models/kinesis.json"
+model_sha256 = "e24c74a7f9aa1307b21626fae2db4564f42e222123f16d7d96ff63462b5347a0"
+aws_model_hash = "a12070c2af2315367553c7cd200fc028cf98d582599c8f45d81290563e3682d4"
+smithy_codegen_revision = "d0203cb69fe3e68bd234e14de5bc373ded9e857d"
 native_outputs = true
 
 [pagination.DescribeStream]

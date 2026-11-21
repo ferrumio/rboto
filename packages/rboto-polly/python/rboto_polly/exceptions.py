@@ -10,6 +10,18 @@ class PollyError(BaseServiceError):
     """Base exception for errors returned by polly."""
 
 
+class AccessDeniedError(PollyError):
+    """Modeled polly error: AccessDeniedException."""
+
+
+class ConflictError(PollyError):
+    """Modeled polly error: ConflictException."""
+
+    @property
+    def details(self) -> _types.ConflictErrorDetails:
+        return cast(_types.ConflictErrorDetails, self._details)
+
+
 class EngineNotSupportedError(PollyError):
     """Modeled polly error: EngineNotSupportedException."""
 

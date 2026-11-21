@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon Bedrock**,
 powered by Rust. This package contains `BedrockClient` and
-**108 operations**.
+**133 operations**.
 
 ## Installation
 
@@ -92,6 +92,7 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
+| [`archive_project`](#archive_project) | <code>project_identifier: str</code> | <code>ArchiveProjectOutput</code> |
 | [`batch_delete_advanced_prompt_optimization_job`](#batch_delete_advanced_prompt_optimization_job) | <code>job_identifiers: Sequence[str]</code> | <code>BatchDeleteAdvancedPromptOptimizationJobOutput</code> |
 | [`batch_delete_evaluation_job`](#batch_delete_evaluation_job) | <code>job_identifiers: Sequence[str]</code> | <code>BatchDeleteEvaluationJobOutput</code> |
 | [`cancel_automated_reasoning_policy_build_workflow`](#cancel_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>CancelAutomatedReasoningPolicyBuildWorkflowOutput</code> |
@@ -111,8 +112,10 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_model_customization_job`](#create_model_customization_job) | <code>job_name: str</code>, <code>custom_model_name: str</code>, <code>role_arn: str</code>, <code>base_model_identifier: str</code>, <code>training_data_config: TrainingDataConfig</code>, <code>output_data_config: OutputDataConfig</code> | <code>CreateModelCustomizationJobOutput</code> |
 | [`create_model_import_job`](#create_model_import_job) | <code>job_name: str</code>, <code>imported_model_name: str</code>, <code>role_arn: str</code>, <code>model_data_source: ModelDataSource</code> | <code>CreateModelImportJobOutput</code> |
 | [`create_model_invocation_job`](#create_model_invocation_job) | <code>job_name: str</code>, <code>role_arn: str</code>, <code>model_id: str</code>, <code>input_data_config: ModelInvocationJobInputDataConfig</code>, <code>output_data_config: ModelInvocationJobOutputDataConfig</code> | <code>CreateModelInvocationJobOutput</code> |
+| [`create_project`](#create_project) | <code>name: str</code> | <code>CreateProjectOutput</code> |
 | [`create_prompt_router`](#create_prompt_router) | <code>prompt_router_name: str</code>, <code>models: Sequence[PromptRouterTargetModel]</code>, <code>routing_criteria: RoutingCriteria</code>, <code>fallback_model: PromptRouterTargetModel</code> | <code>CreatePromptRouterOutput</code> |
 | [`create_provisioned_model_throughput`](#create_provisioned_model_throughput) | <code>model_units: int</code>, <code>provisioned_model_name: str</code>, <code>model_id: str</code> | <code>CreateProvisionedModelThroughputOutput</code> |
+| [`delete_account_data_retention_storage`](#delete_account_data_retention_storage) | <code>model_provider: DataRetentionStorageModelProvider</code> | <code>DeleteAccountDataRetentionStorageOutput</code> |
 | [`delete_automated_reasoning_policy`](#delete_automated_reasoning_policy) | <code>policy_arn: str</code> | <code>DeleteAutomatedReasoningPolicyOutput</code> |
 | [`delete_automated_reasoning_policy_build_workflow`](#delete_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code>, <code>last_updated_at: str</code> | <code>DeleteAutomatedReasoningPolicyBuildWorkflowOutput</code> |
 | [`delete_automated_reasoning_policy_test_case`](#delete_automated_reasoning_policy_test_case) | <code>policy_arn: str</code>, <code>test_case_id: str</code>, <code>last_updated_at: str</code> | <code>DeleteAutomatedReasoningPolicyTestCaseOutput</code> |
@@ -125,12 +128,15 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_inference_profile`](#delete_inference_profile) | <code>inference_profile_identifier: str</code> | <code>DeleteInferenceProfileOutput</code> |
 | [`delete_marketplace_model_endpoint`](#delete_marketplace_model_endpoint) | <code>endpoint_arn: str</code> | <code>DeleteMarketplaceModelEndpointOutput</code> |
 | [`delete_model_invocation_logging_configuration`](#delete_model_invocation_logging_configuration) | None | <code>DeleteModelInvocationLoggingConfigurationOutput</code> |
+| [`delete_organization_data_retention_storage`](#delete_organization_data_retention_storage) | <code>model_provider: DataRetentionStorageModelProvider</code> | <code>DeleteOrganizationDataRetentionStorageOutput</code> |
+| [`delete_project_data_retention_storage`](#delete_project_data_retention_storage) | <code>project_identifier: str</code>, <code>model_provider: DataRetentionStorageModelProvider</code> | <code>DeleteProjectDataRetentionStorageOutput</code> |
 | [`delete_prompt_router`](#delete_prompt_router) | <code>prompt_router_arn: str</code> | <code>DeletePromptRouterOutput</code> |
 | [`delete_provisioned_model_throughput`](#delete_provisioned_model_throughput) | <code>provisioned_model_id: str</code> | <code>DeleteProvisionedModelThroughputOutput</code> |
 | [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyOutput</code> |
 | [`deregister_marketplace_model_endpoint`](#deregister_marketplace_model_endpoint) | <code>endpoint_arn: str</code> | <code>DeregisterMarketplaceModelEndpointOutput</code> |
 | [`export_automated_reasoning_policy_version`](#export_automated_reasoning_policy_version) | <code>policy_arn: str</code> | <code>ExportAutomatedReasoningPolicyVersionOutput</code> |
 | [`get_account_data_retention`](#get_account_data_retention) | None | <code>GetAccountDataRetentionOutput</code> |
+| [`get_account_data_retention_storage`](#get_account_data_retention_storage) | <code>model_provider: DataRetentionStorageModelProvider</code> | <code>GetAccountDataRetentionStorageOutput</code> |
 | [`get_advanced_prompt_optimization_job`](#get_advanced_prompt_optimization_job) | <code>job_identifier: str</code> | <code>GetAdvancedPromptOptimizationJobOutput</code> |
 | [`get_automated_reasoning_policy`](#get_automated_reasoning_policy) | <code>policy_arn: str</code> | <code>GetAutomatedReasoningPolicyOutput</code> |
 | [`get_automated_reasoning_policy_annotations`](#get_automated_reasoning_policy_annotations) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>GetAutomatedReasoningPolicyAnnotationsOutput</code> |
@@ -153,9 +159,16 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_model_import_job`](#get_model_import_job) | <code>job_identifier: str</code> | <code>GetModelImportJobOutput</code> |
 | [`get_model_invocation_job`](#get_model_invocation_job) | <code>job_identifier: str</code> | <code>GetModelInvocationJobOutput</code> |
 | [`get_model_invocation_logging_configuration`](#get_model_invocation_logging_configuration) | None | <code>GetModelInvocationLoggingConfigurationOutput</code> |
+| [`get_organization_data_retention_storage`](#get_organization_data_retention_storage) | <code>model_provider: DataRetentionStorageModelProvider</code> | <code>GetOrganizationDataRetentionStorageOutput</code> |
+| [`get_project`](#get_project) | <code>project_identifier: str</code> | <code>GetProjectOutput</code> |
+| [`get_project_data_retention_storage`](#get_project_data_retention_storage) | <code>project_identifier: str</code>, <code>model_provider: DataRetentionStorageModelProvider</code> | <code>GetProjectDataRetentionStorageOutput</code> |
 | [`get_prompt_router`](#get_prompt_router) | <code>prompt_router_arn: str</code> | <code>GetPromptRouterOutput</code> |
 | [`get_provisioned_model_throughput`](#get_provisioned_model_throughput) | <code>provisioned_model_id: str</code> | <code>GetProvisionedModelThroughputOutput</code> |
 | [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyOutput</code> |
+| [`get_trusted_access_program`](#get_trusted_access_program) | <code>program_identifier: str</code> | <code>GetTrustedAccessProgramOutput</code> |
+| [`get_trusted_access_program_account_enrollment`](#get_trusted_access_program_account_enrollment) | <code>program_identifier: str</code> | <code>GetTrustedAccessProgramAccountEnrollmentOutput</code> |
+| [`get_trusted_access_program_organization_enrollment`](#get_trusted_access_program_organization_enrollment) | <code>program_identifier: str</code> | <code>GetTrustedAccessProgramOrganizationEnrollmentOutput</code> |
+| [`get_trusted_access_program_project_enrollment`](#get_trusted_access_program_project_enrollment) | <code>program_identifier: str</code>, <code>project_identifier: str</code> | <code>GetTrustedAccessProgramProjectEnrollmentOutput</code> |
 | [`get_use_case_for_model_access`](#get_use_case_for_model_access) | None | <code>GetUseCaseForModelAccessOutput</code> |
 | [`list_advanced_prompt_optimization_jobs`](#list_advanced_prompt_optimization_jobs) | None | <code>ListAdvancedPromptOptimizationJobsOutput</code> |
 | [`list_automated_reasoning_policies`](#list_automated_reasoning_policies) | None | <code>ListAutomatedReasoningPoliciesOutput</code> |
@@ -176,17 +189,28 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_model_customization_jobs`](#list_model_customization_jobs) | None | <code>ListModelCustomizationJobsOutput</code> |
 | [`list_model_import_jobs`](#list_model_import_jobs) | None | <code>ListModelImportJobsOutput</code> |
 | [`list_model_invocation_jobs`](#list_model_invocation_jobs) | None | <code>ListModelInvocationJobsOutput</code> |
+| [`list_projects`](#list_projects) | None | <code>ListProjectsOutput</code> |
 | [`list_prompt_routers`](#list_prompt_routers) | None | <code>ListPromptRoutersOutput</code> |
 | [`list_provisioned_model_throughputs`](#list_provisioned_model_throughputs) | None | <code>ListProvisionedModelThroughputsOutput</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`list_trusted_access_programs`](#list_trusted_access_programs) | None | <code>ListTrustedAccessProgramsOutput</code> |
 | [`put_account_data_retention`](#put_account_data_retention) | <code>mode: DataRetentionMode</code> | <code>PutAccountDataRetentionOutput</code> |
+| [`put_account_data_retention_storage`](#put_account_data_retention_storage) | <code>model_provider: DataRetentionStorageModelProvider</code>, <code>storage_destination: DataRetentionStorageDestination</code> | <code>PutAccountDataRetentionStorageOutput</code> |
 | [`put_enforced_guardrail_configuration`](#put_enforced_guardrail_configuration) | <code>guardrail_inference_config: AccountEnforcedGuardrailInferenceInputConfiguration</code> | <code>PutEnforcedGuardrailConfigurationOutput</code> |
 | [`put_model_invocation_logging_configuration`](#put_model_invocation_logging_configuration) | <code>logging_config: LoggingConfig</code> | <code>PutModelInvocationLoggingConfigurationOutput</code> |
+| [`put_organization_data_retention_storage`](#put_organization_data_retention_storage) | <code>model_provider: DataRetentionStorageModelProvider</code>, <code>storage_destination: DataRetentionStorageDestination</code> | <code>PutOrganizationDataRetentionStorageOutput</code> |
+| [`put_project_data_retention_storage`](#put_project_data_retention_storage) | <code>project_identifier: str</code>, <code>model_provider: DataRetentionStorageModelProvider</code>, <code>storage_destination: DataRetentionStorageDestination</code> | <code>PutProjectDataRetentionStorageOutput</code> |
 | [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>resource_policy: str</code> | <code>PutResourcePolicyOutput</code> |
+| [`put_trusted_access_program_account_enrollment`](#put_trusted_access_program_account_enrollment) | <code>program_identifier: str</code>, <code>opt_in: TrustedAccessProgramOptIn</code> | <code>PutTrustedAccessProgramAccountEnrollmentOutput</code> |
+| [`put_trusted_access_program_organization_enrollment`](#put_trusted_access_program_organization_enrollment) | <code>program_identifier: str</code>, <code>opt_in: TrustedAccessProgramOptIn</code> | <code>PutTrustedAccessProgramOrganizationEnrollmentOutput</code> |
+| [`put_trusted_access_program_project_enrollment`](#put_trusted_access_program_project_enrollment) | <code>program_identifier: str</code>, <code>project_identifier: str</code>, <code>opt_in: TrustedAccessProgramOptIn</code> | <code>PutTrustedAccessProgramProjectEnrollmentOutput</code> |
 | [`put_use_case_for_model_access`](#put_use_case_for_model_access) | <code>form_data: bytes</code> | <code>PutUseCaseForModelAccessOutput</code> |
 | [`register_marketplace_model_endpoint`](#register_marketplace_model_endpoint) | <code>endpoint_identifier: str</code>, <code>model_source_identifier: str</code> | <code>RegisterMarketplaceModelEndpointOutput</code> |
 | [`start_automated_reasoning_policy_build_workflow`](#start_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_type: AutomatedReasoningPolicyBuildWorkflowType</code>, <code>source_content: AutomatedReasoningPolicyBuildWorkflowSource</code> | <code>StartAutomatedReasoningPolicyBuildWorkflowOutput</code> |
 | [`start_automated_reasoning_policy_test_workflow`](#start_automated_reasoning_policy_test_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>StartAutomatedReasoningPolicyTestWorkflowOutput</code> |
+| [`start_trusted_access_program_account_application`](#start_trusted_access_program_account_application) | <code>program_identifier: str</code> | <code>StartTrustedAccessProgramAccountApplicationOutput</code> |
+| [`start_trusted_access_program_organization_application`](#start_trusted_access_program_organization_application) | <code>program_identifier: str</code> | <code>StartTrustedAccessProgramOrganizationApplicationOutput</code> |
+| [`start_trusted_access_program_project_application`](#start_trusted_access_program_project_application) | <code>program_identifier: str</code>, <code>project_identifier: str</code> | <code>StartTrustedAccessProgramProjectApplicationOutput</code> |
 | [`stop_advanced_prompt_optimization_job`](#stop_advanced_prompt_optimization_job) | <code>job_identifier: str</code> | <code>StopAdvancedPromptOptimizationJobOutput</code> |
 | [`stop_evaluation_job`](#stop_evaluation_job) | <code>job_identifier: str</code> | <code>StopEvaluationJobOutput</code> |
 | [`stop_model_customization_job`](#stop_model_customization_job) | <code>job_identifier: str</code> | <code>StopModelCustomizationJobOutput</code> |
@@ -199,9 +223,20 @@ native response definitions are in the package's `_native.pyi`.
 | [`update_custom_model_deployment`](#update_custom_model_deployment) | <code>model_arn: str</code>, <code>custom_model_deployment_identifier: str</code> | <code>UpdateCustomModelDeploymentOutput</code> |
 | [`update_guardrail`](#update_guardrail) | <code>guardrail_identifier: str</code>, <code>name: str</code>, <code>blocked_input_messaging: str</code>, <code>blocked_outputs_messaging: str</code> | <code>UpdateGuardrailOutput</code> |
 | [`update_marketplace_model_endpoint`](#update_marketplace_model_endpoint) | <code>endpoint_arn: str</code>, <code>endpoint_config: EndpointConfig</code> | <code>UpdateMarketplaceModelEndpointOutput</code> |
+| [`update_project`](#update_project) | <code>project_identifier: str</code> | <code>UpdateProjectOutput</code> |
 | [`update_provisioned_model_throughput`](#update_provisioned_model_throughput) | <code>provisioned_model_id: str</code> | <code>UpdateProvisionedModelThroughputOutput</code> |
 
 ## Complete signatures
+
+### archive_project
+
+```python
+async def archive_project(
+    *,
+    project_identifier: str,
+) -> ArchiveProjectOutput: ...
+```
+
 
 ### batch_delete_advanced_prompt_optimization_job
 
@@ -493,6 +528,18 @@ async def create_model_invocation_job(
 ```
 
 
+### create_project
+
+```python
+async def create_project(
+    *,
+    name: str,
+    tags: Sequence[Tag] | None = None,
+    data_retention: ProjectDataRetention | None = None,
+) -> CreateProjectOutput: ...
+```
+
+
 ### create_prompt_router
 
 ```python
@@ -521,6 +568,16 @@ async def create_provisioned_model_throughput(
     commitment_duration: CommitmentDuration | None = None,
     tags: Sequence[Tag] | None = None,
 ) -> CreateProvisionedModelThroughputOutput: ...
+```
+
+
+### delete_account_data_retention_storage
+
+```python
+async def delete_account_data_retention_storage(
+    *,
+    model_provider: DataRetentionStorageModelProvider,
+) -> DeleteAccountDataRetentionStorageOutput: ...
 ```
 
 
@@ -647,6 +704,27 @@ async def delete_model_invocation_logging_configuration() -> DeleteModelInvocati
 ```
 
 
+### delete_organization_data_retention_storage
+
+```python
+async def delete_organization_data_retention_storage(
+    *,
+    model_provider: DataRetentionStorageModelProvider,
+) -> DeleteOrganizationDataRetentionStorageOutput: ...
+```
+
+
+### delete_project_data_retention_storage
+
+```python
+async def delete_project_data_retention_storage(
+    *,
+    project_identifier: str,
+    model_provider: DataRetentionStorageModelProvider,
+) -> DeleteProjectDataRetentionStorageOutput: ...
+```
+
+
 ### delete_prompt_router
 
 ```python
@@ -701,6 +779,16 @@ async def export_automated_reasoning_policy_version(
 
 ```python
 async def get_account_data_retention() -> GetAccountDataRetentionOutput: ...
+```
+
+
+### get_account_data_retention_storage
+
+```python
+async def get_account_data_retention_storage(
+    *,
+    model_provider: DataRetentionStorageModelProvider,
+) -> GetAccountDataRetentionStorageOutput: ...
 ```
 
 
@@ -829,6 +917,7 @@ async def get_evaluation_job(
 async def get_foundation_model(
     *,
     model_identifier: str,
+    project_identifier: str | None = None,
 ) -> GetFoundationModelOutput: ...
 ```
 
@@ -870,6 +959,7 @@ async def get_imported_model(
 async def get_inference_profile(
     *,
     inference_profile_identifier: str,
+    project_identifier: str | None = None,
 ) -> GetInferenceProfileOutput: ...
 ```
 
@@ -931,6 +1021,37 @@ async def get_model_invocation_logging_configuration() -> GetModelInvocationLogg
 ```
 
 
+### get_organization_data_retention_storage
+
+```python
+async def get_organization_data_retention_storage(
+    *,
+    model_provider: DataRetentionStorageModelProvider,
+) -> GetOrganizationDataRetentionStorageOutput: ...
+```
+
+
+### get_project
+
+```python
+async def get_project(
+    *,
+    project_identifier: str,
+) -> GetProjectOutput: ...
+```
+
+
+### get_project_data_retention_storage
+
+```python
+async def get_project_data_retention_storage(
+    *,
+    project_identifier: str,
+    model_provider: DataRetentionStorageModelProvider,
+) -> GetProjectDataRetentionStorageOutput: ...
+```
+
+
 ### get_prompt_router
 
 ```python
@@ -958,6 +1079,48 @@ async def get_resource_policy(
     *,
     resource_arn: str,
 ) -> GetResourcePolicyOutput: ...
+```
+
+
+### get_trusted_access_program
+
+```python
+async def get_trusted_access_program(
+    *,
+    program_identifier: str,
+    project_identifier: str | None = None,
+) -> GetTrustedAccessProgramOutput: ...
+```
+
+
+### get_trusted_access_program_account_enrollment
+
+```python
+async def get_trusted_access_program_account_enrollment(
+    *,
+    program_identifier: str,
+) -> GetTrustedAccessProgramAccountEnrollmentOutput: ...
+```
+
+
+### get_trusted_access_program_organization_enrollment
+
+```python
+async def get_trusted_access_program_organization_enrollment(
+    *,
+    program_identifier: str,
+) -> GetTrustedAccessProgramOrganizationEnrollmentOutput: ...
+```
+
+
+### get_trusted_access_program_project_enrollment
+
+```python
+async def get_trusted_access_program_project_enrollment(
+    *,
+    program_identifier: str,
+    project_identifier: str,
+) -> GetTrustedAccessProgramProjectEnrollmentOutput: ...
 ```
 
 
@@ -1143,6 +1306,7 @@ async def list_foundation_models(
     by_customization_type: ModelCustomization | None = None,
     by_output_modality: ModelModality | None = None,
     by_inference_type: InferenceType | None = None,
+    project_identifier: str | None = None,
 ) -> ListFoundationModelsOutput: ...
 ```
 
@@ -1189,6 +1353,7 @@ async def list_inference_profiles(
     max_results: int | None = None,
     next_token: str | None = None,
     type_equals: InferenceProfileType | None = None,
+    project_identifier: str | None = None,
 ) -> ListInferenceProfilesOutput: ...
 ```
 
@@ -1293,6 +1458,21 @@ Also available as `client.paginators.list_model_invocation_jobs(...)`, returning
 async iterator of the response type above.
 
 
+### list_projects
+
+```python
+async def list_projects(
+    *,
+    next_token: str | None = None,
+    max_results: int | None = None,
+    status_filter: ProjectStatus | None = None,
+) -> ListProjectsOutput: ...
+```
+
+Also available as `client.paginators.list_projects(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_prompt_routers
 
 ```python
@@ -1339,6 +1519,21 @@ async def list_tags_for_resource(
 ```
 
 
+### list_trusted_access_programs
+
+```python
+async def list_trusted_access_programs(
+    *,
+    project_identifier: str | None = None,
+    max_results: int | None = None,
+    next_token: str | None = None,
+) -> ListTrustedAccessProgramsOutput: ...
+```
+
+Also available as `client.paginators.list_trusted_access_programs(...)`, returning an
+async iterator of the response type above.
+
+
 ### put_account_data_retention
 
 ```python
@@ -1346,6 +1541,18 @@ async def put_account_data_retention(
     *,
     mode: DataRetentionMode,
 ) -> PutAccountDataRetentionOutput: ...
+```
+
+
+### put_account_data_retention_storage
+
+```python
+async def put_account_data_retention_storage(
+    *,
+    model_provider: DataRetentionStorageModelProvider,
+    storage_destination: DataRetentionStorageDestination,
+    storage_configuration: DataRetentionStorageConfiguration | None = None,
+) -> PutAccountDataRetentionStorageOutput: ...
 ```
 
 
@@ -1370,6 +1577,31 @@ async def put_model_invocation_logging_configuration(
 ```
 
 
+### put_organization_data_retention_storage
+
+```python
+async def put_organization_data_retention_storage(
+    *,
+    model_provider: DataRetentionStorageModelProvider,
+    storage_destination: DataRetentionStorageDestination,
+    storage_configuration: DataRetentionStorageConfiguration | None = None,
+) -> PutOrganizationDataRetentionStorageOutput: ...
+```
+
+
+### put_project_data_retention_storage
+
+```python
+async def put_project_data_retention_storage(
+    *,
+    project_identifier: str,
+    model_provider: DataRetentionStorageModelProvider,
+    storage_destination: DataRetentionStorageDestination,
+    storage_configuration: DataRetentionStorageConfiguration | None = None,
+) -> PutProjectDataRetentionStorageOutput: ...
+```
+
+
 ### put_resource_policy
 
 ```python
@@ -1378,6 +1610,40 @@ async def put_resource_policy(
     resource_arn: str,
     resource_policy: str,
 ) -> PutResourcePolicyOutput: ...
+```
+
+
+### put_trusted_access_program_account_enrollment
+
+```python
+async def put_trusted_access_program_account_enrollment(
+    *,
+    program_identifier: str,
+    opt_in: TrustedAccessProgramOptIn,
+) -> PutTrustedAccessProgramAccountEnrollmentOutput: ...
+```
+
+
+### put_trusted_access_program_organization_enrollment
+
+```python
+async def put_trusted_access_program_organization_enrollment(
+    *,
+    program_identifier: str,
+    opt_in: TrustedAccessProgramOptIn,
+) -> PutTrustedAccessProgramOrganizationEnrollmentOutput: ...
+```
+
+
+### put_trusted_access_program_project_enrollment
+
+```python
+async def put_trusted_access_program_project_enrollment(
+    *,
+    program_identifier: str,
+    project_identifier: str,
+    opt_in: TrustedAccessProgramOptIn,
+) -> PutTrustedAccessProgramProjectEnrollmentOutput: ...
 ```
 
 
@@ -1425,6 +1691,37 @@ async def start_automated_reasoning_policy_test_workflow(
     test_case_ids: Sequence[str] | None = None,
     client_request_token: str | None = None,
 ) -> StartAutomatedReasoningPolicyTestWorkflowOutput: ...
+```
+
+
+### start_trusted_access_program_account_application
+
+```python
+async def start_trusted_access_program_account_application(
+    *,
+    program_identifier: str,
+) -> StartTrustedAccessProgramAccountApplicationOutput: ...
+```
+
+
+### start_trusted_access_program_organization_application
+
+```python
+async def start_trusted_access_program_organization_application(
+    *,
+    program_identifier: str,
+) -> StartTrustedAccessProgramOrganizationApplicationOutput: ...
+```
+
+
+### start_trusted_access_program_project_application
+
+```python
+async def start_trusted_access_program_project_application(
+    *,
+    program_identifier: str,
+    project_identifier: str,
+) -> StartTrustedAccessProgramProjectApplicationOutput: ...
 ```
 
 
@@ -1575,6 +1872,18 @@ async def update_marketplace_model_endpoint(
     endpoint_config: EndpointConfig,
     client_request_token: str | None = None,
 ) -> UpdateMarketplaceModelEndpointOutput: ...
+```
+
+
+### update_project
+
+```python
+async def update_project(
+    *,
+    project_identifier: str,
+    name: str | None = None,
+    data_retention: ProjectDataRetention | None = None,
+) -> UpdateProjectOutput: ...
 ```
 
 

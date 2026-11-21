@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon SES V2**,
 powered by Rust. This package contains `SESV2Client` and
-**116 operations**.
+**117 operations**.
 
 ## Installation
 
@@ -181,6 +181,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_tenant_resources`](#list_tenant_resources) | <code>tenant_name: str</code> | <code>ListTenantResourcesOutput</code> |
 | [`list_tenants`](#list_tenants) | None | <code>ListTenantsOutput</code> |
 | [`put_account_dedicated_ip_warmup_attributes`](#put_account_dedicated_ip_warmup_attributes) | None | <code>PutAccountDedicatedIpWarmupAttributesOutput</code> |
+| [`put_account_delivery_attributes`](#put_account_delivery_attributes) | <code>shared_pool_delivery_mode: AccountSharedPoolDeliveryMode</code> | <code>PutAccountDeliveryAttributesOutput</code> |
 | [`put_account_details`](#put_account_details) | <code>mail_type: MailType</code>, <code>website_url: str</code> | <code>PutAccountDetailsOutput</code> |
 | [`put_account_pricing_attributes`](#put_account_pricing_attributes) | <code>plan: PricingPlan</code> | <code>PutAccountPricingAttributesOutput</code> |
 | [`put_account_sending_attributes`](#put_account_sending_attributes) | None | <code>PutAccountSendingAttributesOutput</code> |
@@ -1154,6 +1155,16 @@ async def put_account_dedicated_ip_warmup_attributes(
 ```
 
 
+### put_account_delivery_attributes
+
+```python
+async def put_account_delivery_attributes(
+    *,
+    shared_pool_delivery_mode: AccountSharedPoolDeliveryMode,
+) -> PutAccountDeliveryAttributesOutput: ...
+```
+
+
 ### put_account_details
 
 ```python
@@ -1230,6 +1241,7 @@ async def put_configuration_set_delivery_options(
     tls_policy: TlsPolicy | None = None,
     sending_pool_name: str | None = None,
     max_delivery_seconds: int | None = None,
+    shared_pool_delivery_mode: SharedPoolDeliveryMode | None = None,
 ) -> PutConfigurationSetDeliveryOptionsOutput: ...
 ```
 

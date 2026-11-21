@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon CloudWatch**,
 powered by Rust. This package contains `CloudWatchClient` and
-**55 operations**.
+**59 operations**.
 
 ## Installation
 
@@ -122,6 +122,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_anomaly_detector`](#delete_anomaly_detector) | None | <code>DeleteAnomalyDetectorOutput</code> |
 | [`delete_dashboards`](#delete_dashboards) | <code>dashboard_names: Sequence[str]</code> | <code>DeleteDashboardsOutput</code> |
 | [`delete_insight_rules`](#delete_insight_rules) | <code>rule_names: Sequence[str]</code> | <code>DeleteInsightRulesOutput</code> |
+| [`delete_metric_data_query_definition`](#delete_metric_data_query_definition) | <code>id: str</code> | <code>DeleteMetricDataQueryDefinitionOutput</code> |
 | [`delete_metric_stream`](#delete_metric_stream) | <code>name: str</code> | <code>DeleteMetricStreamOutput</code> |
 | [`delete_resource_metrics_configuration`](#delete_resource_metrics_configuration) | <code>resource_arn: str</code> | <code>DeleteResourceMetricsConfigurationOutput</code> |
 | [`describe_alarm_contributors`](#describe_alarm_contributors) | <code>alarm_name: str</code> | <code>DescribeAlarmContributorsOutput</code> |
@@ -140,6 +141,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_dataset`](#get_dataset) | <code>dataset_identifier: str</code> | <code>GetDatasetOutput</code> |
 | [`get_insight_rule_report`](#get_insight_rule_report) | <code>rule_name: str</code>, <code>start_time: str</code>, <code>end_time: str</code>, <code>period: int</code> | <code>GetInsightRuleReportOutput</code> |
 | [`get_metric_data`](#get_metric_data) | <code>metric_data_queries: Sequence[MetricDataQuery]</code>, <code>start_time: str</code>, <code>end_time: str</code> | <code>GetMetricDataOutput</code> |
+| [`get_metric_data_query_definition`](#get_metric_data_query_definition) | <code>id: str</code> | <code>GetMetricDataQueryDefinitionOutput</code> |
 | [`get_metric_statistics`](#get_metric_statistics) | <code>namespace: str</code>, <code>metric_name: str</code>, <code>start_time: str</code>, <code>end_time: str</code>, <code>period: int</code> | <code>GetMetricStatisticsOutput</code> |
 | [`get_metric_stream`](#get_metric_stream) | <code>name: str</code> | <code>GetMetricStreamOutput</code> |
 | [`get_metric_widget_image`](#get_metric_widget_image) | <code>metric_widget: str</code> | <code>GetMetricWidgetImageOutput</code> |
@@ -148,6 +150,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_alarm_mute_rules`](#list_alarm_mute_rules) | None | <code>ListAlarmMuteRulesOutput</code> |
 | [`list_dashboards`](#list_dashboards) | None | <code>ListDashboardsOutput</code> |
 | [`list_managed_insight_rules`](#list_managed_insight_rules) | <code>resource_arn: str</code> | <code>ListManagedInsightRulesOutput</code> |
+| [`list_metric_data_query_definitions`](#list_metric_data_query_definitions) | None | <code>ListMetricDataQueryDefinitionsOutput</code> |
 | [`list_metric_streams`](#list_metric_streams) | None | <code>ListMetricStreamsOutput</code> |
 | [`list_metrics`](#list_metrics) | None | <code>ListMetricsOutput</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
@@ -160,6 +163,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`put_managed_insight_rules`](#put_managed_insight_rules) | <code>managed_rules: Sequence[ManagedRule]</code> | <code>PutManagedInsightRulesOutput</code> |
 | [`put_metric_alarm`](#put_metric_alarm) | <code>alarm_name: str</code> | <code>None</code> |
 | [`put_metric_data`](#put_metric_data) | <code>namespace: str</code> | <code>None</code> |
+| [`put_metric_data_query_definition`](#put_metric_data_query_definition) | <code>path: str</code>, <code>expression: str</code>, <code>type: QueryType</code> | <code>PutMetricDataQueryDefinitionOutput</code> |
 | [`put_metric_stream`](#put_metric_stream) | <code>name: str</code>, <code>firehose_arn: str</code>, <code>role_arn: str</code>, <code>output_format: MetricStreamOutputFormat</code> | <code>PutMetricStreamOutput</code> |
 | [`set_alarm_state`](#set_alarm_state) | <code>alarm_name: str</code>, <code>state_value: StateValue</code>, <code>state_reason: str</code> | <code>None</code> |
 | [`start_metric_streams`](#start_metric_streams) | <code>names: Sequence[str]</code> | <code>StartMetricStreamsOutput</code> |
@@ -248,6 +252,16 @@ async def delete_insight_rules(
     *,
     rule_names: Sequence[str],
 ) -> DeleteInsightRulesOutput: ...
+```
+
+
+### delete_metric_data_query_definition
+
+```python
+async def delete_metric_data_query_definition(
+    *,
+    id: str,
+) -> DeleteMetricDataQueryDefinitionOutput: ...
 ```
 
 
@@ -491,6 +505,16 @@ Also available as `client.paginators.get_metric_data(...)`, returning an
 async iterator of the response type above.
 
 
+### get_metric_data_query_definition
+
+```python
+async def get_metric_data_query_definition(
+    *,
+    id: str,
+) -> GetMetricDataQueryDefinitionOutput: ...
+```
+
+
 ### get_metric_statistics
 
 ```python
@@ -589,6 +613,20 @@ async def list_managed_insight_rules(
 ```
 
 Also available as `client.paginators.list_managed_insight_rules(...)`, returning an
+async iterator of the response type above.
+
+
+### list_metric_data_query_definitions
+
+```python
+async def list_metric_data_query_definitions(
+    *,
+    max_results: int | None = None,
+    next_token: str | None = None,
+) -> ListMetricDataQueryDefinitionsOutput: ...
+```
+
+Also available as `client.paginators.list_metric_data_query_definitions(...)`, returning an
 async iterator of the response type above.
 
 
@@ -797,6 +835,20 @@ async def put_metric_data(
     entity_metric_data: Sequence[EntityMetricData] | None = None,
     strict_entity_validation: bool | None = None,
 ) -> None: ...
+```
+
+
+### put_metric_data_query_definition
+
+```python
+async def put_metric_data_query_definition(
+    *,
+    path: str,
+    expression: str,
+    type: QueryType,
+    id: str | None = None,
+    tags: Sequence[Tag] | None = None,
+) -> PutMetricDataQueryDefinitionOutput: ...
 ```
 
 

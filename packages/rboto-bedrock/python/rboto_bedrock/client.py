@@ -12,7 +12,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import BedrockClient as NativeClient, BatchDeleteAdvancedPromptOptimizationJobOutput, BatchDeleteEvaluationJobOutput, CancelAutomatedReasoningPolicyBuildWorkflowOutput, CreateAdvancedPromptOptimizationJobOutput, CreateAutomatedReasoningPolicyOutput, CreateAutomatedReasoningPolicyTestCaseOutput, CreateAutomatedReasoningPolicyVersionOutput, CreateCustomModelDeploymentOutput, CreateCustomModelOutput, CreateEvaluationJobOutput, CreateFoundationModelAgreementOutput, CreateGuardrailOutput, CreateGuardrailVersionOutput, CreateInferenceProfileOutput, CreateMarketplaceModelEndpointOutput, CreateModelCopyJobOutput, CreateModelCustomizationJobOutput, CreateModelImportJobOutput, CreateModelInvocationJobOutput, CreatePromptRouterOutput, CreateProvisionedModelThroughputOutput, DeleteAutomatedReasoningPolicyBuildWorkflowOutput, DeleteAutomatedReasoningPolicyOutput, DeleteAutomatedReasoningPolicyTestCaseOutput, DeleteCustomModelDeploymentOutput, DeleteCustomModelOutput, DeleteEnforcedGuardrailConfigurationOutput, DeleteFoundationModelAgreementOutput, DeleteGuardrailOutput, DeleteImportedModelOutput, DeleteInferenceProfileOutput, DeleteMarketplaceModelEndpointOutput, DeleteModelInvocationLoggingConfigurationOutput, DeletePromptRouterOutput, DeleteProvisionedModelThroughputOutput, DeleteResourcePolicyOutput, DeregisterMarketplaceModelEndpointOutput, ExportAutomatedReasoningPolicyVersionOutput, GetAccountDataRetentionOutput, GetAdvancedPromptOptimizationJobOutput, GetAutomatedReasoningPolicyAnnotationsOutput, GetAutomatedReasoningPolicyBuildWorkflowOutput, GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput, GetAutomatedReasoningPolicyNextScenarioOutput, GetAutomatedReasoningPolicyOutput, GetAutomatedReasoningPolicyTestCaseOutput, GetAutomatedReasoningPolicyTestResultOutput, GetCustomModelDeploymentOutput, GetCustomModelOutput, GetEvaluationJobOutput, GetFoundationModelAvailabilityOutput, GetFoundationModelOutput, GetGuardrailOutput, GetImportedModelOutput, GetInferenceProfileOutput, GetMarketplaceModelEndpointOutput, GetModelCopyJobOutput, GetModelCustomizationJobOutput, GetModelImportJobOutput, GetModelInvocationJobOutput, GetModelInvocationLoggingConfigurationOutput, GetPromptRouterOutput, GetProvisionedModelThroughputOutput, GetResourcePolicyOutput, GetUseCaseForModelAccessOutput, ListAdvancedPromptOptimizationJobsOutput, ListAutomatedReasoningPoliciesOutput, ListAutomatedReasoningPolicyBuildWorkflowsOutput, ListAutomatedReasoningPolicyTestCasesOutput, ListAutomatedReasoningPolicyTestResultsOutput, ListCustomModelDeploymentsOutput, ListCustomModelsOutput, ListEnforcedGuardrailsConfigurationOutput, ListEvaluationJobsOutput, ListFoundationModelAgreementOffersOutput, ListFoundationModelsOutput, ListGuardrailsOutput, ListImportedModelsOutput, ListInferenceProfilesOutput, ListMarketplaceModelEndpointsOutput, ListModelCopyJobsOutput, ListModelCustomizationJobsOutput, ListModelImportJobsOutput, ListModelInvocationJobsOutput, ListPromptRoutersOutput, ListProvisionedModelThroughputsOutput, ListTagsForResourceOutput, PutAccountDataRetentionOutput, PutEnforcedGuardrailConfigurationOutput, PutModelInvocationLoggingConfigurationOutput, PutResourcePolicyOutput, PutUseCaseForModelAccessOutput, RegisterMarketplaceModelEndpointOutput, StartAutomatedReasoningPolicyBuildWorkflowOutput, StartAutomatedReasoningPolicyTestWorkflowOutput, StopAdvancedPromptOptimizationJobOutput, StopEvaluationJobOutput, StopModelCustomizationJobOutput, StopModelInvocationJobOutput, TagResourceOutput, UntagResourceOutput, UpdateAutomatedReasoningPolicyAnnotationsOutput, UpdateAutomatedReasoningPolicyOutput, UpdateAutomatedReasoningPolicyTestCaseOutput, UpdateCustomModelDeploymentOutput, UpdateGuardrailOutput, UpdateMarketplaceModelEndpointOutput, UpdateProvisionedModelThroughputOutput
+from ._native import BedrockClient as NativeClient, ArchiveProjectOutput, BatchDeleteAdvancedPromptOptimizationJobOutput, BatchDeleteEvaluationJobOutput, CancelAutomatedReasoningPolicyBuildWorkflowOutput, CreateAdvancedPromptOptimizationJobOutput, CreateAutomatedReasoningPolicyOutput, CreateAutomatedReasoningPolicyTestCaseOutput, CreateAutomatedReasoningPolicyVersionOutput, CreateCustomModelDeploymentOutput, CreateCustomModelOutput, CreateEvaluationJobOutput, CreateFoundationModelAgreementOutput, CreateGuardrailOutput, CreateGuardrailVersionOutput, CreateInferenceProfileOutput, CreateMarketplaceModelEndpointOutput, CreateModelCopyJobOutput, CreateModelCustomizationJobOutput, CreateModelImportJobOutput, CreateModelInvocationJobOutput, CreateProjectOutput, CreatePromptRouterOutput, CreateProvisionedModelThroughputOutput, DeleteAccountDataRetentionStorageOutput, DeleteAutomatedReasoningPolicyBuildWorkflowOutput, DeleteAutomatedReasoningPolicyOutput, DeleteAutomatedReasoningPolicyTestCaseOutput, DeleteCustomModelDeploymentOutput, DeleteCustomModelOutput, DeleteEnforcedGuardrailConfigurationOutput, DeleteFoundationModelAgreementOutput, DeleteGuardrailOutput, DeleteImportedModelOutput, DeleteInferenceProfileOutput, DeleteMarketplaceModelEndpointOutput, DeleteModelInvocationLoggingConfigurationOutput, DeleteOrganizationDataRetentionStorageOutput, DeleteProjectDataRetentionStorageOutput, DeletePromptRouterOutput, DeleteProvisionedModelThroughputOutput, DeleteResourcePolicyOutput, DeregisterMarketplaceModelEndpointOutput, ExportAutomatedReasoningPolicyVersionOutput, GetAccountDataRetentionOutput, GetAccountDataRetentionStorageOutput, GetAdvancedPromptOptimizationJobOutput, GetAutomatedReasoningPolicyAnnotationsOutput, GetAutomatedReasoningPolicyBuildWorkflowOutput, GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput, GetAutomatedReasoningPolicyNextScenarioOutput, GetAutomatedReasoningPolicyOutput, GetAutomatedReasoningPolicyTestCaseOutput, GetAutomatedReasoningPolicyTestResultOutput, GetCustomModelDeploymentOutput, GetCustomModelOutput, GetEvaluationJobOutput, GetFoundationModelAvailabilityOutput, GetFoundationModelOutput, GetGuardrailOutput, GetImportedModelOutput, GetInferenceProfileOutput, GetMarketplaceModelEndpointOutput, GetModelCopyJobOutput, GetModelCustomizationJobOutput, GetModelImportJobOutput, GetModelInvocationJobOutput, GetModelInvocationLoggingConfigurationOutput, GetOrganizationDataRetentionStorageOutput, GetProjectDataRetentionStorageOutput, GetProjectOutput, GetPromptRouterOutput, GetProvisionedModelThroughputOutput, GetResourcePolicyOutput, GetTrustedAccessProgramAccountEnrollmentOutput, GetTrustedAccessProgramOrganizationEnrollmentOutput, GetTrustedAccessProgramOutput, GetTrustedAccessProgramProjectEnrollmentOutput, GetUseCaseForModelAccessOutput, ListAdvancedPromptOptimizationJobsOutput, ListAutomatedReasoningPoliciesOutput, ListAutomatedReasoningPolicyBuildWorkflowsOutput, ListAutomatedReasoningPolicyTestCasesOutput, ListAutomatedReasoningPolicyTestResultsOutput, ListCustomModelDeploymentsOutput, ListCustomModelsOutput, ListEnforcedGuardrailsConfigurationOutput, ListEvaluationJobsOutput, ListFoundationModelAgreementOffersOutput, ListFoundationModelsOutput, ListGuardrailsOutput, ListImportedModelsOutput, ListInferenceProfilesOutput, ListMarketplaceModelEndpointsOutput, ListModelCopyJobsOutput, ListModelCustomizationJobsOutput, ListModelImportJobsOutput, ListModelInvocationJobsOutput, ListProjectsOutput, ListPromptRoutersOutput, ListProvisionedModelThroughputsOutput, ListTagsForResourceOutput, ListTrustedAccessProgramsOutput, PutAccountDataRetentionOutput, PutAccountDataRetentionStorageOutput, PutEnforcedGuardrailConfigurationOutput, PutModelInvocationLoggingConfigurationOutput, PutOrganizationDataRetentionStorageOutput, PutProjectDataRetentionStorageOutput, PutResourcePolicyOutput, PutTrustedAccessProgramAccountEnrollmentOutput, PutTrustedAccessProgramOrganizationEnrollmentOutput, PutTrustedAccessProgramProjectEnrollmentOutput, PutUseCaseForModelAccessOutput, RegisterMarketplaceModelEndpointOutput, StartAutomatedReasoningPolicyBuildWorkflowOutput, StartAutomatedReasoningPolicyTestWorkflowOutput, StartTrustedAccessProgramAccountApplicationOutput, StartTrustedAccessProgramOrganizationApplicationOutput, StartTrustedAccessProgramProjectApplicationOutput, StopAdvancedPromptOptimizationJobOutput, StopEvaluationJobOutput, StopModelCustomizationJobOutput, StopModelInvocationJobOutput, TagResourceOutput, UntagResourceOutput, UpdateAutomatedReasoningPolicyAnnotationsOutput, UpdateAutomatedReasoningPolicyOutput, UpdateAutomatedReasoningPolicyTestCaseOutput, UpdateCustomModelDeploymentOutput, UpdateGuardrailOutput, UpdateMarketplaceModelEndpointOutput, UpdateProjectOutput, UpdateProvisionedModelThroughputOutput
 from .types import (
     AccountEnforcedGuardrailInferenceInputConfiguration,
     AdvancedPromptOptimizationInputConfig,
@@ -30,6 +30,9 @@ from .types import (
     CustomizationConfig,
     CustomizationType,
     DataRetentionMode,
+    DataRetentionStorageConfiguration,
+    DataRetentionStorageDestination,
+    DataRetentionStorageModelProvider,
     EndpointConfig,
     EvaluationConfig,
     EvaluationInferenceConfig,
@@ -60,6 +63,8 @@ from .types import (
     ModelStatus,
     OfferType,
     OutputDataConfig,
+    ProjectDataRetention,
+    ProjectStatus,
     PromptRouterTargetModel,
     PromptRouterType,
     ProvisionedModelStatus,
@@ -70,6 +75,7 @@ from .types import (
     SortOrder,
     Tag,
     TrainingDataConfig,
+    TrustedAccessProgramOptIn,
     ValidationDataConfig,
     VpcConfig,
 )
@@ -132,6 +138,31 @@ class BedrockClient:
         if self._paginators is None:
             self._paginators = _Paginators(self)
         return self._paginators
+
+
+    async def archive_project(
+        self,
+        *,
+        project_identifier: str,
+    ) -> ArchiveProjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/archive_project/)."""
+        params: dict[str, object] = {
+            "project_identifier": project_identifier,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.archive_project, params, _interceptors,
+                "bedrock", "ArchiveProject", self._region,
+                ArchiveProjectOutput,
+                ("project_identifier", ),
+                ("project_identifier", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.archive_project(params)
+        return _response
 
 
     async def batch_delete_advanced_prompt_optimization_job(
@@ -878,6 +909,37 @@ class BedrockClient:
         return _response
 
 
+    async def create_project(
+        self,
+        *,
+        name: str,
+        tags: Sequence[Tag] | None = None,
+        data_retention: ProjectDataRetention | None = None,
+    ) -> CreateProjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_project/)."""
+        params: dict[str, object] = {
+            "name": name,
+        }
+        if tags is not None:
+            params["tags"] = tags
+        if data_retention is not None:
+            params["data_retention"] = data_retention
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.create_project, params, _interceptors,
+                "bedrock", "CreateProject", self._region,
+                CreateProjectOutput,
+                ("name", "tags", "data_retention", ),
+                ("name", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.create_project(params)
+        return _response
+
+
     async def create_prompt_router(
         self,
         *,
@@ -953,6 +1015,31 @@ class BedrockClient:
             )
             return _response
         _response = await self._native.create_provisioned_model_throughput(params)
+        return _response
+
+
+    async def delete_account_data_retention_storage(
+        self,
+        *,
+        model_provider: DataRetentionStorageModelProvider,
+    ) -> DeleteAccountDataRetentionStorageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_account_data_retention_storage/)."""
+        params: dict[str, object] = {
+            "model_provider": model_provider,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.delete_account_data_retention_storage, params, _interceptors,
+                "bedrock", "DeleteAccountDataRetentionStorage", self._region,
+                DeleteAccountDataRetentionStorageOutput,
+                ("model_provider", ),
+                ("model_provider", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.delete_account_data_retention_storage(params)
         return _response
 
 
@@ -1267,6 +1354,58 @@ class BedrockClient:
         return _response
 
 
+    async def delete_organization_data_retention_storage(
+        self,
+        *,
+        model_provider: DataRetentionStorageModelProvider,
+    ) -> DeleteOrganizationDataRetentionStorageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_organization_data_retention_storage/)."""
+        params: dict[str, object] = {
+            "model_provider": model_provider,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.delete_organization_data_retention_storage, params, _interceptors,
+                "bedrock", "DeleteOrganizationDataRetentionStorage", self._region,
+                DeleteOrganizationDataRetentionStorageOutput,
+                ("model_provider", ),
+                ("model_provider", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.delete_organization_data_retention_storage(params)
+        return _response
+
+
+    async def delete_project_data_retention_storage(
+        self,
+        *,
+        project_identifier: str,
+        model_provider: DataRetentionStorageModelProvider,
+    ) -> DeleteProjectDataRetentionStorageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_project_data_retention_storage/)."""
+        params: dict[str, object] = {
+            "project_identifier": project_identifier,
+            "model_provider": model_provider,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.delete_project_data_retention_storage, params, _interceptors,
+                "bedrock", "DeleteProjectDataRetentionStorage", self._region,
+                DeleteProjectDataRetentionStorageOutput,
+                ("project_identifier", "model_provider", ),
+                ("project_identifier", "model_provider", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.delete_project_data_retention_storage(params)
+        return _response
+
+
     async def delete_prompt_router(
         self,
         *,
@@ -1411,6 +1550,31 @@ class BedrockClient:
             )
             return _response
         _response = await self._native.get_account_data_retention(params)
+        return _response
+
+
+    async def get_account_data_retention_storage(
+        self,
+        *,
+        model_provider: DataRetentionStorageModelProvider,
+    ) -> GetAccountDataRetentionStorageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_account_data_retention_storage/)."""
+        params: dict[str, object] = {
+            "model_provider": model_provider,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_account_data_retention_storage, params, _interceptors,
+                "bedrock", "GetAccountDataRetentionStorage", self._region,
+                GetAccountDataRetentionStorageOutput,
+                ("model_provider", ),
+                ("model_provider", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.get_account_data_retention_storage(params)
         return _response
 
 
@@ -1712,11 +1876,14 @@ class BedrockClient:
         self,
         *,
         model_identifier: str,
+        project_identifier: str | None = None,
     ) -> GetFoundationModelOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_foundation_model/)."""
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
+        if project_identifier is not None:
+            params["project_identifier"] = project_identifier
         _interceptors = operation_interceptors("bedrock", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -1724,7 +1891,7 @@ class BedrockClient:
                 self._native.get_foundation_model, params, _interceptors,
                 "bedrock", "GetFoundationModel", self._region,
                 GetFoundationModelOutput,
-                ("model_identifier", ),
+                ("model_identifier", "project_identifier", ),
                 ("model_identifier", ),
                 service_name='Bedrock',
             )
@@ -1815,11 +1982,14 @@ class BedrockClient:
         self,
         *,
         inference_profile_identifier: str,
+        project_identifier: str | None = None,
     ) -> GetInferenceProfileOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_inference_profile/)."""
         params: dict[str, object] = {
             "inference_profile_identifier": inference_profile_identifier,
         }
+        if project_identifier is not None:
+            params["project_identifier"] = project_identifier
         _interceptors = operation_interceptors("bedrock", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -1827,7 +1997,7 @@ class BedrockClient:
                 self._native.get_inference_profile, params, _interceptors,
                 "bedrock", "GetInferenceProfile", self._region,
                 GetInferenceProfileOutput,
-                ("inference_profile_identifier", ),
+                ("inference_profile_identifier", "project_identifier", ),
                 ("inference_profile_identifier", ),
                 service_name='Bedrock',
             )
@@ -1983,6 +2153,83 @@ class BedrockClient:
         return _response
 
 
+    async def get_organization_data_retention_storage(
+        self,
+        *,
+        model_provider: DataRetentionStorageModelProvider,
+    ) -> GetOrganizationDataRetentionStorageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_organization_data_retention_storage/)."""
+        params: dict[str, object] = {
+            "model_provider": model_provider,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_organization_data_retention_storage, params, _interceptors,
+                "bedrock", "GetOrganizationDataRetentionStorage", self._region,
+                GetOrganizationDataRetentionStorageOutput,
+                ("model_provider", ),
+                ("model_provider", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.get_organization_data_retention_storage(params)
+        return _response
+
+
+    async def get_project(
+        self,
+        *,
+        project_identifier: str,
+    ) -> GetProjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_project/)."""
+        params: dict[str, object] = {
+            "project_identifier": project_identifier,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_project, params, _interceptors,
+                "bedrock", "GetProject", self._region,
+                GetProjectOutput,
+                ("project_identifier", ),
+                ("project_identifier", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.get_project(params)
+        return _response
+
+
+    async def get_project_data_retention_storage(
+        self,
+        *,
+        project_identifier: str,
+        model_provider: DataRetentionStorageModelProvider,
+    ) -> GetProjectDataRetentionStorageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_project_data_retention_storage/)."""
+        params: dict[str, object] = {
+            "project_identifier": project_identifier,
+            "model_provider": model_provider,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_project_data_retention_storage, params, _interceptors,
+                "bedrock", "GetProjectDataRetentionStorage", self._region,
+                GetProjectDataRetentionStorageOutput,
+                ("project_identifier", "model_provider", ),
+                ("project_identifier", "model_provider", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.get_project_data_retention_storage(params)
+        return _response
+
+
     async def get_prompt_router(
         self,
         *,
@@ -2055,6 +2302,111 @@ class BedrockClient:
             )
             return _response
         _response = await self._native.get_resource_policy(params)
+        return _response
+
+
+    async def get_trusted_access_program(
+        self,
+        *,
+        program_identifier: str,
+        project_identifier: str | None = None,
+    ) -> GetTrustedAccessProgramOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_trusted_access_program/)."""
+        params: dict[str, object] = {
+            "program_identifier": program_identifier,
+        }
+        if project_identifier is not None:
+            params["project_identifier"] = project_identifier
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_trusted_access_program, params, _interceptors,
+                "bedrock", "GetTrustedAccessProgram", self._region,
+                GetTrustedAccessProgramOutput,
+                ("program_identifier", "project_identifier", ),
+                ("program_identifier", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.get_trusted_access_program(params)
+        return _response
+
+
+    async def get_trusted_access_program_account_enrollment(
+        self,
+        *,
+        program_identifier: str,
+    ) -> GetTrustedAccessProgramAccountEnrollmentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_trusted_access_program_account_enrollment/)."""
+        params: dict[str, object] = {
+            "program_identifier": program_identifier,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_trusted_access_program_account_enrollment, params, _interceptors,
+                "bedrock", "GetTrustedAccessProgramAccountEnrollment", self._region,
+                GetTrustedAccessProgramAccountEnrollmentOutput,
+                ("program_identifier", ),
+                ("program_identifier", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.get_trusted_access_program_account_enrollment(params)
+        return _response
+
+
+    async def get_trusted_access_program_organization_enrollment(
+        self,
+        *,
+        program_identifier: str,
+    ) -> GetTrustedAccessProgramOrganizationEnrollmentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_trusted_access_program_organization_enrollment/)."""
+        params: dict[str, object] = {
+            "program_identifier": program_identifier,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_trusted_access_program_organization_enrollment, params, _interceptors,
+                "bedrock", "GetTrustedAccessProgramOrganizationEnrollment", self._region,
+                GetTrustedAccessProgramOrganizationEnrollmentOutput,
+                ("program_identifier", ),
+                ("program_identifier", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.get_trusted_access_program_organization_enrollment(params)
+        return _response
+
+
+    async def get_trusted_access_program_project_enrollment(
+        self,
+        *,
+        program_identifier: str,
+        project_identifier: str,
+    ) -> GetTrustedAccessProgramProjectEnrollmentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_trusted_access_program_project_enrollment/)."""
+        params: dict[str, object] = {
+            "program_identifier": program_identifier,
+            "project_identifier": project_identifier,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_trusted_access_program_project_enrollment, params, _interceptors,
+                "bedrock", "GetTrustedAccessProgramProjectEnrollment", self._region,
+                GetTrustedAccessProgramProjectEnrollmentOutput,
+                ("program_identifier", "project_identifier", ),
+                ("program_identifier", "project_identifier", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.get_trusted_access_program_project_enrollment(params)
         return _response
 
 
@@ -2459,6 +2811,7 @@ class BedrockClient:
         by_customization_type: ModelCustomization | None = None,
         by_output_modality: ModelModality | None = None,
         by_inference_type: InferenceType | None = None,
+        project_identifier: str | None = None,
     ) -> ListFoundationModelsOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_foundation_models/)."""
         params: dict[str, object] = {
@@ -2471,6 +2824,8 @@ class BedrockClient:
             params["by_output_modality"] = by_output_modality
         if by_inference_type is not None:
             params["by_inference_type"] = by_inference_type
+        if project_identifier is not None:
+            params["project_identifier"] = project_identifier
         _interceptors = operation_interceptors("bedrock", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -2478,7 +2833,7 @@ class BedrockClient:
                 self._native.list_foundation_models, params, _interceptors,
                 "bedrock", "ListFoundationModels", self._region,
                 ListFoundationModelsOutput,
-                ("by_provider", "by_customization_type", "by_output_modality", "by_inference_type", ),
+                ("by_provider", "by_customization_type", "by_output_modality", "by_inference_type", "project_identifier", ),
                 (),
                 service_name='Bedrock',
             )
@@ -2569,6 +2924,7 @@ class BedrockClient:
         max_results: int | None = None,
         next_token: str | None = None,
         type_equals: InferenceProfileType | None = None,
+        project_identifier: str | None = None,
     ) -> ListInferenceProfilesOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_inference_profiles/)."""
         params: dict[str, object] = {
@@ -2579,6 +2935,8 @@ class BedrockClient:
             params["next_token"] = next_token
         if type_equals is not None:
             params["type_equals"] = type_equals
+        if project_identifier is not None:
+            params["project_identifier"] = project_identifier
         _interceptors = operation_interceptors("bedrock", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -2586,7 +2944,7 @@ class BedrockClient:
                 self._native.list_inference_profiles, params, _interceptors,
                 "bedrock", "ListInferenceProfiles", self._region,
                 ListInferenceProfilesOutput,
-                ("max_results", "next_token", "type_equals", ),
+                ("max_results", "next_token", "type_equals", "project_identifier", ),
                 (),
                 service_name='Bedrock',
             )
@@ -2821,6 +3179,38 @@ class BedrockClient:
         return _response
 
 
+    async def list_projects(
+        self,
+        *,
+        next_token: str | None = None,
+        max_results: int | None = None,
+        status_filter: ProjectStatus | None = None,
+    ) -> ListProjectsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_projects/)."""
+        params: dict[str, object] = {
+        }
+        if next_token is not None:
+            params["next_token"] = next_token
+        if max_results is not None:
+            params["max_results"] = max_results
+        if status_filter is not None:
+            params["status_filter"] = status_filter
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_projects, params, _interceptors,
+                "bedrock", "ListProjects", self._region,
+                ListProjectsOutput,
+                ("next_token", "max_results", "status_filter", ),
+                (),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.list_projects(params)
+        return _response
+
+
     async def list_prompt_routers(
         self,
         *,
@@ -2928,6 +3318,38 @@ class BedrockClient:
         return _response
 
 
+    async def list_trusted_access_programs(
+        self,
+        *,
+        project_identifier: str | None = None,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> ListTrustedAccessProgramsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_trusted_access_programs/)."""
+        params: dict[str, object] = {
+        }
+        if project_identifier is not None:
+            params["project_identifier"] = project_identifier
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_trusted_access_programs, params, _interceptors,
+                "bedrock", "ListTrustedAccessPrograms", self._region,
+                ListTrustedAccessProgramsOutput,
+                ("project_identifier", "max_results", "next_token", ),
+                (),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.list_trusted_access_programs(params)
+        return _response
+
+
     async def put_account_data_retention(
         self,
         *,
@@ -2950,6 +3372,36 @@ class BedrockClient:
             )
             return _response
         _response = await self._native.put_account_data_retention(params)
+        return _response
+
+
+    async def put_account_data_retention_storage(
+        self,
+        *,
+        model_provider: DataRetentionStorageModelProvider,
+        storage_destination: DataRetentionStorageDestination,
+        storage_configuration: DataRetentionStorageConfiguration | None = None,
+    ) -> PutAccountDataRetentionStorageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/put_account_data_retention_storage/)."""
+        params: dict[str, object] = {
+            "model_provider": model_provider,
+            "storage_destination": storage_destination,
+        }
+        if storage_configuration is not None:
+            params["storage_configuration"] = storage_configuration
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.put_account_data_retention_storage, params, _interceptors,
+                "bedrock", "PutAccountDataRetentionStorage", self._region,
+                PutAccountDataRetentionStorageOutput,
+                ("model_provider", "storage_destination", "storage_configuration", ),
+                ("model_provider", "storage_destination", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.put_account_data_retention_storage(params)
         return _response
 
 
@@ -3006,6 +3458,68 @@ class BedrockClient:
         return _response
 
 
+    async def put_organization_data_retention_storage(
+        self,
+        *,
+        model_provider: DataRetentionStorageModelProvider,
+        storage_destination: DataRetentionStorageDestination,
+        storage_configuration: DataRetentionStorageConfiguration | None = None,
+    ) -> PutOrganizationDataRetentionStorageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/put_organization_data_retention_storage/)."""
+        params: dict[str, object] = {
+            "model_provider": model_provider,
+            "storage_destination": storage_destination,
+        }
+        if storage_configuration is not None:
+            params["storage_configuration"] = storage_configuration
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.put_organization_data_retention_storage, params, _interceptors,
+                "bedrock", "PutOrganizationDataRetentionStorage", self._region,
+                PutOrganizationDataRetentionStorageOutput,
+                ("model_provider", "storage_destination", "storage_configuration", ),
+                ("model_provider", "storage_destination", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.put_organization_data_retention_storage(params)
+        return _response
+
+
+    async def put_project_data_retention_storage(
+        self,
+        *,
+        project_identifier: str,
+        model_provider: DataRetentionStorageModelProvider,
+        storage_destination: DataRetentionStorageDestination,
+        storage_configuration: DataRetentionStorageConfiguration | None = None,
+    ) -> PutProjectDataRetentionStorageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/put_project_data_retention_storage/)."""
+        params: dict[str, object] = {
+            "project_identifier": project_identifier,
+            "model_provider": model_provider,
+            "storage_destination": storage_destination,
+        }
+        if storage_configuration is not None:
+            params["storage_configuration"] = storage_configuration
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.put_project_data_retention_storage, params, _interceptors,
+                "bedrock", "PutProjectDataRetentionStorage", self._region,
+                PutProjectDataRetentionStorageOutput,
+                ("project_identifier", "model_provider", "storage_destination", "storage_configuration", ),
+                ("project_identifier", "model_provider", "storage_destination", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.put_project_data_retention_storage(params)
+        return _response
+
+
     async def put_resource_policy(
         self,
         *,
@@ -3030,6 +3544,89 @@ class BedrockClient:
             )
             return _response
         _response = await self._native.put_resource_policy(params)
+        return _response
+
+
+    async def put_trusted_access_program_account_enrollment(
+        self,
+        *,
+        program_identifier: str,
+        opt_in: TrustedAccessProgramOptIn,
+    ) -> PutTrustedAccessProgramAccountEnrollmentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/put_trusted_access_program_account_enrollment/)."""
+        params: dict[str, object] = {
+            "program_identifier": program_identifier,
+            "opt_in": opt_in,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.put_trusted_access_program_account_enrollment, params, _interceptors,
+                "bedrock", "PutTrustedAccessProgramAccountEnrollment", self._region,
+                PutTrustedAccessProgramAccountEnrollmentOutput,
+                ("program_identifier", "opt_in", ),
+                ("program_identifier", "opt_in", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.put_trusted_access_program_account_enrollment(params)
+        return _response
+
+
+    async def put_trusted_access_program_organization_enrollment(
+        self,
+        *,
+        program_identifier: str,
+        opt_in: TrustedAccessProgramOptIn,
+    ) -> PutTrustedAccessProgramOrganizationEnrollmentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/put_trusted_access_program_organization_enrollment/)."""
+        params: dict[str, object] = {
+            "program_identifier": program_identifier,
+            "opt_in": opt_in,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.put_trusted_access_program_organization_enrollment, params, _interceptors,
+                "bedrock", "PutTrustedAccessProgramOrganizationEnrollment", self._region,
+                PutTrustedAccessProgramOrganizationEnrollmentOutput,
+                ("program_identifier", "opt_in", ),
+                ("program_identifier", "opt_in", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.put_trusted_access_program_organization_enrollment(params)
+        return _response
+
+
+    async def put_trusted_access_program_project_enrollment(
+        self,
+        *,
+        program_identifier: str,
+        project_identifier: str,
+        opt_in: TrustedAccessProgramOptIn,
+    ) -> PutTrustedAccessProgramProjectEnrollmentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/put_trusted_access_program_project_enrollment/)."""
+        params: dict[str, object] = {
+            "program_identifier": program_identifier,
+            "project_identifier": project_identifier,
+            "opt_in": opt_in,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.put_trusted_access_program_project_enrollment, params, _interceptors,
+                "bedrock", "PutTrustedAccessProgramProjectEnrollment", self._region,
+                PutTrustedAccessProgramProjectEnrollmentOutput,
+                ("program_identifier", "project_identifier", "opt_in", ),
+                ("program_identifier", "project_identifier", "opt_in", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.put_trusted_access_program_project_enrollment(params)
         return _response
 
 
@@ -3147,6 +3744,83 @@ class BedrockClient:
             )
             return _response
         _response = await self._native.start_automated_reasoning_policy_test_workflow(params)
+        return _response
+
+
+    async def start_trusted_access_program_account_application(
+        self,
+        *,
+        program_identifier: str,
+    ) -> StartTrustedAccessProgramAccountApplicationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/start_trusted_access_program_account_application/)."""
+        params: dict[str, object] = {
+            "program_identifier": program_identifier,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.start_trusted_access_program_account_application, params, _interceptors,
+                "bedrock", "StartTrustedAccessProgramAccountApplication", self._region,
+                StartTrustedAccessProgramAccountApplicationOutput,
+                ("program_identifier", ),
+                ("program_identifier", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.start_trusted_access_program_account_application(params)
+        return _response
+
+
+    async def start_trusted_access_program_organization_application(
+        self,
+        *,
+        program_identifier: str,
+    ) -> StartTrustedAccessProgramOrganizationApplicationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/start_trusted_access_program_organization_application/)."""
+        params: dict[str, object] = {
+            "program_identifier": program_identifier,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.start_trusted_access_program_organization_application, params, _interceptors,
+                "bedrock", "StartTrustedAccessProgramOrganizationApplication", self._region,
+                StartTrustedAccessProgramOrganizationApplicationOutput,
+                ("program_identifier", ),
+                ("program_identifier", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.start_trusted_access_program_organization_application(params)
+        return _response
+
+
+    async def start_trusted_access_program_project_application(
+        self,
+        *,
+        program_identifier: str,
+        project_identifier: str,
+    ) -> StartTrustedAccessProgramProjectApplicationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/start_trusted_access_program_project_application/)."""
+        params: dict[str, object] = {
+            "program_identifier": program_identifier,
+            "project_identifier": project_identifier,
+        }
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.start_trusted_access_program_project_application, params, _interceptors,
+                "bedrock", "StartTrustedAccessProgramProjectApplication", self._region,
+                StartTrustedAccessProgramProjectApplicationOutput,
+                ("program_identifier", "project_identifier", ),
+                ("program_identifier", "project_identifier", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.start_trusted_access_program_project_application(params)
         return _response
 
 
@@ -3522,6 +4196,37 @@ class BedrockClient:
             )
             return _response
         _response = await self._native.update_marketplace_model_endpoint(params)
+        return _response
+
+
+    async def update_project(
+        self,
+        *,
+        project_identifier: str,
+        name: str | None = None,
+        data_retention: ProjectDataRetention | None = None,
+    ) -> UpdateProjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/update_project/)."""
+        params: dict[str, object] = {
+            "project_identifier": project_identifier,
+        }
+        if name is not None:
+            params["name"] = name
+        if data_retention is not None:
+            params["data_retention"] = data_retention
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.update_project, params, _interceptors,
+                "bedrock", "UpdateProject", self._region,
+                UpdateProjectOutput,
+                ("project_identifier", "name", "data_retention", ),
+                ("project_identifier", ),
+                service_name='Bedrock',
+            )
+            return _response
+        _response = await self._native.update_project(params)
         return _response
 
 

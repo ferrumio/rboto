@@ -692,6 +692,7 @@ async def list_databases(
     next_token: str | None = None,
     max_results: int | None = None,
     work_group: str | None = None,
+    attributes_to_get: Sequence[DatabaseAttributes] | None = None,
 ) -> ListDatabasesOutput: ...
 ```
 
@@ -846,6 +847,7 @@ async def list_table_metadata(
     next_token: str | None = None,
     max_results: int | None = None,
     work_group: str | None = None,
+    attributes_to_get: Sequence[TableAttributes] | None = None,
 ) -> ListTableMetadataOutput: ...
 ```
 

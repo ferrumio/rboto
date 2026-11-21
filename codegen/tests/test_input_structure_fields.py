@@ -17,6 +17,25 @@ class InputRenderer(ServiceGenerator):
     def structure(self, fields: tuple[RustField, ...]) -> str:
         return self._struct_from_py(RustType("Example", fields, (), False, False, True))
 
+    def getter(self, field: RustField) -> str:
+        return self._native_getter(field)
+
+
+def test_renamed_rust_storage_preserves_python_keys_and_properties() -> None:
+    generator = InputRenderer(
+        replace(get_service("sqs"), service_id="future-service"),
+        ROOT / "codegen/models/sqs.json", ROOT,
+    )
+    field = RustField("build", "build_value", "::std::string::String", True)
+    source = generator.structure((field,))
+    assert 'validate_input_fields(values, &["build"])?;' in source
+    assert 'dict_value(values, "build")?' in source
+    assert "builder.set_build(" in source
+    assert "set_build_value" not in source
+    getter = generator.getter(field)
+    assert "#[getter(build)]" in getter
+    assert "self.inner.build_value" in getter
+
 
 def test_future_service_uses_sorted_python_names_and_handles_empty_structures() -> None:
     generator = InputRenderer(

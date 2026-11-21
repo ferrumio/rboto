@@ -897,6 +897,50 @@ async def test_byte_streams_keep_independent_ownership(peer: Peer) -> None:
 
 @pytest.mark.asyncio
 @service("bedrock-agentcore-control")
+async def test_builder_reserved_member_keeps_python_and_wire_names(peer: Peer) -> None:
+    from rboto import BedrockAgentCoreControlClient
+
+    async with BedrockAgentCoreControlClient(
+        region="eu-west-2", endpoint_url=peer.endpoint,
+    ) as client:
+        await client.create_agent_runtime(
+            agent_runtime_name="example",
+            agent_runtime_artifact={
+                "container_configuration": {"container_uri": "example.invalid/agent:latest"},
+            },
+            role_arn="arn:aws:iam::123456789012:role/example",
+            hooks_configuration={"build": {}},
+        )
+        assert json.loads(peer.requests[0][1])["hooksConfiguration"] == {"build": {}}
+        peer.body = b'{"hooksConfiguration": {"build": {}}}'
+        result = await client.get_agent_runtime(agent_runtime_id="example")
+        assert result.hooks_configuration is not None
+        assert result.hooks_configuration.build is not None
+        assert result.hooks_configuration.build.warmup is None
+        assert result.hooks_configuration.to_dict() == {"build": {"warmup": None}}
+        assert not hasattr(result.hooks_configuration, "build_value")
+
+
+@pytest.mark.asyncio
+@service("lambda")
+async def test_integer_enum_serialization_and_future_output_values(peer: Peer) -> None:
+    from rboto import LambdaClient
+
+    peer.body = b'{"AcceleratorConfig": {"AcceleratorMemorySize": 999}}'
+    async with LambdaClient(region="eu-west-2", endpoint_url=peer.endpoint) as client:
+        result = await client.update_function_configuration(
+            function_name="example", accelerator_config={"accelerator_memory_size": 3},
+        )
+        assert json.loads(peer.requests[0][1])["AcceleratorConfig"] == {
+            "AcceleratorMemorySize": 3,
+        }
+        assert result.accelerator_config is not None
+        assert result.accelerator_config.accelerator_memory_size == 999
+        assert result.accelerator_config.to_dict() == {"accelerator_memory_size": 999}
+
+
+@pytest.mark.asyncio
+@service("bedrock-agentcore-control")
 async def test_unit_union_variants_and_rust_keyword_fields(peer: Peer) -> None:
     from rboto import bedrock_agentcore_control
 

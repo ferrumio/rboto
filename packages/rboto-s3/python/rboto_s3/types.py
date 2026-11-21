@@ -314,6 +314,10 @@ ReplicationRuleAndOperatorOutput: TypeAlias = _native.ReplicationRuleAndOperator
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleAndOperatorOutput/)."""
 ReplicationRuleFilterOutput: TypeAlias = _native.ReplicationRuleFilter
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleFilterOutput/)."""
+ReplicationRuleNotOperatorOutput: TypeAlias = _native.ReplicationRuleNotOperator
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleNotOperatorOutput/)."""
+ReplicationRuleOrOperatorOutput: TypeAlias = _native.ReplicationRuleOrOperator
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleOrOperatorOutput/)."""
 ReplicationTimeOutput: TypeAlias = _native.ReplicationTime
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationTimeOutput/)."""
 ReplicationTimeValueOutput: TypeAlias = _native.ReplicationTimeValue
@@ -370,6 +374,8 @@ UploadPartCopyOutput: TypeAlias = _native.UploadPartCopyOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UploadPartCopyOutput/)."""
 UploadPartOutput: TypeAlias = _native.UploadPartOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UploadPartOutput/)."""
+UseSourceMultiRegionKeyOutput: TypeAlias = _native.UseSourceMultiRegionKey
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UseSourceMultiRegionKeyOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/JSONValue/)."""
@@ -678,6 +684,10 @@ Type: TypeAlias = Literal['CanonicalUser', 'AmazonCustomerByEmail', 'Group']
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Type/)."""
 TypeOutput: TypeAlias = Type | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TypeOutput/)."""
+UseSourceMultiRegionKeyStatus: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UseSourceMultiRegionKeyStatus/)."""
+UseSourceMultiRegionKeyStatusOutput: TypeAlias = UseSourceMultiRegionKeyStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UseSourceMultiRegionKeyStatusOutput/)."""
 
 AbacStatus = TypedDict(
     "AbacStatus",
@@ -1529,6 +1539,7 @@ EncryptionConfiguration = TypedDict(
     "EncryptionConfiguration",
     {
     "replica_kms_key_id": NotRequired["str"],
+    "use_source_multi_region_key": NotRequired["UseSourceMultiRegionKey"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EncryptionConfiguration/)."""
@@ -2613,6 +2624,7 @@ MultipartUpload = TypedDict(
     "initiator": NotRequired["Initiator"],
     "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
     "checksum_type": NotRequired["ChecksumType"],
+    "version_id": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MultipartUpload/)."""
@@ -3389,6 +3401,7 @@ ReplicationRuleAndOperator = TypedDict(
     {
     "prefix": NotRequired["str"],
     "tags": NotRequired["Sequence[Tag]"],
+    "not": NotRequired["ReplicationRuleNotOperator"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleAndOperator/)."""
@@ -3399,9 +3412,29 @@ ReplicationRuleFilter = TypedDict(
     "prefix": NotRequired["str"],
     "tag": NotRequired["Tag"],
     "and": NotRequired["ReplicationRuleAndOperator"],
+    "not": NotRequired["ReplicationRuleNotOperator"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleFilter/)."""
+
+ReplicationRuleNotOperator = TypedDict(
+    "ReplicationRuleNotOperator",
+    {
+    "prefix": NotRequired["str"],
+    "tag": NotRequired["Tag"],
+    "or": NotRequired["ReplicationRuleOrOperator"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleNotOperator/)."""
+
+ReplicationRuleOrOperator = TypedDict(
+    "ReplicationRuleOrOperator",
+    {
+    "prefixes": NotRequired["Sequence[str]"],
+    "tags": NotRequired["Sequence[Tag]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleOrOperator/)."""
 
 ReplicationTime = TypedDict(
     "ReplicationTime",
@@ -3888,6 +3921,14 @@ UploadPartRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UploadPartRequest/)."""
+
+UseSourceMultiRegionKey = TypedDict(
+    "UseSourceMultiRegionKey",
+    {
+    "status": Required["UseSourceMultiRegionKeyStatus"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UseSourceMultiRegionKey/)."""
 
 VersioningConfiguration = TypedDict(
     "VersioningConfiguration",

@@ -251,6 +251,7 @@ async def create_authorizer(
     identity_source: str | None = None,
     identity_validation_expression: str | None = None,
     authorizer_result_ttl_in_seconds: int | None = None,
+    jwt_configuration: JwtConfigurationInput | None = None,
 ) -> CreateAuthorizerOutput: ...
 ```
 

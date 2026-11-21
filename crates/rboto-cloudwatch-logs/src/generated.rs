@@ -15153,7 +15153,7 @@ impl PyExportTask {
     }
 
     #[allow(clippy::wrong_self_convention)]
-    #[getter]
+    #[getter(from_)]
     fn from_(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.from {
             let converted_2350 = (value).to_owned().into_py_any(py)?;
@@ -19821,7 +19821,7 @@ impl PySubstituteStringEntry {
     }
 
     #[allow(clippy::wrong_self_convention)]
-    #[getter]
+    #[getter(from_)]
     fn from_(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2768 = (&self.inner.from).as_str().into_py_any(py)?;
         Ok(converted_2768)

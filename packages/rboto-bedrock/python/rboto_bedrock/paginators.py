@@ -25,8 +25,10 @@ from ._native import (
     ListModelCustomizationJobsOutput,
     ListModelImportJobsOutput,
     ListModelInvocationJobsOutput,
+    ListProjectsOutput,
     ListPromptRoutersOutput,
     ListProvisionedModelThroughputsOutput,
+    ListTrustedAccessProgramsOutput,
 )
 
 from .types import (
@@ -39,6 +41,7 @@ from .types import (
     ModelImportJobStatus,
     ModelInvocationJobStatus,
     ModelStatus,
+    ProjectStatus,
     PromptRouterType,
     ProvisionedModelStatus,
     SortByProvisionedModels,
@@ -416,6 +419,7 @@ class BedrockClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         type_equals: InferenceProfileType | None = None,
+        project_identifier: str | None = None,
     ) -> AsyncIterator[ListInferenceProfilesOutput]:
         """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_inference_profiles/#pagination-and-streaming)."""
         params: dict[str, object] = {
@@ -426,6 +430,8 @@ class BedrockClientPaginators:
             params["next_token"] = next_token
         if type_equals is not None:
             params["type_equals"] = type_equals
+        if project_identifier is not None:
+            params["project_identifier"] = project_identifier
         return _paginate(
             self._client.list_inference_profiles, params,
             _PaginationSpec(
@@ -632,6 +638,32 @@ class BedrockClientPaginators:
         )
 
 
+    def list_projects(
+        self,
+        *,
+        next_token: str | None = None,
+        max_results: int | None = None,
+        status_filter: ProjectStatus | None = None,
+    ) -> AsyncIterator[ListProjectsOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_projects/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+        }
+        if next_token is not None:
+            params["next_token"] = next_token
+        if max_results is not None:
+            params["max_results"] = max_results
+        if status_filter is not None:
+            params["status_filter"] = status_filter
+        return _paginate(
+            self._client.list_projects, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
     def list_prompt_routers(
         self,
         *,
@@ -694,6 +726,32 @@ class BedrockClientPaginators:
             params["sort_order"] = sort_order
         return _paginate(
             self._client.list_provisioned_model_throughputs, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
+    def list_trusted_access_programs(
+        self,
+        *,
+        project_identifier: str | None = None,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> AsyncIterator[ListTrustedAccessProgramsOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_trusted_access_programs/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+        }
+        if project_identifier is not None:
+            params["project_identifier"] = project_identifier
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        return _paginate(
+            self._client.list_trusted_access_programs, params,
             _PaginationSpec(
                 input_tokens=('next_token',),
                 output_tokens=((('next_token',),),),

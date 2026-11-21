@@ -70,5 +70,9 @@ class ResourceNotFoundError(KinesisError):
     """Modeled kinesis error: ResourceNotFoundException."""
 
 
+class ThrottlingError(KinesisError):
+    """Modeled kinesis error: ThrottlingException."""
+
+
 class ValidationError(KinesisError):
     """Modeled kinesis error: ValidationException."""

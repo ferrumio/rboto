@@ -12,6 +12,263 @@ use super::*;
 
 use pyo3::exceptions::PyValueError;
 
+fn acknowledge_dead_letter_queue_records_error_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsErrorEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message", "receipt_handle"])?;
+    let mut builder =
+        aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsErrorEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_1 = (|| -> PyResult<_> {
+            let converted_1: String = value.extract()?;
+            Ok(converted_1)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_1));
+    }
+    if let Some(value) = dict_value(values, "error_code")? {
+        let converted_2 = (|| -> PyResult<_> {
+            let converted_2: String = value.extract()?;
+            Ok(converted_2)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("error_code"), "str")
+        })?;
+        builder = builder.set_error_code(Some(converted_2));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        let converted_3 = (|| -> PyResult<_> {
+            let converted_3: String = value.extract()?;
+            Ok(converted_3)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("error_message"), "str")
+        })?;
+        builder = builder.set_error_message(Some(converted_3));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("receipt_handle", "receipt_handle"),
+                ("error_code", "error_code"),
+            ],
+        )
+    })
+}
+
+fn acknowledge_dead_letter_queue_records_error_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsErrorEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_4 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_4)?;
+    let converted_5 = (&value.error_code).as_str().into_py_any(py)?;
+    result.set_item("error_code", converted_5)?;
+    if let Some(value) = &value.error_message {
+        let converted_6 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_message", converted_6)?;
+    } else {
+        result.set_item("error_message", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn acknowledge_dead_letter_queue_records_request_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsRequestEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["receipt_handle"])?;
+    let mut builder =
+        aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsRequestEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_7 = (|| -> PyResult<_> {
+            let converted_7: String = value.extract()?;
+            Ok(converted_7)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_7));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("receipt_handle", "receipt_handle")])
+    })
+}
+
+fn acknowledge_dead_letter_queue_records_request_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsRequestEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_8 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_8)?;
+    Ok(result.into_any().unbind())
+}
+
+fn acknowledge_dead_letter_queue_records_result_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsResultEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["receipt_handle"])?;
+    let mut builder =
+        aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsResultEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_9 = (|| -> PyResult<_> {
+            let converted_9: String = value.extract()?;
+            Ok(converted_9)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_9));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("receipt_handle", "receipt_handle")])
+    })
+}
+
+fn acknowledge_dead_letter_queue_records_result_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsResultEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_10 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_10)?;
+    Ok(result.into_any().unbind())
+}
+
+fn acknowledge_queue_records_error_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::AcknowledgeQueueRecordsErrorEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message", "receipt_handle"])?;
+    let mut builder = aws_sdk_kinesis::types::AcknowledgeQueueRecordsErrorEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_11 = (|| -> PyResult<_> {
+            let converted_11: String = value.extract()?;
+            Ok(converted_11)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_11));
+    }
+    if let Some(value) = dict_value(values, "error_code")? {
+        let converted_12 = (|| -> PyResult<_> {
+            let converted_12: String = value.extract()?;
+            Ok(converted_12)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("error_code"), "str")
+        })?;
+        builder = builder.set_error_code(Some(converted_12));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        let converted_13 = (|| -> PyResult<_> {
+            let converted_13: String = value.extract()?;
+            Ok(converted_13)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("error_message"), "str")
+        })?;
+        builder = builder.set_error_message(Some(converted_13));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("receipt_handle", "receipt_handle"),
+                ("error_code", "error_code"),
+            ],
+        )
+    })
+}
+
+fn acknowledge_queue_records_error_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::AcknowledgeQueueRecordsErrorEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_14 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_14)?;
+    let converted_15 = (&value.error_code).as_str().into_py_any(py)?;
+    result.set_item("error_code", converted_15)?;
+    if let Some(value) = &value.error_message {
+        let converted_16 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_message", converted_16)?;
+    } else {
+        result.set_item("error_message", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn acknowledge_queue_records_request_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::AcknowledgeQueueRecordsRequestEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["receipt_handle"])?;
+    let mut builder = aws_sdk_kinesis::types::AcknowledgeQueueRecordsRequestEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_17 = (|| -> PyResult<_> {
+            let converted_17: String = value.extract()?;
+            Ok(converted_17)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_17));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("receipt_handle", "receipt_handle")])
+    })
+}
+
+fn acknowledge_queue_records_request_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::AcknowledgeQueueRecordsRequestEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_18 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_18)?;
+    Ok(result.into_any().unbind())
+}
+
+fn acknowledge_queue_records_result_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::AcknowledgeQueueRecordsResultEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["receipt_handle"])?;
+    let mut builder = aws_sdk_kinesis::types::AcknowledgeQueueRecordsResultEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_19 = (|| -> PyResult<_> {
+            let converted_19: String = value.extract()?;
+            Ok(converted_19)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_19));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("receipt_handle", "receipt_handle")])
+    })
+}
+
+fn acknowledge_queue_records_result_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::AcknowledgeQueueRecordsResultEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_20 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_20)?;
+    Ok(result.into_any().unbind())
+}
+
 fn channel_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kinesis::types::ChannelDescription> {
@@ -35,40 +292,40 @@ fn channel_description_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::ChannelDescription::builder();
     if let Some(value) = dict_value(values, "channel_name")? {
-        let converted_1 = (|| -> PyResult<_> {
-            let converted_1: String = value.extract()?;
-            Ok(converted_1)
+        let converted_21 = (|| -> PyResult<_> {
+            let converted_21: String = value.extract()?;
+            Ok(converted_21)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("channel_name"), "str")
         })?;
-        builder = builder.set_channel_name(Some(converted_1));
+        builder = builder.set_channel_name(Some(converted_21));
     }
     if let Some(value) = dict_value(values, "channel_arn")? {
-        let converted_2 = (|| -> PyResult<_> {
-            let converted_2: String = value.extract()?;
-            Ok(converted_2)
+        let converted_22 = (|| -> PyResult<_> {
+            let converted_22: String = value.extract()?;
+            Ok(converted_22)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("channel_arn"), "str")
         })?;
-        builder = builder.set_channel_arn(Some(converted_2));
+        builder = builder.set_channel_arn(Some(converted_22));
     }
     if let Some(value) = dict_value(values, "channel_id")? {
-        let converted_3 = (|| -> PyResult<_> {
-            let converted_3: String = value.extract()?;
-            Ok(converted_3)
+        let converted_23 = (|| -> PyResult<_> {
+            let converted_23: String = value.extract()?;
+            Ok(converted_23)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("channel_id"), "str")
         })?;
-        builder = builder.set_channel_id(Some(converted_3));
+        builder = builder.set_channel_id(Some(converted_23));
     }
     if let Some(value) = dict_value(values, "channel_status")? {
-        let converted_4 = (|| -> PyResult<_> {
-            let enum_value_5: String = value.extract()?;
-            let converted_4 = aws_sdk_kinesis::types::ChannelStatus::from(enum_value_5.as_str());
-            Ok(converted_4)
+        let converted_24 = (|| -> PyResult<_> {
+            let enum_value_25: String = value.extract()?;
+            let converted_24 = aws_sdk_kinesis::types::ChannelStatus::from(enum_value_25.as_str());
+            Ok(converted_24)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -77,12 +334,12 @@ fn channel_description_from_py(
                 "str (ChannelStatus)",
             )
         })?;
-        builder = builder.set_channel_status(Some(converted_4));
+        builder = builder.set_channel_status(Some(converted_24));
     }
     if let Some(value) = dict_value(values, "channel_status_reason")? {
-        let converted_6 = (|| -> PyResult<_> {
-            let converted_6: String = value.extract()?;
-            Ok(converted_6)
+        let converted_26 = (|| -> PyResult<_> {
+            let converted_26: String = value.extract()?;
+            Ok(converted_26)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -91,17 +348,17 @@ fn channel_description_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_channel_status_reason(Some(converted_6));
+        builder = builder.set_channel_status_reason(Some(converted_26));
     }
     if let Some(value) = dict_value(values, "channel_creation_timestamp")? {
-        let converted_7 = (|| -> PyResult<_> {
-            let timestamp_8: String = value.extract()?;
-            let converted_7 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_8,
+        let converted_27 = (|| -> PyResult<_> {
+            let timestamp_28: String = value.extract()?;
+            let converted_27 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_28,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_7)
+            Ok(converted_27)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -110,12 +367,12 @@ fn channel_description_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_channel_creation_timestamp(Some(converted_7));
+        builder = builder.set_channel_creation_timestamp(Some(converted_27));
     }
     if let Some(value) = dict_value(values, "service_execution_role_arn")? {
-        let converted_9 = (|| -> PyResult<_> {
-            let converted_9: String = value.extract()?;
-            Ok(converted_9)
+        let converted_29 = (|| -> PyResult<_> {
+            let converted_29: String = value.extract()?;
+            Ok(converted_29)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -124,35 +381,35 @@ fn channel_description_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_service_execution_role_arn(Some(converted_9));
+        builder = builder.set_service_execution_role_arn(Some(converted_29));
     }
     if let Some(value) = dict_value(values, "stream_configuration_list")? {
-        let converted_10 = (|| -> PyResult<_> {
-            let mut converted_10 =
+        let converted_30 = (|| -> PyResult<_> {
+            let mut converted_30 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_14, item_result_11) in value.try_iter()?.enumerate() {
-                let item_12 = item_result_11.map_err(|error| {
+            for (index_34, item_result_31) in value.try_iter()?.enumerate() {
+                let item_32 = item_result_31.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_14),
+                        rboto_core::InputPath::Index(index_34),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_13 = (|| -> PyResult<_> {
-                    let converted_item_13 = channel_stream_description_from_py(&item_12)?;
-                    Ok(converted_item_13)
+                let converted_item_33 = (|| -> PyResult<_> {
+                    let converted_item_33 = channel_stream_description_from_py(&item_32)?;
+                    Ok(converted_item_33)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_14),
+                        rboto_core::InputPath::Index(index_34),
                         "dict (ChannelStreamDescription)",
                     )
                 })?;
-                converted_10.push(converted_item_13);
+                converted_30.push(converted_item_33);
             }
-            Ok(converted_10)
+            Ok(converted_30)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -161,12 +418,12 @@ fn channel_description_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_stream_configuration_list(Some(converted_10));
+        builder = builder.set_stream_configuration_list(Some(converted_30));
     }
     if let Some(value) = dict_value(values, "s3_destination_configuration")? {
-        let converted_15 = (|| -> PyResult<_> {
-            let converted_15 = s3_destination_description_from_py(&value)?;
-            Ok(converted_15)
+        let converted_35 = (|| -> PyResult<_> {
+            let converted_35 = s3_destination_description_from_py(&value)?;
+            Ok(converted_35)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -175,12 +432,12 @@ fn channel_description_from_py(
                 "dict (S3DestinationDescription)",
             )
         })?;
-        builder = builder.set_s3_destination_configuration(Some(converted_15));
+        builder = builder.set_s3_destination_configuration(Some(converted_35));
     }
     if let Some(value) = dict_value(values, "s3_tables_destination_configuration")? {
-        let converted_16 = (|| -> PyResult<_> {
-            let converted_16 = s3_tables_destination_description_from_py(&value)?;
-            Ok(converted_16)
+        let converted_36 = (|| -> PyResult<_> {
+            let converted_36 = s3_tables_destination_description_from_py(&value)?;
+            Ok(converted_36)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -189,12 +446,12 @@ fn channel_description_from_py(
                 "dict (S3TablesDestinationDescription)",
             )
         })?;
-        builder = builder.set_s3_tables_destination_configuration(Some(converted_16));
+        builder = builder.set_s3_tables_destination_configuration(Some(converted_36));
     }
     if let Some(value) = dict_value(values, "encryption_configuration")? {
-        let converted_17 = (|| -> PyResult<_> {
-            let converted_17 = channel_encryption_configuration_from_py(&value)?;
-            Ok(converted_17)
+        let converted_37 = (|| -> PyResult<_> {
+            let converted_37 = channel_encryption_configuration_from_py(&value)?;
+            Ok(converted_37)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -203,12 +460,12 @@ fn channel_description_from_py(
                 "dict (ChannelEncryptionConfiguration)",
             )
         })?;
-        builder = builder.set_encryption_configuration(Some(converted_17));
+        builder = builder.set_encryption_configuration(Some(converted_37));
     }
     if let Some(value) = dict_value(values, "logging_configuration")? {
-        let converted_18 = (|| -> PyResult<_> {
-            let converted_18 = channel_logging_configuration_from_py(&value)?;
-            Ok(converted_18)
+        let converted_38 = (|| -> PyResult<_> {
+            let converted_38 = channel_logging_configuration_from_py(&value)?;
+            Ok(converted_38)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -217,7 +474,7 @@ fn channel_description_from_py(
                 "dict (ChannelLoggingConfiguration)",
             )
         })?;
-        builder = builder.set_logging_configuration(Some(converted_18));
+        builder = builder.set_logging_configuration(Some(converted_38));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -240,56 +497,56 @@ fn channel_description_to_py(
     value: &aws_sdk_kinesis::types::ChannelDescription,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_19 = (&value.channel_name).as_str().into_py_any(py)?;
-    result.set_item("channel_name", converted_19)?;
-    let converted_20 = (&value.channel_arn).as_str().into_py_any(py)?;
-    result.set_item("channel_arn", converted_20)?;
-    let converted_21 = (&value.channel_id).as_str().into_py_any(py)?;
-    result.set_item("channel_id", converted_21)?;
-    let converted_22 = (&value.channel_status).as_str().into_py_any(py)?;
-    result.set_item("channel_status", converted_22)?;
+    let converted_39 = (&value.channel_name).as_str().into_py_any(py)?;
+    result.set_item("channel_name", converted_39)?;
+    let converted_40 = (&value.channel_arn).as_str().into_py_any(py)?;
+    result.set_item("channel_arn", converted_40)?;
+    let converted_41 = (&value.channel_id).as_str().into_py_any(py)?;
+    result.set_item("channel_id", converted_41)?;
+    let converted_42 = (&value.channel_status).as_str().into_py_any(py)?;
+    result.set_item("channel_status", converted_42)?;
     if let Some(value) = &value.channel_status_reason {
-        let converted_23 = (value).as_str().into_py_any(py)?;
-        result.set_item("channel_status_reason", converted_23)?;
+        let converted_43 = (value).as_str().into_py_any(py)?;
+        result.set_item("channel_status_reason", converted_43)?;
     } else {
         result.set_item("channel_status_reason", py.None())?;
     }
-    let converted_24 = (&value.channel_creation_timestamp)
+    let converted_44 = (&value.channel_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("channel_creation_timestamp", converted_24)?;
-    let converted_25 = (&value.service_execution_role_arn)
+    result.set_item("channel_creation_timestamp", converted_44)?;
+    let converted_45 = (&value.service_execution_role_arn)
         .as_str()
         .into_py_any(py)?;
-    result.set_item("service_execution_role_arn", converted_25)?;
-    let converted_26_list = PyList::empty(py);
-    for item_27 in &value.stream_configuration_list {
-        let converted_item_28 = channel_stream_description_to_py(py, item_27)?;
-        converted_26_list.append(converted_item_28)?;
+    result.set_item("service_execution_role_arn", converted_45)?;
+    let converted_46_list = PyList::empty(py);
+    for item_47 in &value.stream_configuration_list {
+        let converted_item_48 = channel_stream_description_to_py(py, item_47)?;
+        converted_46_list.append(converted_item_48)?;
     }
-    let converted_26 = converted_26_list.into_any().unbind();
-    result.set_item("stream_configuration_list", converted_26)?;
+    let converted_46 = converted_46_list.into_any().unbind();
+    result.set_item("stream_configuration_list", converted_46)?;
     if let Some(value) = &value.s3_destination_configuration {
-        let converted_29 = s3_destination_description_to_py(py, value)?;
-        result.set_item("s3_destination_configuration", converted_29)?;
+        let converted_49 = s3_destination_description_to_py(py, value)?;
+        result.set_item("s3_destination_configuration", converted_49)?;
     } else {
         result.set_item("s3_destination_configuration", py.None())?;
     }
     if let Some(value) = &value.s3_tables_destination_configuration {
-        let converted_30 = s3_tables_destination_description_to_py(py, value)?;
-        result.set_item("s3_tables_destination_configuration", converted_30)?;
+        let converted_50 = s3_tables_destination_description_to_py(py, value)?;
+        result.set_item("s3_tables_destination_configuration", converted_50)?;
     } else {
         result.set_item("s3_tables_destination_configuration", py.None())?;
     }
     if let Some(value) = &value.encryption_configuration {
-        let converted_31 = channel_encryption_configuration_to_py(py, value)?;
-        result.set_item("encryption_configuration", converted_31)?;
+        let converted_51 = channel_encryption_configuration_to_py(py, value)?;
+        result.set_item("encryption_configuration", converted_51)?;
     } else {
         result.set_item("encryption_configuration", py.None())?;
     }
     if let Some(value) = &value.logging_configuration {
-        let converted_32 = channel_logging_configuration_to_py(py, value)?;
-        result.set_item("logging_configuration", converted_32)?;
+        let converted_52 = channel_logging_configuration_to_py(py, value)?;
+        result.set_item("logging_configuration", converted_52)?;
     } else {
         result.set_item("logging_configuration", py.None())?;
     }
@@ -303,11 +560,11 @@ fn channel_encryption_configuration_from_py(
     rboto_core::validate_input_fields(values, &["encryption_type", "key_id"])?;
     let mut builder = aws_sdk_kinesis::types::ChannelEncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "encryption_type")? {
-        let converted_33 = (|| -> PyResult<_> {
-            let enum_value_34: String = value.extract()?;
-            let converted_33 =
-                aws_sdk_kinesis::types::ChannelEncryptionType::from(enum_value_34.as_str());
-            Ok(converted_33)
+        let converted_53 = (|| -> PyResult<_> {
+            let enum_value_54: String = value.extract()?;
+            let converted_53 =
+                aws_sdk_kinesis::types::ChannelEncryptionType::from(enum_value_54.as_str());
+            Ok(converted_53)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -316,17 +573,17 @@ fn channel_encryption_configuration_from_py(
                 "str (ChannelEncryptionType)",
             )
         })?;
-        builder = builder.set_encryption_type(Some(converted_33));
+        builder = builder.set_encryption_type(Some(converted_53));
     }
     if let Some(value) = dict_value(values, "key_id")? {
-        let converted_35 = (|| -> PyResult<_> {
-            let converted_35: String = value.extract()?;
-            Ok(converted_35)
+        let converted_55 = (|| -> PyResult<_> {
+            let converted_55: String = value.extract()?;
+            Ok(converted_55)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str")
         })?;
-        builder = builder.set_key_id(Some(converted_35));
+        builder = builder.set_key_id(Some(converted_55));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -341,10 +598,10 @@ fn channel_encryption_configuration_to_py(
     value: &aws_sdk_kinesis::types::ChannelEncryptionConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_36 = (&value.encryption_type).as_str().into_py_any(py)?;
-    result.set_item("encryption_type", converted_36)?;
-    let converted_37 = (&value.key_id).as_str().into_py_any(py)?;
-    result.set_item("key_id", converted_37)?;
+    let converted_56 = (&value.encryption_type).as_str().into_py_any(py)?;
+    result.set_item("encryption_type", converted_56)?;
+    let converted_57 = (&value.key_id).as_str().into_py_any(py)?;
+    result.set_item("key_id", converted_57)?;
     Ok(result.into_any().unbind())
 }
 
@@ -355,9 +612,9 @@ fn channel_logging_configuration_from_py(
     rboto_core::validate_input_fields(values, &["cloud_watch_logs"])?;
     let mut builder = aws_sdk_kinesis::types::ChannelLoggingConfiguration::builder();
     if let Some(value) = dict_value(values, "cloud_watch_logs")? {
-        let converted_38 = (|| -> PyResult<_> {
-            let converted_38 = cloud_watch_logs_from_py(&value)?;
-            Ok(converted_38)
+        let converted_58 = (|| -> PyResult<_> {
+            let converted_58 = cloud_watch_logs_from_py(&value)?;
+            Ok(converted_58)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -366,7 +623,7 @@ fn channel_logging_configuration_from_py(
                 "dict (CloudWatchLogs)",
             )
         })?;
-        builder = builder.set_cloud_watch_logs(Some(converted_38));
+        builder = builder.set_cloud_watch_logs(Some(converted_58));
     }
     Ok(builder.build())
 }
@@ -377,8 +634,8 @@ fn channel_logging_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.cloud_watch_logs {
-        let converted_39 = cloud_watch_logs_to_py(py, value)?;
-        result.set_item("cloud_watch_logs", converted_39)?;
+        let converted_59 = cloud_watch_logs_to_py(py, value)?;
+        result.set_item("cloud_watch_logs", converted_59)?;
     } else {
         result.set_item("cloud_watch_logs", py.None())?;
     }
@@ -392,9 +649,9 @@ fn channel_logging_update_input_from_py(
     rboto_core::validate_input_fields(values, &["cloud_watch_logs"])?;
     let mut builder = aws_sdk_kinesis::types::ChannelLoggingUpdateInput::builder();
     if let Some(value) = dict_value(values, "cloud_watch_logs")? {
-        let converted_40 = (|| -> PyResult<_> {
-            let converted_40 = cloud_watch_logs_update_input_from_py(&value)?;
-            Ok(converted_40)
+        let converted_60 = (|| -> PyResult<_> {
+            let converted_60 = cloud_watch_logs_update_input_from_py(&value)?;
+            Ok(converted_60)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -403,7 +660,7 @@ fn channel_logging_update_input_from_py(
                 "dict (CloudWatchLogsUpdateInput)",
             )
         })?;
-        builder = builder.set_cloud_watch_logs(Some(converted_40));
+        builder = builder.set_cloud_watch_logs(Some(converted_60));
     }
     Ok(builder.build())
 }
@@ -414,8 +671,8 @@ fn channel_logging_update_input_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.cloud_watch_logs {
-        let converted_41 = cloud_watch_logs_update_input_to_py(py, value)?;
-        result.set_item("cloud_watch_logs", converted_41)?;
+        let converted_61 = cloud_watch_logs_update_input_to_py(py, value)?;
+        result.set_item("cloud_watch_logs", converted_61)?;
     } else {
         result.set_item("cloud_watch_logs", py.None())?;
     }
@@ -429,19 +686,19 @@ fn channel_stream_configuration_from_py(
     rboto_core::validate_input_fields(values, &["record_configuration", "stream_arn"])?;
     let mut builder = aws_sdk_kinesis::types::ChannelStreamConfiguration::builder();
     if let Some(value) = dict_value(values, "stream_arn")? {
-        let converted_42 = (|| -> PyResult<_> {
-            let converted_42: String = value.extract()?;
-            Ok(converted_42)
+        let converted_62 = (|| -> PyResult<_> {
+            let converted_62: String = value.extract()?;
+            Ok(converted_62)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stream_arn"), "str")
         })?;
-        builder = builder.set_stream_arn(Some(converted_42));
+        builder = builder.set_stream_arn(Some(converted_62));
     }
     if let Some(value) = dict_value(values, "record_configuration")? {
-        let converted_43 = (|| -> PyResult<_> {
-            let converted_43 = record_configuration_from_py(&value)?;
-            Ok(converted_43)
+        let converted_63 = (|| -> PyResult<_> {
+            let converted_63 = record_configuration_from_py(&value)?;
+            Ok(converted_63)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -450,7 +707,7 @@ fn channel_stream_configuration_from_py(
                 "dict (RecordConfiguration)",
             )
         })?;
-        builder = builder.set_record_configuration(Some(converted_43));
+        builder = builder.set_record_configuration(Some(converted_63));
     }
     builder
         .build()
@@ -462,11 +719,11 @@ fn channel_stream_configuration_to_py(
     value: &aws_sdk_kinesis::types::ChannelStreamConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_44 = (&value.stream_arn).as_str().into_py_any(py)?;
-    result.set_item("stream_arn", converted_44)?;
+    let converted_64 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_64)?;
     if let Some(value) = &value.record_configuration {
-        let converted_45 = record_configuration_to_py(py, value)?;
-        result.set_item("record_configuration", converted_45)?;
+        let converted_65 = record_configuration_to_py(py, value)?;
+        result.set_item("record_configuration", converted_65)?;
     } else {
         result.set_item("record_configuration", py.None())?;
     }
@@ -487,24 +744,24 @@ fn channel_stream_description_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::ChannelStreamDescription::builder();
     if let Some(value) = dict_value(values, "stream_arn")? {
-        let converted_46 = (|| -> PyResult<_> {
-            let converted_46: String = value.extract()?;
-            Ok(converted_46)
+        let converted_66 = (|| -> PyResult<_> {
+            let converted_66: String = value.extract()?;
+            Ok(converted_66)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stream_arn"), "str")
         })?;
-        builder = builder.set_stream_arn(Some(converted_46));
+        builder = builder.set_stream_arn(Some(converted_66));
     }
     if let Some(value) = dict_value(values, "stream_creation_timestamp")? {
-        let converted_47 = (|| -> PyResult<_> {
-            let timestamp_48: String = value.extract()?;
-            let converted_47 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_48,
+        let converted_67 = (|| -> PyResult<_> {
+            let timestamp_68: String = value.extract()?;
+            let converted_67 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_68,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_47)
+            Ok(converted_67)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -513,12 +770,12 @@ fn channel_stream_description_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_stream_creation_timestamp(Some(converted_47));
+        builder = builder.set_stream_creation_timestamp(Some(converted_67));
     }
     if let Some(value) = dict_value(values, "record_configuration")? {
-        let converted_49 = (|| -> PyResult<_> {
-            let converted_49 = record_configuration_from_py(&value)?;
-            Ok(converted_49)
+        let converted_69 = (|| -> PyResult<_> {
+            let converted_69 = record_configuration_from_py(&value)?;
+            Ok(converted_69)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -527,7 +784,7 @@ fn channel_stream_description_from_py(
                 "dict (RecordConfiguration)",
             )
         })?;
-        builder = builder.set_record_configuration(Some(converted_49));
+        builder = builder.set_record_configuration(Some(converted_69));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -545,15 +802,15 @@ fn channel_stream_description_to_py(
     value: &aws_sdk_kinesis::types::ChannelStreamDescription,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_50 = (&value.stream_arn).as_str().into_py_any(py)?;
-    result.set_item("stream_arn", converted_50)?;
-    let converted_51 = (&value.stream_creation_timestamp)
+    let converted_70 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_70)?;
+    let converted_71 = (&value.stream_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("stream_creation_timestamp", converted_51)?;
+    result.set_item("stream_creation_timestamp", converted_71)?;
     if let Some(value) = &value.record_configuration {
-        let converted_52 = record_configuration_to_py(py, value)?;
-        result.set_item("record_configuration", converted_52)?;
+        let converted_72 = record_configuration_to_py(py, value)?;
+        result.set_item("record_configuration", converted_72)?;
     } else {
         result.set_item("record_configuration", py.None())?;
     }
@@ -567,24 +824,24 @@ fn channel_stream_identifier_from_py(
     rboto_core::validate_input_fields(values, &["stream_arn", "stream_creation_timestamp"])?;
     let mut builder = aws_sdk_kinesis::types::ChannelStreamIdentifier::builder();
     if let Some(value) = dict_value(values, "stream_arn")? {
-        let converted_53 = (|| -> PyResult<_> {
-            let converted_53: String = value.extract()?;
-            Ok(converted_53)
+        let converted_73 = (|| -> PyResult<_> {
+            let converted_73: String = value.extract()?;
+            Ok(converted_73)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stream_arn"), "str")
         })?;
-        builder = builder.set_stream_arn(Some(converted_53));
+        builder = builder.set_stream_arn(Some(converted_73));
     }
     if let Some(value) = dict_value(values, "stream_creation_timestamp")? {
-        let converted_54 = (|| -> PyResult<_> {
-            let timestamp_55: String = value.extract()?;
-            let converted_54 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_55,
+        let converted_74 = (|| -> PyResult<_> {
+            let timestamp_75: String = value.extract()?;
+            let converted_74 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_75,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_54)
+            Ok(converted_74)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -593,7 +850,7 @@ fn channel_stream_identifier_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_stream_creation_timestamp(Some(converted_54));
+        builder = builder.set_stream_creation_timestamp(Some(converted_74));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -611,12 +868,12 @@ fn channel_stream_identifier_to_py(
     value: &aws_sdk_kinesis::types::ChannelStreamIdentifier,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_56 = (&value.stream_arn).as_str().into_py_any(py)?;
-    result.set_item("stream_arn", converted_56)?;
-    let converted_57 = (&value.stream_creation_timestamp)
+    let converted_76 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_76)?;
+    let converted_77 = (&value.stream_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("stream_creation_timestamp", converted_57)?;
+    result.set_item("stream_creation_timestamp", converted_77)?;
     Ok(result.into_any().unbind())
 }
 
@@ -639,40 +896,40 @@ fn channel_summary_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::ChannelSummary::builder();
     if let Some(value) = dict_value(values, "channel_name")? {
-        let converted_58 = (|| -> PyResult<_> {
-            let converted_58: String = value.extract()?;
-            Ok(converted_58)
+        let converted_78 = (|| -> PyResult<_> {
+            let converted_78: String = value.extract()?;
+            Ok(converted_78)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("channel_name"), "str")
         })?;
-        builder = builder.set_channel_name(Some(converted_58));
+        builder = builder.set_channel_name(Some(converted_78));
     }
     if let Some(value) = dict_value(values, "channel_arn")? {
-        let converted_59 = (|| -> PyResult<_> {
-            let converted_59: String = value.extract()?;
-            Ok(converted_59)
+        let converted_79 = (|| -> PyResult<_> {
+            let converted_79: String = value.extract()?;
+            Ok(converted_79)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("channel_arn"), "str")
         })?;
-        builder = builder.set_channel_arn(Some(converted_59));
+        builder = builder.set_channel_arn(Some(converted_79));
     }
     if let Some(value) = dict_value(values, "channel_id")? {
-        let converted_60 = (|| -> PyResult<_> {
-            let converted_60: String = value.extract()?;
-            Ok(converted_60)
+        let converted_80 = (|| -> PyResult<_> {
+            let converted_80: String = value.extract()?;
+            Ok(converted_80)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("channel_id"), "str")
         })?;
-        builder = builder.set_channel_id(Some(converted_60));
+        builder = builder.set_channel_id(Some(converted_80));
     }
     if let Some(value) = dict_value(values, "channel_status")? {
-        let converted_61 = (|| -> PyResult<_> {
-            let enum_value_62: String = value.extract()?;
-            let converted_61 = aws_sdk_kinesis::types::ChannelStatus::from(enum_value_62.as_str());
-            Ok(converted_61)
+        let converted_81 = (|| -> PyResult<_> {
+            let enum_value_82: String = value.extract()?;
+            let converted_81 = aws_sdk_kinesis::types::ChannelStatus::from(enum_value_82.as_str());
+            Ok(converted_81)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -681,12 +938,12 @@ fn channel_summary_from_py(
                 "str (ChannelStatus)",
             )
         })?;
-        builder = builder.set_channel_status(Some(converted_61));
+        builder = builder.set_channel_status(Some(converted_81));
     }
     if let Some(value) = dict_value(values, "channel_status_reason")? {
-        let converted_63 = (|| -> PyResult<_> {
-            let converted_63: String = value.extract()?;
-            Ok(converted_63)
+        let converted_83 = (|| -> PyResult<_> {
+            let converted_83: String = value.extract()?;
+            Ok(converted_83)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -695,17 +952,17 @@ fn channel_summary_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_channel_status_reason(Some(converted_63));
+        builder = builder.set_channel_status_reason(Some(converted_83));
     }
     if let Some(value) = dict_value(values, "channel_creation_timestamp")? {
-        let converted_64 = (|| -> PyResult<_> {
-            let timestamp_65: String = value.extract()?;
-            let converted_64 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_65,
+        let converted_84 = (|| -> PyResult<_> {
+            let timestamp_85: String = value.extract()?;
+            let converted_84 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_85,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_64)
+            Ok(converted_84)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -714,14 +971,14 @@ fn channel_summary_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_channel_creation_timestamp(Some(converted_64));
+        builder = builder.set_channel_creation_timestamp(Some(converted_84));
     }
     if let Some(value) = dict_value(values, "channel_destination_type")? {
-        let converted_66 = (|| -> PyResult<_> {
-            let enum_value_67: String = value.extract()?;
-            let converted_66 =
-                aws_sdk_kinesis::types::ChannelDestinationType::from(enum_value_67.as_str());
-            Ok(converted_66)
+        let converted_86 = (|| -> PyResult<_> {
+            let enum_value_87: String = value.extract()?;
+            let converted_86 =
+                aws_sdk_kinesis::types::ChannelDestinationType::from(enum_value_87.as_str());
+            Ok(converted_86)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -730,40 +987,40 @@ fn channel_summary_from_py(
                 "str (ChannelDestinationType)",
             )
         })?;
-        builder = builder.set_channel_destination_type(Some(converted_66));
+        builder = builder.set_channel_destination_type(Some(converted_86));
     }
     if let Some(value) = dict_value(values, "streams")? {
-        let converted_68 = (|| -> PyResult<_> {
-            let mut converted_68 =
+        let converted_88 = (|| -> PyResult<_> {
+            let mut converted_88 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_72, item_result_69) in value.try_iter()?.enumerate() {
-                let item_70 = item_result_69.map_err(|error| {
+            for (index_92, item_result_89) in value.try_iter()?.enumerate() {
+                let item_90 = item_result_89.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_72),
+                        rboto_core::InputPath::Index(index_92),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_71 = (|| -> PyResult<_> {
-                    let converted_item_71 = channel_stream_identifier_from_py(&item_70)?;
-                    Ok(converted_item_71)
+                let converted_item_91 = (|| -> PyResult<_> {
+                    let converted_item_91 = channel_stream_identifier_from_py(&item_90)?;
+                    Ok(converted_item_91)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_72),
+                        rboto_core::InputPath::Index(index_92),
                         "dict (ChannelStreamIdentifier)",
                     )
                 })?;
-                converted_68.push(converted_item_71);
+                converted_88.push(converted_item_91);
             }
-            Ok(converted_68)
+            Ok(converted_88)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("streams"), "sequence")
         })?;
-        builder = builder.set_streams(Some(converted_68));
+        builder = builder.set_streams(Some(converted_88));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -786,33 +1043,33 @@ fn channel_summary_to_py(
     value: &aws_sdk_kinesis::types::ChannelSummary,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_73 = (&value.channel_name).as_str().into_py_any(py)?;
-    result.set_item("channel_name", converted_73)?;
-    let converted_74 = (&value.channel_arn).as_str().into_py_any(py)?;
-    result.set_item("channel_arn", converted_74)?;
-    let converted_75 = (&value.channel_id).as_str().into_py_any(py)?;
-    result.set_item("channel_id", converted_75)?;
-    let converted_76 = (&value.channel_status).as_str().into_py_any(py)?;
-    result.set_item("channel_status", converted_76)?;
+    let converted_93 = (&value.channel_name).as_str().into_py_any(py)?;
+    result.set_item("channel_name", converted_93)?;
+    let converted_94 = (&value.channel_arn).as_str().into_py_any(py)?;
+    result.set_item("channel_arn", converted_94)?;
+    let converted_95 = (&value.channel_id).as_str().into_py_any(py)?;
+    result.set_item("channel_id", converted_95)?;
+    let converted_96 = (&value.channel_status).as_str().into_py_any(py)?;
+    result.set_item("channel_status", converted_96)?;
     if let Some(value) = &value.channel_status_reason {
-        let converted_77 = (value).as_str().into_py_any(py)?;
-        result.set_item("channel_status_reason", converted_77)?;
+        let converted_97 = (value).as_str().into_py_any(py)?;
+        result.set_item("channel_status_reason", converted_97)?;
     } else {
         result.set_item("channel_status_reason", py.None())?;
     }
-    let converted_78 = (&value.channel_creation_timestamp)
+    let converted_98 = (&value.channel_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("channel_creation_timestamp", converted_78)?;
-    let converted_79 = (&value.channel_destination_type).as_str().into_py_any(py)?;
-    result.set_item("channel_destination_type", converted_79)?;
-    let converted_80_list = PyList::empty(py);
-    for item_81 in &value.streams {
-        let converted_item_82 = channel_stream_identifier_to_py(py, item_81)?;
-        converted_80_list.append(converted_item_82)?;
+    result.set_item("channel_creation_timestamp", converted_98)?;
+    let converted_99 = (&value.channel_destination_type).as_str().into_py_any(py)?;
+    result.set_item("channel_destination_type", converted_99)?;
+    let converted_100_list = PyList::empty(py);
+    for item_101 in &value.streams {
+        let converted_item_102 = channel_stream_identifier_to_py(py, item_101)?;
+        converted_100_list.append(converted_item_102)?;
     }
-    let converted_80 = converted_80_list.into_any().unbind();
-    result.set_item("streams", converted_80)?;
+    let converted_100 = converted_100_list.into_any().unbind();
+    result.set_item("streams", converted_100)?;
     Ok(result.into_any().unbind())
 }
 
@@ -821,38 +1078,38 @@ fn child_shard_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::ty
     rboto_core::validate_input_fields(values, &["hash_key_range", "parent_shards", "shard_id"])?;
     let mut builder = aws_sdk_kinesis::types::ChildShard::builder();
     if let Some(value) = dict_value(values, "shard_id")? {
-        let converted_83 = (|| -> PyResult<_> {
-            let converted_83: String = value.extract()?;
-            Ok(converted_83)
+        let converted_103 = (|| -> PyResult<_> {
+            let converted_103: String = value.extract()?;
+            Ok(converted_103)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("shard_id"), "str")
         })?;
-        builder = builder.set_shard_id(Some(converted_83));
+        builder = builder.set_shard_id(Some(converted_103));
     }
     if let Some(value) = dict_value(values, "parent_shards")? {
-        let converted_84 = (|| -> PyResult<_> {
-            let mut converted_84 =
+        let converted_104 = (|| -> PyResult<_> {
+            let mut converted_104 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_88, item_result_85) in value.try_iter()?.enumerate() {
-                let item_86 = item_result_85.map_err(|error| {
+            for (index_108, item_result_105) in value.try_iter()?.enumerate() {
+                let item_106 = item_result_105.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_88),
+                        rboto_core::InputPath::Index(index_108),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_87 = (|| -> PyResult<_> {
-                    let converted_item_87: String = item_86.extract()?;
-                    Ok(converted_item_87)
+                let converted_item_107 = (|| -> PyResult<_> {
+                    let converted_item_107: String = item_106.extract()?;
+                    Ok(converted_item_107)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_88), "str")
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_108), "str")
                 })?;
-                converted_84.push(converted_item_87);
+                converted_104.push(converted_item_107);
             }
-            Ok(converted_84)
+            Ok(converted_104)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -861,12 +1118,12 @@ fn child_shard_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::ty
                 "sequence",
             )
         })?;
-        builder = builder.set_parent_shards(Some(converted_84));
+        builder = builder.set_parent_shards(Some(converted_104));
     }
     if let Some(value) = dict_value(values, "hash_key_range")? {
-        let converted_89 = (|| -> PyResult<_> {
-            let converted_89 = hash_key_range_from_py(&value)?;
-            Ok(converted_89)
+        let converted_109 = (|| -> PyResult<_> {
+            let converted_109 = hash_key_range_from_py(&value)?;
+            Ok(converted_109)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -875,7 +1132,7 @@ fn child_shard_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::ty
                 "dict (HashKeyRange)",
             )
         })?;
-        builder = builder.set_hash_key_range(Some(converted_89));
+        builder = builder.set_hash_key_range(Some(converted_109));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -890,18 +1147,18 @@ fn child_shard_to_py(
     value: &aws_sdk_kinesis::types::ChildShard,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_90 = (&value.shard_id).as_str().into_py_any(py)?;
-    result.set_item("shard_id", converted_90)?;
-    let converted_91_list = PyList::empty(py);
-    for item_92 in &value.parent_shards {
-        let converted_item_93 = (item_92).as_str().into_py_any(py)?;
-        converted_91_list.append(converted_item_93)?;
+    let converted_110 = (&value.shard_id).as_str().into_py_any(py)?;
+    result.set_item("shard_id", converted_110)?;
+    let converted_111_list = PyList::empty(py);
+    for item_112 in &value.parent_shards {
+        let converted_item_113 = (item_112).as_str().into_py_any(py)?;
+        converted_111_list.append(converted_item_113)?;
     }
-    let converted_91 = converted_91_list.into_any().unbind();
-    result.set_item("parent_shards", converted_91)?;
+    let converted_111 = converted_111_list.into_any().unbind();
+    result.set_item("parent_shards", converted_111)?;
     if let Some(value) = &value.hash_key_range {
-        let converted_94 = hash_key_range_to_py(py, value)?;
-        result.set_item("hash_key_range", converted_94)?;
+        let converted_114 = hash_key_range_to_py(py, value)?;
+        result.set_item("hash_key_range", converted_114)?;
     } else {
         result.set_item("hash_key_range", py.None())?;
     }
@@ -915,29 +1172,29 @@ fn cloud_watch_logs_from_py(
     rboto_core::validate_input_fields(values, &["enabled", "log_group_name", "log_stream_name"])?;
     let mut builder = aws_sdk_kinesis::types::CloudWatchLogs::builder();
     if let Some(value) = dict_value(values, "enabled")? {
-        let converted_95 = (|| -> PyResult<_> {
-            let converted_95: bool = value.extract()?;
-            Ok(converted_95)
+        let converted_115 = (|| -> PyResult<_> {
+            let converted_115: bool = value.extract()?;
+            Ok(converted_115)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("enabled"), "bool")
         })?;
-        builder = builder.set_enabled(Some(converted_95));
+        builder = builder.set_enabled(Some(converted_115));
     }
     if let Some(value) = dict_value(values, "log_group_name")? {
-        let converted_96 = (|| -> PyResult<_> {
-            let converted_96: String = value.extract()?;
-            Ok(converted_96)
+        let converted_116 = (|| -> PyResult<_> {
+            let converted_116: String = value.extract()?;
+            Ok(converted_116)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("log_group_name"), "str")
         })?;
-        builder = builder.set_log_group_name(Some(converted_96));
+        builder = builder.set_log_group_name(Some(converted_116));
     }
     if let Some(value) = dict_value(values, "log_stream_name")? {
-        let converted_97 = (|| -> PyResult<_> {
-            let converted_97: String = value.extract()?;
-            Ok(converted_97)
+        let converted_117 = (|| -> PyResult<_> {
+            let converted_117: String = value.extract()?;
+            Ok(converted_117)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -946,7 +1203,7 @@ fn cloud_watch_logs_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_log_stream_name(Some(converted_97));
+        builder = builder.set_log_stream_name(Some(converted_117));
     }
     builder
         .build()
@@ -958,17 +1215,17 @@ fn cloud_watch_logs_to_py(
     value: &aws_sdk_kinesis::types::CloudWatchLogs,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_98 = (&value.enabled).to_owned().into_py_any(py)?;
-    result.set_item("enabled", converted_98)?;
+    let converted_118 = (&value.enabled).to_owned().into_py_any(py)?;
+    result.set_item("enabled", converted_118)?;
     if let Some(value) = &value.log_group_name {
-        let converted_99 = (value).as_str().into_py_any(py)?;
-        result.set_item("log_group_name", converted_99)?;
+        let converted_119 = (value).as_str().into_py_any(py)?;
+        result.set_item("log_group_name", converted_119)?;
     } else {
         result.set_item("log_group_name", py.None())?;
     }
     if let Some(value) = &value.log_stream_name {
-        let converted_100 = (value).as_str().into_py_any(py)?;
-        result.set_item("log_stream_name", converted_100)?;
+        let converted_120 = (value).as_str().into_py_any(py)?;
+        result.set_item("log_stream_name", converted_120)?;
     } else {
         result.set_item("log_stream_name", py.None())?;
     }
@@ -982,29 +1239,29 @@ fn cloud_watch_logs_update_input_from_py(
     rboto_core::validate_input_fields(values, &["enabled", "log_group_name", "log_stream_name"])?;
     let mut builder = aws_sdk_kinesis::types::CloudWatchLogsUpdateInput::builder();
     if let Some(value) = dict_value(values, "enabled")? {
-        let converted_101 = (|| -> PyResult<_> {
-            let converted_101: bool = value.extract()?;
-            Ok(converted_101)
+        let converted_121 = (|| -> PyResult<_> {
+            let converted_121: bool = value.extract()?;
+            Ok(converted_121)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("enabled"), "bool")
         })?;
-        builder = builder.set_enabled(Some(converted_101));
+        builder = builder.set_enabled(Some(converted_121));
     }
     if let Some(value) = dict_value(values, "log_group_name")? {
-        let converted_102 = (|| -> PyResult<_> {
-            let converted_102: String = value.extract()?;
-            Ok(converted_102)
+        let converted_122 = (|| -> PyResult<_> {
+            let converted_122: String = value.extract()?;
+            Ok(converted_122)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("log_group_name"), "str")
         })?;
-        builder = builder.set_log_group_name(Some(converted_102));
+        builder = builder.set_log_group_name(Some(converted_122));
     }
     if let Some(value) = dict_value(values, "log_stream_name")? {
-        let converted_103 = (|| -> PyResult<_> {
-            let converted_103: String = value.extract()?;
-            Ok(converted_103)
+        let converted_123 = (|| -> PyResult<_> {
+            let converted_123: String = value.extract()?;
+            Ok(converted_123)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1013,7 +1270,7 @@ fn cloud_watch_logs_update_input_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_log_stream_name(Some(converted_103));
+        builder = builder.set_log_stream_name(Some(converted_123));
     }
     builder
         .build()
@@ -1025,17 +1282,17 @@ fn cloud_watch_logs_update_input_to_py(
     value: &aws_sdk_kinesis::types::CloudWatchLogsUpdateInput,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_104 = (&value.enabled).to_owned().into_py_any(py)?;
-    result.set_item("enabled", converted_104)?;
+    let converted_124 = (&value.enabled).to_owned().into_py_any(py)?;
+    result.set_item("enabled", converted_124)?;
     if let Some(value) = &value.log_group_name {
-        let converted_105 = (value).as_str().into_py_any(py)?;
-        result.set_item("log_group_name", converted_105)?;
+        let converted_125 = (value).as_str().into_py_any(py)?;
+        result.set_item("log_group_name", converted_125)?;
     } else {
         result.set_item("log_group_name", py.None())?;
     }
     if let Some(value) = &value.log_stream_name {
-        let converted_106 = (value).as_str().into_py_any(py)?;
-        result.set_item("log_stream_name", converted_106)?;
+        let converted_126 = (value).as_str().into_py_any(py)?;
+        result.set_item("log_stream_name", converted_126)?;
     } else {
         result.set_item("log_stream_name", py.None())?;
     }
@@ -1055,31 +1312,31 @@ fn consumer_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types
     )?;
     let mut builder = aws_sdk_kinesis::types::Consumer::builder();
     if let Some(value) = dict_value(values, "consumer_name")? {
-        let converted_107 = (|| -> PyResult<_> {
-            let converted_107: String = value.extract()?;
-            Ok(converted_107)
+        let converted_127 = (|| -> PyResult<_> {
+            let converted_127: String = value.extract()?;
+            Ok(converted_127)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("consumer_name"), "str")
         })?;
-        builder = builder.set_consumer_name(Some(converted_107));
+        builder = builder.set_consumer_name(Some(converted_127));
     }
     if let Some(value) = dict_value(values, "consumer_arn")? {
-        let converted_108 = (|| -> PyResult<_> {
-            let converted_108: String = value.extract()?;
-            Ok(converted_108)
+        let converted_128 = (|| -> PyResult<_> {
+            let converted_128: String = value.extract()?;
+            Ok(converted_128)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("consumer_arn"), "str")
         })?;
-        builder = builder.set_consumer_arn(Some(converted_108));
+        builder = builder.set_consumer_arn(Some(converted_128));
     }
     if let Some(value) = dict_value(values, "consumer_status")? {
-        let converted_109 = (|| -> PyResult<_> {
-            let enum_value_110: String = value.extract()?;
-            let converted_109 =
-                aws_sdk_kinesis::types::ConsumerStatus::from(enum_value_110.as_str());
-            Ok(converted_109)
+        let converted_129 = (|| -> PyResult<_> {
+            let enum_value_130: String = value.extract()?;
+            let converted_129 =
+                aws_sdk_kinesis::types::ConsumerStatus::from(enum_value_130.as_str());
+            Ok(converted_129)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1088,17 +1345,17 @@ fn consumer_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types
                 "str (ConsumerStatus)",
             )
         })?;
-        builder = builder.set_consumer_status(Some(converted_109));
+        builder = builder.set_consumer_status(Some(converted_129));
     }
     if let Some(value) = dict_value(values, "consumer_creation_timestamp")? {
-        let converted_111 = (|| -> PyResult<_> {
-            let timestamp_112: String = value.extract()?;
-            let converted_111 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_112,
+        let converted_131 = (|| -> PyResult<_> {
+            let timestamp_132: String = value.extract()?;
+            let converted_131 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_132,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_111)
+            Ok(converted_131)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1107,7 +1364,7 @@ fn consumer_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_consumer_creation_timestamp(Some(converted_111));
+        builder = builder.set_consumer_creation_timestamp(Some(converted_131));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -1124,16 +1381,16 @@ fn consumer_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types
 
 fn consumer_to_py(py: Python<'_>, value: &aws_sdk_kinesis::types::Consumer) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_113 = (&value.consumer_name).as_str().into_py_any(py)?;
-    result.set_item("consumer_name", converted_113)?;
-    let converted_114 = (&value.consumer_arn).as_str().into_py_any(py)?;
-    result.set_item("consumer_arn", converted_114)?;
-    let converted_115 = (&value.consumer_status).as_str().into_py_any(py)?;
-    result.set_item("consumer_status", converted_115)?;
-    let converted_116 = (&value.consumer_creation_timestamp)
+    let converted_133 = (&value.consumer_name).as_str().into_py_any(py)?;
+    result.set_item("consumer_name", converted_133)?;
+    let converted_134 = (&value.consumer_arn).as_str().into_py_any(py)?;
+    result.set_item("consumer_arn", converted_134)?;
+    let converted_135 = (&value.consumer_status).as_str().into_py_any(py)?;
+    result.set_item("consumer_status", converted_135)?;
+    let converted_136 = (&value.consumer_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("consumer_creation_timestamp", converted_116)?;
+    result.set_item("consumer_creation_timestamp", converted_136)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1153,31 +1410,31 @@ fn consumer_description_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::ConsumerDescription::builder();
     if let Some(value) = dict_value(values, "consumer_name")? {
-        let converted_117 = (|| -> PyResult<_> {
-            let converted_117: String = value.extract()?;
-            Ok(converted_117)
+        let converted_137 = (|| -> PyResult<_> {
+            let converted_137: String = value.extract()?;
+            Ok(converted_137)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("consumer_name"), "str")
         })?;
-        builder = builder.set_consumer_name(Some(converted_117));
+        builder = builder.set_consumer_name(Some(converted_137));
     }
     if let Some(value) = dict_value(values, "consumer_arn")? {
-        let converted_118 = (|| -> PyResult<_> {
-            let converted_118: String = value.extract()?;
-            Ok(converted_118)
+        let converted_138 = (|| -> PyResult<_> {
+            let converted_138: String = value.extract()?;
+            Ok(converted_138)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("consumer_arn"), "str")
         })?;
-        builder = builder.set_consumer_arn(Some(converted_118));
+        builder = builder.set_consumer_arn(Some(converted_138));
     }
     if let Some(value) = dict_value(values, "consumer_status")? {
-        let converted_119 = (|| -> PyResult<_> {
-            let enum_value_120: String = value.extract()?;
-            let converted_119 =
-                aws_sdk_kinesis::types::ConsumerStatus::from(enum_value_120.as_str());
-            Ok(converted_119)
+        let converted_139 = (|| -> PyResult<_> {
+            let enum_value_140: String = value.extract()?;
+            let converted_139 =
+                aws_sdk_kinesis::types::ConsumerStatus::from(enum_value_140.as_str());
+            Ok(converted_139)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1186,17 +1443,17 @@ fn consumer_description_from_py(
                 "str (ConsumerStatus)",
             )
         })?;
-        builder = builder.set_consumer_status(Some(converted_119));
+        builder = builder.set_consumer_status(Some(converted_139));
     }
     if let Some(value) = dict_value(values, "consumer_creation_timestamp")? {
-        let converted_121 = (|| -> PyResult<_> {
-            let timestamp_122: String = value.extract()?;
-            let converted_121 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_122,
+        let converted_141 = (|| -> PyResult<_> {
+            let timestamp_142: String = value.extract()?;
+            let converted_141 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_142,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_121)
+            Ok(converted_141)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1205,17 +1462,17 @@ fn consumer_description_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_consumer_creation_timestamp(Some(converted_121));
+        builder = builder.set_consumer_creation_timestamp(Some(converted_141));
     }
     if let Some(value) = dict_value(values, "stream_arn")? {
-        let converted_123 = (|| -> PyResult<_> {
-            let converted_123: String = value.extract()?;
-            Ok(converted_123)
+        let converted_143 = (|| -> PyResult<_> {
+            let converted_143: String = value.extract()?;
+            Ok(converted_143)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stream_arn"), "str")
         })?;
-        builder = builder.set_stream_arn(Some(converted_123));
+        builder = builder.set_stream_arn(Some(converted_143));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -1236,18 +1493,74 @@ fn consumer_description_to_py(
     value: &aws_sdk_kinesis::types::ConsumerDescription,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_124 = (&value.consumer_name).as_str().into_py_any(py)?;
-    result.set_item("consumer_name", converted_124)?;
-    let converted_125 = (&value.consumer_arn).as_str().into_py_any(py)?;
-    result.set_item("consumer_arn", converted_125)?;
-    let converted_126 = (&value.consumer_status).as_str().into_py_any(py)?;
-    result.set_item("consumer_status", converted_126)?;
-    let converted_127 = (&value.consumer_creation_timestamp)
+    let converted_144 = (&value.consumer_name).as_str().into_py_any(py)?;
+    result.set_item("consumer_name", converted_144)?;
+    let converted_145 = (&value.consumer_arn).as_str().into_py_any(py)?;
+    result.set_item("consumer_arn", converted_145)?;
+    let converted_146 = (&value.consumer_status).as_str().into_py_any(py)?;
+    result.set_item("consumer_status", converted_146)?;
+    let converted_147 = (&value.consumer_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("consumer_creation_timestamp", converted_127)?;
-    let converted_128 = (&value.stream_arn).as_str().into_py_any(py)?;
-    result.set_item("stream_arn", converted_128)?;
+    result.set_item("consumer_creation_timestamp", converted_147)?;
+    let converted_148 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_148)?;
+    Ok(result.into_any().unbind())
+}
+
+fn dead_letter_configuration_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::DeadLetterConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["max_receive_count", "target_type"])?;
+    let mut builder = aws_sdk_kinesis::types::DeadLetterConfiguration::builder();
+    if let Some(value) = dict_value(values, "target_type")? {
+        let converted_149 = (|| -> PyResult<_> {
+            let enum_value_150: String = value.extract()?;
+            let converted_149 = aws_sdk_kinesis::types::TargetType::from(enum_value_150.as_str());
+            Ok(converted_149)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("target_type"),
+                "str (TargetType)",
+            )
+        })?;
+        builder = builder.set_target_type(Some(converted_149));
+    }
+    if let Some(value) = dict_value(values, "max_receive_count")? {
+        let converted_151 = (|| -> PyResult<_> {
+            let converted_151: i32 = value.extract()?;
+            Ok(converted_151)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("max_receive_count"),
+                "int",
+            )
+        })?;
+        builder = builder.set_max_receive_count(Some(converted_151));
+    }
+    builder
+        .build()
+        .map_err(|_| rboto_core::input_builder_error(values, &[("target_type", "target_type")]))
+}
+
+fn dead_letter_configuration_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::DeadLetterConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_152 = (&value.target_type).as_str().into_py_any(py)?;
+    result.set_item("target_type", converted_152)?;
+    if let Some(value) = &value.max_receive_count {
+        let converted_153 = (value).to_owned().into_py_any(py)?;
+        result.set_item("max_receive_count", converted_153)?;
+    } else {
+        result.set_item("max_receive_count", py.None())?;
+    }
     Ok(result.into_any().unbind())
 }
 
@@ -1261,19 +1574,19 @@ fn dead_letter_queue_s3_configuration_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::DeadLetterQueueS3Configuration::builder();
     if let Some(value) = dict_value(values, "bucket_arn")? {
-        let converted_129 = (|| -> PyResult<_> {
-            let converted_129: String = value.extract()?;
-            Ok(converted_129)
+        let converted_154 = (|| -> PyResult<_> {
+            let converted_154: String = value.extract()?;
+            Ok(converted_154)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("bucket_arn"), "str")
         })?;
-        builder = builder.set_bucket_arn(Some(converted_129));
+        builder = builder.set_bucket_arn(Some(converted_154));
     }
     if let Some(value) = dict_value(values, "expected_bucket_owner")? {
-        let converted_130 = (|| -> PyResult<_> {
-            let converted_130: String = value.extract()?;
-            Ok(converted_130)
+        let converted_155 = (|| -> PyResult<_> {
+            let converted_155: String = value.extract()?;
+            Ok(converted_155)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1282,12 +1595,12 @@ fn dead_letter_queue_s3_configuration_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_expected_bucket_owner(Some(converted_130));
+        builder = builder.set_expected_bucket_owner(Some(converted_155));
     }
     if let Some(value) = dict_value(values, "error_output_prefix")? {
-        let converted_131 = (|| -> PyResult<_> {
-            let converted_131: String = value.extract()?;
-            Ok(converted_131)
+        let converted_156 = (|| -> PyResult<_> {
+            let converted_156: String = value.extract()?;
+            Ok(converted_156)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1296,7 +1609,7 @@ fn dead_letter_queue_s3_configuration_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_error_output_prefix(Some(converted_131));
+        builder = builder.set_error_output_prefix(Some(converted_156));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -1314,13 +1627,13 @@ fn dead_letter_queue_s3_configuration_to_py(
     value: &aws_sdk_kinesis::types::DeadLetterQueueS3Configuration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_132 = (&value.bucket_arn).as_str().into_py_any(py)?;
-    result.set_item("bucket_arn", converted_132)?;
-    let converted_133 = (&value.expected_bucket_owner).as_str().into_py_any(py)?;
-    result.set_item("expected_bucket_owner", converted_133)?;
+    let converted_157 = (&value.bucket_arn).as_str().into_py_any(py)?;
+    result.set_item("bucket_arn", converted_157)?;
+    let converted_158 = (&value.expected_bucket_owner).as_str().into_py_any(py)?;
+    result.set_item("expected_bucket_owner", converted_158)?;
     if let Some(value) = &value.error_output_prefix {
-        let converted_134 = (value).as_str().into_py_any(py)?;
-        result.set_item("error_output_prefix", converted_134)?;
+        let converted_159 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_output_prefix", converted_159)?;
     } else {
         result.set_item("error_output_prefix", py.None())?;
     }
@@ -1334,34 +1647,34 @@ fn enhanced_metrics_from_py(
     rboto_core::validate_input_fields(values, &["shard_level_metrics"])?;
     let mut builder = aws_sdk_kinesis::types::EnhancedMetrics::builder();
     if let Some(value) = dict_value(values, "shard_level_metrics")? {
-        let converted_135 = (|| -> PyResult<_> {
-            let mut converted_135 =
+        let converted_160 = (|| -> PyResult<_> {
+            let mut converted_160 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_139, item_result_136) in value.try_iter()?.enumerate() {
-                let item_137 = item_result_136.map_err(|error| {
+            for (index_164, item_result_161) in value.try_iter()?.enumerate() {
+                let item_162 = item_result_161.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_139),
+                        rboto_core::InputPath::Index(index_164),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_138 = (|| -> PyResult<_> {
-                    let enum_value_140: String = item_137.extract()?;
-                    let converted_item_138 =
-                        aws_sdk_kinesis::types::MetricsName::from(enum_value_140.as_str());
-                    Ok(converted_item_138)
+                let converted_item_163 = (|| -> PyResult<_> {
+                    let enum_value_165: String = item_162.extract()?;
+                    let converted_item_163 =
+                        aws_sdk_kinesis::types::MetricsName::from(enum_value_165.as_str());
+                    Ok(converted_item_163)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_139),
+                        rboto_core::InputPath::Index(index_164),
                         "str (MetricsName)",
                     )
                 })?;
-                converted_135.push(converted_item_138);
+                converted_160.push(converted_item_163);
             }
-            Ok(converted_135)
+            Ok(converted_160)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1370,7 +1683,7 @@ fn enhanced_metrics_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_shard_level_metrics(Some(converted_135));
+        builder = builder.set_shard_level_metrics(Some(converted_160));
     }
     Ok(builder.build())
 }
@@ -1381,13 +1694,13 @@ fn enhanced_metrics_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.shard_level_metrics {
-        let converted_141_list = PyList::empty(py);
-        for item_142 in value {
-            let converted_item_143 = (item_142).as_str().into_py_any(py)?;
-            converted_141_list.append(converted_item_143)?;
+        let converted_166_list = PyList::empty(py);
+        for item_167 in value {
+            let converted_item_168 = (item_167).as_str().into_py_any(py)?;
+            converted_166_list.append(converted_item_168)?;
         }
-        let converted_141 = converted_141_list.into_any().unbind();
-        result.set_item("shard_level_metrics", converted_141)?;
+        let converted_166 = converted_166_list.into_any().unbind();
+        result.set_item("shard_level_metrics", converted_166)?;
     } else {
         result.set_item("shard_level_metrics", py.None())?;
     }
@@ -1401,9 +1714,9 @@ fn hash_key_range_from_py(
     rboto_core::validate_input_fields(values, &["ending_hash_key", "starting_hash_key"])?;
     let mut builder = aws_sdk_kinesis::types::HashKeyRange::builder();
     if let Some(value) = dict_value(values, "starting_hash_key")? {
-        let converted_144 = (|| -> PyResult<_> {
-            let converted_144: String = value.extract()?;
-            Ok(converted_144)
+        let converted_169 = (|| -> PyResult<_> {
+            let converted_169: String = value.extract()?;
+            Ok(converted_169)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1412,12 +1725,12 @@ fn hash_key_range_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_starting_hash_key(Some(converted_144));
+        builder = builder.set_starting_hash_key(Some(converted_169));
     }
     if let Some(value) = dict_value(values, "ending_hash_key")? {
-        let converted_145 = (|| -> PyResult<_> {
-            let converted_145: String = value.extract()?;
-            Ok(converted_145)
+        let converted_170 = (|| -> PyResult<_> {
+            let converted_170: String = value.extract()?;
+            Ok(converted_170)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1426,7 +1739,7 @@ fn hash_key_range_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_ending_hash_key(Some(converted_145));
+        builder = builder.set_ending_hash_key(Some(converted_170));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -1444,10 +1757,10 @@ fn hash_key_range_to_py(
     value: &aws_sdk_kinesis::types::HashKeyRange,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_146 = (&value.starting_hash_key).as_str().into_py_any(py)?;
-    result.set_item("starting_hash_key", converted_146)?;
-    let converted_147 = (&value.ending_hash_key).as_str().into_py_any(py)?;
-    result.set_item("ending_hash_key", converted_147)?;
+    let converted_171 = (&value.starting_hash_key).as_str().into_py_any(py)?;
+    result.set_item("starting_hash_key", converted_171)?;
+    let converted_172 = (&value.ending_hash_key).as_str().into_py_any(py)?;
+    result.set_item("ending_hash_key", converted_172)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1458,13 +1771,13 @@ fn minimum_throughput_billing_commitment_input_from_py(
     rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_kinesis::types::MinimumThroughputBillingCommitmentInput::builder();
     if let Some(value) = dict_value(values, "status")? {
-        let converted_148 = (|| -> PyResult<_> {
-            let enum_value_149: String = value.extract()?;
-            let converted_148 =
+        let converted_173 = (|| -> PyResult<_> {
+            let enum_value_174: String = value.extract()?;
+            let converted_173 =
                 aws_sdk_kinesis::types::MinimumThroughputBillingCommitmentInputStatus::from(
-                    enum_value_149.as_str(),
+                    enum_value_174.as_str(),
                 );
-            Ok(converted_148)
+            Ok(converted_173)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1473,7 +1786,7 @@ fn minimum_throughput_billing_commitment_input_from_py(
                 "str (MinimumThroughputBillingCommitmentInputStatus)",
             )
         })?;
-        builder = builder.set_status(Some(converted_148));
+        builder = builder.set_status(Some(converted_173));
     }
     builder
         .build()
@@ -1485,8 +1798,8 @@ fn minimum_throughput_billing_commitment_input_to_py(
     value: &aws_sdk_kinesis::types::MinimumThroughputBillingCommitmentInput,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_150 = (&value.status).as_str().into_py_any(py)?;
-    result.set_item("status", converted_150)?;
+    let converted_175 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_175)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1505,13 +1818,13 @@ fn minimum_throughput_billing_commitment_output_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::MinimumThroughputBillingCommitmentOutput::builder();
     if let Some(value) = dict_value(values, "status")? {
-        let converted_151 = (|| -> PyResult<_> {
-            let enum_value_152: String = value.extract()?;
-            let converted_151 =
+        let converted_176 = (|| -> PyResult<_> {
+            let enum_value_177: String = value.extract()?;
+            let converted_176 =
                 aws_sdk_kinesis::types::MinimumThroughputBillingCommitmentOutputStatus::from(
-                    enum_value_152.as_str(),
+                    enum_value_177.as_str(),
                 );
-            Ok(converted_151)
+            Ok(converted_176)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1520,17 +1833,17 @@ fn minimum_throughput_billing_commitment_output_from_py(
                 "str (MinimumThroughputBillingCommitmentOutputStatus)",
             )
         })?;
-        builder = builder.set_status(Some(converted_151));
+        builder = builder.set_status(Some(converted_176));
     }
     if let Some(value) = dict_value(values, "started_at")? {
-        let converted_153 = (|| -> PyResult<_> {
-            let timestamp_154: String = value.extract()?;
-            let converted_153 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_154,
+        let converted_178 = (|| -> PyResult<_> {
+            let timestamp_179: String = value.extract()?;
+            let converted_178 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_179,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_153)
+            Ok(converted_178)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1539,17 +1852,17 @@ fn minimum_throughput_billing_commitment_output_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_started_at(Some(converted_153));
+        builder = builder.set_started_at(Some(converted_178));
     }
     if let Some(value) = dict_value(values, "ended_at")? {
-        let converted_155 = (|| -> PyResult<_> {
-            let timestamp_156: String = value.extract()?;
-            let converted_155 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_156,
+        let converted_180 = (|| -> PyResult<_> {
+            let timestamp_181: String = value.extract()?;
+            let converted_180 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_181,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_155)
+            Ok(converted_180)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1558,17 +1871,17 @@ fn minimum_throughput_billing_commitment_output_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_ended_at(Some(converted_155));
+        builder = builder.set_ended_at(Some(converted_180));
     }
     if let Some(value) = dict_value(values, "earliest_allowed_end_at")? {
-        let converted_157 = (|| -> PyResult<_> {
-            let timestamp_158: String = value.extract()?;
-            let converted_157 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_158,
+        let converted_182 = (|| -> PyResult<_> {
+            let timestamp_183: String = value.extract()?;
+            let converted_182 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_183,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_157)
+            Ok(converted_182)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1577,7 +1890,7 @@ fn minimum_throughput_billing_commitment_output_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_earliest_allowed_end_at(Some(converted_157));
+        builder = builder.set_earliest_allowed_end_at(Some(converted_182));
     }
     builder
         .build()
@@ -1589,23 +1902,23 @@ fn minimum_throughput_billing_commitment_output_to_py(
     value: &aws_sdk_kinesis::types::MinimumThroughputBillingCommitmentOutput,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_159 = (&value.status).as_str().into_py_any(py)?;
-    result.set_item("status", converted_159)?;
+    let converted_184 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_184)?;
     if let Some(value) = &value.started_at {
-        let converted_160 = (value).to_string().into_py_any(py)?;
-        result.set_item("started_at", converted_160)?;
+        let converted_185 = (value).to_string().into_py_any(py)?;
+        result.set_item("started_at", converted_185)?;
     } else {
         result.set_item("started_at", py.None())?;
     }
     if let Some(value) = &value.ended_at {
-        let converted_161 = (value).to_string().into_py_any(py)?;
-        result.set_item("ended_at", converted_161)?;
+        let converted_186 = (value).to_string().into_py_any(py)?;
+        result.set_item("ended_at", converted_186)?;
     } else {
         result.set_item("ended_at", py.None())?;
     }
     if let Some(value) = &value.earliest_allowed_end_at {
-        let converted_162 = (value).to_string().into_py_any(py)?;
-        result.set_item("earliest_allowed_end_at", converted_162)?;
+        let converted_187 = (value).to_string().into_py_any(py)?;
+        result.set_item("earliest_allowed_end_at", converted_187)?;
     } else {
         result.set_item("earliest_allowed_end_at", py.None())?;
     }
@@ -1619,11 +1932,11 @@ fn partition_field_from_py(
     rboto_core::validate_input_fields(values, &["source_name", "transform"])?;
     let mut builder = aws_sdk_kinesis::types::PartitionField::builder();
     if let Some(value) = dict_value(values, "transform")? {
-        let converted_163 = (|| -> PyResult<_> {
-            let enum_value_164: String = value.extract()?;
-            let converted_163 =
-                aws_sdk_kinesis::types::PartitionTransform::from(enum_value_164.as_str());
-            Ok(converted_163)
+        let converted_188 = (|| -> PyResult<_> {
+            let enum_value_189: String = value.extract()?;
+            let converted_188 =
+                aws_sdk_kinesis::types::PartitionTransform::from(enum_value_189.as_str());
+            Ok(converted_188)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1632,17 +1945,17 @@ fn partition_field_from_py(
                 "str (PartitionTransform)",
             )
         })?;
-        builder = builder.set_transform(Some(converted_163));
+        builder = builder.set_transform(Some(converted_188));
     }
     if let Some(value) = dict_value(values, "source_name")? {
-        let converted_165 = (|| -> PyResult<_> {
-            let converted_165: String = value.extract()?;
-            Ok(converted_165)
+        let converted_190 = (|| -> PyResult<_> {
+            let converted_190: String = value.extract()?;
+            Ok(converted_190)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("source_name"), "str")
         })?;
-        builder = builder.set_source_name(Some(converted_165));
+        builder = builder.set_source_name(Some(converted_190));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -1657,10 +1970,10 @@ fn partition_field_to_py(
     value: &aws_sdk_kinesis::types::PartitionField,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_166 = (&value.transform).as_str().into_py_any(py)?;
-    result.set_item("transform", converted_166)?;
-    let converted_167 = (&value.source_name).as_str().into_py_any(py)?;
-    result.set_item("source_name", converted_167)?;
+    let converted_191 = (&value.transform).as_str().into_py_any(py)?;
+    result.set_item("transform", converted_191)?;
+    let converted_192 = (&value.source_name).as_str().into_py_any(py)?;
+    result.set_item("source_name", converted_192)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1671,32 +1984,32 @@ fn partition_spec_from_py(
     rboto_core::validate_input_fields(values, &["partition_fields"])?;
     let mut builder = aws_sdk_kinesis::types::PartitionSpec::builder();
     if let Some(value) = dict_value(values, "partition_fields")? {
-        let converted_168 = (|| -> PyResult<_> {
-            let mut converted_168 =
+        let converted_193 = (|| -> PyResult<_> {
+            let mut converted_193 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_172, item_result_169) in value.try_iter()?.enumerate() {
-                let item_170 = item_result_169.map_err(|error| {
+            for (index_197, item_result_194) in value.try_iter()?.enumerate() {
+                let item_195 = item_result_194.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_172),
+                        rboto_core::InputPath::Index(index_197),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_171 = (|| -> PyResult<_> {
-                    let converted_item_171 = partition_field_from_py(&item_170)?;
-                    Ok(converted_item_171)
+                let converted_item_196 = (|| -> PyResult<_> {
+                    let converted_item_196 = partition_field_from_py(&item_195)?;
+                    Ok(converted_item_196)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_172),
+                        rboto_core::InputPath::Index(index_197),
                         "dict (PartitionField)",
                     )
                 })?;
-                converted_168.push(converted_item_171);
+                converted_193.push(converted_item_196);
             }
-            Ok(converted_168)
+            Ok(converted_193)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1705,7 +2018,7 @@ fn partition_spec_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_partition_fields(Some(converted_168));
+        builder = builder.set_partition_fields(Some(converted_193));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(values, &[("partition_fields", "partition_fields")])
@@ -1717,13 +2030,13 @@ fn partition_spec_to_py(
     value: &aws_sdk_kinesis::types::PartitionSpec,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_173_list = PyList::empty(py);
-    for item_174 in &value.partition_fields {
-        let converted_item_175 = partition_field_to_py(py, item_174)?;
-        converted_173_list.append(converted_item_175)?;
+    let converted_198_list = PyList::empty(py);
+    for item_199 in &value.partition_fields {
+        let converted_item_200 = partition_field_to_py(py, item_199)?;
+        converted_198_list.append(converted_item_200)?;
     }
-    let converted_173 = converted_173_list.into_any().unbind();
-    result.set_item("partition_fields", converted_173)?;
+    let converted_198 = converted_198_list.into_any().unbind();
+    result.set_item("partition_fields", converted_198)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1734,20 +2047,20 @@ fn put_records_request_entry_from_py(
     rboto_core::validate_input_fields(values, &["data", "explicit_hash_key", "partition_key"])?;
     let mut builder = aws_sdk_kinesis::types::PutRecordsRequestEntry::builder();
     if let Some(value) = dict_value(values, "data")? {
-        let converted_176 = (|| -> PyResult<_> {
-            let bytes_177: Vec<u8> = value.extract()?;
-            let converted_176 = ::aws_smithy_types::Blob::new(bytes_177);
-            Ok(converted_176)
+        let converted_201 = (|| -> PyResult<_> {
+            let bytes_202: Vec<u8> = value.extract()?;
+            let converted_201 = ::aws_smithy_types::Blob::new(bytes_202);
+            Ok(converted_201)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("data"), "bytes")
         })?;
-        builder = builder.set_data(Some(converted_176));
+        builder = builder.set_data(Some(converted_201));
     }
     if let Some(value) = dict_value(values, "explicit_hash_key")? {
-        let converted_178 = (|| -> PyResult<_> {
-            let converted_178: String = value.extract()?;
-            Ok(converted_178)
+        let converted_203 = (|| -> PyResult<_> {
+            let converted_203: String = value.extract()?;
+            Ok(converted_203)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1756,17 +2069,17 @@ fn put_records_request_entry_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_explicit_hash_key(Some(converted_178));
+        builder = builder.set_explicit_hash_key(Some(converted_203));
     }
     if let Some(value) = dict_value(values, "partition_key")? {
-        let converted_179 = (|| -> PyResult<_> {
-            let converted_179: String = value.extract()?;
-            Ok(converted_179)
+        let converted_204 = (|| -> PyResult<_> {
+            let converted_204: String = value.extract()?;
+            Ok(converted_204)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("partition_key"), "str")
         })?;
-        builder = builder.set_partition_key(Some(converted_179));
+        builder = builder.set_partition_key(Some(converted_204));
     }
     builder
         .build()
@@ -1778,17 +2091,17 @@ fn put_records_request_entry_to_py(
     value: &aws_sdk_kinesis::types::PutRecordsRequestEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_180 = PyBytes::new(py, (&value.data).as_ref()).into_any().unbind();
-    result.set_item("data", converted_180)?;
+    let converted_205 = PyBytes::new(py, (&value.data).as_ref()).into_any().unbind();
+    result.set_item("data", converted_205)?;
     if let Some(value) = &value.explicit_hash_key {
-        let converted_181 = (value).as_str().into_py_any(py)?;
-        result.set_item("explicit_hash_key", converted_181)?;
+        let converted_206 = (value).as_str().into_py_any(py)?;
+        result.set_item("explicit_hash_key", converted_206)?;
     } else {
         result.set_item("explicit_hash_key", py.None())?;
     }
     if let Some(value) = &value.partition_key {
-        let converted_182 = (value).as_str().into_py_any(py)?;
-        result.set_item("partition_key", converted_182)?;
+        let converted_207 = (value).as_str().into_py_any(py)?;
+        result.set_item("partition_key", converted_207)?;
     } else {
         result.set_item("partition_key", py.None())?;
     }
@@ -1805,9 +2118,9 @@ fn put_records_result_entry_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::PutRecordsResultEntry::builder();
     if let Some(value) = dict_value(values, "sequence_number")? {
-        let converted_183 = (|| -> PyResult<_> {
-            let converted_183: String = value.extract()?;
-            Ok(converted_183)
+        let converted_208 = (|| -> PyResult<_> {
+            let converted_208: String = value.extract()?;
+            Ok(converted_208)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1816,37 +2129,37 @@ fn put_records_result_entry_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_sequence_number(Some(converted_183));
+        builder = builder.set_sequence_number(Some(converted_208));
     }
     if let Some(value) = dict_value(values, "shard_id")? {
-        let converted_184 = (|| -> PyResult<_> {
-            let converted_184: String = value.extract()?;
-            Ok(converted_184)
+        let converted_209 = (|| -> PyResult<_> {
+            let converted_209: String = value.extract()?;
+            Ok(converted_209)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("shard_id"), "str")
         })?;
-        builder = builder.set_shard_id(Some(converted_184));
+        builder = builder.set_shard_id(Some(converted_209));
     }
     if let Some(value) = dict_value(values, "error_code")? {
-        let converted_185 = (|| -> PyResult<_> {
-            let converted_185: String = value.extract()?;
-            Ok(converted_185)
+        let converted_210 = (|| -> PyResult<_> {
+            let converted_210: String = value.extract()?;
+            Ok(converted_210)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("error_code"), "str")
         })?;
-        builder = builder.set_error_code(Some(converted_185));
+        builder = builder.set_error_code(Some(converted_210));
     }
     if let Some(value) = dict_value(values, "error_message")? {
-        let converted_186 = (|| -> PyResult<_> {
-            let converted_186: String = value.extract()?;
-            Ok(converted_186)
+        let converted_211 = (|| -> PyResult<_> {
+            let converted_211: String = value.extract()?;
+            Ok(converted_211)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("error_message"), "str")
         })?;
-        builder = builder.set_error_message(Some(converted_186));
+        builder = builder.set_error_message(Some(converted_211));
     }
     Ok(builder.build())
 }
@@ -1857,29 +2170,777 @@ fn put_records_result_entry_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.sequence_number {
-        let converted_187 = (value).as_str().into_py_any(py)?;
-        result.set_item("sequence_number", converted_187)?;
+        let converted_212 = (value).as_str().into_py_any(py)?;
+        result.set_item("sequence_number", converted_212)?;
     } else {
         result.set_item("sequence_number", py.None())?;
     }
     if let Some(value) = &value.shard_id {
-        let converted_188 = (value).as_str().into_py_any(py)?;
-        result.set_item("shard_id", converted_188)?;
+        let converted_213 = (value).as_str().into_py_any(py)?;
+        result.set_item("shard_id", converted_213)?;
     } else {
         result.set_item("shard_id", py.None())?;
     }
     if let Some(value) = &value.error_code {
-        let converted_189 = (value).as_str().into_py_any(py)?;
-        result.set_item("error_code", converted_189)?;
+        let converted_214 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_code", converted_214)?;
     } else {
         result.set_item("error_code", py.None())?;
     }
     if let Some(value) = &value.error_message {
-        let converted_190 = (value).as_str().into_py_any(py)?;
-        result.set_item("error_message", converted_190)?;
+        let converted_215 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_message", converted_215)?;
     } else {
         result.set_item("error_message", py.None())?;
     }
+    Ok(result.into_any().unbind())
+}
+
+fn queue_attributes_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::QueueAttributes> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["dead_letter_configuration", "visibility_timeout_seconds"],
+    )?;
+    let mut builder = aws_sdk_kinesis::types::QueueAttributes::builder();
+    if let Some(value) = dict_value(values, "visibility_timeout_seconds")? {
+        let converted_216 = (|| -> PyResult<_> {
+            let converted_216: i32 = value.extract()?;
+            Ok(converted_216)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("visibility_timeout_seconds"),
+                "int",
+            )
+        })?;
+        builder = builder.set_visibility_timeout_seconds(Some(converted_216));
+    }
+    if let Some(value) = dict_value(values, "dead_letter_configuration")? {
+        let converted_217 = (|| -> PyResult<_> {
+            let converted_217 = dead_letter_configuration_from_py(&value)?;
+            Ok(converted_217)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("dead_letter_configuration"),
+                "dict (DeadLetterConfiguration)",
+            )
+        })?;
+        builder = builder.set_dead_letter_configuration(Some(converted_217));
+    }
+    Ok(builder.build())
+}
+
+fn queue_attributes_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::QueueAttributes,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.visibility_timeout_seconds {
+        let converted_218 = (value).to_owned().into_py_any(py)?;
+        result.set_item("visibility_timeout_seconds", converted_218)?;
+    } else {
+        result.set_item("visibility_timeout_seconds", py.None())?;
+    }
+    if let Some(value) = &value.dead_letter_configuration {
+        let converted_219 = dead_letter_configuration_to_py(py, value)?;
+        result.set_item("dead_letter_configuration", converted_219)?;
+    } else {
+        result.set_item("dead_letter_configuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn queue_description_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::QueueDescription> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "queue_arn",
+            "queue_attributes",
+            "queue_creation_timestamp",
+            "queue_name",
+            "queue_status",
+            "stream_configuration_list",
+        ],
+    )?;
+    let mut builder = aws_sdk_kinesis::types::QueueDescription::builder();
+    if let Some(value) = dict_value(values, "queue_name")? {
+        let converted_220 = (|| -> PyResult<_> {
+            let converted_220: String = value.extract()?;
+            Ok(converted_220)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("queue_name"), "str")
+        })?;
+        builder = builder.set_queue_name(Some(converted_220));
+    }
+    if let Some(value) = dict_value(values, "queue_arn")? {
+        let converted_221 = (|| -> PyResult<_> {
+            let converted_221: String = value.extract()?;
+            Ok(converted_221)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("queue_arn"), "str")
+        })?;
+        builder = builder.set_queue_arn(Some(converted_221));
+    }
+    if let Some(value) = dict_value(values, "queue_status")? {
+        let converted_222 = (|| -> PyResult<_> {
+            let enum_value_223: String = value.extract()?;
+            let converted_222 = aws_sdk_kinesis::types::QueueStatus::from(enum_value_223.as_str());
+            Ok(converted_222)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("queue_status"),
+                "str (QueueStatus)",
+            )
+        })?;
+        builder = builder.set_queue_status(Some(converted_222));
+    }
+    if let Some(value) = dict_value(values, "queue_creation_timestamp")? {
+        let converted_224 = (|| -> PyResult<_> {
+            let timestamp_225: String = value.extract()?;
+            let converted_224 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_225,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_224)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("queue_creation_timestamp"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_queue_creation_timestamp(Some(converted_224));
+    }
+    if let Some(value) = dict_value(values, "stream_configuration_list")? {
+        let converted_226 = (|| -> PyResult<_> {
+            let mut converted_226 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_230, item_result_227) in value.try_iter()?.enumerate() {
+                let item_228 = item_result_227.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_230),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_229 = (|| -> PyResult<_> {
+                    let converted_item_229 = queue_stream_configuration_from_py(&item_228)?;
+                    Ok(converted_item_229)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_230),
+                        "dict (QueueStreamConfiguration)",
+                    )
+                })?;
+                converted_226.push(converted_item_229);
+            }
+            Ok(converted_226)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("stream_configuration_list"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_stream_configuration_list(Some(converted_226));
+    }
+    if let Some(value) = dict_value(values, "queue_attributes")? {
+        let converted_231 = (|| -> PyResult<_> {
+            let converted_231 = queue_attributes_from_py(&value)?;
+            Ok(converted_231)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("queue_attributes"),
+                "dict (QueueAttributes)",
+            )
+        })?;
+        builder = builder.set_queue_attributes(Some(converted_231));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("queue_name", "queue_name"),
+                ("queue_arn", "queue_arn"),
+                ("queue_status", "queue_status"),
+                ("queue_creation_timestamp", "queue_creation_timestamp"),
+                ("stream_configuration_list", "stream_configuration_list"),
+            ],
+        )
+    })
+}
+
+fn queue_description_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::QueueDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_232 = (&value.queue_name).as_str().into_py_any(py)?;
+    result.set_item("queue_name", converted_232)?;
+    let converted_233 = (&value.queue_arn).as_str().into_py_any(py)?;
+    result.set_item("queue_arn", converted_233)?;
+    let converted_234 = (&value.queue_status).as_str().into_py_any(py)?;
+    result.set_item("queue_status", converted_234)?;
+    let converted_235 = (&value.queue_creation_timestamp)
+        .to_string()
+        .into_py_any(py)?;
+    result.set_item("queue_creation_timestamp", converted_235)?;
+    let converted_236_list = PyList::empty(py);
+    for item_237 in &value.stream_configuration_list {
+        let converted_item_238 = queue_stream_configuration_to_py(py, item_237)?;
+        converted_236_list.append(converted_item_238)?;
+    }
+    let converted_236 = converted_236_list.into_any().unbind();
+    result.set_item("stream_configuration_list", converted_236)?;
+    if let Some(value) = &value.queue_attributes {
+        let converted_239 = queue_attributes_to_py(py, value)?;
+        result.set_item("queue_attributes", converted_239)?;
+    } else {
+        result.set_item("queue_attributes", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn queue_record_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::QueueRecord> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "approximate_arrival_timestamp",
+            "data",
+            "first_receive_timestamp",
+            "partition_key",
+            "receipt_handle",
+            "receive_count",
+            "record_id",
+        ],
+    )?;
+    let mut builder = aws_sdk_kinesis::types::QueueRecord::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_240 = (|| -> PyResult<_> {
+            let converted_240: String = value.extract()?;
+            Ok(converted_240)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_240));
+    }
+    if let Some(value) = dict_value(values, "record_id")? {
+        let converted_241 = (|| -> PyResult<_> {
+            let converted_241: String = value.extract()?;
+            Ok(converted_241)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("record_id"), "str")
+        })?;
+        builder = builder.set_record_id(Some(converted_241));
+    }
+    if let Some(value) = dict_value(values, "partition_key")? {
+        let converted_242 = (|| -> PyResult<_> {
+            let converted_242: String = value.extract()?;
+            Ok(converted_242)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("partition_key"), "str")
+        })?;
+        builder = builder.set_partition_key(Some(converted_242));
+    }
+    if let Some(value) = dict_value(values, "data")? {
+        let converted_243 = (|| -> PyResult<_> {
+            let bytes_244: Vec<u8> = value.extract()?;
+            let converted_243 = ::aws_smithy_types::Blob::new(bytes_244);
+            Ok(converted_243)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("data"), "bytes")
+        })?;
+        builder = builder.set_data(Some(converted_243));
+    }
+    if let Some(value) = dict_value(values, "approximate_arrival_timestamp")? {
+        let converted_245 = (|| -> PyResult<_> {
+            let timestamp_246: String = value.extract()?;
+            let converted_245 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_246,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_245)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("approximate_arrival_timestamp"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_approximate_arrival_timestamp(Some(converted_245));
+    }
+    if let Some(value) = dict_value(values, "first_receive_timestamp")? {
+        let converted_247 = (|| -> PyResult<_> {
+            let timestamp_248: String = value.extract()?;
+            let converted_247 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_248,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_247)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("first_receive_timestamp"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_first_receive_timestamp(Some(converted_247));
+    }
+    if let Some(value) = dict_value(values, "receive_count")? {
+        let converted_249 = (|| -> PyResult<_> {
+            let converted_249: i32 = value.extract()?;
+            Ok(converted_249)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receive_count"), "int")
+        })?;
+        builder = builder.set_receive_count(Some(converted_249));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("receipt_handle", "receipt_handle"),
+                ("record_id", "record_id"),
+                ("data", "data"),
+                (
+                    "approximate_arrival_timestamp",
+                    "approximate_arrival_timestamp",
+                ),
+                ("first_receive_timestamp", "first_receive_timestamp"),
+                ("receive_count", "receive_count"),
+            ],
+        )
+    })
+}
+
+fn queue_record_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::QueueRecord,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_250 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_250)?;
+    let converted_251 = (&value.record_id).as_str().into_py_any(py)?;
+    result.set_item("record_id", converted_251)?;
+    if let Some(value) = &value.partition_key {
+        let converted_252 = (value).as_str().into_py_any(py)?;
+        result.set_item("partition_key", converted_252)?;
+    } else {
+        result.set_item("partition_key", py.None())?;
+    }
+    let converted_253 = PyBytes::new(py, (&value.data).as_ref()).into_any().unbind();
+    result.set_item("data", converted_253)?;
+    let converted_254 = (&value.approximate_arrival_timestamp)
+        .to_string()
+        .into_py_any(py)?;
+    result.set_item("approximate_arrival_timestamp", converted_254)?;
+    let converted_255 = (&value.first_receive_timestamp)
+        .to_string()
+        .into_py_any(py)?;
+    result.set_item("first_receive_timestamp", converted_255)?;
+    let converted_256 = (&value.receive_count).to_owned().into_py_any(py)?;
+    result.set_item("receive_count", converted_256)?;
+    Ok(result.into_any().unbind())
+}
+
+fn queue_starting_position_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::QueueStartingPosition> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["timestamp", "type"])?;
+    let mut builder = aws_sdk_kinesis::types::QueueStartingPosition::builder();
+    if let Some(value) = dict_value(values, "type")? {
+        let converted_257 = (|| -> PyResult<_> {
+            let enum_value_258: String = value.extract()?;
+            let converted_257 =
+                aws_sdk_kinesis::types::QueueStartingPositionType::from(enum_value_258.as_str());
+            Ok(converted_257)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (QueueStartingPositionType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_257));
+    }
+    if let Some(value) = dict_value(values, "timestamp")? {
+        let converted_259 = (|| -> PyResult<_> {
+            let timestamp_260: String = value.extract()?;
+            let converted_259 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_260,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_259)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("timestamp"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_timestamp(Some(converted_259));
+    }
+    builder
+        .build()
+        .map_err(|_| rboto_core::input_builder_error(values, &[("type", "type")]))
+}
+
+fn queue_starting_position_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::QueueStartingPosition,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_261 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_261)?;
+    if let Some(value) = &value.timestamp {
+        let converted_262 = (value).to_string().into_py_any(py)?;
+        result.set_item("timestamp", converted_262)?;
+    } else {
+        result.set_item("timestamp", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn queue_stream_configuration_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::QueueStreamConfiguration> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["starting_position", "stream_arn"])?;
+    let mut builder = aws_sdk_kinesis::types::QueueStreamConfiguration::builder();
+    if let Some(value) = dict_value(values, "stream_arn")? {
+        let converted_263 = (|| -> PyResult<_> {
+            let converted_263: String = value.extract()?;
+            Ok(converted_263)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("stream_arn"), "str")
+        })?;
+        builder = builder.set_stream_arn(Some(converted_263));
+    }
+    if let Some(value) = dict_value(values, "starting_position")? {
+        let converted_264 = (|| -> PyResult<_> {
+            let converted_264 = queue_starting_position_from_py(&value)?;
+            Ok(converted_264)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("starting_position"),
+                "dict (QueueStartingPosition)",
+            )
+        })?;
+        builder = builder.set_starting_position(Some(converted_264));
+    }
+    builder
+        .build()
+        .map_err(|_| rboto_core::input_builder_error(values, &[("stream_arn", "stream_arn")]))
+}
+
+fn queue_stream_configuration_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::QueueStreamConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_265 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_265)?;
+    if let Some(value) = &value.starting_position {
+        let converted_266 = queue_starting_position_to_py(py, value)?;
+        result.set_item("starting_position", converted_266)?;
+    } else {
+        result.set_item("starting_position", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn queue_stream_filter_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::QueueStreamFilter> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["stream_arn", "stream_creation_timestamp"])?;
+    let mut builder = aws_sdk_kinesis::types::QueueStreamFilter::builder();
+    if let Some(value) = dict_value(values, "stream_arn")? {
+        let converted_267 = (|| -> PyResult<_> {
+            let converted_267: String = value.extract()?;
+            Ok(converted_267)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("stream_arn"), "str")
+        })?;
+        builder = builder.set_stream_arn(Some(converted_267));
+    }
+    if let Some(value) = dict_value(values, "stream_creation_timestamp")? {
+        let converted_268 = (|| -> PyResult<_> {
+            let timestamp_269: String = value.extract()?;
+            let converted_268 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_269,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_268)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("stream_creation_timestamp"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_stream_creation_timestamp(Some(converted_268));
+    }
+    builder
+        .build()
+        .map_err(|_| rboto_core::input_builder_error(values, &[("stream_arn", "stream_arn")]))
+}
+
+fn queue_stream_filter_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::QueueStreamFilter,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_270 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_270)?;
+    if let Some(value) = &value.stream_creation_timestamp {
+        let converted_271 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_creation_timestamp", converted_271)?;
+    } else {
+        result.set_item("stream_creation_timestamp", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn queue_stream_identifier_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::QueueStreamIdentifier> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["stream_arn", "stream_creation_timestamp"])?;
+    let mut builder = aws_sdk_kinesis::types::QueueStreamIdentifier::builder();
+    if let Some(value) = dict_value(values, "stream_arn")? {
+        let converted_272 = (|| -> PyResult<_> {
+            let converted_272: String = value.extract()?;
+            Ok(converted_272)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("stream_arn"), "str")
+        })?;
+        builder = builder.set_stream_arn(Some(converted_272));
+    }
+    if let Some(value) = dict_value(values, "stream_creation_timestamp")? {
+        let converted_273 = (|| -> PyResult<_> {
+            let timestamp_274: String = value.extract()?;
+            let converted_273 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_274,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_273)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("stream_creation_timestamp"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_stream_creation_timestamp(Some(converted_273));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("stream_arn", "stream_arn"),
+                ("stream_creation_timestamp", "stream_creation_timestamp"),
+            ],
+        )
+    })
+}
+
+fn queue_stream_identifier_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::QueueStreamIdentifier,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_275 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_275)?;
+    let converted_276 = (&value.stream_creation_timestamp)
+        .to_string()
+        .into_py_any(py)?;
+    result.set_item("stream_creation_timestamp", converted_276)?;
+    Ok(result.into_any().unbind())
+}
+
+fn queue_summary_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::QueueSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "queue_arn",
+            "queue_creation_timestamp",
+            "queue_name",
+            "queue_status",
+            "streams",
+        ],
+    )?;
+    let mut builder = aws_sdk_kinesis::types::QueueSummary::builder();
+    if let Some(value) = dict_value(values, "queue_name")? {
+        let converted_277 = (|| -> PyResult<_> {
+            let converted_277: String = value.extract()?;
+            Ok(converted_277)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("queue_name"), "str")
+        })?;
+        builder = builder.set_queue_name(Some(converted_277));
+    }
+    if let Some(value) = dict_value(values, "queue_arn")? {
+        let converted_278 = (|| -> PyResult<_> {
+            let converted_278: String = value.extract()?;
+            Ok(converted_278)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("queue_arn"), "str")
+        })?;
+        builder = builder.set_queue_arn(Some(converted_278));
+    }
+    if let Some(value) = dict_value(values, "queue_status")? {
+        let converted_279 = (|| -> PyResult<_> {
+            let enum_value_280: String = value.extract()?;
+            let converted_279 = aws_sdk_kinesis::types::QueueStatus::from(enum_value_280.as_str());
+            Ok(converted_279)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("queue_status"),
+                "str (QueueStatus)",
+            )
+        })?;
+        builder = builder.set_queue_status(Some(converted_279));
+    }
+    if let Some(value) = dict_value(values, "queue_creation_timestamp")? {
+        let converted_281 = (|| -> PyResult<_> {
+            let timestamp_282: String = value.extract()?;
+            let converted_281 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_282,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_281)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("queue_creation_timestamp"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_queue_creation_timestamp(Some(converted_281));
+    }
+    if let Some(value) = dict_value(values, "streams")? {
+        let converted_283 = (|| -> PyResult<_> {
+            let mut converted_283 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_287, item_result_284) in value.try_iter()?.enumerate() {
+                let item_285 = item_result_284.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_287),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_286 = (|| -> PyResult<_> {
+                    let converted_item_286 = queue_stream_identifier_from_py(&item_285)?;
+                    Ok(converted_item_286)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_287),
+                        "dict (QueueStreamIdentifier)",
+                    )
+                })?;
+                converted_283.push(converted_item_286);
+            }
+            Ok(converted_283)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("streams"), "sequence")
+        })?;
+        builder = builder.set_streams(Some(converted_283));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("queue_name", "queue_name"),
+                ("queue_arn", "queue_arn"),
+                ("queue_status", "queue_status"),
+                ("queue_creation_timestamp", "queue_creation_timestamp"),
+                ("streams", "streams"),
+            ],
+        )
+    })
+}
+
+fn queue_summary_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::QueueSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_288 = (&value.queue_name).as_str().into_py_any(py)?;
+    result.set_item("queue_name", converted_288)?;
+    let converted_289 = (&value.queue_arn).as_str().into_py_any(py)?;
+    result.set_item("queue_arn", converted_289)?;
+    let converted_290 = (&value.queue_status).as_str().into_py_any(py)?;
+    result.set_item("queue_status", converted_290)?;
+    let converted_291 = (&value.queue_creation_timestamp)
+        .to_string()
+        .into_py_any(py)?;
+    result.set_item("queue_creation_timestamp", converted_291)?;
+    let converted_292_list = PyList::empty(py);
+    for item_293 in &value.streams {
+        let converted_item_294 = queue_stream_identifier_to_py(py, item_293)?;
+        converted_292_list.append(converted_item_294)?;
+    }
+    let converted_292 = converted_292_list.into_any().unbind();
+    result.set_item("streams", converted_292)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1897,9 +2958,9 @@ fn record_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::
     )?;
     let mut builder = aws_sdk_kinesis::types::Record::builder();
     if let Some(value) = dict_value(values, "sequence_number")? {
-        let converted_191 = (|| -> PyResult<_> {
-            let converted_191: String = value.extract()?;
-            Ok(converted_191)
+        let converted_295 = (|| -> PyResult<_> {
+            let converted_295: String = value.extract()?;
+            Ok(converted_295)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1908,17 +2969,17 @@ fn record_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::
                 "str",
             )
         })?;
-        builder = builder.set_sequence_number(Some(converted_191));
+        builder = builder.set_sequence_number(Some(converted_295));
     }
     if let Some(value) = dict_value(values, "approximate_arrival_timestamp")? {
-        let converted_192 = (|| -> PyResult<_> {
-            let timestamp_193: String = value.extract()?;
-            let converted_192 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_193,
+        let converted_296 = (|| -> PyResult<_> {
+            let timestamp_297: String = value.extract()?;
+            let converted_296 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_297,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_192)
+            Ok(converted_296)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1927,35 +2988,35 @@ fn record_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_approximate_arrival_timestamp(Some(converted_192));
+        builder = builder.set_approximate_arrival_timestamp(Some(converted_296));
     }
     if let Some(value) = dict_value(values, "data")? {
-        let converted_194 = (|| -> PyResult<_> {
-            let bytes_195: Vec<u8> = value.extract()?;
-            let converted_194 = ::aws_smithy_types::Blob::new(bytes_195);
-            Ok(converted_194)
+        let converted_298 = (|| -> PyResult<_> {
+            let bytes_299: Vec<u8> = value.extract()?;
+            let converted_298 = ::aws_smithy_types::Blob::new(bytes_299);
+            Ok(converted_298)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("data"), "bytes")
         })?;
-        builder = builder.set_data(Some(converted_194));
+        builder = builder.set_data(Some(converted_298));
     }
     if let Some(value) = dict_value(values, "partition_key")? {
-        let converted_196 = (|| -> PyResult<_> {
-            let converted_196: String = value.extract()?;
-            Ok(converted_196)
+        let converted_300 = (|| -> PyResult<_> {
+            let converted_300: String = value.extract()?;
+            Ok(converted_300)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("partition_key"), "str")
         })?;
-        builder = builder.set_partition_key(Some(converted_196));
+        builder = builder.set_partition_key(Some(converted_300));
     }
     if let Some(value) = dict_value(values, "encryption_type")? {
-        let converted_197 = (|| -> PyResult<_> {
-            let enum_value_198: String = value.extract()?;
-            let converted_197 =
-                aws_sdk_kinesis::types::EncryptionType::from(enum_value_198.as_str());
-            Ok(converted_197)
+        let converted_301 = (|| -> PyResult<_> {
+            let enum_value_302: String = value.extract()?;
+            let converted_301 =
+                aws_sdk_kinesis::types::EncryptionType::from(enum_value_302.as_str());
+            Ok(converted_301)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1964,7 +3025,7 @@ fn record_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::
                 "str (EncryptionType)",
             )
         })?;
-        builder = builder.set_encryption_type(Some(converted_197));
+        builder = builder.set_encryption_type(Some(converted_301));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -1976,25 +3037,25 @@ fn record_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::
 
 fn record_to_py(py: Python<'_>, value: &aws_sdk_kinesis::types::Record) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_199 = (&value.sequence_number).as_str().into_py_any(py)?;
-    result.set_item("sequence_number", converted_199)?;
+    let converted_303 = (&value.sequence_number).as_str().into_py_any(py)?;
+    result.set_item("sequence_number", converted_303)?;
     if let Some(value) = &value.approximate_arrival_timestamp {
-        let converted_200 = (value).to_string().into_py_any(py)?;
-        result.set_item("approximate_arrival_timestamp", converted_200)?;
+        let converted_304 = (value).to_string().into_py_any(py)?;
+        result.set_item("approximate_arrival_timestamp", converted_304)?;
     } else {
         result.set_item("approximate_arrival_timestamp", py.None())?;
     }
-    let converted_201 = PyBytes::new(py, (&value.data).as_ref()).into_any().unbind();
-    result.set_item("data", converted_201)?;
+    let converted_305 = PyBytes::new(py, (&value.data).as_ref()).into_any().unbind();
+    result.set_item("data", converted_305)?;
     if let Some(value) = &value.partition_key {
-        let converted_202 = (value).as_str().into_py_any(py)?;
-        result.set_item("partition_key", converted_202)?;
+        let converted_306 = (value).as_str().into_py_any(py)?;
+        result.set_item("partition_key", converted_306)?;
     } else {
         result.set_item("partition_key", py.None())?;
     }
     if let Some(value) = &value.encryption_type {
-        let converted_203 = (value).as_str().into_py_any(py)?;
-        result.set_item("encryption_type", converted_203)?;
+        let converted_307 = (value).as_str().into_py_any(py)?;
+        result.set_item("encryption_type", converted_307)?;
     } else {
         result.set_item("encryption_type", py.None())?;
     }
@@ -2008,11 +3069,11 @@ fn record_configuration_from_py(
     rboto_core::validate_input_fields(values, &["gsr_schema_arn", "record_format_type"])?;
     let mut builder = aws_sdk_kinesis::types::RecordConfiguration::builder();
     if let Some(value) = dict_value(values, "record_format_type")? {
-        let converted_204 = (|| -> PyResult<_> {
-            let enum_value_205: String = value.extract()?;
-            let converted_204 =
-                aws_sdk_kinesis::types::RecordFormatType::from(enum_value_205.as_str());
-            Ok(converted_204)
+        let converted_308 = (|| -> PyResult<_> {
+            let enum_value_309: String = value.extract()?;
+            let converted_308 =
+                aws_sdk_kinesis::types::RecordFormatType::from(enum_value_309.as_str());
+            Ok(converted_308)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2021,17 +3082,17 @@ fn record_configuration_from_py(
                 "str (RecordFormatType)",
             )
         })?;
-        builder = builder.set_record_format_type(Some(converted_204));
+        builder = builder.set_record_format_type(Some(converted_308));
     }
     if let Some(value) = dict_value(values, "gsr_schema_arn")? {
-        let converted_206 = (|| -> PyResult<_> {
-            let converted_206: String = value.extract()?;
-            Ok(converted_206)
+        let converted_310 = (|| -> PyResult<_> {
+            let converted_310: String = value.extract()?;
+            Ok(converted_310)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("gsr_schema_arn"), "str")
         })?;
-        builder = builder.set_gsr_schema_arn(Some(converted_206));
+        builder = builder.set_gsr_schema_arn(Some(converted_310));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(values, &[("record_format_type", "record_format_type")])
@@ -2043,14 +3104,141 @@ fn record_configuration_to_py(
     value: &aws_sdk_kinesis::types::RecordConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_207 = (&value.record_format_type).as_str().into_py_any(py)?;
-    result.set_item("record_format_type", converted_207)?;
+    let converted_311 = (&value.record_format_type).as_str().into_py_any(py)?;
+    result.set_item("record_format_type", converted_311)?;
     if let Some(value) = &value.gsr_schema_arn {
-        let converted_208 = (value).as_str().into_py_any(py)?;
-        result.set_item("gsr_schema_arn", converted_208)?;
+        let converted_312 = (value).as_str().into_py_any(py)?;
+        result.set_item("gsr_schema_arn", converted_312)?;
     } else {
         result.set_item("gsr_schema_arn", py.None())?;
     }
+    Ok(result.into_any().unbind())
+}
+
+fn restore_dead_letter_queue_records_error_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsErrorEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message", "receipt_handle"])?;
+    let mut builder = aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsErrorEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_313 = (|| -> PyResult<_> {
+            let converted_313: String = value.extract()?;
+            Ok(converted_313)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_313));
+    }
+    if let Some(value) = dict_value(values, "error_code")? {
+        let converted_314 = (|| -> PyResult<_> {
+            let converted_314: String = value.extract()?;
+            Ok(converted_314)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("error_code"), "str")
+        })?;
+        builder = builder.set_error_code(Some(converted_314));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        let converted_315 = (|| -> PyResult<_> {
+            let converted_315: String = value.extract()?;
+            Ok(converted_315)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("error_message"), "str")
+        })?;
+        builder = builder.set_error_message(Some(converted_315));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("receipt_handle", "receipt_handle"),
+                ("error_code", "error_code"),
+            ],
+        )
+    })
+}
+
+fn restore_dead_letter_queue_records_error_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsErrorEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_316 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_316)?;
+    let converted_317 = (&value.error_code).as_str().into_py_any(py)?;
+    result.set_item("error_code", converted_317)?;
+    if let Some(value) = &value.error_message {
+        let converted_318 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_message", converted_318)?;
+    } else {
+        result.set_item("error_message", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn restore_dead_letter_queue_records_request_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsRequestEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["receipt_handle"])?;
+    let mut builder = aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsRequestEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_319 = (|| -> PyResult<_> {
+            let converted_319: String = value.extract()?;
+            Ok(converted_319)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_319));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("receipt_handle", "receipt_handle")])
+    })
+}
+
+fn restore_dead_letter_queue_records_request_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsRequestEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_320 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_320)?;
+    Ok(result.into_any().unbind())
+}
+
+fn restore_dead_letter_queue_records_result_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsResultEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["receipt_handle"])?;
+    let mut builder = aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsResultEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_321 = (|| -> PyResult<_> {
+            let converted_321: String = value.extract()?;
+            Ok(converted_321)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_321));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("receipt_handle", "receipt_handle")])
+    })
+}
+
+fn restore_dead_letter_queue_records_result_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsResultEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_322 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_322)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2068,9 +3256,9 @@ fn s3_destination_configuration_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::S3DestinationConfiguration::builder();
     if let Some(value) = dict_value(values, "data_freshness_in_seconds")? {
-        let converted_209 = (|| -> PyResult<_> {
-            let converted_209: i32 = value.extract()?;
-            Ok(converted_209)
+        let converted_323 = (|| -> PyResult<_> {
+            let converted_323: i32 = value.extract()?;
+            Ok(converted_323)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2079,12 +3267,12 @@ fn s3_destination_configuration_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_data_freshness_in_seconds(Some(converted_209));
+        builder = builder.set_data_freshness_in_seconds(Some(converted_323));
     }
     if let Some(value) = dict_value(values, "dead_letter_queue_s3_configuration")? {
-        let converted_210 = (|| -> PyResult<_> {
-            let converted_210 = dead_letter_queue_s3_configuration_from_py(&value)?;
-            Ok(converted_210)
+        let converted_324 = (|| -> PyResult<_> {
+            let converted_324 = dead_letter_queue_s3_configuration_from_py(&value)?;
+            Ok(converted_324)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2093,12 +3281,12 @@ fn s3_destination_configuration_from_py(
                 "dict (DeadLetterQueueS3Configuration)",
             )
         })?;
-        builder = builder.set_dead_letter_queue_s3_configuration(Some(converted_210));
+        builder = builder.set_dead_letter_queue_s3_configuration(Some(converted_324));
     }
     if let Some(value) = dict_value(values, "storage_configuration")? {
-        let converted_211 = (|| -> PyResult<_> {
-            let converted_211 = s3_storage_configuration_from_py(&value)?;
-            Ok(converted_211)
+        let converted_325 = (|| -> PyResult<_> {
+            let converted_325 = s3_storage_configuration_from_py(&value)?;
+            Ok(converted_325)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2107,7 +3295,7 @@ fn s3_destination_configuration_from_py(
                 "dict (S3StorageConfiguration)",
             )
         })?;
-        builder = builder.set_storage_configuration(Some(converted_211));
+        builder = builder.set_storage_configuration(Some(converted_325));
     }
     Ok(builder.build())
 }
@@ -2118,20 +3306,20 @@ fn s3_destination_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.data_freshness_in_seconds {
-        let converted_212 = (value).to_owned().into_py_any(py)?;
-        result.set_item("data_freshness_in_seconds", converted_212)?;
+        let converted_326 = (value).to_owned().into_py_any(py)?;
+        result.set_item("data_freshness_in_seconds", converted_326)?;
     } else {
         result.set_item("data_freshness_in_seconds", py.None())?;
     }
     if let Some(value) = &value.dead_letter_queue_s3_configuration {
-        let converted_213 = dead_letter_queue_s3_configuration_to_py(py, value)?;
-        result.set_item("dead_letter_queue_s3_configuration", converted_213)?;
+        let converted_327 = dead_letter_queue_s3_configuration_to_py(py, value)?;
+        result.set_item("dead_letter_queue_s3_configuration", converted_327)?;
     } else {
         result.set_item("dead_letter_queue_s3_configuration", py.None())?;
     }
     if let Some(value) = &value.storage_configuration {
-        let converted_214 = s3_storage_configuration_to_py(py, value)?;
-        result.set_item("storage_configuration", converted_214)?;
+        let converted_328 = s3_storage_configuration_to_py(py, value)?;
+        result.set_item("storage_configuration", converted_328)?;
     } else {
         result.set_item("storage_configuration", py.None())?;
     }
@@ -2152,9 +3340,9 @@ fn s3_destination_description_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::S3DestinationDescription::builder();
     if let Some(value) = dict_value(values, "data_freshness_in_seconds")? {
-        let converted_215 = (|| -> PyResult<_> {
-            let converted_215: i32 = value.extract()?;
-            Ok(converted_215)
+        let converted_329 = (|| -> PyResult<_> {
+            let converted_329: i32 = value.extract()?;
+            Ok(converted_329)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2163,12 +3351,12 @@ fn s3_destination_description_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_data_freshness_in_seconds(Some(converted_215));
+        builder = builder.set_data_freshness_in_seconds(Some(converted_329));
     }
     if let Some(value) = dict_value(values, "dead_letter_queue_s3_configuration")? {
-        let converted_216 = (|| -> PyResult<_> {
-            let converted_216 = dead_letter_queue_s3_configuration_from_py(&value)?;
-            Ok(converted_216)
+        let converted_330 = (|| -> PyResult<_> {
+            let converted_330 = dead_letter_queue_s3_configuration_from_py(&value)?;
+            Ok(converted_330)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2177,12 +3365,12 @@ fn s3_destination_description_from_py(
                 "dict (DeadLetterQueueS3Configuration)",
             )
         })?;
-        builder = builder.set_dead_letter_queue_s3_configuration(Some(converted_216));
+        builder = builder.set_dead_letter_queue_s3_configuration(Some(converted_330));
     }
     if let Some(value) = dict_value(values, "storage_configuration")? {
-        let converted_217 = (|| -> PyResult<_> {
-            let converted_217 = s3_storage_configuration_from_py(&value)?;
-            Ok(converted_217)
+        let converted_331 = (|| -> PyResult<_> {
+            let converted_331 = s3_storage_configuration_from_py(&value)?;
+            Ok(converted_331)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2191,7 +3379,7 @@ fn s3_destination_description_from_py(
                 "dict (S3StorageConfiguration)",
             )
         })?;
-        builder = builder.set_storage_configuration(Some(converted_217));
+        builder = builder.set_storage_configuration(Some(converted_331));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -2206,19 +3394,19 @@ fn s3_destination_description_to_py(
     value: &aws_sdk_kinesis::types::S3DestinationDescription,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_218 = (&value.data_freshness_in_seconds)
+    let converted_332 = (&value.data_freshness_in_seconds)
         .to_owned()
         .into_py_any(py)?;
-    result.set_item("data_freshness_in_seconds", converted_218)?;
+    result.set_item("data_freshness_in_seconds", converted_332)?;
     if let Some(value) = &value.dead_letter_queue_s3_configuration {
-        let converted_219 = dead_letter_queue_s3_configuration_to_py(py, value)?;
-        result.set_item("dead_letter_queue_s3_configuration", converted_219)?;
+        let converted_333 = dead_letter_queue_s3_configuration_to_py(py, value)?;
+        result.set_item("dead_letter_queue_s3_configuration", converted_333)?;
     } else {
         result.set_item("dead_letter_queue_s3_configuration", py.None())?;
     }
     if let Some(value) = &value.storage_configuration {
-        let converted_220 = s3_storage_configuration_to_py(py, value)?;
-        result.set_item("storage_configuration", converted_220)?;
+        let converted_334 = s3_storage_configuration_to_py(py, value)?;
+        result.set_item("storage_configuration", converted_334)?;
     } else {
         result.set_item("storage_configuration", py.None())?;
     }
@@ -2232,9 +3420,9 @@ fn s3_destination_update_input_from_py(
     rboto_core::validate_input_fields(values, &["data_freshness_in_seconds"])?;
     let mut builder = aws_sdk_kinesis::types::S3DestinationUpdateInput::builder();
     if let Some(value) = dict_value(values, "data_freshness_in_seconds")? {
-        let converted_221 = (|| -> PyResult<_> {
-            let converted_221: i32 = value.extract()?;
-            Ok(converted_221)
+        let converted_335 = (|| -> PyResult<_> {
+            let converted_335: i32 = value.extract()?;
+            Ok(converted_335)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2243,7 +3431,7 @@ fn s3_destination_update_input_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_data_freshness_in_seconds(Some(converted_221));
+        builder = builder.set_data_freshness_in_seconds(Some(converted_335));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -2258,10 +3446,10 @@ fn s3_destination_update_input_to_py(
     value: &aws_sdk_kinesis::types::S3DestinationUpdateInput,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_222 = (&value.data_freshness_in_seconds)
+    let converted_336 = (&value.data_freshness_in_seconds)
         .to_owned()
         .into_py_any(py)?;
-    result.set_item("data_freshness_in_seconds", converted_222)?;
+    result.set_item("data_freshness_in_seconds", converted_336)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2281,19 +3469,19 @@ fn s3_storage_configuration_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::S3StorageConfiguration::builder();
     if let Some(value) = dict_value(values, "bucket_arn")? {
-        let converted_223 = (|| -> PyResult<_> {
-            let converted_223: String = value.extract()?;
-            Ok(converted_223)
+        let converted_337 = (|| -> PyResult<_> {
+            let converted_337: String = value.extract()?;
+            Ok(converted_337)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("bucket_arn"), "str")
         })?;
-        builder = builder.set_bucket_arn(Some(converted_223));
+        builder = builder.set_bucket_arn(Some(converted_337));
     }
     if let Some(value) = dict_value(values, "expected_bucket_owner")? {
-        let converted_224 = (|| -> PyResult<_> {
-            let converted_224: String = value.extract()?;
-            Ok(converted_224)
+        let converted_338 = (|| -> PyResult<_> {
+            let converted_338: String = value.extract()?;
+            Ok(converted_338)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2302,12 +3490,12 @@ fn s3_storage_configuration_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_expected_bucket_owner(Some(converted_224));
+        builder = builder.set_expected_bucket_owner(Some(converted_338));
     }
     if let Some(value) = dict_value(values, "output_key_template")? {
-        let converted_225 = (|| -> PyResult<_> {
-            let converted_225: String = value.extract()?;
-            Ok(converted_225)
+        let converted_339 = (|| -> PyResult<_> {
+            let converted_339: String = value.extract()?;
+            Ok(converted_339)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2316,14 +3504,14 @@ fn s3_storage_configuration_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_output_key_template(Some(converted_225));
+        builder = builder.set_output_key_template(Some(converted_339));
     }
     if let Some(value) = dict_value(values, "storage_class")? {
-        let converted_226 = (|| -> PyResult<_> {
-            let enum_value_227: String = value.extract()?;
-            let converted_226 =
-                aws_sdk_kinesis::types::S3StorageClass::from(enum_value_227.as_str());
-            Ok(converted_226)
+        let converted_340 = (|| -> PyResult<_> {
+            let enum_value_341: String = value.extract()?;
+            let converted_340 =
+                aws_sdk_kinesis::types::S3StorageClass::from(enum_value_341.as_str());
+            Ok(converted_340)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2332,14 +3520,14 @@ fn s3_storage_configuration_from_py(
                 "str (S3StorageClass)",
             )
         })?;
-        builder = builder.set_storage_class(Some(converted_226));
+        builder = builder.set_storage_class(Some(converted_340));
     }
     if let Some(value) = dict_value(values, "compression_type")? {
-        let converted_228 = (|| -> PyResult<_> {
-            let enum_value_229: String = value.extract()?;
-            let converted_228 =
-                aws_sdk_kinesis::types::S3CompressionType::from(enum_value_229.as_str());
-            Ok(converted_228)
+        let converted_342 = (|| -> PyResult<_> {
+            let enum_value_343: String = value.extract()?;
+            let converted_342 =
+                aws_sdk_kinesis::types::S3CompressionType::from(enum_value_343.as_str());
+            Ok(converted_342)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2348,7 +3536,7 @@ fn s3_storage_configuration_from_py(
                 "str (S3CompressionType)",
             )
         })?;
-        builder = builder.set_compression_type(Some(converted_228));
+        builder = builder.set_compression_type(Some(converted_342));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -2367,24 +3555,24 @@ fn s3_storage_configuration_to_py(
     value: &aws_sdk_kinesis::types::S3StorageConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_230 = (&value.bucket_arn).as_str().into_py_any(py)?;
-    result.set_item("bucket_arn", converted_230)?;
-    let converted_231 = (&value.expected_bucket_owner).as_str().into_py_any(py)?;
-    result.set_item("expected_bucket_owner", converted_231)?;
+    let converted_344 = (&value.bucket_arn).as_str().into_py_any(py)?;
+    result.set_item("bucket_arn", converted_344)?;
+    let converted_345 = (&value.expected_bucket_owner).as_str().into_py_any(py)?;
+    result.set_item("expected_bucket_owner", converted_345)?;
     if let Some(value) = &value.output_key_template {
-        let converted_232 = (value).as_str().into_py_any(py)?;
-        result.set_item("output_key_template", converted_232)?;
+        let converted_346 = (value).as_str().into_py_any(py)?;
+        result.set_item("output_key_template", converted_346)?;
     } else {
         result.set_item("output_key_template", py.None())?;
     }
     if let Some(value) = &value.storage_class {
-        let converted_233 = (value).as_str().into_py_any(py)?;
-        result.set_item("storage_class", converted_233)?;
+        let converted_347 = (value).as_str().into_py_any(py)?;
+        result.set_item("storage_class", converted_347)?;
     } else {
         result.set_item("storage_class", py.None())?;
     }
-    let converted_234 = (&value.compression_type).as_str().into_py_any(py)?;
-    result.set_item("compression_type", converted_234)?;
+    let converted_348 = (&value.compression_type).as_str().into_py_any(py)?;
+    result.set_item("compression_type", converted_348)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2404,9 +3592,9 @@ fn s3_tables_configuration_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::S3TablesConfiguration::builder();
     if let Some(value) = dict_value(values, "table_bucket_arn")? {
-        let converted_235 = (|| -> PyResult<_> {
-            let converted_235: String = value.extract()?;
-            Ok(converted_235)
+        let converted_349 = (|| -> PyResult<_> {
+            let converted_349: String = value.extract()?;
+            Ok(converted_349)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2415,34 +3603,34 @@ fn s3_tables_configuration_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_table_bucket_arn(Some(converted_235));
+        builder = builder.set_table_bucket_arn(Some(converted_349));
     }
     if let Some(value) = dict_value(values, "namespace")? {
-        let converted_236 = (|| -> PyResult<_> {
-            let converted_236: String = value.extract()?;
-            Ok(converted_236)
+        let converted_350 = (|| -> PyResult<_> {
+            let converted_350: String = value.extract()?;
+            Ok(converted_350)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("namespace"), "str")
         })?;
-        builder = builder.set_namespace(Some(converted_236));
+        builder = builder.set_namespace(Some(converted_350));
     }
     if let Some(value) = dict_value(values, "table_name")? {
-        let converted_237 = (|| -> PyResult<_> {
-            let converted_237: String = value.extract()?;
-            Ok(converted_237)
+        let converted_351 = (|| -> PyResult<_> {
+            let converted_351: String = value.extract()?;
+            Ok(converted_351)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("table_name"), "str")
         })?;
-        builder = builder.set_table_name(Some(converted_237));
+        builder = builder.set_table_name(Some(converted_351));
     }
     if let Some(value) = dict_value(values, "compression_type")? {
-        let converted_238 = (|| -> PyResult<_> {
-            let enum_value_239: String = value.extract()?;
-            let converted_238 =
-                aws_sdk_kinesis::types::S3TablesCompressionType::from(enum_value_239.as_str());
-            Ok(converted_238)
+        let converted_352 = (|| -> PyResult<_> {
+            let enum_value_353: String = value.extract()?;
+            let converted_352 =
+                aws_sdk_kinesis::types::S3TablesCompressionType::from(enum_value_353.as_str());
+            Ok(converted_352)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2451,12 +3639,12 @@ fn s3_tables_configuration_from_py(
                 "str (S3TablesCompressionType)",
             )
         })?;
-        builder = builder.set_compression_type(Some(converted_238));
+        builder = builder.set_compression_type(Some(converted_352));
     }
     if let Some(value) = dict_value(values, "partition_spec")? {
-        let converted_240 = (|| -> PyResult<_> {
-            let converted_240 = partition_spec_from_py(&value)?;
-            Ok(converted_240)
+        let converted_354 = (|| -> PyResult<_> {
+            let converted_354 = partition_spec_from_py(&value)?;
+            Ok(converted_354)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2465,7 +3653,7 @@ fn s3_tables_configuration_from_py(
                 "dict (PartitionSpec)",
             )
         })?;
-        builder = builder.set_partition_spec(Some(converted_240));
+        builder = builder.set_partition_spec(Some(converted_354));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -2485,17 +3673,17 @@ fn s3_tables_configuration_to_py(
     value: &aws_sdk_kinesis::types::S3TablesConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_241 = (&value.table_bucket_arn).as_str().into_py_any(py)?;
-    result.set_item("table_bucket_arn", converted_241)?;
-    let converted_242 = (&value.namespace).as_str().into_py_any(py)?;
-    result.set_item("namespace", converted_242)?;
-    let converted_243 = (&value.table_name).as_str().into_py_any(py)?;
-    result.set_item("table_name", converted_243)?;
-    let converted_244 = (&value.compression_type).as_str().into_py_any(py)?;
-    result.set_item("compression_type", converted_244)?;
+    let converted_355 = (&value.table_bucket_arn).as_str().into_py_any(py)?;
+    result.set_item("table_bucket_arn", converted_355)?;
+    let converted_356 = (&value.namespace).as_str().into_py_any(py)?;
+    result.set_item("namespace", converted_356)?;
+    let converted_357 = (&value.table_name).as_str().into_py_any(py)?;
+    result.set_item("table_name", converted_357)?;
+    let converted_358 = (&value.compression_type).as_str().into_py_any(py)?;
+    result.set_item("compression_type", converted_358)?;
     if let Some(value) = &value.partition_spec {
-        let converted_245 = partition_spec_to_py(py, value)?;
-        result.set_item("partition_spec", converted_245)?;
+        let converted_359 = partition_spec_to_py(py, value)?;
+        result.set_item("partition_spec", converted_359)?;
     } else {
         result.set_item("partition_spec", py.None())?;
     }
@@ -2516,9 +3704,9 @@ fn s3_tables_destination_configuration_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::S3TablesDestinationConfiguration::builder();
     if let Some(value) = dict_value(values, "data_freshness_in_seconds")? {
-        let converted_246 = (|| -> PyResult<_> {
-            let converted_246: i32 = value.extract()?;
-            Ok(converted_246)
+        let converted_360 = (|| -> PyResult<_> {
+            let converted_360: i32 = value.extract()?;
+            Ok(converted_360)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2527,12 +3715,12 @@ fn s3_tables_destination_configuration_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_data_freshness_in_seconds(Some(converted_246));
+        builder = builder.set_data_freshness_in_seconds(Some(converted_360));
     }
     if let Some(value) = dict_value(values, "dead_letter_queue_s3_configuration")? {
-        let converted_247 = (|| -> PyResult<_> {
-            let converted_247 = dead_letter_queue_s3_configuration_from_py(&value)?;
-            Ok(converted_247)
+        let converted_361 = (|| -> PyResult<_> {
+            let converted_361 = dead_letter_queue_s3_configuration_from_py(&value)?;
+            Ok(converted_361)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2541,35 +3729,35 @@ fn s3_tables_destination_configuration_from_py(
                 "dict (DeadLetterQueueS3Configuration)",
             )
         })?;
-        builder = builder.set_dead_letter_queue_s3_configuration(Some(converted_247));
+        builder = builder.set_dead_letter_queue_s3_configuration(Some(converted_361));
     }
     if let Some(value) = dict_value(values, "s3_tables_configuration_list")? {
-        let converted_248 = (|| -> PyResult<_> {
-            let mut converted_248 =
+        let converted_362 = (|| -> PyResult<_> {
+            let mut converted_362 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_252, item_result_249) in value.try_iter()?.enumerate() {
-                let item_250 = item_result_249.map_err(|error| {
+            for (index_366, item_result_363) in value.try_iter()?.enumerate() {
+                let item_364 = item_result_363.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_252),
+                        rboto_core::InputPath::Index(index_366),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_251 = (|| -> PyResult<_> {
-                    let converted_item_251 = s3_tables_configuration_from_py(&item_250)?;
-                    Ok(converted_item_251)
+                let converted_item_365 = (|| -> PyResult<_> {
+                    let converted_item_365 = s3_tables_configuration_from_py(&item_364)?;
+                    Ok(converted_item_365)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_252),
+                        rboto_core::InputPath::Index(index_366),
                         "dict (S3TablesConfiguration)",
                     )
                 })?;
-                converted_248.push(converted_item_251);
+                converted_362.push(converted_item_365);
             }
-            Ok(converted_248)
+            Ok(converted_362)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2578,7 +3766,7 @@ fn s3_tables_destination_configuration_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_s3_tables_configuration_list(Some(converted_248));
+        builder = builder.set_s3_tables_configuration_list(Some(converted_362));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -2597,24 +3785,24 @@ fn s3_tables_destination_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.data_freshness_in_seconds {
-        let converted_253 = (value).to_owned().into_py_any(py)?;
-        result.set_item("data_freshness_in_seconds", converted_253)?;
+        let converted_367 = (value).to_owned().into_py_any(py)?;
+        result.set_item("data_freshness_in_seconds", converted_367)?;
     } else {
         result.set_item("data_freshness_in_seconds", py.None())?;
     }
     if let Some(value) = &value.dead_letter_queue_s3_configuration {
-        let converted_254 = dead_letter_queue_s3_configuration_to_py(py, value)?;
-        result.set_item("dead_letter_queue_s3_configuration", converted_254)?;
+        let converted_368 = dead_letter_queue_s3_configuration_to_py(py, value)?;
+        result.set_item("dead_letter_queue_s3_configuration", converted_368)?;
     } else {
         result.set_item("dead_letter_queue_s3_configuration", py.None())?;
     }
-    let converted_255_list = PyList::empty(py);
-    for item_256 in &value.s3_tables_configuration_list {
-        let converted_item_257 = s3_tables_configuration_to_py(py, item_256)?;
-        converted_255_list.append(converted_item_257)?;
+    let converted_369_list = PyList::empty(py);
+    for item_370 in &value.s3_tables_configuration_list {
+        let converted_item_371 = s3_tables_configuration_to_py(py, item_370)?;
+        converted_369_list.append(converted_item_371)?;
     }
-    let converted_255 = converted_255_list.into_any().unbind();
-    result.set_item("s3_tables_configuration_list", converted_255)?;
+    let converted_369 = converted_369_list.into_any().unbind();
+    result.set_item("s3_tables_configuration_list", converted_369)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2632,9 +3820,9 @@ fn s3_tables_destination_description_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::S3TablesDestinationDescription::builder();
     if let Some(value) = dict_value(values, "data_freshness_in_seconds")? {
-        let converted_258 = (|| -> PyResult<_> {
-            let converted_258: i32 = value.extract()?;
-            Ok(converted_258)
+        let converted_372 = (|| -> PyResult<_> {
+            let converted_372: i32 = value.extract()?;
+            Ok(converted_372)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2643,12 +3831,12 @@ fn s3_tables_destination_description_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_data_freshness_in_seconds(Some(converted_258));
+        builder = builder.set_data_freshness_in_seconds(Some(converted_372));
     }
     if let Some(value) = dict_value(values, "dead_letter_queue_s3_configuration")? {
-        let converted_259 = (|| -> PyResult<_> {
-            let converted_259 = dead_letter_queue_s3_configuration_from_py(&value)?;
-            Ok(converted_259)
+        let converted_373 = (|| -> PyResult<_> {
+            let converted_373 = dead_letter_queue_s3_configuration_from_py(&value)?;
+            Ok(converted_373)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2657,35 +3845,35 @@ fn s3_tables_destination_description_from_py(
                 "dict (DeadLetterQueueS3Configuration)",
             )
         })?;
-        builder = builder.set_dead_letter_queue_s3_configuration(Some(converted_259));
+        builder = builder.set_dead_letter_queue_s3_configuration(Some(converted_373));
     }
     if let Some(value) = dict_value(values, "s3_tables_configuration_list")? {
-        let converted_260 = (|| -> PyResult<_> {
-            let mut converted_260 =
+        let converted_374 = (|| -> PyResult<_> {
+            let mut converted_374 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_264, item_result_261) in value.try_iter()?.enumerate() {
-                let item_262 = item_result_261.map_err(|error| {
+            for (index_378, item_result_375) in value.try_iter()?.enumerate() {
+                let item_376 = item_result_375.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_264),
+                        rboto_core::InputPath::Index(index_378),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_263 = (|| -> PyResult<_> {
-                    let converted_item_263 = s3_tables_configuration_from_py(&item_262)?;
-                    Ok(converted_item_263)
+                let converted_item_377 = (|| -> PyResult<_> {
+                    let converted_item_377 = s3_tables_configuration_from_py(&item_376)?;
+                    Ok(converted_item_377)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_264),
+                        rboto_core::InputPath::Index(index_378),
                         "dict (S3TablesConfiguration)",
                     )
                 })?;
-                converted_260.push(converted_item_263);
+                converted_374.push(converted_item_377);
             }
-            Ok(converted_260)
+            Ok(converted_374)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2694,7 +3882,7 @@ fn s3_tables_destination_description_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_s3_tables_configuration_list(Some(converted_260));
+        builder = builder.set_s3_tables_configuration_list(Some(converted_374));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -2715,23 +3903,23 @@ fn s3_tables_destination_description_to_py(
     value: &aws_sdk_kinesis::types::S3TablesDestinationDescription,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_265 = (&value.data_freshness_in_seconds)
+    let converted_379 = (&value.data_freshness_in_seconds)
         .to_owned()
         .into_py_any(py)?;
-    result.set_item("data_freshness_in_seconds", converted_265)?;
+    result.set_item("data_freshness_in_seconds", converted_379)?;
     if let Some(value) = &value.dead_letter_queue_s3_configuration {
-        let converted_266 = dead_letter_queue_s3_configuration_to_py(py, value)?;
-        result.set_item("dead_letter_queue_s3_configuration", converted_266)?;
+        let converted_380 = dead_letter_queue_s3_configuration_to_py(py, value)?;
+        result.set_item("dead_letter_queue_s3_configuration", converted_380)?;
     } else {
         result.set_item("dead_letter_queue_s3_configuration", py.None())?;
     }
-    let converted_267_list = PyList::empty(py);
-    for item_268 in &value.s3_tables_configuration_list {
-        let converted_item_269 = s3_tables_configuration_to_py(py, item_268)?;
-        converted_267_list.append(converted_item_269)?;
+    let converted_381_list = PyList::empty(py);
+    for item_382 in &value.s3_tables_configuration_list {
+        let converted_item_383 = s3_tables_configuration_to_py(py, item_382)?;
+        converted_381_list.append(converted_item_383)?;
     }
-    let converted_267 = converted_267_list.into_any().unbind();
-    result.set_item("s3_tables_configuration_list", converted_267)?;
+    let converted_381 = converted_381_list.into_any().unbind();
+    result.set_item("s3_tables_configuration_list", converted_381)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2742,9 +3930,9 @@ fn s3_tables_destination_update_input_from_py(
     rboto_core::validate_input_fields(values, &["data_freshness_in_seconds"])?;
     let mut builder = aws_sdk_kinesis::types::S3TablesDestinationUpdateInput::builder();
     if let Some(value) = dict_value(values, "data_freshness_in_seconds")? {
-        let converted_270 = (|| -> PyResult<_> {
-            let converted_270: i32 = value.extract()?;
-            Ok(converted_270)
+        let converted_384 = (|| -> PyResult<_> {
+            let converted_384: i32 = value.extract()?;
+            Ok(converted_384)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2753,7 +3941,7 @@ fn s3_tables_destination_update_input_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_data_freshness_in_seconds(Some(converted_270));
+        builder = builder.set_data_freshness_in_seconds(Some(converted_384));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -2768,10 +3956,10 @@ fn s3_tables_destination_update_input_to_py(
     value: &aws_sdk_kinesis::types::S3TablesDestinationUpdateInput,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_271 = (&value.data_freshness_in_seconds)
+    let converted_385 = (&value.data_freshness_in_seconds)
         .to_owned()
         .into_py_any(py)?;
-    result.set_item("data_freshness_in_seconds", converted_271)?;
+    result.set_item("data_freshness_in_seconds", converted_385)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2785,9 +3973,9 @@ fn sequence_number_range_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::SequenceNumberRange::builder();
     if let Some(value) = dict_value(values, "starting_sequence_number")? {
-        let converted_272 = (|| -> PyResult<_> {
-            let converted_272: String = value.extract()?;
-            Ok(converted_272)
+        let converted_386 = (|| -> PyResult<_> {
+            let converted_386: String = value.extract()?;
+            Ok(converted_386)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2796,12 +3984,12 @@ fn sequence_number_range_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_starting_sequence_number(Some(converted_272));
+        builder = builder.set_starting_sequence_number(Some(converted_386));
     }
     if let Some(value) = dict_value(values, "ending_sequence_number")? {
-        let converted_273 = (|| -> PyResult<_> {
-            let converted_273: String = value.extract()?;
-            Ok(converted_273)
+        let converted_387 = (|| -> PyResult<_> {
+            let converted_387: String = value.extract()?;
+            Ok(converted_387)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2810,7 +3998,7 @@ fn sequence_number_range_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_ending_sequence_number(Some(converted_273));
+        builder = builder.set_ending_sequence_number(Some(converted_387));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -2825,11 +4013,11 @@ fn sequence_number_range_to_py(
     value: &aws_sdk_kinesis::types::SequenceNumberRange,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_274 = (&value.starting_sequence_number).as_str().into_py_any(py)?;
-    result.set_item("starting_sequence_number", converted_274)?;
+    let converted_388 = (&value.starting_sequence_number).as_str().into_py_any(py)?;
+    result.set_item("starting_sequence_number", converted_388)?;
     if let Some(value) = &value.ending_sequence_number {
-        let converted_275 = (value).as_str().into_py_any(py)?;
-        result.set_item("ending_sequence_number", converted_275)?;
+        let converted_389 = (value).as_str().into_py_any(py)?;
+        result.set_item("ending_sequence_number", converted_389)?;
     } else {
         result.set_item("ending_sequence_number", py.None())?;
     }
@@ -2850,19 +4038,19 @@ fn shard_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::S
     )?;
     let mut builder = aws_sdk_kinesis::types::Shard::builder();
     if let Some(value) = dict_value(values, "shard_id")? {
-        let converted_276 = (|| -> PyResult<_> {
-            let converted_276: String = value.extract()?;
-            Ok(converted_276)
+        let converted_390 = (|| -> PyResult<_> {
+            let converted_390: String = value.extract()?;
+            Ok(converted_390)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("shard_id"), "str")
         })?;
-        builder = builder.set_shard_id(Some(converted_276));
+        builder = builder.set_shard_id(Some(converted_390));
     }
     if let Some(value) = dict_value(values, "parent_shard_id")? {
-        let converted_277 = (|| -> PyResult<_> {
-            let converted_277: String = value.extract()?;
-            Ok(converted_277)
+        let converted_391 = (|| -> PyResult<_> {
+            let converted_391: String = value.extract()?;
+            Ok(converted_391)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2871,12 +4059,12 @@ fn shard_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::S
                 "str",
             )
         })?;
-        builder = builder.set_parent_shard_id(Some(converted_277));
+        builder = builder.set_parent_shard_id(Some(converted_391));
     }
     if let Some(value) = dict_value(values, "adjacent_parent_shard_id")? {
-        let converted_278 = (|| -> PyResult<_> {
-            let converted_278: String = value.extract()?;
-            Ok(converted_278)
+        let converted_392 = (|| -> PyResult<_> {
+            let converted_392: String = value.extract()?;
+            Ok(converted_392)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2885,12 +4073,12 @@ fn shard_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::S
                 "str",
             )
         })?;
-        builder = builder.set_adjacent_parent_shard_id(Some(converted_278));
+        builder = builder.set_adjacent_parent_shard_id(Some(converted_392));
     }
     if let Some(value) = dict_value(values, "hash_key_range")? {
-        let converted_279 = (|| -> PyResult<_> {
-            let converted_279 = hash_key_range_from_py(&value)?;
-            Ok(converted_279)
+        let converted_393 = (|| -> PyResult<_> {
+            let converted_393 = hash_key_range_from_py(&value)?;
+            Ok(converted_393)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2899,12 +4087,12 @@ fn shard_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::S
                 "dict (HashKeyRange)",
             )
         })?;
-        builder = builder.set_hash_key_range(Some(converted_279));
+        builder = builder.set_hash_key_range(Some(converted_393));
     }
     if let Some(value) = dict_value(values, "sequence_number_range")? {
-        let converted_280 = (|| -> PyResult<_> {
-            let converted_280 = sequence_number_range_from_py(&value)?;
-            Ok(converted_280)
+        let converted_394 = (|| -> PyResult<_> {
+            let converted_394 = sequence_number_range_from_py(&value)?;
+            Ok(converted_394)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2913,7 +4101,7 @@ fn shard_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::S
                 "dict (SequenceNumberRange)",
             )
         })?;
-        builder = builder.set_sequence_number_range(Some(converted_280));
+        builder = builder.set_sequence_number_range(Some(converted_394));
     }
     builder
         .build()
@@ -2922,29 +4110,29 @@ fn shard_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::S
 
 fn shard_to_py(py: Python<'_>, value: &aws_sdk_kinesis::types::Shard) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_281 = (&value.shard_id).as_str().into_py_any(py)?;
-    result.set_item("shard_id", converted_281)?;
+    let converted_395 = (&value.shard_id).as_str().into_py_any(py)?;
+    result.set_item("shard_id", converted_395)?;
     if let Some(value) = &value.parent_shard_id {
-        let converted_282 = (value).as_str().into_py_any(py)?;
-        result.set_item("parent_shard_id", converted_282)?;
+        let converted_396 = (value).as_str().into_py_any(py)?;
+        result.set_item("parent_shard_id", converted_396)?;
     } else {
         result.set_item("parent_shard_id", py.None())?;
     }
     if let Some(value) = &value.adjacent_parent_shard_id {
-        let converted_283 = (value).as_str().into_py_any(py)?;
-        result.set_item("adjacent_parent_shard_id", converted_283)?;
+        let converted_397 = (value).as_str().into_py_any(py)?;
+        result.set_item("adjacent_parent_shard_id", converted_397)?;
     } else {
         result.set_item("adjacent_parent_shard_id", py.None())?;
     }
     if let Some(value) = &value.hash_key_range {
-        let converted_284 = hash_key_range_to_py(py, value)?;
-        result.set_item("hash_key_range", converted_284)?;
+        let converted_398 = hash_key_range_to_py(py, value)?;
+        result.set_item("hash_key_range", converted_398)?;
     } else {
         result.set_item("hash_key_range", py.None())?;
     }
     if let Some(value) = &value.sequence_number_range {
-        let converted_285 = sequence_number_range_to_py(py, value)?;
-        result.set_item("sequence_number_range", converted_285)?;
+        let converted_399 = sequence_number_range_to_py(py, value)?;
+        result.set_item("sequence_number_range", converted_399)?;
     } else {
         result.set_item("sequence_number_range", py.None())?;
     }
@@ -2956,11 +4144,11 @@ fn shard_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::t
     rboto_core::validate_input_fields(values, &["shard_id", "timestamp", "type"])?;
     let mut builder = aws_sdk_kinesis::types::ShardFilter::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let converted_286 = (|| -> PyResult<_> {
-            let enum_value_287: String = value.extract()?;
-            let converted_286 =
-                aws_sdk_kinesis::types::ShardFilterType::from(enum_value_287.as_str());
-            Ok(converted_286)
+        let converted_400 = (|| -> PyResult<_> {
+            let enum_value_401: String = value.extract()?;
+            let converted_400 =
+                aws_sdk_kinesis::types::ShardFilterType::from(enum_value_401.as_str());
+            Ok(converted_400)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2969,27 +4157,27 @@ fn shard_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::t
                 "str (ShardFilterType)",
             )
         })?;
-        builder = builder.set_type(Some(converted_286));
+        builder = builder.set_type(Some(converted_400));
     }
     if let Some(value) = dict_value(values, "shard_id")? {
-        let converted_288 = (|| -> PyResult<_> {
-            let converted_288: String = value.extract()?;
-            Ok(converted_288)
+        let converted_402 = (|| -> PyResult<_> {
+            let converted_402: String = value.extract()?;
+            Ok(converted_402)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("shard_id"), "str")
         })?;
-        builder = builder.set_shard_id(Some(converted_288));
+        builder = builder.set_shard_id(Some(converted_402));
     }
     if let Some(value) = dict_value(values, "timestamp")? {
-        let converted_289 = (|| -> PyResult<_> {
-            let timestamp_290: String = value.extract()?;
-            let converted_289 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_290,
+        let converted_403 = (|| -> PyResult<_> {
+            let timestamp_404: String = value.extract()?;
+            let converted_403 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_404,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_289)
+            Ok(converted_403)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2998,7 +4186,7 @@ fn shard_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::t
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_timestamp(Some(converted_289));
+        builder = builder.set_timestamp(Some(converted_403));
     }
     builder
         .build()
@@ -3010,17 +4198,17 @@ fn shard_filter_to_py(
     value: &aws_sdk_kinesis::types::ShardFilter,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_291 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_291)?;
+    let converted_405 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_405)?;
     if let Some(value) = &value.shard_id {
-        let converted_292 = (value).as_str().into_py_any(py)?;
-        result.set_item("shard_id", converted_292)?;
+        let converted_406 = (value).as_str().into_py_any(py)?;
+        result.set_item("shard_id", converted_406)?;
     } else {
         result.set_item("shard_id", py.None())?;
     }
     if let Some(value) = &value.timestamp {
-        let converted_293 = (value).to_string().into_py_any(py)?;
-        result.set_item("timestamp", converted_293)?;
+        let converted_407 = (value).to_string().into_py_any(py)?;
+        result.set_item("timestamp", converted_407)?;
     } else {
         result.set_item("timestamp", py.None())?;
     }
@@ -3034,11 +4222,11 @@ fn starting_position_from_py(
     rboto_core::validate_input_fields(values, &["sequence_number", "timestamp", "type"])?;
     let mut builder = aws_sdk_kinesis::types::StartingPosition::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let converted_294 = (|| -> PyResult<_> {
-            let enum_value_295: String = value.extract()?;
-            let converted_294 =
-                aws_sdk_kinesis::types::ShardIteratorType::from(enum_value_295.as_str());
-            Ok(converted_294)
+        let converted_408 = (|| -> PyResult<_> {
+            let enum_value_409: String = value.extract()?;
+            let converted_408 =
+                aws_sdk_kinesis::types::ShardIteratorType::from(enum_value_409.as_str());
+            Ok(converted_408)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3047,12 +4235,12 @@ fn starting_position_from_py(
                 "str (ShardIteratorType)",
             )
         })?;
-        builder = builder.set_type(Some(converted_294));
+        builder = builder.set_type(Some(converted_408));
     }
     if let Some(value) = dict_value(values, "sequence_number")? {
-        let converted_296 = (|| -> PyResult<_> {
-            let converted_296: String = value.extract()?;
-            Ok(converted_296)
+        let converted_410 = (|| -> PyResult<_> {
+            let converted_410: String = value.extract()?;
+            Ok(converted_410)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3061,17 +4249,17 @@ fn starting_position_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_sequence_number(Some(converted_296));
+        builder = builder.set_sequence_number(Some(converted_410));
     }
     if let Some(value) = dict_value(values, "timestamp")? {
-        let converted_297 = (|| -> PyResult<_> {
-            let timestamp_298: String = value.extract()?;
-            let converted_297 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_298,
+        let converted_411 = (|| -> PyResult<_> {
+            let timestamp_412: String = value.extract()?;
+            let converted_411 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_412,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_297)
+            Ok(converted_411)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3080,7 +4268,7 @@ fn starting_position_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_timestamp(Some(converted_297));
+        builder = builder.set_timestamp(Some(converted_411));
     }
     builder
         .build()
@@ -3092,17 +4280,17 @@ fn starting_position_to_py(
     value: &aws_sdk_kinesis::types::StartingPosition,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_299 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_299)?;
+    let converted_413 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_413)?;
     if let Some(value) = &value.sequence_number {
-        let converted_300 = (value).as_str().into_py_any(py)?;
-        result.set_item("sequence_number", converted_300)?;
+        let converted_414 = (value).as_str().into_py_any(py)?;
+        result.set_item("sequence_number", converted_414)?;
     } else {
         result.set_item("sequence_number", py.None())?;
     }
     if let Some(value) = &value.timestamp {
-        let converted_301 = (value).to_string().into_py_any(py)?;
-        result.set_item("timestamp", converted_301)?;
+        let converted_415 = (value).to_string().into_py_any(py)?;
+        result.set_item("timestamp", converted_415)?;
     } else {
         result.set_item("timestamp", py.None())?;
     }
@@ -3131,30 +4319,30 @@ fn stream_description_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::StreamDescription::builder();
     if let Some(value) = dict_value(values, "stream_name")? {
-        let converted_302 = (|| -> PyResult<_> {
-            let converted_302: String = value.extract()?;
-            Ok(converted_302)
+        let converted_416 = (|| -> PyResult<_> {
+            let converted_416: String = value.extract()?;
+            Ok(converted_416)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stream_name"), "str")
         })?;
-        builder = builder.set_stream_name(Some(converted_302));
+        builder = builder.set_stream_name(Some(converted_416));
     }
     if let Some(value) = dict_value(values, "stream_arn")? {
-        let converted_303 = (|| -> PyResult<_> {
-            let converted_303: String = value.extract()?;
-            Ok(converted_303)
+        let converted_417 = (|| -> PyResult<_> {
+            let converted_417: String = value.extract()?;
+            Ok(converted_417)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stream_arn"), "str")
         })?;
-        builder = builder.set_stream_arn(Some(converted_303));
+        builder = builder.set_stream_arn(Some(converted_417));
     }
     if let Some(value) = dict_value(values, "stream_status")? {
-        let converted_304 = (|| -> PyResult<_> {
-            let enum_value_305: String = value.extract()?;
-            let converted_304 = aws_sdk_kinesis::types::StreamStatus::from(enum_value_305.as_str());
-            Ok(converted_304)
+        let converted_418 = (|| -> PyResult<_> {
+            let enum_value_419: String = value.extract()?;
+            let converted_418 = aws_sdk_kinesis::types::StreamStatus::from(enum_value_419.as_str());
+            Ok(converted_418)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3163,12 +4351,12 @@ fn stream_description_from_py(
                 "str (StreamStatus)",
             )
         })?;
-        builder = builder.set_stream_status(Some(converted_304));
+        builder = builder.set_stream_status(Some(converted_418));
     }
     if let Some(value) = dict_value(values, "stream_mode_details")? {
-        let converted_306 = (|| -> PyResult<_> {
-            let converted_306 = stream_mode_details_from_py(&value)?;
-            Ok(converted_306)
+        let converted_420 = (|| -> PyResult<_> {
+            let converted_420 = stream_mode_details_from_py(&value)?;
+            Ok(converted_420)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3177,45 +4365,45 @@ fn stream_description_from_py(
                 "dict (StreamModeDetails)",
             )
         })?;
-        builder = builder.set_stream_mode_details(Some(converted_306));
+        builder = builder.set_stream_mode_details(Some(converted_420));
     }
     if let Some(value) = dict_value(values, "shards")? {
-        let converted_307 = (|| -> PyResult<_> {
-            let mut converted_307 =
+        let converted_421 = (|| -> PyResult<_> {
+            let mut converted_421 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_311, item_result_308) in value.try_iter()?.enumerate() {
-                let item_309 = item_result_308.map_err(|error| {
+            for (index_425, item_result_422) in value.try_iter()?.enumerate() {
+                let item_423 = item_result_422.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_311),
+                        rboto_core::InputPath::Index(index_425),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_310 = (|| -> PyResult<_> {
-                    let converted_item_310 = shard_from_py(&item_309)?;
-                    Ok(converted_item_310)
+                let converted_item_424 = (|| -> PyResult<_> {
+                    let converted_item_424 = shard_from_py(&item_423)?;
+                    Ok(converted_item_424)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_311),
+                        rboto_core::InputPath::Index(index_425),
                         "dict (Shard)",
                     )
                 })?;
-                converted_307.push(converted_item_310);
+                converted_421.push(converted_item_424);
             }
-            Ok(converted_307)
+            Ok(converted_421)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("shards"), "sequence")
         })?;
-        builder = builder.set_shards(Some(converted_307));
+        builder = builder.set_shards(Some(converted_421));
     }
     if let Some(value) = dict_value(values, "has_more_shards")? {
-        let converted_312 = (|| -> PyResult<_> {
-            let converted_312: bool = value.extract()?;
-            Ok(converted_312)
+        let converted_426 = (|| -> PyResult<_> {
+            let converted_426: bool = value.extract()?;
+            Ok(converted_426)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3224,12 +4412,12 @@ fn stream_description_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_has_more_shards(Some(converted_312));
+        builder = builder.set_has_more_shards(Some(converted_426));
     }
     if let Some(value) = dict_value(values, "retention_period_hours")? {
-        let converted_313 = (|| -> PyResult<_> {
-            let converted_313: i32 = value.extract()?;
-            Ok(converted_313)
+        let converted_427 = (|| -> PyResult<_> {
+            let converted_427: i32 = value.extract()?;
+            Ok(converted_427)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3238,17 +4426,17 @@ fn stream_description_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_retention_period_hours(Some(converted_313));
+        builder = builder.set_retention_period_hours(Some(converted_427));
     }
     if let Some(value) = dict_value(values, "stream_creation_timestamp")? {
-        let converted_314 = (|| -> PyResult<_> {
-            let timestamp_315: String = value.extract()?;
-            let converted_314 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_315,
+        let converted_428 = (|| -> PyResult<_> {
+            let timestamp_429: String = value.extract()?;
+            let converted_428 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_429,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_314)
+            Ok(converted_428)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3257,35 +4445,35 @@ fn stream_description_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_stream_creation_timestamp(Some(converted_314));
+        builder = builder.set_stream_creation_timestamp(Some(converted_428));
     }
     if let Some(value) = dict_value(values, "enhanced_monitoring")? {
-        let converted_316 = (|| -> PyResult<_> {
-            let mut converted_316 =
+        let converted_430 = (|| -> PyResult<_> {
+            let mut converted_430 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_320, item_result_317) in value.try_iter()?.enumerate() {
-                let item_318 = item_result_317.map_err(|error| {
+            for (index_434, item_result_431) in value.try_iter()?.enumerate() {
+                let item_432 = item_result_431.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_320),
+                        rboto_core::InputPath::Index(index_434),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_319 = (|| -> PyResult<_> {
-                    let converted_item_319 = enhanced_metrics_from_py(&item_318)?;
-                    Ok(converted_item_319)
+                let converted_item_433 = (|| -> PyResult<_> {
+                    let converted_item_433 = enhanced_metrics_from_py(&item_432)?;
+                    Ok(converted_item_433)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_320),
+                        rboto_core::InputPath::Index(index_434),
                         "dict (EnhancedMetrics)",
                     )
                 })?;
-                converted_316.push(converted_item_319);
+                converted_430.push(converted_item_433);
             }
-            Ok(converted_316)
+            Ok(converted_430)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3294,14 +4482,14 @@ fn stream_description_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_enhanced_monitoring(Some(converted_316));
+        builder = builder.set_enhanced_monitoring(Some(converted_430));
     }
     if let Some(value) = dict_value(values, "encryption_type")? {
-        let converted_321 = (|| -> PyResult<_> {
-            let enum_value_322: String = value.extract()?;
-            let converted_321 =
-                aws_sdk_kinesis::types::EncryptionType::from(enum_value_322.as_str());
-            Ok(converted_321)
+        let converted_435 = (|| -> PyResult<_> {
+            let enum_value_436: String = value.extract()?;
+            let converted_435 =
+                aws_sdk_kinesis::types::EncryptionType::from(enum_value_436.as_str());
+            Ok(converted_435)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3310,17 +4498,17 @@ fn stream_description_from_py(
                 "str (EncryptionType)",
             )
         })?;
-        builder = builder.set_encryption_type(Some(converted_321));
+        builder = builder.set_encryption_type(Some(converted_435));
     }
     if let Some(value) = dict_value(values, "key_id")? {
-        let converted_323 = (|| -> PyResult<_> {
-            let converted_323: String = value.extract()?;
-            Ok(converted_323)
+        let converted_437 = (|| -> PyResult<_> {
+            let converted_437: String = value.extract()?;
+            Ok(converted_437)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str")
         })?;
-        builder = builder.set_key_id(Some(converted_323));
+        builder = builder.set_key_id(Some(converted_437));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -3344,49 +4532,49 @@ fn stream_description_to_py(
     value: &aws_sdk_kinesis::types::StreamDescription,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_324 = (&value.stream_name).as_str().into_py_any(py)?;
-    result.set_item("stream_name", converted_324)?;
-    let converted_325 = (&value.stream_arn).as_str().into_py_any(py)?;
-    result.set_item("stream_arn", converted_325)?;
-    let converted_326 = (&value.stream_status).as_str().into_py_any(py)?;
-    result.set_item("stream_status", converted_326)?;
+    let converted_438 = (&value.stream_name).as_str().into_py_any(py)?;
+    result.set_item("stream_name", converted_438)?;
+    let converted_439 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_439)?;
+    let converted_440 = (&value.stream_status).as_str().into_py_any(py)?;
+    result.set_item("stream_status", converted_440)?;
     if let Some(value) = &value.stream_mode_details {
-        let converted_327 = stream_mode_details_to_py(py, value)?;
-        result.set_item("stream_mode_details", converted_327)?;
+        let converted_441 = stream_mode_details_to_py(py, value)?;
+        result.set_item("stream_mode_details", converted_441)?;
     } else {
         result.set_item("stream_mode_details", py.None())?;
     }
-    let converted_328_list = PyList::empty(py);
-    for item_329 in &value.shards {
-        let converted_item_330 = shard_to_py(py, item_329)?;
-        converted_328_list.append(converted_item_330)?;
+    let converted_442_list = PyList::empty(py);
+    for item_443 in &value.shards {
+        let converted_item_444 = shard_to_py(py, item_443)?;
+        converted_442_list.append(converted_item_444)?;
     }
-    let converted_328 = converted_328_list.into_any().unbind();
-    result.set_item("shards", converted_328)?;
-    let converted_331 = (&value.has_more_shards).to_owned().into_py_any(py)?;
-    result.set_item("has_more_shards", converted_331)?;
-    let converted_332 = (&value.retention_period_hours).to_owned().into_py_any(py)?;
-    result.set_item("retention_period_hours", converted_332)?;
-    let converted_333 = (&value.stream_creation_timestamp)
+    let converted_442 = converted_442_list.into_any().unbind();
+    result.set_item("shards", converted_442)?;
+    let converted_445 = (&value.has_more_shards).to_owned().into_py_any(py)?;
+    result.set_item("has_more_shards", converted_445)?;
+    let converted_446 = (&value.retention_period_hours).to_owned().into_py_any(py)?;
+    result.set_item("retention_period_hours", converted_446)?;
+    let converted_447 = (&value.stream_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("stream_creation_timestamp", converted_333)?;
-    let converted_334_list = PyList::empty(py);
-    for item_335 in &value.enhanced_monitoring {
-        let converted_item_336 = enhanced_metrics_to_py(py, item_335)?;
-        converted_334_list.append(converted_item_336)?;
+    result.set_item("stream_creation_timestamp", converted_447)?;
+    let converted_448_list = PyList::empty(py);
+    for item_449 in &value.enhanced_monitoring {
+        let converted_item_450 = enhanced_metrics_to_py(py, item_449)?;
+        converted_448_list.append(converted_item_450)?;
     }
-    let converted_334 = converted_334_list.into_any().unbind();
-    result.set_item("enhanced_monitoring", converted_334)?;
+    let converted_448 = converted_448_list.into_any().unbind();
+    result.set_item("enhanced_monitoring", converted_448)?;
     if let Some(value) = &value.encryption_type {
-        let converted_337 = (value).as_str().into_py_any(py)?;
-        result.set_item("encryption_type", converted_337)?;
+        let converted_451 = (value).as_str().into_py_any(py)?;
+        result.set_item("encryption_type", converted_451)?;
     } else {
         result.set_item("encryption_type", py.None())?;
     }
     if let Some(value) = &value.key_id {
-        let converted_338 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_id", converted_338)?;
+        let converted_452 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_id", converted_452)?;
     } else {
         result.set_item("key_id", py.None())?;
     }
@@ -3407,6 +4595,7 @@ fn stream_description_summary_from_py(
             "key_id",
             "max_record_size_in_kib",
             "open_shard_count",
+            "queue_count",
             "record_distribution_strategy",
             "retention_period_hours",
             "stream_arn",
@@ -3420,40 +4609,40 @@ fn stream_description_summary_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::StreamDescriptionSummary::builder();
     if let Some(value) = dict_value(values, "stream_name")? {
-        let converted_339 = (|| -> PyResult<_> {
-            let converted_339: String = value.extract()?;
-            Ok(converted_339)
+        let converted_453 = (|| -> PyResult<_> {
+            let converted_453: String = value.extract()?;
+            Ok(converted_453)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stream_name"), "str")
         })?;
-        builder = builder.set_stream_name(Some(converted_339));
+        builder = builder.set_stream_name(Some(converted_453));
     }
     if let Some(value) = dict_value(values, "stream_arn")? {
-        let converted_340 = (|| -> PyResult<_> {
-            let converted_340: String = value.extract()?;
-            Ok(converted_340)
+        let converted_454 = (|| -> PyResult<_> {
+            let converted_454: String = value.extract()?;
+            Ok(converted_454)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stream_arn"), "str")
         })?;
-        builder = builder.set_stream_arn(Some(converted_340));
+        builder = builder.set_stream_arn(Some(converted_454));
     }
     if let Some(value) = dict_value(values, "stream_id")? {
-        let converted_341 = (|| -> PyResult<_> {
-            let converted_341: String = value.extract()?;
-            Ok(converted_341)
+        let converted_455 = (|| -> PyResult<_> {
+            let converted_455: String = value.extract()?;
+            Ok(converted_455)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stream_id"), "str")
         })?;
-        builder = builder.set_stream_id(Some(converted_341));
+        builder = builder.set_stream_id(Some(converted_455));
     }
     if let Some(value) = dict_value(values, "stream_status")? {
-        let converted_342 = (|| -> PyResult<_> {
-            let enum_value_343: String = value.extract()?;
-            let converted_342 = aws_sdk_kinesis::types::StreamStatus::from(enum_value_343.as_str());
-            Ok(converted_342)
+        let converted_456 = (|| -> PyResult<_> {
+            let enum_value_457: String = value.extract()?;
+            let converted_456 = aws_sdk_kinesis::types::StreamStatus::from(enum_value_457.as_str());
+            Ok(converted_456)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3462,12 +4651,12 @@ fn stream_description_summary_from_py(
                 "str (StreamStatus)",
             )
         })?;
-        builder = builder.set_stream_status(Some(converted_342));
+        builder = builder.set_stream_status(Some(converted_456));
     }
     if let Some(value) = dict_value(values, "stream_mode_details")? {
-        let converted_344 = (|| -> PyResult<_> {
-            let converted_344 = stream_mode_details_from_py(&value)?;
-            Ok(converted_344)
+        let converted_458 = (|| -> PyResult<_> {
+            let converted_458 = stream_mode_details_from_py(&value)?;
+            Ok(converted_458)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3476,12 +4665,12 @@ fn stream_description_summary_from_py(
                 "dict (StreamModeDetails)",
             )
         })?;
-        builder = builder.set_stream_mode_details(Some(converted_344));
+        builder = builder.set_stream_mode_details(Some(converted_458));
     }
     if let Some(value) = dict_value(values, "retention_period_hours")? {
-        let converted_345 = (|| -> PyResult<_> {
-            let converted_345: i32 = value.extract()?;
-            Ok(converted_345)
+        let converted_459 = (|| -> PyResult<_> {
+            let converted_459: i32 = value.extract()?;
+            Ok(converted_459)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3490,17 +4679,17 @@ fn stream_description_summary_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_retention_period_hours(Some(converted_345));
+        builder = builder.set_retention_period_hours(Some(converted_459));
     }
     if let Some(value) = dict_value(values, "stream_creation_timestamp")? {
-        let converted_346 = (|| -> PyResult<_> {
-            let timestamp_347: String = value.extract()?;
-            let converted_346 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_347,
+        let converted_460 = (|| -> PyResult<_> {
+            let timestamp_461: String = value.extract()?;
+            let converted_460 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_461,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_346)
+            Ok(converted_460)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3509,35 +4698,35 @@ fn stream_description_summary_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_stream_creation_timestamp(Some(converted_346));
+        builder = builder.set_stream_creation_timestamp(Some(converted_460));
     }
     if let Some(value) = dict_value(values, "enhanced_monitoring")? {
-        let converted_348 = (|| -> PyResult<_> {
-            let mut converted_348 =
+        let converted_462 = (|| -> PyResult<_> {
+            let mut converted_462 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_352, item_result_349) in value.try_iter()?.enumerate() {
-                let item_350 = item_result_349.map_err(|error| {
+            for (index_466, item_result_463) in value.try_iter()?.enumerate() {
+                let item_464 = item_result_463.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_352),
+                        rboto_core::InputPath::Index(index_466),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_351 = (|| -> PyResult<_> {
-                    let converted_item_351 = enhanced_metrics_from_py(&item_350)?;
-                    Ok(converted_item_351)
+                let converted_item_465 = (|| -> PyResult<_> {
+                    let converted_item_465 = enhanced_metrics_from_py(&item_464)?;
+                    Ok(converted_item_465)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_352),
+                        rboto_core::InputPath::Index(index_466),
                         "dict (EnhancedMetrics)",
                     )
                 })?;
-                converted_348.push(converted_item_351);
+                converted_462.push(converted_item_465);
             }
-            Ok(converted_348)
+            Ok(converted_462)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3546,14 +4735,14 @@ fn stream_description_summary_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_enhanced_monitoring(Some(converted_348));
+        builder = builder.set_enhanced_monitoring(Some(converted_462));
     }
     if let Some(value) = dict_value(values, "encryption_type")? {
-        let converted_353 = (|| -> PyResult<_> {
-            let enum_value_354: String = value.extract()?;
-            let converted_353 =
-                aws_sdk_kinesis::types::EncryptionType::from(enum_value_354.as_str());
-            Ok(converted_353)
+        let converted_467 = (|| -> PyResult<_> {
+            let enum_value_468: String = value.extract()?;
+            let converted_467 =
+                aws_sdk_kinesis::types::EncryptionType::from(enum_value_468.as_str());
+            Ok(converted_467)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3562,22 +4751,22 @@ fn stream_description_summary_from_py(
                 "str (EncryptionType)",
             )
         })?;
-        builder = builder.set_encryption_type(Some(converted_353));
+        builder = builder.set_encryption_type(Some(converted_467));
     }
     if let Some(value) = dict_value(values, "key_id")? {
-        let converted_355 = (|| -> PyResult<_> {
-            let converted_355: String = value.extract()?;
-            Ok(converted_355)
+        let converted_469 = (|| -> PyResult<_> {
+            let converted_469: String = value.extract()?;
+            Ok(converted_469)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str")
         })?;
-        builder = builder.set_key_id(Some(converted_355));
+        builder = builder.set_key_id(Some(converted_469));
     }
     if let Some(value) = dict_value(values, "open_shard_count")? {
-        let converted_356 = (|| -> PyResult<_> {
-            let converted_356: i32 = value.extract()?;
-            Ok(converted_356)
+        let converted_470 = (|| -> PyResult<_> {
+            let converted_470: i32 = value.extract()?;
+            Ok(converted_470)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3586,22 +4775,22 @@ fn stream_description_summary_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_open_shard_count(Some(converted_356));
+        builder = builder.set_open_shard_count(Some(converted_470));
     }
     if let Some(value) = dict_value(values, "consumer_count")? {
-        let converted_357 = (|| -> PyResult<_> {
-            let converted_357: i32 = value.extract()?;
-            Ok(converted_357)
+        let converted_471 = (|| -> PyResult<_> {
+            let converted_471: i32 = value.extract()?;
+            Ok(converted_471)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("consumer_count"), "int")
         })?;
-        builder = builder.set_consumer_count(Some(converted_357));
+        builder = builder.set_consumer_count(Some(converted_471));
     }
     if let Some(value) = dict_value(values, "warm_throughput")? {
-        let converted_358 = (|| -> PyResult<_> {
-            let converted_358 = warm_throughput_object_from_py(&value)?;
-            Ok(converted_358)
+        let converted_472 = (|| -> PyResult<_> {
+            let converted_472 = warm_throughput_object_from_py(&value)?;
+            Ok(converted_472)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3610,12 +4799,12 @@ fn stream_description_summary_from_py(
                 "dict (WarmThroughputObject)",
             )
         })?;
-        builder = builder.set_warm_throughput(Some(converted_358));
+        builder = builder.set_warm_throughput(Some(converted_472));
     }
     if let Some(value) = dict_value(values, "max_record_size_in_kib")? {
-        let converted_359 = (|| -> PyResult<_> {
-            let converted_359: i32 = value.extract()?;
-            Ok(converted_359)
+        let converted_473 = (|| -> PyResult<_> {
+            let converted_473: i32 = value.extract()?;
+            Ok(converted_473)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3624,24 +4813,24 @@ fn stream_description_summary_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_max_record_size_in_kib(Some(converted_359));
+        builder = builder.set_max_record_size_in_kib(Some(converted_473));
     }
     if let Some(value) = dict_value(values, "channel_count")? {
-        let converted_360 = (|| -> PyResult<_> {
-            let converted_360: i32 = value.extract()?;
-            Ok(converted_360)
+        let converted_474 = (|| -> PyResult<_> {
+            let converted_474: i32 = value.extract()?;
+            Ok(converted_474)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("channel_count"), "int")
         })?;
-        builder = builder.set_channel_count(Some(converted_360));
+        builder = builder.set_channel_count(Some(converted_474));
     }
     if let Some(value) = dict_value(values, "record_distribution_strategy")? {
-        let converted_361 = (|| -> PyResult<_> {
-            let enum_value_362: String = value.extract()?;
-            let converted_361 =
-                aws_sdk_kinesis::types::RecordDistributionStrategy::from(enum_value_362.as_str());
-            Ok(converted_361)
+        let converted_475 = (|| -> PyResult<_> {
+            let enum_value_476: String = value.extract()?;
+            let converted_475 =
+                aws_sdk_kinesis::types::RecordDistributionStrategy::from(enum_value_476.as_str());
+            Ok(converted_475)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3650,7 +4839,17 @@ fn stream_description_summary_from_py(
                 "str (RecordDistributionStrategy)",
             )
         })?;
-        builder = builder.set_record_distribution_strategy(Some(converted_361));
+        builder = builder.set_record_distribution_strategy(Some(converted_475));
+    }
+    if let Some(value) = dict_value(values, "queue_count")? {
+        let converted_477 = (|| -> PyResult<_> {
+            let converted_477: i32 = value.extract()?;
+            Ok(converted_477)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("queue_count"), "int")
+        })?;
+        builder = builder.set_queue_count(Some(converted_477));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -3673,80 +4872,86 @@ fn stream_description_summary_to_py(
     value: &aws_sdk_kinesis::types::StreamDescriptionSummary,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_363 = (&value.stream_name).as_str().into_py_any(py)?;
-    result.set_item("stream_name", converted_363)?;
-    let converted_364 = (&value.stream_arn).as_str().into_py_any(py)?;
-    result.set_item("stream_arn", converted_364)?;
+    let converted_478 = (&value.stream_name).as_str().into_py_any(py)?;
+    result.set_item("stream_name", converted_478)?;
+    let converted_479 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_479)?;
     if let Some(value) = &value.stream_id {
-        let converted_365 = (value).as_str().into_py_any(py)?;
-        result.set_item("stream_id", converted_365)?;
+        let converted_480 = (value).as_str().into_py_any(py)?;
+        result.set_item("stream_id", converted_480)?;
     } else {
         result.set_item("stream_id", py.None())?;
     }
-    let converted_366 = (&value.stream_status).as_str().into_py_any(py)?;
-    result.set_item("stream_status", converted_366)?;
+    let converted_481 = (&value.stream_status).as_str().into_py_any(py)?;
+    result.set_item("stream_status", converted_481)?;
     if let Some(value) = &value.stream_mode_details {
-        let converted_367 = stream_mode_details_to_py(py, value)?;
-        result.set_item("stream_mode_details", converted_367)?;
+        let converted_482 = stream_mode_details_to_py(py, value)?;
+        result.set_item("stream_mode_details", converted_482)?;
     } else {
         result.set_item("stream_mode_details", py.None())?;
     }
-    let converted_368 = (&value.retention_period_hours).to_owned().into_py_any(py)?;
-    result.set_item("retention_period_hours", converted_368)?;
-    let converted_369 = (&value.stream_creation_timestamp)
+    let converted_483 = (&value.retention_period_hours).to_owned().into_py_any(py)?;
+    result.set_item("retention_period_hours", converted_483)?;
+    let converted_484 = (&value.stream_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("stream_creation_timestamp", converted_369)?;
-    let converted_370_list = PyList::empty(py);
-    for item_371 in &value.enhanced_monitoring {
-        let converted_item_372 = enhanced_metrics_to_py(py, item_371)?;
-        converted_370_list.append(converted_item_372)?;
+    result.set_item("stream_creation_timestamp", converted_484)?;
+    let converted_485_list = PyList::empty(py);
+    for item_486 in &value.enhanced_monitoring {
+        let converted_item_487 = enhanced_metrics_to_py(py, item_486)?;
+        converted_485_list.append(converted_item_487)?;
     }
-    let converted_370 = converted_370_list.into_any().unbind();
-    result.set_item("enhanced_monitoring", converted_370)?;
+    let converted_485 = converted_485_list.into_any().unbind();
+    result.set_item("enhanced_monitoring", converted_485)?;
     if let Some(value) = &value.encryption_type {
-        let converted_373 = (value).as_str().into_py_any(py)?;
-        result.set_item("encryption_type", converted_373)?;
+        let converted_488 = (value).as_str().into_py_any(py)?;
+        result.set_item("encryption_type", converted_488)?;
     } else {
         result.set_item("encryption_type", py.None())?;
     }
     if let Some(value) = &value.key_id {
-        let converted_374 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_id", converted_374)?;
+        let converted_489 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_id", converted_489)?;
     } else {
         result.set_item("key_id", py.None())?;
     }
-    let converted_375 = (&value.open_shard_count).to_owned().into_py_any(py)?;
-    result.set_item("open_shard_count", converted_375)?;
+    let converted_490 = (&value.open_shard_count).to_owned().into_py_any(py)?;
+    result.set_item("open_shard_count", converted_490)?;
     if let Some(value) = &value.consumer_count {
-        let converted_376 = (value).to_owned().into_py_any(py)?;
-        result.set_item("consumer_count", converted_376)?;
+        let converted_491 = (value).to_owned().into_py_any(py)?;
+        result.set_item("consumer_count", converted_491)?;
     } else {
         result.set_item("consumer_count", py.None())?;
     }
     if let Some(value) = &value.warm_throughput {
-        let converted_377 = warm_throughput_object_to_py(py, value)?;
-        result.set_item("warm_throughput", converted_377)?;
+        let converted_492 = warm_throughput_object_to_py(py, value)?;
+        result.set_item("warm_throughput", converted_492)?;
     } else {
         result.set_item("warm_throughput", py.None())?;
     }
     if let Some(value) = &value.max_record_size_in_kib {
-        let converted_378 = (value).to_owned().into_py_any(py)?;
-        result.set_item("max_record_size_in_kib", converted_378)?;
+        let converted_493 = (value).to_owned().into_py_any(py)?;
+        result.set_item("max_record_size_in_kib", converted_493)?;
     } else {
         result.set_item("max_record_size_in_kib", py.None())?;
     }
     if let Some(value) = &value.channel_count {
-        let converted_379 = (value).to_owned().into_py_any(py)?;
-        result.set_item("channel_count", converted_379)?;
+        let converted_494 = (value).to_owned().into_py_any(py)?;
+        result.set_item("channel_count", converted_494)?;
     } else {
         result.set_item("channel_count", py.None())?;
     }
     if let Some(value) = &value.record_distribution_strategy {
-        let converted_380 = (value).as_str().into_py_any(py)?;
-        result.set_item("record_distribution_strategy", converted_380)?;
+        let converted_495 = (value).as_str().into_py_any(py)?;
+        result.set_item("record_distribution_strategy", converted_495)?;
     } else {
         result.set_item("record_distribution_strategy", py.None())?;
+    }
+    if let Some(value) = &value.queue_count {
+        let converted_496 = (value).to_owned().into_py_any(py)?;
+        result.set_item("queue_count", converted_496)?;
+    } else {
+        result.set_item("queue_count", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -3758,24 +4963,24 @@ fn stream_filter_from_py(
     rboto_core::validate_input_fields(values, &["stream_arn", "stream_creation_timestamp"])?;
     let mut builder = aws_sdk_kinesis::types::StreamFilter::builder();
     if let Some(value) = dict_value(values, "stream_arn")? {
-        let converted_381 = (|| -> PyResult<_> {
-            let converted_381: String = value.extract()?;
-            Ok(converted_381)
+        let converted_497 = (|| -> PyResult<_> {
+            let converted_497: String = value.extract()?;
+            Ok(converted_497)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stream_arn"), "str")
         })?;
-        builder = builder.set_stream_arn(Some(converted_381));
+        builder = builder.set_stream_arn(Some(converted_497));
     }
     if let Some(value) = dict_value(values, "stream_creation_timestamp")? {
-        let converted_382 = (|| -> PyResult<_> {
-            let timestamp_383: String = value.extract()?;
-            let converted_382 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_383,
+        let converted_498 = (|| -> PyResult<_> {
+            let timestamp_499: String = value.extract()?;
+            let converted_498 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_499,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_382)
+            Ok(converted_498)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3784,7 +4989,7 @@ fn stream_filter_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_stream_creation_timestamp(Some(converted_382));
+        builder = builder.set_stream_creation_timestamp(Some(converted_498));
     }
     builder
         .build()
@@ -3796,11 +5001,11 @@ fn stream_filter_to_py(
     value: &aws_sdk_kinesis::types::StreamFilter,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_384 = (&value.stream_arn).as_str().into_py_any(py)?;
-    result.set_item("stream_arn", converted_384)?;
+    let converted_500 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_500)?;
     if let Some(value) = &value.stream_creation_timestamp {
-        let converted_385 = (value).to_string().into_py_any(py)?;
-        result.set_item("stream_creation_timestamp", converted_385)?;
+        let converted_501 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_creation_timestamp", converted_501)?;
     } else {
         result.set_item("stream_creation_timestamp", py.None())?;
     }
@@ -3814,10 +5019,10 @@ fn stream_mode_details_from_py(
     rboto_core::validate_input_fields(values, &["stream_mode"])?;
     let mut builder = aws_sdk_kinesis::types::StreamModeDetails::builder();
     if let Some(value) = dict_value(values, "stream_mode")? {
-        let converted_386 = (|| -> PyResult<_> {
-            let enum_value_387: String = value.extract()?;
-            let converted_386 = aws_sdk_kinesis::types::StreamMode::from(enum_value_387.as_str());
-            Ok(converted_386)
+        let converted_502 = (|| -> PyResult<_> {
+            let enum_value_503: String = value.extract()?;
+            let converted_502 = aws_sdk_kinesis::types::StreamMode::from(enum_value_503.as_str());
+            Ok(converted_502)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3826,7 +5031,7 @@ fn stream_mode_details_from_py(
                 "str (StreamMode)",
             )
         })?;
-        builder = builder.set_stream_mode(Some(converted_386));
+        builder = builder.set_stream_mode(Some(converted_502));
     }
     builder
         .build()
@@ -3838,8 +5043,8 @@ fn stream_mode_details_to_py(
     value: &aws_sdk_kinesis::types::StreamModeDetails,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_388 = (&value.stream_mode).as_str().into_py_any(py)?;
-    result.set_item("stream_mode", converted_388)?;
+    let converted_504 = (&value.stream_mode).as_str().into_py_any(py)?;
+    result.set_item("stream_mode", converted_504)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3859,30 +5064,30 @@ fn stream_summary_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::StreamSummary::builder();
     if let Some(value) = dict_value(values, "stream_name")? {
-        let converted_389 = (|| -> PyResult<_> {
-            let converted_389: String = value.extract()?;
-            Ok(converted_389)
+        let converted_505 = (|| -> PyResult<_> {
+            let converted_505: String = value.extract()?;
+            Ok(converted_505)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stream_name"), "str")
         })?;
-        builder = builder.set_stream_name(Some(converted_389));
+        builder = builder.set_stream_name(Some(converted_505));
     }
     if let Some(value) = dict_value(values, "stream_arn")? {
-        let converted_390 = (|| -> PyResult<_> {
-            let converted_390: String = value.extract()?;
-            Ok(converted_390)
+        let converted_506 = (|| -> PyResult<_> {
+            let converted_506: String = value.extract()?;
+            Ok(converted_506)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("stream_arn"), "str")
         })?;
-        builder = builder.set_stream_arn(Some(converted_390));
+        builder = builder.set_stream_arn(Some(converted_506));
     }
     if let Some(value) = dict_value(values, "stream_status")? {
-        let converted_391 = (|| -> PyResult<_> {
-            let enum_value_392: String = value.extract()?;
-            let converted_391 = aws_sdk_kinesis::types::StreamStatus::from(enum_value_392.as_str());
-            Ok(converted_391)
+        let converted_507 = (|| -> PyResult<_> {
+            let enum_value_508: String = value.extract()?;
+            let converted_507 = aws_sdk_kinesis::types::StreamStatus::from(enum_value_508.as_str());
+            Ok(converted_507)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3891,12 +5096,12 @@ fn stream_summary_from_py(
                 "str (StreamStatus)",
             )
         })?;
-        builder = builder.set_stream_status(Some(converted_391));
+        builder = builder.set_stream_status(Some(converted_507));
     }
     if let Some(value) = dict_value(values, "stream_mode_details")? {
-        let converted_393 = (|| -> PyResult<_> {
-            let converted_393 = stream_mode_details_from_py(&value)?;
-            Ok(converted_393)
+        let converted_509 = (|| -> PyResult<_> {
+            let converted_509 = stream_mode_details_from_py(&value)?;
+            Ok(converted_509)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3905,17 +5110,17 @@ fn stream_summary_from_py(
                 "dict (StreamModeDetails)",
             )
         })?;
-        builder = builder.set_stream_mode_details(Some(converted_393));
+        builder = builder.set_stream_mode_details(Some(converted_509));
     }
     if let Some(value) = dict_value(values, "stream_creation_timestamp")? {
-        let converted_394 = (|| -> PyResult<_> {
-            let timestamp_395: String = value.extract()?;
-            let converted_394 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_395,
+        let converted_510 = (|| -> PyResult<_> {
+            let timestamp_511: String = value.extract()?;
+            let converted_510 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_511,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_394)
+            Ok(converted_510)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -3924,7 +5129,7 @@ fn stream_summary_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_stream_creation_timestamp(Some(converted_394));
+        builder = builder.set_stream_creation_timestamp(Some(converted_510));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -3943,21 +5148,21 @@ fn stream_summary_to_py(
     value: &aws_sdk_kinesis::types::StreamSummary,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_396 = (&value.stream_name).as_str().into_py_any(py)?;
-    result.set_item("stream_name", converted_396)?;
-    let converted_397 = (&value.stream_arn).as_str().into_py_any(py)?;
-    result.set_item("stream_arn", converted_397)?;
-    let converted_398 = (&value.stream_status).as_str().into_py_any(py)?;
-    result.set_item("stream_status", converted_398)?;
+    let converted_512 = (&value.stream_name).as_str().into_py_any(py)?;
+    result.set_item("stream_name", converted_512)?;
+    let converted_513 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_513)?;
+    let converted_514 = (&value.stream_status).as_str().into_py_any(py)?;
+    result.set_item("stream_status", converted_514)?;
     if let Some(value) = &value.stream_mode_details {
-        let converted_399 = stream_mode_details_to_py(py, value)?;
-        result.set_item("stream_mode_details", converted_399)?;
+        let converted_515 = stream_mode_details_to_py(py, value)?;
+        result.set_item("stream_mode_details", converted_515)?;
     } else {
         result.set_item("stream_mode_details", py.None())?;
     }
     if let Some(value) = &value.stream_creation_timestamp {
-        let converted_400 = (value).to_string().into_py_any(py)?;
-        result.set_item("stream_creation_timestamp", converted_400)?;
+        let converted_516 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_creation_timestamp", converted_516)?;
     } else {
         result.set_item("stream_creation_timestamp", py.None())?;
     }
@@ -3979,42 +5184,42 @@ fn subscribe_to_shard_event_from_py(
     )?;
     let mut builder = aws_sdk_kinesis::types::SubscribeToShardEvent::builder();
     if let Some(value) = dict_value(values, "records")? {
-        let converted_401 = (|| -> PyResult<_> {
-            let mut converted_401 =
+        let converted_517 = (|| -> PyResult<_> {
+            let mut converted_517 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_405, item_result_402) in value.try_iter()?.enumerate() {
-                let item_403 = item_result_402.map_err(|error| {
+            for (index_521, item_result_518) in value.try_iter()?.enumerate() {
+                let item_519 = item_result_518.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_405),
+                        rboto_core::InputPath::Index(index_521),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_404 = (|| -> PyResult<_> {
-                    let converted_item_404 = record_from_py(&item_403)?;
-                    Ok(converted_item_404)
+                let converted_item_520 = (|| -> PyResult<_> {
+                    let converted_item_520 = record_from_py(&item_519)?;
+                    Ok(converted_item_520)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_405),
+                        rboto_core::InputPath::Index(index_521),
                         "dict (Record)",
                     )
                 })?;
-                converted_401.push(converted_item_404);
+                converted_517.push(converted_item_520);
             }
-            Ok(converted_401)
+            Ok(converted_517)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("records"), "sequence")
         })?;
-        builder = builder.set_records(Some(converted_401));
+        builder = builder.set_records(Some(converted_517));
     }
     if let Some(value) = dict_value(values, "continuation_sequence_number")? {
-        let converted_406 = (|| -> PyResult<_> {
-            let converted_406: String = value.extract()?;
-            Ok(converted_406)
+        let converted_522 = (|| -> PyResult<_> {
+            let converted_522: String = value.extract()?;
+            Ok(converted_522)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -4023,12 +5228,12 @@ fn subscribe_to_shard_event_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_continuation_sequence_number(Some(converted_406));
+        builder = builder.set_continuation_sequence_number(Some(converted_522));
     }
     if let Some(value) = dict_value(values, "millis_behind_latest")? {
-        let converted_407 = (|| -> PyResult<_> {
-            let converted_407: i64 = value.extract()?;
-            Ok(converted_407)
+        let converted_523 = (|| -> PyResult<_> {
+            let converted_523: i64 = value.extract()?;
+            Ok(converted_523)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -4037,35 +5242,35 @@ fn subscribe_to_shard_event_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_millis_behind_latest(Some(converted_407));
+        builder = builder.set_millis_behind_latest(Some(converted_523));
     }
     if let Some(value) = dict_value(values, "child_shards")? {
-        let converted_408 = (|| -> PyResult<_> {
-            let mut converted_408 =
+        let converted_524 = (|| -> PyResult<_> {
+            let mut converted_524 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_412, item_result_409) in value.try_iter()?.enumerate() {
-                let item_410 = item_result_409.map_err(|error| {
+            for (index_528, item_result_525) in value.try_iter()?.enumerate() {
+                let item_526 = item_result_525.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_412),
+                        rboto_core::InputPath::Index(index_528),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_411 = (|| -> PyResult<_> {
-                    let converted_item_411 = child_shard_from_py(&item_410)?;
-                    Ok(converted_item_411)
+                let converted_item_527 = (|| -> PyResult<_> {
+                    let converted_item_527 = child_shard_from_py(&item_526)?;
+                    Ok(converted_item_527)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_412),
+                        rboto_core::InputPath::Index(index_528),
                         "dict (ChildShard)",
                     )
                 })?;
-                converted_408.push(converted_item_411);
+                converted_524.push(converted_item_527);
             }
-            Ok(converted_408)
+            Ok(converted_524)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -4074,7 +5279,7 @@ fn subscribe_to_shard_event_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_child_shards(Some(converted_408));
+        builder = builder.set_child_shards(Some(converted_524));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -4096,27 +5301,27 @@ fn subscribe_to_shard_event_to_py(
     value: &aws_sdk_kinesis::types::SubscribeToShardEvent,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_413_list = PyList::empty(py);
-    for item_414 in &value.records {
-        let converted_item_415 = record_to_py(py, item_414)?;
-        converted_413_list.append(converted_item_415)?;
+    let converted_529_list = PyList::empty(py);
+    for item_530 in &value.records {
+        let converted_item_531 = record_to_py(py, item_530)?;
+        converted_529_list.append(converted_item_531)?;
     }
-    let converted_413 = converted_413_list.into_any().unbind();
-    result.set_item("records", converted_413)?;
-    let converted_416 = (&value.continuation_sequence_number)
+    let converted_529 = converted_529_list.into_any().unbind();
+    result.set_item("records", converted_529)?;
+    let converted_532 = (&value.continuation_sequence_number)
         .as_str()
         .into_py_any(py)?;
-    result.set_item("continuation_sequence_number", converted_416)?;
-    let converted_417 = (&value.millis_behind_latest).to_owned().into_py_any(py)?;
-    result.set_item("millis_behind_latest", converted_417)?;
+    result.set_item("continuation_sequence_number", converted_532)?;
+    let converted_533 = (&value.millis_behind_latest).to_owned().into_py_any(py)?;
+    result.set_item("millis_behind_latest", converted_533)?;
     if let Some(value) = &value.child_shards {
-        let converted_418_list = PyList::empty(py);
-        for item_419 in value {
-            let converted_item_420 = child_shard_to_py(py, item_419)?;
-            converted_418_list.append(converted_item_420)?;
+        let converted_534_list = PyList::empty(py);
+        for item_535 in value {
+            let converted_item_536 = child_shard_to_py(py, item_535)?;
+            converted_534_list.append(converted_item_536)?;
         }
-        let converted_418 = converted_418_list.into_any().unbind();
-        result.set_item("child_shards", converted_418)?;
+        let converted_534 = converted_534_list.into_any().unbind();
+        result.set_item("child_shards", converted_534)?;
     } else {
         result.set_item("child_shards", py.None())?;
     }
@@ -4136,9 +5341,9 @@ fn subscribe_to_shard_event_stream_from_py(
         ));
     }
     if let Some(value) = dict_value(values, "subscribe_to_shard_event")? {
-        let converted_421 = (|| -> PyResult<_> {
-            let converted_421 = subscribe_to_shard_event_from_py(&value)?;
-            Ok(converted_421)
+        let converted_537 = (|| -> PyResult<_> {
+            let converted_537 = subscribe_to_shard_event_from_py(&value)?;
+            Ok(converted_537)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -4149,7 +5354,7 @@ fn subscribe_to_shard_event_stream_from_py(
         })?;
         return Ok(
             aws_sdk_kinesis::types::SubscribeToShardEventStream::SubscribeToShardEvent(
-                converted_421,
+                converted_537,
             ),
         );
     }
@@ -4168,8 +5373,8 @@ fn subscribe_to_shard_event_stream_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_kinesis::types::SubscribeToShardEventStream::SubscribeToShardEvent(value) => {
-            let converted_422 = subscribe_to_shard_event_to_py(py, value)?;
-            result.set_item("subscribe_to_shard_event", converted_422)?;
+            let converted_538 = subscribe_to_shard_event_to_py(py, value)?;
+            result.set_item("subscribe_to_shard_event", converted_538)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -4183,24 +5388,24 @@ fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::Tag
     rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_kinesis::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
-        let converted_423 = (|| -> PyResult<_> {
-            let converted_423: String = value.extract()?;
-            Ok(converted_423)
+        let converted_539 = (|| -> PyResult<_> {
+            let converted_539: String = value.extract()?;
+            Ok(converted_539)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("key"), "str")
         })?;
-        builder = builder.set_key(Some(converted_423));
+        builder = builder.set_key(Some(converted_539));
     }
     if let Some(value) = dict_value(values, "value")? {
-        let converted_424 = (|| -> PyResult<_> {
-            let converted_424: String = value.extract()?;
-            Ok(converted_424)
+        let converted_540 = (|| -> PyResult<_> {
+            let converted_540: String = value.extract()?;
+            Ok(converted_540)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("value"), "str")
         })?;
-        builder = builder.set_value(Some(converted_424));
+        builder = builder.set_value(Some(converted_540));
     }
     builder
         .build()
@@ -4209,14 +5414,319 @@ fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kinesis::types::Tag
 
 fn tag_to_py(py: Python<'_>, value: &aws_sdk_kinesis::types::Tag) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_425 = (&value.key).as_str().into_py_any(py)?;
-    result.set_item("key", converted_425)?;
+    let converted_541 = (&value.key).as_str().into_py_any(py)?;
+    result.set_item("key", converted_541)?;
     if let Some(value) = &value.value {
-        let converted_426 = (value).as_str().into_py_any(py)?;
-        result.set_item("value", converted_426)?;
+        let converted_542 = (value).as_str().into_py_any(py)?;
+        result.set_item("value", converted_542)?;
     } else {
         result.set_item("value", py.None())?;
     }
+    Ok(result.into_any().unbind())
+}
+
+fn update_dead_letter_queue_records_visibility_error_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityErrorEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message", "receipt_handle"])?;
+    let mut builder =
+        aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityErrorEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_543 = (|| -> PyResult<_> {
+            let converted_543: String = value.extract()?;
+            Ok(converted_543)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_543));
+    }
+    if let Some(value) = dict_value(values, "error_code")? {
+        let converted_544 = (|| -> PyResult<_> {
+            let converted_544: String = value.extract()?;
+            Ok(converted_544)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("error_code"), "str")
+        })?;
+        builder = builder.set_error_code(Some(converted_544));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        let converted_545 = (|| -> PyResult<_> {
+            let converted_545: String = value.extract()?;
+            Ok(converted_545)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("error_message"), "str")
+        })?;
+        builder = builder.set_error_message(Some(converted_545));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("receipt_handle", "receipt_handle"),
+                ("error_code", "error_code"),
+            ],
+        )
+    })
+}
+
+fn update_dead_letter_queue_records_visibility_error_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityErrorEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_546 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_546)?;
+    let converted_547 = (&value.error_code).as_str().into_py_any(py)?;
+    result.set_item("error_code", converted_547)?;
+    if let Some(value) = &value.error_message {
+        let converted_548 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_message", converted_548)?;
+    } else {
+        result.set_item("error_message", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn update_dead_letter_queue_records_visibility_request_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityRequestEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["receipt_handle", "visibility_timeout_seconds"])?;
+    let mut builder =
+        aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityRequestEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_549 = (|| -> PyResult<_> {
+            let converted_549: String = value.extract()?;
+            Ok(converted_549)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_549));
+    }
+    if let Some(value) = dict_value(values, "visibility_timeout_seconds")? {
+        let converted_550 = (|| -> PyResult<_> {
+            let converted_550: i32 = value.extract()?;
+            Ok(converted_550)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("visibility_timeout_seconds"),
+                "int",
+            )
+        })?;
+        builder = builder.set_visibility_timeout_seconds(Some(converted_550));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("receipt_handle", "receipt_handle"),
+                ("visibility_timeout_seconds", "visibility_timeout_seconds"),
+            ],
+        )
+    })
+}
+
+fn update_dead_letter_queue_records_visibility_request_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityRequestEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_551 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_551)?;
+    let converted_552 = (&value.visibility_timeout_seconds)
+        .to_owned()
+        .into_py_any(py)?;
+    result.set_item("visibility_timeout_seconds", converted_552)?;
+    Ok(result.into_any().unbind())
+}
+
+fn update_dead_letter_queue_records_visibility_result_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityResultEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["receipt_handle"])?;
+    let mut builder =
+        aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityResultEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_553 = (|| -> PyResult<_> {
+            let converted_553: String = value.extract()?;
+            Ok(converted_553)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_553));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("receipt_handle", "receipt_handle")])
+    })
+}
+
+fn update_dead_letter_queue_records_visibility_result_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityResultEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_554 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_554)?;
+    Ok(result.into_any().unbind())
+}
+
+fn update_queue_records_visibility_error_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityErrorEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message", "receipt_handle"])?;
+    let mut builder = aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityErrorEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_555 = (|| -> PyResult<_> {
+            let converted_555: String = value.extract()?;
+            Ok(converted_555)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_555));
+    }
+    if let Some(value) = dict_value(values, "error_code")? {
+        let converted_556 = (|| -> PyResult<_> {
+            let converted_556: String = value.extract()?;
+            Ok(converted_556)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("error_code"), "str")
+        })?;
+        builder = builder.set_error_code(Some(converted_556));
+    }
+    if let Some(value) = dict_value(values, "error_message")? {
+        let converted_557 = (|| -> PyResult<_> {
+            let converted_557: String = value.extract()?;
+            Ok(converted_557)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("error_message"), "str")
+        })?;
+        builder = builder.set_error_message(Some(converted_557));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("receipt_handle", "receipt_handle"),
+                ("error_code", "error_code"),
+            ],
+        )
+    })
+}
+
+fn update_queue_records_visibility_error_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityErrorEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_558 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_558)?;
+    let converted_559 = (&value.error_code).as_str().into_py_any(py)?;
+    result.set_item("error_code", converted_559)?;
+    if let Some(value) = &value.error_message {
+        let converted_560 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_message", converted_560)?;
+    } else {
+        result.set_item("error_message", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn update_queue_records_visibility_request_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityRequestEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["receipt_handle", "visibility_timeout_seconds"])?;
+    let mut builder = aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityRequestEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_561 = (|| -> PyResult<_> {
+            let converted_561: String = value.extract()?;
+            Ok(converted_561)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_561));
+    }
+    if let Some(value) = dict_value(values, "visibility_timeout_seconds")? {
+        let converted_562 = (|| -> PyResult<_> {
+            let converted_562: i32 = value.extract()?;
+            Ok(converted_562)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("visibility_timeout_seconds"),
+                "int",
+            )
+        })?;
+        builder = builder.set_visibility_timeout_seconds(Some(converted_562));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("receipt_handle", "receipt_handle"),
+                ("visibility_timeout_seconds", "visibility_timeout_seconds"),
+            ],
+        )
+    })
+}
+
+fn update_queue_records_visibility_request_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityRequestEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_563 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_563)?;
+    let converted_564 = (&value.visibility_timeout_seconds)
+        .to_owned()
+        .into_py_any(py)?;
+    result.set_item("visibility_timeout_seconds", converted_564)?;
+    Ok(result.into_any().unbind())
+}
+
+fn update_queue_records_visibility_result_entry_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityResultEntry> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["receipt_handle"])?;
+    let mut builder = aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityResultEntry::builder();
+    if let Some(value) = dict_value(values, "receipt_handle")? {
+        let converted_565 = (|| -> PyResult<_> {
+            let converted_565: String = value.extract()?;
+            Ok(converted_565)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
+        builder = builder.set_receipt_handle(Some(converted_565));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("receipt_handle", "receipt_handle")])
+    })
+}
+
+fn update_queue_records_visibility_result_entry_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityResultEntry,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_566 = (&value.receipt_handle).as_str().into_py_any(py)?;
+    result.set_item("receipt_handle", converted_566)?;
     Ok(result.into_any().unbind())
 }
 
@@ -4227,24 +5737,24 @@ fn warm_throughput_object_from_py(
     rboto_core::validate_input_fields(values, &["current_mibps", "target_mibps"])?;
     let mut builder = aws_sdk_kinesis::types::WarmThroughputObject::builder();
     if let Some(value) = dict_value(values, "target_mibps")? {
-        let converted_427 = (|| -> PyResult<_> {
-            let converted_427: i32 = value.extract()?;
-            Ok(converted_427)
+        let converted_567 = (|| -> PyResult<_> {
+            let converted_567: i32 = value.extract()?;
+            Ok(converted_567)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("target_mibps"), "int")
         })?;
-        builder = builder.set_target_mibps(Some(converted_427));
+        builder = builder.set_target_mibps(Some(converted_567));
     }
     if let Some(value) = dict_value(values, "current_mibps")? {
-        let converted_428 = (|| -> PyResult<_> {
-            let converted_428: i32 = value.extract()?;
-            Ok(converted_428)
+        let converted_568 = (|| -> PyResult<_> {
+            let converted_568: i32 = value.extract()?;
+            Ok(converted_568)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("current_mibps"), "int")
         })?;
-        builder = builder.set_current_mibps(Some(converted_428));
+        builder = builder.set_current_mibps(Some(converted_568));
     }
     Ok(builder.build())
 }
@@ -4255,18 +5765,138 @@ fn warm_throughput_object_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.target_mibps {
-        let converted_429 = (value).to_owned().into_py_any(py)?;
-        result.set_item("target_mibps", converted_429)?;
+        let converted_569 = (value).to_owned().into_py_any(py)?;
+        result.set_item("target_mibps", converted_569)?;
     } else {
         result.set_item("target_mibps", py.None())?;
     }
     if let Some(value) = &value.current_mibps {
-        let converted_430 = (value).to_owned().into_py_any(py)?;
-        result.set_item("current_mibps", converted_430)?;
+        let converted_570 = (value).to_owned().into_py_any(py)?;
+        result.set_item("current_mibps", converted_570)?;
     } else {
         result.set_item("current_mibps", py.None())?;
     }
     Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "AcknowledgeDeadLetterQueueRecordsErrorEntry",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyAcknowledgeDeadLetterQueueRecordsErrorEntry {
+    inner: Arc<aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsErrorEntry>,
+}
+
+#[pymethods]
+impl PyAcknowledgeDeadLetterQueueRecordsErrorEntry {
+    #[getter]
+    fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_883 = (&self.inner.receipt_handle).as_str().into_py_any(py)?;
+        Ok(converted_883)
+    }
+
+    #[getter]
+    fn error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_884 = (&self.inner.error_code).as_str().into_py_any(py)?;
+        Ok(converted_884)
+    }
+
+    #[getter]
+    fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.error_message {
+            let converted_885 = (value).as_str().into_py_any(py)?;
+            Ok(converted_885)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        acknowledge_dead_letter_queue_records_error_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "AcknowledgeDeadLetterQueueRecordsResultEntry",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyAcknowledgeDeadLetterQueueRecordsResultEntry {
+    inner: Arc<aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsResultEntry>,
+}
+
+#[pymethods]
+impl PyAcknowledgeDeadLetterQueueRecordsResultEntry {
+    #[getter]
+    fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_886 = (&self.inner.receipt_handle).as_str().into_py_any(py)?;
+        Ok(converted_886)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        acknowledge_dead_letter_queue_records_result_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "AcknowledgeQueueRecordsErrorEntry",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyAcknowledgeQueueRecordsErrorEntry {
+    inner: Arc<aws_sdk_kinesis::types::AcknowledgeQueueRecordsErrorEntry>,
+}
+
+#[pymethods]
+impl PyAcknowledgeQueueRecordsErrorEntry {
+    #[getter]
+    fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_887 = (&self.inner.receipt_handle).as_str().into_py_any(py)?;
+        Ok(converted_887)
+    }
+
+    #[getter]
+    fn error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_888 = (&self.inner.error_code).as_str().into_py_any(py)?;
+        Ok(converted_888)
+    }
+
+    #[getter]
+    fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.error_message {
+            let converted_889 = (value).as_str().into_py_any(py)?;
+            Ok(converted_889)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        acknowledge_queue_records_error_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "AcknowledgeQueueRecordsResultEntry",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyAcknowledgeQueueRecordsResultEntry {
+    inner: Arc<aws_sdk_kinesis::types::AcknowledgeQueueRecordsResultEntry>,
+}
+
+#[pymethods]
+impl PyAcknowledgeQueueRecordsResultEntry {
+    #[getter]
+    fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_890 = (&self.inner.receipt_handle).as_str().into_py_any(py)?;
+        Ok(converted_890)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        acknowledge_queue_records_result_entry_to_py(py, &self.inner)
+    }
 }
 
 #[allow(clippy::type_complexity)]
@@ -4298,7 +5928,7 @@ impl From<aws_sdk_kinesis::types::ChannelDescription> for SharedChannelDescripti
             service_execution_role_arn: value.service_execution_role_arn,
             stream_configuration_list: (value.stream_configuration_list)
                 .into_iter()
-                .map(|owned_694| Arc::new(SharedChannelStreamDescription::from(owned_694)))
+                .map(|owned_905| Arc::new(SharedChannelStreamDescription::from(owned_905)))
                 .collect(),
             s3_destination_configuration: value
                 .s3_destination_configuration
@@ -4319,56 +5949,56 @@ fn channel_description_shared_to_py(
     value: &SharedChannelDescription,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_695 = (&value.channel_name).as_str().into_py_any(py)?;
-    result.set_item("channel_name", converted_695)?;
-    let converted_696 = (&value.channel_arn).as_str().into_py_any(py)?;
-    result.set_item("channel_arn", converted_696)?;
-    let converted_697 = (&value.channel_id).as_str().into_py_any(py)?;
-    result.set_item("channel_id", converted_697)?;
-    let converted_698 = (&value.channel_status).as_str().into_py_any(py)?;
-    result.set_item("channel_status", converted_698)?;
+    let converted_906 = (&value.channel_name).as_str().into_py_any(py)?;
+    result.set_item("channel_name", converted_906)?;
+    let converted_907 = (&value.channel_arn).as_str().into_py_any(py)?;
+    result.set_item("channel_arn", converted_907)?;
+    let converted_908 = (&value.channel_id).as_str().into_py_any(py)?;
+    result.set_item("channel_id", converted_908)?;
+    let converted_909 = (&value.channel_status).as_str().into_py_any(py)?;
+    result.set_item("channel_status", converted_909)?;
     if let Some(value) = &value.channel_status_reason {
-        let converted_699 = (value).as_str().into_py_any(py)?;
-        result.set_item("channel_status_reason", converted_699)?;
+        let converted_910 = (value).as_str().into_py_any(py)?;
+        result.set_item("channel_status_reason", converted_910)?;
     } else {
         result.set_item("channel_status_reason", py.None())?;
     }
-    let converted_700 = (&value.channel_creation_timestamp)
+    let converted_911 = (&value.channel_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("channel_creation_timestamp", converted_700)?;
-    let converted_701 = (&value.service_execution_role_arn)
+    result.set_item("channel_creation_timestamp", converted_911)?;
+    let converted_912 = (&value.service_execution_role_arn)
         .as_str()
         .into_py_any(py)?;
-    result.set_item("service_execution_role_arn", converted_701)?;
-    let converted_702_list = PyList::empty(py);
-    for item_703 in &value.stream_configuration_list {
-        let converted_item_704 = channel_stream_description_shared_to_py(py, item_703)?;
-        converted_702_list.append(converted_item_704)?;
+    result.set_item("service_execution_role_arn", converted_912)?;
+    let converted_913_list = PyList::empty(py);
+    for item_914 in &value.stream_configuration_list {
+        let converted_item_915 = channel_stream_description_shared_to_py(py, item_914)?;
+        converted_913_list.append(converted_item_915)?;
     }
-    let converted_702 = converted_702_list.into_any().unbind();
-    result.set_item("stream_configuration_list", converted_702)?;
+    let converted_913 = converted_913_list.into_any().unbind();
+    result.set_item("stream_configuration_list", converted_913)?;
     if let Some(value) = &value.s3_destination_configuration {
-        let converted_705 = s3_destination_description_shared_to_py(py, value)?;
-        result.set_item("s3_destination_configuration", converted_705)?;
+        let converted_916 = s3_destination_description_shared_to_py(py, value)?;
+        result.set_item("s3_destination_configuration", converted_916)?;
     } else {
         result.set_item("s3_destination_configuration", py.None())?;
     }
     if let Some(value) = &value.s3_tables_destination_configuration {
-        let converted_706 = s3_tables_destination_description_shared_to_py(py, value)?;
-        result.set_item("s3_tables_destination_configuration", converted_706)?;
+        let converted_917 = s3_tables_destination_description_shared_to_py(py, value)?;
+        result.set_item("s3_tables_destination_configuration", converted_917)?;
     } else {
         result.set_item("s3_tables_destination_configuration", py.None())?;
     }
     if let Some(value) = &value.encryption_configuration {
-        let converted_707 = channel_encryption_configuration_to_py(py, value)?;
-        result.set_item("encryption_configuration", converted_707)?;
+        let converted_918 = channel_encryption_configuration_to_py(py, value)?;
+        result.set_item("encryption_configuration", converted_918)?;
     } else {
         result.set_item("encryption_configuration", py.None())?;
     }
     if let Some(value) = &value.logging_configuration {
-        let converted_708 = channel_logging_configuration_shared_to_py(py, value)?;
-        result.set_item("logging_configuration", converted_708)?;
+        let converted_919 = channel_logging_configuration_shared_to_py(py, value)?;
+        result.set_item("logging_configuration", converted_919)?;
     } else {
         result.set_item("logging_configuration", py.None())?;
     }
@@ -4384,33 +6014,33 @@ struct PyChannelDescription {
 impl PyChannelDescription {
     #[getter]
     fn channel_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_680 = (&self.inner.channel_name).as_str().into_py_any(py)?;
-        Ok(converted_680)
+        let converted_891 = (&self.inner.channel_name).as_str().into_py_any(py)?;
+        Ok(converted_891)
     }
 
     #[getter]
     fn channel_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_681 = (&self.inner.channel_arn).as_str().into_py_any(py)?;
-        Ok(converted_681)
+        let converted_892 = (&self.inner.channel_arn).as_str().into_py_any(py)?;
+        Ok(converted_892)
     }
 
     #[getter]
     fn channel_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_682 = (&self.inner.channel_id).as_str().into_py_any(py)?;
-        Ok(converted_682)
+        let converted_893 = (&self.inner.channel_id).as_str().into_py_any(py)?;
+        Ok(converted_893)
     }
 
     #[getter]
     fn channel_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_683 = (&self.inner.channel_status).as_str().into_py_any(py)?;
-        Ok(converted_683)
+        let converted_894 = (&self.inner.channel_status).as_str().into_py_any(py)?;
+        Ok(converted_894)
     }
 
     #[getter]
     fn channel_status_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_status_reason {
-            let converted_684 = (value).as_str().into_py_any(py)?;
-            Ok(converted_684)
+            let converted_895 = (value).as_str().into_py_any(py)?;
+            Ok(converted_895)
         } else {
             Ok(py.None())
         }
@@ -4418,48 +6048,48 @@ impl PyChannelDescription {
 
     #[getter]
     fn channel_creation_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_685 = (&self.inner.channel_creation_timestamp)
+        let converted_896 = (&self.inner.channel_creation_timestamp)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_685)
+        Ok(converted_896)
     }
 
     #[getter]
     fn service_execution_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_686 = (&self.inner.service_execution_role_arn)
+        let converted_897 = (&self.inner.service_execution_role_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_686)
+        Ok(converted_897)
     }
 
     #[getter]
     fn stream_configuration_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_687_list = PyList::empty(py);
-        for item_688 in &self.inner.stream_configuration_list {
-            let converted_item_689 = Py::new(
+        let converted_898_list = PyList::empty(py);
+        for item_899 in &self.inner.stream_configuration_list {
+            let converted_item_900 = Py::new(
                 py,
                 PyChannelStreamDescription {
-                    inner: Arc::clone(item_688),
+                    inner: Arc::clone(item_899),
                 },
             )?
             .into_any();
-            converted_687_list.append(converted_item_689)?;
+            converted_898_list.append(converted_item_900)?;
         }
-        let converted_687 = converted_687_list.into_any().unbind();
-        Ok(converted_687)
+        let converted_898 = converted_898_list.into_any().unbind();
+        Ok(converted_898)
     }
 
     #[getter]
     fn s3_destination_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_destination_configuration {
-            let converted_690 = Py::new(
+            let converted_901 = Py::new(
                 py,
                 PyS3DestinationDescription {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_690)
+            Ok(converted_901)
         } else {
             Ok(py.None())
         }
@@ -4468,14 +6098,14 @@ impl PyChannelDescription {
     #[getter]
     fn s3_tables_destination_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_tables_destination_configuration {
-            let converted_691 = Py::new(
+            let converted_902 = Py::new(
                 py,
                 PyS3TablesDestinationDescription {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_691)
+            Ok(converted_902)
         } else {
             Ok(py.None())
         }
@@ -4484,14 +6114,14 @@ impl PyChannelDescription {
     #[getter]
     fn encryption_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_configuration {
-            let converted_692 = Py::new(
+            let converted_903 = Py::new(
                 py,
                 PyChannelEncryptionConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_692)
+            Ok(converted_903)
         } else {
             Ok(py.None())
         }
@@ -4500,14 +6130,14 @@ impl PyChannelDescription {
     #[getter]
     fn logging_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.logging_configuration {
-            let converted_693 = Py::new(
+            let converted_904 = Py::new(
                 py,
                 PyChannelLoggingConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_693)
+            Ok(converted_904)
         } else {
             Ok(py.None())
         }
@@ -4531,14 +6161,14 @@ struct PyChannelEncryptionConfiguration {
 impl PyChannelEncryptionConfiguration {
     #[getter]
     fn encryption_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_709 = (&self.inner.encryption_type).as_str().into_py_any(py)?;
-        Ok(converted_709)
+        let converted_920 = (&self.inner.encryption_type).as_str().into_py_any(py)?;
+        Ok(converted_920)
     }
 
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_710 = (&self.inner.key_id).as_str().into_py_any(py)?;
-        Ok(converted_710)
+        let converted_921 = (&self.inner.key_id).as_str().into_py_any(py)?;
+        Ok(converted_921)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -4568,8 +6198,8 @@ fn channel_logging_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.cloud_watch_logs {
-        let converted_712 = cloud_watch_logs_to_py(py, value)?;
-        result.set_item("cloud_watch_logs", converted_712)?;
+        let converted_923 = cloud_watch_logs_to_py(py, value)?;
+        result.set_item("cloud_watch_logs", converted_923)?;
     } else {
         result.set_item("cloud_watch_logs", py.None())?;
     }
@@ -4590,14 +6220,14 @@ impl PyChannelLoggingConfiguration {
     #[getter]
     fn cloud_watch_logs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_watch_logs {
-            let converted_711 = Py::new(
+            let converted_922 = Py::new(
                 py,
                 PyCloudWatchLogs {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_711)
+            Ok(converted_922)
         } else {
             Ok(py.None())
         }
@@ -4631,15 +6261,15 @@ fn channel_stream_description_shared_to_py(
     value: &SharedChannelStreamDescription,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_716 = (&value.stream_arn).as_str().into_py_any(py)?;
-    result.set_item("stream_arn", converted_716)?;
-    let converted_717 = (&value.stream_creation_timestamp)
+    let converted_927 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_927)?;
+    let converted_928 = (&value.stream_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("stream_creation_timestamp", converted_717)?;
+    result.set_item("stream_creation_timestamp", converted_928)?;
     if let Some(value) = &value.record_configuration {
-        let converted_718 = record_configuration_to_py(py, value)?;
-        result.set_item("record_configuration", converted_718)?;
+        let converted_929 = record_configuration_to_py(py, value)?;
+        result.set_item("record_configuration", converted_929)?;
     } else {
         result.set_item("record_configuration", py.None())?;
     }
@@ -4659,29 +6289,29 @@ struct PyChannelStreamDescription {
 impl PyChannelStreamDescription {
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_713 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
-        Ok(converted_713)
+        let converted_924 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
+        Ok(converted_924)
     }
 
     #[getter]
     fn stream_creation_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_714 = (&self.inner.stream_creation_timestamp)
+        let converted_925 = (&self.inner.stream_creation_timestamp)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_714)
+        Ok(converted_925)
     }
 
     #[getter]
     fn record_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.record_configuration {
-            let converted_715 = Py::new(
+            let converted_926 = Py::new(
                 py,
                 PyRecordConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_715)
+            Ok(converted_926)
         } else {
             Ok(py.None())
         }
@@ -4705,16 +6335,16 @@ struct PyChannelStreamIdentifier {
 impl PyChannelStreamIdentifier {
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_719 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
-        Ok(converted_719)
+        let converted_930 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
+        Ok(converted_930)
     }
 
     #[getter]
     fn stream_creation_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_720 = (&self.inner.stream_creation_timestamp)
+        let converted_931 = (&self.inner.stream_creation_timestamp)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_720)
+        Ok(converted_931)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -4747,7 +6377,7 @@ impl From<aws_sdk_kinesis::types::ChannelSummary> for SharedChannelSummary {
             channel_destination_type: value.channel_destination_type,
             streams: (value.streams)
                 .into_iter()
-                .map(|owned_731| Arc::new(owned_731))
+                .map(|owned_942| Arc::new(owned_942))
                 .collect(),
         }
     }
@@ -4758,33 +6388,33 @@ fn channel_summary_shared_to_py(
     value: &SharedChannelSummary,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_732 = (&value.channel_name).as_str().into_py_any(py)?;
-    result.set_item("channel_name", converted_732)?;
-    let converted_733 = (&value.channel_arn).as_str().into_py_any(py)?;
-    result.set_item("channel_arn", converted_733)?;
-    let converted_734 = (&value.channel_id).as_str().into_py_any(py)?;
-    result.set_item("channel_id", converted_734)?;
-    let converted_735 = (&value.channel_status).as_str().into_py_any(py)?;
-    result.set_item("channel_status", converted_735)?;
+    let converted_943 = (&value.channel_name).as_str().into_py_any(py)?;
+    result.set_item("channel_name", converted_943)?;
+    let converted_944 = (&value.channel_arn).as_str().into_py_any(py)?;
+    result.set_item("channel_arn", converted_944)?;
+    let converted_945 = (&value.channel_id).as_str().into_py_any(py)?;
+    result.set_item("channel_id", converted_945)?;
+    let converted_946 = (&value.channel_status).as_str().into_py_any(py)?;
+    result.set_item("channel_status", converted_946)?;
     if let Some(value) = &value.channel_status_reason {
-        let converted_736 = (value).as_str().into_py_any(py)?;
-        result.set_item("channel_status_reason", converted_736)?;
+        let converted_947 = (value).as_str().into_py_any(py)?;
+        result.set_item("channel_status_reason", converted_947)?;
     } else {
         result.set_item("channel_status_reason", py.None())?;
     }
-    let converted_737 = (&value.channel_creation_timestamp)
+    let converted_948 = (&value.channel_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("channel_creation_timestamp", converted_737)?;
-    let converted_738 = (&value.channel_destination_type).as_str().into_py_any(py)?;
-    result.set_item("channel_destination_type", converted_738)?;
-    let converted_739_list = PyList::empty(py);
-    for item_740 in &value.streams {
-        let converted_item_741 = channel_stream_identifier_to_py(py, item_740)?;
-        converted_739_list.append(converted_item_741)?;
+    result.set_item("channel_creation_timestamp", converted_948)?;
+    let converted_949 = (&value.channel_destination_type).as_str().into_py_any(py)?;
+    result.set_item("channel_destination_type", converted_949)?;
+    let converted_950_list = PyList::empty(py);
+    for item_951 in &value.streams {
+        let converted_item_952 = channel_stream_identifier_to_py(py, item_951)?;
+        converted_950_list.append(converted_item_952)?;
     }
-    let converted_739 = converted_739_list.into_any().unbind();
-    result.set_item("streams", converted_739)?;
+    let converted_950 = converted_950_list.into_any().unbind();
+    result.set_item("streams", converted_950)?;
     Ok(result.into_any().unbind())
 }
 
@@ -4797,33 +6427,33 @@ struct PyChannelSummary {
 impl PyChannelSummary {
     #[getter]
     fn channel_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_721 = (&self.inner.channel_name).as_str().into_py_any(py)?;
-        Ok(converted_721)
+        let converted_932 = (&self.inner.channel_name).as_str().into_py_any(py)?;
+        Ok(converted_932)
     }
 
     #[getter]
     fn channel_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_722 = (&self.inner.channel_arn).as_str().into_py_any(py)?;
-        Ok(converted_722)
+        let converted_933 = (&self.inner.channel_arn).as_str().into_py_any(py)?;
+        Ok(converted_933)
     }
 
     #[getter]
     fn channel_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_723 = (&self.inner.channel_id).as_str().into_py_any(py)?;
-        Ok(converted_723)
+        let converted_934 = (&self.inner.channel_id).as_str().into_py_any(py)?;
+        Ok(converted_934)
     }
 
     #[getter]
     fn channel_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_724 = (&self.inner.channel_status).as_str().into_py_any(py)?;
-        Ok(converted_724)
+        let converted_935 = (&self.inner.channel_status).as_str().into_py_any(py)?;
+        Ok(converted_935)
     }
 
     #[getter]
     fn channel_status_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_status_reason {
-            let converted_725 = (value).as_str().into_py_any(py)?;
-            Ok(converted_725)
+            let converted_936 = (value).as_str().into_py_any(py)?;
+            Ok(converted_936)
         } else {
             Ok(py.None())
         }
@@ -4831,35 +6461,35 @@ impl PyChannelSummary {
 
     #[getter]
     fn channel_creation_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_726 = (&self.inner.channel_creation_timestamp)
+        let converted_937 = (&self.inner.channel_creation_timestamp)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_726)
+        Ok(converted_937)
     }
 
     #[getter]
     fn channel_destination_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_727 = (&self.inner.channel_destination_type)
+        let converted_938 = (&self.inner.channel_destination_type)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_727)
+        Ok(converted_938)
     }
 
     #[getter]
     fn streams(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_728_list = PyList::empty(py);
-        for item_729 in &self.inner.streams {
-            let converted_item_730 = Py::new(
+        let converted_939_list = PyList::empty(py);
+        for item_940 in &self.inner.streams {
+            let converted_item_941 = Py::new(
                 py,
                 PyChannelStreamIdentifier {
-                    inner: Arc::clone(item_729),
+                    inner: Arc::clone(item_940),
                 },
             )?
             .into_any();
-            converted_728_list.append(converted_item_730)?;
+            converted_939_list.append(converted_item_941)?;
         }
-        let converted_728 = converted_728_list.into_any().unbind();
-        Ok(converted_728)
+        let converted_939 = converted_939_list.into_any().unbind();
+        Ok(converted_939)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -4887,18 +6517,18 @@ impl From<aws_sdk_kinesis::types::ChildShard> for SharedChildShard {
 
 fn child_shard_shared_to_py(py: Python<'_>, value: &SharedChildShard) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_747 = (&value.shard_id).as_str().into_py_any(py)?;
-    result.set_item("shard_id", converted_747)?;
-    let converted_748_list = PyList::empty(py);
-    for item_749 in &value.parent_shards {
-        let converted_item_750 = (item_749).as_str().into_py_any(py)?;
-        converted_748_list.append(converted_item_750)?;
+    let converted_958 = (&value.shard_id).as_str().into_py_any(py)?;
+    result.set_item("shard_id", converted_958)?;
+    let converted_959_list = PyList::empty(py);
+    for item_960 in &value.parent_shards {
+        let converted_item_961 = (item_960).as_str().into_py_any(py)?;
+        converted_959_list.append(converted_item_961)?;
     }
-    let converted_748 = converted_748_list.into_any().unbind();
-    result.set_item("parent_shards", converted_748)?;
+    let converted_959 = converted_959_list.into_any().unbind();
+    result.set_item("parent_shards", converted_959)?;
     if let Some(value) = &value.hash_key_range {
-        let converted_751 = hash_key_range_to_py(py, value)?;
-        result.set_item("hash_key_range", converted_751)?;
+        let converted_962 = hash_key_range_to_py(py, value)?;
+        result.set_item("hash_key_range", converted_962)?;
     } else {
         result.set_item("hash_key_range", py.None())?;
     }
@@ -4914,32 +6544,32 @@ struct PyChildShard {
 impl PyChildShard {
     #[getter]
     fn shard_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_742 = (&self.inner.shard_id).as_str().into_py_any(py)?;
-        Ok(converted_742)
+        let converted_953 = (&self.inner.shard_id).as_str().into_py_any(py)?;
+        Ok(converted_953)
     }
 
     #[getter]
     fn parent_shards(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_743_list = PyList::empty(py);
-        for item_744 in &self.inner.parent_shards {
-            let converted_item_745 = (item_744).as_str().into_py_any(py)?;
-            converted_743_list.append(converted_item_745)?;
+        let converted_954_list = PyList::empty(py);
+        for item_955 in &self.inner.parent_shards {
+            let converted_item_956 = (item_955).as_str().into_py_any(py)?;
+            converted_954_list.append(converted_item_956)?;
         }
-        let converted_743 = converted_743_list.into_any().unbind();
-        Ok(converted_743)
+        let converted_954 = converted_954_list.into_any().unbind();
+        Ok(converted_954)
     }
 
     #[getter]
     fn hash_key_range(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.hash_key_range {
-            let converted_746 = Py::new(
+            let converted_957 = Py::new(
                 py,
                 PyHashKeyRange {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_746)
+            Ok(converted_957)
         } else {
             Ok(py.None())
         }
@@ -4959,15 +6589,15 @@ struct PyCloudWatchLogs {
 impl PyCloudWatchLogs {
     #[getter]
     fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_752 = (&self.inner.enabled).to_owned().into_py_any(py)?;
-        Ok(converted_752)
+        let converted_963 = (&self.inner.enabled).to_owned().into_py_any(py)?;
+        Ok(converted_963)
     }
 
     #[getter]
     fn log_group_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_group_name {
-            let converted_753 = (value).as_str().into_py_any(py)?;
-            Ok(converted_753)
+            let converted_964 = (value).as_str().into_py_any(py)?;
+            Ok(converted_964)
         } else {
             Ok(py.None())
         }
@@ -4976,8 +6606,8 @@ impl PyCloudWatchLogs {
     #[getter]
     fn log_stream_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_stream_name {
-            let converted_754 = (value).as_str().into_py_any(py)?;
-            Ok(converted_754)
+            let converted_965 = (value).as_str().into_py_any(py)?;
+            Ok(converted_965)
         } else {
             Ok(py.None())
         }
@@ -4997,28 +6627,28 @@ struct PyConsumer {
 impl PyConsumer {
     #[getter]
     fn consumer_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_755 = (&self.inner.consumer_name).as_str().into_py_any(py)?;
-        Ok(converted_755)
+        let converted_966 = (&self.inner.consumer_name).as_str().into_py_any(py)?;
+        Ok(converted_966)
     }
 
     #[getter]
     fn consumer_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_756 = (&self.inner.consumer_arn).as_str().into_py_any(py)?;
-        Ok(converted_756)
+        let converted_967 = (&self.inner.consumer_arn).as_str().into_py_any(py)?;
+        Ok(converted_967)
     }
 
     #[getter]
     fn consumer_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_757 = (&self.inner.consumer_status).as_str().into_py_any(py)?;
-        Ok(converted_757)
+        let converted_968 = (&self.inner.consumer_status).as_str().into_py_any(py)?;
+        Ok(converted_968)
     }
 
     #[getter]
     fn consumer_creation_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_758 = (&self.inner.consumer_creation_timestamp)
+        let converted_969 = (&self.inner.consumer_creation_timestamp)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_758)
+        Ok(converted_969)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -5035,38 +6665,70 @@ struct PyConsumerDescription {
 impl PyConsumerDescription {
     #[getter]
     fn consumer_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_759 = (&self.inner.consumer_name).as_str().into_py_any(py)?;
-        Ok(converted_759)
+        let converted_970 = (&self.inner.consumer_name).as_str().into_py_any(py)?;
+        Ok(converted_970)
     }
 
     #[getter]
     fn consumer_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_760 = (&self.inner.consumer_arn).as_str().into_py_any(py)?;
-        Ok(converted_760)
+        let converted_971 = (&self.inner.consumer_arn).as_str().into_py_any(py)?;
+        Ok(converted_971)
     }
 
     #[getter]
     fn consumer_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_761 = (&self.inner.consumer_status).as_str().into_py_any(py)?;
-        Ok(converted_761)
+        let converted_972 = (&self.inner.consumer_status).as_str().into_py_any(py)?;
+        Ok(converted_972)
     }
 
     #[getter]
     fn consumer_creation_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_762 = (&self.inner.consumer_creation_timestamp)
+        let converted_973 = (&self.inner.consumer_creation_timestamp)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_762)
+        Ok(converted_973)
     }
 
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_763 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
-        Ok(converted_763)
+        let converted_974 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
+        Ok(converted_974)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         consumer_description_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "DeadLetterConfiguration",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyDeadLetterConfiguration {
+    inner: Arc<aws_sdk_kinesis::types::DeadLetterConfiguration>,
+}
+
+#[pymethods]
+impl PyDeadLetterConfiguration {
+    #[getter]
+    fn target_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_975 = (&self.inner.target_type).as_str().into_py_any(py)?;
+        Ok(converted_975)
+    }
+
+    #[getter]
+    fn max_receive_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.max_receive_count {
+            let converted_976 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_976)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        dead_letter_configuration_to_py(py, &self.inner)
     }
 }
 
@@ -5083,23 +6745,23 @@ struct PyDeadLetterQueueS3Configuration {
 impl PyDeadLetterQueueS3Configuration {
     #[getter]
     fn bucket_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_764 = (&self.inner.bucket_arn).as_str().into_py_any(py)?;
-        Ok(converted_764)
+        let converted_977 = (&self.inner.bucket_arn).as_str().into_py_any(py)?;
+        Ok(converted_977)
     }
 
     #[getter]
     fn expected_bucket_owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_765 = (&self.inner.expected_bucket_owner)
+        let converted_978 = (&self.inner.expected_bucket_owner)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_765)
+        Ok(converted_978)
     }
 
     #[getter]
     fn error_output_prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_output_prefix {
-            let converted_766 = (value).as_str().into_py_any(py)?;
-            Ok(converted_766)
+            let converted_979 = (value).as_str().into_py_any(py)?;
+            Ok(converted_979)
         } else {
             Ok(py.None())
         }
@@ -5120,13 +6782,13 @@ impl PyEnhancedMetrics {
     #[getter]
     fn shard_level_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.shard_level_metrics {
-            let converted_767_list = PyList::empty(py);
-            for item_768 in value {
-                let converted_item_769 = (item_768).as_str().into_py_any(py)?;
-                converted_767_list.append(converted_item_769)?;
+            let converted_980_list = PyList::empty(py);
+            for item_981 in value {
+                let converted_item_982 = (item_981).as_str().into_py_any(py)?;
+                converted_980_list.append(converted_item_982)?;
             }
-            let converted_767 = converted_767_list.into_any().unbind();
-            Ok(converted_767)
+            let converted_980 = converted_980_list.into_any().unbind();
+            Ok(converted_980)
         } else {
             Ok(py.None())
         }
@@ -5146,14 +6808,14 @@ struct PyHashKeyRange {
 impl PyHashKeyRange {
     #[getter]
     fn starting_hash_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_770 = (&self.inner.starting_hash_key).as_str().into_py_any(py)?;
-        Ok(converted_770)
+        let converted_983 = (&self.inner.starting_hash_key).as_str().into_py_any(py)?;
+        Ok(converted_983)
     }
 
     #[getter]
     fn ending_hash_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_771 = (&self.inner.ending_hash_key).as_str().into_py_any(py)?;
-        Ok(converted_771)
+        let converted_984 = (&self.inner.ending_hash_key).as_str().into_py_any(py)?;
+        Ok(converted_984)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -5174,15 +6836,15 @@ struct PyMinimumThroughputBillingCommitmentOutput {
 impl PyMinimumThroughputBillingCommitmentOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_772 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_772)
+        let converted_985 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_985)
     }
 
     #[getter]
     fn started_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.started_at {
-            let converted_773 = (value).to_string().into_py_any(py)?;
-            Ok(converted_773)
+            let converted_986 = (value).to_string().into_py_any(py)?;
+            Ok(converted_986)
         } else {
             Ok(py.None())
         }
@@ -5191,8 +6853,8 @@ impl PyMinimumThroughputBillingCommitmentOutput {
     #[getter]
     fn ended_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ended_at {
-            let converted_774 = (value).to_string().into_py_any(py)?;
-            Ok(converted_774)
+            let converted_987 = (value).to_string().into_py_any(py)?;
+            Ok(converted_987)
         } else {
             Ok(py.None())
         }
@@ -5201,8 +6863,8 @@ impl PyMinimumThroughputBillingCommitmentOutput {
     #[getter]
     fn earliest_allowed_end_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.earliest_allowed_end_at {
-            let converted_775 = (value).to_string().into_py_any(py)?;
-            Ok(converted_775)
+            let converted_988 = (value).to_string().into_py_any(py)?;
+            Ok(converted_988)
         } else {
             Ok(py.None())
         }
@@ -5222,14 +6884,14 @@ struct PyPartitionField {
 impl PyPartitionField {
     #[getter]
     fn transform(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_776 = (&self.inner.transform).as_str().into_py_any(py)?;
-        Ok(converted_776)
+        let converted_989 = (&self.inner.transform).as_str().into_py_any(py)?;
+        Ok(converted_989)
     }
 
     #[getter]
     fn source_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_777 = (&self.inner.source_name).as_str().into_py_any(py)?;
-        Ok(converted_777)
+        let converted_990 = (&self.inner.source_name).as_str().into_py_any(py)?;
+        Ok(converted_990)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -5248,7 +6910,7 @@ impl From<aws_sdk_kinesis::types::PartitionSpec> for SharedPartitionSpec {
         Self {
             partition_fields: (value.partition_fields)
                 .into_iter()
-                .map(|owned_781| Arc::new(owned_781))
+                .map(|owned_994| Arc::new(owned_994))
                 .collect(),
         }
     }
@@ -5256,13 +6918,13 @@ impl From<aws_sdk_kinesis::types::PartitionSpec> for SharedPartitionSpec {
 
 fn partition_spec_shared_to_py(py: Python<'_>, value: &SharedPartitionSpec) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_782_list = PyList::empty(py);
-    for item_783 in &value.partition_fields {
-        let converted_item_784 = partition_field_to_py(py, item_783)?;
-        converted_782_list.append(converted_item_784)?;
+    let converted_995_list = PyList::empty(py);
+    for item_996 in &value.partition_fields {
+        let converted_item_997 = partition_field_to_py(py, item_996)?;
+        converted_995_list.append(converted_item_997)?;
     }
-    let converted_782 = converted_782_list.into_any().unbind();
-    result.set_item("partition_fields", converted_782)?;
+    let converted_995 = converted_995_list.into_any().unbind();
+    result.set_item("partition_fields", converted_995)?;
     Ok(result.into_any().unbind())
 }
 
@@ -5275,19 +6937,19 @@ struct PyPartitionSpec {
 impl PyPartitionSpec {
     #[getter]
     fn partition_fields(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_778_list = PyList::empty(py);
-        for item_779 in &self.inner.partition_fields {
-            let converted_item_780 = Py::new(
+        let converted_991_list = PyList::empty(py);
+        for item_992 in &self.inner.partition_fields {
+            let converted_item_993 = Py::new(
                 py,
                 PyPartitionField {
-                    inner: Arc::clone(item_779),
+                    inner: Arc::clone(item_992),
                 },
             )?
             .into_any();
-            converted_778_list.append(converted_item_780)?;
+            converted_991_list.append(converted_item_993)?;
         }
-        let converted_778 = converted_778_list.into_any().unbind();
-        Ok(converted_778)
+        let converted_991 = converted_991_list.into_any().unbind();
+        Ok(converted_991)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -5309,8 +6971,8 @@ impl PyPutRecordsResultEntry {
     #[getter]
     fn sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sequence_number {
-            let converted_785 = (value).as_str().into_py_any(py)?;
-            Ok(converted_785)
+            let converted_998 = (value).as_str().into_py_any(py)?;
+            Ok(converted_998)
         } else {
             Ok(py.None())
         }
@@ -5319,8 +6981,8 @@ impl PyPutRecordsResultEntry {
     #[getter]
     fn shard_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.shard_id {
-            let converted_786 = (value).as_str().into_py_any(py)?;
-            Ok(converted_786)
+            let converted_999 = (value).as_str().into_py_any(py)?;
+            Ok(converted_999)
         } else {
             Ok(py.None())
         }
@@ -5329,8 +6991,8 @@ impl PyPutRecordsResultEntry {
     #[getter]
     fn error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_code {
-            let converted_787 = (value).as_str().into_py_any(py)?;
-            Ok(converted_787)
+            let converted_1000 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1000)
         } else {
             Ok(py.None())
         }
@@ -5339,8 +7001,8 @@ impl PyPutRecordsResultEntry {
     #[getter]
     fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_message {
-            let converted_788 = (value).as_str().into_py_any(py)?;
-            Ok(converted_788)
+            let converted_1001 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1001)
         } else {
             Ok(py.None())
         }
@@ -5348,6 +7010,509 @@ impl PyPutRecordsResultEntry {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         put_records_result_entry_to_py(py, &self.inner)
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedQueueAttributes {
+    visibility_timeout_seconds: Option<i32>,
+    dead_letter_configuration: Option<Arc<aws_sdk_kinesis::types::DeadLetterConfiguration>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::types::QueueAttributes> for SharedQueueAttributes {
+    fn from(value: aws_sdk_kinesis::types::QueueAttributes) -> Self {
+        Self {
+            visibility_timeout_seconds: value.visibility_timeout_seconds,
+            dead_letter_configuration: value.dead_letter_configuration.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn queue_attributes_shared_to_py(
+    py: Python<'_>,
+    value: &SharedQueueAttributes,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.visibility_timeout_seconds {
+        let converted_1004 = (value).to_owned().into_py_any(py)?;
+        result.set_item("visibility_timeout_seconds", converted_1004)?;
+    } else {
+        result.set_item("visibility_timeout_seconds", py.None())?;
+    }
+    if let Some(value) = &value.dead_letter_configuration {
+        let converted_1005 = dead_letter_configuration_to_py(py, value)?;
+        result.set_item("dead_letter_configuration", converted_1005)?;
+    } else {
+        result.set_item("dead_letter_configuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(name = "QueueAttributes", module = "rboto_kinesis._native", frozen)]
+struct PyQueueAttributes {
+    inner: Arc<SharedQueueAttributes>,
+}
+
+#[pymethods]
+impl PyQueueAttributes {
+    #[getter]
+    fn visibility_timeout_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.visibility_timeout_seconds {
+            let converted_1002 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1002)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn dead_letter_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.dead_letter_configuration {
+            let converted_1003 = Py::new(
+                py,
+                PyDeadLetterConfiguration {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1003)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        queue_attributes_shared_to_py(py, &self.inner)
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedQueueDescription {
+    queue_name: ::std::string::String,
+    queue_arn: ::std::string::String,
+    queue_status: aws_sdk_kinesis::types::QueueStatus,
+    queue_creation_timestamp: ::aws_smithy_types::DateTime,
+    stream_configuration_list: ::std::vec::Vec<Arc<SharedQueueStreamConfiguration>>,
+    queue_attributes: Option<Arc<SharedQueueAttributes>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::types::QueueDescription> for SharedQueueDescription {
+    fn from(value: aws_sdk_kinesis::types::QueueDescription) -> Self {
+        Self {
+            queue_name: value.queue_name,
+            queue_arn: value.queue_arn,
+            queue_status: value.queue_status,
+            queue_creation_timestamp: value.queue_creation_timestamp,
+            stream_configuration_list: (value.stream_configuration_list)
+                .into_iter()
+                .map(|owned_1014| Arc::new(SharedQueueStreamConfiguration::from(owned_1014)))
+                .collect(),
+            queue_attributes: value
+                .queue_attributes
+                .map(|item| Arc::new(SharedQueueAttributes::from(item))),
+        }
+    }
+}
+
+fn queue_description_shared_to_py(
+    py: Python<'_>,
+    value: &SharedQueueDescription,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_1015 = (&value.queue_name).as_str().into_py_any(py)?;
+    result.set_item("queue_name", converted_1015)?;
+    let converted_1016 = (&value.queue_arn).as_str().into_py_any(py)?;
+    result.set_item("queue_arn", converted_1016)?;
+    let converted_1017 = (&value.queue_status).as_str().into_py_any(py)?;
+    result.set_item("queue_status", converted_1017)?;
+    let converted_1018 = (&value.queue_creation_timestamp)
+        .to_string()
+        .into_py_any(py)?;
+    result.set_item("queue_creation_timestamp", converted_1018)?;
+    let converted_1019_list = PyList::empty(py);
+    for item_1020 in &value.stream_configuration_list {
+        let converted_item_1021 = queue_stream_configuration_shared_to_py(py, item_1020)?;
+        converted_1019_list.append(converted_item_1021)?;
+    }
+    let converted_1019 = converted_1019_list.into_any().unbind();
+    result.set_item("stream_configuration_list", converted_1019)?;
+    if let Some(value) = &value.queue_attributes {
+        let converted_1022 = queue_attributes_shared_to_py(py, value)?;
+        result.set_item("queue_attributes", converted_1022)?;
+    } else {
+        result.set_item("queue_attributes", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(name = "QueueDescription", module = "rboto_kinesis._native", frozen)]
+struct PyQueueDescription {
+    inner: Arc<SharedQueueDescription>,
+}
+
+#[pymethods]
+impl PyQueueDescription {
+    #[getter]
+    fn queue_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1006 = (&self.inner.queue_name).as_str().into_py_any(py)?;
+        Ok(converted_1006)
+    }
+
+    #[getter]
+    fn queue_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1007 = (&self.inner.queue_arn).as_str().into_py_any(py)?;
+        Ok(converted_1007)
+    }
+
+    #[getter]
+    fn queue_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1008 = (&self.inner.queue_status).as_str().into_py_any(py)?;
+        Ok(converted_1008)
+    }
+
+    #[getter]
+    fn queue_creation_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1009 = (&self.inner.queue_creation_timestamp)
+            .to_string()
+            .into_py_any(py)?;
+        Ok(converted_1009)
+    }
+
+    #[getter]
+    fn stream_configuration_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1010_list = PyList::empty(py);
+        for item_1011 in &self.inner.stream_configuration_list {
+            let converted_item_1012 = Py::new(
+                py,
+                PyQueueStreamConfiguration {
+                    inner: Arc::clone(item_1011),
+                },
+            )?
+            .into_any();
+            converted_1010_list.append(converted_item_1012)?;
+        }
+        let converted_1010 = converted_1010_list.into_any().unbind();
+        Ok(converted_1010)
+    }
+
+    #[getter]
+    fn queue_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.queue_attributes {
+            let converted_1013 = Py::new(
+                py,
+                PyQueueAttributes {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1013)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        queue_description_shared_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "QueueRecord", module = "rboto_kinesis._native", frozen)]
+struct PyQueueRecord {
+    inner: Arc<aws_sdk_kinesis::types::QueueRecord>,
+}
+
+#[pymethods]
+impl PyQueueRecord {
+    #[getter]
+    fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1023 = (&self.inner.receipt_handle).as_str().into_py_any(py)?;
+        Ok(converted_1023)
+    }
+
+    #[getter]
+    fn record_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1024 = (&self.inner.record_id).as_str().into_py_any(py)?;
+        Ok(converted_1024)
+    }
+
+    #[getter]
+    fn partition_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.partition_key {
+            let converted_1025 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1025)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1026 = PyBytes::new(py, (&self.inner.data).as_ref())
+            .into_any()
+            .unbind();
+        Ok(converted_1026)
+    }
+
+    #[getter]
+    fn approximate_arrival_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1027 = (&self.inner.approximate_arrival_timestamp)
+            .to_string()
+            .into_py_any(py)?;
+        Ok(converted_1027)
+    }
+
+    #[getter]
+    fn first_receive_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1028 = (&self.inner.first_receive_timestamp)
+            .to_string()
+            .into_py_any(py)?;
+        Ok(converted_1028)
+    }
+
+    #[getter]
+    fn receive_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1029 = (&self.inner.receive_count).to_owned().into_py_any(py)?;
+        Ok(converted_1029)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        queue_record_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "QueueStartingPosition",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyQueueStartingPosition {
+    inner: Arc<aws_sdk_kinesis::types::QueueStartingPosition>,
+}
+
+#[pymethods]
+impl PyQueueStartingPosition {
+    #[getter]
+    fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1030 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1030)
+    }
+
+    #[getter]
+    fn timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.timestamp {
+            let converted_1031 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1031)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        queue_starting_position_to_py(py, &self.inner)
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedQueueStreamConfiguration {
+    stream_arn: ::std::string::String,
+    starting_position: Option<Arc<aws_sdk_kinesis::types::QueueStartingPosition>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::types::QueueStreamConfiguration> for SharedQueueStreamConfiguration {
+    fn from(value: aws_sdk_kinesis::types::QueueStreamConfiguration) -> Self {
+        Self {
+            stream_arn: value.stream_arn,
+            starting_position: value.starting_position.map(|item| Arc::new(item)),
+        }
+    }
+}
+
+fn queue_stream_configuration_shared_to_py(
+    py: Python<'_>,
+    value: &SharedQueueStreamConfiguration,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_1034 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_1034)?;
+    if let Some(value) = &value.starting_position {
+        let converted_1035 = queue_starting_position_to_py(py, value)?;
+        result.set_item("starting_position", converted_1035)?;
+    } else {
+        result.set_item("starting_position", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "QueueStreamConfiguration",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyQueueStreamConfiguration {
+    inner: Arc<SharedQueueStreamConfiguration>,
+}
+
+#[pymethods]
+impl PyQueueStreamConfiguration {
+    #[getter]
+    fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1032 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
+        Ok(converted_1032)
+    }
+
+    #[getter]
+    fn starting_position(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.starting_position {
+            let converted_1033 = Py::new(
+                py,
+                PyQueueStartingPosition {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1033)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        queue_stream_configuration_shared_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "QueueStreamIdentifier",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyQueueStreamIdentifier {
+    inner: Arc<aws_sdk_kinesis::types::QueueStreamIdentifier>,
+}
+
+#[pymethods]
+impl PyQueueStreamIdentifier {
+    #[getter]
+    fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1036 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
+        Ok(converted_1036)
+    }
+
+    #[getter]
+    fn stream_creation_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1037 = (&self.inner.stream_creation_timestamp)
+            .to_string()
+            .into_py_any(py)?;
+        Ok(converted_1037)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        queue_stream_identifier_to_py(py, &self.inner)
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedQueueSummary {
+    queue_name: ::std::string::String,
+    queue_arn: ::std::string::String,
+    queue_status: aws_sdk_kinesis::types::QueueStatus,
+    queue_creation_timestamp: ::aws_smithy_types::DateTime,
+    streams: ::std::vec::Vec<Arc<aws_sdk_kinesis::types::QueueStreamIdentifier>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::types::QueueSummary> for SharedQueueSummary {
+    fn from(value: aws_sdk_kinesis::types::QueueSummary) -> Self {
+        Self {
+            queue_name: value.queue_name,
+            queue_arn: value.queue_arn,
+            queue_status: value.queue_status,
+            queue_creation_timestamp: value.queue_creation_timestamp,
+            streams: (value.streams)
+                .into_iter()
+                .map(|owned_1045| Arc::new(owned_1045))
+                .collect(),
+        }
+    }
+}
+
+fn queue_summary_shared_to_py(py: Python<'_>, value: &SharedQueueSummary) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_1046 = (&value.queue_name).as_str().into_py_any(py)?;
+    result.set_item("queue_name", converted_1046)?;
+    let converted_1047 = (&value.queue_arn).as_str().into_py_any(py)?;
+    result.set_item("queue_arn", converted_1047)?;
+    let converted_1048 = (&value.queue_status).as_str().into_py_any(py)?;
+    result.set_item("queue_status", converted_1048)?;
+    let converted_1049 = (&value.queue_creation_timestamp)
+        .to_string()
+        .into_py_any(py)?;
+    result.set_item("queue_creation_timestamp", converted_1049)?;
+    let converted_1050_list = PyList::empty(py);
+    for item_1051 in &value.streams {
+        let converted_item_1052 = queue_stream_identifier_to_py(py, item_1051)?;
+        converted_1050_list.append(converted_item_1052)?;
+    }
+    let converted_1050 = converted_1050_list.into_any().unbind();
+    result.set_item("streams", converted_1050)?;
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(name = "QueueSummary", module = "rboto_kinesis._native", frozen)]
+struct PyQueueSummary {
+    inner: Arc<SharedQueueSummary>,
+}
+
+#[pymethods]
+impl PyQueueSummary {
+    #[getter]
+    fn queue_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1038 = (&self.inner.queue_name).as_str().into_py_any(py)?;
+        Ok(converted_1038)
+    }
+
+    #[getter]
+    fn queue_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1039 = (&self.inner.queue_arn).as_str().into_py_any(py)?;
+        Ok(converted_1039)
+    }
+
+    #[getter]
+    fn queue_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1040 = (&self.inner.queue_status).as_str().into_py_any(py)?;
+        Ok(converted_1040)
+    }
+
+    #[getter]
+    fn queue_creation_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1041 = (&self.inner.queue_creation_timestamp)
+            .to_string()
+            .into_py_any(py)?;
+        Ok(converted_1041)
+    }
+
+    #[getter]
+    fn streams(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1042_list = PyList::empty(py);
+        for item_1043 in &self.inner.streams {
+            let converted_item_1044 = Py::new(
+                py,
+                PyQueueStreamIdentifier {
+                    inner: Arc::clone(item_1043),
+                },
+            )?
+            .into_any();
+            converted_1042_list.append(converted_item_1044)?;
+        }
+        let converted_1042 = converted_1042_list.into_any().unbind();
+        Ok(converted_1042)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        queue_summary_shared_to_py(py, &self.inner)
     }
 }
 
@@ -5360,15 +7525,15 @@ struct PyRecord {
 impl PyRecord {
     #[getter]
     fn sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_789 = (&self.inner.sequence_number).as_str().into_py_any(py)?;
-        Ok(converted_789)
+        let converted_1053 = (&self.inner.sequence_number).as_str().into_py_any(py)?;
+        Ok(converted_1053)
     }
 
     #[getter]
     fn approximate_arrival_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.approximate_arrival_timestamp {
-            let converted_790 = (value).to_string().into_py_any(py)?;
-            Ok(converted_790)
+            let converted_1054 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1054)
         } else {
             Ok(py.None())
         }
@@ -5376,17 +7541,17 @@ impl PyRecord {
 
     #[getter]
     fn data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_791 = PyBytes::new(py, (&self.inner.data).as_ref())
+        let converted_1055 = PyBytes::new(py, (&self.inner.data).as_ref())
             .into_any()
             .unbind();
-        Ok(converted_791)
+        Ok(converted_1055)
     }
 
     #[getter]
     fn partition_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.partition_key {
-            let converted_792 = (value).as_str().into_py_any(py)?;
-            Ok(converted_792)
+            let converted_1056 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1056)
         } else {
             Ok(py.None())
         }
@@ -5395,8 +7560,8 @@ impl PyRecord {
     #[getter]
     fn encryption_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_type {
-            let converted_793 = (value).as_str().into_py_any(py)?;
-            Ok(converted_793)
+            let converted_1057 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1057)
         } else {
             Ok(py.None())
         }
@@ -5416,15 +7581,15 @@ struct PyRecordConfiguration {
 impl PyRecordConfiguration {
     #[getter]
     fn record_format_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_794 = (&self.inner.record_format_type).as_str().into_py_any(py)?;
-        Ok(converted_794)
+        let converted_1058 = (&self.inner.record_format_type).as_str().into_py_any(py)?;
+        Ok(converted_1058)
     }
 
     #[getter]
     fn gsr_schema_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.gsr_schema_arn {
-            let converted_795 = (value).as_str().into_py_any(py)?;
-            Ok(converted_795)
+            let converted_1059 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1059)
         } else {
             Ok(py.None())
         }
@@ -5432,6 +7597,66 @@ impl PyRecordConfiguration {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         record_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "RestoreDeadLetterQueueRecordsErrorEntry",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyRestoreDeadLetterQueueRecordsErrorEntry {
+    inner: Arc<aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsErrorEntry>,
+}
+
+#[pymethods]
+impl PyRestoreDeadLetterQueueRecordsErrorEntry {
+    #[getter]
+    fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1060 = (&self.inner.receipt_handle).as_str().into_py_any(py)?;
+        Ok(converted_1060)
+    }
+
+    #[getter]
+    fn error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1061 = (&self.inner.error_code).as_str().into_py_any(py)?;
+        Ok(converted_1061)
+    }
+
+    #[getter]
+    fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.error_message {
+            let converted_1062 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1062)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        restore_dead_letter_queue_records_error_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "RestoreDeadLetterQueueRecordsResultEntry",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyRestoreDeadLetterQueueRecordsResultEntry {
+    inner: Arc<aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsResultEntry>,
+}
+
+#[pymethods]
+impl PyRestoreDeadLetterQueueRecordsResultEntry {
+    #[getter]
+    fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1063 = (&self.inner.receipt_handle).as_str().into_py_any(py)?;
+        Ok(converted_1063)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        restore_dead_letter_queue_records_result_entry_to_py(py, &self.inner)
     }
 }
 
@@ -5461,19 +7686,19 @@ fn s3_destination_description_shared_to_py(
     value: &SharedS3DestinationDescription,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_799 = (&value.data_freshness_in_seconds)
+    let converted_1067 = (&value.data_freshness_in_seconds)
         .to_owned()
         .into_py_any(py)?;
-    result.set_item("data_freshness_in_seconds", converted_799)?;
+    result.set_item("data_freshness_in_seconds", converted_1067)?;
     if let Some(value) = &value.dead_letter_queue_s3_configuration {
-        let converted_800 = dead_letter_queue_s3_configuration_to_py(py, value)?;
-        result.set_item("dead_letter_queue_s3_configuration", converted_800)?;
+        let converted_1068 = dead_letter_queue_s3_configuration_to_py(py, value)?;
+        result.set_item("dead_letter_queue_s3_configuration", converted_1068)?;
     } else {
         result.set_item("dead_letter_queue_s3_configuration", py.None())?;
     }
     if let Some(value) = &value.storage_configuration {
-        let converted_801 = s3_storage_configuration_to_py(py, value)?;
-        result.set_item("storage_configuration", converted_801)?;
+        let converted_1069 = s3_storage_configuration_to_py(py, value)?;
+        result.set_item("storage_configuration", converted_1069)?;
     } else {
         result.set_item("storage_configuration", py.None())?;
     }
@@ -5493,23 +7718,23 @@ struct PyS3DestinationDescription {
 impl PyS3DestinationDescription {
     #[getter]
     fn data_freshness_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_796 = (&self.inner.data_freshness_in_seconds)
+        let converted_1064 = (&self.inner.data_freshness_in_seconds)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_796)
+        Ok(converted_1064)
     }
 
     #[getter]
     fn dead_letter_queue_s3_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dead_letter_queue_s3_configuration {
-            let converted_797 = Py::new(
+            let converted_1065 = Py::new(
                 py,
                 PyDeadLetterQueueS3Configuration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_797)
+            Ok(converted_1065)
         } else {
             Ok(py.None())
         }
@@ -5518,14 +7743,14 @@ impl PyS3DestinationDescription {
     #[getter]
     fn storage_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.storage_configuration {
-            let converted_798 = Py::new(
+            let converted_1066 = Py::new(
                 py,
                 PyS3StorageConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_798)
+            Ok(converted_1066)
         } else {
             Ok(py.None())
         }
@@ -5549,23 +7774,23 @@ struct PyS3StorageConfiguration {
 impl PyS3StorageConfiguration {
     #[getter]
     fn bucket_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_802 = (&self.inner.bucket_arn).as_str().into_py_any(py)?;
-        Ok(converted_802)
+        let converted_1070 = (&self.inner.bucket_arn).as_str().into_py_any(py)?;
+        Ok(converted_1070)
     }
 
     #[getter]
     fn expected_bucket_owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_803 = (&self.inner.expected_bucket_owner)
+        let converted_1071 = (&self.inner.expected_bucket_owner)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_803)
+        Ok(converted_1071)
     }
 
     #[getter]
     fn output_key_template(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_key_template {
-            let converted_804 = (value).as_str().into_py_any(py)?;
-            Ok(converted_804)
+            let converted_1072 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1072)
         } else {
             Ok(py.None())
         }
@@ -5574,8 +7799,8 @@ impl PyS3StorageConfiguration {
     #[getter]
     fn storage_class(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.storage_class {
-            let converted_805 = (value).as_str().into_py_any(py)?;
-            Ok(converted_805)
+            let converted_1073 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1073)
         } else {
             Ok(py.None())
         }
@@ -5583,8 +7808,8 @@ impl PyS3StorageConfiguration {
 
     #[getter]
     fn compression_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_806 = (&self.inner.compression_type).as_str().into_py_any(py)?;
-        Ok(converted_806)
+        let converted_1074 = (&self.inner.compression_type).as_str().into_py_any(py)?;
+        Ok(converted_1074)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -5621,17 +7846,17 @@ fn s3_tables_configuration_shared_to_py(
     value: &SharedS3TablesConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_812 = (&value.table_bucket_arn).as_str().into_py_any(py)?;
-    result.set_item("table_bucket_arn", converted_812)?;
-    let converted_813 = (&value.namespace).as_str().into_py_any(py)?;
-    result.set_item("namespace", converted_813)?;
-    let converted_814 = (&value.table_name).as_str().into_py_any(py)?;
-    result.set_item("table_name", converted_814)?;
-    let converted_815 = (&value.compression_type).as_str().into_py_any(py)?;
-    result.set_item("compression_type", converted_815)?;
+    let converted_1080 = (&value.table_bucket_arn).as_str().into_py_any(py)?;
+    result.set_item("table_bucket_arn", converted_1080)?;
+    let converted_1081 = (&value.namespace).as_str().into_py_any(py)?;
+    result.set_item("namespace", converted_1081)?;
+    let converted_1082 = (&value.table_name).as_str().into_py_any(py)?;
+    result.set_item("table_name", converted_1082)?;
+    let converted_1083 = (&value.compression_type).as_str().into_py_any(py)?;
+    result.set_item("compression_type", converted_1083)?;
     if let Some(value) = &value.partition_spec {
-        let converted_816 = partition_spec_shared_to_py(py, value)?;
-        result.set_item("partition_spec", converted_816)?;
+        let converted_1084 = partition_spec_shared_to_py(py, value)?;
+        result.set_item("partition_spec", converted_1084)?;
     } else {
         result.set_item("partition_spec", py.None())?;
     }
@@ -5651,39 +7876,39 @@ struct PyS3TablesConfiguration {
 impl PyS3TablesConfiguration {
     #[getter]
     fn table_bucket_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_807 = (&self.inner.table_bucket_arn).as_str().into_py_any(py)?;
-        Ok(converted_807)
+        let converted_1075 = (&self.inner.table_bucket_arn).as_str().into_py_any(py)?;
+        Ok(converted_1075)
     }
 
     #[getter]
     fn namespace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_808 = (&self.inner.namespace).as_str().into_py_any(py)?;
-        Ok(converted_808)
+        let converted_1076 = (&self.inner.namespace).as_str().into_py_any(py)?;
+        Ok(converted_1076)
     }
 
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_809 = (&self.inner.table_name).as_str().into_py_any(py)?;
-        Ok(converted_809)
+        let converted_1077 = (&self.inner.table_name).as_str().into_py_any(py)?;
+        Ok(converted_1077)
     }
 
     #[getter]
     fn compression_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_810 = (&self.inner.compression_type).as_str().into_py_any(py)?;
-        Ok(converted_810)
+        let converted_1078 = (&self.inner.compression_type).as_str().into_py_any(py)?;
+        Ok(converted_1078)
     }
 
     #[getter]
     fn partition_spec(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.partition_spec {
-            let converted_811 = Py::new(
+            let converted_1079 = Py::new(
                 py,
                 PyPartitionSpec {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_811)
+            Ok(converted_1079)
         } else {
             Ok(py.None())
         }
@@ -5714,7 +7939,7 @@ impl From<aws_sdk_kinesis::types::S3TablesDestinationDescription>
                 .map(|item| Arc::new(item)),
             s3_tables_configuration_list: (value.s3_tables_configuration_list)
                 .into_iter()
-                .map(|owned_822| Arc::new(SharedS3TablesConfiguration::from(owned_822)))
+                .map(|owned_1090| Arc::new(SharedS3TablesConfiguration::from(owned_1090)))
                 .collect(),
         }
     }
@@ -5725,23 +7950,23 @@ fn s3_tables_destination_description_shared_to_py(
     value: &SharedS3TablesDestinationDescription,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_823 = (&value.data_freshness_in_seconds)
+    let converted_1091 = (&value.data_freshness_in_seconds)
         .to_owned()
         .into_py_any(py)?;
-    result.set_item("data_freshness_in_seconds", converted_823)?;
+    result.set_item("data_freshness_in_seconds", converted_1091)?;
     if let Some(value) = &value.dead_letter_queue_s3_configuration {
-        let converted_824 = dead_letter_queue_s3_configuration_to_py(py, value)?;
-        result.set_item("dead_letter_queue_s3_configuration", converted_824)?;
+        let converted_1092 = dead_letter_queue_s3_configuration_to_py(py, value)?;
+        result.set_item("dead_letter_queue_s3_configuration", converted_1092)?;
     } else {
         result.set_item("dead_letter_queue_s3_configuration", py.None())?;
     }
-    let converted_825_list = PyList::empty(py);
-    for item_826 in &value.s3_tables_configuration_list {
-        let converted_item_827 = s3_tables_configuration_shared_to_py(py, item_826)?;
-        converted_825_list.append(converted_item_827)?;
+    let converted_1093_list = PyList::empty(py);
+    for item_1094 in &value.s3_tables_configuration_list {
+        let converted_item_1095 = s3_tables_configuration_shared_to_py(py, item_1094)?;
+        converted_1093_list.append(converted_item_1095)?;
     }
-    let converted_825 = converted_825_list.into_any().unbind();
-    result.set_item("s3_tables_configuration_list", converted_825)?;
+    let converted_1093 = converted_1093_list.into_any().unbind();
+    result.set_item("s3_tables_configuration_list", converted_1093)?;
     Ok(result.into_any().unbind())
 }
 
@@ -5758,23 +7983,23 @@ struct PyS3TablesDestinationDescription {
 impl PyS3TablesDestinationDescription {
     #[getter]
     fn data_freshness_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_817 = (&self.inner.data_freshness_in_seconds)
+        let converted_1085 = (&self.inner.data_freshness_in_seconds)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_817)
+        Ok(converted_1085)
     }
 
     #[getter]
     fn dead_letter_queue_s3_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dead_letter_queue_s3_configuration {
-            let converted_818 = Py::new(
+            let converted_1086 = Py::new(
                 py,
                 PyDeadLetterQueueS3Configuration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_818)
+            Ok(converted_1086)
         } else {
             Ok(py.None())
         }
@@ -5782,19 +8007,19 @@ impl PyS3TablesDestinationDescription {
 
     #[getter]
     fn s3_tables_configuration_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_819_list = PyList::empty(py);
-        for item_820 in &self.inner.s3_tables_configuration_list {
-            let converted_item_821 = Py::new(
+        let converted_1087_list = PyList::empty(py);
+        for item_1088 in &self.inner.s3_tables_configuration_list {
+            let converted_item_1089 = Py::new(
                 py,
                 PyS3TablesConfiguration {
-                    inner: Arc::clone(item_820),
+                    inner: Arc::clone(item_1088),
                 },
             )?
             .into_any();
-            converted_819_list.append(converted_item_821)?;
+            converted_1087_list.append(converted_item_1089)?;
         }
-        let converted_819 = converted_819_list.into_any().unbind();
-        Ok(converted_819)
+        let converted_1087 = converted_1087_list.into_any().unbind();
+        Ok(converted_1087)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -5811,17 +8036,17 @@ struct PySequenceNumberRange {
 impl PySequenceNumberRange {
     #[getter]
     fn starting_sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_828 = (&self.inner.starting_sequence_number)
+        let converted_1096 = (&self.inner.starting_sequence_number)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_828)
+        Ok(converted_1096)
     }
 
     #[getter]
     fn ending_sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ending_sequence_number {
-            let converted_829 = (value).as_str().into_py_any(py)?;
-            Ok(converted_829)
+            let converted_1097 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1097)
         } else {
             Ok(py.None())
         }
@@ -5856,29 +8081,29 @@ impl From<aws_sdk_kinesis::types::Shard> for SharedShard {
 
 fn shard_shared_to_py(py: Python<'_>, value: &SharedShard) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_835 = (&value.shard_id).as_str().into_py_any(py)?;
-    result.set_item("shard_id", converted_835)?;
+    let converted_1103 = (&value.shard_id).as_str().into_py_any(py)?;
+    result.set_item("shard_id", converted_1103)?;
     if let Some(value) = &value.parent_shard_id {
-        let converted_836 = (value).as_str().into_py_any(py)?;
-        result.set_item("parent_shard_id", converted_836)?;
+        let converted_1104 = (value).as_str().into_py_any(py)?;
+        result.set_item("parent_shard_id", converted_1104)?;
     } else {
         result.set_item("parent_shard_id", py.None())?;
     }
     if let Some(value) = &value.adjacent_parent_shard_id {
-        let converted_837 = (value).as_str().into_py_any(py)?;
-        result.set_item("adjacent_parent_shard_id", converted_837)?;
+        let converted_1105 = (value).as_str().into_py_any(py)?;
+        result.set_item("adjacent_parent_shard_id", converted_1105)?;
     } else {
         result.set_item("adjacent_parent_shard_id", py.None())?;
     }
     if let Some(value) = &value.hash_key_range {
-        let converted_838 = hash_key_range_to_py(py, value)?;
-        result.set_item("hash_key_range", converted_838)?;
+        let converted_1106 = hash_key_range_to_py(py, value)?;
+        result.set_item("hash_key_range", converted_1106)?;
     } else {
         result.set_item("hash_key_range", py.None())?;
     }
     if let Some(value) = &value.sequence_number_range {
-        let converted_839 = sequence_number_range_to_py(py, value)?;
-        result.set_item("sequence_number_range", converted_839)?;
+        let converted_1107 = sequence_number_range_to_py(py, value)?;
+        result.set_item("sequence_number_range", converted_1107)?;
     } else {
         result.set_item("sequence_number_range", py.None())?;
     }
@@ -5894,15 +8119,15 @@ struct PyShard {
 impl PyShard {
     #[getter]
     fn shard_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_830 = (&self.inner.shard_id).as_str().into_py_any(py)?;
-        Ok(converted_830)
+        let converted_1098 = (&self.inner.shard_id).as_str().into_py_any(py)?;
+        Ok(converted_1098)
     }
 
     #[getter]
     fn parent_shard_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parent_shard_id {
-            let converted_831 = (value).as_str().into_py_any(py)?;
-            Ok(converted_831)
+            let converted_1099 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1099)
         } else {
             Ok(py.None())
         }
@@ -5911,8 +8136,8 @@ impl PyShard {
     #[getter]
     fn adjacent_parent_shard_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.adjacent_parent_shard_id {
-            let converted_832 = (value).as_str().into_py_any(py)?;
-            Ok(converted_832)
+            let converted_1100 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1100)
         } else {
             Ok(py.None())
         }
@@ -5921,14 +8146,14 @@ impl PyShard {
     #[getter]
     fn hash_key_range(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.hash_key_range {
-            let converted_833 = Py::new(
+            let converted_1101 = Py::new(
                 py,
                 PyHashKeyRange {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_833)
+            Ok(converted_1101)
         } else {
             Ok(py.None())
         }
@@ -5937,14 +8162,14 @@ impl PyShard {
     #[getter]
     fn sequence_number_range(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sequence_number_range {
-            let converted_834 = Py::new(
+            let converted_1102 = Py::new(
                 py,
                 PySequenceNumberRange {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_834)
+            Ok(converted_1102)
         } else {
             Ok(py.None())
         }
@@ -5980,14 +8205,14 @@ impl From<aws_sdk_kinesis::types::StreamDescription> for SharedStreamDescription
             stream_mode_details: value.stream_mode_details.map(|item| Arc::new(item)),
             shards: (value.shards)
                 .into_iter()
-                .map(|owned_855| Arc::new(SharedShard::from(owned_855)))
+                .map(|owned_1123| Arc::new(SharedShard::from(owned_1123)))
                 .collect(),
             has_more_shards: value.has_more_shards,
             retention_period_hours: value.retention_period_hours,
             stream_creation_timestamp: value.stream_creation_timestamp,
             enhanced_monitoring: (value.enhanced_monitoring)
                 .into_iter()
-                .map(|owned_856| Arc::new(owned_856))
+                .map(|owned_1124| Arc::new(owned_1124))
                 .collect(),
             encryption_type: value.encryption_type,
             key_id: value.key_id,
@@ -6000,49 +8225,49 @@ fn stream_description_shared_to_py(
     value: &SharedStreamDescription,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_857 = (&value.stream_name).as_str().into_py_any(py)?;
-    result.set_item("stream_name", converted_857)?;
-    let converted_858 = (&value.stream_arn).as_str().into_py_any(py)?;
-    result.set_item("stream_arn", converted_858)?;
-    let converted_859 = (&value.stream_status).as_str().into_py_any(py)?;
-    result.set_item("stream_status", converted_859)?;
+    let converted_1125 = (&value.stream_name).as_str().into_py_any(py)?;
+    result.set_item("stream_name", converted_1125)?;
+    let converted_1126 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_1126)?;
+    let converted_1127 = (&value.stream_status).as_str().into_py_any(py)?;
+    result.set_item("stream_status", converted_1127)?;
     if let Some(value) = &value.stream_mode_details {
-        let converted_860 = stream_mode_details_to_py(py, value)?;
-        result.set_item("stream_mode_details", converted_860)?;
+        let converted_1128 = stream_mode_details_to_py(py, value)?;
+        result.set_item("stream_mode_details", converted_1128)?;
     } else {
         result.set_item("stream_mode_details", py.None())?;
     }
-    let converted_861_list = PyList::empty(py);
-    for item_862 in &value.shards {
-        let converted_item_863 = shard_shared_to_py(py, item_862)?;
-        converted_861_list.append(converted_item_863)?;
+    let converted_1129_list = PyList::empty(py);
+    for item_1130 in &value.shards {
+        let converted_item_1131 = shard_shared_to_py(py, item_1130)?;
+        converted_1129_list.append(converted_item_1131)?;
     }
-    let converted_861 = converted_861_list.into_any().unbind();
-    result.set_item("shards", converted_861)?;
-    let converted_864 = (&value.has_more_shards).to_owned().into_py_any(py)?;
-    result.set_item("has_more_shards", converted_864)?;
-    let converted_865 = (&value.retention_period_hours).to_owned().into_py_any(py)?;
-    result.set_item("retention_period_hours", converted_865)?;
-    let converted_866 = (&value.stream_creation_timestamp)
+    let converted_1129 = converted_1129_list.into_any().unbind();
+    result.set_item("shards", converted_1129)?;
+    let converted_1132 = (&value.has_more_shards).to_owned().into_py_any(py)?;
+    result.set_item("has_more_shards", converted_1132)?;
+    let converted_1133 = (&value.retention_period_hours).to_owned().into_py_any(py)?;
+    result.set_item("retention_period_hours", converted_1133)?;
+    let converted_1134 = (&value.stream_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("stream_creation_timestamp", converted_866)?;
-    let converted_867_list = PyList::empty(py);
-    for item_868 in &value.enhanced_monitoring {
-        let converted_item_869 = enhanced_metrics_to_py(py, item_868)?;
-        converted_867_list.append(converted_item_869)?;
+    result.set_item("stream_creation_timestamp", converted_1134)?;
+    let converted_1135_list = PyList::empty(py);
+    for item_1136 in &value.enhanced_monitoring {
+        let converted_item_1137 = enhanced_metrics_to_py(py, item_1136)?;
+        converted_1135_list.append(converted_item_1137)?;
     }
-    let converted_867 = converted_867_list.into_any().unbind();
-    result.set_item("enhanced_monitoring", converted_867)?;
+    let converted_1135 = converted_1135_list.into_any().unbind();
+    result.set_item("enhanced_monitoring", converted_1135)?;
     if let Some(value) = &value.encryption_type {
-        let converted_870 = (value).as_str().into_py_any(py)?;
-        result.set_item("encryption_type", converted_870)?;
+        let converted_1138 = (value).as_str().into_py_any(py)?;
+        result.set_item("encryption_type", converted_1138)?;
     } else {
         result.set_item("encryption_type", py.None())?;
     }
     if let Some(value) = &value.key_id {
-        let converted_871 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_id", converted_871)?;
+        let converted_1139 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_id", converted_1139)?;
     } else {
         result.set_item("key_id", py.None())?;
     }
@@ -6058,33 +8283,33 @@ struct PyStreamDescription {
 impl PyStreamDescription {
     #[getter]
     fn stream_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_840 = (&self.inner.stream_name).as_str().into_py_any(py)?;
-        Ok(converted_840)
+        let converted_1108 = (&self.inner.stream_name).as_str().into_py_any(py)?;
+        Ok(converted_1108)
     }
 
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_841 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
-        Ok(converted_841)
+        let converted_1109 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
+        Ok(converted_1109)
     }
 
     #[getter]
     fn stream_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_842 = (&self.inner.stream_status).as_str().into_py_any(py)?;
-        Ok(converted_842)
+        let converted_1110 = (&self.inner.stream_status).as_str().into_py_any(py)?;
+        Ok(converted_1110)
     }
 
     #[getter]
     fn stream_mode_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_mode_details {
-            let converted_843 = Py::new(
+            let converted_1111 = Py::new(
                 py,
                 PyStreamModeDetails {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_843)
+            Ok(converted_1111)
         } else {
             Ok(py.None())
         }
@@ -6092,65 +8317,65 @@ impl PyStreamDescription {
 
     #[getter]
     fn shards(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_844_list = PyList::empty(py);
-        for item_845 in &self.inner.shards {
-            let converted_item_846 = Py::new(
+        let converted_1112_list = PyList::empty(py);
+        for item_1113 in &self.inner.shards {
+            let converted_item_1114 = Py::new(
                 py,
                 PyShard {
-                    inner: Arc::clone(item_845),
+                    inner: Arc::clone(item_1113),
                 },
             )?
             .into_any();
-            converted_844_list.append(converted_item_846)?;
+            converted_1112_list.append(converted_item_1114)?;
         }
-        let converted_844 = converted_844_list.into_any().unbind();
-        Ok(converted_844)
+        let converted_1112 = converted_1112_list.into_any().unbind();
+        Ok(converted_1112)
     }
 
     #[getter]
     fn has_more_shards(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_847 = (&self.inner.has_more_shards).to_owned().into_py_any(py)?;
-        Ok(converted_847)
+        let converted_1115 = (&self.inner.has_more_shards).to_owned().into_py_any(py)?;
+        Ok(converted_1115)
     }
 
     #[getter]
     fn retention_period_hours(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_848 = (&self.inner.retention_period_hours)
+        let converted_1116 = (&self.inner.retention_period_hours)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_848)
+        Ok(converted_1116)
     }
 
     #[getter]
     fn stream_creation_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_849 = (&self.inner.stream_creation_timestamp)
+        let converted_1117 = (&self.inner.stream_creation_timestamp)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_849)
+        Ok(converted_1117)
     }
 
     #[getter]
     fn enhanced_monitoring(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_850_list = PyList::empty(py);
-        for item_851 in &self.inner.enhanced_monitoring {
-            let converted_item_852 = Py::new(
+        let converted_1118_list = PyList::empty(py);
+        for item_1119 in &self.inner.enhanced_monitoring {
+            let converted_item_1120 = Py::new(
                 py,
                 PyEnhancedMetrics {
-                    inner: Arc::clone(item_851),
+                    inner: Arc::clone(item_1119),
                 },
             )?
             .into_any();
-            converted_850_list.append(converted_item_852)?;
+            converted_1118_list.append(converted_item_1120)?;
         }
-        let converted_850 = converted_850_list.into_any().unbind();
-        Ok(converted_850)
+        let converted_1118 = converted_1118_list.into_any().unbind();
+        Ok(converted_1118)
     }
 
     #[getter]
     fn encryption_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_type {
-            let converted_853 = (value).as_str().into_py_any(py)?;
-            Ok(converted_853)
+            let converted_1121 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1121)
         } else {
             Ok(py.None())
         }
@@ -6159,8 +8384,8 @@ impl PyStreamDescription {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_854 = (value).as_str().into_py_any(py)?;
-            Ok(converted_854)
+            let converted_1122 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1122)
         } else {
             Ok(py.None())
         }
@@ -6189,6 +8414,7 @@ struct SharedStreamDescriptionSummary {
     max_record_size_in_kib: Option<i32>,
     channel_count: Option<i32>,
     record_distribution_strategy: Option<aws_sdk_kinesis::types::RecordDistributionStrategy>,
+    queue_count: Option<i32>,
 }
 
 #[allow(clippy::redundant_closure)]
@@ -6204,7 +8430,7 @@ impl From<aws_sdk_kinesis::types::StreamDescriptionSummary> for SharedStreamDesc
             stream_creation_timestamp: value.stream_creation_timestamp,
             enhanced_monitoring: (value.enhanced_monitoring)
                 .into_iter()
-                .map(|owned_890| Arc::new(owned_890))
+                .map(|owned_1159| Arc::new(owned_1159))
                 .collect(),
             encryption_type: value.encryption_type,
             key_id: value.key_id,
@@ -6214,6 +8440,7 @@ impl From<aws_sdk_kinesis::types::StreamDescriptionSummary> for SharedStreamDesc
             max_record_size_in_kib: value.max_record_size_in_kib,
             channel_count: value.channel_count,
             record_distribution_strategy: value.record_distribution_strategy,
+            queue_count: value.queue_count,
         }
     }
 }
@@ -6223,80 +8450,86 @@ fn stream_description_summary_shared_to_py(
     value: &SharedStreamDescriptionSummary,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_891 = (&value.stream_name).as_str().into_py_any(py)?;
-    result.set_item("stream_name", converted_891)?;
-    let converted_892 = (&value.stream_arn).as_str().into_py_any(py)?;
-    result.set_item("stream_arn", converted_892)?;
+    let converted_1160 = (&value.stream_name).as_str().into_py_any(py)?;
+    result.set_item("stream_name", converted_1160)?;
+    let converted_1161 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_1161)?;
     if let Some(value) = &value.stream_id {
-        let converted_893 = (value).as_str().into_py_any(py)?;
-        result.set_item("stream_id", converted_893)?;
+        let converted_1162 = (value).as_str().into_py_any(py)?;
+        result.set_item("stream_id", converted_1162)?;
     } else {
         result.set_item("stream_id", py.None())?;
     }
-    let converted_894 = (&value.stream_status).as_str().into_py_any(py)?;
-    result.set_item("stream_status", converted_894)?;
+    let converted_1163 = (&value.stream_status).as_str().into_py_any(py)?;
+    result.set_item("stream_status", converted_1163)?;
     if let Some(value) = &value.stream_mode_details {
-        let converted_895 = stream_mode_details_to_py(py, value)?;
-        result.set_item("stream_mode_details", converted_895)?;
+        let converted_1164 = stream_mode_details_to_py(py, value)?;
+        result.set_item("stream_mode_details", converted_1164)?;
     } else {
         result.set_item("stream_mode_details", py.None())?;
     }
-    let converted_896 = (&value.retention_period_hours).to_owned().into_py_any(py)?;
-    result.set_item("retention_period_hours", converted_896)?;
-    let converted_897 = (&value.stream_creation_timestamp)
+    let converted_1165 = (&value.retention_period_hours).to_owned().into_py_any(py)?;
+    result.set_item("retention_period_hours", converted_1165)?;
+    let converted_1166 = (&value.stream_creation_timestamp)
         .to_string()
         .into_py_any(py)?;
-    result.set_item("stream_creation_timestamp", converted_897)?;
-    let converted_898_list = PyList::empty(py);
-    for item_899 in &value.enhanced_monitoring {
-        let converted_item_900 = enhanced_metrics_to_py(py, item_899)?;
-        converted_898_list.append(converted_item_900)?;
+    result.set_item("stream_creation_timestamp", converted_1166)?;
+    let converted_1167_list = PyList::empty(py);
+    for item_1168 in &value.enhanced_monitoring {
+        let converted_item_1169 = enhanced_metrics_to_py(py, item_1168)?;
+        converted_1167_list.append(converted_item_1169)?;
     }
-    let converted_898 = converted_898_list.into_any().unbind();
-    result.set_item("enhanced_monitoring", converted_898)?;
+    let converted_1167 = converted_1167_list.into_any().unbind();
+    result.set_item("enhanced_monitoring", converted_1167)?;
     if let Some(value) = &value.encryption_type {
-        let converted_901 = (value).as_str().into_py_any(py)?;
-        result.set_item("encryption_type", converted_901)?;
+        let converted_1170 = (value).as_str().into_py_any(py)?;
+        result.set_item("encryption_type", converted_1170)?;
     } else {
         result.set_item("encryption_type", py.None())?;
     }
     if let Some(value) = &value.key_id {
-        let converted_902 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_id", converted_902)?;
+        let converted_1171 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_id", converted_1171)?;
     } else {
         result.set_item("key_id", py.None())?;
     }
-    let converted_903 = (&value.open_shard_count).to_owned().into_py_any(py)?;
-    result.set_item("open_shard_count", converted_903)?;
+    let converted_1172 = (&value.open_shard_count).to_owned().into_py_any(py)?;
+    result.set_item("open_shard_count", converted_1172)?;
     if let Some(value) = &value.consumer_count {
-        let converted_904 = (value).to_owned().into_py_any(py)?;
-        result.set_item("consumer_count", converted_904)?;
+        let converted_1173 = (value).to_owned().into_py_any(py)?;
+        result.set_item("consumer_count", converted_1173)?;
     } else {
         result.set_item("consumer_count", py.None())?;
     }
     if let Some(value) = &value.warm_throughput {
-        let converted_905 = warm_throughput_object_to_py(py, value)?;
-        result.set_item("warm_throughput", converted_905)?;
+        let converted_1174 = warm_throughput_object_to_py(py, value)?;
+        result.set_item("warm_throughput", converted_1174)?;
     } else {
         result.set_item("warm_throughput", py.None())?;
     }
     if let Some(value) = &value.max_record_size_in_kib {
-        let converted_906 = (value).to_owned().into_py_any(py)?;
-        result.set_item("max_record_size_in_kib", converted_906)?;
+        let converted_1175 = (value).to_owned().into_py_any(py)?;
+        result.set_item("max_record_size_in_kib", converted_1175)?;
     } else {
         result.set_item("max_record_size_in_kib", py.None())?;
     }
     if let Some(value) = &value.channel_count {
-        let converted_907 = (value).to_owned().into_py_any(py)?;
-        result.set_item("channel_count", converted_907)?;
+        let converted_1176 = (value).to_owned().into_py_any(py)?;
+        result.set_item("channel_count", converted_1176)?;
     } else {
         result.set_item("channel_count", py.None())?;
     }
     if let Some(value) = &value.record_distribution_strategy {
-        let converted_908 = (value).as_str().into_py_any(py)?;
-        result.set_item("record_distribution_strategy", converted_908)?;
+        let converted_1177 = (value).as_str().into_py_any(py)?;
+        result.set_item("record_distribution_strategy", converted_1177)?;
     } else {
         result.set_item("record_distribution_strategy", py.None())?;
+    }
+    if let Some(value) = &value.queue_count {
+        let converted_1178 = (value).to_owned().into_py_any(py)?;
+        result.set_item("queue_count", converted_1178)?;
+    } else {
+        result.set_item("queue_count", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -6314,21 +8547,21 @@ struct PyStreamDescriptionSummary {
 impl PyStreamDescriptionSummary {
     #[getter]
     fn stream_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_872 = (&self.inner.stream_name).as_str().into_py_any(py)?;
-        Ok(converted_872)
+        let converted_1140 = (&self.inner.stream_name).as_str().into_py_any(py)?;
+        Ok(converted_1140)
     }
 
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_873 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
-        Ok(converted_873)
+        let converted_1141 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
+        Ok(converted_1141)
     }
 
     #[getter]
     fn stream_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_id {
-            let converted_874 = (value).as_str().into_py_any(py)?;
-            Ok(converted_874)
+            let converted_1142 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1142)
         } else {
             Ok(py.None())
         }
@@ -6336,21 +8569,21 @@ impl PyStreamDescriptionSummary {
 
     #[getter]
     fn stream_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_875 = (&self.inner.stream_status).as_str().into_py_any(py)?;
-        Ok(converted_875)
+        let converted_1143 = (&self.inner.stream_status).as_str().into_py_any(py)?;
+        Ok(converted_1143)
     }
 
     #[getter]
     fn stream_mode_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_mode_details {
-            let converted_876 = Py::new(
+            let converted_1144 = Py::new(
                 py,
                 PyStreamModeDetails {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_876)
+            Ok(converted_1144)
         } else {
             Ok(py.None())
         }
@@ -6358,42 +8591,42 @@ impl PyStreamDescriptionSummary {
 
     #[getter]
     fn retention_period_hours(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_877 = (&self.inner.retention_period_hours)
+        let converted_1145 = (&self.inner.retention_period_hours)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_877)
+        Ok(converted_1145)
     }
 
     #[getter]
     fn stream_creation_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_878 = (&self.inner.stream_creation_timestamp)
+        let converted_1146 = (&self.inner.stream_creation_timestamp)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_878)
+        Ok(converted_1146)
     }
 
     #[getter]
     fn enhanced_monitoring(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_879_list = PyList::empty(py);
-        for item_880 in &self.inner.enhanced_monitoring {
-            let converted_item_881 = Py::new(
+        let converted_1147_list = PyList::empty(py);
+        for item_1148 in &self.inner.enhanced_monitoring {
+            let converted_item_1149 = Py::new(
                 py,
                 PyEnhancedMetrics {
-                    inner: Arc::clone(item_880),
+                    inner: Arc::clone(item_1148),
                 },
             )?
             .into_any();
-            converted_879_list.append(converted_item_881)?;
+            converted_1147_list.append(converted_item_1149)?;
         }
-        let converted_879 = converted_879_list.into_any().unbind();
-        Ok(converted_879)
+        let converted_1147 = converted_1147_list.into_any().unbind();
+        Ok(converted_1147)
     }
 
     #[getter]
     fn encryption_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_type {
-            let converted_882 = (value).as_str().into_py_any(py)?;
-            Ok(converted_882)
+            let converted_1150 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1150)
         } else {
             Ok(py.None())
         }
@@ -6402,8 +8635,8 @@ impl PyStreamDescriptionSummary {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_883 = (value).as_str().into_py_any(py)?;
-            Ok(converted_883)
+            let converted_1151 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1151)
         } else {
             Ok(py.None())
         }
@@ -6411,15 +8644,15 @@ impl PyStreamDescriptionSummary {
 
     #[getter]
     fn open_shard_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_884 = (&self.inner.open_shard_count).to_owned().into_py_any(py)?;
-        Ok(converted_884)
+        let converted_1152 = (&self.inner.open_shard_count).to_owned().into_py_any(py)?;
+        Ok(converted_1152)
     }
 
     #[getter]
     fn consumer_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumer_count {
-            let converted_885 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_885)
+            let converted_1153 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1153)
         } else {
             Ok(py.None())
         }
@@ -6428,14 +8661,14 @@ impl PyStreamDescriptionSummary {
     #[getter]
     fn warm_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.warm_throughput {
-            let converted_886 = Py::new(
+            let converted_1154 = Py::new(
                 py,
                 PyWarmThroughputObject {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_886)
+            Ok(converted_1154)
         } else {
             Ok(py.None())
         }
@@ -6444,8 +8677,8 @@ impl PyStreamDescriptionSummary {
     #[getter]
     fn max_record_size_in_kib(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.max_record_size_in_kib {
-            let converted_887 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_887)
+            let converted_1155 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1155)
         } else {
             Ok(py.None())
         }
@@ -6454,8 +8687,8 @@ impl PyStreamDescriptionSummary {
     #[getter]
     fn channel_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_count {
-            let converted_888 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_888)
+            let converted_1156 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1156)
         } else {
             Ok(py.None())
         }
@@ -6464,8 +8697,18 @@ impl PyStreamDescriptionSummary {
     #[getter]
     fn record_distribution_strategy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.record_distribution_strategy {
-            let converted_889 = (value).as_str().into_py_any(py)?;
-            Ok(converted_889)
+            let converted_1157 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1157)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn queue_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.queue_count {
+            let converted_1158 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1158)
         } else {
             Ok(py.None())
         }
@@ -6485,8 +8728,8 @@ struct PyStreamModeDetails {
 impl PyStreamModeDetails {
     #[getter]
     fn stream_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_909 = (&self.inner.stream_mode).as_str().into_py_any(py)?;
-        Ok(converted_909)
+        let converted_1179 = (&self.inner.stream_mode).as_str().into_py_any(py)?;
+        Ok(converted_1179)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -6518,21 +8761,21 @@ impl From<aws_sdk_kinesis::types::StreamSummary> for SharedStreamSummary {
 
 fn stream_summary_shared_to_py(py: Python<'_>, value: &SharedStreamSummary) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_915 = (&value.stream_name).as_str().into_py_any(py)?;
-    result.set_item("stream_name", converted_915)?;
-    let converted_916 = (&value.stream_arn).as_str().into_py_any(py)?;
-    result.set_item("stream_arn", converted_916)?;
-    let converted_917 = (&value.stream_status).as_str().into_py_any(py)?;
-    result.set_item("stream_status", converted_917)?;
+    let converted_1185 = (&value.stream_name).as_str().into_py_any(py)?;
+    result.set_item("stream_name", converted_1185)?;
+    let converted_1186 = (&value.stream_arn).as_str().into_py_any(py)?;
+    result.set_item("stream_arn", converted_1186)?;
+    let converted_1187 = (&value.stream_status).as_str().into_py_any(py)?;
+    result.set_item("stream_status", converted_1187)?;
     if let Some(value) = &value.stream_mode_details {
-        let converted_918 = stream_mode_details_to_py(py, value)?;
-        result.set_item("stream_mode_details", converted_918)?;
+        let converted_1188 = stream_mode_details_to_py(py, value)?;
+        result.set_item("stream_mode_details", converted_1188)?;
     } else {
         result.set_item("stream_mode_details", py.None())?;
     }
     if let Some(value) = &value.stream_creation_timestamp {
-        let converted_919 = (value).to_string().into_py_any(py)?;
-        result.set_item("stream_creation_timestamp", converted_919)?;
+        let converted_1189 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_creation_timestamp", converted_1189)?;
     } else {
         result.set_item("stream_creation_timestamp", py.None())?;
     }
@@ -6548,33 +8791,33 @@ struct PyStreamSummary {
 impl PyStreamSummary {
     #[getter]
     fn stream_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_910 = (&self.inner.stream_name).as_str().into_py_any(py)?;
-        Ok(converted_910)
+        let converted_1180 = (&self.inner.stream_name).as_str().into_py_any(py)?;
+        Ok(converted_1180)
     }
 
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_911 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
-        Ok(converted_911)
+        let converted_1181 = (&self.inner.stream_arn).as_str().into_py_any(py)?;
+        Ok(converted_1181)
     }
 
     #[getter]
     fn stream_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_912 = (&self.inner.stream_status).as_str().into_py_any(py)?;
-        Ok(converted_912)
+        let converted_1182 = (&self.inner.stream_status).as_str().into_py_any(py)?;
+        Ok(converted_1182)
     }
 
     #[getter]
     fn stream_mode_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_mode_details {
-            let converted_913 = Py::new(
+            let converted_1183 = Py::new(
                 py,
                 PyStreamModeDetails {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_913)
+            Ok(converted_1183)
         } else {
             Ok(py.None())
         }
@@ -6583,8 +8826,8 @@ impl PyStreamSummary {
     #[getter]
     fn stream_creation_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_creation_timestamp {
-            let converted_914 = (value).to_string().into_py_any(py)?;
-            Ok(converted_914)
+            let converted_1184 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1184)
         } else {
             Ok(py.None())
         }
@@ -6604,15 +8847,15 @@ struct PyTag {
 impl PyTag {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_920 = (&self.inner.key).as_str().into_py_any(py)?;
-        Ok(converted_920)
+        let converted_1190 = (&self.inner.key).as_str().into_py_any(py)?;
+        Ok(converted_1190)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
-            let converted_921 = (value).as_str().into_py_any(py)?;
-            Ok(converted_921)
+            let converted_1191 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1191)
         } else {
             Ok(py.None())
         }
@@ -6620,6 +8863,126 @@ impl PyTag {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         tag_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "UpdateDeadLetterQueueRecordsVisibilityErrorEntry",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyUpdateDeadLetterQueueRecordsVisibilityErrorEntry {
+    inner: Arc<aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityErrorEntry>,
+}
+
+#[pymethods]
+impl PyUpdateDeadLetterQueueRecordsVisibilityErrorEntry {
+    #[getter]
+    fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1192 = (&self.inner.receipt_handle).as_str().into_py_any(py)?;
+        Ok(converted_1192)
+    }
+
+    #[getter]
+    fn error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1193 = (&self.inner.error_code).as_str().into_py_any(py)?;
+        Ok(converted_1193)
+    }
+
+    #[getter]
+    fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.error_message {
+            let converted_1194 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1194)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        update_dead_letter_queue_records_visibility_error_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "UpdateDeadLetterQueueRecordsVisibilityResultEntry",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyUpdateDeadLetterQueueRecordsVisibilityResultEntry {
+    inner: Arc<aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityResultEntry>,
+}
+
+#[pymethods]
+impl PyUpdateDeadLetterQueueRecordsVisibilityResultEntry {
+    #[getter]
+    fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1195 = (&self.inner.receipt_handle).as_str().into_py_any(py)?;
+        Ok(converted_1195)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        update_dead_letter_queue_records_visibility_result_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "UpdateQueueRecordsVisibilityErrorEntry",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyUpdateQueueRecordsVisibilityErrorEntry {
+    inner: Arc<aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityErrorEntry>,
+}
+
+#[pymethods]
+impl PyUpdateQueueRecordsVisibilityErrorEntry {
+    #[getter]
+    fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1196 = (&self.inner.receipt_handle).as_str().into_py_any(py)?;
+        Ok(converted_1196)
+    }
+
+    #[getter]
+    fn error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1197 = (&self.inner.error_code).as_str().into_py_any(py)?;
+        Ok(converted_1197)
+    }
+
+    #[getter]
+    fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.error_message {
+            let converted_1198 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1198)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        update_queue_records_visibility_error_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "UpdateQueueRecordsVisibilityResultEntry",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyUpdateQueueRecordsVisibilityResultEntry {
+    inner: Arc<aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityResultEntry>,
+}
+
+#[pymethods]
+impl PyUpdateQueueRecordsVisibilityResultEntry {
+    #[getter]
+    fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1199 = (&self.inner.receipt_handle).as_str().into_py_any(py)?;
+        Ok(converted_1199)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        update_queue_records_visibility_result_entry_to_py(py, &self.inner)
     }
 }
 
@@ -6637,8 +9000,8 @@ impl PyWarmThroughputObject {
     #[getter]
     fn target_mibps(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target_mibps {
-            let converted_922 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_922)
+            let converted_1200 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1200)
         } else {
             Ok(py.None())
         }
@@ -6647,8 +9010,8 @@ impl PyWarmThroughputObject {
     #[getter]
     fn current_mibps(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.current_mibps {
-            let converted_923 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_923)
+            let converted_1201 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1201)
         } else {
             Ok(py.None())
         }
@@ -6656,6 +9019,182 @@ impl PyWarmThroughputObject {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         warm_throughput_object_to_py(py, &self.inner)
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationAcknowledgeDeadLetterQueueRecordsOutput {
+    successful:
+        ::std::vec::Vec<Arc<aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsResultEntry>>,
+    failed:
+        ::std::vec::Vec<Arc<aws_sdk_kinesis::types::AcknowledgeDeadLetterQueueRecordsErrorEntry>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::operation::acknowledge_dead_letter_queue_records::AcknowledgeDeadLetterQueueRecordsOutput> for SharedPyOperationAcknowledgeDeadLetterQueueRecordsOutput {
+    fn from(value: aws_sdk_kinesis::operation::acknowledge_dead_letter_queue_records::AcknowledgeDeadLetterQueueRecordsOutput) -> Self {
+        Self {
+            successful: (value.successful).into_iter().map(|owned_1208| Arc::new(owned_1208)).collect(),
+            failed: (value.failed).into_iter().map(|owned_1209| Arc::new(owned_1209)).collect(),
+        }
+    }
+}
+
+#[pyclass(
+    name = "AcknowledgeDeadLetterQueueRecordsOutput",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyOperationAcknowledgeDeadLetterQueueRecordsOutput {
+    inner: SharedPyOperationAcknowledgeDeadLetterQueueRecordsOutput,
+}
+
+#[pymethods]
+impl PyOperationAcknowledgeDeadLetterQueueRecordsOutput {
+    #[getter]
+    fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1202_list = PyList::empty(py);
+        for item_1203 in &self.inner.successful {
+            let converted_item_1204 = Py::new(
+                py,
+                PyAcknowledgeDeadLetterQueueRecordsResultEntry {
+                    inner: Arc::clone(item_1203),
+                },
+            )?
+            .into_any();
+            converted_1202_list.append(converted_item_1204)?;
+        }
+        let converted_1202 = converted_1202_list.into_any().unbind();
+        Ok(converted_1202)
+    }
+
+    #[getter]
+    fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1205_list = PyList::empty(py);
+        for item_1206 in &self.inner.failed {
+            let converted_item_1207 = Py::new(
+                py,
+                PyAcknowledgeDeadLetterQueueRecordsErrorEntry {
+                    inner: Arc::clone(item_1206),
+                },
+            )?
+            .into_any();
+            converted_1205_list.append(converted_item_1207)?;
+        }
+        let converted_1205 = converted_1205_list.into_any().unbind();
+        Ok(converted_1205)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_1210_list = PyList::empty(py);
+        for item_1211 in &self.inner.successful {
+            let converted_item_1212 =
+                acknowledge_dead_letter_queue_records_result_entry_to_py(py, item_1211)?;
+            converted_1210_list.append(converted_item_1212)?;
+        }
+        let converted_1210 = converted_1210_list.into_any().unbind();
+        result.set_item("successful", converted_1210)?;
+        let converted_1213_list = PyList::empty(py);
+        for item_1214 in &self.inner.failed {
+            let converted_item_1215 =
+                acknowledge_dead_letter_queue_records_error_entry_to_py(py, item_1214)?;
+            converted_1213_list.append(converted_item_1215)?;
+        }
+        let converted_1213 = converted_1213_list.into_any().unbind();
+        result.set_item("failed", converted_1213)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationAcknowledgeQueueRecordsOutput {
+    successful: ::std::vec::Vec<Arc<aws_sdk_kinesis::types::AcknowledgeQueueRecordsResultEntry>>,
+    failed: ::std::vec::Vec<Arc<aws_sdk_kinesis::types::AcknowledgeQueueRecordsErrorEntry>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::operation::acknowledge_queue_records::AcknowledgeQueueRecordsOutput>
+    for SharedPyOperationAcknowledgeQueueRecordsOutput
+{
+    fn from(
+        value: aws_sdk_kinesis::operation::acknowledge_queue_records::AcknowledgeQueueRecordsOutput,
+    ) -> Self {
+        Self {
+            successful: (value.successful)
+                .into_iter()
+                .map(|owned_1222| Arc::new(owned_1222))
+                .collect(),
+            failed: (value.failed)
+                .into_iter()
+                .map(|owned_1223| Arc::new(owned_1223))
+                .collect(),
+        }
+    }
+}
+
+#[pyclass(
+    name = "AcknowledgeQueueRecordsOutput",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyOperationAcknowledgeQueueRecordsOutput {
+    inner: SharedPyOperationAcknowledgeQueueRecordsOutput,
+}
+
+#[pymethods]
+impl PyOperationAcknowledgeQueueRecordsOutput {
+    #[getter]
+    fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1216_list = PyList::empty(py);
+        for item_1217 in &self.inner.successful {
+            let converted_item_1218 = Py::new(
+                py,
+                PyAcknowledgeQueueRecordsResultEntry {
+                    inner: Arc::clone(item_1217),
+                },
+            )?
+            .into_any();
+            converted_1216_list.append(converted_item_1218)?;
+        }
+        let converted_1216 = converted_1216_list.into_any().unbind();
+        Ok(converted_1216)
+    }
+
+    #[getter]
+    fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1219_list = PyList::empty(py);
+        for item_1220 in &self.inner.failed {
+            let converted_item_1221 = Py::new(
+                py,
+                PyAcknowledgeQueueRecordsErrorEntry {
+                    inner: Arc::clone(item_1220),
+                },
+            )?
+            .into_any();
+            converted_1219_list.append(converted_item_1221)?;
+        }
+        let converted_1219 = converted_1219_list.into_any().unbind();
+        Ok(converted_1219)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_1224_list = PyList::empty(py);
+        for item_1225 in &self.inner.successful {
+            let converted_item_1226 = acknowledge_queue_records_result_entry_to_py(py, item_1225)?;
+            converted_1224_list.append(converted_item_1226)?;
+        }
+        let converted_1224 = converted_1224_list.into_any().unbind();
+        result.set_item("successful", converted_1224)?;
+        let converted_1227_list = PyList::empty(py);
+        for item_1228 in &self.inner.failed {
+            let converted_item_1229 = acknowledge_queue_records_error_entry_to_py(py, item_1228)?;
+            converted_1227_list.append(converted_item_1229)?;
+        }
+        let converted_1227 = converted_1227_list.into_any().unbind();
+        result.set_item("failed", converted_1227)?;
+        Ok(result.into_any().unbind())
     }
 }
 
@@ -6687,14 +9226,14 @@ impl PyOperationCreateChannelOutput {
     #[getter]
     fn channel_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_description {
-            let converted_924 = Py::new(
+            let converted_1230 = Py::new(
                 py,
                 PyChannelDescription {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_924)
+            Ok(converted_1230)
         } else {
             Ok(py.None())
         }
@@ -6703,10 +9242,63 @@ impl PyOperationCreateChannelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.channel_description {
-            let converted_925 = channel_description_shared_to_py(py, value)?;
-            result.set_item("channel_description", converted_925)?;
+            let converted_1231 = channel_description_shared_to_py(py, value)?;
+            result.set_item("channel_description", converted_1231)?;
         } else {
             result.set_item("channel_description", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationCreateQueueOutput {
+    queue_description: Option<Arc<SharedQueueDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::operation::create_queue::CreateQueueOutput>
+    for SharedPyOperationCreateQueueOutput
+{
+    fn from(value: aws_sdk_kinesis::operation::create_queue::CreateQueueOutput) -> Self {
+        Self {
+            queue_description: value
+                .queue_description
+                .map(|item| Arc::new(SharedQueueDescription::from(item))),
+        }
+    }
+}
+
+#[pyclass(name = "CreateQueueOutput", module = "rboto_kinesis._native", frozen)]
+struct PyOperationCreateQueueOutput {
+    inner: SharedPyOperationCreateQueueOutput,
+}
+
+#[pymethods]
+impl PyOperationCreateQueueOutput {
+    #[getter]
+    fn queue_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.queue_description {
+            let converted_1232 = Py::new(
+                py,
+                PyQueueDescription {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1232)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.queue_description {
+            let converted_1233 = queue_description_shared_to_py(py, value)?;
+            result.set_item("queue_description", converted_1233)?;
+        } else {
+            result.set_item("queue_description", py.None())?;
         }
         Ok(result.into_any().unbind())
     }
@@ -6747,14 +9339,14 @@ impl PyOperationDescribeAccountSettingsOutput {
     #[getter]
     fn minimum_throughput_billing_commitment(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.minimum_throughput_billing_commitment {
-            let converted_926 = Py::new(
+            let converted_1234 = Py::new(
                 py,
                 PyMinimumThroughputBillingCommitmentOutput {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_926)
+            Ok(converted_1234)
         } else {
             Ok(py.None())
         }
@@ -6763,8 +9355,8 @@ impl PyOperationDescribeAccountSettingsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.minimum_throughput_billing_commitment {
-            let converted_927 = minimum_throughput_billing_commitment_output_to_py(py, value)?;
-            result.set_item("minimum_throughput_billing_commitment", converted_927)?;
+            let converted_1235 = minimum_throughput_billing_commitment_output_to_py(py, value)?;
+            result.set_item("minimum_throughput_billing_commitment", converted_1235)?;
         } else {
             result.set_item("minimum_throughput_billing_commitment", py.None())?;
         }
@@ -6804,14 +9396,14 @@ impl PyOperationDescribeChannelOutput {
     #[getter]
     fn channel_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_description {
-            let converted_928 = Py::new(
+            let converted_1236 = Py::new(
                 py,
                 PyChannelDescription {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_928)
+            Ok(converted_1236)
         } else {
             Ok(py.None())
         }
@@ -6820,8 +9412,8 @@ impl PyOperationDescribeChannelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.channel_description {
-            let converted_929 = channel_description_shared_to_py(py, value)?;
-            result.set_item("channel_description", converted_929)?;
+            let converted_1237 = channel_description_shared_to_py(py, value)?;
+            result.set_item("channel_description", converted_1237)?;
         } else {
             result.set_item("channel_description", py.None())?;
         }
@@ -6842,37 +9434,37 @@ struct PyOperationDescribeLimitsOutput {
 impl PyOperationDescribeLimitsOutput {
     #[getter]
     fn shard_limit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_930 = (&self.inner.shard_limit).to_owned().into_py_any(py)?;
-        Ok(converted_930)
+        let converted_1238 = (&self.inner.shard_limit).to_owned().into_py_any(py)?;
+        Ok(converted_1238)
     }
 
     #[getter]
     fn open_shard_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_931 = (&self.inner.open_shard_count).to_owned().into_py_any(py)?;
-        Ok(converted_931)
+        let converted_1239 = (&self.inner.open_shard_count).to_owned().into_py_any(py)?;
+        Ok(converted_1239)
     }
 
     #[getter]
     fn on_demand_stream_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_932 = (&self.inner.on_demand_stream_count)
+        let converted_1240 = (&self.inner.on_demand_stream_count)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_932)
+        Ok(converted_1240)
     }
 
     #[getter]
     fn on_demand_stream_count_limit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_933 = (&self.inner.on_demand_stream_count_limit)
+        let converted_1241 = (&self.inner.on_demand_stream_count_limit)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_933)
+        Ok(converted_1241)
     }
 
     #[getter]
     fn channel_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_count {
-            let converted_934 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_934)
+            let converted_1242 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1242)
         } else {
             Ok(py.None())
         }
@@ -6881,8 +9473,8 @@ impl PyOperationDescribeLimitsOutput {
     #[getter]
     fn channel_count_limit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_count_limit {
-            let converted_935 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_935)
+            let converted_1243 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1243)
         } else {
             Ok(py.None())
         }
@@ -6890,29 +9482,82 @@ impl PyOperationDescribeLimitsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_936 = (&self.inner.shard_limit).to_owned().into_py_any(py)?;
-        result.set_item("shard_limit", converted_936)?;
-        let converted_937 = (&self.inner.open_shard_count).to_owned().into_py_any(py)?;
-        result.set_item("open_shard_count", converted_937)?;
-        let converted_938 = (&self.inner.on_demand_stream_count)
+        let converted_1244 = (&self.inner.shard_limit).to_owned().into_py_any(py)?;
+        result.set_item("shard_limit", converted_1244)?;
+        let converted_1245 = (&self.inner.open_shard_count).to_owned().into_py_any(py)?;
+        result.set_item("open_shard_count", converted_1245)?;
+        let converted_1246 = (&self.inner.on_demand_stream_count)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("on_demand_stream_count", converted_938)?;
-        let converted_939 = (&self.inner.on_demand_stream_count_limit)
+        result.set_item("on_demand_stream_count", converted_1246)?;
+        let converted_1247 = (&self.inner.on_demand_stream_count_limit)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("on_demand_stream_count_limit", converted_939)?;
+        result.set_item("on_demand_stream_count_limit", converted_1247)?;
         if let Some(value) = &self.inner.channel_count {
-            let converted_940 = (value).to_owned().into_py_any(py)?;
-            result.set_item("channel_count", converted_940)?;
+            let converted_1248 = (value).to_owned().into_py_any(py)?;
+            result.set_item("channel_count", converted_1248)?;
         } else {
             result.set_item("channel_count", py.None())?;
         }
         if let Some(value) = &self.inner.channel_count_limit {
-            let converted_941 = (value).to_owned().into_py_any(py)?;
-            result.set_item("channel_count_limit", converted_941)?;
+            let converted_1249 = (value).to_owned().into_py_any(py)?;
+            result.set_item("channel_count_limit", converted_1249)?;
         } else {
             result.set_item("channel_count_limit", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationDescribeQueueOutput {
+    queue_description: Option<Arc<SharedQueueDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::operation::describe_queue::DescribeQueueOutput>
+    for SharedPyOperationDescribeQueueOutput
+{
+    fn from(value: aws_sdk_kinesis::operation::describe_queue::DescribeQueueOutput) -> Self {
+        Self {
+            queue_description: value
+                .queue_description
+                .map(|item| Arc::new(SharedQueueDescription::from(item))),
+        }
+    }
+}
+
+#[pyclass(name = "DescribeQueueOutput", module = "rboto_kinesis._native", frozen)]
+struct PyOperationDescribeQueueOutput {
+    inner: SharedPyOperationDescribeQueueOutput,
+}
+
+#[pymethods]
+impl PyOperationDescribeQueueOutput {
+    #[getter]
+    fn queue_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.queue_description {
+            let converted_1250 = Py::new(
+                py,
+                PyQueueDescription {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1250)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.queue_description {
+            let converted_1251 = queue_description_shared_to_py(py, value)?;
+            result.set_item("queue_description", converted_1251)?;
+        } else {
+            result.set_item("queue_description", py.None())?;
         }
         Ok(result.into_any().unbind())
     }
@@ -6950,14 +9595,14 @@ impl PyOperationDescribeStreamOutput {
     #[getter]
     fn stream_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_description {
-            let converted_942 = Py::new(
+            let converted_1252 = Py::new(
                 py,
                 PyStreamDescription {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_942)
+            Ok(converted_1252)
         } else {
             Ok(py.None())
         }
@@ -6966,8 +9611,8 @@ impl PyOperationDescribeStreamOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.stream_description {
-            let converted_943 = stream_description_shared_to_py(py, value)?;
-            result.set_item("stream_description", converted_943)?;
+            let converted_1253 = stream_description_shared_to_py(py, value)?;
+            result.set_item("stream_description", converted_1253)?;
         } else {
             result.set_item("stream_description", py.None())?;
         }
@@ -7007,14 +9652,14 @@ impl PyOperationDescribeStreamConsumerOutput {
     #[getter]
     fn consumer_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumer_description {
-            let converted_944 = Py::new(
+            let converted_1254 = Py::new(
                 py,
                 PyConsumerDescription {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_944)
+            Ok(converted_1254)
         } else {
             Ok(py.None())
         }
@@ -7023,8 +9668,8 @@ impl PyOperationDescribeStreamConsumerOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.consumer_description {
-            let converted_945 = consumer_description_to_py(py, value)?;
-            result.set_item("consumer_description", converted_945)?;
+            let converted_1255 = consumer_description_to_py(py, value)?;
+            result.set_item("consumer_description", converted_1255)?;
         } else {
             result.set_item("consumer_description", py.None())?;
         }
@@ -7066,14 +9711,14 @@ impl PyOperationDescribeStreamSummaryOutput {
     #[getter]
     fn stream_description_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_description_summary {
-            let converted_946 = Py::new(
+            let converted_1256 = Py::new(
                 py,
                 PyStreamDescriptionSummary {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_946)
+            Ok(converted_1256)
         } else {
             Ok(py.None())
         }
@@ -7082,8 +9727,8 @@ impl PyOperationDescribeStreamSummaryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.stream_description_summary {
-            let converted_947 = stream_description_summary_shared_to_py(py, value)?;
-            result.set_item("stream_description_summary", converted_947)?;
+            let converted_1257 = stream_description_summary_shared_to_py(py, value)?;
+            result.set_item("stream_description_summary", converted_1257)?;
         } else {
             result.set_item("stream_description_summary", py.None())?;
         }
@@ -7105,8 +9750,8 @@ impl PyOperationDisableEnhancedMonitoringOutput {
     #[getter]
     fn stream_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_name {
-            let converted_948 = (value).as_str().into_py_any(py)?;
-            Ok(converted_948)
+            let converted_1258 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1258)
         } else {
             Ok(py.None())
         }
@@ -7115,13 +9760,13 @@ impl PyOperationDisableEnhancedMonitoringOutput {
     #[getter]
     fn current_shard_level_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.current_shard_level_metrics {
-            let converted_949_list = PyList::empty(py);
-            for item_950 in value {
-                let converted_item_951 = (item_950).as_str().into_py_any(py)?;
-                converted_949_list.append(converted_item_951)?;
+            let converted_1259_list = PyList::empty(py);
+            for item_1260 in value {
+                let converted_item_1261 = (item_1260).as_str().into_py_any(py)?;
+                converted_1259_list.append(converted_item_1261)?;
             }
-            let converted_949 = converted_949_list.into_any().unbind();
-            Ok(converted_949)
+            let converted_1259 = converted_1259_list.into_any().unbind();
+            Ok(converted_1259)
         } else {
             Ok(py.None())
         }
@@ -7130,13 +9775,13 @@ impl PyOperationDisableEnhancedMonitoringOutput {
     #[getter]
     fn desired_shard_level_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.desired_shard_level_metrics {
-            let converted_952_list = PyList::empty(py);
-            for item_953 in value {
-                let converted_item_954 = (item_953).as_str().into_py_any(py)?;
-                converted_952_list.append(converted_item_954)?;
+            let converted_1262_list = PyList::empty(py);
+            for item_1263 in value {
+                let converted_item_1264 = (item_1263).as_str().into_py_any(py)?;
+                converted_1262_list.append(converted_item_1264)?;
             }
-            let converted_952 = converted_952_list.into_any().unbind();
-            Ok(converted_952)
+            let converted_1262 = converted_1262_list.into_any().unbind();
+            Ok(converted_1262)
         } else {
             Ok(py.None())
         }
@@ -7145,8 +9790,8 @@ impl PyOperationDisableEnhancedMonitoringOutput {
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_arn {
-            let converted_955 = (value).as_str().into_py_any(py)?;
-            Ok(converted_955)
+            let converted_1265 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1265)
         } else {
             Ok(py.None())
         }
@@ -7155,36 +9800,36 @@ impl PyOperationDisableEnhancedMonitoringOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.stream_name {
-            let converted_956 = (value).as_str().into_py_any(py)?;
-            result.set_item("stream_name", converted_956)?;
+            let converted_1266 = (value).as_str().into_py_any(py)?;
+            result.set_item("stream_name", converted_1266)?;
         } else {
             result.set_item("stream_name", py.None())?;
         }
         if let Some(value) = &self.inner.current_shard_level_metrics {
-            let converted_957_list = PyList::empty(py);
-            for item_958 in value {
-                let converted_item_959 = (item_958).as_str().into_py_any(py)?;
-                converted_957_list.append(converted_item_959)?;
+            let converted_1267_list = PyList::empty(py);
+            for item_1268 in value {
+                let converted_item_1269 = (item_1268).as_str().into_py_any(py)?;
+                converted_1267_list.append(converted_item_1269)?;
             }
-            let converted_957 = converted_957_list.into_any().unbind();
-            result.set_item("current_shard_level_metrics", converted_957)?;
+            let converted_1267 = converted_1267_list.into_any().unbind();
+            result.set_item("current_shard_level_metrics", converted_1267)?;
         } else {
             result.set_item("current_shard_level_metrics", py.None())?;
         }
         if let Some(value) = &self.inner.desired_shard_level_metrics {
-            let converted_960_list = PyList::empty(py);
-            for item_961 in value {
-                let converted_item_962 = (item_961).as_str().into_py_any(py)?;
-                converted_960_list.append(converted_item_962)?;
+            let converted_1270_list = PyList::empty(py);
+            for item_1271 in value {
+                let converted_item_1272 = (item_1271).as_str().into_py_any(py)?;
+                converted_1270_list.append(converted_item_1272)?;
             }
-            let converted_960 = converted_960_list.into_any().unbind();
-            result.set_item("desired_shard_level_metrics", converted_960)?;
+            let converted_1270 = converted_1270_list.into_any().unbind();
+            result.set_item("desired_shard_level_metrics", converted_1270)?;
         } else {
             result.set_item("desired_shard_level_metrics", py.None())?;
         }
         if let Some(value) = &self.inner.stream_arn {
-            let converted_963 = (value).as_str().into_py_any(py)?;
-            result.set_item("stream_arn", converted_963)?;
+            let converted_1273 = (value).as_str().into_py_any(py)?;
+            result.set_item("stream_arn", converted_1273)?;
         } else {
             result.set_item("stream_arn", py.None())?;
         }
@@ -7206,8 +9851,8 @@ impl PyOperationEnableEnhancedMonitoringOutput {
     #[getter]
     fn stream_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_name {
-            let converted_964 = (value).as_str().into_py_any(py)?;
-            Ok(converted_964)
+            let converted_1274 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1274)
         } else {
             Ok(py.None())
         }
@@ -7216,13 +9861,13 @@ impl PyOperationEnableEnhancedMonitoringOutput {
     #[getter]
     fn current_shard_level_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.current_shard_level_metrics {
-            let converted_965_list = PyList::empty(py);
-            for item_966 in value {
-                let converted_item_967 = (item_966).as_str().into_py_any(py)?;
-                converted_965_list.append(converted_item_967)?;
+            let converted_1275_list = PyList::empty(py);
+            for item_1276 in value {
+                let converted_item_1277 = (item_1276).as_str().into_py_any(py)?;
+                converted_1275_list.append(converted_item_1277)?;
             }
-            let converted_965 = converted_965_list.into_any().unbind();
-            Ok(converted_965)
+            let converted_1275 = converted_1275_list.into_any().unbind();
+            Ok(converted_1275)
         } else {
             Ok(py.None())
         }
@@ -7231,13 +9876,13 @@ impl PyOperationEnableEnhancedMonitoringOutput {
     #[getter]
     fn desired_shard_level_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.desired_shard_level_metrics {
-            let converted_968_list = PyList::empty(py);
-            for item_969 in value {
-                let converted_item_970 = (item_969).as_str().into_py_any(py)?;
-                converted_968_list.append(converted_item_970)?;
+            let converted_1278_list = PyList::empty(py);
+            for item_1279 in value {
+                let converted_item_1280 = (item_1279).as_str().into_py_any(py)?;
+                converted_1278_list.append(converted_item_1280)?;
             }
-            let converted_968 = converted_968_list.into_any().unbind();
-            Ok(converted_968)
+            let converted_1278 = converted_1278_list.into_any().unbind();
+            Ok(converted_1278)
         } else {
             Ok(py.None())
         }
@@ -7246,8 +9891,8 @@ impl PyOperationEnableEnhancedMonitoringOutput {
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_arn {
-            let converted_971 = (value).as_str().into_py_any(py)?;
-            Ok(converted_971)
+            let converted_1281 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1281)
         } else {
             Ok(py.None())
         }
@@ -7256,36 +9901,36 @@ impl PyOperationEnableEnhancedMonitoringOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.stream_name {
-            let converted_972 = (value).as_str().into_py_any(py)?;
-            result.set_item("stream_name", converted_972)?;
+            let converted_1282 = (value).as_str().into_py_any(py)?;
+            result.set_item("stream_name", converted_1282)?;
         } else {
             result.set_item("stream_name", py.None())?;
         }
         if let Some(value) = &self.inner.current_shard_level_metrics {
-            let converted_973_list = PyList::empty(py);
-            for item_974 in value {
-                let converted_item_975 = (item_974).as_str().into_py_any(py)?;
-                converted_973_list.append(converted_item_975)?;
+            let converted_1283_list = PyList::empty(py);
+            for item_1284 in value {
+                let converted_item_1285 = (item_1284).as_str().into_py_any(py)?;
+                converted_1283_list.append(converted_item_1285)?;
             }
-            let converted_973 = converted_973_list.into_any().unbind();
-            result.set_item("current_shard_level_metrics", converted_973)?;
+            let converted_1283 = converted_1283_list.into_any().unbind();
+            result.set_item("current_shard_level_metrics", converted_1283)?;
         } else {
             result.set_item("current_shard_level_metrics", py.None())?;
         }
         if let Some(value) = &self.inner.desired_shard_level_metrics {
-            let converted_976_list = PyList::empty(py);
-            for item_977 in value {
-                let converted_item_978 = (item_977).as_str().into_py_any(py)?;
-                converted_976_list.append(converted_item_978)?;
+            let converted_1286_list = PyList::empty(py);
+            for item_1287 in value {
+                let converted_item_1288 = (item_1287).as_str().into_py_any(py)?;
+                converted_1286_list.append(converted_item_1288)?;
             }
-            let converted_976 = converted_976_list.into_any().unbind();
-            result.set_item("desired_shard_level_metrics", converted_976)?;
+            let converted_1286 = converted_1286_list.into_any().unbind();
+            result.set_item("desired_shard_level_metrics", converted_1286)?;
         } else {
             result.set_item("desired_shard_level_metrics", py.None())?;
         }
         if let Some(value) = &self.inner.stream_arn {
-            let converted_979 = (value).as_str().into_py_any(py)?;
-            result.set_item("stream_arn", converted_979)?;
+            let converted_1289 = (value).as_str().into_py_any(py)?;
+            result.set_item("stream_arn", converted_1289)?;
         } else {
             result.set_item("stream_arn", py.None())?;
         }
@@ -7309,14 +9954,14 @@ impl From<aws_sdk_kinesis::operation::get_records::GetRecordsOutput>
         Self {
             records: (value.records)
                 .into_iter()
-                .map(|owned_988| Arc::new(owned_988))
+                .map(|owned_1298| Arc::new(owned_1298))
                 .collect(),
             next_shard_iterator: value.next_shard_iterator,
             millis_behind_latest: value.millis_behind_latest,
             child_shards: value.child_shards.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_989| Arc::new(SharedChildShard::from(owned_989)))
+                    .map(|owned_1299| Arc::new(SharedChildShard::from(owned_1299)))
                     .collect()
             }),
         }
@@ -7332,26 +9977,26 @@ struct PyOperationGetRecordsOutput {
 impl PyOperationGetRecordsOutput {
     #[getter]
     fn records(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_980_list = PyList::empty(py);
-        for item_981 in &self.inner.records {
-            let converted_item_982 = Py::new(
+        let converted_1290_list = PyList::empty(py);
+        for item_1291 in &self.inner.records {
+            let converted_item_1292 = Py::new(
                 py,
                 PyRecord {
-                    inner: Arc::clone(item_981),
+                    inner: Arc::clone(item_1291),
                 },
             )?
             .into_any();
-            converted_980_list.append(converted_item_982)?;
+            converted_1290_list.append(converted_item_1292)?;
         }
-        let converted_980 = converted_980_list.into_any().unbind();
-        Ok(converted_980)
+        let converted_1290 = converted_1290_list.into_any().unbind();
+        Ok(converted_1290)
     }
 
     #[getter]
     fn next_shard_iterator(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_shard_iterator {
-            let converted_983 = (value).as_str().into_py_any(py)?;
-            Ok(converted_983)
+            let converted_1293 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1293)
         } else {
             Ok(py.None())
         }
@@ -7360,8 +10005,8 @@ impl PyOperationGetRecordsOutput {
     #[getter]
     fn millis_behind_latest(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.millis_behind_latest {
-            let converted_984 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_984)
+            let converted_1294 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1294)
         } else {
             Ok(py.None())
         }
@@ -7370,19 +10015,19 @@ impl PyOperationGetRecordsOutput {
     #[getter]
     fn child_shards(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.child_shards {
-            let converted_985_list = PyList::empty(py);
-            for item_986 in value {
-                let converted_item_987 = Py::new(
+            let converted_1295_list = PyList::empty(py);
+            for item_1296 in value {
+                let converted_item_1297 = Py::new(
                     py,
                     PyChildShard {
-                        inner: Arc::clone(item_986),
+                        inner: Arc::clone(item_1296),
                     },
                 )?
                 .into_any();
-                converted_985_list.append(converted_item_987)?;
+                converted_1295_list.append(converted_item_1297)?;
             }
-            let converted_985 = converted_985_list.into_any().unbind();
-            Ok(converted_985)
+            let converted_1295 = converted_1295_list.into_any().unbind();
+            Ok(converted_1295)
         } else {
             Ok(py.None())
         }
@@ -7390,33 +10035,33 @@ impl PyOperationGetRecordsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_990_list = PyList::empty(py);
-        for item_991 in &self.inner.records {
-            let converted_item_992 = record_to_py(py, item_991)?;
-            converted_990_list.append(converted_item_992)?;
+        let converted_1300_list = PyList::empty(py);
+        for item_1301 in &self.inner.records {
+            let converted_item_1302 = record_to_py(py, item_1301)?;
+            converted_1300_list.append(converted_item_1302)?;
         }
-        let converted_990 = converted_990_list.into_any().unbind();
-        result.set_item("records", converted_990)?;
+        let converted_1300 = converted_1300_list.into_any().unbind();
+        result.set_item("records", converted_1300)?;
         if let Some(value) = &self.inner.next_shard_iterator {
-            let converted_993 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_shard_iterator", converted_993)?;
+            let converted_1303 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_shard_iterator", converted_1303)?;
         } else {
             result.set_item("next_shard_iterator", py.None())?;
         }
         if let Some(value) = &self.inner.millis_behind_latest {
-            let converted_994 = (value).to_owned().into_py_any(py)?;
-            result.set_item("millis_behind_latest", converted_994)?;
+            let converted_1304 = (value).to_owned().into_py_any(py)?;
+            result.set_item("millis_behind_latest", converted_1304)?;
         } else {
             result.set_item("millis_behind_latest", py.None())?;
         }
         if let Some(value) = &self.inner.child_shards {
-            let converted_995_list = PyList::empty(py);
-            for item_996 in value {
-                let converted_item_997 = child_shard_shared_to_py(py, item_996)?;
-                converted_995_list.append(converted_item_997)?;
+            let converted_1305_list = PyList::empty(py);
+            for item_1306 in value {
+                let converted_item_1307 = child_shard_shared_to_py(py, item_1306)?;
+                converted_1305_list.append(converted_item_1307)?;
             }
-            let converted_995 = converted_995_list.into_any().unbind();
-            result.set_item("child_shards", converted_995)?;
+            let converted_1305 = converted_1305_list.into_any().unbind();
+            result.set_item("child_shards", converted_1305)?;
         } else {
             result.set_item("child_shards", py.None())?;
         }
@@ -7437,14 +10082,14 @@ struct PyOperationGetResourcePolicyOutput {
 impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_998 = (&self.inner.policy).as_str().into_py_any(py)?;
-        Ok(converted_998)
+        let converted_1308 = (&self.inner.policy).as_str().into_py_any(py)?;
+        Ok(converted_1308)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_999 = (&self.inner.policy).as_str().into_py_any(py)?;
-        result.set_item("policy", converted_999)?;
+        let converted_1309 = (&self.inner.policy).as_str().into_py_any(py)?;
+        result.set_item("policy", converted_1309)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -7463,8 +10108,8 @@ impl PyOperationGetShardIteratorOutput {
     #[getter]
     fn shard_iterator(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.shard_iterator {
-            let converted_1000 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1000)
+            let converted_1310 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1310)
         } else {
             Ok(py.None())
         }
@@ -7473,8 +10118,8 @@ impl PyOperationGetShardIteratorOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.shard_iterator {
-            let converted_1001 = (value).as_str().into_py_any(py)?;
-            result.set_item("shard_iterator", converted_1001)?;
+            let converted_1311 = (value).as_str().into_py_any(py)?;
+            result.set_item("shard_iterator", converted_1311)?;
         } else {
             result.set_item("shard_iterator", py.None())?;
         }
@@ -7496,7 +10141,7 @@ impl From<aws_sdk_kinesis::operation::list_channels::ListChannelsOutput>
         Self {
             channel_summaries: (value.channel_summaries)
                 .into_iter()
-                .map(|owned_1006| Arc::new(SharedChannelSummary::from(owned_1006)))
+                .map(|owned_1316| Arc::new(SharedChannelSummary::from(owned_1316)))
                 .collect(),
             next_token: value.next_token,
         }
@@ -7512,26 +10157,26 @@ struct PyOperationListChannelsOutput {
 impl PyOperationListChannelsOutput {
     #[getter]
     fn channel_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1002_list = PyList::empty(py);
-        for item_1003 in &self.inner.channel_summaries {
-            let converted_item_1004 = Py::new(
+        let converted_1312_list = PyList::empty(py);
+        for item_1313 in &self.inner.channel_summaries {
+            let converted_item_1314 = Py::new(
                 py,
                 PyChannelSummary {
-                    inner: Arc::clone(item_1003),
+                    inner: Arc::clone(item_1313),
                 },
             )?
             .into_any();
-            converted_1002_list.append(converted_item_1004)?;
+            converted_1312_list.append(converted_item_1314)?;
         }
-        let converted_1002 = converted_1002_list.into_any().unbind();
-        Ok(converted_1002)
+        let converted_1312 = converted_1312_list.into_any().unbind();
+        Ok(converted_1312)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1005 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1005)
+            let converted_1315 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1315)
         } else {
             Ok(py.None())
         }
@@ -7539,16 +10184,90 @@ impl PyOperationListChannelsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1007_list = PyList::empty(py);
-        for item_1008 in &self.inner.channel_summaries {
-            let converted_item_1009 = channel_summary_shared_to_py(py, item_1008)?;
-            converted_1007_list.append(converted_item_1009)?;
+        let converted_1317_list = PyList::empty(py);
+        for item_1318 in &self.inner.channel_summaries {
+            let converted_item_1319 = channel_summary_shared_to_py(py, item_1318)?;
+            converted_1317_list.append(converted_item_1319)?;
         }
-        let converted_1007 = converted_1007_list.into_any().unbind();
-        result.set_item("channel_summaries", converted_1007)?;
+        let converted_1317 = converted_1317_list.into_any().unbind();
+        result.set_item("channel_summaries", converted_1317)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_1010 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1010)?;
+            let converted_1320 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1320)?;
+        } else {
+            result.set_item("next_token", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationListQueuesOutput {
+    queue_summaries: ::std::vec::Vec<Arc<SharedQueueSummary>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::operation::list_queues::ListQueuesOutput>
+    for SharedPyOperationListQueuesOutput
+{
+    fn from(value: aws_sdk_kinesis::operation::list_queues::ListQueuesOutput) -> Self {
+        Self {
+            queue_summaries: (value.queue_summaries)
+                .into_iter()
+                .map(|owned_1325| Arc::new(SharedQueueSummary::from(owned_1325)))
+                .collect(),
+            next_token: value.next_token,
+        }
+    }
+}
+
+#[pyclass(name = "ListQueuesOutput", module = "rboto_kinesis._native", frozen)]
+struct PyOperationListQueuesOutput {
+    inner: SharedPyOperationListQueuesOutput,
+}
+
+#[pymethods]
+impl PyOperationListQueuesOutput {
+    #[getter]
+    fn queue_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1321_list = PyList::empty(py);
+        for item_1322 in &self.inner.queue_summaries {
+            let converted_item_1323 = Py::new(
+                py,
+                PyQueueSummary {
+                    inner: Arc::clone(item_1322),
+                },
+            )?
+            .into_any();
+            converted_1321_list.append(converted_item_1323)?;
+        }
+        let converted_1321 = converted_1321_list.into_any().unbind();
+        Ok(converted_1321)
+    }
+
+    #[getter]
+    fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_token {
+            let converted_1324 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1324)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_1326_list = PyList::empty(py);
+        for item_1327 in &self.inner.queue_summaries {
+            let converted_item_1328 = queue_summary_shared_to_py(py, item_1327)?;
+            converted_1326_list.append(converted_item_1328)?;
+        }
+        let converted_1326 = converted_1326_list.into_any().unbind();
+        result.set_item("queue_summaries", converted_1326)?;
+        if let Some(value) = &self.inner.next_token {
+            let converted_1329 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1329)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -7571,7 +10290,7 @@ impl From<aws_sdk_kinesis::operation::list_shards::ListShardsOutput>
             shards: value.shards.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1015| Arc::new(SharedShard::from(owned_1015)))
+                    .map(|owned_1334| Arc::new(SharedShard::from(owned_1334)))
                     .collect()
             }),
             next_token: value.next_token,
@@ -7589,19 +10308,19 @@ impl PyOperationListShardsOutput {
     #[getter]
     fn shards(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.shards {
-            let converted_1011_list = PyList::empty(py);
-            for item_1012 in value {
-                let converted_item_1013 = Py::new(
+            let converted_1330_list = PyList::empty(py);
+            for item_1331 in value {
+                let converted_item_1332 = Py::new(
                     py,
                     PyShard {
-                        inner: Arc::clone(item_1012),
+                        inner: Arc::clone(item_1331),
                     },
                 )?
                 .into_any();
-                converted_1011_list.append(converted_item_1013)?;
+                converted_1330_list.append(converted_item_1332)?;
             }
-            let converted_1011 = converted_1011_list.into_any().unbind();
-            Ok(converted_1011)
+            let converted_1330 = converted_1330_list.into_any().unbind();
+            Ok(converted_1330)
         } else {
             Ok(py.None())
         }
@@ -7610,8 +10329,8 @@ impl PyOperationListShardsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1014 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1014)
+            let converted_1333 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1333)
         } else {
             Ok(py.None())
         }
@@ -7620,19 +10339,19 @@ impl PyOperationListShardsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.shards {
-            let converted_1016_list = PyList::empty(py);
-            for item_1017 in value {
-                let converted_item_1018 = shard_shared_to_py(py, item_1017)?;
-                converted_1016_list.append(converted_item_1018)?;
+            let converted_1335_list = PyList::empty(py);
+            for item_1336 in value {
+                let converted_item_1337 = shard_shared_to_py(py, item_1336)?;
+                converted_1335_list.append(converted_item_1337)?;
             }
-            let converted_1016 = converted_1016_list.into_any().unbind();
-            result.set_item("shards", converted_1016)?;
+            let converted_1335 = converted_1335_list.into_any().unbind();
+            result.set_item("shards", converted_1335)?;
         } else {
             result.set_item("shards", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1019 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1019)?;
+            let converted_1338 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1338)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -7657,7 +10376,7 @@ impl From<aws_sdk_kinesis::operation::list_stream_consumers::ListStreamConsumers
             consumers: value.consumers.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1024| Arc::new(owned_1024))
+                    .map(|owned_1343| Arc::new(owned_1343))
                     .collect()
             }),
             next_token: value.next_token,
@@ -7679,19 +10398,19 @@ impl PyOperationListStreamConsumersOutput {
     #[getter]
     fn consumers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumers {
-            let converted_1020_list = PyList::empty(py);
-            for item_1021 in value {
-                let converted_item_1022 = Py::new(
+            let converted_1339_list = PyList::empty(py);
+            for item_1340 in value {
+                let converted_item_1341 = Py::new(
                     py,
                     PyConsumer {
-                        inner: Arc::clone(item_1021),
+                        inner: Arc::clone(item_1340),
                     },
                 )?
                 .into_any();
-                converted_1020_list.append(converted_item_1022)?;
+                converted_1339_list.append(converted_item_1341)?;
             }
-            let converted_1020 = converted_1020_list.into_any().unbind();
-            Ok(converted_1020)
+            let converted_1339 = converted_1339_list.into_any().unbind();
+            Ok(converted_1339)
         } else {
             Ok(py.None())
         }
@@ -7700,8 +10419,8 @@ impl PyOperationListStreamConsumersOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1023 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1023)
+            let converted_1342 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1342)
         } else {
             Ok(py.None())
         }
@@ -7710,19 +10429,19 @@ impl PyOperationListStreamConsumersOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.consumers {
-            let converted_1025_list = PyList::empty(py);
-            for item_1026 in value {
-                let converted_item_1027 = consumer_to_py(py, item_1026)?;
-                converted_1025_list.append(converted_item_1027)?;
+            let converted_1344_list = PyList::empty(py);
+            for item_1345 in value {
+                let converted_item_1346 = consumer_to_py(py, item_1345)?;
+                converted_1344_list.append(converted_item_1346)?;
             }
-            let converted_1025 = converted_1025_list.into_any().unbind();
-            result.set_item("consumers", converted_1025)?;
+            let converted_1344 = converted_1344_list.into_any().unbind();
+            result.set_item("consumers", converted_1344)?;
         } else {
             result.set_item("consumers", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1028 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1028)?;
+            let converted_1347 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1347)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -7750,7 +10469,7 @@ impl From<aws_sdk_kinesis::operation::list_streams::ListStreamsOutput>
             stream_summaries: value.stream_summaries.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1037| Arc::new(SharedStreamSummary::from(owned_1037)))
+                    .map(|owned_1356| Arc::new(SharedStreamSummary::from(owned_1356)))
                     .collect()
             }),
         }
@@ -7766,26 +10485,26 @@ struct PyOperationListStreamsOutput {
 impl PyOperationListStreamsOutput {
     #[getter]
     fn stream_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1029_list = PyList::empty(py);
-        for item_1030 in &self.inner.stream_names {
-            let converted_item_1031 = (item_1030).as_str().into_py_any(py)?;
-            converted_1029_list.append(converted_item_1031)?;
+        let converted_1348_list = PyList::empty(py);
+        for item_1349 in &self.inner.stream_names {
+            let converted_item_1350 = (item_1349).as_str().into_py_any(py)?;
+            converted_1348_list.append(converted_item_1350)?;
         }
-        let converted_1029 = converted_1029_list.into_any().unbind();
-        Ok(converted_1029)
+        let converted_1348 = converted_1348_list.into_any().unbind();
+        Ok(converted_1348)
     }
 
     #[getter]
     fn has_more_streams(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1032 = (&self.inner.has_more_streams).to_owned().into_py_any(py)?;
-        Ok(converted_1032)
+        let converted_1351 = (&self.inner.has_more_streams).to_owned().into_py_any(py)?;
+        Ok(converted_1351)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1033 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1033)
+            let converted_1352 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1352)
         } else {
             Ok(py.None())
         }
@@ -7794,19 +10513,19 @@ impl PyOperationListStreamsOutput {
     #[getter]
     fn stream_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_summaries {
-            let converted_1034_list = PyList::empty(py);
-            for item_1035 in value {
-                let converted_item_1036 = Py::new(
+            let converted_1353_list = PyList::empty(py);
+            for item_1354 in value {
+                let converted_item_1355 = Py::new(
                     py,
                     PyStreamSummary {
-                        inner: Arc::clone(item_1035),
+                        inner: Arc::clone(item_1354),
                     },
                 )?
                 .into_any();
-                converted_1034_list.append(converted_item_1036)?;
+                converted_1353_list.append(converted_item_1355)?;
             }
-            let converted_1034 = converted_1034_list.into_any().unbind();
-            Ok(converted_1034)
+            let converted_1353 = converted_1353_list.into_any().unbind();
+            Ok(converted_1353)
         } else {
             Ok(py.None())
         }
@@ -7814,29 +10533,29 @@ impl PyOperationListStreamsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1038_list = PyList::empty(py);
-        for item_1039 in &self.inner.stream_names {
-            let converted_item_1040 = (item_1039).as_str().into_py_any(py)?;
-            converted_1038_list.append(converted_item_1040)?;
+        let converted_1357_list = PyList::empty(py);
+        for item_1358 in &self.inner.stream_names {
+            let converted_item_1359 = (item_1358).as_str().into_py_any(py)?;
+            converted_1357_list.append(converted_item_1359)?;
         }
-        let converted_1038 = converted_1038_list.into_any().unbind();
-        result.set_item("stream_names", converted_1038)?;
-        let converted_1041 = (&self.inner.has_more_streams).to_owned().into_py_any(py)?;
-        result.set_item("has_more_streams", converted_1041)?;
+        let converted_1357 = converted_1357_list.into_any().unbind();
+        result.set_item("stream_names", converted_1357)?;
+        let converted_1360 = (&self.inner.has_more_streams).to_owned().into_py_any(py)?;
+        result.set_item("has_more_streams", converted_1360)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_1042 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1042)?;
+            let converted_1361 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1361)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.stream_summaries {
-            let converted_1043_list = PyList::empty(py);
-            for item_1044 in value {
-                let converted_item_1045 = stream_summary_shared_to_py(py, item_1044)?;
-                converted_1043_list.append(converted_item_1045)?;
+            let converted_1362_list = PyList::empty(py);
+            for item_1363 in value {
+                let converted_item_1364 = stream_summary_shared_to_py(py, item_1363)?;
+                converted_1362_list.append(converted_item_1364)?;
             }
-            let converted_1043 = converted_1043_list.into_any().unbind();
-            result.set_item("stream_summaries", converted_1043)?;
+            let converted_1362 = converted_1362_list.into_any().unbind();
+            result.set_item("stream_summaries", converted_1362)?;
         } else {
             result.set_item("stream_summaries", py.None())?;
         }
@@ -7860,7 +10579,7 @@ impl From<aws_sdk_kinesis::operation::list_tags_for_resource::ListTagsForResourc
             tags: value.tags.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1049| Arc::new(owned_1049))
+                    .map(|owned_1368| Arc::new(owned_1368))
                     .collect()
             }),
         }
@@ -7881,19 +10600,19 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_1046_list = PyList::empty(py);
-            for item_1047 in value {
-                let converted_item_1048 = Py::new(
+            let converted_1365_list = PyList::empty(py);
+            for item_1366 in value {
+                let converted_item_1367 = Py::new(
                     py,
                     PyTag {
-                        inner: Arc::clone(item_1047),
+                        inner: Arc::clone(item_1366),
                     },
                 )?
                 .into_any();
-                converted_1046_list.append(converted_item_1048)?;
+                converted_1365_list.append(converted_item_1367)?;
             }
-            let converted_1046 = converted_1046_list.into_any().unbind();
-            Ok(converted_1046)
+            let converted_1365 = converted_1365_list.into_any().unbind();
+            Ok(converted_1365)
         } else {
             Ok(py.None())
         }
@@ -7902,13 +10621,13 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_1050_list = PyList::empty(py);
-            for item_1051 in value {
-                let converted_item_1052 = tag_to_py(py, item_1051)?;
-                converted_1050_list.append(converted_item_1052)?;
+            let converted_1369_list = PyList::empty(py);
+            for item_1370 in value {
+                let converted_item_1371 = tag_to_py(py, item_1370)?;
+                converted_1369_list.append(converted_item_1371)?;
             }
-            let converted_1050 = converted_1050_list.into_any().unbind();
-            result.set_item("tags", converted_1050)?;
+            let converted_1369 = converted_1369_list.into_any().unbind();
+            result.set_item("tags", converted_1369)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -7932,7 +10651,7 @@ impl From<aws_sdk_kinesis::operation::list_tags_for_stream::ListTagsForStreamOut
         Self {
             tags: (value.tags)
                 .into_iter()
-                .map(|owned_1057| Arc::new(owned_1057))
+                .map(|owned_1376| Arc::new(owned_1376))
                 .collect(),
             has_more_tags: value.has_more_tags,
         }
@@ -7952,38 +10671,38 @@ struct PyOperationListTagsForStreamOutput {
 impl PyOperationListTagsForStreamOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1053_list = PyList::empty(py);
-        for item_1054 in &self.inner.tags {
-            let converted_item_1055 = Py::new(
+        let converted_1372_list = PyList::empty(py);
+        for item_1373 in &self.inner.tags {
+            let converted_item_1374 = Py::new(
                 py,
                 PyTag {
-                    inner: Arc::clone(item_1054),
+                    inner: Arc::clone(item_1373),
                 },
             )?
             .into_any();
-            converted_1053_list.append(converted_item_1055)?;
+            converted_1372_list.append(converted_item_1374)?;
         }
-        let converted_1053 = converted_1053_list.into_any().unbind();
-        Ok(converted_1053)
+        let converted_1372 = converted_1372_list.into_any().unbind();
+        Ok(converted_1372)
     }
 
     #[getter]
     fn has_more_tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1056 = (&self.inner.has_more_tags).to_owned().into_py_any(py)?;
-        Ok(converted_1056)
+        let converted_1375 = (&self.inner.has_more_tags).to_owned().into_py_any(py)?;
+        Ok(converted_1375)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1058_list = PyList::empty(py);
-        for item_1059 in &self.inner.tags {
-            let converted_item_1060 = tag_to_py(py, item_1059)?;
-            converted_1058_list.append(converted_item_1060)?;
+        let converted_1377_list = PyList::empty(py);
+        for item_1378 in &self.inner.tags {
+            let converted_item_1379 = tag_to_py(py, item_1378)?;
+            converted_1377_list.append(converted_item_1379)?;
         }
-        let converted_1058 = converted_1058_list.into_any().unbind();
-        result.set_item("tags", converted_1058)?;
-        let converted_1061 = (&self.inner.has_more_tags).to_owned().into_py_any(py)?;
-        result.set_item("has_more_tags", converted_1061)?;
+        let converted_1377 = converted_1377_list.into_any().unbind();
+        result.set_item("tags", converted_1377)?;
+        let converted_1380 = (&self.inner.has_more_tags).to_owned().into_py_any(py)?;
+        result.set_item("has_more_tags", converted_1380)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -7997,21 +10716,21 @@ struct PyOperationPutRecordOutput {
 impl PyOperationPutRecordOutput {
     #[getter]
     fn shard_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1062 = (&self.inner.shard_id).as_str().into_py_any(py)?;
-        Ok(converted_1062)
+        let converted_1381 = (&self.inner.shard_id).as_str().into_py_any(py)?;
+        Ok(converted_1381)
     }
 
     #[getter]
     fn sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1063 = (&self.inner.sequence_number).as_str().into_py_any(py)?;
-        Ok(converted_1063)
+        let converted_1382 = (&self.inner.sequence_number).as_str().into_py_any(py)?;
+        Ok(converted_1382)
     }
 
     #[getter]
     fn encryption_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_type {
-            let converted_1064 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1064)
+            let converted_1383 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1383)
         } else {
             Ok(py.None())
         }
@@ -8019,13 +10738,13 @@ impl PyOperationPutRecordOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1065 = (&self.inner.shard_id).as_str().into_py_any(py)?;
-        result.set_item("shard_id", converted_1065)?;
-        let converted_1066 = (&self.inner.sequence_number).as_str().into_py_any(py)?;
-        result.set_item("sequence_number", converted_1066)?;
+        let converted_1384 = (&self.inner.shard_id).as_str().into_py_any(py)?;
+        result.set_item("shard_id", converted_1384)?;
+        let converted_1385 = (&self.inner.sequence_number).as_str().into_py_any(py)?;
+        result.set_item("sequence_number", converted_1385)?;
         if let Some(value) = &self.inner.encryption_type {
-            let converted_1067 = (value).as_str().into_py_any(py)?;
-            result.set_item("encryption_type", converted_1067)?;
+            let converted_1386 = (value).as_str().into_py_any(py)?;
+            result.set_item("encryption_type", converted_1386)?;
         } else {
             result.set_item("encryption_type", py.None())?;
         }
@@ -8049,7 +10768,7 @@ impl From<aws_sdk_kinesis::operation::put_records::PutRecordsOutput>
             failed_record_count: value.failed_record_count,
             records: (value.records)
                 .into_iter()
-                .map(|owned_1073| Arc::new(owned_1073))
+                .map(|owned_1392| Arc::new(owned_1392))
                 .collect(),
             encryption_type: value.encryption_type,
         }
@@ -8066,8 +10785,8 @@ impl PyOperationPutRecordsOutput {
     #[getter]
     fn failed_record_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failed_record_count {
-            let converted_1068 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1068)
+            let converted_1387 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1387)
         } else {
             Ok(py.None())
         }
@@ -8075,26 +10794,26 @@ impl PyOperationPutRecordsOutput {
 
     #[getter]
     fn records(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1069_list = PyList::empty(py);
-        for item_1070 in &self.inner.records {
-            let converted_item_1071 = Py::new(
+        let converted_1388_list = PyList::empty(py);
+        for item_1389 in &self.inner.records {
+            let converted_item_1390 = Py::new(
                 py,
                 PyPutRecordsResultEntry {
-                    inner: Arc::clone(item_1070),
+                    inner: Arc::clone(item_1389),
                 },
             )?
             .into_any();
-            converted_1069_list.append(converted_item_1071)?;
+            converted_1388_list.append(converted_item_1390)?;
         }
-        let converted_1069 = converted_1069_list.into_any().unbind();
-        Ok(converted_1069)
+        let converted_1388 = converted_1388_list.into_any().unbind();
+        Ok(converted_1388)
     }
 
     #[getter]
     fn encryption_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_type {
-            let converted_1072 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1072)
+            let converted_1391 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1391)
         } else {
             Ok(py.None())
         }
@@ -8103,24 +10822,141 @@ impl PyOperationPutRecordsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.failed_record_count {
-            let converted_1074 = (value).to_owned().into_py_any(py)?;
-            result.set_item("failed_record_count", converted_1074)?;
+            let converted_1393 = (value).to_owned().into_py_any(py)?;
+            result.set_item("failed_record_count", converted_1393)?;
         } else {
             result.set_item("failed_record_count", py.None())?;
         }
-        let converted_1075_list = PyList::empty(py);
-        for item_1076 in &self.inner.records {
-            let converted_item_1077 = put_records_result_entry_to_py(py, item_1076)?;
-            converted_1075_list.append(converted_item_1077)?;
+        let converted_1394_list = PyList::empty(py);
+        for item_1395 in &self.inner.records {
+            let converted_item_1396 = put_records_result_entry_to_py(py, item_1395)?;
+            converted_1394_list.append(converted_item_1396)?;
         }
-        let converted_1075 = converted_1075_list.into_any().unbind();
-        result.set_item("records", converted_1075)?;
+        let converted_1394 = converted_1394_list.into_any().unbind();
+        result.set_item("records", converted_1394)?;
         if let Some(value) = &self.inner.encryption_type {
-            let converted_1078 = (value).as_str().into_py_any(py)?;
-            result.set_item("encryption_type", converted_1078)?;
+            let converted_1397 = (value).as_str().into_py_any(py)?;
+            result.set_item("encryption_type", converted_1397)?;
         } else {
             result.set_item("encryption_type", py.None())?;
         }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationReceiveDeadLetterQueueRecordsOutput {
+    queue_records: ::std::vec::Vec<Arc<aws_sdk_kinesis::types::QueueRecord>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::operation::receive_dead_letter_queue_records::ReceiveDeadLetterQueueRecordsOutput> for SharedPyOperationReceiveDeadLetterQueueRecordsOutput {
+    fn from(value: aws_sdk_kinesis::operation::receive_dead_letter_queue_records::ReceiveDeadLetterQueueRecordsOutput) -> Self {
+        Self {
+            queue_records: (value.queue_records).into_iter().map(|owned_1401| Arc::new(owned_1401)).collect(),
+        }
+    }
+}
+
+#[pyclass(
+    name = "ReceiveDeadLetterQueueRecordsOutput",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyOperationReceiveDeadLetterQueueRecordsOutput {
+    inner: SharedPyOperationReceiveDeadLetterQueueRecordsOutput,
+}
+
+#[pymethods]
+impl PyOperationReceiveDeadLetterQueueRecordsOutput {
+    #[getter]
+    fn queue_records(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1398_list = PyList::empty(py);
+        for item_1399 in &self.inner.queue_records {
+            let converted_item_1400 = Py::new(
+                py,
+                PyQueueRecord {
+                    inner: Arc::clone(item_1399),
+                },
+            )?
+            .into_any();
+            converted_1398_list.append(converted_item_1400)?;
+        }
+        let converted_1398 = converted_1398_list.into_any().unbind();
+        Ok(converted_1398)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_1402_list = PyList::empty(py);
+        for item_1403 in &self.inner.queue_records {
+            let converted_item_1404 = queue_record_to_py(py, item_1403)?;
+            converted_1402_list.append(converted_item_1404)?;
+        }
+        let converted_1402 = converted_1402_list.into_any().unbind();
+        result.set_item("queue_records", converted_1402)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationReceiveQueueRecordsOutput {
+    queue_records: ::std::vec::Vec<Arc<aws_sdk_kinesis::types::QueueRecord>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::operation::receive_queue_records::ReceiveQueueRecordsOutput>
+    for SharedPyOperationReceiveQueueRecordsOutput
+{
+    fn from(
+        value: aws_sdk_kinesis::operation::receive_queue_records::ReceiveQueueRecordsOutput,
+    ) -> Self {
+        Self {
+            queue_records: (value.queue_records)
+                .into_iter()
+                .map(|owned_1408| Arc::new(owned_1408))
+                .collect(),
+        }
+    }
+}
+
+#[pyclass(
+    name = "ReceiveQueueRecordsOutput",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyOperationReceiveQueueRecordsOutput {
+    inner: SharedPyOperationReceiveQueueRecordsOutput,
+}
+
+#[pymethods]
+impl PyOperationReceiveQueueRecordsOutput {
+    #[getter]
+    fn queue_records(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1405_list = PyList::empty(py);
+        for item_1406 in &self.inner.queue_records {
+            let converted_item_1407 = Py::new(
+                py,
+                PyQueueRecord {
+                    inner: Arc::clone(item_1406),
+                },
+            )?
+            .into_any();
+            converted_1405_list.append(converted_item_1407)?;
+        }
+        let converted_1405 = converted_1405_list.into_any().unbind();
+        Ok(converted_1405)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_1409_list = PyList::empty(py);
+        for item_1410 in &self.inner.queue_records {
+            let converted_item_1411 = queue_record_to_py(py, item_1410)?;
+            converted_1409_list.append(converted_item_1411)?;
+        }
+        let converted_1409 = converted_1409_list.into_any().unbind();
+        result.set_item("queue_records", converted_1409)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -8157,14 +10993,14 @@ impl PyOperationRegisterStreamConsumerOutput {
     #[getter]
     fn consumer(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumer {
-            let converted_1079 = Py::new(
+            let converted_1412 = Py::new(
                 py,
                 PyConsumer {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1079)
+            Ok(converted_1412)
         } else {
             Ok(py.None())
         }
@@ -8173,11 +11009,95 @@ impl PyOperationRegisterStreamConsumerOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.consumer {
-            let converted_1080 = consumer_to_py(py, value)?;
-            result.set_item("consumer", converted_1080)?;
+            let converted_1413 = consumer_to_py(py, value)?;
+            result.set_item("consumer", converted_1413)?;
         } else {
             result.set_item("consumer", py.None())?;
         }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationRestoreDeadLetterQueueRecordsOutput {
+    successful:
+        ::std::vec::Vec<Arc<aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsResultEntry>>,
+    failed: ::std::vec::Vec<Arc<aws_sdk_kinesis::types::RestoreDeadLetterQueueRecordsErrorEntry>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::operation::restore_dead_letter_queue_records::RestoreDeadLetterQueueRecordsOutput> for SharedPyOperationRestoreDeadLetterQueueRecordsOutput {
+    fn from(value: aws_sdk_kinesis::operation::restore_dead_letter_queue_records::RestoreDeadLetterQueueRecordsOutput) -> Self {
+        Self {
+            successful: (value.successful).into_iter().map(|owned_1420| Arc::new(owned_1420)).collect(),
+            failed: (value.failed).into_iter().map(|owned_1421| Arc::new(owned_1421)).collect(),
+        }
+    }
+}
+
+#[pyclass(
+    name = "RestoreDeadLetterQueueRecordsOutput",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyOperationRestoreDeadLetterQueueRecordsOutput {
+    inner: SharedPyOperationRestoreDeadLetterQueueRecordsOutput,
+}
+
+#[pymethods]
+impl PyOperationRestoreDeadLetterQueueRecordsOutput {
+    #[getter]
+    fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1414_list = PyList::empty(py);
+        for item_1415 in &self.inner.successful {
+            let converted_item_1416 = Py::new(
+                py,
+                PyRestoreDeadLetterQueueRecordsResultEntry {
+                    inner: Arc::clone(item_1415),
+                },
+            )?
+            .into_any();
+            converted_1414_list.append(converted_item_1416)?;
+        }
+        let converted_1414 = converted_1414_list.into_any().unbind();
+        Ok(converted_1414)
+    }
+
+    #[getter]
+    fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1417_list = PyList::empty(py);
+        for item_1418 in &self.inner.failed {
+            let converted_item_1419 = Py::new(
+                py,
+                PyRestoreDeadLetterQueueRecordsErrorEntry {
+                    inner: Arc::clone(item_1418),
+                },
+            )?
+            .into_any();
+            converted_1417_list.append(converted_item_1419)?;
+        }
+        let converted_1417 = converted_1417_list.into_any().unbind();
+        Ok(converted_1417)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_1422_list = PyList::empty(py);
+        for item_1423 in &self.inner.successful {
+            let converted_item_1424 =
+                restore_dead_letter_queue_records_result_entry_to_py(py, item_1423)?;
+            converted_1422_list.append(converted_item_1424)?;
+        }
+        let converted_1422 = converted_1422_list.into_any().unbind();
+        result.set_item("successful", converted_1422)?;
+        let converted_1425_list = PyList::empty(py);
+        for item_1426 in &self.inner.failed {
+            let converted_item_1427 =
+                restore_dead_letter_queue_records_error_entry_to_py(py, item_1426)?;
+            converted_1425_list.append(converted_item_1427)?;
+        }
+        let converted_1425 = converted_1425_list.into_any().unbind();
+        result.set_item("failed", converted_1425)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -8217,14 +11137,14 @@ impl PyOperationUpdateAccountSettingsOutput {
     #[getter]
     fn minimum_throughput_billing_commitment(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.minimum_throughput_billing_commitment {
-            let converted_1081 = Py::new(
+            let converted_1428 = Py::new(
                 py,
                 PyMinimumThroughputBillingCommitmentOutput {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1081)
+            Ok(converted_1428)
         } else {
             Ok(py.None())
         }
@@ -8233,8 +11153,8 @@ impl PyOperationUpdateAccountSettingsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.minimum_throughput_billing_commitment {
-            let converted_1082 = minimum_throughput_billing_commitment_output_to_py(py, value)?;
-            result.set_item("minimum_throughput_billing_commitment", converted_1082)?;
+            let converted_1429 = minimum_throughput_billing_commitment_output_to_py(py, value)?;
+            result.set_item("minimum_throughput_billing_commitment", converted_1429)?;
         } else {
             result.set_item("minimum_throughput_billing_commitment", py.None())?;
         }
@@ -8270,14 +11190,14 @@ impl PyOperationUpdateChannelOutput {
     #[getter]
     fn channel_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_description {
-            let converted_1083 = Py::new(
+            let converted_1430 = Py::new(
                 py,
                 PyChannelDescription {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1083)
+            Ok(converted_1430)
         } else {
             Ok(py.None())
         }
@@ -8286,11 +11206,235 @@ impl PyOperationUpdateChannelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.channel_description {
-            let converted_1084 = channel_description_shared_to_py(py, value)?;
-            result.set_item("channel_description", converted_1084)?;
+            let converted_1431 = channel_description_shared_to_py(py, value)?;
+            result.set_item("channel_description", converted_1431)?;
         } else {
             result.set_item("channel_description", py.None())?;
         }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationUpdateDeadLetterQueueRecordsVisibilityOutput {
+    successful: ::std::vec::Vec<
+        Arc<aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityResultEntry>,
+    >,
+    failed: ::std::vec::Vec<
+        Arc<aws_sdk_kinesis::types::UpdateDeadLetterQueueRecordsVisibilityErrorEntry>,
+    >,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::operation::update_dead_letter_queue_records_visibility::UpdateDeadLetterQueueRecordsVisibilityOutput> for SharedPyOperationUpdateDeadLetterQueueRecordsVisibilityOutput {
+    fn from(value: aws_sdk_kinesis::operation::update_dead_letter_queue_records_visibility::UpdateDeadLetterQueueRecordsVisibilityOutput) -> Self {
+        Self {
+            successful: (value.successful).into_iter().map(|owned_1438| Arc::new(owned_1438)).collect(),
+            failed: (value.failed).into_iter().map(|owned_1439| Arc::new(owned_1439)).collect(),
+        }
+    }
+}
+
+#[pyclass(
+    name = "UpdateDeadLetterQueueRecordsVisibilityOutput",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyOperationUpdateDeadLetterQueueRecordsVisibilityOutput {
+    inner: SharedPyOperationUpdateDeadLetterQueueRecordsVisibilityOutput,
+}
+
+#[pymethods]
+impl PyOperationUpdateDeadLetterQueueRecordsVisibilityOutput {
+    #[getter]
+    fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1432_list = PyList::empty(py);
+        for item_1433 in &self.inner.successful {
+            let converted_item_1434 = Py::new(
+                py,
+                PyUpdateDeadLetterQueueRecordsVisibilityResultEntry {
+                    inner: Arc::clone(item_1433),
+                },
+            )?
+            .into_any();
+            converted_1432_list.append(converted_item_1434)?;
+        }
+        let converted_1432 = converted_1432_list.into_any().unbind();
+        Ok(converted_1432)
+    }
+
+    #[getter]
+    fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1435_list = PyList::empty(py);
+        for item_1436 in &self.inner.failed {
+            let converted_item_1437 = Py::new(
+                py,
+                PyUpdateDeadLetterQueueRecordsVisibilityErrorEntry {
+                    inner: Arc::clone(item_1436),
+                },
+            )?
+            .into_any();
+            converted_1435_list.append(converted_item_1437)?;
+        }
+        let converted_1435 = converted_1435_list.into_any().unbind();
+        Ok(converted_1435)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_1440_list = PyList::empty(py);
+        for item_1441 in &self.inner.successful {
+            let converted_item_1442 =
+                update_dead_letter_queue_records_visibility_result_entry_to_py(py, item_1441)?;
+            converted_1440_list.append(converted_item_1442)?;
+        }
+        let converted_1440 = converted_1440_list.into_any().unbind();
+        result.set_item("successful", converted_1440)?;
+        let converted_1443_list = PyList::empty(py);
+        for item_1444 in &self.inner.failed {
+            let converted_item_1445 =
+                update_dead_letter_queue_records_visibility_error_entry_to_py(py, item_1444)?;
+            converted_1443_list.append(converted_item_1445)?;
+        }
+        let converted_1443 = converted_1443_list.into_any().unbind();
+        result.set_item("failed", converted_1443)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationUpdateQueueOutput {
+    queue_description: Option<Arc<SharedQueueDescription>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::operation::update_queue::UpdateQueueOutput>
+    for SharedPyOperationUpdateQueueOutput
+{
+    fn from(value: aws_sdk_kinesis::operation::update_queue::UpdateQueueOutput) -> Self {
+        Self {
+            queue_description: value
+                .queue_description
+                .map(|item| Arc::new(SharedQueueDescription::from(item))),
+        }
+    }
+}
+
+#[pyclass(name = "UpdateQueueOutput", module = "rboto_kinesis._native", frozen)]
+struct PyOperationUpdateQueueOutput {
+    inner: SharedPyOperationUpdateQueueOutput,
+}
+
+#[pymethods]
+impl PyOperationUpdateQueueOutput {
+    #[getter]
+    fn queue_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.queue_description {
+            let converted_1446 = Py::new(
+                py,
+                PyQueueDescription {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_1446)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.queue_description {
+            let converted_1447 = queue_description_shared_to_py(py, value)?;
+            result.set_item("queue_description", converted_1447)?;
+        } else {
+            result.set_item("queue_description", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationUpdateQueueRecordsVisibilityOutput {
+    successful:
+        ::std::vec::Vec<Arc<aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityResultEntry>>,
+    failed: ::std::vec::Vec<Arc<aws_sdk_kinesis::types::UpdateQueueRecordsVisibilityErrorEntry>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_kinesis::operation::update_queue_records_visibility::UpdateQueueRecordsVisibilityOutput> for SharedPyOperationUpdateQueueRecordsVisibilityOutput {
+    fn from(value: aws_sdk_kinesis::operation::update_queue_records_visibility::UpdateQueueRecordsVisibilityOutput) -> Self {
+        Self {
+            successful: (value.successful).into_iter().map(|owned_1454| Arc::new(owned_1454)).collect(),
+            failed: (value.failed).into_iter().map(|owned_1455| Arc::new(owned_1455)).collect(),
+        }
+    }
+}
+
+#[pyclass(
+    name = "UpdateQueueRecordsVisibilityOutput",
+    module = "rboto_kinesis._native",
+    frozen
+)]
+struct PyOperationUpdateQueueRecordsVisibilityOutput {
+    inner: SharedPyOperationUpdateQueueRecordsVisibilityOutput,
+}
+
+#[pymethods]
+impl PyOperationUpdateQueueRecordsVisibilityOutput {
+    #[getter]
+    fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1448_list = PyList::empty(py);
+        for item_1449 in &self.inner.successful {
+            let converted_item_1450 = Py::new(
+                py,
+                PyUpdateQueueRecordsVisibilityResultEntry {
+                    inner: Arc::clone(item_1449),
+                },
+            )?
+            .into_any();
+            converted_1448_list.append(converted_item_1450)?;
+        }
+        let converted_1448 = converted_1448_list.into_any().unbind();
+        Ok(converted_1448)
+    }
+
+    #[getter]
+    fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1451_list = PyList::empty(py);
+        for item_1452 in &self.inner.failed {
+            let converted_item_1453 = Py::new(
+                py,
+                PyUpdateQueueRecordsVisibilityErrorEntry {
+                    inner: Arc::clone(item_1452),
+                },
+            )?
+            .into_any();
+            converted_1451_list.append(converted_item_1453)?;
+        }
+        let converted_1451 = converted_1451_list.into_any().unbind();
+        Ok(converted_1451)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_1456_list = PyList::empty(py);
+        for item_1457 in &self.inner.successful {
+            let converted_item_1458 =
+                update_queue_records_visibility_result_entry_to_py(py, item_1457)?;
+            converted_1456_list.append(converted_item_1458)?;
+        }
+        let converted_1456 = converted_1456_list.into_any().unbind();
+        result.set_item("successful", converted_1456)?;
+        let converted_1459_list = PyList::empty(py);
+        for item_1460 in &self.inner.failed {
+            let converted_item_1461 =
+                update_queue_records_visibility_error_entry_to_py(py, item_1460)?;
+            converted_1459_list.append(converted_item_1461)?;
+        }
+        let converted_1459 = converted_1459_list.into_any().unbind();
+        result.set_item("failed", converted_1459)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -8309,8 +11453,8 @@ impl PyOperationUpdateShardCountOutput {
     #[getter]
     fn stream_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_name {
-            let converted_1085 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1085)
+            let converted_1462 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1462)
         } else {
             Ok(py.None())
         }
@@ -8319,8 +11463,8 @@ impl PyOperationUpdateShardCountOutput {
     #[getter]
     fn current_shard_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.current_shard_count {
-            let converted_1086 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1086)
+            let converted_1463 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1463)
         } else {
             Ok(py.None())
         }
@@ -8329,8 +11473,8 @@ impl PyOperationUpdateShardCountOutput {
     #[getter]
     fn target_shard_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target_shard_count {
-            let converted_1087 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1087)
+            let converted_1464 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1464)
         } else {
             Ok(py.None())
         }
@@ -8339,8 +11483,8 @@ impl PyOperationUpdateShardCountOutput {
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_arn {
-            let converted_1088 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1088)
+            let converted_1465 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1465)
         } else {
             Ok(py.None())
         }
@@ -8349,26 +11493,26 @@ impl PyOperationUpdateShardCountOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.stream_name {
-            let converted_1089 = (value).as_str().into_py_any(py)?;
-            result.set_item("stream_name", converted_1089)?;
+            let converted_1466 = (value).as_str().into_py_any(py)?;
+            result.set_item("stream_name", converted_1466)?;
         } else {
             result.set_item("stream_name", py.None())?;
         }
         if let Some(value) = &self.inner.current_shard_count {
-            let converted_1090 = (value).to_owned().into_py_any(py)?;
-            result.set_item("current_shard_count", converted_1090)?;
+            let converted_1467 = (value).to_owned().into_py_any(py)?;
+            result.set_item("current_shard_count", converted_1467)?;
         } else {
             result.set_item("current_shard_count", py.None())?;
         }
         if let Some(value) = &self.inner.target_shard_count {
-            let converted_1091 = (value).to_owned().into_py_any(py)?;
-            result.set_item("target_shard_count", converted_1091)?;
+            let converted_1468 = (value).to_owned().into_py_any(py)?;
+            result.set_item("target_shard_count", converted_1468)?;
         } else {
             result.set_item("target_shard_count", py.None())?;
         }
         if let Some(value) = &self.inner.stream_arn {
-            let converted_1092 = (value).as_str().into_py_any(py)?;
-            result.set_item("stream_arn", converted_1092)?;
+            let converted_1469 = (value).as_str().into_py_any(py)?;
+            result.set_item("stream_arn", converted_1469)?;
         } else {
             result.set_item("stream_arn", py.None())?;
         }
@@ -8414,8 +11558,8 @@ impl PyOperationUpdateStreamWarmThroughputOutput {
     #[getter]
     fn stream_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_arn {
-            let converted_1093 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1093)
+            let converted_1470 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1470)
         } else {
             Ok(py.None())
         }
@@ -8424,8 +11568,8 @@ impl PyOperationUpdateStreamWarmThroughputOutput {
     #[getter]
     fn stream_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_name {
-            let converted_1094 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1094)
+            let converted_1471 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1471)
         } else {
             Ok(py.None())
         }
@@ -8434,14 +11578,14 @@ impl PyOperationUpdateStreamWarmThroughputOutput {
     #[getter]
     fn warm_throughput(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.warm_throughput {
-            let converted_1095 = Py::new(
+            let converted_1472 = Py::new(
                 py,
                 PyWarmThroughputObject {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1095)
+            Ok(converted_1472)
         } else {
             Ok(py.None())
         }
@@ -8450,24 +11594,52 @@ impl PyOperationUpdateStreamWarmThroughputOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.stream_arn {
-            let converted_1096 = (value).as_str().into_py_any(py)?;
-            result.set_item("stream_arn", converted_1096)?;
+            let converted_1473 = (value).as_str().into_py_any(py)?;
+            result.set_item("stream_arn", converted_1473)?;
         } else {
             result.set_item("stream_arn", py.None())?;
         }
         if let Some(value) = &self.inner.stream_name {
-            let converted_1097 = (value).as_str().into_py_any(py)?;
-            result.set_item("stream_name", converted_1097)?;
+            let converted_1474 = (value).as_str().into_py_any(py)?;
+            result.set_item("stream_name", converted_1474)?;
         } else {
             result.set_item("stream_name", py.None())?;
         }
         if let Some(value) = &self.inner.warm_throughput {
-            let converted_1098 = warm_throughput_object_to_py(py, value)?;
-            result.set_item("warm_throughput", converted_1098)?;
+            let converted_1475 = warm_throughput_object_to_py(py, value)?;
+            result.set_item("warm_throughput", converted_1475)?;
         } else {
             result.set_item("warm_throughput", py.None())?;
         }
         Ok(result.into_any().unbind())
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kinesis::operation::acknowledge_dead_letter_queue_records::AcknowledgeDeadLetterQueueRecordsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_kinesis::operation::acknowledge_queue_records::AcknowledgeQueueRecordsError
+{
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
     }
 }
 
@@ -8495,6 +11667,21 @@ impl ModeledErrorDetails for aws_sdk_kinesis::operation::create_channel::CreateC
             Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
             Self::KmsOptInRequired(_) => Some("KMSOptInRequired"),
             Self::KmsThrottlingException(_) => Some("KMSThrottlingException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kinesis::operation::create_queue::CreateQueueError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
             Self::LimitExceededException(_) => Some("LimitExceededException"),
             Self::ResourceInUseException(_) => Some("ResourceInUseException"),
             Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
@@ -8542,16 +11729,32 @@ impl ModeledErrorDetails for aws_sdk_kinesis::operation::delete_channel::DeleteC
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_kinesis::operation::delete_queue::DeleteQueueError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_kinesis::operation::delete_resource_policy::DeleteResourcePolicyError
 {
     fn modeled_code(&self) -> Option<&'static str> {
         match self {
             Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
             Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
             Self::LimitExceededException(_) => Some("LimitExceededException"),
             Self::ResourceInUseException(_) => Some("ResourceInUseException"),
             Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
             _ => None,
         }
     }
@@ -8611,6 +11814,20 @@ impl ModeledErrorDetails for aws_sdk_kinesis::operation::describe_limits::Descri
     fn modeled_code(&self) -> Option<&'static str> {
         match self {
             Self::LimitExceededException(_) => Some("LimitExceededException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kinesis::operation::describe_queue::DescribeQueueError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
             _ => None,
         }
     }
@@ -8714,10 +11931,12 @@ impl ModeledErrorDetails
     fn modeled_code(&self) -> Option<&'static str> {
         match self {
             Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
             Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
             Self::LimitExceededException(_) => Some("LimitExceededException"),
             Self::ResourceInUseException(_) => Some("ResourceInUseException"),
             Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
             _ => None,
         }
     }
@@ -8757,6 +11976,20 @@ impl ModeledErrorDetails for aws_sdk_kinesis::operation::list_channels::ListChan
         match self {
             Self::AccessDeniedException(_) => Some("AccessDeniedException"),
             Self::ExpiredNextTokenException(_) => Some("ExpiredNextTokenException"),
+            Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kinesis::operation::list_queues::ListQueuesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ExpiredNextTokenException(_) => Some("ExpiredNextTokenException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
             Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
             Self::LimitExceededException(_) => Some("LimitExceededException"),
             Self::ValidationException(_) => Some("ValidationException"),
@@ -8811,10 +12044,12 @@ impl ModeledErrorDetails
     fn modeled_code(&self) -> Option<&'static str> {
         match self {
             Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
             Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
             Self::LimitExceededException(_) => Some("LimitExceededException"),
             Self::ResourceInUseException(_) => Some("ResourceInUseException"),
             Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
             _ => None,
         }
     }
@@ -8898,10 +12133,52 @@ impl ModeledErrorDetails
     fn modeled_code(&self) -> Option<&'static str> {
         match self {
             Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
             Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
             Self::LimitExceededException(_) => Some("LimitExceededException"),
             Self::ResourceInUseException(_) => Some("ResourceInUseException"),
             Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kinesis::operation::receive_dead_letter_queue_records::ReceiveDeadLetterQueueRecordsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::KmsOptInRequired(_) => Some("KMSOptInRequired"),
+            Self::KmsThrottlingException(_) => Some("KMSThrottlingException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_kinesis::operation::receive_queue_records::ReceiveQueueRecordsError
+{
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::KmsOptInRequired(_) => Some("KMSOptInRequired"),
+            Self::KmsThrottlingException(_) => Some("KMSThrottlingException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
             _ => None,
         }
     }
@@ -8931,6 +12208,19 @@ impl ModeledErrorDetails
             Self::LimitExceededException(_) => Some("LimitExceededException"),
             Self::ResourceInUseException(_) => Some("ResourceInUseException"),
             Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kinesis::operation::restore_dead_letter_queue_records::RestoreDeadLetterQueueRecordsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
             _ => None,
         }
     }
@@ -9011,10 +12301,12 @@ impl ModeledErrorDetails for aws_sdk_kinesis::operation::tag_resource::TagResour
     fn modeled_code(&self) -> Option<&'static str> {
         match self {
             Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
             Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
             Self::LimitExceededException(_) => Some("LimitExceededException"),
             Self::ResourceInUseException(_) => Some("ResourceInUseException"),
             Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
             _ => None,
         }
     }
@@ -9024,10 +12316,12 @@ impl ModeledErrorDetails for aws_sdk_kinesis::operation::untag_resource::UntagRe
     fn modeled_code(&self) -> Option<&'static str> {
         match self {
             Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
             Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
             Self::LimitExceededException(_) => Some("LimitExceededException"),
             Self::ResourceInUseException(_) => Some("ResourceInUseException"),
             Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
             _ => None,
         }
     }
@@ -9060,6 +12354,19 @@ impl ModeledErrorDetails for aws_sdk_kinesis::operation::update_channel::UpdateC
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_kinesis::operation::update_dead_letter_queue_records_visibility::UpdateDeadLetterQueueRecordsVisibilityError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_kinesis::operation::update_max_record_size::UpdateMaxRecordSizeError
 {
@@ -9071,6 +12378,34 @@ impl ModeledErrorDetails
             Self::ResourceInUseException(_) => Some("ResourceInUseException"),
             Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
             Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kinesis::operation::update_queue::UpdateQueueError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kinesis::operation::update_queue_records_visibility::UpdateQueueRecordsVisibilityError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::InvalidArgumentException(_) => Some("InvalidArgumentException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
             _ => None,
         }
     }
@@ -9245,6 +12580,10 @@ impl PySubscribeToShardEventStreamReceiver {
 }
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
+    module.add_class::<PyAcknowledgeDeadLetterQueueRecordsErrorEntry>()?;
+    module.add_class::<PyAcknowledgeDeadLetterQueueRecordsResultEntry>()?;
+    module.add_class::<PyAcknowledgeQueueRecordsErrorEntry>()?;
+    module.add_class::<PyAcknowledgeQueueRecordsResultEntry>()?;
     module.add_class::<PyChannelDescription>()?;
     module.add_class::<PyChannelEncryptionConfiguration>()?;
     module.add_class::<PyChannelLoggingConfiguration>()?;
@@ -9255,6 +12594,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyCloudWatchLogs>()?;
     module.add_class::<PyConsumer>()?;
     module.add_class::<PyConsumerDescription>()?;
+    module.add_class::<PyDeadLetterConfiguration>()?;
     module.add_class::<PyDeadLetterQueueS3Configuration>()?;
     module.add_class::<PyEnhancedMetrics>()?;
     module.add_class::<PyHashKeyRange>()?;
@@ -9262,8 +12602,17 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyPartitionField>()?;
     module.add_class::<PyPartitionSpec>()?;
     module.add_class::<PyPutRecordsResultEntry>()?;
+    module.add_class::<PyQueueAttributes>()?;
+    module.add_class::<PyQueueDescription>()?;
+    module.add_class::<PyQueueRecord>()?;
+    module.add_class::<PyQueueStartingPosition>()?;
+    module.add_class::<PyQueueStreamConfiguration>()?;
+    module.add_class::<PyQueueStreamIdentifier>()?;
+    module.add_class::<PyQueueSummary>()?;
     module.add_class::<PyRecord>()?;
     module.add_class::<PyRecordConfiguration>()?;
+    module.add_class::<PyRestoreDeadLetterQueueRecordsErrorEntry>()?;
+    module.add_class::<PyRestoreDeadLetterQueueRecordsResultEntry>()?;
     module.add_class::<PyS3DestinationDescription>()?;
     module.add_class::<PyS3StorageConfiguration>()?;
     module.add_class::<PyS3TablesConfiguration>()?;
@@ -9275,11 +12624,19 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyStreamModeDetails>()?;
     module.add_class::<PyStreamSummary>()?;
     module.add_class::<PyTag>()?;
+    module.add_class::<PyUpdateDeadLetterQueueRecordsVisibilityErrorEntry>()?;
+    module.add_class::<PyUpdateDeadLetterQueueRecordsVisibilityResultEntry>()?;
+    module.add_class::<PyUpdateQueueRecordsVisibilityErrorEntry>()?;
+    module.add_class::<PyUpdateQueueRecordsVisibilityResultEntry>()?;
     module.add_class::<PyWarmThroughputObject>()?;
+    module.add_class::<PyOperationAcknowledgeDeadLetterQueueRecordsOutput>()?;
+    module.add_class::<PyOperationAcknowledgeQueueRecordsOutput>()?;
     module.add_class::<PyOperationCreateChannelOutput>()?;
+    module.add_class::<PyOperationCreateQueueOutput>()?;
     module.add_class::<PyOperationDescribeAccountSettingsOutput>()?;
     module.add_class::<PyOperationDescribeChannelOutput>()?;
     module.add_class::<PyOperationDescribeLimitsOutput>()?;
+    module.add_class::<PyOperationDescribeQueueOutput>()?;
     module.add_class::<PyOperationDescribeStreamOutput>()?;
     module.add_class::<PyOperationDescribeStreamConsumerOutput>()?;
     module.add_class::<PyOperationDescribeStreamSummaryOutput>()?;
@@ -9289,6 +12646,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOperationGetResourcePolicyOutput>()?;
     module.add_class::<PyOperationGetShardIteratorOutput>()?;
     module.add_class::<PyOperationListChannelsOutput>()?;
+    module.add_class::<PyOperationListQueuesOutput>()?;
     module.add_class::<PyOperationListShardsOutput>()?;
     module.add_class::<PyOperationListStreamConsumersOutput>()?;
     module.add_class::<PyOperationListStreamsOutput>()?;
@@ -9296,9 +12654,15 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOperationListTagsForStreamOutput>()?;
     module.add_class::<PyOperationPutRecordOutput>()?;
     module.add_class::<PyOperationPutRecordsOutput>()?;
+    module.add_class::<PyOperationReceiveDeadLetterQueueRecordsOutput>()?;
+    module.add_class::<PyOperationReceiveQueueRecordsOutput>()?;
     module.add_class::<PyOperationRegisterStreamConsumerOutput>()?;
+    module.add_class::<PyOperationRestoreDeadLetterQueueRecordsOutput>()?;
     module.add_class::<PyOperationUpdateAccountSettingsOutput>()?;
     module.add_class::<PyOperationUpdateChannelOutput>()?;
+    module.add_class::<PyOperationUpdateDeadLetterQueueRecordsVisibilityOutput>()?;
+    module.add_class::<PyOperationUpdateQueueOutput>()?;
+    module.add_class::<PyOperationUpdateQueueRecordsVisibilityOutput>()?;
     module.add_class::<PyOperationUpdateShardCountOutput>()?;
     module.add_class::<PyOperationUpdateStreamWarmThroughputOutput>()?;
 
@@ -9361,6 +12725,212 @@ impl KinesisClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn acknowledge_dead_letter_queue_records<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let queue_arn_value = if let Some(value) = dict_value(params, "queue_arn")? {
+            let converted_571 = (|| -> PyResult<_> {
+                let converted_571: String = value.extract()?;
+                Ok(converted_571)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_arn"),
+                        "str",
+                    ),
+                    "kinesis",
+                    "AcknowledgeDeadLetterQueueRecords",
+                )
+            })?;
+            Some(converted_571)
+        } else {
+            None
+        };
+        let entries_value = if let Some(value) = dict_value(params, "entries")? {
+            let converted_572 = (|| -> PyResult<_> {
+                let mut converted_572 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_576, item_result_573) in value.try_iter()?.enumerate() {
+                    let item_574 = item_result_573.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_576),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_575 = (|| -> PyResult<_> {
+                        let converted_item_575 =
+                            acknowledge_dead_letter_queue_records_request_entry_from_py(&item_574)?;
+                        Ok(converted_item_575)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_576),
+                            "dict (AcknowledgeDeadLetterQueueRecordsRequestEntry)",
+                        )
+                    })?;
+                    converted_572.push(converted_item_575);
+                }
+                Ok(converted_572)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("entries"),
+                        "sequence",
+                    ),
+                    "kinesis",
+                    "AcknowledgeDeadLetterQueueRecords",
+                )
+            })?;
+            Some(converted_572)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .acknowledge_dead_letter_queue_records()
+                .set_queue_arn(queue_arn_value)
+                .set_entries(entries_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AcknowledgeDeadLetterQueueRecords",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationAcknowledgeDeadLetterQueueRecordsOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
+    fn acknowledge_queue_records<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let queue_arn_value = if let Some(value) = dict_value(params, "queue_arn")? {
+            let converted_577 = (|| -> PyResult<_> {
+                let converted_577: String = value.extract()?;
+                Ok(converted_577)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_arn"),
+                        "str",
+                    ),
+                    "kinesis",
+                    "AcknowledgeQueueRecords",
+                )
+            })?;
+            Some(converted_577)
+        } else {
+            None
+        };
+        let entries_value = if let Some(value) = dict_value(params, "entries")? {
+            let converted_578 = (|| -> PyResult<_> {
+                let mut converted_578 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_582, item_result_579) in value.try_iter()?.enumerate() {
+                    let item_580 = item_result_579.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_582),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_581 = (|| -> PyResult<_> {
+                        let converted_item_581 =
+                            acknowledge_queue_records_request_entry_from_py(&item_580)?;
+                        Ok(converted_item_581)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_582),
+                            "dict (AcknowledgeQueueRecordsRequestEntry)",
+                        )
+                    })?;
+                    converted_578.push(converted_item_581);
+                }
+                Ok(converted_578)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("entries"),
+                        "sequence",
+                    ),
+                    "kinesis",
+                    "AcknowledgeQueueRecords",
+                )
+            })?;
+            Some(converted_578)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .acknowledge_queue_records()
+                .set_queue_arn(queue_arn_value)
+                .set_entries(entries_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AcknowledgeQueueRecords",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationAcknowledgeQueueRecordsOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn add_tags_to_stream<'py>(
         &self,
         py: Python<'py>,
@@ -9369,9 +12939,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_431 = (|| -> PyResult<_> {
-                let converted_431: String = value.extract()?;
-                Ok(converted_431)
+            let converted_583 = (|| -> PyResult<_> {
+                let converted_583: String = value.extract()?;
+                Ok(converted_583)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -9384,40 +12954,40 @@ impl KinesisClient {
                     "AddTagsToStream",
                 )
             })?;
-            Some(converted_431)
+            Some(converted_583)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_432 = (|| -> PyResult<_> {
-                let mapping_433 = value.cast::<PyDict>()?;
-                let mut converted_432 = HashMap::with_capacity(mapping_433.len());
-                for (index_438, (key_434, value_435)) in mapping_433.iter().enumerate() {
-                    let converted_key_436 = (|| -> PyResult<_> {
-                        let converted_key_436: String = key_434.extract()?;
-                        Ok(converted_key_436)
+            let converted_584 = (|| -> PyResult<_> {
+                let mapping_585 = value.cast::<PyDict>()?;
+                let mut converted_584 = HashMap::with_capacity(mapping_585.len());
+                for (index_590, (key_586, value_587)) in mapping_585.iter().enumerate() {
+                    let converted_key_588 = (|| -> PyResult<_> {
+                        let converted_key_588: String = key_586.extract()?;
+                        Ok(converted_key_588)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_438),
+                            rboto_core::InputPath::MapKey(index_590),
                             "str",
                         )
                     })?;
-                    let converted_value_437 = (|| -> PyResult<_> {
-                        let converted_value_437: String = value_435.extract()?;
-                        Ok(converted_value_437)
+                    let converted_value_589 = (|| -> PyResult<_> {
+                        let converted_value_589: String = value_587.extract()?;
+                        Ok(converted_value_589)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_438),
+                            rboto_core::InputPath::MapValue(index_590),
                             "str",
                         )
                     })?;
-                    converted_432.insert(converted_key_436, converted_value_437);
+                    converted_584.insert(converted_key_588, converted_value_589);
                 }
-                Ok(converted_432)
+                Ok(converted_584)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -9426,14 +12996,14 @@ impl KinesisClient {
                     "AddTagsToStream",
                 )
             })?;
-            Some(converted_432)
+            Some(converted_584)
         } else {
             None
         };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_439 = (|| -> PyResult<_> {
-                let converted_439: String = value.extract()?;
-                Ok(converted_439)
+            let converted_591 = (|| -> PyResult<_> {
+                let converted_591: String = value.extract()?;
+                Ok(converted_591)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -9446,14 +13016,14 @@ impl KinesisClient {
                     "AddTagsToStream",
                 )
             })?;
-            Some(converted_439)
+            Some(converted_591)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_440 = (|| -> PyResult<_> {
-                let converted_440: String = value.extract()?;
-                Ok(converted_440)
+            let converted_592 = (|| -> PyResult<_> {
+                let converted_592: String = value.extract()?;
+                Ok(converted_592)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -9466,7 +13036,7 @@ impl KinesisClient {
                     "AddTagsToStream",
                 )
             })?;
-            Some(converted_440)
+            Some(converted_592)
         } else {
             None
         };
@@ -9509,9 +13079,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let channel_name_value = if let Some(value) = dict_value(params, "channel_name")? {
-            let converted_441 = (|| -> PyResult<_> {
-                let converted_441: String = value.extract()?;
-                Ok(converted_441)
+            let converted_593 = (|| -> PyResult<_> {
+                let converted_593: String = value.extract()?;
+                Ok(converted_593)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -9524,15 +13094,15 @@ impl KinesisClient {
                     "CreateChannel",
                 )
             })?;
-            Some(converted_441)
+            Some(converted_593)
         } else {
             None
         };
         let service_execution_role_arn_value =
             if let Some(value) = dict_value(params, "service_execution_role_arn")? {
-                let converted_442 = (|| -> PyResult<_> {
-                    let converted_442: String = value.extract()?;
-                    Ok(converted_442)
+                let converted_594 = (|| -> PyResult<_> {
+                    let converted_594: String = value.extract()?;
+                    Ok(converted_594)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -9545,39 +13115,39 @@ impl KinesisClient {
                         "CreateChannel",
                     )
                 })?;
-                Some(converted_442)
+                Some(converted_594)
             } else {
                 None
             };
         let stream_configuration_list_value = if let Some(value) =
             dict_value(params, "stream_configuration_list")?
         {
-            let converted_443 = (|| -> PyResult<_> {
-                let mut converted_443 =
+            let converted_595 = (|| -> PyResult<_> {
+                let mut converted_595 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_447, item_result_444) in value.try_iter()?.enumerate() {
-                    let item_445 = item_result_444.map_err(|error| {
+                for (index_599, item_result_596) in value.try_iter()?.enumerate() {
+                    let item_597 = item_result_596.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_447),
+                            rboto_core::InputPath::Index(index_599),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_446 = (|| -> PyResult<_> {
-                        let converted_item_446 = channel_stream_configuration_from_py(&item_445)?;
-                        Ok(converted_item_446)
+                    let converted_item_598 = (|| -> PyResult<_> {
+                        let converted_item_598 = channel_stream_configuration_from_py(&item_597)?;
+                        Ok(converted_item_598)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_447),
+                            rboto_core::InputPath::Index(index_599),
                             "dict (ChannelStreamConfiguration)",
                         )
                     })?;
-                    converted_443.push(converted_item_446);
+                    converted_595.push(converted_item_598);
                 }
-                Ok(converted_443)
+                Ok(converted_595)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -9590,15 +13160,15 @@ impl KinesisClient {
                     "CreateChannel",
                 )
             })?;
-            Some(converted_443)
+            Some(converted_595)
         } else {
             None
         };
         let s3_destination_configuration_value =
             if let Some(value) = dict_value(params, "s3_destination_configuration")? {
-                let converted_448 = (|| -> PyResult<_> {
-                    let converted_448 = s3_destination_configuration_from_py(&value)?;
-                    Ok(converted_448)
+                let converted_600 = (|| -> PyResult<_> {
+                    let converted_600 = s3_destination_configuration_from_py(&value)?;
+                    Ok(converted_600)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -9611,15 +13181,15 @@ impl KinesisClient {
                         "CreateChannel",
                     )
                 })?;
-                Some(converted_448)
+                Some(converted_600)
             } else {
                 None
             };
         let s3_tables_destination_configuration_value =
             if let Some(value) = dict_value(params, "s3_tables_destination_configuration")? {
-                let converted_449 = (|| -> PyResult<_> {
-                    let converted_449 = s3_tables_destination_configuration_from_py(&value)?;
-                    Ok(converted_449)
+                let converted_601 = (|| -> PyResult<_> {
+                    let converted_601 = s3_tables_destination_configuration_from_py(&value)?;
+                    Ok(converted_601)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -9632,15 +13202,15 @@ impl KinesisClient {
                         "CreateChannel",
                     )
                 })?;
-                Some(converted_449)
+                Some(converted_601)
             } else {
                 None
             };
         let encryption_configuration_value =
             if let Some(value) = dict_value(params, "encryption_configuration")? {
-                let converted_450 = (|| -> PyResult<_> {
-                    let converted_450 = channel_encryption_configuration_from_py(&value)?;
-                    Ok(converted_450)
+                let converted_602 = (|| -> PyResult<_> {
+                    let converted_602 = channel_encryption_configuration_from_py(&value)?;
+                    Ok(converted_602)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -9653,40 +13223,40 @@ impl KinesisClient {
                         "CreateChannel",
                     )
                 })?;
-                Some(converted_450)
+                Some(converted_602)
             } else {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_451 = (|| -> PyResult<_> {
-                let mapping_452 = value.cast::<PyDict>()?;
-                let mut converted_451 = HashMap::with_capacity(mapping_452.len());
-                for (index_457, (key_453, value_454)) in mapping_452.iter().enumerate() {
-                    let converted_key_455 = (|| -> PyResult<_> {
-                        let converted_key_455: String = key_453.extract()?;
-                        Ok(converted_key_455)
+            let converted_603 = (|| -> PyResult<_> {
+                let mapping_604 = value.cast::<PyDict>()?;
+                let mut converted_603 = HashMap::with_capacity(mapping_604.len());
+                for (index_609, (key_605, value_606)) in mapping_604.iter().enumerate() {
+                    let converted_key_607 = (|| -> PyResult<_> {
+                        let converted_key_607: String = key_605.extract()?;
+                        Ok(converted_key_607)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_457),
+                            rboto_core::InputPath::MapKey(index_609),
                             "str",
                         )
                     })?;
-                    let converted_value_456 = (|| -> PyResult<_> {
-                        let converted_value_456: String = value_454.extract()?;
-                        Ok(converted_value_456)
+                    let converted_value_608 = (|| -> PyResult<_> {
+                        let converted_value_608: String = value_606.extract()?;
+                        Ok(converted_value_608)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_457),
+                            rboto_core::InputPath::MapValue(index_609),
                             "str",
                         )
                     })?;
-                    converted_451.insert(converted_key_455, converted_value_456);
+                    converted_603.insert(converted_key_607, converted_value_608);
                 }
-                Ok(converted_451)
+                Ok(converted_603)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -9695,15 +13265,15 @@ impl KinesisClient {
                     "CreateChannel",
                 )
             })?;
-            Some(converted_451)
+            Some(converted_603)
         } else {
             None
         };
         let logging_configuration_value =
             if let Some(value) = dict_value(params, "logging_configuration")? {
-                let converted_458 = (|| -> PyResult<_> {
-                    let converted_458 = channel_logging_configuration_from_py(&value)?;
-                    Ok(converted_458)
+                let converted_610 = (|| -> PyResult<_> {
+                    let converted_610 = channel_logging_configuration_from_py(&value)?;
+                    Ok(converted_610)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -9716,7 +13286,7 @@ impl KinesisClient {
                         "CreateChannel",
                     )
                 })?;
-                Some(converted_458)
+                Some(converted_610)
             } else {
                 None
             };
@@ -9753,6 +13323,168 @@ impl KinesisClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn create_queue<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let queue_name_value = if let Some(value) = dict_value(params, "queue_name")? {
+            let converted_611 = (|| -> PyResult<_> {
+                let converted_611: String = value.extract()?;
+                Ok(converted_611)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_name"),
+                        "str",
+                    ),
+                    "kinesis",
+                    "CreateQueue",
+                )
+            })?;
+            Some(converted_611)
+        } else {
+            None
+        };
+        let stream_configuration_list_value =
+            if let Some(value) = dict_value(params, "stream_configuration_list")? {
+                let converted_612 = (|| -> PyResult<_> {
+                    let mut converted_612 =
+                        Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                    for (index_616, item_result_613) in value.try_iter()?.enumerate() {
+                        let item_614 = item_result_613.map_err(|error| {
+                            rboto_core::input_rule(
+                                error,
+                                rboto_core::InputPath::Index(index_616),
+                                "next sequence item",
+                                Some("iteration"),
+                            )
+                        })?;
+                        let converted_item_615 = (|| -> PyResult<_> {
+                            let converted_item_615 = queue_stream_configuration_from_py(&item_614)?;
+                            Ok(converted_item_615)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Index(index_616),
+                                "dict (QueueStreamConfiguration)",
+                            )
+                        })?;
+                        converted_612.push(converted_item_615);
+                    }
+                    Ok(converted_612)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("stream_configuration_list"),
+                            "sequence",
+                        ),
+                        "kinesis",
+                        "CreateQueue",
+                    )
+                })?;
+                Some(converted_612)
+            } else {
+                None
+            };
+        let queue_attributes_value = if let Some(value) = dict_value(params, "queue_attributes")? {
+            let converted_617 = (|| -> PyResult<_> {
+                let converted_617 = queue_attributes_from_py(&value)?;
+                Ok(converted_617)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_attributes"),
+                        "dict (QueueAttributes)",
+                    ),
+                    "kinesis",
+                    "CreateQueue",
+                )
+            })?;
+            Some(converted_617)
+        } else {
+            None
+        };
+        let tags_value = if let Some(value) = dict_value(params, "tags")? {
+            let converted_618 = (|| -> PyResult<_> {
+                let mapping_619 = value.cast::<PyDict>()?;
+                let mut converted_618 = HashMap::with_capacity(mapping_619.len());
+                for (index_624, (key_620, value_621)) in mapping_619.iter().enumerate() {
+                    let converted_key_622 = (|| -> PyResult<_> {
+                        let converted_key_622: String = key_620.extract()?;
+                        Ok(converted_key_622)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_624),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_623 = (|| -> PyResult<_> {
+                        let converted_value_623: String = value_621.extract()?;
+                        Ok(converted_value_623)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_624),
+                            "str",
+                        )
+                    })?;
+                    converted_618.insert(converted_key_622, converted_value_623);
+                }
+                Ok(converted_618)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("tags"), "dict"),
+                    "kinesis",
+                    "CreateQueue",
+                )
+            })?;
+            Some(converted_618)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .create_queue()
+                .set_queue_name(queue_name_value)
+                .set_stream_configuration_list(stream_configuration_list_value)
+                .set_queue_attributes(queue_attributes_value)
+                .set_tags(tags_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateQueue", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationCreateQueueOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn create_stream<'py>(
         &self,
         py: Python<'py>,
@@ -9761,9 +13493,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_459 = (|| -> PyResult<_> {
-                let converted_459: String = value.extract()?;
-                Ok(converted_459)
+            let converted_625 = (|| -> PyResult<_> {
+                let converted_625: String = value.extract()?;
+                Ok(converted_625)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -9776,14 +13508,14 @@ impl KinesisClient {
                     "CreateStream",
                 )
             })?;
-            Some(converted_459)
+            Some(converted_625)
         } else {
             None
         };
         let shard_count_value = if let Some(value) = dict_value(params, "shard_count")? {
-            let converted_460 = (|| -> PyResult<_> {
-                let converted_460: i32 = value.extract()?;
-                Ok(converted_460)
+            let converted_626 = (|| -> PyResult<_> {
+                let converted_626: i32 = value.extract()?;
+                Ok(converted_626)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -9796,15 +13528,15 @@ impl KinesisClient {
                     "CreateStream",
                 )
             })?;
-            Some(converted_460)
+            Some(converted_626)
         } else {
             None
         };
         let stream_mode_details_value =
             if let Some(value) = dict_value(params, "stream_mode_details")? {
-                let converted_461 = (|| -> PyResult<_> {
-                    let converted_461 = stream_mode_details_from_py(&value)?;
-                    Ok(converted_461)
+                let converted_627 = (|| -> PyResult<_> {
+                    let converted_627 = stream_mode_details_from_py(&value)?;
+                    Ok(converted_627)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -9817,40 +13549,40 @@ impl KinesisClient {
                         "CreateStream",
                     )
                 })?;
-                Some(converted_461)
+                Some(converted_627)
             } else {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_462 = (|| -> PyResult<_> {
-                let mapping_463 = value.cast::<PyDict>()?;
-                let mut converted_462 = HashMap::with_capacity(mapping_463.len());
-                for (index_468, (key_464, value_465)) in mapping_463.iter().enumerate() {
-                    let converted_key_466 = (|| -> PyResult<_> {
-                        let converted_key_466: String = key_464.extract()?;
-                        Ok(converted_key_466)
+            let converted_628 = (|| -> PyResult<_> {
+                let mapping_629 = value.cast::<PyDict>()?;
+                let mut converted_628 = HashMap::with_capacity(mapping_629.len());
+                for (index_634, (key_630, value_631)) in mapping_629.iter().enumerate() {
+                    let converted_key_632 = (|| -> PyResult<_> {
+                        let converted_key_632: String = key_630.extract()?;
+                        Ok(converted_key_632)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_468),
+                            rboto_core::InputPath::MapKey(index_634),
                             "str",
                         )
                     })?;
-                    let converted_value_467 = (|| -> PyResult<_> {
-                        let converted_value_467: String = value_465.extract()?;
-                        Ok(converted_value_467)
+                    let converted_value_633 = (|| -> PyResult<_> {
+                        let converted_value_633: String = value_631.extract()?;
+                        Ok(converted_value_633)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_468),
+                            rboto_core::InputPath::MapValue(index_634),
                             "str",
                         )
                     })?;
-                    converted_462.insert(converted_key_466, converted_value_467);
+                    converted_628.insert(converted_key_632, converted_value_633);
                 }
-                Ok(converted_462)
+                Ok(converted_628)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -9859,15 +13591,15 @@ impl KinesisClient {
                     "CreateStream",
                 )
             })?;
-            Some(converted_462)
+            Some(converted_628)
         } else {
             None
         };
         let warm_throughput_mibps_value =
             if let Some(value) = dict_value(params, "warm_throughput_mibps")? {
-                let converted_469 = (|| -> PyResult<_> {
-                    let converted_469: i32 = value.extract()?;
-                    Ok(converted_469)
+                let converted_635 = (|| -> PyResult<_> {
+                    let converted_635: i32 = value.extract()?;
+                    Ok(converted_635)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -9880,15 +13612,15 @@ impl KinesisClient {
                         "CreateStream",
                     )
                 })?;
-                Some(converted_469)
+                Some(converted_635)
             } else {
                 None
             };
         let max_record_size_in_kib_value =
             if let Some(value) = dict_value(params, "max_record_size_in_kib")? {
-                let converted_470 = (|| -> PyResult<_> {
-                    let converted_470: i32 = value.extract()?;
-                    Ok(converted_470)
+                let converted_636 = (|| -> PyResult<_> {
+                    let converted_636: i32 = value.extract()?;
+                    Ok(converted_636)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -9901,18 +13633,18 @@ impl KinesisClient {
                         "CreateStream",
                     )
                 })?;
-                Some(converted_470)
+                Some(converted_636)
             } else {
                 None
             };
         let record_distribution_strategy_value =
             if let Some(value) = dict_value(params, "record_distribution_strategy")? {
-                let converted_471 = (|| -> PyResult<_> {
-                    let enum_value_472: String = value.extract()?;
-                    let converted_471 = aws_sdk_kinesis::types::RecordDistributionStrategy::from(
-                        enum_value_472.as_str(),
+                let converted_637 = (|| -> PyResult<_> {
+                    let enum_value_638: String = value.extract()?;
+                    let converted_637 = aws_sdk_kinesis::types::RecordDistributionStrategy::from(
+                        enum_value_638.as_str(),
                     );
-                    Ok(converted_471)
+                    Ok(converted_637)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -9925,7 +13657,7 @@ impl KinesisClient {
                         "CreateStream",
                     )
                 })?;
-                Some(converted_471)
+                Some(converted_637)
             } else {
                 None
             };
@@ -9971,9 +13703,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_473 = (|| -> PyResult<_> {
-                let converted_473: String = value.extract()?;
-                Ok(converted_473)
+            let converted_639 = (|| -> PyResult<_> {
+                let converted_639: String = value.extract()?;
+                Ok(converted_639)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -9986,15 +13718,15 @@ impl KinesisClient {
                     "DecreaseStreamRetentionPeriod",
                 )
             })?;
-            Some(converted_473)
+            Some(converted_639)
         } else {
             None
         };
         let retention_period_hours_value =
             if let Some(value) = dict_value(params, "retention_period_hours")? {
-                let converted_474 = (|| -> PyResult<_> {
-                    let converted_474: i32 = value.extract()?;
-                    Ok(converted_474)
+                let converted_640 = (|| -> PyResult<_> {
+                    let converted_640: i32 = value.extract()?;
+                    Ok(converted_640)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -10007,14 +13739,14 @@ impl KinesisClient {
                         "DecreaseStreamRetentionPeriod",
                     )
                 })?;
-                Some(converted_474)
+                Some(converted_640)
             } else {
                 None
             };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_475 = (|| -> PyResult<_> {
-                let converted_475: String = value.extract()?;
-                Ok(converted_475)
+            let converted_641 = (|| -> PyResult<_> {
+                let converted_641: String = value.extract()?;
+                Ok(converted_641)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10027,14 +13759,14 @@ impl KinesisClient {
                     "DecreaseStreamRetentionPeriod",
                 )
             })?;
-            Some(converted_475)
+            Some(converted_641)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_476 = (|| -> PyResult<_> {
-                let converted_476: String = value.extract()?;
-                Ok(converted_476)
+            let converted_642 = (|| -> PyResult<_> {
+                let converted_642: String = value.extract()?;
+                Ok(converted_642)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10047,7 +13779,7 @@ impl KinesisClient {
                     "DecreaseStreamRetentionPeriod",
                 )
             })?;
-            Some(converted_476)
+            Some(converted_642)
         } else {
             None
         };
@@ -10095,9 +13827,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let channel_arn_value = if let Some(value) = dict_value(params, "channel_arn")? {
-            let converted_477 = (|| -> PyResult<_> {
-                let converted_477: String = value.extract()?;
-                Ok(converted_477)
+            let converted_643 = (|| -> PyResult<_> {
+                let converted_643: String = value.extract()?;
+                Ok(converted_643)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10110,7 +13842,7 @@ impl KinesisClient {
                     "DeleteChannel",
                 )
             })?;
-            Some(converted_477)
+            Some(converted_643)
         } else {
             None
         };
@@ -10140,6 +13872,59 @@ impl KinesisClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn delete_queue<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let queue_arn_value = if let Some(value) = dict_value(params, "queue_arn")? {
+            let converted_644 = (|| -> PyResult<_> {
+                let converted_644: String = value.extract()?;
+                Ok(converted_644)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_arn"),
+                        "str",
+                    ),
+                    "kinesis",
+                    "DeleteQueue",
+                )
+            })?;
+            Some(converted_644)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client.delete_queue().set_queue_arn(queue_arn_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteQueue", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "DeleteQueue",
+                metadata: observer.response_metadata(),
+            };
+            Python::attach(|py| Ok(py.None()))
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn delete_resource_policy<'py>(
         &self,
         py: Python<'py>,
@@ -10148,9 +13933,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_478 = (|| -> PyResult<_> {
-                let converted_478: String = value.extract()?;
-                Ok(converted_478)
+            let converted_645 = (|| -> PyResult<_> {
+                let converted_645: String = value.extract()?;
+                Ok(converted_645)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10163,14 +13948,14 @@ impl KinesisClient {
                     "DeleteResourcePolicy",
                 )
             })?;
-            Some(converted_478)
+            Some(converted_645)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_479 = (|| -> PyResult<_> {
-                let converted_479: String = value.extract()?;
-                Ok(converted_479)
+            let converted_646 = (|| -> PyResult<_> {
+                let converted_646: String = value.extract()?;
+                Ok(converted_646)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10183,7 +13968,7 @@ impl KinesisClient {
                     "DeleteResourcePolicy",
                 )
             })?;
-            Some(converted_479)
+            Some(converted_646)
         } else {
             None
         };
@@ -10229,9 +14014,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_480 = (|| -> PyResult<_> {
-                let converted_480: String = value.extract()?;
-                Ok(converted_480)
+            let converted_647 = (|| -> PyResult<_> {
+                let converted_647: String = value.extract()?;
+                Ok(converted_647)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10244,15 +14029,15 @@ impl KinesisClient {
                     "DeleteStream",
                 )
             })?;
-            Some(converted_480)
+            Some(converted_647)
         } else {
             None
         };
         let enforce_consumer_deletion_value =
             if let Some(value) = dict_value(params, "enforce_consumer_deletion")? {
-                let converted_481 = (|| -> PyResult<_> {
-                    let converted_481: bool = value.extract()?;
-                    Ok(converted_481)
+                let converted_648 = (|| -> PyResult<_> {
+                    let converted_648: bool = value.extract()?;
+                    Ok(converted_648)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -10265,14 +14050,14 @@ impl KinesisClient {
                         "DeleteStream",
                     )
                 })?;
-                Some(converted_481)
+                Some(converted_648)
             } else {
                 None
             };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_482 = (|| -> PyResult<_> {
-                let converted_482: String = value.extract()?;
-                Ok(converted_482)
+            let converted_649 = (|| -> PyResult<_> {
+                let converted_649: String = value.extract()?;
+                Ok(converted_649)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10285,14 +14070,14 @@ impl KinesisClient {
                     "DeleteStream",
                 )
             })?;
-            Some(converted_482)
+            Some(converted_649)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_483 = (|| -> PyResult<_> {
-                let converted_483: String = value.extract()?;
-                Ok(converted_483)
+            let converted_650 = (|| -> PyResult<_> {
+                let converted_650: String = value.extract()?;
+                Ok(converted_650)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10305,7 +14090,7 @@ impl KinesisClient {
                     "DeleteStream",
                 )
             })?;
-            Some(converted_483)
+            Some(converted_650)
         } else {
             None
         };
@@ -10348,9 +14133,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_484 = (|| -> PyResult<_> {
-                let converted_484: String = value.extract()?;
-                Ok(converted_484)
+            let converted_651 = (|| -> PyResult<_> {
+                let converted_651: String = value.extract()?;
+                Ok(converted_651)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10363,14 +14148,14 @@ impl KinesisClient {
                     "DeregisterStreamConsumer",
                 )
             })?;
-            Some(converted_484)
+            Some(converted_651)
         } else {
             None
         };
         let consumer_name_value = if let Some(value) = dict_value(params, "consumer_name")? {
-            let converted_485 = (|| -> PyResult<_> {
-                let converted_485: String = value.extract()?;
-                Ok(converted_485)
+            let converted_652 = (|| -> PyResult<_> {
+                let converted_652: String = value.extract()?;
+                Ok(converted_652)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10383,14 +14168,14 @@ impl KinesisClient {
                     "DeregisterStreamConsumer",
                 )
             })?;
-            Some(converted_485)
+            Some(converted_652)
         } else {
             None
         };
         let consumer_arn_value = if let Some(value) = dict_value(params, "consumer_arn")? {
-            let converted_486 = (|| -> PyResult<_> {
-                let converted_486: String = value.extract()?;
-                Ok(converted_486)
+            let converted_653 = (|| -> PyResult<_> {
+                let converted_653: String = value.extract()?;
+                Ok(converted_653)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10403,14 +14188,14 @@ impl KinesisClient {
                     "DeregisterStreamConsumer",
                 )
             })?;
-            Some(converted_486)
+            Some(converted_653)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_487 = (|| -> PyResult<_> {
-                let converted_487: String = value.extract()?;
-                Ok(converted_487)
+            let converted_654 = (|| -> PyResult<_> {
+                let converted_654: String = value.extract()?;
+                Ok(converted_654)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10423,7 +14208,7 @@ impl KinesisClient {
                     "DeregisterStreamConsumer",
                 )
             })?;
-            Some(converted_487)
+            Some(converted_654)
         } else {
             None
         };
@@ -10507,9 +14292,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let channel_arn_value = if let Some(value) = dict_value(params, "channel_arn")? {
-            let converted_488 = (|| -> PyResult<_> {
-                let converted_488: String = value.extract()?;
-                Ok(converted_488)
+            let converted_655 = (|| -> PyResult<_> {
+                let converted_655: String = value.extract()?;
+                Ok(converted_655)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10522,7 +14307,7 @@ impl KinesisClient {
                     "DescribeChannel",
                 )
             })?;
-            Some(converted_488)
+            Some(converted_655)
         } else {
             None
         };
@@ -10579,6 +14364,57 @@ impl KinesisClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn describe_queue<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let queue_arn_value = if let Some(value) = dict_value(params, "queue_arn")? {
+            let converted_656 = (|| -> PyResult<_> {
+                let converted_656: String = value.extract()?;
+                Ok(converted_656)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_arn"),
+                        "str",
+                    ),
+                    "kinesis",
+                    "DescribeQueue",
+                )
+            })?;
+            Some(converted_656)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client.describe_queue().set_queue_arn(queue_arn_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeQueue", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationDescribeQueueOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn describe_stream<'py>(
         &self,
         py: Python<'py>,
@@ -10587,9 +14423,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_489 = (|| -> PyResult<_> {
-                let converted_489: String = value.extract()?;
-                Ok(converted_489)
+            let converted_657 = (|| -> PyResult<_> {
+                let converted_657: String = value.extract()?;
+                Ok(converted_657)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10602,14 +14438,14 @@ impl KinesisClient {
                     "DescribeStream",
                 )
             })?;
-            Some(converted_489)
+            Some(converted_657)
         } else {
             None
         };
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
-            let converted_490 = (|| -> PyResult<_> {
-                let converted_490: i32 = value.extract()?;
-                Ok(converted_490)
+            let converted_658 = (|| -> PyResult<_> {
+                let converted_658: i32 = value.extract()?;
+                Ok(converted_658)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10618,15 +14454,15 @@ impl KinesisClient {
                     "DescribeStream",
                 )
             })?;
-            Some(converted_490)
+            Some(converted_658)
         } else {
             None
         };
         let exclusive_start_shard_id_value =
             if let Some(value) = dict_value(params, "exclusive_start_shard_id")? {
-                let converted_491 = (|| -> PyResult<_> {
-                    let converted_491: String = value.extract()?;
-                    Ok(converted_491)
+                let converted_659 = (|| -> PyResult<_> {
+                    let converted_659: String = value.extract()?;
+                    Ok(converted_659)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -10639,14 +14475,14 @@ impl KinesisClient {
                         "DescribeStream",
                     )
                 })?;
-                Some(converted_491)
+                Some(converted_659)
             } else {
                 None
             };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_492 = (|| -> PyResult<_> {
-                let converted_492: String = value.extract()?;
-                Ok(converted_492)
+            let converted_660 = (|| -> PyResult<_> {
+                let converted_660: String = value.extract()?;
+                Ok(converted_660)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10659,14 +14495,14 @@ impl KinesisClient {
                     "DescribeStream",
                 )
             })?;
-            Some(converted_492)
+            Some(converted_660)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_493 = (|| -> PyResult<_> {
-                let converted_493: String = value.extract()?;
-                Ok(converted_493)
+            let converted_661 = (|| -> PyResult<_> {
+                let converted_661: String = value.extract()?;
+                Ok(converted_661)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10679,7 +14515,7 @@ impl KinesisClient {
                     "DescribeStream",
                 )
             })?;
-            Some(converted_493)
+            Some(converted_661)
         } else {
             None
         };
@@ -10721,9 +14557,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_494 = (|| -> PyResult<_> {
-                let converted_494: String = value.extract()?;
-                Ok(converted_494)
+            let converted_662 = (|| -> PyResult<_> {
+                let converted_662: String = value.extract()?;
+                Ok(converted_662)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10736,14 +14572,14 @@ impl KinesisClient {
                     "DescribeStreamConsumer",
                 )
             })?;
-            Some(converted_494)
+            Some(converted_662)
         } else {
             None
         };
         let consumer_name_value = if let Some(value) = dict_value(params, "consumer_name")? {
-            let converted_495 = (|| -> PyResult<_> {
-                let converted_495: String = value.extract()?;
-                Ok(converted_495)
+            let converted_663 = (|| -> PyResult<_> {
+                let converted_663: String = value.extract()?;
+                Ok(converted_663)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10756,14 +14592,14 @@ impl KinesisClient {
                     "DescribeStreamConsumer",
                 )
             })?;
-            Some(converted_495)
+            Some(converted_663)
         } else {
             None
         };
         let consumer_arn_value = if let Some(value) = dict_value(params, "consumer_arn")? {
-            let converted_496 = (|| -> PyResult<_> {
-                let converted_496: String = value.extract()?;
-                Ok(converted_496)
+            let converted_664 = (|| -> PyResult<_> {
+                let converted_664: String = value.extract()?;
+                Ok(converted_664)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10776,14 +14612,14 @@ impl KinesisClient {
                     "DescribeStreamConsumer",
                 )
             })?;
-            Some(converted_496)
+            Some(converted_664)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_497 = (|| -> PyResult<_> {
-                let converted_497: String = value.extract()?;
-                Ok(converted_497)
+            let converted_665 = (|| -> PyResult<_> {
+                let converted_665: String = value.extract()?;
+                Ok(converted_665)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10796,7 +14632,7 @@ impl KinesisClient {
                     "DescribeStreamConsumer",
                 )
             })?;
-            Some(converted_497)
+            Some(converted_665)
         } else {
             None
         };
@@ -10842,9 +14678,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_498 = (|| -> PyResult<_> {
-                let converted_498: String = value.extract()?;
-                Ok(converted_498)
+            let converted_666 = (|| -> PyResult<_> {
+                let converted_666: String = value.extract()?;
+                Ok(converted_666)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10857,14 +14693,14 @@ impl KinesisClient {
                     "DescribeStreamSummary",
                 )
             })?;
-            Some(converted_498)
+            Some(converted_666)
         } else {
             None
         };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_499 = (|| -> PyResult<_> {
-                let converted_499: String = value.extract()?;
-                Ok(converted_499)
+            let converted_667 = (|| -> PyResult<_> {
+                let converted_667: String = value.extract()?;
+                Ok(converted_667)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10877,14 +14713,14 @@ impl KinesisClient {
                     "DescribeStreamSummary",
                 )
             })?;
-            Some(converted_499)
+            Some(converted_667)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_500 = (|| -> PyResult<_> {
-                let converted_500: String = value.extract()?;
-                Ok(converted_500)
+            let converted_668 = (|| -> PyResult<_> {
+                let converted_668: String = value.extract()?;
+                Ok(converted_668)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10897,7 +14733,7 @@ impl KinesisClient {
                     "DescribeStreamSummary",
                 )
             })?;
-            Some(converted_500)
+            Some(converted_668)
         } else {
             None
         };
@@ -10942,9 +14778,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_501 = (|| -> PyResult<_> {
-                let converted_501: String = value.extract()?;
-                Ok(converted_501)
+            let converted_669 = (|| -> PyResult<_> {
+                let converted_669: String = value.extract()?;
+                Ok(converted_669)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -10957,40 +14793,40 @@ impl KinesisClient {
                     "DisableEnhancedMonitoring",
                 )
             })?;
-            Some(converted_501)
+            Some(converted_669)
         } else {
             None
         };
         let shard_level_metrics_value =
             if let Some(value) = dict_value(params, "shard_level_metrics")? {
-                let converted_502 = (|| -> PyResult<_> {
-                    let mut converted_502 =
+                let converted_670 = (|| -> PyResult<_> {
+                    let mut converted_670 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_506, item_result_503) in value.try_iter()?.enumerate() {
-                        let item_504 = item_result_503.map_err(|error| {
+                    for (index_674, item_result_671) in value.try_iter()?.enumerate() {
+                        let item_672 = item_result_671.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_506),
+                                rboto_core::InputPath::Index(index_674),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_505 = (|| -> PyResult<_> {
-                            let enum_value_507: String = item_504.extract()?;
-                            let converted_item_505 =
-                                aws_sdk_kinesis::types::MetricsName::from(enum_value_507.as_str());
-                            Ok(converted_item_505)
+                        let converted_item_673 = (|| -> PyResult<_> {
+                            let enum_value_675: String = item_672.extract()?;
+                            let converted_item_673 =
+                                aws_sdk_kinesis::types::MetricsName::from(enum_value_675.as_str());
+                            Ok(converted_item_673)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_506),
+                                rboto_core::InputPath::Index(index_674),
                                 "str (MetricsName)",
                             )
                         })?;
-                        converted_502.push(converted_item_505);
+                        converted_670.push(converted_item_673);
                     }
-                    Ok(converted_502)
+                    Ok(converted_670)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -11003,14 +14839,14 @@ impl KinesisClient {
                         "DisableEnhancedMonitoring",
                     )
                 })?;
-                Some(converted_502)
+                Some(converted_670)
             } else {
                 None
             };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_508 = (|| -> PyResult<_> {
-                let converted_508: String = value.extract()?;
-                Ok(converted_508)
+            let converted_676 = (|| -> PyResult<_> {
+                let converted_676: String = value.extract()?;
+                Ok(converted_676)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11023,14 +14859,14 @@ impl KinesisClient {
                     "DisableEnhancedMonitoring",
                 )
             })?;
-            Some(converted_508)
+            Some(converted_676)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_509 = (|| -> PyResult<_> {
-                let converted_509: String = value.extract()?;
-                Ok(converted_509)
+            let converted_677 = (|| -> PyResult<_> {
+                let converted_677: String = value.extract()?;
+                Ok(converted_677)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11043,7 +14879,7 @@ impl KinesisClient {
                     "DisableEnhancedMonitoring",
                 )
             })?;
-            Some(converted_509)
+            Some(converted_677)
         } else {
             None
         };
@@ -11087,9 +14923,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_510 = (|| -> PyResult<_> {
-                let converted_510: String = value.extract()?;
-                Ok(converted_510)
+            let converted_678 = (|| -> PyResult<_> {
+                let converted_678: String = value.extract()?;
+                Ok(converted_678)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11102,40 +14938,40 @@ impl KinesisClient {
                     "EnableEnhancedMonitoring",
                 )
             })?;
-            Some(converted_510)
+            Some(converted_678)
         } else {
             None
         };
         let shard_level_metrics_value =
             if let Some(value) = dict_value(params, "shard_level_metrics")? {
-                let converted_511 = (|| -> PyResult<_> {
-                    let mut converted_511 =
+                let converted_679 = (|| -> PyResult<_> {
+                    let mut converted_679 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_515, item_result_512) in value.try_iter()?.enumerate() {
-                        let item_513 = item_result_512.map_err(|error| {
+                    for (index_683, item_result_680) in value.try_iter()?.enumerate() {
+                        let item_681 = item_result_680.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_515),
+                                rboto_core::InputPath::Index(index_683),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_514 = (|| -> PyResult<_> {
-                            let enum_value_516: String = item_513.extract()?;
-                            let converted_item_514 =
-                                aws_sdk_kinesis::types::MetricsName::from(enum_value_516.as_str());
-                            Ok(converted_item_514)
+                        let converted_item_682 = (|| -> PyResult<_> {
+                            let enum_value_684: String = item_681.extract()?;
+                            let converted_item_682 =
+                                aws_sdk_kinesis::types::MetricsName::from(enum_value_684.as_str());
+                            Ok(converted_item_682)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_515),
+                                rboto_core::InputPath::Index(index_683),
                                 "str (MetricsName)",
                             )
                         })?;
-                        converted_511.push(converted_item_514);
+                        converted_679.push(converted_item_682);
                     }
-                    Ok(converted_511)
+                    Ok(converted_679)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -11148,14 +14984,14 @@ impl KinesisClient {
                         "EnableEnhancedMonitoring",
                     )
                 })?;
-                Some(converted_511)
+                Some(converted_679)
             } else {
                 None
             };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_517 = (|| -> PyResult<_> {
-                let converted_517: String = value.extract()?;
-                Ok(converted_517)
+            let converted_685 = (|| -> PyResult<_> {
+                let converted_685: String = value.extract()?;
+                Ok(converted_685)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11168,14 +15004,14 @@ impl KinesisClient {
                     "EnableEnhancedMonitoring",
                 )
             })?;
-            Some(converted_517)
+            Some(converted_685)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_518 = (|| -> PyResult<_> {
-                let converted_518: String = value.extract()?;
-                Ok(converted_518)
+            let converted_686 = (|| -> PyResult<_> {
+                let converted_686: String = value.extract()?;
+                Ok(converted_686)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11188,7 +15024,7 @@ impl KinesisClient {
                     "EnableEnhancedMonitoring",
                 )
             })?;
-            Some(converted_518)
+            Some(converted_686)
         } else {
             None
         };
@@ -11232,9 +15068,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let shard_iterator_value = if let Some(value) = dict_value(params, "shard_iterator")? {
-            let converted_519 = (|| -> PyResult<_> {
-                let converted_519: String = value.extract()?;
-                Ok(converted_519)
+            let converted_687 = (|| -> PyResult<_> {
+                let converted_687: String = value.extract()?;
+                Ok(converted_687)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11247,14 +15083,14 @@ impl KinesisClient {
                     "GetRecords",
                 )
             })?;
-            Some(converted_519)
+            Some(converted_687)
         } else {
             None
         };
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
-            let converted_520 = (|| -> PyResult<_> {
-                let converted_520: i32 = value.extract()?;
-                Ok(converted_520)
+            let converted_688 = (|| -> PyResult<_> {
+                let converted_688: i32 = value.extract()?;
+                Ok(converted_688)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11263,14 +15099,14 @@ impl KinesisClient {
                     "GetRecords",
                 )
             })?;
-            Some(converted_520)
+            Some(converted_688)
         } else {
             None
         };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_521 = (|| -> PyResult<_> {
-                let converted_521: String = value.extract()?;
-                Ok(converted_521)
+            let converted_689 = (|| -> PyResult<_> {
+                let converted_689: String = value.extract()?;
+                Ok(converted_689)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11283,14 +15119,14 @@ impl KinesisClient {
                     "GetRecords",
                 )
             })?;
-            Some(converted_521)
+            Some(converted_689)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_522 = (|| -> PyResult<_> {
-                let converted_522: String = value.extract()?;
-                Ok(converted_522)
+            let converted_690 = (|| -> PyResult<_> {
+                let converted_690: String = value.extract()?;
+                Ok(converted_690)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11303,14 +15139,14 @@ impl KinesisClient {
                     "GetRecords",
                 )
             })?;
-            Some(converted_522)
+            Some(converted_690)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_523 = (|| -> PyResult<_> {
-                let converted_523: bool = value.extract()?;
-                Ok(converted_523)
+            let converted_691 = (|| -> PyResult<_> {
+                let converted_691: bool = value.extract()?;
+                Ok(converted_691)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11319,7 +15155,7 @@ impl KinesisClient {
                     "GetRecords",
                 )
             })?;
-            Some(converted_523)
+            Some(converted_691)
         } else {
             None
         };
@@ -11361,9 +15197,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_524 = (|| -> PyResult<_> {
-                let converted_524: String = value.extract()?;
-                Ok(converted_524)
+            let converted_692 = (|| -> PyResult<_> {
+                let converted_692: String = value.extract()?;
+                Ok(converted_692)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11376,14 +15212,14 @@ impl KinesisClient {
                     "GetResourcePolicy",
                 )
             })?;
-            Some(converted_524)
+            Some(converted_692)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_525 = (|| -> PyResult<_> {
-                let converted_525: String = value.extract()?;
-                Ok(converted_525)
+            let converted_693 = (|| -> PyResult<_> {
+                let converted_693: String = value.extract()?;
+                Ok(converted_693)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11396,7 +15232,7 @@ impl KinesisClient {
                     "GetResourcePolicy",
                 )
             })?;
-            Some(converted_525)
+            Some(converted_693)
         } else {
             None
         };
@@ -11438,9 +15274,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_526 = (|| -> PyResult<_> {
-                let converted_526: String = value.extract()?;
-                Ok(converted_526)
+            let converted_694 = (|| -> PyResult<_> {
+                let converted_694: String = value.extract()?;
+                Ok(converted_694)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11453,14 +15289,14 @@ impl KinesisClient {
                     "GetShardIterator",
                 )
             })?;
-            Some(converted_526)
+            Some(converted_694)
         } else {
             None
         };
         let shard_id_value = if let Some(value) = dict_value(params, "shard_id")? {
-            let converted_527 = (|| -> PyResult<_> {
-                let converted_527: String = value.extract()?;
-                Ok(converted_527)
+            let converted_695 = (|| -> PyResult<_> {
+                let converted_695: String = value.extract()?;
+                Ok(converted_695)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11469,17 +15305,17 @@ impl KinesisClient {
                     "GetShardIterator",
                 )
             })?;
-            Some(converted_527)
+            Some(converted_695)
         } else {
             None
         };
         let shard_iterator_type_value =
             if let Some(value) = dict_value(params, "shard_iterator_type")? {
-                let converted_528 = (|| -> PyResult<_> {
-                    let enum_value_529: String = value.extract()?;
-                    let converted_528 =
-                        aws_sdk_kinesis::types::ShardIteratorType::from(enum_value_529.as_str());
-                    Ok(converted_528)
+                let converted_696 = (|| -> PyResult<_> {
+                    let enum_value_697: String = value.extract()?;
+                    let converted_696 =
+                        aws_sdk_kinesis::types::ShardIteratorType::from(enum_value_697.as_str());
+                    Ok(converted_696)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -11492,15 +15328,15 @@ impl KinesisClient {
                         "GetShardIterator",
                     )
                 })?;
-                Some(converted_528)
+                Some(converted_696)
             } else {
                 None
             };
         let starting_sequence_number_value =
             if let Some(value) = dict_value(params, "starting_sequence_number")? {
-                let converted_530 = (|| -> PyResult<_> {
-                    let converted_530: String = value.extract()?;
-                    Ok(converted_530)
+                let converted_698 = (|| -> PyResult<_> {
+                    let converted_698: String = value.extract()?;
+                    Ok(converted_698)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -11513,19 +15349,19 @@ impl KinesisClient {
                         "GetShardIterator",
                     )
                 })?;
-                Some(converted_530)
+                Some(converted_698)
             } else {
                 None
             };
         let timestamp_value = if let Some(value) = dict_value(params, "timestamp")? {
-            let converted_531 = (|| -> PyResult<_> {
-                let timestamp_532: String = value.extract()?;
-                let converted_531 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_532,
+            let converted_699 = (|| -> PyResult<_> {
+                let timestamp_700: String = value.extract()?;
+                let converted_699 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_700,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                Ok(converted_531)
+                Ok(converted_699)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11538,14 +15374,14 @@ impl KinesisClient {
                     "GetShardIterator",
                 )
             })?;
-            Some(converted_531)
+            Some(converted_699)
         } else {
             None
         };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_533 = (|| -> PyResult<_> {
-                let converted_533: String = value.extract()?;
-                Ok(converted_533)
+            let converted_701 = (|| -> PyResult<_> {
+                let converted_701: String = value.extract()?;
+                Ok(converted_701)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11558,14 +15394,14 @@ impl KinesisClient {
                     "GetShardIterator",
                 )
             })?;
-            Some(converted_533)
+            Some(converted_701)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_534 = (|| -> PyResult<_> {
-                let converted_534: String = value.extract()?;
-                Ok(converted_534)
+            let converted_702 = (|| -> PyResult<_> {
+                let converted_702: String = value.extract()?;
+                Ok(converted_702)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11578,14 +15414,14 @@ impl KinesisClient {
                     "GetShardIterator",
                 )
             })?;
-            Some(converted_534)
+            Some(converted_702)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_535 = (|| -> PyResult<_> {
-                let converted_535: bool = value.extract()?;
-                Ok(converted_535)
+            let converted_703 = (|| -> PyResult<_> {
+                let converted_703: bool = value.extract()?;
+                Ok(converted_703)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11594,7 +15430,7 @@ impl KinesisClient {
                     "GetShardIterator",
                 )
             })?;
-            Some(converted_535)
+            Some(converted_703)
         } else {
             None
         };
@@ -11642,9 +15478,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_536 = (|| -> PyResult<_> {
-                let converted_536: String = value.extract()?;
-                Ok(converted_536)
+            let converted_704 = (|| -> PyResult<_> {
+                let converted_704: String = value.extract()?;
+                Ok(converted_704)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11657,15 +15493,15 @@ impl KinesisClient {
                     "IncreaseStreamRetentionPeriod",
                 )
             })?;
-            Some(converted_536)
+            Some(converted_704)
         } else {
             None
         };
         let retention_period_hours_value =
             if let Some(value) = dict_value(params, "retention_period_hours")? {
-                let converted_537 = (|| -> PyResult<_> {
-                    let converted_537: i32 = value.extract()?;
-                    Ok(converted_537)
+                let converted_705 = (|| -> PyResult<_> {
+                    let converted_705: i32 = value.extract()?;
+                    Ok(converted_705)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -11678,14 +15514,14 @@ impl KinesisClient {
                         "IncreaseStreamRetentionPeriod",
                     )
                 })?;
-                Some(converted_537)
+                Some(converted_705)
             } else {
                 None
             };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_538 = (|| -> PyResult<_> {
-                let converted_538: String = value.extract()?;
-                Ok(converted_538)
+            let converted_706 = (|| -> PyResult<_> {
+                let converted_706: String = value.extract()?;
+                Ok(converted_706)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11698,14 +15534,14 @@ impl KinesisClient {
                     "IncreaseStreamRetentionPeriod",
                 )
             })?;
-            Some(converted_538)
+            Some(converted_706)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_539 = (|| -> PyResult<_> {
-                let converted_539: String = value.extract()?;
-                Ok(converted_539)
+            let converted_707 = (|| -> PyResult<_> {
+                let converted_707: String = value.extract()?;
+                Ok(converted_707)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11718,7 +15554,7 @@ impl KinesisClient {
                     "IncreaseStreamRetentionPeriod",
                 )
             })?;
-            Some(converted_539)
+            Some(converted_707)
         } else {
             None
         };
@@ -11766,32 +15602,32 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_filter_value = if let Some(value) = dict_value(params, "stream_filter")? {
-            let converted_540 = (|| -> PyResult<_> {
-                let mut converted_540 =
+            let converted_708 = (|| -> PyResult<_> {
+                let mut converted_708 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_544, item_result_541) in value.try_iter()?.enumerate() {
-                    let item_542 = item_result_541.map_err(|error| {
+                for (index_712, item_result_709) in value.try_iter()?.enumerate() {
+                    let item_710 = item_result_709.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_544),
+                            rboto_core::InputPath::Index(index_712),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_543 = (|| -> PyResult<_> {
-                        let converted_item_543 = stream_filter_from_py(&item_542)?;
-                        Ok(converted_item_543)
+                    let converted_item_711 = (|| -> PyResult<_> {
+                        let converted_item_711 = stream_filter_from_py(&item_710)?;
+                        Ok(converted_item_711)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_544),
+                            rboto_core::InputPath::Index(index_712),
                             "dict (StreamFilter)",
                         )
                     })?;
-                    converted_540.push(converted_item_543);
+                    converted_708.push(converted_item_711);
                 }
-                Ok(converted_540)
+                Ok(converted_708)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11804,14 +15640,14 @@ impl KinesisClient {
                     "ListChannels",
                 )
             })?;
-            Some(converted_540)
+            Some(converted_708)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_545 = (|| -> PyResult<_> {
-                let converted_545: i32 = value.extract()?;
-                Ok(converted_545)
+            let converted_713 = (|| -> PyResult<_> {
+                let converted_713: i32 = value.extract()?;
+                Ok(converted_713)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11824,14 +15660,14 @@ impl KinesisClient {
                     "ListChannels",
                 )
             })?;
-            Some(converted_545)
+            Some(converted_713)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_546 = (|| -> PyResult<_> {
-                let converted_546: String = value.extract()?;
-                Ok(converted_546)
+            let converted_714 = (|| -> PyResult<_> {
+                let converted_714: String = value.extract()?;
+                Ok(converted_714)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11844,7 +15680,7 @@ impl KinesisClient {
                     "ListChannels",
                 )
             })?;
-            Some(converted_546)
+            Some(converted_714)
         } else {
             None
         };
@@ -11876,6 +15712,124 @@ impl KinesisClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn list_queues<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
+            let converted_715 = (|| -> PyResult<_> {
+                let converted_715: i32 = value.extract()?;
+                Ok(converted_715)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "kinesis",
+                    "ListQueues",
+                )
+            })?;
+            Some(converted_715)
+        } else {
+            None
+        };
+        let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
+            let converted_716 = (|| -> PyResult<_> {
+                let converted_716: String = value.extract()?;
+                Ok(converted_716)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "kinesis",
+                    "ListQueues",
+                )
+            })?;
+            Some(converted_716)
+        } else {
+            None
+        };
+        let stream_filter_value = if let Some(value) = dict_value(params, "stream_filter")? {
+            let converted_717 = (|| -> PyResult<_> {
+                let mut converted_717 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_721, item_result_718) in value.try_iter()?.enumerate() {
+                    let item_719 = item_result_718.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_721),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_720 = (|| -> PyResult<_> {
+                        let converted_item_720 = queue_stream_filter_from_py(&item_719)?;
+                        Ok(converted_item_720)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_721),
+                            "dict (QueueStreamFilter)",
+                        )
+                    })?;
+                    converted_717.push(converted_item_720);
+                }
+                Ok(converted_717)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("stream_filter"),
+                        "sequence",
+                    ),
+                    "kinesis",
+                    "ListQueues",
+                )
+            })?;
+            Some(converted_717)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .list_queues()
+                .set_max_results(max_results_value)
+                .set_next_token(next_token_value)
+                .set_stream_filter(stream_filter_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListQueues", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationListQueuesOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn list_shards<'py>(
         &self,
         py: Python<'py>,
@@ -11884,9 +15838,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_547 = (|| -> PyResult<_> {
-                let converted_547: String = value.extract()?;
-                Ok(converted_547)
+            let converted_722 = (|| -> PyResult<_> {
+                let converted_722: String = value.extract()?;
+                Ok(converted_722)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11899,14 +15853,14 @@ impl KinesisClient {
                     "ListShards",
                 )
             })?;
-            Some(converted_547)
+            Some(converted_722)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_548 = (|| -> PyResult<_> {
-                let converted_548: String = value.extract()?;
-                Ok(converted_548)
+            let converted_723 = (|| -> PyResult<_> {
+                let converted_723: String = value.extract()?;
+                Ok(converted_723)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11919,15 +15873,15 @@ impl KinesisClient {
                     "ListShards",
                 )
             })?;
-            Some(converted_548)
+            Some(converted_723)
         } else {
             None
         };
         let exclusive_start_shard_id_value =
             if let Some(value) = dict_value(params, "exclusive_start_shard_id")? {
-                let converted_549 = (|| -> PyResult<_> {
-                    let converted_549: String = value.extract()?;
-                    Ok(converted_549)
+                let converted_724 = (|| -> PyResult<_> {
+                    let converted_724: String = value.extract()?;
+                    Ok(converted_724)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -11940,14 +15894,14 @@ impl KinesisClient {
                         "ListShards",
                     )
                 })?;
-                Some(converted_549)
+                Some(converted_724)
             } else {
                 None
             };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_550 = (|| -> PyResult<_> {
-                let converted_550: i32 = value.extract()?;
-                Ok(converted_550)
+            let converted_725 = (|| -> PyResult<_> {
+                let converted_725: i32 = value.extract()?;
+                Ok(converted_725)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -11960,20 +15914,20 @@ impl KinesisClient {
                     "ListShards",
                 )
             })?;
-            Some(converted_550)
+            Some(converted_725)
         } else {
             None
         };
         let stream_creation_timestamp_value =
             if let Some(value) = dict_value(params, "stream_creation_timestamp")? {
-                let converted_551 = (|| -> PyResult<_> {
-                    let timestamp_552: String = value.extract()?;
-                    let converted_551 = ::aws_smithy_types::DateTime::from_str(
-                        &timestamp_552,
+                let converted_726 = (|| -> PyResult<_> {
+                    let timestamp_727: String = value.extract()?;
+                    let converted_726 = ::aws_smithy_types::DateTime::from_str(
+                        &timestamp_727,
                         ::aws_smithy_types::date_time::Format::DateTime,
                     )
                     .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                    Ok(converted_551)
+                    Ok(converted_726)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -11986,14 +15940,14 @@ impl KinesisClient {
                         "ListShards",
                     )
                 })?;
-                Some(converted_551)
+                Some(converted_726)
             } else {
                 None
             };
         let shard_filter_value = if let Some(value) = dict_value(params, "shard_filter")? {
-            let converted_553 = (|| -> PyResult<_> {
-                let converted_553 = shard_filter_from_py(&value)?;
-                Ok(converted_553)
+            let converted_728 = (|| -> PyResult<_> {
+                let converted_728 = shard_filter_from_py(&value)?;
+                Ok(converted_728)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12006,14 +15960,14 @@ impl KinesisClient {
                     "ListShards",
                 )
             })?;
-            Some(converted_553)
+            Some(converted_728)
         } else {
             None
         };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_554 = (|| -> PyResult<_> {
-                let converted_554: String = value.extract()?;
-                Ok(converted_554)
+            let converted_729 = (|| -> PyResult<_> {
+                let converted_729: String = value.extract()?;
+                Ok(converted_729)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12026,14 +15980,14 @@ impl KinesisClient {
                     "ListShards",
                 )
             })?;
-            Some(converted_554)
+            Some(converted_729)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_555 = (|| -> PyResult<_> {
-                let converted_555: String = value.extract()?;
-                Ok(converted_555)
+            let converted_730 = (|| -> PyResult<_> {
+                let converted_730: String = value.extract()?;
+                Ok(converted_730)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12046,7 +16000,7 @@ impl KinesisClient {
                     "ListShards",
                 )
             })?;
-            Some(converted_555)
+            Some(converted_730)
         } else {
             None
         };
@@ -12091,9 +16045,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_556 = (|| -> PyResult<_> {
-                let converted_556: String = value.extract()?;
-                Ok(converted_556)
+            let converted_731 = (|| -> PyResult<_> {
+                let converted_731: String = value.extract()?;
+                Ok(converted_731)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12106,14 +16060,14 @@ impl KinesisClient {
                     "ListStreamConsumers",
                 )
             })?;
-            Some(converted_556)
+            Some(converted_731)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_557 = (|| -> PyResult<_> {
-                let converted_557: String = value.extract()?;
-                Ok(converted_557)
+            let converted_732 = (|| -> PyResult<_> {
+                let converted_732: String = value.extract()?;
+                Ok(converted_732)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12126,14 +16080,14 @@ impl KinesisClient {
                     "ListStreamConsumers",
                 )
             })?;
-            Some(converted_557)
+            Some(converted_732)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_558 = (|| -> PyResult<_> {
-                let converted_558: i32 = value.extract()?;
-                Ok(converted_558)
+            let converted_733 = (|| -> PyResult<_> {
+                let converted_733: i32 = value.extract()?;
+                Ok(converted_733)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12146,20 +16100,20 @@ impl KinesisClient {
                     "ListStreamConsumers",
                 )
             })?;
-            Some(converted_558)
+            Some(converted_733)
         } else {
             None
         };
         let stream_creation_timestamp_value =
             if let Some(value) = dict_value(params, "stream_creation_timestamp")? {
-                let converted_559 = (|| -> PyResult<_> {
-                    let timestamp_560: String = value.extract()?;
-                    let converted_559 = ::aws_smithy_types::DateTime::from_str(
-                        &timestamp_560,
+                let converted_734 = (|| -> PyResult<_> {
+                    let timestamp_735: String = value.extract()?;
+                    let converted_734 = ::aws_smithy_types::DateTime::from_str(
+                        &timestamp_735,
                         ::aws_smithy_types::date_time::Format::DateTime,
                     )
                     .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-                    Ok(converted_559)
+                    Ok(converted_734)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -12172,14 +16126,14 @@ impl KinesisClient {
                         "ListStreamConsumers",
                     )
                 })?;
-                Some(converted_559)
+                Some(converted_734)
             } else {
                 None
             };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_561 = (|| -> PyResult<_> {
-                let converted_561: String = value.extract()?;
-                Ok(converted_561)
+            let converted_736 = (|| -> PyResult<_> {
+                let converted_736: String = value.extract()?;
+                Ok(converted_736)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12192,7 +16146,7 @@ impl KinesisClient {
                     "ListStreamConsumers",
                 )
             })?;
-            Some(converted_561)
+            Some(converted_736)
         } else {
             None
         };
@@ -12239,9 +16193,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
-            let converted_562 = (|| -> PyResult<_> {
-                let converted_562: i32 = value.extract()?;
-                Ok(converted_562)
+            let converted_737 = (|| -> PyResult<_> {
+                let converted_737: i32 = value.extract()?;
+                Ok(converted_737)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12250,15 +16204,15 @@ impl KinesisClient {
                     "ListStreams",
                 )
             })?;
-            Some(converted_562)
+            Some(converted_737)
         } else {
             None
         };
         let exclusive_start_stream_name_value =
             if let Some(value) = dict_value(params, "exclusive_start_stream_name")? {
-                let converted_563 = (|| -> PyResult<_> {
-                    let converted_563: String = value.extract()?;
-                    Ok(converted_563)
+                let converted_738 = (|| -> PyResult<_> {
+                    let converted_738: String = value.extract()?;
+                    Ok(converted_738)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -12271,14 +16225,14 @@ impl KinesisClient {
                         "ListStreams",
                     )
                 })?;
-                Some(converted_563)
+                Some(converted_738)
             } else {
                 None
             };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_564 = (|| -> PyResult<_> {
-                let converted_564: String = value.extract()?;
-                Ok(converted_564)
+            let converted_739 = (|| -> PyResult<_> {
+                let converted_739: String = value.extract()?;
+                Ok(converted_739)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12291,7 +16245,7 @@ impl KinesisClient {
                     "ListStreams",
                 )
             })?;
-            Some(converted_564)
+            Some(converted_739)
         } else {
             None
         };
@@ -12331,9 +16285,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_565 = (|| -> PyResult<_> {
-                let converted_565: String = value.extract()?;
-                Ok(converted_565)
+            let converted_740 = (|| -> PyResult<_> {
+                let converted_740: String = value.extract()?;
+                Ok(converted_740)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12346,14 +16300,14 @@ impl KinesisClient {
                     "ListTagsForResource",
                 )
             })?;
-            Some(converted_565)
+            Some(converted_740)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_566 = (|| -> PyResult<_> {
-                let converted_566: String = value.extract()?;
-                Ok(converted_566)
+            let converted_741 = (|| -> PyResult<_> {
+                let converted_741: String = value.extract()?;
+                Ok(converted_741)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12366,7 +16320,7 @@ impl KinesisClient {
                     "ListTagsForResource",
                 )
             })?;
-            Some(converted_566)
+            Some(converted_741)
         } else {
             None
         };
@@ -12410,9 +16364,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_567 = (|| -> PyResult<_> {
-                let converted_567: String = value.extract()?;
-                Ok(converted_567)
+            let converted_742 = (|| -> PyResult<_> {
+                let converted_742: String = value.extract()?;
+                Ok(converted_742)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12425,15 +16379,15 @@ impl KinesisClient {
                     "ListTagsForStream",
                 )
             })?;
-            Some(converted_567)
+            Some(converted_742)
         } else {
             None
         };
         let exclusive_start_tag_key_value =
             if let Some(value) = dict_value(params, "exclusive_start_tag_key")? {
-                let converted_568 = (|| -> PyResult<_> {
-                    let converted_568: String = value.extract()?;
-                    Ok(converted_568)
+                let converted_743 = (|| -> PyResult<_> {
+                    let converted_743: String = value.extract()?;
+                    Ok(converted_743)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -12446,14 +16400,14 @@ impl KinesisClient {
                         "ListTagsForStream",
                     )
                 })?;
-                Some(converted_568)
+                Some(converted_743)
             } else {
                 None
             };
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
-            let converted_569 = (|| -> PyResult<_> {
-                let converted_569: i32 = value.extract()?;
-                Ok(converted_569)
+            let converted_744 = (|| -> PyResult<_> {
+                let converted_744: i32 = value.extract()?;
+                Ok(converted_744)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12462,14 +16416,14 @@ impl KinesisClient {
                     "ListTagsForStream",
                 )
             })?;
-            Some(converted_569)
+            Some(converted_744)
         } else {
             None
         };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_570 = (|| -> PyResult<_> {
-                let converted_570: String = value.extract()?;
-                Ok(converted_570)
+            let converted_745 = (|| -> PyResult<_> {
+                let converted_745: String = value.extract()?;
+                Ok(converted_745)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12482,14 +16436,14 @@ impl KinesisClient {
                     "ListTagsForStream",
                 )
             })?;
-            Some(converted_570)
+            Some(converted_745)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_571 = (|| -> PyResult<_> {
-                let converted_571: String = value.extract()?;
-                Ok(converted_571)
+            let converted_746 = (|| -> PyResult<_> {
+                let converted_746: String = value.extract()?;
+                Ok(converted_746)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12502,7 +16456,7 @@ impl KinesisClient {
                     "ListTagsForStream",
                 )
             })?;
-            Some(converted_571)
+            Some(converted_746)
         } else {
             None
         };
@@ -12549,9 +16503,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_572 = (|| -> PyResult<_> {
-                let converted_572: String = value.extract()?;
-                Ok(converted_572)
+            let converted_747 = (|| -> PyResult<_> {
+                let converted_747: String = value.extract()?;
+                Ok(converted_747)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12564,14 +16518,14 @@ impl KinesisClient {
                     "MergeShards",
                 )
             })?;
-            Some(converted_572)
+            Some(converted_747)
         } else {
             None
         };
         let shard_to_merge_value = if let Some(value) = dict_value(params, "shard_to_merge")? {
-            let converted_573 = (|| -> PyResult<_> {
-                let converted_573: String = value.extract()?;
-                Ok(converted_573)
+            let converted_748 = (|| -> PyResult<_> {
+                let converted_748: String = value.extract()?;
+                Ok(converted_748)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12584,15 +16538,15 @@ impl KinesisClient {
                     "MergeShards",
                 )
             })?;
-            Some(converted_573)
+            Some(converted_748)
         } else {
             None
         };
         let adjacent_shard_to_merge_value =
             if let Some(value) = dict_value(params, "adjacent_shard_to_merge")? {
-                let converted_574 = (|| -> PyResult<_> {
-                    let converted_574: String = value.extract()?;
-                    Ok(converted_574)
+                let converted_749 = (|| -> PyResult<_> {
+                    let converted_749: String = value.extract()?;
+                    Ok(converted_749)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -12605,14 +16559,14 @@ impl KinesisClient {
                         "MergeShards",
                     )
                 })?;
-                Some(converted_574)
+                Some(converted_749)
             } else {
                 None
             };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_575 = (|| -> PyResult<_> {
-                let converted_575: String = value.extract()?;
-                Ok(converted_575)
+            let converted_750 = (|| -> PyResult<_> {
+                let converted_750: String = value.extract()?;
+                Ok(converted_750)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12625,14 +16579,14 @@ impl KinesisClient {
                     "MergeShards",
                 )
             })?;
-            Some(converted_575)
+            Some(converted_750)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_576 = (|| -> PyResult<_> {
-                let converted_576: String = value.extract()?;
-                Ok(converted_576)
+            let converted_751 = (|| -> PyResult<_> {
+                let converted_751: String = value.extract()?;
+                Ok(converted_751)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12645,7 +16599,7 @@ impl KinesisClient {
                     "MergeShards",
                 )
             })?;
-            Some(converted_576)
+            Some(converted_751)
         } else {
             None
         };
@@ -12689,9 +16643,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_577 = (|| -> PyResult<_> {
-                let converted_577: String = value.extract()?;
-                Ok(converted_577)
+            let converted_752 = (|| -> PyResult<_> {
+                let converted_752: String = value.extract()?;
+                Ok(converted_752)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12704,15 +16658,15 @@ impl KinesisClient {
                     "PutRecord",
                 )
             })?;
-            Some(converted_577)
+            Some(converted_752)
         } else {
             None
         };
         let data_value = if let Some(value) = dict_value(params, "data")? {
-            let converted_578 = (|| -> PyResult<_> {
-                let bytes_579: Vec<u8> = value.extract()?;
-                let converted_578 = ::aws_smithy_types::Blob::new(bytes_579);
-                Ok(converted_578)
+            let converted_753 = (|| -> PyResult<_> {
+                let bytes_754: Vec<u8> = value.extract()?;
+                let converted_753 = ::aws_smithy_types::Blob::new(bytes_754);
+                Ok(converted_753)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12721,14 +16675,14 @@ impl KinesisClient {
                     "PutRecord",
                 )
             })?;
-            Some(converted_578)
+            Some(converted_753)
         } else {
             None
         };
         let partition_key_value = if let Some(value) = dict_value(params, "partition_key")? {
-            let converted_580 = (|| -> PyResult<_> {
-                let converted_580: String = value.extract()?;
-                Ok(converted_580)
+            let converted_755 = (|| -> PyResult<_> {
+                let converted_755: String = value.extract()?;
+                Ok(converted_755)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12741,15 +16695,15 @@ impl KinesisClient {
                     "PutRecord",
                 )
             })?;
-            Some(converted_580)
+            Some(converted_755)
         } else {
             None
         };
         let explicit_hash_key_value = if let Some(value) = dict_value(params, "explicit_hash_key")?
         {
-            let converted_581 = (|| -> PyResult<_> {
-                let converted_581: String = value.extract()?;
-                Ok(converted_581)
+            let converted_756 = (|| -> PyResult<_> {
+                let converted_756: String = value.extract()?;
+                Ok(converted_756)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12762,15 +16716,15 @@ impl KinesisClient {
                     "PutRecord",
                 )
             })?;
-            Some(converted_581)
+            Some(converted_756)
         } else {
             None
         };
         let sequence_number_for_ordering_value =
             if let Some(value) = dict_value(params, "sequence_number_for_ordering")? {
-                let converted_582 = (|| -> PyResult<_> {
-                    let converted_582: String = value.extract()?;
-                    Ok(converted_582)
+                let converted_757 = (|| -> PyResult<_> {
+                    let converted_757: String = value.extract()?;
+                    Ok(converted_757)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -12783,14 +16737,14 @@ impl KinesisClient {
                         "PutRecord",
                     )
                 })?;
-                Some(converted_582)
+                Some(converted_757)
             } else {
                 None
             };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_583 = (|| -> PyResult<_> {
-                let converted_583: String = value.extract()?;
-                Ok(converted_583)
+            let converted_758 = (|| -> PyResult<_> {
+                let converted_758: String = value.extract()?;
+                Ok(converted_758)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12803,14 +16757,14 @@ impl KinesisClient {
                     "PutRecord",
                 )
             })?;
-            Some(converted_583)
+            Some(converted_758)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_584 = (|| -> PyResult<_> {
-                let converted_584: String = value.extract()?;
-                Ok(converted_584)
+            let converted_759 = (|| -> PyResult<_> {
+                let converted_759: String = value.extract()?;
+                Ok(converted_759)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12823,14 +16777,14 @@ impl KinesisClient {
                     "PutRecord",
                 )
             })?;
-            Some(converted_584)
+            Some(converted_759)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_585 = (|| -> PyResult<_> {
-                let converted_585: bool = value.extract()?;
-                Ok(converted_585)
+            let converted_760 = (|| -> PyResult<_> {
+                let converted_760: bool = value.extract()?;
+                Ok(converted_760)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12839,7 +16793,7 @@ impl KinesisClient {
                     "PutRecord",
                 )
             })?;
-            Some(converted_585)
+            Some(converted_760)
         } else {
             None
         };
@@ -12882,32 +16836,32 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let records_value = if let Some(value) = dict_value(params, "records")? {
-            let converted_586 = (|| -> PyResult<_> {
-                let mut converted_586 =
+            let converted_761 = (|| -> PyResult<_> {
+                let mut converted_761 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_590, item_result_587) in value.try_iter()?.enumerate() {
-                    let item_588 = item_result_587.map_err(|error| {
+                for (index_765, item_result_762) in value.try_iter()?.enumerate() {
+                    let item_763 = item_result_762.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_590),
+                            rboto_core::InputPath::Index(index_765),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_589 = (|| -> PyResult<_> {
-                        let converted_item_589 = put_records_request_entry_from_py(&item_588)?;
-                        Ok(converted_item_589)
+                    let converted_item_764 = (|| -> PyResult<_> {
+                        let converted_item_764 = put_records_request_entry_from_py(&item_763)?;
+                        Ok(converted_item_764)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_590),
+                            rboto_core::InputPath::Index(index_765),
                             "dict (PutRecordsRequestEntry)",
                         )
                     })?;
-                    converted_586.push(converted_item_589);
+                    converted_761.push(converted_item_764);
                 }
-                Ok(converted_586)
+                Ok(converted_761)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12920,14 +16874,14 @@ impl KinesisClient {
                     "PutRecords",
                 )
             })?;
-            Some(converted_586)
+            Some(converted_761)
         } else {
             None
         };
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_591 = (|| -> PyResult<_> {
-                let converted_591: String = value.extract()?;
-                Ok(converted_591)
+            let converted_766 = (|| -> PyResult<_> {
+                let converted_766: String = value.extract()?;
+                Ok(converted_766)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12940,14 +16894,14 @@ impl KinesisClient {
                     "PutRecords",
                 )
             })?;
-            Some(converted_591)
+            Some(converted_766)
         } else {
             None
         };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_592 = (|| -> PyResult<_> {
-                let converted_592: String = value.extract()?;
-                Ok(converted_592)
+            let converted_767 = (|| -> PyResult<_> {
+                let converted_767: String = value.extract()?;
+                Ok(converted_767)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12960,14 +16914,14 @@ impl KinesisClient {
                     "PutRecords",
                 )
             })?;
-            Some(converted_592)
+            Some(converted_767)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_593 = (|| -> PyResult<_> {
-                let converted_593: String = value.extract()?;
-                Ok(converted_593)
+            let converted_768 = (|| -> PyResult<_> {
+                let converted_768: String = value.extract()?;
+                Ok(converted_768)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12980,14 +16934,14 @@ impl KinesisClient {
                     "PutRecords",
                 )
             })?;
-            Some(converted_593)
+            Some(converted_768)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_594 = (|| -> PyResult<_> {
-                let converted_594: bool = value.extract()?;
-                Ok(converted_594)
+            let converted_769 = (|| -> PyResult<_> {
+                let converted_769: bool = value.extract()?;
+                Ok(converted_769)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -12996,7 +16950,7 @@ impl KinesisClient {
                     "PutRecords",
                 )
             })?;
-            Some(converted_594)
+            Some(converted_769)
         } else {
             None
         };
@@ -13038,9 +16992,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_595 = (|| -> PyResult<_> {
-                let converted_595: String = value.extract()?;
-                Ok(converted_595)
+            let converted_770 = (|| -> PyResult<_> {
+                let converted_770: String = value.extract()?;
+                Ok(converted_770)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13053,14 +17007,14 @@ impl KinesisClient {
                     "PutResourcePolicy",
                 )
             })?;
-            Some(converted_595)
+            Some(converted_770)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_596 = (|| -> PyResult<_> {
-                let converted_596: String = value.extract()?;
-                Ok(converted_596)
+            let converted_771 = (|| -> PyResult<_> {
+                let converted_771: String = value.extract()?;
+                Ok(converted_771)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13073,14 +17027,14 @@ impl KinesisClient {
                     "PutResourcePolicy",
                 )
             })?;
-            Some(converted_596)
+            Some(converted_771)
         } else {
             None
         };
         let policy_value = if let Some(value) = dict_value(params, "policy")? {
-            let converted_597 = (|| -> PyResult<_> {
-                let converted_597: String = value.extract()?;
-                Ok(converted_597)
+            let converted_772 = (|| -> PyResult<_> {
+                let converted_772: String = value.extract()?;
+                Ok(converted_772)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13089,7 +17043,7 @@ impl KinesisClient {
                     "PutResourcePolicy",
                 )
             })?;
-            Some(converted_597)
+            Some(converted_772)
         } else {
             None
         };
@@ -13128,6 +17082,244 @@ impl KinesisClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn receive_dead_letter_queue_records<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let queue_arn_value = if let Some(value) = dict_value(params, "queue_arn")? {
+            let converted_773 = (|| -> PyResult<_> {
+                let converted_773: String = value.extract()?;
+                Ok(converted_773)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_arn"),
+                        "str",
+                    ),
+                    "kinesis",
+                    "ReceiveDeadLetterQueueRecords",
+                )
+            })?;
+            Some(converted_773)
+        } else {
+            None
+        };
+        let limit_value = if let Some(value) = dict_value(params, "limit")? {
+            let converted_774 = (|| -> PyResult<_> {
+                let converted_774: i32 = value.extract()?;
+                Ok(converted_774)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("limit"), "int"),
+                    "kinesis",
+                    "ReceiveDeadLetterQueueRecords",
+                )
+            })?;
+            Some(converted_774)
+        } else {
+            None
+        };
+        let wait_time_seconds_value = if let Some(value) = dict_value(params, "wait_time_seconds")?
+        {
+            let converted_775 = (|| -> PyResult<_> {
+                let converted_775: i32 = value.extract()?;
+                Ok(converted_775)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("wait_time_seconds"),
+                        "int",
+                    ),
+                    "kinesis",
+                    "ReceiveDeadLetterQueueRecords",
+                )
+            })?;
+            Some(converted_775)
+        } else {
+            None
+        };
+        let visibility_timeout_seconds_value =
+            if let Some(value) = dict_value(params, "visibility_timeout_seconds")? {
+                let converted_776 = (|| -> PyResult<_> {
+                    let converted_776: i32 = value.extract()?;
+                    Ok(converted_776)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("visibility_timeout_seconds"),
+                            "int",
+                        ),
+                        "kinesis",
+                        "ReceiveDeadLetterQueueRecords",
+                    )
+                })?;
+                Some(converted_776)
+            } else {
+                None
+            };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .receive_dead_letter_queue_records()
+                .set_queue_arn(queue_arn_value)
+                .set_limit(limit_value)
+                .set_wait_time_seconds(wait_time_seconds_value)
+                .set_visibility_timeout_seconds(visibility_timeout_seconds_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ReceiveDeadLetterQueueRecords",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationReceiveDeadLetterQueueRecordsOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
+    fn receive_queue_records<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let queue_arn_value = if let Some(value) = dict_value(params, "queue_arn")? {
+            let converted_777 = (|| -> PyResult<_> {
+                let converted_777: String = value.extract()?;
+                Ok(converted_777)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_arn"),
+                        "str",
+                    ),
+                    "kinesis",
+                    "ReceiveQueueRecords",
+                )
+            })?;
+            Some(converted_777)
+        } else {
+            None
+        };
+        let limit_value = if let Some(value) = dict_value(params, "limit")? {
+            let converted_778 = (|| -> PyResult<_> {
+                let converted_778: i32 = value.extract()?;
+                Ok(converted_778)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("limit"), "int"),
+                    "kinesis",
+                    "ReceiveQueueRecords",
+                )
+            })?;
+            Some(converted_778)
+        } else {
+            None
+        };
+        let wait_time_seconds_value = if let Some(value) = dict_value(params, "wait_time_seconds")?
+        {
+            let converted_779 = (|| -> PyResult<_> {
+                let converted_779: i32 = value.extract()?;
+                Ok(converted_779)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("wait_time_seconds"),
+                        "int",
+                    ),
+                    "kinesis",
+                    "ReceiveQueueRecords",
+                )
+            })?;
+            Some(converted_779)
+        } else {
+            None
+        };
+        let visibility_timeout_seconds_value =
+            if let Some(value) = dict_value(params, "visibility_timeout_seconds")? {
+                let converted_780 = (|| -> PyResult<_> {
+                    let converted_780: i32 = value.extract()?;
+                    Ok(converted_780)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("visibility_timeout_seconds"),
+                            "int",
+                        ),
+                        "kinesis",
+                        "ReceiveQueueRecords",
+                    )
+                })?;
+                Some(converted_780)
+            } else {
+                None
+            };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .receive_queue_records()
+                .set_queue_arn(queue_arn_value)
+                .set_limit(limit_value)
+                .set_wait_time_seconds(wait_time_seconds_value)
+                .set_visibility_timeout_seconds(visibility_timeout_seconds_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ReceiveQueueRecords",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationReceiveQueueRecordsOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn register_stream_consumer<'py>(
         &self,
         py: Python<'py>,
@@ -13136,9 +17328,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_598 = (|| -> PyResult<_> {
-                let converted_598: String = value.extract()?;
-                Ok(converted_598)
+            let converted_781 = (|| -> PyResult<_> {
+                let converted_781: String = value.extract()?;
+                Ok(converted_781)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13151,14 +17343,14 @@ impl KinesisClient {
                     "RegisterStreamConsumer",
                 )
             })?;
-            Some(converted_598)
+            Some(converted_781)
         } else {
             None
         };
         let consumer_name_value = if let Some(value) = dict_value(params, "consumer_name")? {
-            let converted_599 = (|| -> PyResult<_> {
-                let converted_599: String = value.extract()?;
-                Ok(converted_599)
+            let converted_782 = (|| -> PyResult<_> {
+                let converted_782: String = value.extract()?;
+                Ok(converted_782)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13171,14 +17363,14 @@ impl KinesisClient {
                     "RegisterStreamConsumer",
                 )
             })?;
-            Some(converted_599)
+            Some(converted_782)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_600 = (|| -> PyResult<_> {
-                let converted_600: String = value.extract()?;
-                Ok(converted_600)
+            let converted_783 = (|| -> PyResult<_> {
+                let converted_783: String = value.extract()?;
+                Ok(converted_783)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13191,40 +17383,40 @@ impl KinesisClient {
                     "RegisterStreamConsumer",
                 )
             })?;
-            Some(converted_600)
+            Some(converted_783)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_601 = (|| -> PyResult<_> {
-                let mapping_602 = value.cast::<PyDict>()?;
-                let mut converted_601 = HashMap::with_capacity(mapping_602.len());
-                for (index_607, (key_603, value_604)) in mapping_602.iter().enumerate() {
-                    let converted_key_605 = (|| -> PyResult<_> {
-                        let converted_key_605: String = key_603.extract()?;
-                        Ok(converted_key_605)
+            let converted_784 = (|| -> PyResult<_> {
+                let mapping_785 = value.cast::<PyDict>()?;
+                let mut converted_784 = HashMap::with_capacity(mapping_785.len());
+                for (index_790, (key_786, value_787)) in mapping_785.iter().enumerate() {
+                    let converted_key_788 = (|| -> PyResult<_> {
+                        let converted_key_788: String = key_786.extract()?;
+                        Ok(converted_key_788)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_607),
+                            rboto_core::InputPath::MapKey(index_790),
                             "str",
                         )
                     })?;
-                    let converted_value_606 = (|| -> PyResult<_> {
-                        let converted_value_606: String = value_604.extract()?;
-                        Ok(converted_value_606)
+                    let converted_value_789 = (|| -> PyResult<_> {
+                        let converted_value_789: String = value_787.extract()?;
+                        Ok(converted_value_789)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_607),
+                            rboto_core::InputPath::MapValue(index_790),
                             "str",
                         )
                     })?;
-                    converted_601.insert(converted_key_605, converted_value_606);
+                    converted_784.insert(converted_key_788, converted_value_789);
                 }
-                Ok(converted_601)
+                Ok(converted_784)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13233,7 +17425,7 @@ impl KinesisClient {
                     "RegisterStreamConsumer",
                 )
             })?;
-            Some(converted_601)
+            Some(converted_784)
         } else {
             None
         };
@@ -13279,9 +17471,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_608 = (|| -> PyResult<_> {
-                let converted_608: String = value.extract()?;
-                Ok(converted_608)
+            let converted_791 = (|| -> PyResult<_> {
+                let converted_791: String = value.extract()?;
+                Ok(converted_791)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13294,37 +17486,37 @@ impl KinesisClient {
                     "RemoveTagsFromStream",
                 )
             })?;
-            Some(converted_608)
+            Some(converted_791)
         } else {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let converted_609 = (|| -> PyResult<_> {
-                let mut converted_609 =
+            let converted_792 = (|| -> PyResult<_> {
+                let mut converted_792 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_613, item_result_610) in value.try_iter()?.enumerate() {
-                    let item_611 = item_result_610.map_err(|error| {
+                for (index_796, item_result_793) in value.try_iter()?.enumerate() {
+                    let item_794 = item_result_793.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_613),
+                            rboto_core::InputPath::Index(index_796),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_612 = (|| -> PyResult<_> {
-                        let converted_item_612: String = item_611.extract()?;
-                        Ok(converted_item_612)
+                    let converted_item_795 = (|| -> PyResult<_> {
+                        let converted_item_795: String = item_794.extract()?;
+                        Ok(converted_item_795)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_613),
+                            rboto_core::InputPath::Index(index_796),
                             "str",
                         )
                     })?;
-                    converted_609.push(converted_item_612);
+                    converted_792.push(converted_item_795);
                 }
-                Ok(converted_609)
+                Ok(converted_792)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13337,14 +17529,14 @@ impl KinesisClient {
                     "RemoveTagsFromStream",
                 )
             })?;
-            Some(converted_609)
+            Some(converted_792)
         } else {
             None
         };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_614 = (|| -> PyResult<_> {
-                let converted_614: String = value.extract()?;
-                Ok(converted_614)
+            let converted_797 = (|| -> PyResult<_> {
+                let converted_797: String = value.extract()?;
+                Ok(converted_797)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13357,14 +17549,14 @@ impl KinesisClient {
                     "RemoveTagsFromStream",
                 )
             })?;
-            Some(converted_614)
+            Some(converted_797)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_615 = (|| -> PyResult<_> {
-                let converted_615: String = value.extract()?;
-                Ok(converted_615)
+            let converted_798 = (|| -> PyResult<_> {
+                let converted_798: String = value.extract()?;
+                Ok(converted_798)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13377,7 +17569,7 @@ impl KinesisClient {
                     "RemoveTagsFromStream",
                 )
             })?;
-            Some(converted_615)
+            Some(converted_798)
         } else {
             None
         };
@@ -13417,6 +17609,109 @@ impl KinesisClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn restore_dead_letter_queue_records<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let queue_arn_value = if let Some(value) = dict_value(params, "queue_arn")? {
+            let converted_799 = (|| -> PyResult<_> {
+                let converted_799: String = value.extract()?;
+                Ok(converted_799)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_arn"),
+                        "str",
+                    ),
+                    "kinesis",
+                    "RestoreDeadLetterQueueRecords",
+                )
+            })?;
+            Some(converted_799)
+        } else {
+            None
+        };
+        let entries_value = if let Some(value) = dict_value(params, "entries")? {
+            let converted_800 = (|| -> PyResult<_> {
+                let mut converted_800 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_804, item_result_801) in value.try_iter()?.enumerate() {
+                    let item_802 = item_result_801.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_804),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_803 = (|| -> PyResult<_> {
+                        let converted_item_803 =
+                            restore_dead_letter_queue_records_request_entry_from_py(&item_802)?;
+                        Ok(converted_item_803)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_804),
+                            "dict (RestoreDeadLetterQueueRecordsRequestEntry)",
+                        )
+                    })?;
+                    converted_800.push(converted_item_803);
+                }
+                Ok(converted_800)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("entries"),
+                        "sequence",
+                    ),
+                    "kinesis",
+                    "RestoreDeadLetterQueueRecords",
+                )
+            })?;
+            Some(converted_800)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .restore_dead_letter_queue_records()
+                .set_queue_arn(queue_arn_value)
+                .set_entries(entries_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RestoreDeadLetterQueueRecords",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationRestoreDeadLetterQueueRecordsOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn split_shard<'py>(
         &self,
         py: Python<'py>,
@@ -13425,9 +17720,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_616 = (|| -> PyResult<_> {
-                let converted_616: String = value.extract()?;
-                Ok(converted_616)
+            let converted_805 = (|| -> PyResult<_> {
+                let converted_805: String = value.extract()?;
+                Ok(converted_805)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13440,14 +17735,14 @@ impl KinesisClient {
                     "SplitShard",
                 )
             })?;
-            Some(converted_616)
+            Some(converted_805)
         } else {
             None
         };
         let shard_to_split_value = if let Some(value) = dict_value(params, "shard_to_split")? {
-            let converted_617 = (|| -> PyResult<_> {
-                let converted_617: String = value.extract()?;
-                Ok(converted_617)
+            let converted_806 = (|| -> PyResult<_> {
+                let converted_806: String = value.extract()?;
+                Ok(converted_806)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13460,15 +17755,15 @@ impl KinesisClient {
                     "SplitShard",
                 )
             })?;
-            Some(converted_617)
+            Some(converted_806)
         } else {
             None
         };
         let new_starting_hash_key_value =
             if let Some(value) = dict_value(params, "new_starting_hash_key")? {
-                let converted_618 = (|| -> PyResult<_> {
-                    let converted_618: String = value.extract()?;
-                    Ok(converted_618)
+                let converted_807 = (|| -> PyResult<_> {
+                    let converted_807: String = value.extract()?;
+                    Ok(converted_807)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -13481,14 +17776,14 @@ impl KinesisClient {
                         "SplitShard",
                     )
                 })?;
-                Some(converted_618)
+                Some(converted_807)
             } else {
                 None
             };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_619 = (|| -> PyResult<_> {
-                let converted_619: String = value.extract()?;
-                Ok(converted_619)
+            let converted_808 = (|| -> PyResult<_> {
+                let converted_808: String = value.extract()?;
+                Ok(converted_808)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13501,14 +17796,14 @@ impl KinesisClient {
                     "SplitShard",
                 )
             })?;
-            Some(converted_619)
+            Some(converted_808)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_620 = (|| -> PyResult<_> {
-                let converted_620: String = value.extract()?;
-                Ok(converted_620)
+            let converted_809 = (|| -> PyResult<_> {
+                let converted_809: String = value.extract()?;
+                Ok(converted_809)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13521,7 +17816,7 @@ impl KinesisClient {
                     "SplitShard",
                 )
             })?;
-            Some(converted_620)
+            Some(converted_809)
         } else {
             None
         };
@@ -13565,9 +17860,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_621 = (|| -> PyResult<_> {
-                let converted_621: String = value.extract()?;
-                Ok(converted_621)
+            let converted_810 = (|| -> PyResult<_> {
+                let converted_810: String = value.extract()?;
+                Ok(converted_810)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13580,16 +17875,16 @@ impl KinesisClient {
                     "StartStreamEncryption",
                 )
             })?;
-            Some(converted_621)
+            Some(converted_810)
         } else {
             None
         };
         let encryption_type_value = if let Some(value) = dict_value(params, "encryption_type")? {
-            let converted_622 = (|| -> PyResult<_> {
-                let enum_value_623: String = value.extract()?;
-                let converted_622 =
-                    aws_sdk_kinesis::types::EncryptionType::from(enum_value_623.as_str());
-                Ok(converted_622)
+            let converted_811 = (|| -> PyResult<_> {
+                let enum_value_812: String = value.extract()?;
+                let converted_811 =
+                    aws_sdk_kinesis::types::EncryptionType::from(enum_value_812.as_str());
+                Ok(converted_811)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13602,14 +17897,14 @@ impl KinesisClient {
                     "StartStreamEncryption",
                 )
             })?;
-            Some(converted_622)
+            Some(converted_811)
         } else {
             None
         };
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_624 = (|| -> PyResult<_> {
-                let converted_624: String = value.extract()?;
-                Ok(converted_624)
+            let converted_813 = (|| -> PyResult<_> {
+                let converted_813: String = value.extract()?;
+                Ok(converted_813)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13618,14 +17913,14 @@ impl KinesisClient {
                     "StartStreamEncryption",
                 )
             })?;
-            Some(converted_624)
+            Some(converted_813)
         } else {
             None
         };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_625 = (|| -> PyResult<_> {
-                let converted_625: String = value.extract()?;
-                Ok(converted_625)
+            let converted_814 = (|| -> PyResult<_> {
+                let converted_814: String = value.extract()?;
+                Ok(converted_814)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13638,14 +17933,14 @@ impl KinesisClient {
                     "StartStreamEncryption",
                 )
             })?;
-            Some(converted_625)
+            Some(converted_814)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_626 = (|| -> PyResult<_> {
-                let converted_626: String = value.extract()?;
-                Ok(converted_626)
+            let converted_815 = (|| -> PyResult<_> {
+                let converted_815: String = value.extract()?;
+                Ok(converted_815)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13658,7 +17953,7 @@ impl KinesisClient {
                     "StartStreamEncryption",
                 )
             })?;
-            Some(converted_626)
+            Some(converted_815)
         } else {
             None
         };
@@ -13707,9 +18002,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_627 = (|| -> PyResult<_> {
-                let converted_627: String = value.extract()?;
-                Ok(converted_627)
+            let converted_816 = (|| -> PyResult<_> {
+                let converted_816: String = value.extract()?;
+                Ok(converted_816)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13722,16 +18017,16 @@ impl KinesisClient {
                     "StopStreamEncryption",
                 )
             })?;
-            Some(converted_627)
+            Some(converted_816)
         } else {
             None
         };
         let encryption_type_value = if let Some(value) = dict_value(params, "encryption_type")? {
-            let converted_628 = (|| -> PyResult<_> {
-                let enum_value_629: String = value.extract()?;
-                let converted_628 =
-                    aws_sdk_kinesis::types::EncryptionType::from(enum_value_629.as_str());
-                Ok(converted_628)
+            let converted_817 = (|| -> PyResult<_> {
+                let enum_value_818: String = value.extract()?;
+                let converted_817 =
+                    aws_sdk_kinesis::types::EncryptionType::from(enum_value_818.as_str());
+                Ok(converted_817)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13744,14 +18039,14 @@ impl KinesisClient {
                     "StopStreamEncryption",
                 )
             })?;
-            Some(converted_628)
+            Some(converted_817)
         } else {
             None
         };
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_630 = (|| -> PyResult<_> {
-                let converted_630: String = value.extract()?;
-                Ok(converted_630)
+            let converted_819 = (|| -> PyResult<_> {
+                let converted_819: String = value.extract()?;
+                Ok(converted_819)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13760,14 +18055,14 @@ impl KinesisClient {
                     "StopStreamEncryption",
                 )
             })?;
-            Some(converted_630)
+            Some(converted_819)
         } else {
             None
         };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_631 = (|| -> PyResult<_> {
-                let converted_631: String = value.extract()?;
-                Ok(converted_631)
+            let converted_820 = (|| -> PyResult<_> {
+                let converted_820: String = value.extract()?;
+                Ok(converted_820)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13780,14 +18075,14 @@ impl KinesisClient {
                     "StopStreamEncryption",
                 )
             })?;
-            Some(converted_631)
+            Some(converted_820)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_632 = (|| -> PyResult<_> {
-                let converted_632: String = value.extract()?;
-                Ok(converted_632)
+            let converted_821 = (|| -> PyResult<_> {
+                let converted_821: String = value.extract()?;
+                Ok(converted_821)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13800,7 +18095,7 @@ impl KinesisClient {
                     "StopStreamEncryption",
                 )
             })?;
-            Some(converted_632)
+            Some(converted_821)
         } else {
             None
         };
@@ -13849,9 +18144,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let consumer_arn_value = if let Some(value) = dict_value(params, "consumer_arn")? {
-            let converted_633 = (|| -> PyResult<_> {
-                let converted_633: String = value.extract()?;
-                Ok(converted_633)
+            let converted_822 = (|| -> PyResult<_> {
+                let converted_822: String = value.extract()?;
+                Ok(converted_822)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13864,14 +18159,14 @@ impl KinesisClient {
                     "SubscribeToShard",
                 )
             })?;
-            Some(converted_633)
+            Some(converted_822)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_634 = (|| -> PyResult<_> {
-                let converted_634: String = value.extract()?;
-                Ok(converted_634)
+            let converted_823 = (|| -> PyResult<_> {
+                let converted_823: String = value.extract()?;
+                Ok(converted_823)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13884,14 +18179,14 @@ impl KinesisClient {
                     "SubscribeToShard",
                 )
             })?;
-            Some(converted_634)
+            Some(converted_823)
         } else {
             None
         };
         let shard_id_value = if let Some(value) = dict_value(params, "shard_id")? {
-            let converted_635 = (|| -> PyResult<_> {
-                let converted_635: String = value.extract()?;
-                Ok(converted_635)
+            let converted_824 = (|| -> PyResult<_> {
+                let converted_824: String = value.extract()?;
+                Ok(converted_824)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13900,15 +18195,15 @@ impl KinesisClient {
                     "SubscribeToShard",
                 )
             })?;
-            Some(converted_635)
+            Some(converted_824)
         } else {
             None
         };
         let starting_position_value = if let Some(value) = dict_value(params, "starting_position")?
         {
-            let converted_636 = (|| -> PyResult<_> {
-                let converted_636 = starting_position_from_py(&value)?;
-                Ok(converted_636)
+            let converted_825 = (|| -> PyResult<_> {
+                let converted_825 = starting_position_from_py(&value)?;
+                Ok(converted_825)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13921,14 +18216,14 @@ impl KinesisClient {
                     "SubscribeToShard",
                 )
             })?;
-            Some(converted_636)
+            Some(converted_825)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_637 = (|| -> PyResult<_> {
-                let converted_637: bool = value.extract()?;
-                Ok(converted_637)
+            let converted_826 = (|| -> PyResult<_> {
+                let converted_826: bool = value.extract()?;
+                Ok(converted_826)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -13937,7 +18232,7 @@ impl KinesisClient {
                     "SubscribeToShard",
                 )
             })?;
-            Some(converted_637)
+            Some(converted_826)
         } else {
             None
         };
@@ -13997,35 +18292,35 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_638 = (|| -> PyResult<_> {
-                let mapping_639 = value.cast::<PyDict>()?;
-                let mut converted_638 = HashMap::with_capacity(mapping_639.len());
-                for (index_644, (key_640, value_641)) in mapping_639.iter().enumerate() {
-                    let converted_key_642 = (|| -> PyResult<_> {
-                        let converted_key_642: String = key_640.extract()?;
-                        Ok(converted_key_642)
+            let converted_827 = (|| -> PyResult<_> {
+                let mapping_828 = value.cast::<PyDict>()?;
+                let mut converted_827 = HashMap::with_capacity(mapping_828.len());
+                for (index_833, (key_829, value_830)) in mapping_828.iter().enumerate() {
+                    let converted_key_831 = (|| -> PyResult<_> {
+                        let converted_key_831: String = key_829.extract()?;
+                        Ok(converted_key_831)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_644),
+                            rboto_core::InputPath::MapKey(index_833),
                             "str",
                         )
                     })?;
-                    let converted_value_643 = (|| -> PyResult<_> {
-                        let converted_value_643: String = value_641.extract()?;
-                        Ok(converted_value_643)
+                    let converted_value_832 = (|| -> PyResult<_> {
+                        let converted_value_832: String = value_830.extract()?;
+                        Ok(converted_value_832)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_644),
+                            rboto_core::InputPath::MapValue(index_833),
                             "str",
                         )
                     })?;
-                    converted_638.insert(converted_key_642, converted_value_643);
+                    converted_827.insert(converted_key_831, converted_value_832);
                 }
-                Ok(converted_638)
+                Ok(converted_827)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14034,14 +18329,14 @@ impl KinesisClient {
                     "TagResource",
                 )
             })?;
-            Some(converted_638)
+            Some(converted_827)
         } else {
             None
         };
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_645 = (|| -> PyResult<_> {
-                let converted_645: String = value.extract()?;
-                Ok(converted_645)
+            let converted_834 = (|| -> PyResult<_> {
+                let converted_834: String = value.extract()?;
+                Ok(converted_834)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14054,14 +18349,14 @@ impl KinesisClient {
                     "TagResource",
                 )
             })?;
-            Some(converted_645)
+            Some(converted_834)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_646 = (|| -> PyResult<_> {
-                let converted_646: String = value.extract()?;
-                Ok(converted_646)
+            let converted_835 = (|| -> PyResult<_> {
+                let converted_835: String = value.extract()?;
+                Ok(converted_835)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14074,7 +18369,7 @@ impl KinesisClient {
                     "TagResource",
                 )
             })?;
-            Some(converted_646)
+            Some(converted_835)
         } else {
             None
         };
@@ -14116,32 +18411,32 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let converted_647 = (|| -> PyResult<_> {
-                let mut converted_647 =
+            let converted_836 = (|| -> PyResult<_> {
+                let mut converted_836 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_651, item_result_648) in value.try_iter()?.enumerate() {
-                    let item_649 = item_result_648.map_err(|error| {
+                for (index_840, item_result_837) in value.try_iter()?.enumerate() {
+                    let item_838 = item_result_837.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_651),
+                            rboto_core::InputPath::Index(index_840),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_650 = (|| -> PyResult<_> {
-                        let converted_item_650: String = item_649.extract()?;
-                        Ok(converted_item_650)
+                    let converted_item_839 = (|| -> PyResult<_> {
+                        let converted_item_839: String = item_838.extract()?;
+                        Ok(converted_item_839)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_651),
+                            rboto_core::InputPath::Index(index_840),
                             "str",
                         )
                     })?;
-                    converted_647.push(converted_item_650);
+                    converted_836.push(converted_item_839);
                 }
-                Ok(converted_647)
+                Ok(converted_836)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14154,14 +18449,14 @@ impl KinesisClient {
                     "UntagResource",
                 )
             })?;
-            Some(converted_647)
+            Some(converted_836)
         } else {
             None
         };
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_652 = (|| -> PyResult<_> {
-                let converted_652: String = value.extract()?;
-                Ok(converted_652)
+            let converted_841 = (|| -> PyResult<_> {
+                let converted_841: String = value.extract()?;
+                Ok(converted_841)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14174,14 +18469,14 @@ impl KinesisClient {
                     "UntagResource",
                 )
             })?;
-            Some(converted_652)
+            Some(converted_841)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_653 = (|| -> PyResult<_> {
-                let converted_653: String = value.extract()?;
-                Ok(converted_653)
+            let converted_842 = (|| -> PyResult<_> {
+                let converted_842: String = value.extract()?;
+                Ok(converted_842)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14194,7 +18489,7 @@ impl KinesisClient {
                     "UntagResource",
                 )
             })?;
-            Some(converted_653)
+            Some(converted_842)
         } else {
             None
         };
@@ -14238,9 +18533,9 @@ impl KinesisClient {
         let minimum_throughput_billing_commitment_value = if let Some(value) =
             dict_value(params, "minimum_throughput_billing_commitment")?
         {
-            let converted_654 = (|| -> PyResult<_> {
-                let converted_654 = minimum_throughput_billing_commitment_input_from_py(&value)?;
-                Ok(converted_654)
+            let converted_843 = (|| -> PyResult<_> {
+                let converted_843 = minimum_throughput_billing_commitment_input_from_py(&value)?;
+                Ok(converted_843)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14253,7 +18548,7 @@ impl KinesisClient {
                     "UpdateAccountSettings",
                 )
             })?;
-            Some(converted_654)
+            Some(converted_843)
         } else {
             None
         };
@@ -14298,9 +18593,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let channel_arn_value = if let Some(value) = dict_value(params, "channel_arn")? {
-            let converted_655 = (|| -> PyResult<_> {
-                let converted_655: String = value.extract()?;
-                Ok(converted_655)
+            let converted_844 = (|| -> PyResult<_> {
+                let converted_844: String = value.extract()?;
+                Ok(converted_844)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14313,15 +18608,15 @@ impl KinesisClient {
                     "UpdateChannel",
                 )
             })?;
-            Some(converted_655)
+            Some(converted_844)
         } else {
             None
         };
         let s3_destination_configuration_value =
             if let Some(value) = dict_value(params, "s3_destination_configuration")? {
-                let converted_656 = (|| -> PyResult<_> {
-                    let converted_656 = s3_destination_update_input_from_py(&value)?;
-                    Ok(converted_656)
+                let converted_845 = (|| -> PyResult<_> {
+                    let converted_845 = s3_destination_update_input_from_py(&value)?;
+                    Ok(converted_845)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -14334,15 +18629,15 @@ impl KinesisClient {
                         "UpdateChannel",
                     )
                 })?;
-                Some(converted_656)
+                Some(converted_845)
             } else {
                 None
             };
         let s3_tables_destination_configuration_value =
             if let Some(value) = dict_value(params, "s3_tables_destination_configuration")? {
-                let converted_657 = (|| -> PyResult<_> {
-                    let converted_657 = s3_tables_destination_update_input_from_py(&value)?;
-                    Ok(converted_657)
+                let converted_846 = (|| -> PyResult<_> {
+                    let converted_846 = s3_tables_destination_update_input_from_py(&value)?;
+                    Ok(converted_846)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -14355,15 +18650,15 @@ impl KinesisClient {
                         "UpdateChannel",
                     )
                 })?;
-                Some(converted_657)
+                Some(converted_846)
             } else {
                 None
             };
         let logging_configuration_value =
             if let Some(value) = dict_value(params, "logging_configuration")? {
-                let converted_658 = (|| -> PyResult<_> {
-                    let converted_658 = channel_logging_update_input_from_py(&value)?;
-                    Ok(converted_658)
+                let converted_847 = (|| -> PyResult<_> {
+                    let converted_847 = channel_logging_update_input_from_py(&value)?;
+                    Ok(converted_847)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -14376,7 +18671,7 @@ impl KinesisClient {
                         "UpdateChannel",
                     )
                 })?;
-                Some(converted_658)
+                Some(converted_847)
             } else {
                 None
             };
@@ -14409,6 +18704,111 @@ impl KinesisClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn update_dead_letter_queue_records_visibility<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let queue_arn_value = if let Some(value) = dict_value(params, "queue_arn")? {
+            let converted_848 = (|| -> PyResult<_> {
+                let converted_848: String = value.extract()?;
+                Ok(converted_848)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_arn"),
+                        "str",
+                    ),
+                    "kinesis",
+                    "UpdateDeadLetterQueueRecordsVisibility",
+                )
+            })?;
+            Some(converted_848)
+        } else {
+            None
+        };
+        let entries_value = if let Some(value) = dict_value(params, "entries")? {
+            let converted_849 = (|| -> PyResult<_> {
+                let mut converted_849 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_853, item_result_850) in value.try_iter()?.enumerate() {
+                    let item_851 = item_result_850.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_853),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_852 = (|| -> PyResult<_> {
+                        let converted_item_852 =
+                            update_dead_letter_queue_records_visibility_request_entry_from_py(
+                                &item_851,
+                            )?;
+                        Ok(converted_item_852)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_853),
+                            "dict (UpdateDeadLetterQueueRecordsVisibilityRequestEntry)",
+                        )
+                    })?;
+                    converted_849.push(converted_item_852);
+                }
+                Ok(converted_849)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("entries"),
+                        "sequence",
+                    ),
+                    "kinesis",
+                    "UpdateDeadLetterQueueRecordsVisibility",
+                )
+            })?;
+            Some(converted_849)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .update_dead_letter_queue_records_visibility()
+                .set_queue_arn(queue_arn_value)
+                .set_entries(entries_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateDeadLetterQueueRecordsVisibility",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationUpdateDeadLetterQueueRecordsVisibilityOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn update_max_record_size<'py>(
         &self,
         py: Python<'py>,
@@ -14417,9 +18817,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_659 = (|| -> PyResult<_> {
-                let converted_659: String = value.extract()?;
-                Ok(converted_659)
+            let converted_854 = (|| -> PyResult<_> {
+                let converted_854: String = value.extract()?;
+                Ok(converted_854)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14432,14 +18832,14 @@ impl KinesisClient {
                     "UpdateMaxRecordSize",
                 )
             })?;
-            Some(converted_659)
+            Some(converted_854)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_660 = (|| -> PyResult<_> {
-                let converted_660: String = value.extract()?;
-                Ok(converted_660)
+            let converted_855 = (|| -> PyResult<_> {
+                let converted_855: String = value.extract()?;
+                Ok(converted_855)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14452,15 +18852,15 @@ impl KinesisClient {
                     "UpdateMaxRecordSize",
                 )
             })?;
-            Some(converted_660)
+            Some(converted_855)
         } else {
             None
         };
         let max_record_size_in_kib_value =
             if let Some(value) = dict_value(params, "max_record_size_in_kib")? {
-                let converted_661 = (|| -> PyResult<_> {
-                    let converted_661: i32 = value.extract()?;
-                    Ok(converted_661)
+                let converted_856 = (|| -> PyResult<_> {
+                    let converted_856: i32 = value.extract()?;
+                    Ok(converted_856)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -14473,7 +18873,7 @@ impl KinesisClient {
                         "UpdateMaxRecordSize",
                     )
                 })?;
-                Some(converted_661)
+                Some(converted_856)
             } else {
                 None
             };
@@ -14512,6 +18912,183 @@ impl KinesisClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn update_queue<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let queue_arn_value = if let Some(value) = dict_value(params, "queue_arn")? {
+            let converted_857 = (|| -> PyResult<_> {
+                let converted_857: String = value.extract()?;
+                Ok(converted_857)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_arn"),
+                        "str",
+                    ),
+                    "kinesis",
+                    "UpdateQueue",
+                )
+            })?;
+            Some(converted_857)
+        } else {
+            None
+        };
+        let queue_attributes_value = if let Some(value) = dict_value(params, "queue_attributes")? {
+            let converted_858 = (|| -> PyResult<_> {
+                let converted_858 = queue_attributes_from_py(&value)?;
+                Ok(converted_858)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_attributes"),
+                        "dict (QueueAttributes)",
+                    ),
+                    "kinesis",
+                    "UpdateQueue",
+                )
+            })?;
+            Some(converted_858)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .update_queue()
+                .set_queue_arn(queue_arn_value)
+                .set_queue_attributes(queue_attributes_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateQueue", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationUpdateQueueOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
+    fn update_queue_records_visibility<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let queue_arn_value = if let Some(value) = dict_value(params, "queue_arn")? {
+            let converted_859 = (|| -> PyResult<_> {
+                let converted_859: String = value.extract()?;
+                Ok(converted_859)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_arn"),
+                        "str",
+                    ),
+                    "kinesis",
+                    "UpdateQueueRecordsVisibility",
+                )
+            })?;
+            Some(converted_859)
+        } else {
+            None
+        };
+        let entries_value = if let Some(value) = dict_value(params, "entries")? {
+            let converted_860 = (|| -> PyResult<_> {
+                let mut converted_860 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_864, item_result_861) in value.try_iter()?.enumerate() {
+                    let item_862 = item_result_861.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_864),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_863 = (|| -> PyResult<_> {
+                        let converted_item_863 =
+                            update_queue_records_visibility_request_entry_from_py(&item_862)?;
+                        Ok(converted_item_863)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_864),
+                            "dict (UpdateQueueRecordsVisibilityRequestEntry)",
+                        )
+                    })?;
+                    converted_860.push(converted_item_863);
+                }
+                Ok(converted_860)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("entries"),
+                        "sequence",
+                    ),
+                    "kinesis",
+                    "UpdateQueueRecordsVisibility",
+                )
+            })?;
+            Some(converted_860)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .update_queue_records_visibility()
+                .set_queue_arn(queue_arn_value)
+                .set_entries(entries_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateQueueRecordsVisibility",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationUpdateQueueRecordsVisibilityOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn update_shard_count<'py>(
         &self,
         py: Python<'py>,
@@ -14520,9 +19097,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_662 = (|| -> PyResult<_> {
-                let converted_662: String = value.extract()?;
-                Ok(converted_662)
+            let converted_865 = (|| -> PyResult<_> {
+                let converted_865: String = value.extract()?;
+                Ok(converted_865)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14535,15 +19112,15 @@ impl KinesisClient {
                     "UpdateShardCount",
                 )
             })?;
-            Some(converted_662)
+            Some(converted_865)
         } else {
             None
         };
         let target_shard_count_value =
             if let Some(value) = dict_value(params, "target_shard_count")? {
-                let converted_663 = (|| -> PyResult<_> {
-                    let converted_663: i32 = value.extract()?;
-                    Ok(converted_663)
+                let converted_866 = (|| -> PyResult<_> {
+                    let converted_866: i32 = value.extract()?;
+                    Ok(converted_866)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -14556,16 +19133,16 @@ impl KinesisClient {
                         "UpdateShardCount",
                     )
                 })?;
-                Some(converted_663)
+                Some(converted_866)
             } else {
                 None
             };
         let scaling_type_value = if let Some(value) = dict_value(params, "scaling_type")? {
-            let converted_664 = (|| -> PyResult<_> {
-                let enum_value_665: String = value.extract()?;
-                let converted_664 =
-                    aws_sdk_kinesis::types::ScalingType::from(enum_value_665.as_str());
-                Ok(converted_664)
+            let converted_867 = (|| -> PyResult<_> {
+                let enum_value_868: String = value.extract()?;
+                let converted_867 =
+                    aws_sdk_kinesis::types::ScalingType::from(enum_value_868.as_str());
+                Ok(converted_867)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14578,14 +19155,14 @@ impl KinesisClient {
                     "UpdateShardCount",
                 )
             })?;
-            Some(converted_664)
+            Some(converted_867)
         } else {
             None
         };
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_666 = (|| -> PyResult<_> {
-                let converted_666: String = value.extract()?;
-                Ok(converted_666)
+            let converted_869 = (|| -> PyResult<_> {
+                let converted_869: String = value.extract()?;
+                Ok(converted_869)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14598,14 +19175,14 @@ impl KinesisClient {
                     "UpdateShardCount",
                 )
             })?;
-            Some(converted_666)
+            Some(converted_869)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_667 = (|| -> PyResult<_> {
-                let converted_667: String = value.extract()?;
-                Ok(converted_667)
+            let converted_870 = (|| -> PyResult<_> {
+                let converted_870: String = value.extract()?;
+                Ok(converted_870)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14618,7 +19195,7 @@ impl KinesisClient {
                     "UpdateShardCount",
                 )
             })?;
-            Some(converted_667)
+            Some(converted_870)
         } else {
             None
         };
@@ -14663,9 +19240,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_668 = (|| -> PyResult<_> {
-                let converted_668: String = value.extract()?;
-                Ok(converted_668)
+            let converted_871 = (|| -> PyResult<_> {
+                let converted_871: String = value.extract()?;
+                Ok(converted_871)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14678,14 +19255,14 @@ impl KinesisClient {
                     "UpdateStreamMode",
                 )
             })?;
-            Some(converted_668)
+            Some(converted_871)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_669 = (|| -> PyResult<_> {
-                let converted_669: String = value.extract()?;
-                Ok(converted_669)
+            let converted_872 = (|| -> PyResult<_> {
+                let converted_872: String = value.extract()?;
+                Ok(converted_872)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14698,15 +19275,15 @@ impl KinesisClient {
                     "UpdateStreamMode",
                 )
             })?;
-            Some(converted_669)
+            Some(converted_872)
         } else {
             None
         };
         let stream_mode_details_value =
             if let Some(value) = dict_value(params, "stream_mode_details")? {
-                let converted_670 = (|| -> PyResult<_> {
-                    let converted_670 = stream_mode_details_from_py(&value)?;
-                    Ok(converted_670)
+                let converted_873 = (|| -> PyResult<_> {
+                    let converted_873 = stream_mode_details_from_py(&value)?;
+                    Ok(converted_873)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -14719,15 +19296,15 @@ impl KinesisClient {
                         "UpdateStreamMode",
                     )
                 })?;
-                Some(converted_670)
+                Some(converted_873)
             } else {
                 None
             };
         let warm_throughput_mibps_value =
             if let Some(value) = dict_value(params, "warm_throughput_mibps")? {
-                let converted_671 = (|| -> PyResult<_> {
-                    let converted_671: i32 = value.extract()?;
-                    Ok(converted_671)
+                let converted_874 = (|| -> PyResult<_> {
+                    let converted_874: i32 = value.extract()?;
+                    Ok(converted_874)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -14740,7 +19317,7 @@ impl KinesisClient {
                         "UpdateStreamMode",
                     )
                 })?;
-                Some(converted_671)
+                Some(converted_874)
             } else {
                 None
             };
@@ -14788,9 +19365,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_672 = (|| -> PyResult<_> {
-                let converted_672: String = value.extract()?;
-                Ok(converted_672)
+            let converted_875 = (|| -> PyResult<_> {
+                let converted_875: String = value.extract()?;
+                Ok(converted_875)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14803,14 +19380,14 @@ impl KinesisClient {
                     "UpdateStreamRecordDistributionStrategy",
                 )
             })?;
-            Some(converted_672)
+            Some(converted_875)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_673 = (|| -> PyResult<_> {
-                let converted_673: String = value.extract()?;
-                Ok(converted_673)
+            let converted_876 = (|| -> PyResult<_> {
+                let converted_876: String = value.extract()?;
+                Ok(converted_876)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14823,18 +19400,18 @@ impl KinesisClient {
                     "UpdateStreamRecordDistributionStrategy",
                 )
             })?;
-            Some(converted_673)
+            Some(converted_876)
         } else {
             None
         };
         let record_distribution_strategy_value =
             if let Some(value) = dict_value(params, "record_distribution_strategy")? {
-                let converted_674 = (|| -> PyResult<_> {
-                    let enum_value_675: String = value.extract()?;
-                    let converted_674 = aws_sdk_kinesis::types::RecordDistributionStrategy::from(
-                        enum_value_675.as_str(),
+                let converted_877 = (|| -> PyResult<_> {
+                    let enum_value_878: String = value.extract()?;
+                    let converted_877 = aws_sdk_kinesis::types::RecordDistributionStrategy::from(
+                        enum_value_878.as_str(),
                     );
-                    Ok(converted_674)
+                    Ok(converted_877)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -14847,7 +19424,7 @@ impl KinesisClient {
                         "UpdateStreamRecordDistributionStrategy",
                     )
                 })?;
-                Some(converted_674)
+                Some(converted_877)
             } else {
                 None
             };
@@ -14894,9 +19471,9 @@ impl KinesisClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let stream_arn_value = if let Some(value) = dict_value(params, "stream_arn")? {
-            let converted_676 = (|| -> PyResult<_> {
-                let converted_676: String = value.extract()?;
-                Ok(converted_676)
+            let converted_879 = (|| -> PyResult<_> {
+                let converted_879: String = value.extract()?;
+                Ok(converted_879)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14909,14 +19486,14 @@ impl KinesisClient {
                     "UpdateStreamWarmThroughput",
                 )
             })?;
-            Some(converted_676)
+            Some(converted_879)
         } else {
             None
         };
         let stream_name_value = if let Some(value) = dict_value(params, "stream_name")? {
-            let converted_677 = (|| -> PyResult<_> {
-                let converted_677: String = value.extract()?;
-                Ok(converted_677)
+            let converted_880 = (|| -> PyResult<_> {
+                let converted_880: String = value.extract()?;
+                Ok(converted_880)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14929,14 +19506,14 @@ impl KinesisClient {
                     "UpdateStreamWarmThroughput",
                 )
             })?;
-            Some(converted_677)
+            Some(converted_880)
         } else {
             None
         };
         let stream_id_value = if let Some(value) = dict_value(params, "stream_id")? {
-            let converted_678 = (|| -> PyResult<_> {
-                let converted_678: String = value.extract()?;
-                Ok(converted_678)
+            let converted_881 = (|| -> PyResult<_> {
+                let converted_881: String = value.extract()?;
+                Ok(converted_881)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -14949,15 +19526,15 @@ impl KinesisClient {
                     "UpdateStreamWarmThroughput",
                 )
             })?;
-            Some(converted_678)
+            Some(converted_881)
         } else {
             None
         };
         let warm_throughput_mibps_value =
             if let Some(value) = dict_value(params, "warm_throughput_mibps")? {
-                let converted_679 = (|| -> PyResult<_> {
-                    let converted_679: i32 = value.extract()?;
-                    Ok(converted_679)
+                let converted_882 = (|| -> PyResult<_> {
+                    let converted_882: i32 = value.extract()?;
+                    Ok(converted_882)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -14970,7 +19547,7 @@ impl KinesisClient {
                         "UpdateStreamWarmThroughput",
                     )
                 })?;
-                Some(converted_679)
+                Some(converted_882)
             } else {
                 None
             };

@@ -15,7 +15,7 @@ package; constructing it does not send a network request.
 
 ## Install the services you use
 
-The catalog contains 39 services and 2,374 operations. Each service has its own
+The catalog contains 39 services and 2,452 operations. Each service has its own
 package. `rboto[s3]` selects the matching `rboto-s3` dependency once packages are
 published. [Getting started](getting-started.md) covers source installation.
 
@@ -36,40 +36,40 @@ All classes in this table are available from `rboto`:
 | `APIGatewayClient` | `rboto-api-gateway` | 124 |
 | `AthenaClient` | `rboto-athena` | 75 |
 | `BedrockAgentClient` | `rboto-bedrock-agent` | 86 |
-| `BedrockAgentCoreClient` | `rboto-bedrock-agentcore` | 67 |
-| `BedrockAgentCoreControlClient` | `rboto-bedrock-agentcore-control` | 172 |
+| `BedrockAgentCoreClient` | `rboto-bedrock-agentcore` | 75 |
+| `BedrockAgentCoreControlClient` | `rboto-bedrock-agentcore-control` | 175 |
 | `BedrockAgentRuntimeClient` | `rboto-bedrock-agent-runtime` | 35 |
-| `BedrockClient` | `rboto-bedrock` | 108 |
+| `BedrockClient` | `rboto-bedrock` | 133 |
 | `BedrockDataAutomationClient` | `rboto-bedrock-data-automation` | 27 |
 | `BedrockDataAutomationRuntimeClient` | `rboto-bedrock-data-automation-runtime` | 6 |
 | `BedrockRuntimeClient` | `rboto-bedrock-runtime` | 11 |
 | `CloudTrailClient` | `rboto-cloudtrail` | 60 |
-| `CloudWatchClient` | `rboto-cloudwatch` | 55 |
+| `CloudWatchClient` | `rboto-cloudwatch` | 59 |
 | `CloudWatchLogsClient` | `rboto-cloudwatch-logs` | 118 |
 | `CognitoIdentityClient` | `rboto-cognito-identity` | 23 |
-| `ConnectHealthClient` | `rboto-connecthealth` | 16 |
+| `ConnectHealthClient` | `rboto-connecthealth` | 23 |
 | `DynamoDBClient` | `rboto-dynamodb` | 62 |
 | `EventBridgeClient` | `rboto-eventbridge` | 57 |
 | `EventBridgePipesClient` | `rboto-pipes` | 10 |
 | `EventBridgeSchedulerClient` | `rboto-scheduler` | 12 |
 | `FirehoseClient` | `rboto-firehose` | 12 |
-| `GlueClient` | `rboto-glue` | 309 |
-| `GuardDutyClient` | `rboto-guardduty` | 102 |
+| `GlueClient` | `rboto-glue` | 312 |
+| `GuardDutyClient` | `rboto-guardduty` | 103 |
 | `KMSClient` | `rboto-kms` | 56 |
-| `KinesisClient` | `rboto-kinesis` | 45 |
-| `LambdaClient` | `rboto-lambda` | 88 |
+| `KinesisClient` | `rboto-kinesis` | 57 |
+| `LambdaClient` | `rboto-lambda` | 91 |
 | `LexRuntimeV2Client` | `rboto-lex-runtime-v2` | 6 |
-| `PollyClient` | `rboto-polly` | 13 |
+| `PollyClient` | `rboto-polly` | 16 |
 | `QBusinessClient` | `rboto-qbusiness` | 83 |
 | `S3Client` | `rboto-s3` | 112 |
-| `SESV2Client` | `rboto-sesv2` | 116 |
+| `SESV2Client` | `rboto-sesv2` | 117 |
 | `SNSClient` | `rboto-sns` | 42 |
 | `SQSClient` | `rboto-sqs` | 23 |
 | `SSMClient` | `rboto-ssm` | 154 |
-| `STSClient` | `rboto-sts` | 11 |
+| `STSClient` | `rboto-sts` | 12 |
 | `SageMakerRuntimeHTTP2Client` | `rboto-sagemaker-runtime-http2` | 1 |
-| `SecretsManagerClient` | `rboto-secrets-manager` | 23 |
-| `SignInClient` | `rboto-signin` | 12 |
+| `SecretsManagerClient` | `rboto-secrets-manager` | 26 |
+| `SignInClient` | `rboto-signin` | 16 |
 | `StepFunctionsClient` | `rboto-sfn` | 37 |
 | `TranscribeStreamingClient` | `rboto-transcribe-streaming` | 5 |
 

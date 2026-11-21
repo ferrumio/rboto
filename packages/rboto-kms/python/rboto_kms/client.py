@@ -34,6 +34,7 @@ from .types import (
     MessageType,
     OriginType,
     RecipientInfo,
+    ResourceOwnerType,
     SigningAlgorithmSpec,
     Tag,
     WrappingKeySpec,
@@ -1347,6 +1348,7 @@ class KMSClient:
         *,
         limit: int | None = None,
         marker: str | None = None,
+        resource_owners: Sequence[ResourceOwnerType] | None = None,
     ) -> ListKeysOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_keys/)."""
         params: dict[str, object] = {
@@ -1355,6 +1357,8 @@ class KMSClient:
             params["limit"] = limit
         if marker is not None:
             params["marker"] = marker
+        if resource_owners is not None:
+            params["resource_owners"] = resource_owners
         _interceptors = operation_interceptors("kms", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -1362,7 +1366,7 @@ class KMSClient:
                 self._native.list_keys, params, _interceptors,
                 "kms", "ListKeys", self._region,
                 ListKeysOutput,
-                ("limit", "marker", ),
+                ("limit", "marker", "resource_owners", ),
                 (),
                 service_name='KMS',
             )

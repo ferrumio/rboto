@@ -17,6 +17,7 @@ from ._native import (
     ListAlarmMuteRulesOutput,
     ListDashboardsOutput,
     ListManagedInsightRulesOutput,
+    ListMetricDataQueryDefinitionsOutput,
     ListMetricStreamsOutput,
     ListMetricsOutput,
 )
@@ -319,6 +320,29 @@ class CloudWatchClientPaginators:
             params["max_results"] = max_results
         return _paginate(
             self._client.list_managed_insight_rules, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
+    def list_metric_data_query_definitions(
+        self,
+        *,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> AsyncIterator[ListMetricDataQueryDefinitionsOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/operations/list_metric_data_query_definitions/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+        }
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        return _paginate(
+            self._client.list_metric_data_query_definitions, params,
             _PaginationSpec(
                 input_tokens=('next_token',),
                 output_tokens=((('next_token',),),),
