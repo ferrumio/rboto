@@ -15,6 +15,7 @@ integration examples and run the compiled model interoperability tests.
 Install `types-jmespath>=1,<2` for strict checking of the codegen-only expression parser.
 Install `packages/rboto[opentelemetry,trio]`, `opentelemetry-sdk>=1.39,<2`, and
 `anyio>=4.16,<5` for optional integrations, scheduler contracts, and typed examples.
+Install `cbor2>=5.6,<7` for compiled CloudWatch protocol tests.
 
 ```bash
 .venv/bin/ruff check codegen/src codegen/tests packages/rboto/src packages/rboto/tests tests examples benchmarks .github/scripts

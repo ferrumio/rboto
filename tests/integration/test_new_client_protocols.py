@@ -2,6 +2,7 @@
 
 import asyncio
 import base64
+import gzip
 import io
 import json
 import os
@@ -107,6 +108,7 @@ class Peer:
     body: bytes = b"{}"
     status: int = 200
     content_type: str = "application/json"
+    response_headers: dict[str, str] = field(default_factory=dict)
     duplex: bool = False
     requests: list[tuple[str, bytes]] = field(default_factory=list)
     request_headers: list[dict[str, str]] = field(default_factory=list)
@@ -236,6 +238,8 @@ def peer(monkeypatch: pytest.MonkeyPatch) -> Iterator[Peer]:
             self.send_response(config.status)
             self.send_header("Content-Type", config.content_type)
             self.send_header("Content-Length", str(len(config.body)))
+            for name, value in config.response_headers.items():
+                self.send_header(name, value)
             self.end_headers()
             try:
                 self.wfile.write(config.body)
@@ -1697,3 +1701,421 @@ async def test_glue_crawl_history_preserves_unmodeled_aws_states(peer: Peer, sta
     assert crawl.start_time is not None and crawl.start_time.startswith("2026-10-26")
     assert crawl.end_time is not None and crawl.end_time.startswith("2026-10-26")
     assert json.loads(peer.requests[0][1]) == {"CrawlerName": "example", "MaxResults": 1}
+
+
+@pytest.mark.asyncio
+@service("cloudwatch")
+async def test_cloudwatch_metrics_use_cbor_and_native_results(peer: Peer) -> None:
+    import cbor2
+    from rboto import CloudWatchClient
+    from rboto_cloudwatch.types import GetMetricDataOutput
+
+    peer.content_type = "application/cbor"
+    peer.response_headers = {"smithy-protocol": "rpc-v2-cbor"}
+    peer.body = cbor2.dumps({})
+    async with CloudWatchClient(region="eu-west-2", endpoint_url=peer.endpoint) as client:
+        written = await client.put_metric_data(namespace="Example", metric_data=[{
+            "metric_name": "Processed", "value": 2.5, "unit": "Count",
+            "dimensions": [{"name": "Environment", "value": "test"}],
+            "timestamp": "2026-11-01T00:00:00Z",
+        }])
+        assert written is None
+        path, raw = peer.requests[0]
+        headers = peer.request_headers[0]
+        payload = cbor2.loads(
+            gzip.decompress(raw) if headers.get("content-encoding") == "gzip" else raw,
+        )
+        assert path.endswith("/PutMetricData")
+        assert headers["smithy-protocol"] == "rpc-v2-cbor"
+        assert payload["Namespace"] == "Example"
+        assert payload["MetricData"][0]["Value"] == 2.5
+        assert payload["MetricData"][0]["Dimensions"] == [
+            {"Name": "Environment", "Value": "test"},
+        ]
+        peer.body = cbor2.dumps({"MetricDataResults": [{
+            "Id": "processed", "Timestamps": [cbor2.CBORTag(1, 1793491200.0)], "Values": [2.5],
+            "StatusCode": "Complete",
+        }]})
+        result = await client.get_metric_data(
+            start_time="2026-11-01T00:00:00Z", end_time="2026-11-01T01:00:00Z",
+            metric_data_queries=[{"id": "processed", "expression": "1+1"}],
+        )
+    assert isinstance(result, GetMetricDataOutput)
+    assert result.metric_data_results is not None
+    metric = result.metric_data_results[0]
+    assert metric.values == [2.5]
+    assert metric.timestamps == ["2026-11-01T00:00:00Z"]
+    assert metric.status_code == "Complete"
+
+
+@pytest.mark.asyncio
+@service("cloudwatch")
+async def test_cloudwatch_contributor_pagination_and_modeled_alias(peer: Peer) -> None:
+    import cbor2
+    from rboto import CloudWatchClient
+    from rboto_cloudwatch.exceptions import InvalidParameterValueError
+
+    peer.content_type = "application/cbor"
+    peer.response_headers = {"smithy-protocol": "rpc-v2-cbor"}
+    async with CloudWatchClient(region="eu-west-2", endpoint_url=peer.endpoint) as client:
+        peer.body = cbor2.dumps({"NextToken": "second"})
+        pages = client.paginators.describe_alarm_contributors(alarm_name="example")
+        await anext(pages)
+        peer.body = cbor2.dumps({})
+        await anext(pages)
+        with pytest.raises(StopAsyncIteration):
+            await anext(pages)
+        assert [cbor2.loads(raw) for _, raw in peer.requests] == [
+            {"AlarmName": "example"}, {"AlarmName": "example", "NextToken": "second"},
+        ]
+        peer.status = 400
+        peer.body = cbor2.dumps({"__type": "InvalidParameterValue", "message": "invalid metric"})
+        peer.response_headers["x-amzn-requestid"] = "cw-request"
+        with pytest.raises(InvalidParameterValueError) as caught:
+            await client.put_metric_data(namespace="Example", metric_data=[])
+        assert caught.value.error_code == "InvalidParameterValue"
+        assert caught.value.operation_name == "PutMetricData"
+        assert caught.value.request_id == "cw-request"
+        assert caught.value.response_metadata["HTTPStatusCode"] == 400
+
+
+@pytest.mark.asyncio
+@service("cloudwatch")
+@pytest.mark.parametrize(("waiter", "collection"), [
+    ("alarm_exists", "MetricAlarms"), ("composite_alarm_exists", "CompositeAlarms"),
+    ("log_alarm_exists", "LogAlarms"),
+])
+async def test_cloudwatch_waiters_read_native_alarm_collections(
+    peer: Peer, waiter: str, collection: str,
+) -> None:
+    import cbor2
+    from rboto import CloudWatchClient
+    from rboto.waiters import WaiterConfig
+
+    calls = 0
+
+    async def respond(request: OperationRequest, call_next: Next) -> OperationResponse:
+        nonlocal calls
+        calls += 1
+        peer.body = cbor2.dumps({collection: [] if calls == 1 else [{"AlarmName": "example"}]})
+        return await call_next(request)
+
+    peer.content_type = "application/cbor"
+    peer.response_headers = {"smithy-protocol": "rpc-v2-cbor"}
+    async with CloudWatchClient(
+        region="eu-west-2", endpoint_url=peer.endpoint, interceptors=[respond],
+    ) as client:
+        await getattr(client.waiters, waiter)(
+            alarm_names=["example"], waiter_config=WaiterConfig(delay=0, max_attempts=2),
+        )
+    assert len(peer.requests) == calls == 2
+
+
+@pytest.mark.asyncio
+@service("kinesis")
+async def test_kinesis_binary_records_and_batch_partial_failure(peer: Peer) -> None:
+    from rboto import KinesisClient
+    from rboto_kinesis.types import GetRecordsOutput, PutRecordOutput
+
+    payload = bytes(range(256)) + "café 東京".encode()
+    encoded = base64.b64encode(payload).decode()
+    async with KinesisClient(region="eu-west-2", endpoint_url=peer.endpoint) as client:
+        peer.body = b'{"ShardId":"shard-0","SequenceNumber":"123"}'
+        written = await client.put_record(stream_name="example", partition_key="key", data=payload)
+        assert isinstance(written, PutRecordOutput)
+        assert (written.shard_id, written.sequence_number) == ("shard-0", "123")
+        assert json.loads(peer.requests[-1][1]) == {
+            "StreamName": "example", "PartitionKey": "key", "Data": encoded,
+        }
+        peer.body = json.dumps({"Records": [{
+            "SequenceNumber": "123", "PartitionKey": "key", "Data": encoded,
+            "ApproximateArrivalTimestamp": 1793491200.0,
+        }], "NextShardIterator": "next", "MillisBehindLatest": 0}).encode()
+        result = await client.get_records(shard_iterator="current", limit=2)
+        assert isinstance(result, GetRecordsOutput)
+        assert result.records[0].data == payload
+        assert result.records[0].approximate_arrival_timestamp == "2026-11-01T00:00:00Z"
+        assert result.next_shard_iterator == "next"
+        peer.body = json.dumps({"FailedRecordCount": 1, "Records": [
+            {"ShardId": "shard-0", "SequenceNumber": "124"},
+            {"ErrorCode": "ProvisionedThroughputExceededException", "ErrorMessage": "busy"},
+        ]}).encode()
+        batch = await client.put_records(stream_name="example", records=[
+            {"partition_key": "one", "data": b"first"},
+            {"partition_key": "two", "data": b"second"},
+        ])
+    assert batch.failed_record_count == 1
+    assert batch.records[0].sequence_number == "124"
+    assert batch.records[1].error_code == "ProvisionedThroughputExceededException"
+    assert batch.records[1].sequence_number is None
+    records = json.loads(peer.requests[-1][1])["Records"]
+    assert [base64.b64decode(item["Data"]) for item in records] == [
+        b"first", b"second",
+    ]
+
+
+@pytest.mark.asyncio
+@service("kinesis")
+@pytest.mark.parametrize("resume", [False, True])
+@pytest.mark.parametrize("operation", ["list_shards", "list_stream_consumers"])
+async def test_kinesis_token_pages_drop_incompatible_initial_parameters(
+    peer: Peer, resume: bool, operation: str,
+) -> None:
+    from rboto import KinesisClient
+
+    arn = "arn:aws:kinesis:eu-west-2:123456789012:stream/example"
+    parameters: dict[str, object] = {
+        "stream_creation_timestamp": "2026-11-01T00:00:00Z", "max_results": 2,
+    }
+    initial: dict[str, object] = {"StreamCreationTimestamp": 1793491200.0, "MaxResults": 2}
+    later: dict[str, object] = {"MaxResults": 2, "NextToken": "second"}
+    if operation == "list_shards":
+        parameters.update(stream_name="example", exclusive_start_shard_id="shard-0")
+        initial.update(StreamName="example", ExclusiveStartShardId="shard-0")
+    else:
+        parameters["stream_arn"] = arn
+        initial["StreamARN"] = later["StreamARN"] = arn
+    if resume:
+        parameters["next_token"] = "resume"
+        initial = {**later, "NextToken": "resume"}
+    async with KinesisClient(region="eu-west-2", endpoint_url=peer.endpoint) as client:
+        peer.body = b'{"NextToken":"second"}'
+        pages = getattr(client.paginators, operation)(**parameters)
+        assert peer.requests == []
+        await anext(pages)
+        peer.body = b'{}'
+        await anext(pages)
+        with pytest.raises(StopAsyncIteration):
+            await anext(pages)
+    assert [json.loads(raw) for _, raw in peer.requests] == [initial, later]
+
+
+@pytest.mark.asyncio
+@service("kinesis")
+async def test_kinesis_event_stream_records_and_modeled_failure(peer: Peer) -> None:
+    from rboto import KinesisClient
+    from rboto_kinesis.exceptions import ResourceNotFoundError
+
+    peer.content_type = "application/vnd.amazon.eventstream"
+    peer.body = event_frame("SubscribeToShardEvent", {
+        "Records": [{"Data": base64.b64encode(b"event bytes").decode(),
+                     "SequenceNumber": "123", "PartitionKey": "key"}],
+        "ContinuationSequenceNumber": "123", "MillisBehindLatest": 0,
+    }) + event_frame("ResourceNotFoundException", {"message": "consumer missing"}, exception=True)
+    async with KinesisClient(region="eu-west-2", endpoint_url=peer.endpoint) as client:
+        result = await client.subscribe_to_shard(
+            consumer_arn="arn:aws:kinesis:eu-west-2:123456789012:stream/example/consumer/test:1",
+            shard_id="shard-0", starting_position={"type": "LATEST"},
+        )
+        stream = result["event_stream"]
+        try:
+            event = await anext(stream)
+            assert event["subscribe_to_shard_event"]["records"][0]["data"] == b"event bytes"
+            with pytest.raises(ResourceNotFoundError) as caught:
+                await anext(stream)
+            assert caught.value.error_code == "ResourceNotFoundException"
+            assert caught.value.operation_name == "SubscribeToShard"
+        finally:
+            await getattr(stream, "aclose")()
+
+
+@pytest.mark.asyncio
+@service("firehose")
+async def test_firehose_binary_records_and_batch_partial_failure(peer: Peer) -> None:
+    from rboto import FirehoseClient
+    from rboto_firehose.types import PutRecordBatchOutput, PutRecordOutput
+
+    payload = b'\x00\xff{"message":"hello"}\n'
+    async with FirehoseClient(region="eu-west-2", endpoint_url=peer.endpoint) as client:
+        peer.body = b'{"RecordId":"first","Encrypted":true}'
+        record = await client.put_record(delivery_stream_name="example", record={"data": payload})
+        assert isinstance(record, PutRecordOutput)
+        assert record.record_id == "first"
+        assert record.encrypted is True
+        assert json.loads(peer.requests[-1][1]) == {
+            "DeliveryStreamName": "example", "Record": {"Data": base64.b64encode(payload).decode()},
+        }
+        peer.body = json.dumps({"FailedPutCount": 1, "RequestResponses": [
+            {"RecordId": "second"},
+            {"ErrorCode": "ServiceUnavailableException", "ErrorMessage": "busy"},
+        ]}).encode()
+        batch = await client.put_record_batch(
+            delivery_stream_name="example", records=[{"data": payload}, {"data": b"retry"}],
+        )
+    assert isinstance(batch, PutRecordBatchOutput)
+    assert batch.failed_put_count == 1
+    assert batch.request_responses[0].record_id == "second"
+    assert batch.request_responses[1].error_code == "ServiceUnavailableException"
+    assert batch.request_responses[1].record_id is None
+    assert len(peer.requests) == 2
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("service_name", ["kinesis", "firehose"])
+async def test_stream_service_http_errors_keep_modeled_identity(
+    peer: Peer, service_name: str,
+) -> None:
+    if SELECTED and service_name not in SELECTED:
+        pytest.skip("service not selected")
+    import importlib
+
+    package = importlib.import_module(f"rboto_{service_name}")
+    errors = importlib.import_module(f"rboto_{service_name}.exceptions")
+    peer.status = 400
+    peer.body = b'{"__type":"ResourceNotFoundException","message":"stream missing"}'
+    peer.response_headers["x-amzn-requestid"] = "missing-stream"
+    async with getattr(package, f"{service_name.title()}Client")(
+        region="eu-west-2", endpoint_url=peer.endpoint,
+    ) as client:
+        with pytest.raises(errors.ResourceNotFoundError) as caught:
+            if service_name == "kinesis":
+                await client.put_record(stream_name="missing", partition_key="key", data=b"test")
+            else:
+                await client.put_record(delivery_stream_name="missing", record={"data": b"test"})
+    assert caught.value.operation_name == "PutRecord"
+    assert caught.value.response_metadata["HTTPStatusCode"] == 400
+    assert caught.value.request_id == "missing-stream"
+    assert len(peer.requests) == 1
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(("service_name", "operation", "parameters", "first", "last", "cursor"), [
+    ("kinesis", "list_tags_for_stream", {"stream_name": "example", "limit": 1},
+     {"Tags": [{"Key": "a", "Value": "one"}], "HasMoreTags": True},
+     {"Tags": [{"Key": "z", "Value": "last"}], "HasMoreTags": False},
+     {"ExclusiveStartTagKey": "a"}),
+    ("firehose", "list_delivery_streams", {"limit": 1},
+     {"DeliveryStreamNames": ["first"], "HasMoreDeliveryStreams": True},
+     {"DeliveryStreamNames": ["last"], "HasMoreDeliveryStreams": False},
+     {"ExclusiveStartDeliveryStreamName": "first"}),
+    ("firehose", "list_tags_for_delivery_stream", {"delivery_stream_name": "example", "limit": 1},
+     {"Tags": [{"Key": "a", "Value": "one"}], "HasMoreTags": True},
+     {"Tags": [{"Key": "z", "Value": "last"}], "HasMoreTags": False},
+     {"ExclusiveStartTagKey": "a"}),
+])
+async def test_stream_service_last_item_paginators(
+    peer: Peer, service_name: str, operation: str, parameters: dict[str, object],
+    first: dict[str, object], last: dict[str, object], cursor: dict[str, object],
+) -> None:
+    if SELECTED and service_name not in SELECTED:
+        pytest.skip("service not selected")
+    import importlib
+
+    package = importlib.import_module(f"rboto_{service_name}")
+    async with getattr(package, f"{service_name.title()}Client")(
+        region="eu-west-2", endpoint_url=peer.endpoint,
+    ) as client:
+        peer.body = json.dumps(first).encode()
+        pages = getattr(client.paginators, operation)(**parameters)
+        await anext(pages)
+        peer.body = json.dumps(last).encode()
+        await anext(pages)
+        with pytest.raises(StopAsyncIteration):
+            await anext(pages)
+    initial = json.loads(peer.requests[0][1])
+    assert json.loads(peer.requests[1][1]) == {**initial, **cursor}
+    assert len(peer.requests) == 2
+
+
+@pytest.mark.asyncio
+@service("cloudwatch")
+@pytest.mark.parametrize("observed", [False, True])
+async def test_cloudwatch_colliding_errors_are_independently_catchable(
+    peer: Peer, observed: bool,
+) -> None:
+    import cbor2
+    from rboto import CloudWatchClient
+    from rboto_cloudwatch.exceptions import ResourceNotFoundError, ResourceNotFoundExceptionError
+
+    async def passthrough(request: OperationRequest, call_next: Next) -> OperationResponse:
+        return await call_next(request)
+
+    peer.content_type = "application/cbor"
+    peer.status = 404
+    peer.response_headers = {"smithy-protocol": "rpc-v2-cbor", "x-amzn-requestid": "missing"}
+    async with CloudWatchClient(
+        region="eu-west-2", endpoint_url=peer.endpoint,
+        interceptors=[passthrough] if observed else [],
+    ) as client:
+        peer.body = cbor2.dumps({"__type": "ResourceNotFound", "message": "missing alarm"})
+        with pytest.raises(ResourceNotFoundError) as first:
+            await client.delete_alarms(alarm_names=["missing"])
+        peer.body = cbor2.dumps({
+            "__type": "ResourceNotFoundException", "Message": "missing mute rule",
+            "ResourceType": "AlarmMuteRule", "ResourceId": "missing",
+        })
+        with pytest.raises(ResourceNotFoundExceptionError) as second:
+            await client.get_alarm_mute_rule(alarm_mute_rule_name="missing")
+    assert type(first.value) is ResourceNotFoundError
+    assert type(second.value) is ResourceNotFoundExceptionError
+    assert first.value.error_code == "ResourceNotFound"
+    assert second.value.error_code == "ResourceNotFoundException"
+    assert second.value.details == {"resource_type": "AlarmMuteRule", "resource_id": "missing"}
+    assert second.value.response_metadata["HTTPStatusCode"] == 404
+    assert second.value.request_id == "missing"
+
+
+@pytest.mark.asyncio
+@service("kinesis")
+async def test_kinesis_stream_waiters_and_nested_shard_cursor(peer: Peer) -> None:
+    from rboto import KinesisClient
+    from rboto.waiters import WaiterConfig
+
+    stream = {
+        "StreamName": "example",
+        "StreamARN": "arn:aws:kinesis:eu-west-2:123456789012:stream/example",
+        "StreamStatus": "ACTIVE", "RetentionPeriodHours": 24,
+        "StreamCreationTimestamp": 1793491200.0, "EnhancedMonitoring": [],
+        "Shards": [{"ShardId": "shard-0", "HashKeyRange": {
+            "StartingHashKey": "0", "EndingHashKey": "100",
+        }, "SequenceNumberRange": {"StartingSequenceNumber": "1"}}],
+        "HasMoreShards": True,
+    }
+    async with KinesisClient(region="eu-west-2", endpoint_url=peer.endpoint) as client:
+        peer.body = json.dumps({"StreamDescription": stream}).encode()
+        pages = client.paginators.describe_stream(stream_name="example", limit=1)
+        first = await anext(pages)
+        assert first.stream_description.stream_name == "example"
+        stream.update(Shards=[], HasMoreShards=False)
+        peer.body = json.dumps({"StreamDescription": stream}).encode()
+        await anext(pages)
+        with pytest.raises(StopAsyncIteration):
+            await anext(pages)
+        assert json.loads(peer.requests[1][1]) == {
+            "StreamName": "example", "Limit": 1, "ExclusiveStartShardId": "shard-0",
+        }
+        present = await client.waiters.stream_exists(
+            stream_name="example", waiter_config=WaiterConfig(delay=0, max_attempts=1),
+        )
+        assert present.stream_description.stream_status == "ACTIVE"
+        peer.status = 400
+        peer.body = b'{"__type":"ResourceNotFoundException","message":"deleted"}'
+        assert await client.waiters.stream_not_exists(
+            stream_name="example", waiter_config=WaiterConfig(delay=0, max_attempts=1),
+        ) is None
+
+
+@pytest.mark.asyncio
+@service("firehose")
+async def test_firehose_nested_destination_cursor(peer: Peer) -> None:
+    from rboto import FirehoseClient
+
+    stream = {
+        "DeliveryStreamName": "example",
+        "DeliveryStreamARN": "arn:aws:firehose:eu-west-2:123456789012:deliverystream/example",
+        "DeliveryStreamStatus": "ACTIVE", "DeliveryStreamType": "DirectPut", "VersionId": "1",
+        "Destinations": [{"DestinationId": "first"}], "HasMoreDestinations": True,
+    }
+    async with FirehoseClient(region="eu-west-2", endpoint_url=peer.endpoint) as client:
+        peer.body = json.dumps({"DeliveryStreamDescription": stream}).encode()
+        pages = client.paginators.describe_delivery_stream(delivery_stream_name="example", limit=1)
+        await anext(pages)
+        stream.update(Destinations=[{"DestinationId": "last"}], HasMoreDestinations=False)
+        peer.body = json.dumps({"DeliveryStreamDescription": stream}).encode()
+        await anext(pages)
+        with pytest.raises(StopAsyncIteration):
+            await anext(pages)
+    assert [json.loads(raw) for _, raw in peer.requests] == [
+        {"DeliveryStreamName": "example", "Limit": 1},
+        {"DeliveryStreamName": "example", "Limit": 1, "ExclusiveStartDestinationId": "first"},
+    ]

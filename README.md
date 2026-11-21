@@ -13,7 +13,7 @@ changes so you can update your application.
 
 **Async-only, typed Python clients for AWS services, powered by Rust.**
 
-rboto has clients for 36 services, including S3, DynamoDB, Lambda, Bedrock,
+rboto has clients for 39 services, including S3, DynamoDB, Lambda, Bedrock,
 EventBridge, and SQS. Install the services you use, import their client classes
 from `rboto`, and await operations. Python inputs and response attributes carry
 types for your editor and type checker.
@@ -161,6 +161,7 @@ example, its complete operation catalog, and Python method signatures.
 | Bedrock Data Automation Runtime | `BedrockDataAutomationRuntimeClient` | [rboto-bedrock-data-automation-runtime](packages/rboto-bedrock-data-automation-runtime/README.md) |
 | Bedrock Runtime | `BedrockRuntimeClient` | [rboto-bedrock-runtime](packages/rboto-bedrock-runtime/README.md) |
 | CloudTrail | `CloudTrailClient` | [rboto-cloudtrail](packages/rboto-cloudtrail/README.md) |
+| CloudWatch | `CloudWatchClient` | [rboto-cloudwatch](packages/rboto-cloudwatch/README.md) |
 | CloudWatch Logs | `CloudWatchLogsClient` | [rboto-cloudwatch-logs](packages/rboto-cloudwatch-logs/README.md) |
 | Cognito Identity | `CognitoIdentityClient` | [rboto-cognito-identity](packages/rboto-cognito-identity/README.md) |
 | Connect Health | `ConnectHealthClient` | [rboto-connecthealth](packages/rboto-connecthealth/README.md) |
@@ -168,8 +169,10 @@ example, its complete operation catalog, and Python method signatures.
 | EventBridge | `EventBridgeClient` | [rboto-eventbridge](packages/rboto-eventbridge/README.md) |
 | EventBridge Pipes | `EventBridgePipesClient` | [rboto-pipes](packages/rboto-pipes/README.md) |
 | EventBridge Scheduler | `EventBridgeSchedulerClient` | [rboto-scheduler](packages/rboto-scheduler/README.md) |
+| Firehose | `FirehoseClient` | [rboto-firehose](packages/rboto-firehose/README.md) |
 | Glue | `GlueClient` | [rboto-glue](packages/rboto-glue/README.md) |
 | GuardDuty | `GuardDutyClient` | [rboto-guardduty](packages/rboto-guardduty/README.md) |
+| Kinesis Data Streams | `KinesisClient` | [rboto-kinesis](packages/rboto-kinesis/README.md) |
 | KMS | `KMSClient` | [rboto-kms](packages/rboto-kms/README.md) |
 | Lambda | `LambdaClient` | [rboto-lambda](packages/rboto-lambda/README.md) |
 | Lex Runtime V2 | `LexRuntimeV2Client` | [rboto-lex-runtime-v2](packages/rboto-lex-runtime-v2/README.md) |

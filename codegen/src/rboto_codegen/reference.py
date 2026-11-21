@@ -12,6 +12,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 from .documentation import operations_from_client
+from .error_names import error_class_names
 from .model import ServiceDescriptor
 from .pagination import ResolvedPagination
 from .smithy import SmithyOperation, SmithyService
@@ -293,10 +294,6 @@ def _fields(fields: tuple[Field, ...], types: dict[str, Type], prefix: str) -> s
     return "\n".join(rows) + "\n"
 
 
-def _error_name(shape_id: str) -> str:
-    return shape_id.rsplit("#", 1)[-1].removesuffix("Exception").removesuffix("Error") + "Error"
-
-
 def union_example(item: Type, types: dict[str, Type], package: str) -> str:
     """Illustrate key narrowing for any modeled union, using its public names."""
     if item.kind != "alias" or not item.references:
@@ -321,7 +318,9 @@ def union_example(item: Type, types: dict[str, Type], package: str) -> str:
     )
 
 
-def _stream_errors(operation: SmithyOperation, service: SmithyService) -> set[str]:
+def _stream_errors(
+    operation: SmithyOperation, service: SmithyService, error_names: dict[str, str],
+) -> set[str]:
     pending = [target for target in (operation.input_target, operation.output_target) if target]
     visited: set[str] = set()
     errors: set[str] = set()
@@ -332,7 +331,7 @@ def _stream_errors(operation: SmithyOperation, service: SmithyService) -> set[st
         visited.add(target)
         shape = service.shapes[target]
         if shape.error:
-            errors.add(_error_name(target))
+            errors.add(error_names[shape.name])
         else:
             pending.extend(member.target for member in shape.members)
             pending.extend(item for item in (
@@ -358,6 +357,10 @@ def render_reference(
     types = types_from_contract(types_source, stub_source)
     operations = operations_from_client(client_source, descriptor.client_class)
     modeled = {op.rust_name: op for op in service.operations}
+    error_names = error_class_names(
+        (shape.name for shape in service.shapes.values() if shape.error),
+        descriptor.native_class.removesuffix("Client") + "Error",
+    )
     paginators = {item.operation: item for item in pagination}
     waiter_methods = {
         item.name: item for item in operations_from_client(
@@ -542,8 +545,8 @@ def render_reference(
                     "\nAcceptors are checked in order. Missing fields or unmatched successful "
                     "responses continue polling. Unmatched service errors propagate.\n",
                 ])
-        errors = {_error_name(error) for error in model.errors}
-        stream_errors = _stream_errors(model, service)
+        errors = {error_names[error.rsplit("#", 1)[-1]] for error in model.errors}
+        stream_errors = _stream_errors(model, service, error_names)
         lines.extend(["## Errors\n"])
         if errors | stream_errors:
             lines.append(

@@ -1,0 +1,21 @@
+service_id = "cloudwatch"
+display_name = "Amazon CloudWatch"
+documentation_path = "guides/cloudwatch/"
+python_name = "cloudwatch"
+distribution_name = "rboto-cloudwatch"
+python_package = "rboto_cloudwatch"
+client_class = "CloudWatchClient"
+adapter_crate = "rboto-cloudwatch-native"
+rust_crate = "aws-sdk-cloudwatch"
+rust_module = "aws_sdk_cloudwatch"
+rust_crate_version = "1.140.0"
+model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-06/aws-models/cloudwatch.json"
+model_sha256 = "e0541c325c75d53ab738280fd1e73d8e2d586ec16c0c8214564378a9853f5b65"
+aws_model_hash = "0ac9cc9b2bbe558eb729e0ad059a74f97e91d27753499ca83066e589c5c4cfb7"
+smithy_codegen_revision = "e181b22c1588cb6abd3c5840b3236dacaabb1d38"
+native_outputs = true
+
+# The pinned model omits pagination metadata for contributor listings.
+[pagination.DescribeAlarmContributors]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]

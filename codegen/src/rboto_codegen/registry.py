@@ -59,7 +59,9 @@ def _pagination(data: dict[str, object]) -> tuple[tuple[str, Pagination], ...]:
         if not isinstance(value, dict):
             raise ValueError(f"pagination.{operation} must be a table")
         entry = cast(dict[str, object], value)
-        unknown = entry.keys() - {"input_tokens", "output_tokens", "page_size", "more_results"}
+        unknown = entry.keys() - {
+            "input_tokens", "output_tokens", "page_size", "more_results", "initial_only",
+        }
         if unknown:
             raise ValueError(f"unknown pagination fields for {operation}: {sorted(unknown)}")
 
@@ -75,9 +77,12 @@ def _pagination(data: dict[str, object]) -> tuple[tuple[str, Pagination], ...]:
         inputs, outputs = tokens("input_tokens"), tokens("output_tokens")
         if len(inputs) != len(outputs) or len(set(inputs)) != len(inputs):
             raise ValueError(f"pagination.{operation} must pair distinct input tokens with outputs")
+        initial_only = tokens("initial_only") if "initial_only" in entry else ()
+        if len(set(initial_only)) != len(initial_only):
+            raise ValueError(f"pagination.{operation}.initial_only must contain distinct fields")
         result.append((operation, Pagination(
             inputs, outputs, _optional_string(entry, "page_size"),
-            _optional_string(entry, "more_results"),
+            _optional_string(entry, "more_results"), initial_only,
         )))
     return tuple(result)
 

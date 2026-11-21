@@ -27,13 +27,16 @@ from .services import (
     bedrock_data_automation_runtime,
     bedrock_runtime,
     cloudtrail,
+    cloudwatch,
     cloudwatch_logs,
     cognito_identity,
     connecthealth,
     dynamodb,
     eventbridge,
+    firehose,
     glue,
     guardduty,
+    kinesis,
     kms,
     lambda_,
     lex_runtime_v2,
@@ -70,13 +73,16 @@ if TYPE_CHECKING:
     from rboto_bedrock_data_automation_runtime import BedrockDataAutomationRuntimeClient
     from rboto_bedrock_runtime import BedrockRuntimeClient
     from rboto_cloudtrail import CloudTrailClient
+    from rboto_cloudwatch import CloudWatchClient
     from rboto_cloudwatch_logs import CloudWatchLogsClient
     from rboto_cognito_identity import CognitoIdentityClient
     from rboto_connecthealth import ConnectHealthClient
     from rboto_dynamodb import DynamoDBClient
     from rboto_eventbridge import EventBridgeClient
+    from rboto_firehose import FirehoseClient
     from rboto_glue import GlueClient
     from rboto_guardduty import GuardDutyClient
+    from rboto_kinesis import KinesisClient
     from rboto_kms import KMSClient
     from rboto_lambda import LambdaClient
     from rboto_lex_runtime_v2 import LexRuntimeV2Client
@@ -127,13 +133,16 @@ __all__ = [
     "BedrockDataAutomationRuntimeClient",
     "BedrockRuntimeClient",
     "CloudTrailClient",
+    "CloudWatchClient",
     "CloudWatchLogsClient",
     "CognitoIdentityClient",
     "ConnectHealthClient",
     "DynamoDBClient",
     "EventBridgeClient",
+    "FirehoseClient",
     "GlueClient",
     "GuardDutyClient",
+    "KinesisClient",
     "KMSClient",
     "LambdaClient",
     "LexRuntimeV2Client",
@@ -164,13 +173,16 @@ __all__ = [
     "bedrock_data_automation_runtime",
     "bedrock_runtime",
     "cloudtrail",
+    "cloudwatch",
     "cloudwatch_logs",
     "cognito_identity",
     "connecthealth",
     "dynamodb",
     "eventbridge",
+    "firehose",
     "glue",
     "guardduty",
+    "kinesis",
     "kms",
     "lambda_",
     "lex_runtime_v2",
@@ -225,6 +237,9 @@ _CLIENT_MODULES = {
     "CloudTrailClient": (
         "rboto_cloudtrail", "cloudtrail",
     ),
+    "CloudWatchClient": (
+        "rboto_cloudwatch", "cloudwatch",
+    ),
     "CloudWatchLogsClient": (
         "rboto_cloudwatch_logs", "cloudwatch-logs",
     ),
@@ -240,11 +255,17 @@ _CLIENT_MODULES = {
     "EventBridgeClient": (
         "rboto_eventbridge", "eventbridge",
     ),
+    "FirehoseClient": (
+        "rboto_firehose", "firehose",
+    ),
     "GlueClient": (
         "rboto_glue", "glue",
     ),
     "GuardDutyClient": (
         "rboto_guardduty", "guardduty",
+    ),
+    "KinesisClient": (
+        "rboto_kinesis", "kinesis",
     ),
     "KMSClient": (
         "rboto_kms", "kms",

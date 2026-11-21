@@ -21,13 +21,16 @@ SERVICE_IDS = frozenset((
     "bedrock-data-automation-runtime",
     "bedrock-runtime",
     "cloudtrail",
+    "cloudwatch",
     "cloudwatch-logs",
     "cognito-identity",
     "connecthealth",
     "dynamodb",
     "eventbridge",
+    "firehose",
     "glue",
     "guardduty",
+    "kinesis",
     "kms",
     "lambda",
     "lex-runtime-v2",
@@ -60,13 +63,16 @@ if TYPE_CHECKING:
     from rboto_bedrock_data_automation_runtime import BedrockDataAutomationRuntimeClient
     from rboto_bedrock_runtime import BedrockRuntimeClient
     from rboto_cloudtrail import CloudTrailClient
+    from rboto_cloudwatch import CloudWatchClient
     from rboto_cloudwatch_logs import CloudWatchLogsClient
     from rboto_cognito_identity import CognitoIdentityClient
     from rboto_connecthealth import ConnectHealthClient
     from rboto_dynamodb import DynamoDBClient
     from rboto_eventbridge import EventBridgeClient
+    from rboto_firehose import FirehoseClient
     from rboto_glue import GlueClient
     from rboto_guardduty import GuardDutyClient
+    from rboto_kinesis import KinesisClient
     from rboto_kms import KMSClient
     from rboto_lambda import LambdaClient
     from rboto_lex_runtime_v2 import LexRuntimeV2Client
@@ -374,6 +380,32 @@ def cloudtrail(
     )
 
 
+def cloudwatch(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
+    interceptors: Sequence[Interceptor] | None = None,
+) -> CloudWatchClient:
+    module = import_service(
+        "rboto_cloudwatch", "cloudwatch",
+    )
+    client_class = cast(
+        "type[CloudWatchClient]",
+        getattr(module, "CloudWatchClient"),
+    )
+    return client_class(
+        session=session,
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+        config=config,
+        interceptors=interceptors,
+    )
+
+
 def cloudwatch_logs(
     *,
     session: Session | None = None,
@@ -504,6 +536,32 @@ def eventbridge(
     )
 
 
+def firehose(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
+    interceptors: Sequence[Interceptor] | None = None,
+) -> FirehoseClient:
+    module = import_service(
+        "rboto_firehose", "firehose",
+    )
+    client_class = cast(
+        "type[FirehoseClient]",
+        getattr(module, "FirehoseClient"),
+    )
+    return client_class(
+        session=session,
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+        config=config,
+        interceptors=interceptors,
+    )
+
+
 def glue(
     *,
     session: Session | None = None,
@@ -545,6 +603,32 @@ def guardduty(
     client_class = cast(
         "type[GuardDutyClient]",
         getattr(module, "GuardDutyClient"),
+    )
+    return client_class(
+        session=session,
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+        config=config,
+        interceptors=interceptors,
+    )
+
+
+def kinesis(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
+    interceptors: Sequence[Interceptor] | None = None,
+) -> KinesisClient:
+    module = import_service(
+        "rboto_kinesis", "kinesis",
+    )
+    client_class = cast(
+        "type[KinesisClient]",
+        getattr(module, "KinesisClient"),
     )
     return client_class(
         session=session,

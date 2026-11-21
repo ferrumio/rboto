@@ -26,6 +26,8 @@
   rendered in `paginators.py.j2`. Missing metadata belongs in the service TOML
   `[pagination.OperationName]` tables; use modeled member names and validate
   against the pinned model. Runtime iteration lives in `rboto/_pagination.py`.
+  Use `initial_only` for optional selection fields that must be removed when a
+  continuation token is present, including caller-supplied resume tokens.
 - Waiter traits: parsed by `waiter_metadata.py` from Smithy or service TOML
   `[waiters.Name]` tables, validated/compiled in `waiters.py`, rendered through
   `waiters.py.j2`. Use the Smithy matcher schema; supplements also need `operation`.

@@ -55,6 +55,9 @@ def test_nested_resource_operations_are_complete_and_deduplicated(tmp_path: Path
         ("SAMLProviderARNs", "saml_provider_arns"),
         ("GetSMSAttributes", "get_sms_attributes"),
         ("CustomJWTAuthorizerConfiguration", "custom_jwt_authorizer_configuration"),
+        ("MaxRecordSizeInKiB", "max_record_size_in_kib"),
+        ("WarmThroughputMiBps", "warm_throughput_mibps"),
+        ("ReadLimitMiBps", "read_limit_mibps"),
     ],
 )
 def test_rust_acronym_naming(name: str, expected: str) -> None:

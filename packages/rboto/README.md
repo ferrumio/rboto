@@ -61,7 +61,7 @@ items = DynamoDBClient(session=session)
 
 ## Clients and operation references
 
-The 36 service packages below each contain a usage example, a complete
+The 39 service packages below each contain a usage example, a complete
 operation catalog, required arguments, return types, and full Python signatures.
 Use the installed package's README and type definitions for its exact API.
 
@@ -78,13 +78,16 @@ Use the installed package's README and type definitions for its exact API.
 | `BedrockDataAutomationRuntimeClient` | Amazon Bedrock Data Automation Runtime | [rboto-bedrock-data-automation-runtime](https://github.com/ferrumio/rboto/tree/main/packages/rboto-bedrock-data-automation-runtime) |
 | `BedrockRuntimeClient` | Amazon Bedrock Runtime | [rboto-bedrock-runtime](https://github.com/ferrumio/rboto/tree/main/packages/rboto-bedrock-runtime) |
 | `CloudTrailClient` | AWS CloudTrail | [rboto-cloudtrail](https://github.com/ferrumio/rboto/tree/main/packages/rboto-cloudtrail) |
+| `CloudWatchClient` | Amazon CloudWatch | [rboto-cloudwatch](https://github.com/ferrumio/rboto/tree/main/packages/rboto-cloudwatch) |
 | `CloudWatchLogsClient` | Amazon CloudWatch Logs | [rboto-cloudwatch-logs](https://github.com/ferrumio/rboto/tree/main/packages/rboto-cloudwatch-logs) |
 | `CognitoIdentityClient` | Amazon Cognito Identity | [rboto-cognito-identity](https://github.com/ferrumio/rboto/tree/main/packages/rboto-cognito-identity) |
 | `ConnectHealthClient` | Amazon Connect Health | [rboto-connecthealth](https://github.com/ferrumio/rboto/tree/main/packages/rboto-connecthealth) |
 | `DynamoDBClient` | Amazon DynamoDB | [rboto-dynamodb](https://github.com/ferrumio/rboto/tree/main/packages/rboto-dynamodb) |
 | `EventBridgeClient` | Amazon EventBridge | [rboto-eventbridge](https://github.com/ferrumio/rboto/tree/main/packages/rboto-eventbridge) |
+| `FirehoseClient` | Amazon Data Firehose | [rboto-firehose](https://github.com/ferrumio/rboto/tree/main/packages/rboto-firehose) |
 | `GlueClient` | AWS Glue | [rboto-glue](https://github.com/ferrumio/rboto/tree/main/packages/rboto-glue) |
 | `GuardDutyClient` | Amazon GuardDuty | [rboto-guardduty](https://github.com/ferrumio/rboto/tree/main/packages/rboto-guardduty) |
+| `KinesisClient` | Amazon Kinesis Data Streams | [rboto-kinesis](https://github.com/ferrumio/rboto/tree/main/packages/rboto-kinesis) |
 | `KMSClient` | AWS KMS | [rboto-kms](https://github.com/ferrumio/rboto/tree/main/packages/rboto-kms) |
 | `LambdaClient` | AWS Lambda | [rboto-lambda](https://github.com/ferrumio/rboto/tree/main/packages/rboto-lambda) |
 | `LexRuntimeV2Client` | Amazon Lex Runtime V2 | [rboto-lex-runtime-v2](https://github.com/ferrumio/rboto/tree/main/packages/rboto-lex-runtime-v2) |

@@ -16,6 +16,7 @@ class PaginationSpec:
     input_tokens: tuple[str, ...]
     output_tokens: tuple[tuple[Path, ...], ...]
     more_results: Path | None = None
+    initial_only: tuple[str, ...] = ()
 
 
 @runtime_checkable
@@ -73,10 +74,13 @@ async def paginate(
     spec: PaginationSpec,
 ) -> AsyncIterator[_T]:
     # Generated signatures validate the public arguments. Model-checked token
-    # paths are the only arguments this loop updates across requests.
+    # paths and initial-only fields are validated against the model.
     request = params.copy()
     previous = tuple(_snapshot(request.get(name)) for name in spec.input_tokens)
     while True:
+        if spec.initial_only and any(_present(request.get(name)) for name in spec.input_tokens):
+            for name in spec.initial_only:
+                request.pop(name, None)
         page = await call(**request)
         following = tuple(_snapshot(_token(page, paths)) for paths in spec.output_tokens)
         has_more = spec.more_results is None or bool(_read(page, spec.more_results))

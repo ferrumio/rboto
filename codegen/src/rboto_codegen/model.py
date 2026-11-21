@@ -26,6 +26,7 @@ class Pagination:
     output_tokens: tuple[str, ...]
     page_size: str | None = None
     more_results: str | None = None
+    initial_only: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)

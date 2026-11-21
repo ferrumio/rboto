@@ -20,6 +20,7 @@ class ResolvedPagination:
     output_tokens: tuple[tuple[Path, ...], ...]
     more_results: Path | None
     page_size: str | None
+    initial_only: tuple[str, ...] = ()
 
 
 def _path(expression: str) -> Path:
@@ -163,6 +164,17 @@ def _resolve_operation(
         if _kind(service, size.target) not in {"byte", "short", "integer", "long"}:
             raise ValueError(f"pagination page size must be an integer: {operation.name}")
         page_size = size.rust_name
+    initial_only: list[str] = []
+    for name in config.initial_only:
+        member = input_member(name)
+        if member.required or name in config.input_tokens or name == config.page_size:
+            raise ValueError(
+                f"pagination initial_only requires an optional non-cursor field: "
+                f"{operation.name}.{name}"
+            )
+        parameter = member.rust_name
+        initial_only.append(parameter + "_" if keyword.iskeyword(parameter) else parameter)
     return ResolvedPagination(
         operation.rust_name, tuple(inputs), tuple(outputs), more_results, page_size,
+        tuple(initial_only),
     )

@@ -22,6 +22,16 @@ event streams. Protocol wire codes can be aliases and remain unchanged in `error
 and compatibility metadata. When no modeled variant is available, code normalization
 and the service base exception remain the fallback.
 
+If suffix normalization would give two modeled errors the same Python class,
+retain the first available normalized name and disambiguate the other using
+its full modeled name followed by `Error`. Reserve all normalized names and the
+service base before allocating alternatives, adding `Value` before `Error` for
+further collisions. Generate an explicit lookup for these exceptions and use it
+in the shared bridge. Exception details and reference pages use the same names.
+For example, CloudWatch's `ResourceNotFound` and `ResourceNotFoundException`
+remain independently catchable as `ResourceNotFoundError` and
+`ResourceNotFoundExceptionError`.
+
 Compatibility metadata is available through the shared `ServiceError` API, but exception
 classes rather than response dictionaries are the primary control-flow mechanism.
 

@@ -49,13 +49,16 @@ bedrock-data-automation = ["rboto-bedrock-data-automation==0.3.0"]
 bedrock-data-automation-runtime = ["rboto-bedrock-data-automation-runtime==0.3.0"]
 bedrock-runtime = ["rboto-bedrock-runtime==0.3.0"]
 cloudtrail = ["rboto-cloudtrail==0.3.0"]
+cloudwatch = ["rboto-cloudwatch==0.3.0"]
 cloudwatch-logs = ["rboto-cloudwatch-logs==0.3.0"]
 cognito-identity = ["rboto-cognito-identity==0.3.0"]
 connecthealth = ["rboto-connecthealth==0.3.0"]
 dynamodb = ["rboto-dynamodb==0.3.0"]
 eventbridge = ["rboto-eventbridge==0.3.0"]
+firehose = ["rboto-firehose==0.3.0"]
 glue = ["rboto-glue==0.3.0"]
 guardduty = ["rboto-guardduty==0.3.0"]
+kinesis = ["rboto-kinesis==0.3.0"]
 kms = ["rboto-kms==0.3.0"]
 lambda = ["rboto-lambda==0.3.0"]
 lex-runtime-v2 = ["rboto-lex-runtime-v2==0.3.0"]
@@ -86,13 +89,16 @@ all = [
     "rboto-bedrock-data-automation-runtime==0.3.0",
     "rboto-bedrock-runtime==0.3.0",
     "rboto-cloudtrail==0.3.0",
+    "rboto-cloudwatch==0.3.0",
     "rboto-cloudwatch-logs==0.3.0",
     "rboto-cognito-identity==0.3.0",
     "rboto-connecthealth==0.3.0",
     "rboto-dynamodb==0.3.0",
     "rboto-eventbridge==0.3.0",
+    "rboto-firehose==0.3.0",
     "rboto-glue==0.3.0",
     "rboto-guardduty==0.3.0",
+    "rboto-kinesis==0.3.0",
     "rboto-kms==0.3.0",
     "rboto-lambda==0.3.0",
     "rboto-lex-runtime-v2==0.3.0",

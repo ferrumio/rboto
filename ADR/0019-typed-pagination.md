@@ -27,6 +27,13 @@ fields, boolean completion flags, and stream ownership during generation.
 Support multiple cursors, nested paths, integer list indices, and ordered
 fallback paths declaratively. Do not branch on service or operation names.
 
+Descriptors may declare optional `initial_only` input fields that are incompatible
+with continuation tokens. Drop these fields whenever a token is present, including
+when resuming from a caller-supplied token. Validate that they exist and are neither
+required fields, cursor fields, nor the page-size field. Other filters and page-size
+settings remain unchanged. Kinesis shard and consumer listings require this rule;
+the shared iterator does not inspect service names.
+
 Use a private shared Python iterator for continuation state. Only cursor state
 is copied; response pages retain their native representation. Snapshot state
 before yielding so consumer mutations cannot change the next request. Stop
