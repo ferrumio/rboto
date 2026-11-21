@@ -41,6 +41,7 @@ class {{ client_class }}Paginators:
                 input_tokens={{ pagination[method.name].input_tokens }},
                 output_tokens={{ pagination[method.name].output_tokens }},
                 more_results={{ pagination[method.name].more_results }},
-            ),
+{% if pagination[method.name].initial_only %}                initial_only={{ pagination[method.name].initial_only }},
+{% endif %}            ),
         )
 {% endfor %}

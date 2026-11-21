@@ -1,0 +1,34 @@
+service_id = "firehose"
+display_name = "Amazon Data Firehose"
+documentation_path = "guides/firehose/"
+python_name = "firehose"
+distribution_name = "rboto-firehose"
+python_package = "rboto_firehose"
+client_class = "FirehoseClient"
+adapter_crate = "rboto-firehose-native"
+rust_crate = "aws-sdk-firehose"
+rust_module = "aws_sdk_firehose"
+rust_crate_version = "1.128.0"
+model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-06/aws-models/firehose.json"
+model_sha256 = "ae58605d392b6571983abec05ebd3aa2884d3ab43d1b7d1dda6f30f03815f35e"
+aws_model_hash = "43f5a4206c49fc7e275ad91779de9d932d26e6aebf8377f2efebc8705b3a468d"
+smithy_codegen_revision = "e181b22c1588cb6abd3c5840b3236dacaabb1d38"
+native_outputs = true
+
+[pagination.DescribeDeliveryStream]
+input_tokens = ["ExclusiveStartDestinationId"]
+output_tokens = ["DeliveryStreamDescription.Destinations[-1].DestinationId"]
+more_results = "DeliveryStreamDescription.HasMoreDestinations"
+page_size = "Limit"
+
+[pagination.ListDeliveryStreams]
+input_tokens = ["ExclusiveStartDeliveryStreamName"]
+output_tokens = ["DeliveryStreamNames[-1]"]
+more_results = "HasMoreDeliveryStreams"
+page_size = "Limit"
+
+[pagination.ListTagsForDeliveryStream]
+input_tokens = ["ExclusiveStartTagKey"]
+output_tokens = ["Tags[-1].Key"]
+more_results = "HasMoreTags"
+page_size = "Limit"

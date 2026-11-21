@@ -14,13 +14,16 @@ from rboto_bedrock_data_automation_runtime import (
 )
 from rboto_bedrock_runtime import BedrockRuntimeClient as BedrockRuntimeClient
 from rboto_cloudtrail import CloudTrailClient as CloudTrailClient
+from rboto_cloudwatch import CloudWatchClient as CloudWatchClient
 from rboto_cloudwatch_logs import CloudWatchLogsClient as CloudWatchLogsClient
 from rboto_cognito_identity import CognitoIdentityClient as CognitoIdentityClient
 from rboto_connecthealth import ConnectHealthClient as ConnectHealthClient
 from rboto_dynamodb import DynamoDBClient as DynamoDBClient
 from rboto_eventbridge import EventBridgeClient as EventBridgeClient
+from rboto_firehose import FirehoseClient as FirehoseClient
 from rboto_glue import GlueClient as GlueClient
 from rboto_guardduty import GuardDutyClient as GuardDutyClient
+from rboto_kinesis import KinesisClient as KinesisClient
 from rboto_kms import KMSClient as KMSClient
 from rboto_lambda import LambdaClient as LambdaClient
 from rboto_lex_runtime_v2 import LexRuntimeV2Client as LexRuntimeV2Client
@@ -65,13 +68,16 @@ from .services import bedrock_data_automation as bedrock_data_automation
 from .services import bedrock_data_automation_runtime as bedrock_data_automation_runtime
 from .services import bedrock_runtime as bedrock_runtime
 from .services import cloudtrail as cloudtrail
+from .services import cloudwatch as cloudwatch
 from .services import cloudwatch_logs as cloudwatch_logs
 from .services import cognito_identity as cognito_identity
 from .services import connecthealth as connecthealth
 from .services import dynamodb as dynamodb
 from .services import eventbridge as eventbridge
+from .services import firehose as firehose
 from .services import glue as glue
 from .services import guardduty as guardduty
+from .services import kinesis as kinesis
 from .services import kms as kms
 from .services import lambda_ as lambda_
 from .services import lex_runtime_v2 as lex_runtime_v2

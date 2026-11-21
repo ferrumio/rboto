@@ -1,0 +1,41 @@
+service_id = "kinesis"
+display_name = "Amazon Kinesis Data Streams"
+documentation_path = "guides/kinesis/"
+python_name = "kinesis"
+distribution_name = "rboto-kinesis"
+python_package = "rboto_kinesis"
+client_class = "KinesisClient"
+adapter_crate = "rboto-kinesis-native"
+rust_crate = "aws-sdk-kinesis"
+rust_module = "aws_sdk_kinesis"
+rust_crate_version = "1.130.0"
+model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-06/aws-models/kinesis.json"
+model_sha256 = "b3cd88f396f3591df7f1a809957379a9c8afba1e593e3eb38ee7d99afb689636"
+aws_model_hash = "5accc034b99d00bd9f6fda07b87ace4fe56394edbd03746b105fb09699d9459e"
+smithy_codegen_revision = "e181b22c1588cb6abd3c5840b3236dacaabb1d38"
+native_outputs = true
+
+[pagination.DescribeStream]
+input_tokens = ["ExclusiveStartShardId"]
+output_tokens = ["StreamDescription.Shards[-1].ShardId"]
+more_results = "StreamDescription.HasMoreShards"
+page_size = "Limit"
+
+# Stream selection fields must not accompany the continuation token.
+[pagination.ListShards]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"
+initial_only = ["StreamName", "StreamCreationTimestamp", "ExclusiveStartShardId"]
+
+[pagination.ListStreamConsumers]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"
+initial_only = ["StreamCreationTimestamp"]
+
+[pagination.ListTagsForStream]
+input_tokens = ["ExclusiveStartTagKey"]
+output_tokens = ["Tags[-1].Key"]
+more_results = "HasMoreTags"
+page_size = "Limit"

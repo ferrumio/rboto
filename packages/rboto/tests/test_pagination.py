@@ -48,6 +48,26 @@ async def test_zero_token_and_supplied_starting_cursor() -> None:
 
 
 @pytest.mark.asyncio
+@pytest.mark.parametrize("starting_token", [None, "resume"])
+async def test_initial_only_fields_are_removed_when_a_cursor_is_present(
+    starting_token: str | None,
+) -> None:
+    spec = PaginationSpec(SINGLE.input_tokens, SINGLE.output_tokens, initial_only=("selection",))
+    params: dict[str, object] = {"selection": "first page", "limit": 4, "filter": "keep"}
+    if starting_token is not None:
+        params["token"] = starting_token
+    original = params.copy()
+    call = Call([{"next_token": "second"}, {"next_token": None}])
+    assert len([page async for page in paginate(call, params, spec)]) == 2
+    assert call.requests == [
+        ({"selection": "first page", "limit": 4, "filter": "keep"}
+         if starting_token is None else {"limit": 4, "filter": "keep", "token": "resume"}),
+        {"limit": 4, "filter": "keep", "token": "second"},
+    ]
+    assert params == original
+
+
+@pytest.mark.asyncio
 async def test_repeated_cursor_stops_including_initial_cursor() -> None:
     call = Call([{"next_token": "same"}, {"next_token": "same"}])
     assert len([page async for page in paginate(call, {}, SINGLE)]) == 2

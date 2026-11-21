@@ -9,6 +9,7 @@ from typing import cast
 
 from .alignment import align
 from .documentation import CLIENT_LIFECYCLE_METHODS, render_service_readme
+from .error_names import error_class_names, normalized_error_name
 from .manifests import render_cargo, render_pyproject, template_environment
 from .model import ServiceDescriptor
 from .pagination import resolve_pagination
@@ -144,6 +145,10 @@ class ServiceGenerator:
             to_snake_case(shape.name): shape for shape in self.service.shapes.values()
         }
         self._rust_names = {name.lower(): name for name in self.crate.types}
+        self._error_names = error_class_names(
+            (shape.name for shape in self.service.shapes.values() if shape.error),
+            self.descriptor.native_class.removesuffix("Client") + "Error",
+        )
         self.templates = template_environment()
         self._configure_python_types()
         self.pagination = resolve_pagination(
@@ -1858,13 +1863,13 @@ class ServiceGenerator:
             if shape.error:
                 fields = self._error_fields(self._error_rust_name(shape))
                 if fields:
-                    stem = shape.name.removesuffix("Exception").removesuffix("Error")
-                    name = f"{stem}ErrorDetails"
+                    error_name = self._error_names[shape.name]
+                    name = f"{error_name}Details"
                     if name in reserved or name in self._shapes_by_name:
                         raise GenerationError(f"error details type name collision: {name}")
                     lines.extend([
                         f"class {name}(TypedDict, total=False):",
-                        f'    """Decoded fields of {stem}Error; values may contain application data."""',
+                        f'    """Decoded fields of {error_name}; values may contain application data."""',
                     ])
                     for field in fields:
                         member = next(
@@ -2097,6 +2102,7 @@ class ServiceGenerator:
                         "input_tokens": repr(item.input_tokens),
                         "output_tokens": repr(item.output_tokens),
                         "more_results": repr(item.more_results),
+                        "initial_only": repr(item.initial_only) if item.initial_only else "",
                     }
                     for item in self.pagination
                 },
@@ -2162,11 +2168,11 @@ class ServiceGenerator:
             "",
         ]
         for error in errors:
-            stem = error.removesuffix("Exception").removesuffix("Error")
+            name = self._error_names[error]
             lines.extend(
                 [
                     "",
-                    f"class {stem}Error({self.descriptor.native_class.removesuffix('Client')}Error):",
+                    f"class {name}({self.descriptor.native_class.removesuffix('Client')}Error):",
                     f'    """Modeled {self.descriptor.service_id} error: {error}."""',
                     "",
                 ]
@@ -2175,10 +2181,22 @@ class ServiceGenerator:
             if self._error_fields(self._error_rust_name(shape)):
                 lines.extend([
                     "    @property",
-                    f"    def details(self) -> _types.{stem}ErrorDetails:",
-                    f"        return cast(_types.{stem}ErrorDetails, self._details)",
+                    f"    def details(self) -> _types.{name}Details:",
+                    f"        return cast(_types.{name}Details, self._details)",
                     "",
                 ])
+        overrides = {
+            error: name for error, name in self._error_names.items()
+            if name != normalized_error_name(error)
+        }
+        if overrides:
+            lines.extend([
+                "",
+                "_ERROR_CLASS_OVERRIDES: dict[str, type[BaseServiceError]] = {",
+                *(f'    "{error}": {name},' for error, name in overrides.items()),
+                "}",
+                "",
+            ])
         return "\n".join(lines)
 
 

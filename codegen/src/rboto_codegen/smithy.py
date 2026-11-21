@@ -64,6 +64,8 @@ class SmithyService:
 
 
 def to_snake_case(name: str) -> str:
+    # Rust keeps binary byte units (KiB) and their rate suffix (MiBps) together.
+    name = re.sub(r"[KMGTPE]iB(?:ps)?(?=[A-Z_]|$)", lambda m: m[0].title(), name)
     # Smithy/Rust treats plural acronyms (ARNs, IDs) as a single word.
     name = re.sub(r"([A-Z]{2,})s(?=[A-Z]|$)", lambda m: m[1].title() + "s", name)
     first = re.sub(r"(.)([A-Z][a-z]+)", r"\1_\2", name)

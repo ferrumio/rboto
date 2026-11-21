@@ -54,7 +54,9 @@ pub fn raise_service_error(
         .import(exception_module)
         .and_then(|module| {
             module
-                .getattr(class_name.as_str())
+                .getattr("_ERROR_CLASS_OVERRIDES")
+                .and_then(|classes| classes.get_item(modeled_code.unwrap_or(error_code)))
+                .or_else(|_| module.getattr(class_name.as_str()))
                 .or_else(|_| module.getattr(service_base))
         })
         .or_else(|_| py.import("rboto.exceptions")?.getattr("ClientError"));

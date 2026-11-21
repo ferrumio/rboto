@@ -55,6 +55,10 @@ def modeled(tmp_path: Path) -> tuple[ServiceDescriptor, SmithyService]:
                     "From": {"target": "smithy.api#String"},
                     "Limit": {"target": "smithy.api#Integer"},
                     "Stream": {"target": "test#Stream"},
+                    "Filter": {"target": "smithy.api#String"},
+                    "Required": {
+                        "target": "smithy.api#String", "traits": {"smithy.api#required": {}},
+                    },
                 },
             },
             "test#Output": {
@@ -106,6 +110,17 @@ def test_supplement_supports_fallback_list_index_and_completion(
     assert spec.more_results == ("more",)
 
 
+def test_initial_only_fields_are_resolved_from_model_names(
+    modeled: tuple[ServiceDescriptor, SmithyService],
+) -> None:
+    descriptor, service = modeled
+    descriptor = replace(descriptor, pagination=(("Get", Pagination(
+        ("From",), ("Next",), initial_only=("Filter",),
+    )),))
+    specs = resolve_pagination(descriptor, service, {"list", "get"}, lambda s, m: m.rust_name)
+    assert next(item for item in specs if item.operation == "get").initial_only == ("filter",)
+
+
 @pytest.mark.parametrize(
     ("operation", "config", "error"),
     [
@@ -120,6 +135,14 @@ def test_supplement_supports_fallback_list_index_and_completion(
         ("Get", Pagination(("From",), ("Next",), more_results="Next"), "must be boolean"),
         ("Get", Pagination(("Stream",), ("Stream",)), "cannot own streams"),
         ("Get", Pagination(("From",), ()), "token counts differ"),
+        ("Get", Pagination(("From",), ("Next",), initial_only=("Missing",)),
+         "unknown pagination input"),
+        ("Get", Pagination(("From",), ("Next",), initial_only=("From",)),
+         "optional non-cursor field"),
+        ("Get", Pagination(("From",), ("Next",), initial_only=("Required",)),
+         "optional non-cursor field"),
+        ("Get", Pagination(("From",), ("Next",), "Limit", initial_only=("Limit",)),
+         "optional non-cursor field"),
     ],
 )
 def test_invalid_metadata_fails_generation(
@@ -140,6 +163,8 @@ def test_invalid_metadata_fails_generation(
     'input_tokens = ["From", "From"]\noutput_tokens = ["A", "B"]',
     'input_tokens = [1]\noutput_tokens = ["Next"]',
     'input_tokens = ["From"]\noutput_tokens = ["Next"]\nunknown = true',
+    'input_tokens = ["From"]\noutput_tokens = ["Next"]\ninitial_only = "Filter"',
+    'input_tokens = ["From"]\noutput_tokens = ["Next"]\ninitial_only = ["Filter", "Filter"]',
 ])
 def test_invalid_descriptor_tables_are_rejected(tmp_path: Path, entry: str) -> None:
     path = tmp_path / "sns.toml"

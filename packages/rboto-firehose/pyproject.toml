@@ -1,0 +1,43 @@
+[build-system]
+requires = ["maturin>=1.15,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "rboto-firehose"
+version = "0.3.0"
+description = "rboto: async-only, typed Python client for Amazon Data Firehose, powered by Rust. Alpha preview."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Leandro Cavalcante Damascena", email = "leandro.damascena@gmail.com" },
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Framework :: AsyncIO",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+    "Programming Language :: Rust",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+keywords = ["rboto", "aws", "firehose", "asyncio", "typing", "rust"]
+dependencies = ["rboto==0.3.0", "typing-extensions>=4.15,<5"]
+
+[project.urls]
+Documentation = "https://ferrumio.github.io/rboto/guides/firehose/"
+Repository = "https://github.com/ferrumio/rboto"
+Homepage = "https://ferrumio.github.io/rboto/"
+Issues = "https://github.com/ferrumio/rboto/issues"
+Changelog = "https://github.com/ferrumio/rboto/releases"
+
+[tool.maturin]
+manifest-path = "../../crates/rboto-firehose/Cargo.toml"
+python-source = "python"
+module-name = "rboto_firehose._native"
+features = ["pyo3/extension-module"]
