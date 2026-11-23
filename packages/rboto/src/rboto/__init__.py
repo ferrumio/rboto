@@ -26,6 +26,7 @@ from .services import (
     bedrock_data_automation,
     bedrock_data_automation_runtime,
     bedrock_runtime,
+    cloudformation,
     cloudtrail,
     cloudwatch,
     cloudwatch_logs,
@@ -72,6 +73,7 @@ if TYPE_CHECKING:
     from rboto_bedrock_data_automation import BedrockDataAutomationClient
     from rboto_bedrock_data_automation_runtime import BedrockDataAutomationRuntimeClient
     from rboto_bedrock_runtime import BedrockRuntimeClient
+    from rboto_cloudformation import CloudFormationClient
     from rboto_cloudtrail import CloudTrailClient
     from rboto_cloudwatch import CloudWatchClient
     from rboto_cloudwatch_logs import CloudWatchLogsClient
@@ -132,6 +134,7 @@ __all__ = [
     "BedrockDataAutomationClient",
     "BedrockDataAutomationRuntimeClient",
     "BedrockRuntimeClient",
+    "CloudFormationClient",
     "CloudTrailClient",
     "CloudWatchClient",
     "CloudWatchLogsClient",
@@ -172,6 +175,7 @@ __all__ = [
     "bedrock_data_automation",
     "bedrock_data_automation_runtime",
     "bedrock_runtime",
+    "cloudformation",
     "cloudtrail",
     "cloudwatch",
     "cloudwatch_logs",
@@ -233,6 +237,9 @@ _CLIENT_MODULES = {
     ),
     "BedrockRuntimeClient": (
         "rboto_bedrock_runtime", "bedrock-runtime",
+    ),
+    "CloudFormationClient": (
+        "rboto_cloudformation", "cloudformation",
     ),
     "CloudTrailClient": (
         "rboto_cloudtrail", "cloudtrail",

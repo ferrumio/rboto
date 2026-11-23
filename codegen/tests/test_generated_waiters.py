@@ -291,3 +291,33 @@ async def test_kinesis_composite_terminal_condition_uses_native_fields_without_t
     output = SimpleNamespace(kinesis_data_stream_destinations=None)
     with pytest.raises(WaiterTimeoutError):
         await wait(poll, {}, WaiterSpec("terminal", 0, (acceptor,)), WaiterConfig(max_attempts=1))
+
+
+def test_waiter_error_code_requires_a_matching_pinned_acceptor(
+    modeled: tuple[ServiceDescriptor, SmithyService],
+) -> None:
+    descriptor, service = modeled
+    original = service.operations[0]
+    pinned = parse_waiters({"Gone": {"acceptors": [
+        {"state": "success", "matcher": {"errorType": "ValidationError"}},
+    ]}}, original.name)
+    service = replace(service, operations=(replace(original, waiters=pinned),))
+
+    def resolve(spec: ServiceDescriptor, model: SmithyService) -> None:
+        waiters = resolve_waiters(spec, model, {"describe"}, lambda s, m: m.rust_name)
+        assert waiters[0].returns_none and not waiters[0].returns_output
+
+    with pytest.raises(ValueError, match="unmodeled waiter error"):
+        resolve(descriptor, service)
+    descriptor = replace(descriptor, waiter_error_codes=(("Describe", "ValidationError"),))
+    resolve(descriptor, service)
+
+    moved = replace(descriptor, waiter_error_codes=(("OtherOperation", "ValidationError"),))
+    with pytest.raises(ValueError, match="lack pinned model acceptors"):
+        resolve(moved, service)
+
+    override = parse_waiters({"Gone": {"operation": "Describe", "acceptors": [
+        {"state": "success", "matcher": {"success": True}},
+    ]}})
+    with pytest.raises(ValueError, match="unused waiter error codes"):
+        resolve(replace(descriptor, waiters=override), service)

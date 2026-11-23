@@ -15,7 +15,7 @@ package; constructing it does not send a network request.
 
 ## Install the services you use
 
-The catalog contains 39 services and 2,452 operations. Each service has its own
+The catalog contains 40 services and 2,544 operations. Each service has its own
 package. `rboto[s3]` selects the matching `rboto-s3` dependency once packages are
 published. [Getting started](getting-started.md) covers source installation.
 
@@ -43,6 +43,7 @@ All classes in this table are available from `rboto`:
 | `BedrockDataAutomationClient` | `rboto-bedrock-data-automation` | 27 |
 | `BedrockDataAutomationRuntimeClient` | `rboto-bedrock-data-automation-runtime` | 6 |
 | `BedrockRuntimeClient` | `rboto-bedrock-runtime` | 11 |
+| `CloudFormationClient` | `rboto-cloudformation` | 92 |
 | `CloudTrailClient` | `rboto-cloudtrail` | 60 |
 | `CloudWatchClient` | `rboto-cloudwatch` | 59 |
 | `CloudWatchLogsClient` | `rboto-cloudwatch-logs` | 118 |

@@ -20,6 +20,7 @@ SERVICE_IDS = frozenset((
     "bedrock-data-automation",
     "bedrock-data-automation-runtime",
     "bedrock-runtime",
+    "cloudformation",
     "cloudtrail",
     "cloudwatch",
     "cloudwatch-logs",
@@ -62,6 +63,7 @@ if TYPE_CHECKING:
     from rboto_bedrock_data_automation import BedrockDataAutomationClient
     from rboto_bedrock_data_automation_runtime import BedrockDataAutomationRuntimeClient
     from rboto_bedrock_runtime import BedrockRuntimeClient
+    from rboto_cloudformation import CloudFormationClient
     from rboto_cloudtrail import CloudTrailClient
     from rboto_cloudwatch import CloudWatchClient
     from rboto_cloudwatch_logs import CloudWatchLogsClient
@@ -343,6 +345,32 @@ def bedrock_runtime(
     client_class = cast(
         "type[BedrockRuntimeClient]",
         getattr(module, "BedrockRuntimeClient"),
+    )
+    return client_class(
+        session=session,
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+        config=config,
+        interceptors=interceptors,
+    )
+
+
+def cloudformation(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
+    interceptors: Sequence[Interceptor] | None = None,
+) -> CloudFormationClient:
+    module = import_service(
+        "rboto_cloudformation", "cloudformation",
+    )
+    client_class = cast(
+        "type[CloudFormationClient]",
+        getattr(module, "CloudFormationClient"),
     )
     return client_class(
         session=session,

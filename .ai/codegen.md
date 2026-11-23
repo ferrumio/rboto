@@ -32,7 +32,9 @@
   `[waiters.Name]` tables, validated/compiled in `waiters.py`, rendered through
   `waiters.py.j2`. Use the Smithy matcher schema; supplements also need `operation`.
   The runtime is `rboto/_waiters.py`. Reject unsupported expressions, stream outputs,
-  unmodeled errors, and parameter/name collisions. See ADR-0026.
+  unmodeled errors, and parameter/name collisions. When a pinned waiter uses
+  a wire error code missing from the operation error shapes, declare the exact
+  operation/code pair in `[waiter_error_codes]`. See ADR-0026 and ADR-0038.
 
 Do not add service-name branches to generic generation until a declarative customization
 has been shown to be insufficient.

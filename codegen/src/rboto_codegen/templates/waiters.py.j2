@@ -56,5 +56,5 @@ class {{ client_class }}Waiters:
             ),
             waiter_config,
         )
-        return cast({{ method.waiter_output }}, result)
+        return {% if method.waiter_optional_output %}result{% else %}cast({{ method.waiter_output }}, result){% endif %}
 {% endfor %}

@@ -1,0 +1,41 @@
+service_id = "cloudformation"
+display_name = "AWS CloudFormation"
+documentation_path = "guides/cloudformation/"
+python_name = "cloudformation"
+distribution_name = "rboto-cloudformation"
+python_package = "rboto_cloudformation"
+client_class = "CloudFormationClient"
+adapter_crate = "rboto-cloudformation-native"
+rust_crate = "aws-sdk-cloudformation"
+rust_module = "aws_sdk_cloudformation"
+rust_crate_version = "1.142.0"
+model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-21/aws-models/cloudformation.json"
+model_sha256 = "abcef680b7719d6c5377b957da69eac5cc11430db185fb5e7fc0be2d883b45f5"
+aws_model_hash = "d847ca2af53cbf0fd93be53fa688f8bd7b35c5a353987c5be9d34cc753116e31"
+smithy_codegen_revision = "d0203cb69fe3e68bd234e14de5bc373ded9e857d"
+native_outputs = true
+
+# The pinned model and SDK omit paginator metadata for these cursor pairs.
+[pagination.DescribeChangeSetHooks]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+
+[pagination.ListHookResults]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+
+[pagination.ListStackInstanceResourceDrifts]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"
+
+[pagination.ListStackSetAutoDeploymentTargets]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"
+
+# These SDK waiters match the Query wire code, which is not an operation error shape.
+[waiter_error_codes]
+DescribeChangeSet = ["ValidationError"]
+DescribeStackRefactor = ["ValidationError"]
+DescribeStacks = ["ValidationError"]

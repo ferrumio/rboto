@@ -20,6 +20,7 @@
     "packages/rboto-bedrock-data-automation/python",
     "packages/rboto-bedrock-data-automation-runtime/python",
     "packages/rboto-bedrock-runtime/python",
+    "packages/rboto-cloudformation/python",
     "packages/rboto-cloudtrail/python",
     "packages/rboto-cloudwatch/python",
     "packages/rboto-cloudwatch-logs/python",

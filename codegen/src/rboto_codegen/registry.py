@@ -112,6 +112,7 @@ def load_service(path: Path) -> ServiceDescriptor:
         documentation_path=_optional_string(data, "documentation_path") or "clients/",
         pagination=_pagination(data),
         waiters=parse_waiters(data.get("waiters", {})),
+        waiter_error_codes=_waiter_error_codes(data),
         alignment_extras=_alignment_extras(data),
         alignment_types=_alignment_types(data),
     )
@@ -121,6 +122,24 @@ def load_service(path: Path) -> ServiceDescriptor:
             f"service_id {descriptor.service_id!r}"
         )
     return descriptor
+
+
+def _waiter_error_codes(data: dict[str, object]) -> tuple[tuple[str, str], ...]:
+    raw = data.get("waiter_error_codes", {})
+    if not isinstance(raw, dict):
+        raise ValueError("waiter_error_codes must be a table")
+    codes: list[tuple[str, str]] = []
+    for operation, value in cast(dict[str, object], raw).items():
+        if not isinstance(value, list) or not value:
+            raise ValueError(f"waiter_error_codes.{operation} must be a nonempty list")
+        for code in cast(list[object], value):
+            if not isinstance(code, str) or not code or code.strip() != code:
+                raise ValueError(f"invalid waiter error code for {operation}")
+            pair = (operation, code)
+            if pair in codes:
+                raise ValueError(f"duplicate waiter error code for {operation}: {code}")
+            codes.append(pair)
+    return tuple(codes)
 
 
 def _alignment_extras(data: dict[str, object]) -> tuple[AlignmentExtra, ...]:

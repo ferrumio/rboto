@@ -70,6 +70,7 @@ class ServiceDescriptor:
     documentation_path: str = "clients/"
     pagination: tuple[tuple[str, Pagination], ...] = ()
     waiters: tuple[Waiter, ...] = ()
+    waiter_error_codes: tuple[tuple[str, str], ...] = ()
     alignment_extras: tuple[AlignmentExtra, ...] = ()
     alignment_types: tuple[AlignmentType, ...] = ()
 

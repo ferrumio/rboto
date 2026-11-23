@@ -2054,6 +2054,7 @@ class ServiceGenerator:
         if waiters:
             for method, waiter in zip(methods, self.waiters, strict=True):
                 method["waiter_name"] = waiter.name
+                method["waiter_optional_output"] = waiter.returns_output and waiter.returns_none
                 method["waiter_output"] = (
                     str(method["output"]) + (" | None" if waiter.returns_none else "")
                     if waiter.returns_output else "None"
