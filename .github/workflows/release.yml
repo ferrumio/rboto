@@ -58,14 +58,9 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
-  dependencies:
-    name: Dependency preflight
-    needs: prepare
-    uses: ./.github/workflows/release-dependencies.yml
-
   wheels:
     name: Wheels / ${{ matrix.platform.name }}
-    needs: [prepare, dependencies]
+    needs: prepare
     strategy:
       fail-fast: false
       matrix:
@@ -87,7 +82,7 @@ jobs:
 
   service-sdist:
     name: Source batches
-    needs: [prepare, dependencies]
+    needs: prepare
     uses: ./.github/workflows/release-wheels.yml
     with:
       batches: ${{ needs.prepare.outputs.batches }}
@@ -151,10 +146,6 @@ jobs:
         with:
           name: release-catalog
           path: release
-      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
-        with:
-          name: release-dependencies--${{ matrix.platform.name }}
-          path: dependencies
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         if: matrix.platform.container == ''
         with:
@@ -167,8 +158,8 @@ jobs:
         run: |
           ABI="cp${PYTHON_VERSION//./}"
           python -m venv .venv
-          .venv/bin/pip --isolated install --no-cache-dir --only-binary=:all: --no-index \
-            --find-links dist --find-links "dependencies/$ABI" "rboto[all]==$VERSION"
+          .venv/bin/pip install --only-binary=:all: \
+            "dist/rboto-$VERSION-py3-none-any.whl" dist/*-"$ABI"-"$ABI"-*.whl
           .venv/bin/pip check
           .venv/bin/python .github/scripts/smoke_release.py release/release.json
       - name: Install and check musl wheels in musl
@@ -179,14 +170,14 @@ jobs:
           IMAGE: ${{ matrix.platform.container }}
         run: |
           ABI="cp${PYTHON_VERSION//./}"
-          docker run --rm --network none --cpus 2 --memory 4g \
+          docker run --rm --cpus 2 --memory 4g \
             -v "$PWD:/io:ro" -w /tmp \
             -e VERSION -e ABI="$ABI" -e AWS_EC2_METADATA_DISABLED \
             -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_REGION \
             "$IMAGE" sh -eu -c '
               /opt/python/$ABI-$ABI/bin/python -m venv /tmp/venv
-              /tmp/venv/bin/pip --isolated install --no-cache-dir --only-binary=:all: --no-index \
-                --find-links /io/dist --find-links "/io/dependencies/$ABI" "rboto[all]==$VERSION"
+              /tmp/venv/bin/pip install --only-binary=:all: \
+                "/io/dist/rboto-$VERSION-py3-none-any.whl" /io/dist/*-"$ABI"-"$ABI"-*.whl
               /tmp/venv/bin/pip check
               /tmp/venv/bin/python /io/.github/scripts/smoke_release.py /io/release/release.json
             '

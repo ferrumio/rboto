@@ -59,24 +59,12 @@ retain earlier successful artifacts; rerunning that job rebuilds the group.
 Service durations, including setup and upload, appear in the job summary and a
 `timings--<batch>--<platform>` CSV artifact. GitHub records the total job duration.
 
-Each smoke job installs wheels only. Musl smoke jobs execute in the matching
-musllinux container with networking disabled. The descriptor-derived catalog
-selects client classes; do not enumerate `rboto.__all__` as if all public symbols
-were constructors.
-
-Before native builds, `release-dependencies.yml` discovers third-party runtime
-requirements from every package manifest. Six platform jobs resolve wheels and
-test an empty offline installation on CPython 3.12–3.15, including transitive
-dependencies and environment markers on the actual target interpreters.
-Linux checks use the release containers with networking disabled. This workflow
-also runs on PRs that change package metadata or release dependency handling.
-
-Keep these wheels in separate `release-dependencies--<platform>` artifacts.
-Smoke jobs install the built packages using both the release wheelhouse and the
-matching dependency directory, with `--no-index`, then run `pip check` and the
-compiled client checks. Third-party wheels must never enter `dist`, the release
-checksum inventory, or PyPI publisher jobs. Dependency resolution failures block
-all native builds; actual wheel installation remains the final validation.
+Each smoke job installs wheels only. Pass the built facade and matching CPython
+service wheels directly to pip so it tests those files, while fetching external
+runtime dependencies from PyPI. Run `pip check` before the compiled client checks.
+Musl smoke jobs use the matching musllinux container with network access for pip.
+The descriptor-derived catalog selects client classes; do not enumerate
+`rboto.__all__` as if all public symbols were constructors.
 
 `release_artifacts.py validate` checks all expected interpreter/platform wheels,
 source distributions, metadata identities, and typing files before producing
