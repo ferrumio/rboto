@@ -649,6 +649,32 @@ dependencies = [
 ]
 
 [[package]]
+name = "aws-sdk-iam"
+version = "1.139.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5e59ea550c2872a0489a8999043605841b8a7317febd13b1a1b72d2f731fc66f"
+dependencies = [
+ "arc-swap",
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-observability",
+ "aws-smithy-query",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-schema",
+ "aws-smithy-types",
+ "aws-smithy-xml",
+ "aws-types",
+ "fastrand",
+ "http",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
 name = "aws-sdk-kinesis"
 version = "1.133.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2989,6 +3015,21 @@ version = "0.4.0"
 dependencies = [
  "aws-config",
  "aws-sdk-guardduty",
+ "aws-smithy-async",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "pyo3",
+ "pyo3-async-runtimes",
+ "rboto-core",
+ "tokio",
+]
+
+[[package]]
+name = "rboto-iam-native"
+version = "0.4.0"
+dependencies = [
+ "aws-config",
+ "aws-sdk-iam",
  "aws-smithy-async",
  "aws-smithy-runtime-api",
  "aws-smithy-types",

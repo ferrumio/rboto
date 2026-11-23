@@ -1,0 +1,52 @@
+service_id = "iam"
+display_name = "AWS Identity and Access Management (IAM)"
+documentation_path = "guides/iam/"
+python_name = "iam"
+distribution_name = "rboto-iam"
+python_package = "rboto_iam"
+client_class = "IAMClient"
+adapter_crate = "rboto-iam-native"
+rust_crate = "aws-sdk-iam"
+rust_module = "aws_sdk_iam"
+rust_crate_version = "1.139.0"
+model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-21/aws-models/iam.json"
+model_sha256 = "02aa5b7b6bb17711b296957f22d2ce49b093946824f92aece0bc67c571ecac9e"
+aws_model_hash = "5953bed63fc6134d92e793281a575ebcef479b18d81bc00f22a1f8a51e56df16"
+smithy_codegen_revision = "d0203cb69fe3e68bd234e14de5bc373ded9e857d"
+native_outputs = true
+
+# The model and SDK omit pagination metadata for these Marker pairs.
+[pagination.GetOrganizationsAccessReport]
+input_tokens = ["Marker"]
+output_tokens = ["Marker"]
+page_size = "MaxItems"
+more_results = "IsTruncated"
+
+[pagination.GetServiceLastAccessedDetails]
+input_tokens = ["Marker"]
+output_tokens = ["Marker"]
+page_size = "MaxItems"
+more_results = "IsTruncated"
+
+[pagination.GetServiceLastAccessedDetailsWithEntities]
+input_tokens = ["Marker"]
+output_tokens = ["Marker"]
+page_size = "MaxItems"
+more_results = "IsTruncated"
+
+# The output contains a cursor but no truncation flag.
+[pagination.ListDelegationRequests]
+input_tokens = ["Marker"]
+output_tokens = ["Marker"]
+page_size = "MaxItems"
+
+[pagination.ListPoliciesGrantingServiceAccess]
+input_tokens = ["Marker"]
+output_tokens = ["Marker"]
+more_results = "IsTruncated"
+
+[pagination.ListServiceSpecificCredentials]
+input_tokens = ["Marker"]
+output_tokens = ["Marker"]
+page_size = "MaxItems"
+more_results = "IsTruncated"

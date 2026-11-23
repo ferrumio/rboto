@@ -61,7 +61,7 @@ items = DynamoDBClient(session=session)
 
 ## Clients and operation references
 
-The 40 service packages below each contain a usage example, a complete
+The 41 service packages below each contain a usage example, a complete
 operation catalog, required arguments, return types, and full Python signatures.
 Use the installed package's README and type definitions for its exact API.
 
@@ -88,6 +88,7 @@ Use the installed package's README and type definitions for its exact API.
 | `FirehoseClient` | Amazon Data Firehose | [rboto-firehose](https://github.com/ferrumio/rboto/tree/main/packages/rboto-firehose) |
 | `GlueClient` | AWS Glue | [rboto-glue](https://github.com/ferrumio/rboto/tree/main/packages/rboto-glue) |
 | `GuardDutyClient` | Amazon GuardDuty | [rboto-guardduty](https://github.com/ferrumio/rboto/tree/main/packages/rboto-guardduty) |
+| `IAMClient` | AWS Identity and Access Management (IAM) | [rboto-iam](https://github.com/ferrumio/rboto/tree/main/packages/rboto-iam) |
 | `KinesisClient` | Amazon Kinesis Data Streams | [rboto-kinesis](https://github.com/ferrumio/rboto/tree/main/packages/rboto-kinesis) |
 | `KMSClient` | AWS KMS | [rboto-kms](https://github.com/ferrumio/rboto/tree/main/packages/rboto-kms) |
 | `LambdaClient` | AWS Lambda | [rboto-lambda](https://github.com/ferrumio/rboto/tree/main/packages/rboto-lambda) |
