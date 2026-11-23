@@ -24,6 +24,7 @@ from rboto_eventbridge import EventBridgeClient as EventBridgeClient
 from rboto_firehose import FirehoseClient as FirehoseClient
 from rboto_glue import GlueClient as GlueClient
 from rboto_guardduty import GuardDutyClient as GuardDutyClient
+from rboto_iam import IAMClient as IAMClient
 from rboto_kinesis import KinesisClient as KinesisClient
 from rboto_kms import KMSClient as KMSClient
 from rboto_lambda import LambdaClient as LambdaClient
@@ -79,6 +80,7 @@ from .services import eventbridge as eventbridge
 from .services import firehose as firehose
 from .services import glue as glue
 from .services import guardduty as guardduty
+from .services import iam as iam
 from .services import kinesis as kinesis
 from .services import kms as kms
 from .services import lambda_ as lambda_

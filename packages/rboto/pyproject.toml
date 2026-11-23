@@ -59,6 +59,7 @@ eventbridge = ["rboto-eventbridge==0.4.0"]
 firehose = ["rboto-firehose==0.4.0"]
 glue = ["rboto-glue==0.4.0"]
 guardduty = ["rboto-guardduty==0.4.0"]
+iam = ["rboto-iam==0.4.0"]
 kinesis = ["rboto-kinesis==0.4.0"]
 kms = ["rboto-kms==0.4.0"]
 lambda = ["rboto-lambda==0.4.0"]
@@ -100,6 +101,7 @@ all = [
     "rboto-firehose==0.4.0",
     "rboto-glue==0.4.0",
     "rboto-guardduty==0.4.0",
+    "rboto-iam==0.4.0",
     "rboto-kinesis==0.4.0",
     "rboto-kms==0.4.0",
     "rboto-lambda==0.4.0",

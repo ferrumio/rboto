@@ -31,6 +31,7 @@ SERVICE_IDS = frozenset((
     "firehose",
     "glue",
     "guardduty",
+    "iam",
     "kinesis",
     "kms",
     "lambda",
@@ -74,6 +75,7 @@ if TYPE_CHECKING:
     from rboto_firehose import FirehoseClient
     from rboto_glue import GlueClient
     from rboto_guardduty import GuardDutyClient
+    from rboto_iam import IAMClient
     from rboto_kinesis import KinesisClient
     from rboto_kms import KMSClient
     from rboto_lambda import LambdaClient
@@ -631,6 +633,32 @@ def guardduty(
     client_class = cast(
         "type[GuardDutyClient]",
         getattr(module, "GuardDutyClient"),
+    )
+    return client_class(
+        session=session,
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+        config=config,
+        interceptors=interceptors,
+    )
+
+
+def iam(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
+    interceptors: Sequence[Interceptor] | None = None,
+) -> IAMClient:
+    module = import_service(
+        "rboto_iam", "iam",
+    )
+    client_class = cast(
+        "type[IAMClient]",
+        getattr(module, "IAMClient"),
     )
     return client_class(
         session=session,

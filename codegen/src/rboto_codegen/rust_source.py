@@ -266,6 +266,7 @@ def error_codes(
 def setter_fields(parts: tuple[str, ...]) -> dict[str, str]:
     """Map stored fields to member names from generated builder setters."""
     result: dict[str, str] = {}
+    fluent: set[str] = set()
     for index in range(len(parts) - 3):
         if parts[index:index + 2] != ("pub", "fn"):
             continue
@@ -276,6 +277,9 @@ def setter_fields(parts: tuple[str, ...]) -> dict[str, str]:
         if parts[start] != "(":
             raise RustParseError(f"{method}: unsupported setter signature")
         end = closing(parts, start)
+        if parts[start + 1:end] in {("&", "self"), ("&", "self", ",")}:
+            # A member such as IAM SetAsDefault also has a read-only getter.
+            continue
         if parts[end + 1:end + 4] == ("->", "Self", "{"):
             body_start = end + 3
         elif parts[end + 1:end + 6] == ("->", "&", "mut", "Self", "{"):
@@ -283,21 +287,34 @@ def setter_fields(parts: tuple[str, ...]) -> dict[str, str]:
         else:
             raise RustParseError(f"{method}: setter must return Self")
         body = parts[body_start + 1:closing(parts, body_start)]
-        if (
-            len(body) != 7
-            or body[:2] != ("self", ".")
-            or body[3] != "="
-            or body[5:] != (";", "self")
-            or not any(
-                parts[position:position + 2] == (body[4], ":")
-                for position in range(start + 1, end)
-            )
+        if len(body) < 7 or body[:2] != ("self", ".") or body[3] != "=" or body[-2:] != (
+            ";", "self",
         ):
             raise RustParseError(f"{method}: unsupported setter assignment")
         field = body[2].removeprefix("r#")
+        value = body[4:-2]
+        # The fluent setter for a set_* field wraps its argument in Some.
+        # The canonical set_set_* setter still determines the member name.
+        convenience = (
+            field == method
+            and len(value) == 11
+            and value[:9] == ("::", "std", "::", "option", "::", "Option", "::", "Some", "(")
+            and value[-1] == ")"
+        )
+        argument = value[-2] if convenience else value[0]
+        if (len(value) != 1 and not convenience) or not any(
+            parts[position:position + 2] == (argument, ":")
+            for position in range(start + 1, end)
+        ):
+            raise RustParseError(f"{method}: unsupported setter assignment")
+        if convenience:
+            fluent.add(field)
+            continue
         if field in result:
             raise RustParseError(f"{field}: ambiguous builder setters")
         result[field] = method.removeprefix("set_")
+    if missing := fluent - {name for field, name in result.items() if field == name}:
+        raise RustParseError(f"missing canonical setter for {sorted(missing)}")
     return result
 
 

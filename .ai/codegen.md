@@ -31,6 +31,8 @@
 - Waiter traits: parsed by `waiter_metadata.py` from Smithy or service TOML
   `[waiters.Name]` tables, validated/compiled in `waiters.py`, rendered through
   `waiters.py.j2`. Use the Smithy matcher schema; supplements also need `operation`.
+  Query waiter matchers resolve modeled error names to the wire code; an explicit
+  wire code is also valid when modeled by the polling operation.
   The runtime is `rboto/_waiters.py`. Reject unsupported expressions, stream outputs,
   unmodeled errors, and parameter/name collisions. When a pinned waiter uses
   a wire error code missing from the operation error shapes, declare the exact

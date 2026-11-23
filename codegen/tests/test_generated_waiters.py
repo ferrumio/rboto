@@ -321,3 +321,38 @@ def test_waiter_error_code_requires_a_matching_pinned_acceptor(
     ]}})
     with pytest.raises(ValueError, match="unused waiter error codes"):
         resolve(replace(descriptor, waiters=override), service)
+
+
+@pytest.mark.parametrize(("protocol", "matcher", "wire"), [
+    ("awsQuery", "NotFound", "ResourceNotFound"),
+    ("awsQuery", "ResourceNotFound", "ResourceNotFound"),
+    ("awsQueryCompatible", "NotFound", "ResourceNotFound"),
+    ("awsJson1_1", "NotFound", "NotFound"),
+    ("awsJson1_1", "ResourceNotFound", None),
+])
+def test_waiter_errors_use_only_active_wire_codes(
+    modeled: tuple[ServiceDescriptor, SmithyService], protocol: str, matcher: str,
+    wire: str | None,
+) -> None:
+    descriptor, service = modeled
+    error_id = service.operations[0].errors[0]
+    service = replace(
+        service,
+        protocols=(f"aws.protocols#{protocol}",),
+        shapes={
+            **service.shapes,
+            error_id: replace(service.shapes[error_id], query_error_code="ResourceNotFound"),
+        },
+    )
+    descriptor = replace(descriptor, waiters=parse_waiters({
+        "Ready": {"operation": "Describe", "acceptors": [
+            {"state": "success", "matcher": {"success": True}},
+            {"state": "retry", "matcher": {"errorType": matcher}},
+        ]},
+    }))
+    if wire is None:
+        with pytest.raises(ValueError, match="unmodeled waiter error"):
+            resolve_waiters(descriptor, service, {"describe"}, lambda s, m: m.rust_name)
+    else:
+        waiter, = resolve_waiters(descriptor, service, {"describe"}, lambda s, m: m.rust_name)
+        assert waiter.acceptors[-1].expected == wire

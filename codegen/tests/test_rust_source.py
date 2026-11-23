@@ -316,3 +316,31 @@ def test_error_enums_keep_all_modeled_variants_across_layout_changes() -> None:
     }
     with pytest.raises(RustParseError, match="unsupported modeled error payload"):
         parse_error_variants(source.replace("crate::types::error::RejectedException", "NewAlias"))
+
+
+@pytest.mark.parametrize("canonical", [True, False])
+def test_set_prefixed_member_requires_the_canonical_setter(tmp_path: Path, canonical: bool) -> None:
+    path = tmp_path / "policy_version.rs"
+    path.write_text("""
+    pub struct Input { pub set_as_default: Option<bool> }
+    impl Input {
+        pub fn set_as_default(&self) -> Option<bool> { self.set_as_default }
+    }
+    impl InputBuilder {
+        pub fn set_as_default(mut self, input: bool) -> Self {
+            self.set_as_default = ::std::option::Option::Some(input); self
+        }
+    }
+    """ + ("""
+    impl InputBuilder {
+        pub fn set_set_as_default(mut self, input: Option<bool>) -> Self {
+            self.set_as_default = input; self
+        }
+    }
+    """ if canonical else ""))
+    if canonical:
+        field, = parse_fields(path)
+        assert field.name == field.rust_name == "set_as_default"
+    else:
+        with pytest.raises(RustParseError, match="missing canonical setter"):
+            parse_fields(path)

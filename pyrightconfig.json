@@ -31,6 +31,7 @@
     "packages/rboto-firehose/python",
     "packages/rboto-glue/python",
     "packages/rboto-guardduty/python",
+    "packages/rboto-iam/python",
     "packages/rboto-kinesis/python",
     "packages/rboto-kms/python",
     "packages/rboto-lambda/python",

@@ -37,6 +37,7 @@ from .services import (
     firehose,
     glue,
     guardduty,
+    iam,
     kinesis,
     kms,
     lambda_,
@@ -84,6 +85,7 @@ if TYPE_CHECKING:
     from rboto_firehose import FirehoseClient
     from rboto_glue import GlueClient
     from rboto_guardduty import GuardDutyClient
+    from rboto_iam import IAMClient
     from rboto_kinesis import KinesisClient
     from rboto_kms import KMSClient
     from rboto_lambda import LambdaClient
@@ -145,6 +147,7 @@ __all__ = [
     "FirehoseClient",
     "GlueClient",
     "GuardDutyClient",
+    "IAMClient",
     "KinesisClient",
     "KMSClient",
     "LambdaClient",
@@ -186,6 +189,7 @@ __all__ = [
     "firehose",
     "glue",
     "guardduty",
+    "iam",
     "kinesis",
     "kms",
     "lambda_",
@@ -270,6 +274,9 @@ _CLIENT_MODULES = {
     ),
     "GuardDutyClient": (
         "rboto_guardduty", "guardduty",
+    ),
+    "IAMClient": (
+        "rboto_iam", "iam",
     ),
     "KinesisClient": (
         "rboto_kinesis", "kinesis",

@@ -204,6 +204,9 @@ def resolve_waiters(
         raise ValueError(f"waiter error codes lack pinned model acceptors: {sorted(unused)}")
     used_codes: set[tuple[str, str]] = set()
     operations = {op.name: op for op in service.operations}
+    query_protocol = bool(
+        {"aws.protocols#awsQuery", "aws.protocols#awsQueryCompatible"} & set(service.protocols)
+    )
     compiler = _Compiler(service, field_name)
     result: list[ResolvedWaiter] = []
     names: set[str] = set()
@@ -222,10 +225,17 @@ def resolve_waiters(
                 raise ValueError("waiter_config collides with an operation parameter")
         _reject_streams(service, operation.output_target, set())
         context = _Type(operation.output_target, operation.rust_name not in native_operations)
+        error_codes = {
+            short_name(error): (
+                service.shapes[error].query_error_code if query_protocol else None
+            ) or short_name(error)
+            for error in operation.errors
+        }
         resolved: list[ResolvedAcceptor] = []
         returns_output = returns_none = False
         for acceptor in definition.acceptors:
             expression = None
+            expected = acceptor.expected
             if acceptor.matcher == "output":
                 assert acceptor.path is not None
                 expression, value_type = compiler.compile(
@@ -241,14 +251,17 @@ def resolve_waiters(
                     assert isinstance(acceptor.expected, str)
                     compiler.expected(value_type, acceptor.expected)
             elif acceptor.matcher == "errorType":
-                assert isinstance(acceptor.expected, str)
-                if acceptor.expected not in {short_name(error) for error in operation.errors}:
-                    pair = (operation.name, acceptor.expected)
-                    if pair not in extra_codes:
-                        raise ValueError(
-                            f"unmodeled waiter error: {definition.name}.{acceptor.expected}",
-                        )
-                    used_codes.add(pair)
+                assert isinstance(expected, str)
+                if expected not in error_codes.values():
+                    if expected in error_codes:
+                        expected = error_codes[expected]
+                    else:
+                        pair = (operation.name, expected)
+                        if pair not in extra_codes:
+                            raise ValueError(
+                                f"unmodeled waiter error: {definition.name}.{expected}",
+                            )
+                        used_codes.add(pair)
             if acceptor.state == "success":
                 if acceptor.matcher == "errorType" or (
                     acceptor.matcher == "success" and acceptor.expected is False
@@ -257,7 +270,7 @@ def resolve_waiters(
                 else:
                     returns_output = True
             resolved.append(ResolvedAcceptor(
-                acceptor.state, acceptor.matcher, acceptor.expected,
+                acceptor.state, acceptor.matcher, expected,
                 expression, acceptor.comparator, acceptor.path,
             ))
         result.append(ResolvedWaiter(

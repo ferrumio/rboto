@@ -15,7 +15,7 @@ package; constructing it does not send a network request.
 
 ## Install the services you use
 
-The catalog contains 40 services and 2,544 operations. Each service has its own
+The catalog contains 41 services and 2,725 operations. Each service has its own
 package. `rboto[s3]` selects the matching `rboto-s3` dependency once packages are
 published. [Getting started](getting-started.md) covers source installation.
 
@@ -56,6 +56,7 @@ All classes in this table are available from `rboto`:
 | `FirehoseClient` | `rboto-firehose` | 12 |
 | `GlueClient` | `rboto-glue` | 312 |
 | `GuardDutyClient` | `rboto-guardduty` | 103 |
+| `IAMClient` | `rboto-iam` | 181 |
 | `KMSClient` | `rboto-kms` | 56 |
 | `KinesisClient` | `rboto-kinesis` | 57 |
 | `LambdaClient` | `rboto-lambda` | 91 |

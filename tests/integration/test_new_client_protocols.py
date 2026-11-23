@@ -2321,3 +2321,118 @@ async def test_cloudformation_query_errors_and_waiter_acceptors(peer: Peer) -> N
         assert deleted is not None and deleted.stacks is not None
         assert deleted.stacks[0].stack_status == "DELETE_COMPLETE"
     assert len(peer.requests) == 5
+
+
+@pytest.mark.asyncio
+@service("iam")
+@pytest.mark.parametrize("set_as_default", [False, True])
+async def test_iam_query_policy_version_boolean_and_document(
+    peer: Peer, set_as_default: bool,
+) -> None:
+    from rboto import IAMClient
+
+    peer.content_type = "text/xml"
+    peer.body = b"""<CreatePolicyVersionResponse xmlns="https://iam.amazonaws.com/doc/2010-05-08/">
+      <CreatePolicyVersionResult><PolicyVersion>
+        <VersionId>v2</VersionId><IsDefaultVersion>false</IsDefaultVersion>
+        <CreateDate>2030-01-02T03:04:05Z</CreateDate>
+        <Document>%7B%22Sid%22%3A%22a%26b%22%7D</Document>
+      </PolicyVersion></CreatePolicyVersionResult>
+    </CreatePolicyVersionResponse>"""
+    arn = "arn:aws:iam::123456789012:policy/example"
+    document = '{"Sid":"café & + <tag>"}'
+    async with IAMClient(region="us-east-1", endpoint_url=peer.endpoint) as client:
+        output = await client.create_policy_version(
+            policy_arn=arn, policy_document=document, set_as_default=set_as_default,
+        )
+        assert output.policy_version is not None
+        version = output.policy_version
+    del output
+    assert version.version_id == "v2"
+    assert version.create_date == "2030-01-02T03:04:05Z"
+    assert version.document == "%7B%22Sid%22%3A%22a%26b%22%7D"
+    assert version.is_default_version is False
+    assert parse_qs(peer.requests[0][1].decode()) == {
+        "Action": ["CreatePolicyVersion"], "Version": ["2010-05-08"],
+        "PolicyArn": [arn], "PolicyDocument": [document],
+        "SetAsDefault": ["true" if set_as_default else "false"],
+    }
+
+
+@pytest.mark.asyncio
+@service("iam")
+async def test_iam_query_supplemented_paginator_obeys_truncation(peer: Peer) -> None:
+    from rboto import IAMClient
+
+    def page(truncated: bool, marker: str) -> bytes:
+        return f"""<ListServiceSpecificCredentialsResponse>
+          <ListServiceSpecificCredentialsResult><Marker>{marker}</Marker>
+            <IsTruncated>{str(truncated).lower()}</IsTruncated>
+          </ListServiceSpecificCredentialsResult>
+        </ListServiceSpecificCredentialsResponse>""".encode()
+
+    peer.content_type = "text/xml"
+    peer.body = page(True, "opaque+&amp;=")
+    async with IAMClient(region="us-east-1", endpoint_url=peer.endpoint) as client:
+        pages = client.paginators.list_service_specific_credentials(
+            user_name="example", max_items=1,
+        )
+        assert not peer.requests
+        assert (await anext(pages)).marker == "opaque+&="
+        peer.body = page(False, "unused")
+        assert (await anext(pages)).is_truncated is False
+        with pytest.raises(StopAsyncIteration):
+            await anext(pages)
+    request = {
+        "Action": ["ListServiceSpecificCredentials"], "Version": ["2010-05-08"],
+        "UserName": ["example"], "MaxItems": ["1"],
+    }
+    assert [parse_qs(b.decode()) for _, b in peer.requests] == [
+        request, {**request, "Marker": ["opaque+&="]},
+    ]
+
+
+@pytest.mark.asyncio
+@service("iam")
+async def test_iam_query_waiter_retries_modeled_wire_alias(peer: Peer) -> None:
+    from rboto import IAMClient, WaiterConfig
+    from rboto_iam.exceptions import NoSuchEntityError
+
+    peer.content_type = "text/xml"
+    peer.status = 404
+    peer.response_headers["x-amzn-requestid"] = "iam-request"
+    peer.body = b"""<ErrorResponse xmlns="https://iam.amazonaws.com/doc/2010-05-08/">
+      <Error><Type>Sender</Type><Code>NoSuchEntity</Code><Message>missing</Message></Error>
+    </ErrorResponse>"""
+
+    async def install_profile(request: OperationRequest, call_next: Next) -> OperationResponse:
+        try:
+            return await call_next(request)
+        except NoSuchEntityError:
+            if len(peer.requests) == 2:
+                peer.status = 200
+                peer.body = b"""<GetInstanceProfileResponse>
+                  <GetInstanceProfileResult><InstanceProfile>
+                    <Path>/</Path><InstanceProfileName>profile</InstanceProfileName>
+                    <InstanceProfileId>fixture</InstanceProfileId>
+                    <Arn>arn:aws:iam::123456789012:instance-profile/profile</Arn>
+                    <CreateDate>2030-01-02T03:04:05Z</CreateDate><Roles/>
+                  </InstanceProfile></GetInstanceProfileResult>
+                </GetInstanceProfileResponse>"""
+            raise
+
+    async with IAMClient(
+        region="us-east-1", endpoint_url=peer.endpoint, interceptors=(install_profile,),
+    ) as client:
+        with pytest.raises(NoSuchEntityError) as caught:
+            await client.get_instance_profile(instance_profile_name="profile")
+        assert caught.value.error_code == "NoSuchEntity"
+        assert caught.value.operation_name == "GetInstanceProfile"
+        assert caught.value.response_metadata["RequestId"] == "iam-request"
+        ready = await client.waiters.instance_profile_exists(
+            instance_profile_name="profile",
+            waiter_config=WaiterConfig(delay=0, max_attempts=2, timeout=5),
+        )
+    assert ready.instance_profile is not None
+    assert ready.instance_profile.instance_profile_name == "profile"
+    assert len(peer.requests) == 3

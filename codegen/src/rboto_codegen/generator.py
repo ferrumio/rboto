@@ -3,6 +3,7 @@ from __future__ import annotations
 import keyword
 import re
 import subprocess
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
@@ -1843,6 +1844,19 @@ class ServiceGenerator:
             "AsyncIterator", self._sequence_type, "Literal", "NotRequired", "Required",
             "TypeAlias", "TypedDict", "UnknownEnumValue", "ByteStream", "JSONValue",
         }
+        type_names = (
+            reserved | set(self._input_type_names.values()) | set(self._output_type_names.values())
+            | self._operation_output_names
+        )
+
+        def allocate_variant(candidate: str) -> str:
+            name = candidate
+            while name in type_names:
+                name += "Variant"
+            type_names.add(name)
+            reserved.add(name)
+            return name
+
         shapes = sorted(self.service.shapes.values(), key=lambda shape: shape.name)
         native_operations = {metadata["operation"] for metadata in self._native_output_operations()}
         native_output_targets = {
@@ -1915,12 +1929,10 @@ class ServiceGenerator:
                     if output else [self._input_type_name(shape)]
                 )
                 for name in names:
-                    lines.extend(self._python_shape_definition(shape, output=output, name=name))
+                    lines.extend(self._python_shape_definition(
+                        shape, output=output, name=name, allocate_variant=allocate_variant,
+                    ))
                     reserved.add(name)
-                    if shape.kind == "union":
-                        reserved.update(f"{name}{member.name}" for member in shape.members)
-                        if output:
-                            reserved.add(f"{name}Unknown")
 
         # Operation names have priority. Nested native objects can share modeled
         # names with dictionaries, so allocate distinct aliases ending in Output.
@@ -1946,11 +1958,10 @@ class ServiceGenerator:
         return "\n".join([*imports, *lines]).rstrip() + "\n"
 
     def _python_shape_definition(
-        self, shape: SmithyShape, *, output: bool, name: str | None = None,
+        self, shape: SmithyShape, *, output: bool, name: str,
+        allocate_variant: Callable[[str], str],
     ) -> list[str]:
         lines: list[str] = []
-        if name is None:
-            name = self._output_type_name(shape) if output else self._input_type_name(shape)
         if shape.kind == "structure":
             entries: list[str] = []
             for member in shape.members:
@@ -1974,12 +1985,12 @@ class ServiceGenerator:
         elif shape.kind == "union":
             variants: list[str] = []
             for member in shape.members:
+                variant = allocate_variant(f"{name}{member.name}")
                 if (
                     self.service.shapes.get(member.target) is not None
                     and self.service.shapes[member.target].error
                 ):
                     continue
-                variant = f"{name}{member.name}"
                 lines.append(
                     f'{variant} = TypedDict("{variant}", '
                     f'{{"{member.rust_name}": '
@@ -1987,9 +1998,10 @@ class ServiceGenerator:
                 )
                 variants.append(variant)
             if output:
-                variants.append(f"{name}Unknown")
+                unknown = allocate_variant(f"{name}Unknown")
+                variants.append(unknown)
                 lines.append(
-                    f'{name}Unknown = TypedDict("{name}Unknown", '
+                    f'{unknown} = TypedDict("{unknown}", '
                     '{"unknown": Required[Literal[True]]}, closed=True)'
                 )
             lines.append(f"{name}: TypeAlias = {' | '.join(variants)}")

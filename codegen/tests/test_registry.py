@@ -17,6 +17,7 @@ def test_service_configs_are_discovered() -> None:
         "cloudwatch-logs",
         "eventbridge",
         "kms",
+        "iam",
         "kinesis",
         "firehose",
         "pipes",
