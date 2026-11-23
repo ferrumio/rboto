@@ -2163,3 +2163,161 @@ async def test_firehose_nested_destination_cursor(peer: Peer) -> None:
         {"DeliveryStreamName": "example", "Limit": 1},
         {"DeliveryStreamName": "example", "Limit": 1, "ExclusiveStartDestinationId": "first"},
     ]
+
+
+@pytest.mark.asyncio
+@service("cloudformation")
+async def test_cloudformation_query_stack_and_nested_input(peer: Peer) -> None:
+    from rboto import CloudFormationClient
+    from rboto.exceptions import get_conversion_context
+    from rboto.types import UnknownEnumValue
+
+    namespace = "http://cloudformation.amazonaws.com/doc/2010-05-15/"
+    peer.content_type = "text/xml"
+    peer.body = f'''<CreateStackResponse xmlns="{namespace}">
+      <CreateStackResult><StackId>stack-1</StackId></CreateStackResult>
+      <ResponseMetadata><RequestId>create-1</RequestId></ResponseMetadata>
+    </CreateStackResponse>'''.encode()
+    value = "café 東京 & + <tag>"
+    template = '{"Description":"café & + <tag>"}'
+    async with CloudFormationClient(region="eu-west-1", endpoint_url=peer.endpoint) as client:
+        with pytest.raises(TypeError) as caught:
+            await getattr(client, "create_stack")(
+                stack_name="fixture", parameters=[{"ParameterKey": "Label"}],
+            )
+        context = get_conversion_context(caught.value)
+        assert context is not None and context.path == "parameters[0][key#0]"
+        assert context.category == "unknown_field"
+        assert not peer.requests
+
+        created = await client.create_stack(
+            stack_name="fixture", template_body=template, client_request_token="create-token",
+            parameters=[{"parameter_key": "Label", "parameter_value": value}],
+            capabilities=["CAPABILITY_NAMED_IAM"], tags=[{"key": "label", "value": value}],
+        )
+        assert created.stack_id == "stack-1"
+        assert created.operation_id is None
+        assert parse_qs(peer.requests[0][1].decode()) == {
+            "Action": ["CreateStack"], "Version": ["2010-05-15"], "StackName": ["fixture"],
+            "TemplateBody": [template], "ClientRequestToken": ["create-token"],
+            "Parameters.member.1.ParameterKey": ["Label"],
+            "Parameters.member.1.ParameterValue": [value],
+            "Capabilities.member.1": ["CAPABILITY_NAMED_IAM"],
+            "Tags.member.1.Key": ["label"], "Tags.member.1.Value": [value],
+        }
+        peer.body = f'''<DescribeStacksResponse xmlns="{namespace}">
+          <DescribeStacksResult><Stacks><member>
+            <StackId>stack-1</StackId><StackName>fixture</StackName>
+            <CreationTime>2030-01-02T03:04:05.125Z</CreationTime><StackStatus>FUTURE_STATE</StackStatus>
+            <Outputs><member><OutputKey>Label</OutputKey>
+              <OutputValue>café 東京 &amp; + &lt;tag&gt;</OutputValue></member></Outputs>
+          </member></Stacks></DescribeStacksResult>
+        </DescribeStacksResponse>'''.encode()
+        response = await client.describe_stacks(stack_name="stack-1")
+        assert response.stacks is not None
+        stack = response.stacks[0]
+
+    assert stack.stack_status == UnknownEnumValue("FUTURE_STATE")
+    assert stack.creation_time == "2030-01-02T03:04:05.125Z"
+    assert stack.last_updated_time is None
+    assert stack.outputs is not None
+    child = stack.outputs[0]
+    del response, stack
+    assert child.output_value == value
+    assert child.export_name is None
+
+
+@pytest.mark.asyncio
+@service("cloudformation")
+@pytest.mark.parametrize(("operation", "action", "parameters", "wire"), [
+    ("describe_change_set_hooks", "DescribeChangeSetHooks",
+     {"change_set_name": "fixture"}, {"ChangeSetName": ["fixture"]}),
+    ("list_hook_results", "ListHookResults",
+     {"target_id": "fixture"}, {"TargetId": ["fixture"]}),
+    ("list_stack_instance_resource_drifts", "ListStackInstanceResourceDrifts",
+     {"stack_set_name": "fixture", "stack_instance_account": "123456789012",
+      "stack_instance_region": "eu-west-1", "operation_id": "drift", "max_results": 1},
+     {"StackSetName": ["fixture"], "StackInstanceAccount": ["123456789012"],
+      "StackInstanceRegion": ["eu-west-1"], "OperationId": ["drift"], "MaxResults": ["1"]}),
+    ("list_stack_set_auto_deployment_targets", "ListStackSetAutoDeploymentTargets",
+     {"stack_set_name": "fixture", "max_results": 1},
+     {"StackSetName": ["fixture"], "MaxResults": ["1"]}),
+])
+async def test_cloudformation_query_supplemented_pagination(
+    peer: Peer, operation: str, action: str, parameters: dict[str, object],
+    wire: dict[str, list[str]],
+) -> None:
+    from rboto import CloudFormationClient
+
+    def response(token: str) -> bytes:
+        return (
+            f"<{action}Response><{action}Result>{token}</{action}Result></{action}Response>"
+        ).encode()
+
+    peer.content_type = "text/xml"
+    peer.body = response("<NextToken>opaque+&amp;=</NextToken>")
+    async with CloudFormationClient(region="eu-west-1", endpoint_url=peer.endpoint) as client:
+        pages = getattr(client.paginators, operation)(**parameters)
+        assert not peer.requests
+        assert (await anext(pages)).next_token == "opaque+&="
+        peer.body = response("")
+        assert (await anext(pages)).next_token is None
+        with pytest.raises(StopAsyncIteration):
+            await anext(pages)
+    first = {"Action": [action], "Version": ["2010-05-15"], **wire}
+    assert [parse_qs(b.decode()) for _, b in peer.requests] == [
+        first, {**first, "NextToken": ["opaque+&="]},
+    ]
+
+
+@pytest.mark.asyncio
+@service("cloudformation")
+async def test_cloudformation_query_errors_and_waiter_acceptors(peer: Peer) -> None:
+    from rboto import CloudFormationClient, WaiterConfig
+    from rboto.waiters import WaiterFailedError, WaiterTimeoutError
+    from rboto_cloudformation.exceptions import ChangeSetNotFoundError
+
+    def error(code: str) -> bytes:
+        return f'''<ErrorResponse xmlns="http://cloudformation.amazonaws.com/doc/2010-05-15/">
+          <Error><Type>Sender</Type><Code>{code}</Code><Message>missing</Message></Error>
+          <RequestId>cfn-request</RequestId>
+        </ErrorResponse>'''.encode()
+
+    peer.content_type = "text/xml"
+    peer.status = 404
+    peer.body = error("ChangeSetNotFound")
+    peer.response_headers["x-amzn-requestid"] = "cfn-request"
+    once = WaiterConfig(delay=0, max_attempts=1, timeout=5)
+    async with CloudFormationClient(region="eu-west-1", endpoint_url=peer.endpoint) as client:
+        with pytest.raises(ChangeSetNotFoundError) as caught:
+            await client.describe_change_set(change_set_name="fixture")
+        assert caught.value.error_code == "ChangeSetNotFound"
+        assert caught.value.operation_name == "DescribeChangeSet"
+        assert caught.value.response_metadata == {
+            "HTTPStatusCode": 404, "RequestId": "cfn-request", "HostId": None, "RetryAttempts": 0,
+        }
+        peer.status = 400
+        peer.body = error("ValidationError")
+        absent = await client.waiters.stack_delete_complete(
+            stack_name="fixture", waiter_config=once,
+        )
+        assert absent is None
+        with pytest.raises(WaiterFailedError) as failed:
+            await client.waiters.stack_create_complete(stack_name="fixture", waiter_config=once)
+        assert failed.value.last_attempt is not None
+        assert failed.value.last_attempt.error_code == "ValidationError"
+        assert failed.value.last_attempt.request_id == "cfn-request"
+        with pytest.raises(WaiterTimeoutError) as timed_out:
+            await client.waiters.stack_exists(stack_name="fixture", waiter_config=once)
+        assert timed_out.value.reason == "max_attempts"
+        peer.status = 200
+        peer.body = b"""<DescribeStacksResponse><DescribeStacksResult><Stacks><member>
+          <StackName>fixture</StackName><StackStatus>DELETE_COMPLETE</StackStatus>
+          <CreationTime>2030-01-02T03:04:05Z</CreationTime>
+        </member></Stacks></DescribeStacksResult></DescribeStacksResponse>"""
+        deleted = await client.waiters.stack_delete_complete(
+            stack_name="fixture", waiter_config=once,
+        )
+        assert deleted is not None and deleted.stacks is not None
+        assert deleted.stacks[0].stack_status == "DELETE_COMPLETE"
+    assert len(peer.requests) == 5

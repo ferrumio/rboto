@@ -48,6 +48,7 @@ bedrock-agentcore-control = ["rboto-bedrock-agentcore-control==0.4.0"]
 bedrock-data-automation = ["rboto-bedrock-data-automation==0.4.0"]
 bedrock-data-automation-runtime = ["rboto-bedrock-data-automation-runtime==0.4.0"]
 bedrock-runtime = ["rboto-bedrock-runtime==0.4.0"]
+cloudformation = ["rboto-cloudformation==0.4.0"]
 cloudtrail = ["rboto-cloudtrail==0.4.0"]
 cloudwatch = ["rboto-cloudwatch==0.4.0"]
 cloudwatch-logs = ["rboto-cloudwatch-logs==0.4.0"]
@@ -88,6 +89,7 @@ all = [
     "rboto-bedrock-data-automation==0.4.0",
     "rboto-bedrock-data-automation-runtime==0.4.0",
     "rboto-bedrock-runtime==0.4.0",
+    "rboto-cloudformation==0.4.0",
     "rboto-cloudtrail==0.4.0",
     "rboto-cloudwatch==0.4.0",
     "rboto-cloudwatch-logs==0.4.0",

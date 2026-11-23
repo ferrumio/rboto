@@ -13,6 +13,7 @@ from rboto_bedrock_data_automation_runtime import (
     BedrockDataAutomationRuntimeClient as BedrockDataAutomationRuntimeClient,
 )
 from rboto_bedrock_runtime import BedrockRuntimeClient as BedrockRuntimeClient
+from rboto_cloudformation import CloudFormationClient as CloudFormationClient
 from rboto_cloudtrail import CloudTrailClient as CloudTrailClient
 from rboto_cloudwatch import CloudWatchClient as CloudWatchClient
 from rboto_cloudwatch_logs import CloudWatchLogsClient as CloudWatchLogsClient
@@ -67,6 +68,7 @@ from .services import bedrock_agentcore_control as bedrock_agentcore_control
 from .services import bedrock_data_automation as bedrock_data_automation
 from .services import bedrock_data_automation_runtime as bedrock_data_automation_runtime
 from .services import bedrock_runtime as bedrock_runtime
+from .services import cloudformation as cloudformation
 from .services import cloudtrail as cloudtrail
 from .services import cloudwatch as cloudwatch
 from .services import cloudwatch_logs as cloudwatch_logs

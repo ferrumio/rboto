@@ -61,7 +61,7 @@ items = DynamoDBClient(session=session)
 
 ## Clients and operation references
 
-The 39 service packages below each contain a usage example, a complete
+The 40 service packages below each contain a usage example, a complete
 operation catalog, required arguments, return types, and full Python signatures.
 Use the installed package's README and type definitions for its exact API.
 
@@ -77,6 +77,7 @@ Use the installed package's README and type definitions for its exact API.
 | `BedrockDataAutomationClient` | Amazon Bedrock Data Automation | [rboto-bedrock-data-automation](https://github.com/ferrumio/rboto/tree/main/packages/rboto-bedrock-data-automation) |
 | `BedrockDataAutomationRuntimeClient` | Amazon Bedrock Data Automation Runtime | [rboto-bedrock-data-automation-runtime](https://github.com/ferrumio/rboto/tree/main/packages/rboto-bedrock-data-automation-runtime) |
 | `BedrockRuntimeClient` | Amazon Bedrock Runtime | [rboto-bedrock-runtime](https://github.com/ferrumio/rboto/tree/main/packages/rboto-bedrock-runtime) |
+| `CloudFormationClient` | AWS CloudFormation | [rboto-cloudformation](https://github.com/ferrumio/rboto/tree/main/packages/rboto-cloudformation) |
 | `CloudTrailClient` | AWS CloudTrail | [rboto-cloudtrail](https://github.com/ferrumio/rboto/tree/main/packages/rboto-cloudtrail) |
 | `CloudWatchClient` | Amazon CloudWatch | [rboto-cloudwatch](https://github.com/ferrumio/rboto/tree/main/packages/rboto-cloudwatch) |
 | `CloudWatchLogsClient` | Amazon CloudWatch Logs | [rboto-cloudwatch-logs](https://github.com/ferrumio/rboto/tree/main/packages/rboto-cloudwatch-logs) |

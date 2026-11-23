@@ -27,6 +27,7 @@ nav = [
         { "Testing" = "guides/testing.md" },
     ] },
     { "Service guides" = [
+        { "CloudFormation" = "guides/cloudformation.md" },
         { "CloudWatch" = "guides/cloudwatch.md" },
         { "Kinesis Data Streams" = "guides/kinesis.md" },
         { "Data Firehose" = "guides/firehose.md" },

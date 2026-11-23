@@ -12,6 +12,7 @@ def test_service_configs_are_discovered() -> None:
         "s3",
         "athena",
         "glue",
+        "cloudformation",
         "cloudwatch",
         "cloudwatch-logs",
         "eventbridge",

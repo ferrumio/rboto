@@ -191,6 +191,18 @@ def resolve_waiters(
                 raise ValueError(f"duplicate waiter: {definition.name}")
             definitions[definition.name] = definition
     definitions.update((definition.name, definition) for definition in descriptor.waiters)
+    # Only allow exact wire codes already referenced by a pinned Smithy waiter.
+    modeled_error_matchers = {
+        (op.name, acceptor.expected)
+        for op in service.operations
+        for waiter in op.waiters
+        for acceptor in waiter.acceptors
+        if acceptor.matcher == "errorType"
+    }
+    extra_codes = set(descriptor.waiter_error_codes)
+    if unused := extra_codes - modeled_error_matchers:
+        raise ValueError(f"waiter error codes lack pinned model acceptors: {sorted(unused)}")
+    used_codes: set[tuple[str, str]] = set()
     operations = {op.name: op for op in service.operations}
     compiler = _Compiler(service, field_name)
     result: list[ResolvedWaiter] = []
@@ -229,10 +241,14 @@ def resolve_waiters(
                     assert isinstance(acceptor.expected, str)
                     compiler.expected(value_type, acceptor.expected)
             elif acceptor.matcher == "errorType":
+                assert isinstance(acceptor.expected, str)
                 if acceptor.expected not in {short_name(error) for error in operation.errors}:
-                    raise ValueError(
-                        f"unmodeled waiter error: {definition.name}.{acceptor.expected}",
-                    )
+                    pair = (operation.name, acceptor.expected)
+                    if pair not in extra_codes:
+                        raise ValueError(
+                            f"unmodeled waiter error: {definition.name}.{acceptor.expected}",
+                        )
+                    used_codes.add(pair)
             if acceptor.state == "success":
                 if acceptor.matcher == "errorType" or (
                     acceptor.matcher == "success" and acceptor.expected is False
@@ -248,4 +264,6 @@ def resolve_waiters(
             name, operation.rust_name, definition.min_delay, tuple(resolved),
             returns_output, returns_none,
         ))
+    if unused_codes := extra_codes - used_codes:
+        raise ValueError(f"unused waiter error codes: {sorted(unused_codes)}")
     return tuple(result)
