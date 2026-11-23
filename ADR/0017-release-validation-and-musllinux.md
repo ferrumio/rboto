@@ -38,6 +38,18 @@ The routine CI remains
 focused on Linux CPython 3.15 and representative Python 3.12 integration tests.
 
 Freeze client names and package identities from descriptors in `release.json`.
+Before compiling native adapters, discover external runtime requirements from
+the package manifests and resolve their complete wheel dependency graph on each
+supported platform and interpreter. Six platform jobs cover the four Python
+versions sequentially, checking installation in empty offline environments.
+Run this preflight on relevant PRs as well as releases so a new runtime dependency
+cannot silently invalidate the offline release installation.
+
+Retain dependency wheels in separate platform artifacts, consumed only by
+installation checks. Keep third-party distributions out of the release inventory,
+checksums, and publishers. Preserve environment markers during discovery and
+resolve them in the actual target environment, including musl.
+
 Install every service from wheels with source fallback disabled on each of the
 24 interpreter/platform combinations. Run musl smoke tests in musl containers,
 with networking disabled. Import the installed extensions, instantiate only
