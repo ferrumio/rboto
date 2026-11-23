@@ -154,9 +154,13 @@ jobs:
         if: matrix.platform.container == ''
         env:
           VERSION: ${{ needs.prepare.outputs.version }}
+          PYTHON_VERSION: ${{ matrix.python }}
         run: |
+          ABI="cp${PYTHON_VERSION//./}"
           python -m venv .venv
-          .venv/bin/pip install --only-binary=:all: --no-index --find-links dist "rboto[all]==$VERSION"
+          .venv/bin/pip install --only-binary=:all: \
+            "dist/rboto-$VERSION-py3-none-any.whl" dist/*-"$ABI"-"$ABI"-*.whl
+          .venv/bin/pip check
           .venv/bin/python .github/scripts/smoke_release.py release/release.json
       - name: Install and check musl wheels in musl
         if: matrix.platform.container != ''
@@ -166,13 +170,15 @@ jobs:
           IMAGE: ${{ matrix.platform.container }}
         run: |
           ABI="cp${PYTHON_VERSION//./}"
-          docker run --rm --network none --cpus 2 --memory 4g \
+          docker run --rm --cpus 2 --memory 4g \
             -v "$PWD:/io:ro" -w /tmp \
             -e VERSION -e ABI="$ABI" -e AWS_EC2_METADATA_DISABLED \
             -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_REGION \
             "$IMAGE" sh -eu -c '
               /opt/python/$ABI-$ABI/bin/python -m venv /tmp/venv
-              /tmp/venv/bin/pip install --only-binary=:all: --no-index --find-links /io/dist "rboto[all]==$VERSION"
+              /tmp/venv/bin/pip install --only-binary=:all: \
+                "/io/dist/rboto-$VERSION-py3-none-any.whl" /io/dist/*-"$ABI"-"$ABI"-*.whl
+              /tmp/venv/bin/pip check
               /tmp/venv/bin/python /io/.github/scripts/smoke_release.py /io/release/release.json
             '
 

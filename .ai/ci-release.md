@@ -59,10 +59,12 @@ retain earlier successful artifacts; rerunning that job rebuilds the group.
 Service durations, including setup and upload, appear in the job summary and a
 `timings--<batch>--<platform>` CSV artifact. GitHub records the total job duration.
 
-Each smoke job installs wheels only. Musl smoke jobs execute in the matching
-musllinux container with networking disabled. The descriptor-derived catalog
-selects client classes; do not enumerate `rboto.__all__` as if all public symbols
-were constructors.
+Each smoke job installs wheels only. Pass the built facade and matching CPython
+service wheels directly to pip so it tests those files, while fetching external
+runtime dependencies from PyPI. Run `pip check` before the compiled client checks.
+Musl smoke jobs use the matching musllinux container with network access for pip.
+The descriptor-derived catalog selects client classes; do not enumerate
+`rboto.__all__` as if all public symbols were constructors.
 
 `release_artifacts.py validate` checks all expected interpreter/platform wheels,
 source distributions, metadata identities, and typing files before producing

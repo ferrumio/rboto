@@ -40,9 +40,10 @@ focused on Linux CPython 3.15 and representative Python 3.12 integration tests.
 Freeze client names and package identities from descriptors in `release.json`.
 Install every service from wheels with source fallback disabled on each of the
 24 interpreter/platform combinations. Run musl smoke tests in musl containers,
-with networking disabled. Import the installed extensions, instantiate only
-catalog clients, check versions and typing files, and verify async/native method
-alignment.
+allowing pip to fetch external runtime dependencies. Install rboto distributions
+through explicit local wheel paths and run `pip check`. Import the installed
+extensions, instantiate only catalog clients, check versions and typing files,
+and verify async/native method alignment.
 
 After all smoke jobs, check the complete artifact matrix, distribution metadata,
 and SHA-256 hashes. Manual dispatch defaults to validation without publication.
